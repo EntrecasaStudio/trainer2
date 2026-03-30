@@ -14,7 +14,7 @@ export function renderNav(container) {
   container.innerHTML = NAV_ITEMS.map(item => `
     <button class="nav-item ${currentRoute === item.route ? 'active' : ''}"
             data-route="${item.route}" aria-label="${item.label}">
-      <i class="${item.icon} nav-ph-icon"></i>
+      <i class="ph ${item.icon} nav-ph-icon"></i>
       <span>${item.label}</span>
     </button>
   `).join('');
