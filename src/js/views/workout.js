@@ -6,8 +6,10 @@ import { showToast } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 
-// ── SVG check icon (v1 style) ───────────────────────────────────────────────
+// ── SVG icons (v1 style) ────────────────────────────────────────────────────
 const SVG_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+const SVG_CIRCLE = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>`;
+const SVG_CHECK_CIRCLE = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`;
 
 // ── Auto-derive muscle groups from exercises ────────────────────────────────
 function getCircuitGrupos(circ) {
@@ -299,7 +301,7 @@ function renderExerciseCard(e, ci, ei) {
             <div class="vuelta-right">
               <span class="vuelta-label">S${si + 1}</span>
               <button class="vuelta-check" data-ci="${ci}" data-ei="${ei}" data-si="${si}">
-                <i class="ph ph-check${s.done ? '-circle' : ''}" style="font-size:22px;"></i>
+                ${s.done ? SVG_CHECK_CIRCLE : SVG_CIRCLE}
               </button>
               ${totalSeries > 1 ? `
               <button class="vuelta-remove" data-ci="${ci}" data-ei="${ei}" data-si="${si}" title="Quitar serie">
