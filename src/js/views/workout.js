@@ -4,19 +4,43 @@ import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { formatTimer } from '../../utils/format.js';
 import { showToast } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
+import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 
-// ── Persistent workout state (survives navigation) ───────────────────────────
+// ── Persistent workout state (survives navigation + page reload) ─────────────
 let workoutState = null;
 let timerInterval = null;
 let elapsedSeconds = 0;
 let activeCircuitIdx = 0;
-let incremento = 2.5; // kg per step: 1 | 2.5 | 5
+let incremento = 2.5;
 let expandedExercises = new Set();
+let editMode = false;
 
-// Called from outside to check if workout is active
-export function hasActiveWorkout() {
-  return workoutState !== null;
+const WS_KEY = 'gym_active_workout';
+
+function persistWorkout() {
+  if (!workoutState) { sessionStorage.removeItem(WS_KEY); return; }
+  sessionStorage.setItem(WS_KEY, JSON.stringify({
+    workoutState, elapsedSeconds, activeCircuitIdx, incremento,
+  }));
 }
+
+function restoreWorkout() {
+  try {
+    const raw = sessionStorage.getItem(WS_KEY);
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    workoutState = data.workoutState;
+    elapsedSeconds = data.elapsedSeconds || 0;
+    activeCircuitIdx = data.activeCircuitIdx || 0;
+    incremento = data.incremento || 2.5;
+    expandedExercises = new Set([`${activeCircuitIdx}-0`]);
+    return true;
+  } catch { return false; }
+}
+
+window.addEventListener('beforeunload', () => { persistWorkout(); });
+
+export function hasActiveWorkout() { return workoutState !== null; }
 
 export function resumeWorkout(container) {
   if (workoutState) renderWorkout(container);
@@ -25,10 +49,16 @@ export function resumeWorkout(container) {
 export function mountWorkout(container, params) {
   const [rutinaId, fecha] = params;
 
-  // If resuming existing session
   if (workoutState && workoutState.rutinaId === rutinaId) {
     renderWorkout(container);
     return;
+  }
+
+  if (!workoutState && restoreWorkout()) {
+    if (!rutinaId || workoutState.rutinaId === rutinaId) {
+      renderWorkout(container);
+      return;
+    }
   }
 
   const rutina = store.findById(store.KEYS.rutinas, rutinaId);
@@ -40,30 +70,30 @@ export function mountWorkout(container, params) {
   const usuario = store.getActiveUser();
   elapsedSeconds = 0;
   activeCircuitIdx = 0;
-  expandedExercises = new Set([0]); // expand first exercise by default
+  expandedExercises = new Set(['0-0']);
   incremento = 2.5;
+  editMode = false;
 
   workoutState = {
-    rutinaId:     rutina.id,
+    rutinaId: rutina.id,
     rutinaNombre: rutina.nombre,
     rutinaNumero: rutina.numero,
     usuario,
-    fecha:        fecha || new Date().toISOString().slice(0, 10),
-    startTime:    new Date().toISOString(),
-    circuitos:    rutina.circuitos.map(c => ({
-      id:        c.id,
-      nombre:    c.nombre,
+    fecha: fecha || new Date().toISOString().slice(0, 10),
+    startTime: new Date().toISOString(),
+    circuitos: rutina.circuitos.map(c => ({
+      id: c.id,
+      nombre: c.nombre,
       completed: false,
       ejercicios: c.ejercicios.map(e => ({
-        id:       e.id,
-        nombre:   e.nombre,
-        tipo:     e.tipo || 'fuerza',
-        series:   e.series || 2,
-        reps:     e.reps || '8-12',
+        id: e.id,
+        nombre: e.nombre,
+        tipo: e.tipo || 'fuerza',
+        series: e.series || 2,
+        reps: e.reps || '8-12',
         duracion: e.duracion,
         descanso: e.descanso,
-        usaPeso:  inferUsaPeso(e.nombre),
-        // Per-series data: each series has its own reps + peso
+        usaPeso: inferUsaPeso(e.nombre),
         seriesData: Array.from({ length: e.series || 2 }, () => ({
           reps: typeof e.reps === 'number' ? e.reps : parseRepsDefault(e.reps),
           peso: 0,
@@ -80,13 +110,14 @@ export function mountWorkout(container, params) {
         const prog = store.getProgresion(e.nombre, usuario);
         if (prog) {
           e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
-          e._lastWeight    = prog.lastWeight;
-          e._suggestion    = prog.completedAllReps ? prog.lastWeight + incremento : null;
+          e._lastWeight = prog.lastWeight;
+          e._suggestion = prog.completedAllReps ? prog.lastWeight + incremento : null;
         }
       }
     });
   });
 
+  persistWorkout();
   renderWorkout(container);
 }
 
@@ -100,7 +131,6 @@ function parseRepsDefault(reps) {
 // ── Main render ──────────────────────────────────────────────────────────────
 function renderWorkout(container) {
   if (!workoutState) return;
-
   startTimer(container);
 
   const c = workoutState.circuitos[activeCircuitIdx];
@@ -120,7 +150,7 @@ function renderWorkout(container) {
         <button class="circuit-tab ${i === activeCircuitIdx ? 'active' : ''} ${circ.completed ? 'done' : ''}"
                 data-idx="${i}">${i + 1}</button>
       `).join('')}
-      <button class="circuit-tab-edit" id="btn-edit-during-workout" title="Editar rutina">
+      <button class="circuit-tab-edit ${editMode ? 'edit-active' : ''}" id="btn-toggle-edit" title="Editar">
         <i class="ph ph-pencil-simple"></i>
       </button>
     </div>
@@ -164,68 +194,101 @@ function renderWorkout(container) {
   bindEvents(container);
 }
 
+// ── Exercise card (v1-style: collapsed summary+check, expanded steppers) ────
 function renderExerciseCard(e, ci, ei) {
-  const isExpanded = expandedExercises.has(`${ci}-${ei}`);
   const key = `${ci}-${ei}`;
+  const isExpanded = expandedExercises.has(key);
+  const doneCount = e.seriesData.filter(s => s.done).length;
+  const totalSeries = e.seriesData.length;
+  const allDone = doneCount === totalSeries;
+  const circ = workoutState.circuitos[ci];
+  const canRemove = editMode && circ.ejercicios.length > 1;
+
+  // Summary text for collapsed state
+  const summaryParts = [`${totalSeries} series`];
+  if (e.seriesData[0]) summaryParts.push(`${e.seriesData[0].reps} rep`);
+  if (e.usaPeso && e.seriesData[0]) summaryParts.push(`${e.seriesData[0].peso} kg`);
+  if (doneCount > 0) summaryParts.push(`${doneCount}/${totalSeries} ✓`);
+  const summaryText = summaryParts.join(' · ');
 
   return `
-    <div class="exercise-card ${isExpanded ? 'expanded' : ''} ${e.seriesData.every(s=>s.done) ? 'all-done' : ''}"
-         data-ci="${ci}" data-ei="${ei}">
+    <div class="exercise-card ${isExpanded ? 'expanded' : ''} ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
       <div class="exercise-card-header" data-expand-key="${key}">
-        <div class="exercise-card-left">
-          <div class="exercise-card-name">${e.nombre}</div>
-          <div class="exercise-card-meta">
-            ${e.seriesData.length} series · ${e.reps}
-            ${e.usaPeso && e._lastWeight ? ` · <span style="color:var(--color-accent)">${e._lastWeight}kg</span>` : ''}
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:var(--space-sm);">
-          ${e.seriesData.every(s=>s.done) ? '<span style="font-size:18px;line-height:1;">✅</span>' : ''}
-          <button class="btn-icon info-btn" data-nombre="${e.nombre}" title="Info del ejercicio">
+        <div class="exercise-card-name">${e.nombre}</div>
+        <div style="display:flex;align-items:center;gap:4px;">
+          ${editMode ? `
+            <button class="btn-icon edit-action-btn" data-action="replace-exercise" data-ci="${ci}" data-ei="${ei}" title="Reemplazar">
+              <i class="ph ph-swap" style="font-size:18px;color:var(--color-text-muted);"></i>
+            </button>
+            ${canRemove ? `
+            <button class="btn-icon edit-action-btn" data-action="remove-exercise" data-ci="${ci}" data-ei="${ei}" title="Quitar">
+              <i class="ph ph-trash" style="font-size:18px;color:var(--color-danger);"></i>
+            </button>` : ''}
+          ` : ''}
+          <button class="btn-icon info-btn" data-nombre="${e.nombre}" title="Info">
             <i class="ph ph-info" style="font-size:18px;color:var(--color-text-muted);"></i>
           </button>
-          <i class="ph ph-caret-${isExpanded?'up':'down'}" style="color:var(--color-text-muted);font-size:16px;pointer-events:none;"></i>
+          <button class="btn-icon ej-toggle-btn" data-expand-key="${key}">
+            <i class="ph ph-caret-down" style="font-size:16px;color:var(--color-text-muted);transition:transform 0.2s;${isExpanded ? 'transform:rotate(180deg);' : ''}"></i>
+          </button>
         </div>
       </div>
 
-      ${isExpanded ? `
-        <div class="exercise-card-body">
-          ${e._suggestion ? `
-            <div class="suggestion-banner">
-              <i class="ph ph-trend-up"></i> Sugerido: ${e._suggestion}kg (+${incremento}kg)
-            </div>` : ''}
+      <div class="exercise-summary" data-summary-key="${key}" ${isExpanded ? 'style="display:none;"' : ''}>
+        <span>${summaryText}</span>
+        <button class="check-all-btn ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
+          ${allDone ? '✓' : '○'}
+        </button>
+      </div>
 
-          <div class="series-table">
-            <div class="series-table-header">
-              <span>Serie</span><span>Reps</span><span>Peso (kg)</span><span></span>
-            </div>
-            ${e.seriesData.map((s, si) => `
-              <div class="series-table-row ${s.done ? 'done' : ''}" data-si="${si}">
-                <span class="series-label">S${si+1}</span>
-                <div class="stepper" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}">
-                  <button class="stepper-btn" data-action="dec">-</button>
-                  <span class="stepper-val">${s.reps}</span>
-                  <button class="stepper-btn" data-action="inc">+</button>
-                </div>
-                ${e.usaPeso ? `
-                <div class="stepper" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">
-                  <button class="stepper-btn" data-action="dec">-</button>
-                  <span class="stepper-val">${s.peso}</span>
-                  <button class="stepper-btn" data-action="inc">+</button>
-                </div>` : `<span style="color:var(--color-text-muted);font-size:var(--text-xs);">—</span>`}
-                <button class="series-done-btn ${s.done ? 'done' : ''}"
-                        data-ci="${ci}" data-ei="${ei}" data-si="${si}">
-                  <i class="ph ph-check${s.done ? '-circle' : ''}"></i>
-                </button>
-              </div>
-            `).join('')}
-          </div>
+      <div class="exercise-body" data-body-key="${key}" ${isExpanded ? '' : 'style="display:none;"'}>
+        ${e._suggestion ? `
+          <div class="suggestion-banner">
+            <i class="ph ph-trend-up"></i> +${incremento}kg sugerido (→ ${e._suggestion}kg)
+          </div>` : ''}
 
-          <button class="add-serie-btn" data-ci="${ci}" data-ei="${ei}">
-            <i class="ph ph-plus"></i> Serie
-          </button>
+        <div class="vuelta-headers">
+          <span>Reps</span>
+          ${e.usaPeso ? '<span>Peso (kg)</span>' : ''}
+          <span class="vuelta-header-right"></span>
         </div>
-      ` : ''}
+
+        ${e.seriesData.map((s, si) => `
+          <div class="vuelta-row ${s.done ? 'vuelta-done' : ''}">
+            <div class="vuelta-left">
+              <div class="vuelta-group">
+                <div class="stepper stepper-sm">
+                  <button class="stepper-btn" data-action="dec" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}">−</button>
+                  <span class="stepper-value" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}">${s.reps}</span>
+                  <button class="stepper-btn" data-action="inc" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}">+</button>
+                </div>
+              </div>
+              ${e.usaPeso ? `
+              <div class="vuelta-group">
+                <div class="stepper stepper-sm">
+                  <button class="stepper-btn" data-action="dec" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">−</button>
+                  <span class="stepper-value" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">${s.peso}</span>
+                  <button class="stepper-btn" data-action="inc" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">+</button>
+                </div>
+              </div>` : ''}
+            </div>
+            <div class="vuelta-right">
+              <span class="vuelta-label">S${si + 1}</span>
+              <button class="vuelta-check" data-ci="${ci}" data-ei="${ei}" data-si="${si}">
+                <i class="ph ph-check${s.done ? '-circle' : ''}" style="font-size:22px;"></i>
+              </button>
+              ${totalSeries > 1 ? `
+              <button class="vuelta-remove" data-ci="${ci}" data-ei="${ei}" data-si="${si}" title="Quitar serie">
+                <i class="ph ph-x" style="font-size:14px;"></i>
+              </button>` : ''}
+            </div>
+          </div>
+        `).join('')}
+
+        <button class="add-serie-btn" data-ci="${ci}" data-ei="${ei}">
+          <i class="ph ph-plus"></i> Serie
+        </button>
+      </div>
     </div>
   `;
 }
@@ -233,43 +296,32 @@ function renderExerciseCard(e, ci, ei) {
 function renderHIITSection(c, ci) {
   const e = c.ejercicios[0];
   if (!e) return '';
-
   return `
     <div class="hiit-card">
       <div class="exercise-card-name" style="margin-bottom:var(--space-sm);">${e.nombre}</div>
       <div class="hiit-meta">${e.series} rondas · ${e.duracion}s trabajo / ${e.descanso}s descanso</div>
-
       <div id="hiit-inactive-${ci}">
         <button class="btn btn-primary btn-lg" style="width:100%;margin-top:var(--space-lg);" id="btn-start-hiit">
           <i class="ph ph-play"></i> Iniciar HIIT
         </button>
       </div>
-
       <div id="hiit-active-${ci}" class="hidden hiit-active">
         <div class="hiit-round-label" id="hiit-round-${ci}">Ronda 1/${e.series}</div>
         <div class="hiit-big-timer work" id="hiit-time-${ci}">${e.duracion}</div>
         <div class="hiit-phase-label" id="hiit-label-${ci}">TRABAJO</div>
         <div class="hiit-controls">
-          <button class="btn btn-secondary" id="btn-hiit-pause">
-            <i class="ph ph-pause"></i>
-          </button>
-          <button class="btn btn-danger" id="btn-hiit-stop">
-            <i class="ph ph-stop"></i>
-          </button>
+          <button class="btn btn-secondary" id="btn-hiit-pause"><i class="ph ph-pause"></i></button>
+          <button class="btn btn-danger" id="btn-hiit-stop"><i class="ph ph-stop"></i></button>
         </div>
       </div>
     </div>
   `;
 }
 
-// ── Event binding ────────────────────────────────────────────────────────────
+// ── Event binding (delegated where possible) ────────────────────────────────
 function bindEvents(container) {
-  // Salir button
-  container.querySelector('#btn-salir')?.addEventListener('click', () => {
-    showExitDialog(container);
-  });
+  container.querySelector('#btn-salir')?.addEventListener('click', () => showExitDialog(container));
 
-  // Circuit tabs
   container.querySelectorAll('.circuit-tab[data-idx]').forEach(tab => {
     tab.addEventListener('click', () => {
       activeCircuitIdx = parseInt(tab.dataset.idx);
@@ -277,12 +329,12 @@ function bindEvents(container) {
     });
   });
 
-  // Edit during workout
-  container.querySelector('#btn-edit-during-workout')?.addEventListener('click', () => {
-    showEditDuringWorkout(container);
+  // Toggle edit mode
+  container.querySelector('#btn-toggle-edit')?.addEventListener('click', () => {
+    editMode = !editMode;
+    renderWorkout(container);
   });
 
-  // Incremento buttons
   container.querySelectorAll('.incremento-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       incremento = parseFloat(btn.dataset.inc);
@@ -290,186 +342,177 @@ function bindEvents(container) {
     });
   });
 
-  // Prev / Next circuit
   container.querySelector('#btn-prev-circuit')?.addEventListener('click', () => {
-    if (activeCircuitIdx > 0) {
-      activeCircuitIdx--;
-      renderWorkout(container);
-    }
+    if (activeCircuitIdx > 0) { activeCircuitIdx--; renderWorkout(container); }
   });
-
   container.querySelector('#btn-next-circuit')?.addEventListener('click', () => {
-    if (activeCircuitIdx < workoutState.circuitos.length - 1) {
-      activeCircuitIdx++;
-      renderWorkout(container);
-    }
+    if (activeCircuitIdx < workoutState.circuitos.length - 1) { activeCircuitIdx++; renderWorkout(container); }
   });
+  container.querySelector('#btn-finish-workout')?.addEventListener('click', () => finishWorkout(container));
+  container.querySelector('#btn-start-hiit')?.addEventListener('click', () => startHIIT(container, activeCircuitIdx));
 
-  container.querySelector('#btn-finish-workout')?.addEventListener('click', () => {
-    finishWorkout(container);
-  });
+  bindExerciseEvents(container, container);
+}
 
-  // Exercise card expand / collapse
-  container.querySelectorAll('.exercise-card-header[data-expand-key]').forEach(header => {
+function bindExerciseEvents(container, scope) {
+  // Expand/collapse — header click (excluding buttons)
+  scope.querySelectorAll('.exercise-card-header[data-expand-key]').forEach(header => {
     header.addEventListener('click', (evt) => {
-      // Don't trigger if clicking info button
-      if (evt.target.closest('.info-btn')) return;
-      const key = header.dataset.expandKey;
-      if (expandedExercises.has(key)) expandedExercises.delete(key);
-      else expandedExercises.add(key);
-      refreshExercisesContainer(container);
+      if (evt.target.closest('.btn-icon') || evt.target.closest('.edit-action-btn')) return;
+      toggleExpand(header.dataset.expandKey, container);
+    });
+  });
+  // Chevron toggle
+  scope.querySelectorAll('.ej-toggle-btn[data-expand-key]').forEach(btn => {
+    btn.addEventListener('click', (evt) => {
+      evt.stopPropagation();
+      toggleExpand(btn.dataset.expandKey, container);
     });
   });
 
   // Info buttons
-  container.querySelectorAll('.info-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openEjercicioInfo(btn.dataset.nombre);
+  scope.querySelectorAll('.info-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.stopPropagation(); openEjercicioInfo(btn.dataset.nombre); });
+  });
+
+  // Check-all button (collapsed)
+  scope.querySelectorAll('.check-all-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { ci, ei } = btn.dataset;
+      const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
+      const allDone = ejercicio.seriesData.every(s => s.done);
+      ejercicio.seriesData.forEach(s => { s.done = !allDone; });
+      checkCircuitCompletion(ci, container);
+      persistWorkout();
+      refreshExercises(container);
     });
   });
 
   // Stepper buttons
-  container.querySelectorAll('.stepper').forEach(stepper => {
-    stepper.querySelectorAll('.stepper-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const { field, ci, ei, si } = stepper.dataset;
-        const action = btn.dataset.action;
-        const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
-
-        if (field === 'reps') {
-          series.reps = Math.max(0, series.reps + (action === 'inc' ? 1 : -1));
-        } else if (field === 'peso') {
-          series.peso = Math.max(0, parseFloat((series.peso + (action === 'inc' ? incremento : -incremento)).toFixed(2)));
-        }
-
-        const valEl = stepper.querySelector('.stepper-val');
-        if (valEl) valEl.textContent = field === 'peso' ? series.peso : series.reps;
-      });
+  scope.querySelectorAll('.stepper-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { action, field, ci, ei, si } = btn.dataset;
+      const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
+      if (field === 'reps') {
+        series.reps = Math.max(0, series.reps + (action === 'inc' ? 1 : -1));
+      } else {
+        series.peso = Math.max(0, parseFloat((series.peso + (action === 'inc' ? incremento : -incremento)).toFixed(2)));
+      }
+      // Update displayed value
+      const valEl = btn.closest('.stepper')?.querySelector('.stepper-value');
+      if (valEl) {
+        valEl.textContent = field === 'peso' ? series.peso : series.reps;
+        valEl.classList.remove('value-bump');
+        void valEl.offsetWidth;
+        valEl.classList.add('value-bump');
+      }
+      persistWorkout();
     });
   });
 
-  // Series done buttons
-  container.querySelectorAll('.series-done-btn').forEach(btn => {
+  // Series done
+  scope.querySelectorAll('.vuelta-check').forEach(btn => {
     btn.addEventListener('click', () => {
       const { ci, ei, si } = btn.dataset;
       const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
       series.done = !series.done;
+      checkCircuitCompletion(ci, container);
+      persistWorkout();
+      refreshExercises(container);
+    });
+  });
 
+  // Remove serie
+  scope.querySelectorAll('.vuelta-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { ci, ei, si } = btn.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
-      const allDone = ejercicio.seriesData.every(s => s.done);
-
-      // Auto-mark circuit complete if all exercises done
-      const circ = workoutState.circuitos[ci];
-      circ.completed = circ.ejercicios.every(ex => ex.seriesData.every(s => s.done));
-
-      refreshExercisesContainer(container);
-      updateCircuitTabs(container);
-      updateProgressBar(container);
-
-      // Auto-advance to next circuit when completed
-      if (circ.completed && activeCircuitIdx < workoutState.circuitos.length - 1) {
-        setTimeout(() => {
-          activeCircuitIdx++;
-          expandedExercises = new Set([`${activeCircuitIdx}-0`]);
-          renderWorkout(container);
-        }, 800);
+      if (ejercicio.seriesData.length > 1) {
+        ejercicio.seriesData.splice(parseInt(si), 1);
+        persistWorkout();
+        refreshExercises(container);
       }
     });
   });
 
   // Add serie
-  container.querySelectorAll('.add-serie-btn').forEach(btn => {
+  scope.querySelectorAll('.add-serie-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const { ci, ei } = btn.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
       const last = ejercicio.seriesData[ejercicio.seriesData.length - 1];
       ejercicio.seriesData.push({ reps: last?.reps || 8, peso: last?.peso || 0, done: false });
-      refreshExercisesContainer(container);
+      persistWorkout();
+      refreshExercises(container);
     });
   });
 
-  // HIIT
-  container.querySelector('#btn-start-hiit')?.addEventListener('click', () => {
-    startHIIT(container, activeCircuitIdx);
-  });
-}
-
-function refreshExercisesContainer(container) {
-  const exercisesContainer = document.getElementById('exercises-container');
-  if (!exercisesContainer) return;
-  const c = workoutState.circuitos[activeCircuitIdx];
-  if (c.nombre === 'HIIT') return;
-  exercisesContainer.innerHTML = c.ejercicios.map((e, ei) => renderExerciseCard(e, activeCircuitIdx, ei)).join('');
-  // Rebind just the exercises part
-  rebindExerciseEvents(container, exercisesContainer);
-}
-
-function rebindExerciseEvents(container, exercisesContainer) {
-  // Expand/collapse
-  exercisesContainer.querySelectorAll('.exercise-card-header[data-expand-key]').forEach(header => {
-    header.addEventListener('click', (evt) => {
-      if (evt.target.closest('.info-btn')) return;
-      const key = header.dataset.expandKey;
-      if (expandedExercises.has(key)) expandedExercises.delete(key);
-      else expandedExercises.add(key);
-      refreshExercisesContainer(container);
-    });
-  });
-  // Info
-  exercisesContainer.querySelectorAll('.info-btn').forEach(btn => {
+  // Edit mode: replace exercise
+  scope.querySelectorAll('[data-action="replace-exercise"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      openEjercicioInfo(btn.dataset.nombre);
+      const ci = parseInt(btn.dataset.ci);
+      const ei = parseInt(btn.dataset.ei);
+      showExercisePicker(container, ci, ei);
     });
   });
-  // Steppers
-  exercisesContainer.querySelectorAll('.stepper').forEach(stepper => {
-    stepper.querySelectorAll('.stepper-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const { field, ci, ei, si } = stepper.dataset;
-        const action = btn.dataset.action;
-        const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
-        if (field === 'reps') {
-          series.reps = Math.max(0, series.reps + (action === 'inc' ? 1 : -1));
-        } else {
-          series.peso = Math.max(0, parseFloat((series.peso + (action === 'inc' ? incremento : -incremento)).toFixed(2)));
-        }
-        const valEl = stepper.querySelector('.stepper-val');
-        if (valEl) valEl.textContent = field === 'peso' ? series.peso : series.reps;
-      });
-    });
-  });
-  // Done buttons
-  exercisesContainer.querySelectorAll('.series-done-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const { ci, ei, si } = btn.dataset;
-      const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
-      series.done = !series.done;
+
+  // Edit mode: remove exercise
+  scope.querySelectorAll('[data-action="remove-exercise"]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const ci = parseInt(btn.dataset.ci);
+      const ei = parseInt(btn.dataset.ei);
       const circ = workoutState.circuitos[ci];
-      circ.completed = circ.ejercicios.every(ex => ex.seriesData.every(s => s.done));
-      refreshExercisesContainer(container);
-      updateCircuitTabs(container);
-      updateProgressBar(container);
-      if (circ.completed && activeCircuitIdx < workoutState.circuitos.length - 1) {
-        setTimeout(() => {
-          activeCircuitIdx++;
-          expandedExercises = new Set([`${activeCircuitIdx}-0`]);
-          renderWorkout(container);
-        }, 800);
+      if (circ.ejercicios.length > 1) {
+        circ.ejercicios.splice(ei, 1);
+        persistWorkout();
+        refreshExercises(container);
+        showToast('Ejercicio eliminado');
       }
     });
   });
-  // Add serie
-  exercisesContainer.querySelectorAll('.add-serie-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const { ci, ei } = btn.dataset;
-      const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
-      const last = ejercicio.seriesData[ejercicio.seriesData.length - 1];
-      ejercicio.seriesData.push({ reps: last?.reps || 8, peso: last?.peso || 0, done: false });
-      refreshExercisesContainer(container);
-    });
-  });
+}
+
+function toggleExpand(key, container) {
+  if (expandedExercises.has(key)) expandedExercises.delete(key);
+  else expandedExercises.add(key);
+  // Toggle DOM directly for speed
+  const summary = document.querySelector(`[data-summary-key="${key}"]`);
+  const body = document.querySelector(`[data-body-key="${key}"]`);
+  const card = summary?.closest('.exercise-card');
+  if (summary && body) {
+    const isNowExpanded = expandedExercises.has(key);
+    summary.style.display = isNowExpanded ? 'none' : '';
+    body.style.display = isNowExpanded ? '' : 'none';
+    card?.classList.toggle('expanded', isNowExpanded);
+    // Flip chevron
+    const chevron = card?.querySelector('.ej-toggle-btn i');
+    if (chevron) chevron.style.transform = isNowExpanded ? 'rotate(180deg)' : '';
+  }
+}
+
+function refreshExercises(container) {
+  const el = document.getElementById('exercises-container');
+  if (!el) return;
+  const c = workoutState.circuitos[activeCircuitIdx];
+  if (c.nombre === 'HIIT') return;
+  el.innerHTML = c.ejercicios.map((e, ei) => renderExerciseCard(e, activeCircuitIdx, ei)).join('');
+  bindExerciseEvents(container, el);
+  updateCircuitTabs(container);
+  updateProgressBar(container);
+}
+
+function checkCircuitCompletion(ci, container) {
+  const circ = workoutState.circuitos[ci];
+  circ.completed = circ.ejercicios.every(ex => ex.seriesData.every(s => s.done));
+  if (circ.completed && activeCircuitIdx < workoutState.circuitos.length - 1) {
+    setTimeout(() => {
+      activeCircuitIdx++;
+      expandedExercises = new Set([`${activeCircuitIdx}-0`]);
+      renderWorkout(container);
+    }, 800);
+  }
 }
 
 function updateCircuitTabs(container) {
@@ -482,9 +525,89 @@ function updateCircuitTabs(container) {
 function updateProgressBar(container) {
   const fill = container.querySelector('.circuit-progress-fill');
   if (fill) {
-    const pct = Math.round((workoutState.circuitos.filter(c=>c.completed).length / workoutState.circuitos.length) * 100);
+    const pct = Math.round((workoutState.circuitos.filter(c => c.completed).length / workoutState.circuitos.length) * 100);
     fill.style.width = `${pct}%`;
   }
+}
+
+// ── Exercise picker modal (for edit mode replace) ───────────────────────────
+function showExercisePicker(container, ci, ei) {
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.remove('hidden');
+
+  let searchQuery = '';
+
+  function renderPicker() {
+    const results = searchQuery ? searchEjercicios(searchQuery, 'todos') : EJERCICIOS_CATALOGO;
+    const grouped = {};
+    results.forEach(e => {
+      if (!grouped[e.grupo]) grouped[e.grupo] = [];
+      grouped[e.grupo].push(e);
+    });
+
+    overlay.innerHTML = `
+      <div class="modal-sheet" style="max-height:85vh;">
+        <div class="modal-header">
+          <h2 class="modal-title">Reemplazar ejercicio</h2>
+          <button class="modal-close">&times;</button>
+        </div>
+        <div style="position:relative;margin-bottom:var(--space-md);">
+          <input type="text" class="search-input" placeholder="Buscar ejercicio..." value="${searchQuery}" style="width:100%;box-sizing:border-box;">
+        </div>
+        <div style="max-height:60vh;overflow-y:auto;display:flex;flex-direction:column;gap:2px;">
+          ${Object.entries(grouped).map(([grupo, ejs]) => `
+            <div style="font-size:var(--text-xs);color:var(--color-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:1px;padding:var(--space-sm) var(--space-xs);">${grupo}</div>
+            ${ejs.map(e => `
+              <div class="ejercicio-picker-item" data-nombre="${e.nombre}" style="padding:var(--space-sm) var(--space-md);background:var(--color-surface-alt);border-radius:var(--radius-sm);cursor:pointer;">
+                <span style="font-size:var(--text-sm);">${e.nombre}</span>
+              </div>
+            `).join('')}
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    overlay.querySelector('.modal-close').addEventListener('click', () => {
+      overlay.classList.add('hidden');
+      overlay.innerHTML = '';
+    });
+
+    overlay.querySelector('.search-input').addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      renderPicker();
+      // Re-focus input and restore cursor
+      const input = overlay.querySelector('.search-input');
+      if (input) { input.focus(); input.setSelectionRange(input.value.length, input.value.length); }
+    });
+
+    overlay.querySelectorAll('.ejercicio-picker-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const nombre = item.dataset.nombre;
+        const circ = workoutState.circuitos[ci];
+        const oldE = circ.ejercicios[ei];
+        circ.ejercicios[ei] = {
+          id: crypto.randomUUID(),
+          nombre,
+          tipo: 'fuerza',
+          series: oldE.series,
+          reps: oldE.reps,
+          usaPeso: inferUsaPeso(nombre),
+          seriesData: Array.from({ length: oldE.seriesData.length }, () => ({
+            reps: oldE.seriesData[0]?.reps || 8,
+            peso: 0,
+            done: false,
+          })),
+        };
+        overlay.classList.add('hidden');
+        overlay.innerHTML = '';
+        persistWorkout();
+        refreshExercises(container);
+        showToast(`Reemplazado → ${nombre}`);
+      });
+    });
+  }
+
+  renderPicker();
 }
 
 // ── Timer ────────────────────────────────────────────────────────────────────
@@ -507,93 +630,26 @@ function showExitDialog(container) {
       <h2 class="modal-title" style="margin-bottom:var(--space-lg);">¿Qué querés hacer?</h2>
       <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
         <button class="btn btn-primary btn-lg" id="btn-volver">Volver al entrenamiento</button>
-        <button class="btn btn-secondary btn-lg" id="btn-pausar">
-          <i class="ph ph-pause"></i> Pausar y navegar
-        </button>
-        <button class="btn btn-secondary btn-lg" id="btn-finalizar-guardar">
-          <i class="ph ph-check"></i> Finalizar y guardar
-        </button>
+        <button class="btn btn-secondary btn-lg" id="btn-pausar"><i class="ph ph-pause"></i> Pausar y navegar</button>
+        <button class="btn btn-secondary btn-lg" id="btn-finalizar-guardar"><i class="ph ph-check"></i> Finalizar y guardar</button>
         <button class="btn btn-lg" id="btn-descartar" style="color:var(--color-danger);">Descartar</button>
       </div>
     </div>
   `;
 
   overlay.querySelector('#btn-volver').addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    overlay.innerHTML = '';
-    startTimer(container);
+    overlay.classList.add('hidden'); overlay.innerHTML = ''; startTimer(container);
   });
-
   overlay.querySelector('#btn-pausar').addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    overlay.innerHTML = '';
-    // Navigate away but keep workoutState — workout banner will show
-    router.navigate('');
+    overlay.classList.add('hidden'); overlay.innerHTML = ''; persistWorkout(); router.navigate('');
   });
-
   overlay.querySelector('#btn-finalizar-guardar').addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    overlay.innerHTML = '';
-    finishWorkout(container);
+    overlay.classList.add('hidden'); overlay.innerHTML = ''; finishWorkout(container);
   });
-
   overlay.querySelector('#btn-descartar').addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    overlay.innerHTML = '';
-    workoutState = null;
-    clearInterval(timerInterval);
-    router.navigate('');
-  });
-}
-
-// ── Edit during workout ──────────────────────────────────────────────────────
-function showEditDuringWorkout(container) {
-  const rutina = store.findById(store.KEYS.rutinas, workoutState.rutinaId);
-  if (!rutina) return;
-
-  const candidates = store.getAll(store.KEYS.rutinas).filter(r =>
-    r.usuario === workoutState.usuario &&
-    r.lugar   === rutina.lugar &&
-    r.foco    === rutina.foco
-  );
-
-  const overlay = document.getElementById('modal-overlay');
-  overlay.classList.remove('hidden');
-  overlay.innerHTML = `
-    <div class="modal-sheet">
-      <div class="modal-header">
-        <h2 class="modal-title">Cambiar rutina</h2>
-        <button class="modal-close">&times;</button>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
-        ${candidates.map(r => `
-          <div class="rutina-list-item ${r.id === rutina.id ? 'selected-rutina' : ''}" data-id="${r.id}">
-            <div class="rutina-list-code">${r.numero}</div>
-            <div class="rutina-list-name">${r.nombre}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `;
-
-  overlay.querySelector('.modal-close').addEventListener('click', () => {
-    overlay.classList.add('hidden');
-    overlay.innerHTML = '';
-  });
-
-  overlay.querySelectorAll('.rutina-list-item').forEach(item => {
-    item.addEventListener('click', () => {
-      const newRutina = store.findById(store.KEYS.rutinas, item.dataset.id);
-      if (!newRutina || newRutina.id === rutina.id) {
-        overlay.classList.add('hidden');
-        overlay.innerHTML = '';
-        return;
-      }
-      // Switch workout to new routine, preserving timer
-      overlay.classList.add('hidden');
-      overlay.innerHTML = '';
-      mountWorkout(container, [newRutina.id, workoutState.fecha]);
-    });
+    overlay.classList.add('hidden'); overlay.innerHTML = '';
+    workoutState = null; sessionStorage.removeItem(WS_KEY);
+    clearInterval(timerInterval); router.navigate('');
   });
 }
 
@@ -609,12 +665,11 @@ function startHIIT(container, ci) {
   if (active) active.classList.remove('hidden');
 
   let round = 1, timeLeft = e.duracion, isWork = true, paused = false;
-
-  const timeEl    = document.getElementById(`hiit-time-${ci}`);
-  const roundEl   = document.getElementById(`hiit-round-${ci}`);
-  const labelEl   = document.getElementById(`hiit-label-${ci}`);
-  const pauseBtn  = document.getElementById('btn-hiit-pause');
-  const stopBtn   = document.getElementById('btn-hiit-stop');
+  const timeEl = document.getElementById(`hiit-time-${ci}`);
+  const roundEl = document.getElementById(`hiit-round-${ci}`);
+  const labelEl = document.getElementById(`hiit-label-${ci}`);
+  const pauseBtn = document.getElementById('btn-hiit-pause');
+  const stopBtn = document.getElementById('btn-hiit-stop');
 
   function update() {
     if (timeEl) { timeEl.textContent = timeLeft; timeEl.className = `hiit-big-timer ${isWork ? 'work' : 'rest'}`; }
@@ -630,20 +685,15 @@ function startHIIT(container, ci) {
     if (timeLeft < 0) {
       if (isWork) {
         if (round >= e.series) {
-          clearInterval(hiitInterval);
-          c.completed = true;
+          clearInterval(hiitInterval); c.completed = true;
           showToast('HIIT completado 🔥');
-          updateCircuitTabs(container);
-          updateProgressBar(container);
+          updateCircuitTabs(container); updateProgressBar(container); persistWorkout();
           if (active) active.innerHTML = `<div style="text-align:center;padding:var(--space-lg);font-size:var(--text-xl);">🏁 Completado</div>`;
           return;
         }
-        isWork = false;
-        timeLeft = e.descanso;
+        isWork = false; timeLeft = e.descanso;
       } else {
-        isWork = true;
-        round++;
-        timeLeft = e.duracion;
+        isWork = true; round++; timeLeft = e.duracion;
       }
     }
     update();
@@ -653,11 +703,8 @@ function startHIIT(container, ci) {
     paused = !paused;
     pauseBtn.innerHTML = paused ? '<i class="ph ph-play"></i>' : '<i class="ph ph-pause"></i>';
   });
-
   stopBtn?.addEventListener('click', () => {
-    clearInterval(hiitInterval);
-    c.completed = true;
-    renderWorkout(container);
+    clearInterval(hiitInterval); c.completed = true; persistWorkout(); renderWorkout(container);
   });
 }
 
@@ -668,7 +715,6 @@ function finishWorkout(container) {
 
   const usuario = workoutState.usuario;
 
-  // Save progression per exercise (use max peso of all series)
   workoutState.circuitos.forEach(c => {
     c.ejercicios.forEach(e => {
       if (!e.usaPeso) return;
@@ -680,44 +726,36 @@ function finishWorkout(container) {
     });
   });
 
-  // Save sesion
   const sesion = {
-    id:          crypto.randomUUID(),
-    rutinaId:    workoutState.rutinaId,
+    id: crypto.randomUUID(),
+    rutinaId: workoutState.rutinaId,
     rutinaNombre: workoutState.rutinaNombre,
     usuario,
-    fecha:       workoutState.fecha,
-    startTime:   workoutState.startTime,
-    endTime:     new Date().toISOString(),
-    duracion:    elapsedSeconds,
-    circuitos:   workoutState.circuitos,
+    fecha: workoutState.fecha,
+    startTime: workoutState.startTime,
+    endTime: new Date().toISOString(),
+    duracion: elapsedSeconds,
+    circuitos: workoutState.circuitos,
     pendingSync: true,
   };
   store.push(store.KEYS.sesiones, sesion);
 
-  const minutes    = Math.floor(elapsedSeconds / 60);
-  const totalSeries = workoutState.circuitos.reduce((sum, c) =>
+  const minutes = Math.floor(elapsedSeconds / 60);
+  const totalSeriesDone = workoutState.circuitos.reduce((sum, c) =>
     sum + c.ejercicios.reduce((s2, e) => s2 + e.seriesData.filter(s => s.done).length, 0), 0);
+  const circuitsDone = sesion.circuitos.filter(c => c.completed).length;
 
   workoutState = null;
+  sessionStorage.removeItem(WS_KEY);
 
   container.innerHTML = `
     <div class="workout-summary">
       <div style="font-size:48px;text-align:center;margin-bottom:var(--space-md);">🏁</div>
       <div class="workout-summary-title">¡Entrenamiento completado!</div>
       <div class="workout-summary-stats">
-        <div>
-          <div class="workout-stat-value">${minutes}</div>
-          <div class="workout-stat-label">minutos</div>
-        </div>
-        <div>
-          <div class="workout-stat-value">${totalSeries}</div>
-          <div class="workout-stat-label">series</div>
-        </div>
-        <div>
-          <div class="workout-stat-value">${workoutState === null ? sesion.circuitos.filter(c=>c.completed).length : 0}/${sesion.circuitos.length}</div>
-          <div class="workout-stat-label">circuitos</div>
-        </div>
+        <div><div class="workout-stat-value">${minutes}</div><div class="workout-stat-label">minutos</div></div>
+        <div><div class="workout-stat-value">${totalSeriesDone}</div><div class="workout-stat-label">series</div></div>
+        <div><div class="workout-stat-value">${circuitsDone}/${sesion.circuitos.length}</div><div class="workout-stat-label">circuitos</div></div>
       </div>
       <button class="btn btn-primary btn-lg" id="btn-back-home" style="width:100%;margin-top:var(--space-lg);">
         <i class="ph ph-house"></i> Volver al inicio
