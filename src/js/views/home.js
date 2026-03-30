@@ -17,11 +17,8 @@ export function mountHome(container) {
 }
 
 function render(container) {
-  const greeting = getGreeting();
-
   container.innerHTML = `
-    <p class="greeting">${greeting}</p>
-    <div class="user-toggle">
+    <div class="user-toggle" style="margin-top:var(--space-sm);">
       <button class="user-toggle-btn ${activeUsuario === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
       <button class="user-toggle-btn ${activeUsuario === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
     </div>
