@@ -155,7 +155,6 @@ function renderWorkout(container) {
   startTimer(container);
 
   const c = workoutState.circuitos[activeCircuitIdx];
-  const isHIIT = c.nombre === 'HIIT';
 
   container.innerHTML = `
     <div class="workout-top-bar">
@@ -194,16 +193,15 @@ function renderWorkout(container) {
     </div>
 
     <div id="exercises-container">
-      ${isHIIT ? renderHIITSection(c, activeCircuitIdx) : c.ejercicios.map((e, ei) => renderExerciseCard(e, activeCircuitIdx, ei)).join('')}
+      ${c.ejercicios.map((e, ei) => renderExerciseCard(e, activeCircuitIdx, ei)).join('')}
     </div>
 
-    ${!isHIIT ? `
     <div class="incremento-bar">
       <span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-right:var(--space-sm);">Incremento:</span>
       ${[1, 2.5, 5].map(v => `
         <button class="incremento-btn ${incremento === v ? 'active' : ''}" data-inc="${v}">${v}kg</button>
       `).join('')}
-    </div>` : ''}
+    </div>
 
     <div class="circuit-nav-row">
       <button class="btn btn-secondary" id="btn-prev-circuit" ${activeCircuitIdx === 0 ? 'disabled' : ''}>
@@ -322,30 +320,6 @@ function renderExerciseCard(e, ci, ei) {
   `;
 }
 
-function renderHIITSection(c, ci) {
-  const e = c.ejercicios[0];
-  if (!e) return '';
-  return `
-    <div class="hiit-card">
-      <div class="exercise-card-name" style="margin-bottom:var(--space-sm);">${e.nombre}</div>
-      <div class="hiit-meta">${e.series} rondas · ${e.duracion}s trabajo / ${e.descanso}s descanso</div>
-      <div id="hiit-inactive-${ci}">
-        <button class="btn btn-primary btn-lg" style="width:100%;margin-top:var(--space-lg);" id="btn-start-hiit">
-          <i class="ph ph-play"></i> Iniciar HIIT
-        </button>
-      </div>
-      <div id="hiit-active-${ci}" class="hidden hiit-active">
-        <div class="hiit-round-label" id="hiit-round-${ci}">Ronda 1/${e.series}</div>
-        <div class="hiit-big-timer work" id="hiit-time-${ci}">${e.duracion}</div>
-        <div class="hiit-phase-label" id="hiit-label-${ci}">TRABAJO</div>
-        <div class="hiit-controls">
-          <button class="btn btn-secondary" id="btn-hiit-pause"><i class="ph ph-pause"></i></button>
-          <button class="btn btn-danger" id="btn-hiit-stop"><i class="ph ph-stop"></i></button>
-        </div>
-      </div>
-    </div>
-  `;
-}
 
 // ── Event binding (delegated where possible) ────────────────────────────────
 function bindEvents(container) {
@@ -416,7 +390,6 @@ function bindEvents(container) {
     if (activeCircuitIdx < workoutState.circuitos.length - 1) { activeCircuitIdx++; renderWorkout(container); }
   });
   container.querySelector('#btn-finish-workout')?.addEventListener('click', () => finishWorkout(container));
-  container.querySelector('#btn-start-hiit')?.addEventListener('click', () => startHIIT(container, activeCircuitIdx));
 
   bindExerciseEvents(container, container);
 }
@@ -563,7 +536,6 @@ function refreshExercises(container) {
   const el = document.getElementById('exercises-container');
   if (!el) return;
   const c = workoutState.circuitos[activeCircuitIdx];
-  if (c.nombre === 'HIIT') return;
   el.innerHTML = c.ejercicios.map((e, ei) => renderExerciseCard(e, activeCircuitIdx, ei)).join('');
   bindExerciseEvents(container, el);
   updateCircuitTabs(container);
@@ -732,65 +704,9 @@ function showExitDialog(container) {
   });
 }
 
-// ── HIIT timer ───────────────────────────────────────────────────────────────
-let hiitInterval = null;
-
-function startHIIT(container, ci) {
-  const c = workoutState.circuitos[ci];
-  const e = c.ejercicios[0];
-  const inactive = document.getElementById(`hiit-inactive-${ci}`);
-  const active = document.getElementById(`hiit-active-${ci}`);
-  if (inactive) inactive.classList.add('hidden');
-  if (active) active.classList.remove('hidden');
-
-  let round = 1, timeLeft = e.duracion, isWork = true, paused = false;
-  const timeEl = document.getElementById(`hiit-time-${ci}`);
-  const roundEl = document.getElementById(`hiit-round-${ci}`);
-  const labelEl = document.getElementById(`hiit-label-${ci}`);
-  const pauseBtn = document.getElementById('btn-hiit-pause');
-  const stopBtn = document.getElementById('btn-hiit-stop');
-
-  function update() {
-    if (timeEl) { timeEl.textContent = timeLeft; timeEl.className = `hiit-big-timer ${isWork ? 'work' : 'rest'}`; }
-    if (roundEl) roundEl.textContent = `Ronda ${round}/${e.series}`;
-    if (labelEl) labelEl.textContent = isWork ? 'TRABAJO' : 'DESCANSO';
-  }
-
-  update();
-  if (hiitInterval) clearInterval(hiitInterval);
-  hiitInterval = setInterval(() => {
-    if (paused) return;
-    timeLeft--;
-    if (timeLeft < 0) {
-      if (isWork) {
-        if (round >= e.series) {
-          clearInterval(hiitInterval); c.completed = true;
-          showToast('HIIT completado 🔥');
-          updateCircuitTabs(container); updateProgressBar(container); persistWorkout();
-          if (active) active.innerHTML = `<div style="text-align:center;padding:var(--space-lg);font-size:var(--text-xl);">🏁 Completado</div>`;
-          return;
-        }
-        isWork = false; timeLeft = e.descanso;
-      } else {
-        isWork = true; round++; timeLeft = e.duracion;
-      }
-    }
-    update();
-  }, 1000);
-
-  pauseBtn?.addEventListener('click', () => {
-    paused = !paused;
-    pauseBtn.innerHTML = paused ? '<i class="ph ph-play"></i>' : '<i class="ph ph-pause"></i>';
-  });
-  stopBtn?.addEventListener('click', () => {
-    clearInterval(hiitInterval); c.completed = true; persistWorkout(); renderWorkout(container);
-  });
-}
-
 // ── Finish workout ───────────────────────────────────────────────────────────
 function finishWorkout(container) {
   clearInterval(timerInterval);
-  if (hiitInterval) clearInterval(hiitInterval);
 
   const usuario = workoutState.usuario;
 

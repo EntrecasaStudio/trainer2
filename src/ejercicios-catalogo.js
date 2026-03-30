@@ -232,46 +232,56 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     descripcion: 'Sentada en la máquina de aductores con los pads en la cara interna de los muslos, cerrá las piernas contra la resistencia. Bajá lento resistiendo la apertura. Trabaja aductores (grácil, pectíneo, aductor largo/corto). Complementa el trabajo de glúteos y caderas.'
   },
-  // ── HIIT ────────────────────────────────────────────────────────────────────
+  // ── HIIT / FUNCIONAL ────────────────────────────────────────────────────────
   {
     nombre: 'Pasadas de velocidad',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Carreras de alta intensidad durante 60 segundos de trabajo seguidos de 60 segundos de descanso, por 5 rondas. La distancia o el esfuerzo deben ser máximos en cada repetición. Trabaja sistema cardiovascular, velocidad de reacción y resistencia anaeróbica.'
+    descripcion: 'Carreras de máxima intensidad en distancias cortas (40-60m). Salir explosivamente, mantener la velocidad y desacelerar al final. Descansar caminando de vuelta. Trabaja potencia de piernas, sistema cardiovascular y resistencia anaeróbica.'
   },
   {
-    nombre: 'Tabata',
+    nombre: 'Burpees',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Protocolo de 20 segundos de trabajo máximo seguidos de 10 segundos de descanso, por 8 rondas (4 minutos total). Se puede aplicar con cualquier ejercicio: burpees, mountain climbers, sentadillas con salto, etc. Intensidad máxima en cada intervalo de trabajo.'
+    descripcion: 'Desde parado, agacharse y apoyar las manos en el piso, saltar los pies hacia atrás a posición de plancha, hacer una flexión, saltar los pies hacia adelante y saltar verticalmente con los brazos arriba. Trabaja todo el cuerpo: pecho, piernas, core y cardio.'
   },
   {
-    nombre: 'EMOM',
+    nombre: 'Saltos al cajón',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Every Minute On the Minute. Se realiza un número fijo de repeticiones al inicio de cada minuto y se descansa el tiempo restante. Duración típica: 10-20 minutos. Se pueden alternar ejercicios por minuto para trabajar distintos grupos musculares.'
+    descripcion: 'Parado frente a un cajón pliométrico, flexionar rodillas y saltar explosivamente aterrizando con ambos pies arriba del cajón. Pararse completamente y bajar con control. Trabaja potencia de piernas, glúteos y coordinación.'
   },
   {
-    nombre: 'AMRAP',
+    nombre: 'Saltos laterales',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'As Many Rounds As Possible. Se define un circuito de ejercicios y un tiempo límite (12-20 min). El objetivo es completar la mayor cantidad de rondas posibles manteniendo buena técnica. Se registra el número de rondas completadas como métrica de progreso.'
+    descripcion: 'De pie con los pies juntos, saltar lateralmente de un lado a otro sobre una línea o valla baja. Aterrizar suave con las rodillas semiflexionadas. Trabaja agilidad, estabilidad de tobillos y potencia lateral.'
   },
   {
-    nombre: 'Circuito HIIT',
+    nombre: 'Sentadilla con salto',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Circuito de 4-6 ejercicios de alta intensidad realizados en secuencia con descanso mínimo entre estaciones. Cada estación dura 30-45 segundos con 10-15 segundos de transición. Combina ejercicios de fuerza y cardio para máximo gasto calórico.'
+    descripcion: 'Realizar una sentadilla profunda y al subir explotar en un salto vertical con los brazos arriba. Aterrizar suave y volver directo a la sentadilla. Trabaja cuádriceps, glúteos y potencia explosiva.'
   },
   {
-    nombre: 'Intervalos de alta intensidad',
+    nombre: 'Estocada con salto',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Bloques de esfuerzo máximo (30-60 segundos) alternados con periodos de recuperación activa (60-90 segundos). Se puede hacer en bicicleta, cinta, remo o con peso corporal. Ideal para mejorar VO2max y capacidad anaeróbica.'
+    descripcion: 'Desde posición de zancada, saltar y alternar las piernas en el aire, aterrizando en zancada con la pierna contraria adelante. Mantener el torso erguido. Trabaja cuádriceps, glúteos, coordinación y potencia.'
   },
   {
-    nombre: 'Kettlebell swings',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie con piernas separadas al ancho de hombros, sujetar la kettlebell con ambas manos. Flexionar caderas hacia atrás y balancear la pesa entre las piernas, luego extender caderas explosivamente para llevar la kettlebell a la altura de los hombros. Trabaja glúteos, isquiotibiales, core y hombros.'
-  },
-  {
-    nombre: 'Battle ropes',
+    nombre: 'Jumping jacks',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Sujetar un extremo de la cuerda en cada mano con los pies al ancho de hombros y rodillas semiflexionadas. Generar ondas alternadas o simultáneas con los brazos a máxima velocidad. Trabaja hombros, brazos, core y sistema cardiovascular. Intervalos de 20-30 segundos de trabajo.'
+    descripcion: 'De pie con los pies juntos y brazos al costado, saltar abriendo las piernas al ancho de hombros mientras subís los brazos por arriba de la cabeza. Volver a la posición inicial saltando. Ejercicio cardiovascular completo.'
+  },
+  {
+    nombre: 'Caminata a plancha',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De pie, flexionar la cadera y caminar con las manos hacia adelante hasta llegar a posición de plancha. Mantener 2 segundos y caminar con las manos de vuelta hasta pararse. Trabaja core, hombros, flexibilidad de isquiotibiales.'
+  },
+  {
+    nombre: 'Mountain climbers',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En posición de plancha alta, llevar una rodilla al pecho alternando piernas rápidamente como si corrieras en el lugar. Mantener la cadera baja y el core activado. Trabaja abdominales, hombros y cardio.'
+  },
+  {
+    nombre: 'Abs complex',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Secuencia combinada de ejercicios abdominales sin pausa: crunches + bicicleta + elevación de piernas + plancha. Cada ejercicio por 10-15 reps antes de pasar al siguiente. Trabaja recto abdominal, oblicuos y core profundo.'
   },
 ];
 
