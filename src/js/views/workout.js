@@ -166,20 +166,23 @@ function renderWorkout(container) {
       <button class="btn btn-secondary btn-sm" id="btn-salir">Salir</button>
     </div>
 
-    <div class="circuit-tabs-bar">
-      ${workoutState.circuitos.map((circ, i) => `
-        <button class="circuit-tab ${i === activeCircuitIdx ? 'active' : ''} ${circ.completed ? 'done' : ''}"
-                data-idx="${i}">${circ.completed ? SVG_CHECK : i + 1}</button>
-        ${editMode && workoutState.circuitos.length > 1 ? `<button class="circuit-tab-remove" data-remove-ci="${i}" title="Quitar circuito">×</button>` : ''}
-      `).join('')}
-      ${editMode ? `<button class="circuit-tab-add" id="btn-add-circuit" title="Agregar circuito"><i class="ph ph-plus"></i></button>` : ''}
-      <button class="circuit-tab-edit ${editMode ? 'edit-active' : ''}" id="btn-toggle-edit" title="Editar">
-        <i class="ph ph-pencil-simple"></i>
-      </button>
-    </div>
-
-    <div class="circuit-progress-bar">
-      <div class="circuit-progress-fill" style="width:${getOverallProgress()}%"></div>
+    <div class="circuit-tabs-wrap">
+      <div class="circuit-tabs-bar">
+        ${workoutState.circuitos.map((circ, i) => `
+          <button class="circuit-tab ${i === activeCircuitIdx ? 'active' : ''} ${circ.completed ? 'done' : ''}"
+                  data-idx="${i}">
+            ${circ.completed ? SVG_CHECK : i + 1}
+            ${editMode && workoutState.circuitos.length > 1 ? `<span class="circuit-tab-remove" data-remove-ci="${i}">×</span>` : ''}
+          </button>
+        `).join('')}
+        ${editMode ? `<button class="circuit-tab-add" id="btn-add-circuit" title="Agregar circuito"><i class="ph ph-plus"></i></button>` : ''}
+        <button class="circuit-tab-edit ${editMode ? 'edit-active' : ''}" id="btn-toggle-edit" title="Editar">
+          <i class="ph ph-pencil-simple"></i>
+        </button>
+      </div>
+      <div class="circuit-progress-bar">
+        <div class="circuit-progress-fill" style="width:${getOverallProgress()}%"></div>
+      </div>
     </div>
 
     <div class="workout-circuit-label">
@@ -349,7 +352,8 @@ function bindEvents(container) {
   container.querySelector('#btn-salir')?.addEventListener('click', () => showExitDialog(container));
 
   container.querySelectorAll('.circuit-tab[data-idx]').forEach(tab => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener('click', (e) => {
+      if (e.target.closest('.circuit-tab-remove')) return;
       activeCircuitIdx = parseInt(tab.dataset.idx);
       renderWorkout(container);
     });

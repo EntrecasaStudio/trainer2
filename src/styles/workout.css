@@ -33,37 +33,60 @@
 
 .btn-sm { padding: 6px 12px; font-size: var(--text-xs); }
 
-/* ── Circuit tabs ────────────────────────────────────────────────────────── */
+/* ── Circuit tabs (v1 flat style) ────────────────────────────────────────── */
+.circuit-tabs-wrap {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-sm) var(--space-sm) var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
 .circuit-tabs-bar {
   display: flex;
-  gap: var(--space-xs);
-  align-items: center;
+  gap: 4px;
   overflow-x: auto;
-  padding-bottom: var(--space-xs);
-  margin-bottom: var(--space-sm);
   scrollbar-width: none;
+  padding: 2px 0;
 }
 .circuit-tabs-bar::-webkit-scrollbar { display: none; }
 
 .circuit-tab {
-  flex-shrink: 0;
-  width: 36px; height: 36px;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--color-border);
-  background: var(--color-surface);
-  color: var(--color-text-muted);
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--space-sm) var(--space-xs);
+  min-height: 48px;
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  border: 1.5px solid transparent;
   font-family: var(--font-main);
   font-size: var(--text-sm);
-  font-weight: var(--fw-semibold);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-muted);
   cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
   transition: all 0.15s;
   -webkit-tap-highlight-color: transparent;
+  position: relative;
 }
-.circuit-tab.active { background: var(--color-accent); border-color: var(--color-accent); color: #1A1A1A; }
-.circuit-tab.done { background: rgba(34,197,94,0.15); border-color: #22c55e; color: #22c55e; }
-.circuit-tab.done.active { background: #22c55e; border-color: #22c55e; color: #1A1A1A; }
-.circuit-tab.done svg { width: 14px; height: 14px; }
+.circuit-tab:active { transform: scale(0.94); }
+.circuit-tab.active {
+  background-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+.circuit-tab.done {
+  background-color: color-mix(in srgb, var(--color-accent) 8%, transparent);
+  color: var(--color-accent);
+}
+.circuit-tab.done.active {
+  background-color: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  border-color: var(--color-accent);
+}
+.circuit-tab.done svg { width: 16px; height: 16px; }
 
 .circuit-tab-remove {
   width: 18px; height: 18px;
@@ -75,46 +98,51 @@
   line-height: 1;
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
-  margin-left: -8px;
-  margin-right: 2px;
-  align-self: flex-start;
-  margin-top: -2px;
+  position: absolute;
+  top: -4px;
+  right: -4px;
   -webkit-tap-highlight-color: transparent;
 }
 
 .circuit-tab-add {
-  flex-shrink: 0;
-  width: 36px; height: 36px;
-  border-radius: var(--radius-sm);
-  border: 2px dashed var(--color-border);
+  flex: 0 0 auto;
+  min-width: 44px;
+  max-width: 44px;
+  min-height: 48px;
+  border-radius: var(--radius-md);
+  border: 1.5px dashed var(--color-border);
   background: none;
   color: var(--color-text-muted);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
   transition: all 0.15s;
   -webkit-tap-highlight-color: transparent;
+  opacity: 0.6;
 }
-.circuit-tab-add:active { border-color: var(--color-accent); color: var(--color-accent); }
+.circuit-tab-add:active { border-color: var(--color-accent); color: var(--color-accent); opacity: 1; }
 
 .circuit-tab-edit {
-  flex-shrink: 0;
-  width: 36px; height: 36px;
-  border-radius: var(--radius-full);
-  border: 2px solid var(--color-border);
+  flex: 0 0 auto;
+  min-width: 44px;
+  max-width: 44px;
+  min-height: 48px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid var(--color-border);
   background: none;
   color: var(--color-text-muted);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
-  margin-left: auto;
   transition: all 0.15s;
   -webkit-tap-highlight-color: transparent;
+  opacity: 0.6;
 }
 .circuit-tab-edit i { font-size: 16px; }
-.circuit-tab-edit:active { opacity: 0.7; }
+.circuit-tab-edit:active { opacity: 1; border-color: var(--color-accent); color: var(--color-accent); }
 .circuit-tab-edit.edit-active {
   border-color: var(--color-accent);
-  background: rgba(255,205,0,0.12);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
   color: var(--color-accent);
+  opacity: 1;
 }
 
 /* ── Progress bar ────────────────────────────────────────────────────────── */
@@ -123,7 +151,7 @@
   background: var(--color-border);
   border-radius: var(--radius-full);
   overflow: hidden;
-  margin-bottom: var(--space-md);
+  margin-top: var(--space-sm);
 }
 .circuit-progress-fill {
   height: 100%;
