@@ -531,3 +531,68 @@
 .selected-rutina {
   border-left: 3px solid var(--color-accent);
 }
+
+/* ── Muscle silhouette illustrations ─────────────────────────────────────── */
+.ej-category-muscle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  flex-shrink: 0;
+}
+
+.ej-category-muscle .muscle-silhouette {
+  height: 36px;
+  width: auto;
+}
+
+.muscle-silhouette .muscle-part polygon {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 0.8;
+}
+
+.muscle-silhouette .muscle-active polygon {
+  fill: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  stroke: var(--color-accent);
+  stroke-width: 1.0;
+  opacity: 1;
+}
+
+.muscle-silhouette-cropped .muscle-active polygon {
+  stroke-width: 1.2;
+}
+
+.muscle-composite {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.muscle-heatmap-pair {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.muscle-heatmap .muscle-heat-1 polygon {
+  fill: color-mix(in srgb, var(--color-accent) 20%, transparent);
+  stroke: color-mix(in srgb, var(--color-accent) 40%, rgba(255,255,255,0.3));
+  stroke-width: 0.9;
+}
+
+.muscle-heatmap .muscle-heat-2 polygon {
+  fill: color-mix(in srgb, var(--color-accent) 45%, transparent);
+  stroke: color-mix(in srgb, var(--color-accent) 70%, rgba(255,255,255,0.3));
+  stroke-width: 1.0;
+}
+
+.muscle-heatmap .muscle-heat-3 polygon {
+  fill: color-mix(in srgb, var(--color-accent) 75%, transparent);
+  stroke: var(--color-accent);
+  stroke-width: 1.1;
+}

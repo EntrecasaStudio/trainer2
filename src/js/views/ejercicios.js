@@ -1,5 +1,6 @@
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio } from '../../ejercicios-catalogo.js';
 import { store } from '../../store.js';
+import { getMuscleSvgCropped } from '../../utils/muscle-illustrations.js';
 
 const TIPO_LABELS = { funcional: 'F', maquina: 'M' };
 const TIPO_COLORS = { funcional: 'var(--color-tag-core)', maquina: 'var(--color-tag-brazos)' };
@@ -117,13 +118,13 @@ function renderList(container) {
   listEl.innerHTML = orderedGroups.map(grupo => {
     const ejs = grouped[grupo];
     const isExpanded = expandedGroups.has(grupo) || searchQuery;
-    const icon = GRUPO_ICONS[grupo] || 'ph-dumbbell';
+    const muscleSvg = getMuscleSvgCropped(grupo, 36);
 
     return `
       <div class="grupo-section" data-grupo="${grupo}">
         <div class="grupo-header" data-grupo="${grupo}">
           <div style="display:flex;align-items:center;gap:var(--space-sm);">
-            <i class="${icon}" style="font-size:20px;color:var(--color-accent);"></i>
+            <span class="ej-category-muscle">${muscleSvg}</span>
             <span class="grupo-name">${grupo}</span>
           </div>
           <div style="display:flex;align-items:center;gap:var(--space-sm);">

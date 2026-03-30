@@ -238,6 +238,41 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'Carreras de alta intensidad durante 60 segundos de trabajo seguidos de 60 segundos de descanso, por 5 rondas. La distancia o el esfuerzo deben ser máximos en cada repetición. Trabaja sistema cardiovascular, velocidad de reacción y resistencia anaeróbica.'
   },
+  {
+    nombre: 'Tabata',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Protocolo de 20 segundos de trabajo máximo seguidos de 10 segundos de descanso, por 8 rondas (4 minutos total). Se puede aplicar con cualquier ejercicio: burpees, mountain climbers, sentadillas con salto, etc. Intensidad máxima en cada intervalo de trabajo.'
+  },
+  {
+    nombre: 'EMOM',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Every Minute On the Minute. Se realiza un número fijo de repeticiones al inicio de cada minuto y se descansa el tiempo restante. Duración típica: 10-20 minutos. Se pueden alternar ejercicios por minuto para trabajar distintos grupos musculares.'
+  },
+  {
+    nombre: 'AMRAP',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'As Many Rounds As Possible. Se define un circuito de ejercicios y un tiempo límite (12-20 min). El objetivo es completar la mayor cantidad de rondas posibles manteniendo buena técnica. Se registra el número de rondas completadas como métrica de progreso.'
+  },
+  {
+    nombre: 'Circuito HIIT',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Circuito de 4-6 ejercicios de alta intensidad realizados en secuencia con descanso mínimo entre estaciones. Cada estación dura 30-45 segundos con 10-15 segundos de transición. Combina ejercicios de fuerza y cardio para máximo gasto calórico.'
+  },
+  {
+    nombre: 'Intervalos de alta intensidad',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Bloques de esfuerzo máximo (30-60 segundos) alternados con periodos de recuperación activa (60-90 segundos). Se puede hacer en bicicleta, cinta, remo o con peso corporal. Ideal para mejorar VO2max y capacidad anaeróbica.'
+  },
+  {
+    nombre: 'Kettlebell swings',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con piernas separadas al ancho de hombros, sujetar la kettlebell con ambas manos. Flexionar caderas hacia atrás y balancear la pesa entre las piernas, luego extender caderas explosivamente para llevar la kettlebell a la altura de los hombros. Trabaja glúteos, isquiotibiales, core y hombros.'
+  },
+  {
+    nombre: 'Battle ropes',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Sujetar un extremo de la cuerda en cada mano con los pies al ancho de hombros y rodillas semiflexionadas. Generar ondas alternadas o simultáneas con los brazos a máxima velocidad. Trabaja hombros, brazos, core y sistema cardiovascular. Intervalos de 20-30 segundos de trabajo.'
+  },
 ];
 
 // Helper: get all exercises for a given group

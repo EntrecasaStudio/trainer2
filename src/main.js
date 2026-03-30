@@ -36,17 +36,21 @@ async function init() {
     navEl.classList.toggle('hidden', route === 'workout');
   });
 
-  // Hide splash
+  // Animate splash progress and hide
+  const progressBar = document.getElementById('splash-progress-bar');
+  if (progressBar) progressBar.style.width = '100%';
   setTimeout(() => {
     const splash = document.getElementById('splash');
     if (splash) {
-      splash.classList.add('fade-out');
+      splash.style.opacity = '0';
+      splash.style.transform = 'scale(1.05)';
+      splash.style.filter = 'blur(8px)';
       setTimeout(() => {
         splash.remove();
         document.getElementById('app').classList.remove('hidden');
       }, 400);
     }
-  }, 800);
+  }, 900);
 
   // Register service worker
   if ('serviceWorker' in navigator) {
