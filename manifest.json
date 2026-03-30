@@ -1,0 +1,16 @@
+{
+  "name": "Entrecasa Trainer",
+  "short_name": "Trainer",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#1A1A1A",
+  "theme_color": "#1A1A1A",
+  "description": "Entrenamiento personal para Lean y Nat",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect x='4' y='26' width='12' height='12' rx='2' fill='%23FFCD00'/><rect x='48' y='26' width='12' height='12' rx='2' fill='%23FFCD00'/><rect x='16' y='28' width='32' height='8' rx='2' fill='%23F5F0E8'/></svg>",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

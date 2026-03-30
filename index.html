@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#1A1A1A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Entrecasa Trainer</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="https://use.typekit.net/xxxxxxx.css">
+  <link rel="stylesheet" href="src/styles/tokens.css">
+  <link rel="stylesheet" href="src/styles/components.css">
+  <link rel="stylesheet" href="src/styles/views.css">
+  <link rel="stylesheet" href="src/styles/workout.css">
+</head>
+<body>
+  <div id="splash" class="splash">
+    <div class="splash-content">
+      <svg class="splash-icon" viewBox="0 0 64 64" width="64" height="64" fill="none">
+        <rect x="4" y="26" width="12" height="12" rx="2" fill="var(--color-accent)"/>
+        <rect x="48" y="26" width="12" height="12" rx="2" fill="var(--color-accent)"/>
+        <rect x="16" y="28" width="32" height="8" rx="2" fill="var(--color-text)"/>
+        <rect x="14" y="24" width="4" height="16" rx="1" fill="var(--color-text-muted)"/>
+        <rect x="46" y="24" width="4" height="16" rx="1" fill="var(--color-text-muted)"/>
+      </svg>
+      <h1 class="splash-title">ENTRECASA TRAINER</h1>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <main id="view-container"></main>
+    <nav id="nav" class="nav"></nav>
+  </div>
+
+  <div id="toast-container" class="toast-container"></div>
+  <div id="modal-overlay" class="modal-overlay hidden"></div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
