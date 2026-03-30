@@ -12,6 +12,10 @@ async function init() {
   // Run seed
   await seedV2();
 
+  // Apply user theme on boot
+  const { store } = await import('./store.js');
+  document.body.setAttribute('data-usuario', store.getActiveUser());
+
   // Register routes
   router.register('', mountHome);
   router.register('rutinas', mountRutinas);

@@ -69,4 +69,15 @@ body {
   padding-bottom: 80px;
 }
 
+/* ── Per-user theming ─────────────────────────────────────────────────── */
+body[data-usuario="Nat"] {
+  --color-accent: #A78BFA;
+  --color-accent-hover: #9171E8;
+}
+
+body[data-usuario="Lean"] {
+  --color-accent: #FFCD00;
+  --color-accent-hover: #E5B800;
+}
+
 .hidden { display: none !important; }

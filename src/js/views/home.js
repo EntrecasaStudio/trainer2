@@ -10,6 +10,7 @@ let activeUsuario = null;
 
 export function mountHome(container) {
   activeUsuario = store.getActiveUser();
+  document.body.setAttribute('data-usuario', activeUsuario);
   selectedDate = new Date();
   selectedDate.setHours(0, 0, 0, 0);
   render(container);
@@ -34,6 +35,7 @@ function render(container) {
     btn.addEventListener('click', () => {
       activeUsuario = btn.dataset.usuario;
       store.setActiveUser(activeUsuario);
+      document.body.setAttribute('data-usuario', activeUsuario);
       container.querySelectorAll('.user-toggle-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderRoutineCard();
