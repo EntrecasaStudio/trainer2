@@ -3,6 +3,7 @@ import { router } from '../../router.js';
 import { getGreeting, formatDateLong, getLugarBadge, getCircuitColor, formatSetsReps } from '../../utils/format.js';
 import { formatDateISO, getNextTrainingDay, isTrainingDay, WEEKDAY_LABELS, MONTH_NAMES, getISODayOfWeek, getCycleWeek, getFocusForDay } from '../../utils/calendar.js';
 import { openModal, closeModal } from '../components/modal.js';
+import { openEjercicioInfo } from './ejercicios.js';
 
 let selectedDate = new Date();
 let activeUsuario = null;
@@ -103,6 +104,14 @@ function renderRoutineCard() {
   document.getElementById('btn-edit-routine')?.addEventListener('click', () => {
     openEditSheet(rutina);
   });
+
+  // Info buttons on exercise rows
+  container.querySelectorAll('.info-btn-home').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEjercicioInfo(btn.dataset.nombre);
+    });
+  });
 }
 
 function renderCircuit(c) {
@@ -117,7 +126,13 @@ function renderCircuit(c) {
         ${c.ejercicios.map(e => `
           <div class="exercise-row">
             <span class="exercise-name">${e.nombre}</span>
-            <span class="exercise-sets">${formatSetsReps(e)}</span>
+            <div style="display:flex;align-items:center;gap:var(--space-xs);">
+              <span class="exercise-sets">${formatSetsReps(e)}</span>
+              <button class="btn-icon info-btn-home" data-nombre="${e.nombre}" title="Info del ejercicio"
+                      style="-webkit-tap-highlight-color:transparent;">
+                <i class="ph ph-info" style="font-size:14px;color:var(--color-text-muted);"></i>
+              </button>
+            </div>
           </div>
         `).join('')}
       </div>
