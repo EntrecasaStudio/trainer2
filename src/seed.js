@@ -31,7 +31,7 @@ function createLeanRoutines() {
       circuito(3, 'PECHO ALT', [ej('Press inclinado con mancuernas'), ej('Pecho con polea doble')]),
       circuito(4, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Vuelos laterales')]),
       circuito(5, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Triceps con polea')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Burpees', 3, 10), ej('Jumping jacks', 3, 20)]),
     ]),
     // Press B — semana 1
     rutina('C#002', 'Press B — Pecho + Hombros', 'Lean', 'press', 1, [
@@ -40,7 +40,7 @@ function createLeanRoutines() {
       circuito(3, 'PECHO ALT', [ej('Press de pecho'), ej('Press inclinado con mancuernas')]),
       circuito(4, 'HOMBROS', [ej('Empuje de hombros con barra en banco'), ej('Face pulls')]),
       circuito(5, 'BRAZOS', [ej('Vuelos laterales'), ej('Extensión de triceps sobre cabeza')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Sentadilla con salto', 3, 12), ej('Mountain climbers', 3, 15)]),
     ]),
     // Press C — semana 2
     rutina('C#003', 'Press C — Hombros + Pecho', 'Lean', 'press', 2, [
@@ -49,7 +49,7 @@ function createLeanRoutines() {
       circuito(3, 'HOMBROS ALT', [ej('Vuelos laterales'), ej('Face pulls')]),
       circuito(4, 'PECHO', [ej('Press de pecho'), ej('Fondos de pecho suspendido en maquina')]),
       circuito(5, 'BRAZOS', [ej('Triceps con polea'), ej('Curl de bíceps con barra')]),
-      circuito(6, 'HIIT', [ej('Burpees', 3, 10), ej('Sentadilla con salto', 3, 12)]),
+      circuito(6, 'HIIT', [ej('Burpees', 3, 10), ej('Sentadilla con salto', 3, 12), ej('Caminata a plancha', 3, 8)]),
     ]),
     // Press D — semana 2
     rutina('C#004', 'Press D — Pecho + Brazos', 'Lean', 'press', 2, [
@@ -58,7 +58,7 @@ function createLeanRoutines() {
       circuito(3, 'PECHO ALT', [ej('Fondos de pecho suspendido en maquina'), ej('Press inclinado con mancuernas')]),
       circuito(4, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Biceps en banco')]),
       circuito(5, 'BRAZOS ALT', [ej('Triceps con polea'), ej('Flexiones diamante', 2, '12')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Saltos laterales', 3, 12), ej('Abs complex', 3, 1)]),
     ]),
     // Press E — semana 1
     rutina('C#005', 'Press E — Hombros + Brazos', 'Lean', 'press', 1, [
@@ -67,7 +67,7 @@ function createLeanRoutines() {
       circuito(3, 'HOMBROS ALT', [ej('Empuje de hombros con barra en banco'), ej('Face pulls')]),
       circuito(4, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Curl martillo')]),
       circuito(5, 'BRAZOS ALT', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Estocada con salto', 3, 10), ej('Jumping jacks', 3, 20)]),
     ]),
     // Pull A — semana 1
     rutina('C#006', 'Pull A — Espalda + Hombros', 'Lean', 'pull', 1, [
@@ -76,7 +76,7 @@ function createLeanRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Remo alto en polea'), ej('Jalón al pecho')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
       circuito(5, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Curl martillo')]),
-      circuito(6, 'HIIT', [ej('Saltos al cajón', 3, 10), ej('Mountain climbers', 3, 15)]),
+      circuito(6, 'HIIT', [ej('Saltos al cajón', 3, 10), ej('Mountain climbers', 3, 15), ej('Burpees', 3, 8)]),
     ]),
     // Pull B — semana 1
     rutina('C#007', 'Pull B — Espalda + Brazos', 'Lean', 'pull', 1, [
@@ -85,7 +85,7 @@ function createLeanRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
       circuito(4, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Biceps en banco')]),
       circuito(5, 'BRAZOS ALT', [ej('Curl martillo'), ej('Biceps alto en polea')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Saltos al cajón', 3, 10), ej('Sentadilla con salto', 3, 12)]),
     ]),
     // Pull C — semana 2
     rutina('C#008', 'Pull C — Espalda + Hombros', 'Lean', 'pull', 2, [
@@ -94,7 +94,7 @@ function createLeanRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Remo en maquina'), ej('Remo alto en polea')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Vuelos laterales')]),
       circuito(5, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Curl martillo')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Caminata a plancha', 3, 8), ej('Mountain climbers', 3, 15)]),
     ]),
     // Pull D — semana 2
     rutina('C#009', 'Pull D — Espalda + Brazos', 'Lean', 'pull', 2, [
@@ -103,7 +103,7 @@ function createLeanRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Dominadas abiertas')]),
       circuito(4, 'BRAZOS', [ej('Biceps en banco'), ej('Biceps alto en polea')]),
       circuito(5, 'BRAZOS ALT', [ej('Curl martillo'), ej('Curl de bíceps con barra')]),
-      circuito(6, 'HIIT', [ej('Caminata a plancha', 3, 8), ej('Jumping jacks', 3, 20)]),
+      circuito(6, 'HIIT', [ej('Estocada con salto', 3, 10), ej('Jumping jacks', 3, 20), ej('Abs complex', 3, 1)]),
     ]),
     // Pull E — semana 1
     rutina('C#010', 'Pull E — Espalda + Hombros', 'Lean', 'pull', 1, [
@@ -112,7 +112,7 @@ function createLeanRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
       circuito(5, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Curl martillo')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Saltos laterales', 3, 12), ej('Burpees', 3, 8)]),
     ]),
   ];
 }
@@ -126,7 +126,7 @@ function createNatRoutines() {
       circuito(3, 'PECHO ALT', [ej('Pecho con polea doble'), ej('Flexiones diamante', 2, '12')]),
       circuito(4, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Face pulls')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Jumping jacks', 3, 20), ej('Mountain climbers', 3, 15)]),
     ]),
     // Press B
     rutina('C#012', 'Press B — Pecho + Glúteos', 'Nat', 'press', 1, [
@@ -135,7 +135,7 @@ function createNatRoutines() {
       circuito(3, 'PECHO ALT', [ej('Press inclinado con mancuernas'), ej('Flexiones diamante', 2, '12')]),
       circuito(4, 'HOMBROS', [ej('Vuelos laterales'), ej('Empuje de hombros con barra en banco')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Burpees', 3, 8), ej('Saltos laterales', 3, 12)]),
     ]),
     // Press C
     rutina('C#013', 'Press C — Hombros + Glúteos', 'Nat', 'press', 2, [
@@ -144,7 +144,7 @@ function createNatRoutines() {
       circuito(3, 'HOMBROS ALT', [ej('Vuelos laterales'), ej('Elevaciones de hombro adelante')]),
       circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
-      circuito(6, 'HIIT', [ej('Estocada con salto', 3, 10), ej('Abs complex', 3, 1)]),
+      circuito(6, 'HIIT', [ej('Estocada con salto', 3, 10), ej('Abs complex', 3, 1), ej('Caminata a plancha', 3, 8)]),
     ]),
     // Press D
     rutina('C#014', 'Press D — Pecho + Glúteos', 'Nat', 'press', 2, [
@@ -153,7 +153,7 @@ function createNatRoutines() {
       circuito(3, 'HOMBROS', [ej('Empuje de hombros con barra en banco'), ej('Vuelos laterales')]),
       circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Sentadilla con salto', 3, 12), ej('Jumping jacks', 3, 20)]),
     ]),
     // Press E
     rutina('C#015', 'Press E — Hombros + Glúteos', 'Nat', 'press', 1, [
@@ -162,7 +162,7 @@ function createNatRoutines() {
       circuito(3, 'HOMBROS ALT', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
       circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Gluteos patada en polea'), ej('Aductores en maquina')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Estocada con salto', 3, 10), ej('Mountain climbers', 3, 15)]),
     ]),
     // Pull A
     rutina('C#016', 'Pull A — Espalda + Glúteos', 'Nat', 'pull', 1, [
@@ -171,7 +171,7 @@ function createNatRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Remo alto en polea'), ej('Jalón al pecho')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Curl de bíceps con mancuerna')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
-      circuito(6, 'HIIT', [ej('Saltos laterales', 3, 12), ej('Caminata a plancha', 3, 8)]),
+      circuito(6, 'HIIT', [ej('Saltos laterales', 3, 12), ej('Caminata a plancha', 3, 8), ej('Burpees', 3, 8)]),
     ]),
     // Pull B
     rutina('C#017', 'Pull B — Espalda + Glúteos', 'Nat', 'pull', 1, [
@@ -180,7 +180,7 @@ function createNatRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
       circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Curl martillo')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Saltos al cajón', 3, 10), ej('Abs complex', 3, 1)]),
     ]),
     // Pull C
     rutina('C#018', 'Pull C — Espalda + Glúteos', 'Nat', 'pull', 2, [
@@ -189,7 +189,7 @@ function createNatRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Remo en maquina separado'), ej('Face pulls')]),
       circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Curl martillo')]),
       circuito(5, 'GLÚTEOS', [ej('Gluteos patada en polea'), ej('Aductores en maquina')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Caminata a plancha', 3, 8), ej('Saltos laterales', 3, 12)]),
     ]),
     // Pull D
     rutina('C#019', 'Pull D — Espalda + Glúteos', 'Nat', 'pull', 2, [
@@ -198,7 +198,7 @@ function createNatRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Dominada en maquina ascensor'), ej('Jalón al pecho')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro hacia arriba')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
-      circuito(6, 'HIIT', [ej('Burpees', 3, 8), ej('Sentadilla con salto', 3, 12)]),
+      circuito(6, 'HIIT', [ej('Burpees', 3, 8), ej('Sentadilla con salto', 3, 12), ej('Jumping jacks', 3, 20)]),
     ]),
     // Pull E
     rutina('C#020', 'Pull E — Espalda + Glúteos', 'Nat', 'pull', 1, [
@@ -207,7 +207,7 @@ function createNatRoutines() {
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Curl de bíceps con mancuerna')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
+      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1), ej('Estocada con salto', 3, 10), ej('Saltos al cajón', 3, 10)]),
     ]),
   ];
 }
@@ -339,7 +339,7 @@ export function verifySeedV2() {
 
 export async function seedV2() {
   const version = store.getVersion();
-  if (version === '2.3') {
+  if (version === '2.4') {
     console.log('[Seed] Already at v2.0');
     return;
   }
@@ -376,7 +376,7 @@ export async function seedV2() {
   store.set(store.KEYS.overrides, overrides);
 
   // Set version
-  store.setVersion('2.3');
+  store.setVersion('2.4');
 
   // Verify
   verifySeedV2();
