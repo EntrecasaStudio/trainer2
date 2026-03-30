@@ -125,8 +125,8 @@ function createNatRoutines() {
     // Press A
     rutina('C#011', 'Press A — Pecho + Glúteos', 'Nat', 'press', 1, [
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Plancha en codos', 2, '30s')]),
-      circuito(2, 'PECHO', [ej('Fondos de pecho suspendido en maquina'), ej('Banda press de pecho')]),
-      circuito(3, 'PECHO ALT', [ej('TRX chest press'), ej('Pecho con polea doble')]),
+      circuito(2, 'PECHO', [ej('Fondos de pecho suspendido en maquina'), ej('Press inclinado con mancuernas')]),
+      circuito(3, 'PECHO ALT', [ej('Pecho con polea doble'), ej('Flexiones diamante', 2, '12')]),
       circuito(4, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Face pulls')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
       circuito(6, 'HIIT', [hiitEj()]),
@@ -135,7 +135,7 @@ function createNatRoutines() {
     rutina('C#012', 'Press B — Pecho + Glúteos', 'Nat', 'press', 1, [
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla sumo'), ej('Zancadas con mancuernas'), ej('Dead bug', 2, '30s')]),
       circuito(2, 'PECHO', [ej('Pecho con polea doble'), ej('Fondos de pecho suspendido en maquina')]),
-      circuito(3, 'PECHO ALT', [ej('Press inclinado con mancuernas'), ej('Banda press de pecho')]),
+      circuito(3, 'PECHO ALT', [ej('Press inclinado con mancuernas'), ej('Flexiones diamante', 2, '12')]),
       circuito(4, 'HOMBROS', [ej('Vuelos laterales'), ej('Empuje de hombros con barra en banco')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
       circuito(6, 'HIIT', [hiitEj()]),
@@ -145,7 +145,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Espinales con disco', 2, '30s')]),
       circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Face pulls')]),
       circuito(3, 'HOMBROS ALT', [ej('Vuelos laterales'), ej('Elevaciones de hombro adelante')]),
-      circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Banda triceps pushdown')]),
+      circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
       circuito(6, 'HIIT', [hiitEj()]),
     ]),
@@ -154,7 +154,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sumo con rusas'), ej('Sentadilla sumo'), ej('Plancha en codos', 2, '30s')]),
       circuito(2, 'PECHO', [ej('Fondos de pecho suspendido en maquina'), ej('Pecho con polea doble')]),
       circuito(3, 'HOMBROS', [ej('Empuje de hombros con barra en banco'), ej('Vuelos laterales')]),
-      circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Banda triceps pushdown')]),
+      circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
       circuito(6, 'HIIT', [hiitEj()]),
     ]),
@@ -163,7 +163,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Pallof press', 2, '30s')]),
       circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Empuje de hombros con barra en banco')]),
       circuito(3, 'HOMBROS ALT', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
-      circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Banda triceps pushdown')]),
+      circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Gluteos patada en polea'), ej('Aductores en maquina')]),
       circuito(6, 'HIIT', [hiitEj()]),
     ]),
@@ -181,7 +181,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Zancadas con mancuernas'), ej('Sentadilla sumo'), ej('Dead bug', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Remo en maquina separado'), ej('Dominada en maquina ascensor')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
-      circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Banda curl biceps')]),
+      circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Curl martillo')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
       circuito(6, 'HIIT', [hiitEj()]),
     ]),
@@ -190,7 +190,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto con barra'), ej('Pallof press', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Dominada en maquina ascensor'), ej('Jalón al pecho')]),
       circuito(3, 'ESPALDA ALT', [ej('Remo en maquina separado'), ej('Face pulls')]),
-      circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Banda curl biceps')]),
+      circuito(4, 'BRAZOS', [ej('Curl de bíceps con mancuerna'), ej('Curl martillo')]),
       circuito(5, 'GLÚTEOS', [ej('Gluteos patada en polea'), ej('Aductores en maquina')]),
       circuito(6, 'HIIT', [hiitEj()]),
     ]),
@@ -309,7 +309,7 @@ export function verifySeedV2() {
   const rutinas = store.getAll(store.KEYS.rutinas);
   const sf = rutinas.filter(r => r.lugar === 'SPORT_FITNESS');
   // Use specific patterns to avoid false positives like "jalón al pecho"
-  const PRESS_PATTERNS = [/press de pecho/, /press inclinado/, /fondos de pecho/, /\bbanca\b/, /pecho con polea/, /trx chest/, /banda press de pecho/, /flexiones diamante/];
+  const PRESS_PATTERNS = [/press de pecho/, /press inclinado/, /fondos de pecho/, /\bbanca\b/, /pecho con polea/, /flexiones diamante/];
   const PULL_PATTERNS = [/\bremo\b/, /\bjalón\b/, /\bjalon\b/, /\bdominad/, /\btracción\b/];
   const errors = [];
 
@@ -342,7 +342,7 @@ export function verifySeedV2() {
 
 export async function seedV2() {
   const version = store.getVersion();
-  if (version === '2.0') {
+  if (version === '2.1') {
     console.log('[Seed] Already at v2.0');
     return;
   }
@@ -379,7 +379,7 @@ export async function seedV2() {
   store.set(store.KEYS.overrides, overrides);
 
   // Set version
-  store.setVersion('2.0');
+  store.setVersion('2.1');
 
   // Verify
   verifySeedV2();
