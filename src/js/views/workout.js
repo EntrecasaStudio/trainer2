@@ -6,6 +6,25 @@ import { showToast } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 
+// ── SVG check icon (v1 style) ───────────────────────────────────────────────
+const SVG_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+
+// ── Auto-derive muscle groups from exercises ────────────────────────────────
+function getCircuitGrupos(circ) {
+  const freq = new Map();
+  for (const ej of circ.ejercicios) {
+    const cat = EJERCICIOS_CATALOGO.find(c => c.nombre === ej.nombre);
+    if (cat?.grupo) freq.set(cat.grupo, (freq.get(cat.grupo) || 0) + 1);
+  }
+  return [...freq.entries()].sort((a, b) => b[1] - a[1]).map(([g]) => g);
+}
+
+const TAG_CLASS = {
+  Core: 'tag-core', Piernas: 'tag-piernas', Pecho: 'tag-pecho',
+  Espalda: 'tag-espalda', Brazos: 'tag-brazos', 'Glúteos': 'tag-gluteos',
+  Hombros: 'tag-hombros', Cardio: 'tag-cardio', HIIT: 'tag-hiit',
+};
+
 // ── Persistent workout state (survives navigation + page reload) ─────────────
 let workoutState = null;
 let timerInterval = null;
@@ -148,20 +167,25 @@ function renderWorkout(container) {
     <div class="circuit-tabs-bar">
       ${workoutState.circuitos.map((circ, i) => `
         <button class="circuit-tab ${i === activeCircuitIdx ? 'active' : ''} ${circ.completed ? 'done' : ''}"
-                data-idx="${i}">${i + 1}</button>
+                data-idx="${i}">${circ.completed ? SVG_CHECK : i + 1}</button>
+        ${editMode && workoutState.circuitos.length > 1 ? `<button class="circuit-tab-remove" data-remove-ci="${i}" title="Quitar circuito">×</button>` : ''}
       `).join('')}
+      ${editMode ? `<button class="circuit-tab-add" id="btn-add-circuit" title="Agregar circuito"><i class="ph ph-plus"></i></button>` : ''}
       <button class="circuit-tab-edit ${editMode ? 'edit-active' : ''}" id="btn-toggle-edit" title="Editar">
         <i class="ph ph-pencil-simple"></i>
       </button>
     </div>
 
     <div class="circuit-progress-bar">
-      <div class="circuit-progress-fill" style="width:${Math.round((workoutState.circuitos.filter(c=>c.completed).length/workoutState.circuitos.length)*100)}%"></div>
+      <div class="circuit-progress-fill" style="width:${getOverallProgress()}%"></div>
     </div>
 
     <div class="workout-circuit-label">
       <span class="circuit-label-text" style="color:${getCircuitColor(c.nombre)}">${c.nombre}</span>
-      ${c.completed ? '<span style="font-size:18px;">✅</span>' : ''}
+      ${c.completed ? `<span class="circuit-done-check">${SVG_CHECK}</span>` : ''}
+      <div class="circuit-grupo-tags">
+        ${getCircuitGrupos(c).map(g => `<span class="tag tag-sm ${TAG_CLASS[g] || ''}">${g}</span>`).join('')}
+      </div>
     </div>
 
     <div id="exercises-container">
@@ -335,6 +359,43 @@ function bindEvents(container) {
     renderWorkout(container);
   });
 
+  // Add circuit (edit mode)
+  container.querySelector('#btn-add-circuit')?.addEventListener('click', () => {
+    const newCircuit = {
+      id: crypto.randomUUID(),
+      nombre: `CIRCUITO ${workoutState.circuitos.length + 1}`,
+      completed: false,
+      ejercicios: [{
+        id: crypto.randomUUID(),
+        nombre: 'Nuevo ejercicio',
+        tipo: 'fuerza',
+        series: 2,
+        reps: '8-12',
+        usaPeso: false,
+        seriesData: [{ reps: 8, peso: 0, done: false }, { reps: 8, peso: 0, done: false }],
+      }],
+    };
+    workoutState.circuitos.push(newCircuit);
+    activeCircuitIdx = workoutState.circuitos.length - 1;
+    persistWorkout();
+    renderWorkout(container);
+    showToast('Circuito agregado');
+  });
+
+  // Remove circuit (edit mode)
+  container.querySelectorAll('.circuit-tab-remove').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const ci = parseInt(btn.dataset.removeCi);
+      if (workoutState.circuitos.length <= 1) return;
+      workoutState.circuitos.splice(ci, 1);
+      if (activeCircuitIdx >= workoutState.circuitos.length) activeCircuitIdx = workoutState.circuitos.length - 1;
+      persistWorkout();
+      renderWorkout(container);
+      showToast('Circuito eliminado');
+    });
+  });
+
   container.querySelectorAll('.incremento-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       incremento = parseFloat(btn.dataset.inc);
@@ -503,6 +564,18 @@ function refreshExercises(container) {
   updateProgressBar(container);
 }
 
+function getOverallProgress() {
+  if (!workoutState) return 0;
+  let done = 0, total = 0;
+  workoutState.circuitos.forEach(c => {
+    c.ejercicios.forEach(e => {
+      total += e.seriesData.length;
+      done += e.seriesData.filter(s => s.done).length;
+    });
+  });
+  return total === 0 ? 0 : Math.round((done / total) * 100);
+}
+
 function checkCircuitCompletion(ci, container) {
   const circ = workoutState.circuitos[ci];
   circ.completed = circ.ejercicios.every(ex => ex.seriesData.every(s => s.done));
@@ -518,16 +591,16 @@ function checkCircuitCompletion(ci, container) {
 function updateCircuitTabs(container) {
   workoutState.circuitos.forEach((c, i) => {
     const tab = container.querySelector(`.circuit-tab[data-idx="${i}"]`);
-    if (tab) tab.classList.toggle('done', c.completed);
+    if (tab) {
+      tab.classList.toggle('done', c.completed);
+      tab.innerHTML = c.completed ? SVG_CHECK : `${i + 1}`;
+    }
   });
 }
 
 function updateProgressBar(container) {
   const fill = container.querySelector('.circuit-progress-fill');
-  if (fill) {
-    const pct = Math.round((workoutState.circuitos.filter(c => c.completed).length / workoutState.circuitos.length) * 100);
-    fill.style.width = `${pct}%`;
-  }
+  if (fill) fill.style.width = `${getOverallProgress()}%`;
 }
 
 // ── Exercise picker modal (for edit mode replace) ───────────────────────────

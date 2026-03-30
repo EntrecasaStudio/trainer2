@@ -80,6 +80,22 @@ function renderRoutineCard() {
 
   const badge = getLugarBadge(rutina.lugar);
 
+  // Calculate completion for this date
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  const dateStr = formatDateISO(selectedDate);
+  const sesionHoy = sesiones.find(s => s.fecha === dateStr && s.usuario === activeUsuario && s.rutinaId === rutina.id);
+  let progressPct = 0;
+  if (sesionHoy) {
+    let done = 0, total = 0;
+    (sesionHoy.circuitos || []).forEach(c => {
+      (c.ejercicios || []).forEach(e => {
+        total += (e.seriesData || []).length;
+        done += (e.seriesData || []).filter(s => s.done).length;
+      });
+    });
+    progressPct = total > 0 ? Math.round((done / total) * 100) : 100;
+  }
+
   container.innerHTML = `
     <div class="routine-card">
       <div class="routine-card-header">
@@ -87,7 +103,9 @@ function renderRoutineCard() {
         <span class="badge ${badge.cls}">${badge.text}</span>
       </div>
       <div class="routine-name">${rutina.nombre}</div>
-      <div class="routine-divider"></div>
+      <div class="routine-progress-bar">
+        <div class="routine-progress-fill" style="width:${progressPct}%"></div>
+      </div>
       ${rutina.circuitos.map(c => renderCircuit(c)).join('')}
       <div class="routine-card-actions">
         <button class="btn btn-secondary" id="btn-edit-routine">✏️ Editar</button>

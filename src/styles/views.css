@@ -49,6 +49,20 @@
   margin: var(--space-md) 0;
 }
 
+.routine-progress-bar {
+  height: 3px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  margin: var(--space-md) 0;
+}
+.routine-progress-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: var(--radius-full);
+  transition: width 500ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Circuit list */
 .circuit-item {
   margin-bottom: var(--space-md);
