@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualizando Trainer...</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #1A1A1A; color: #F5F0E8;
+      font-family: system-ui, -apple-system, sans-serif;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; text-align: center; padding: 24px;
+    }
+    .wrap { max-width: 320px; }
+    h1 { font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; }
+    p { font-size: 0.85rem; color: rgba(245,240,232,0.6); line-height: 1.5; }
+    .spinner {
+      width: 32px; height: 32px; margin: 0 auto 20px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-top-color: #ffcd00;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .done { color: #22c55e; display: none; }
+    .error { color: #ef4444; display: none; margin-top: 12px; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="spinner" id="spinner"></div>
+    <h1 id="title">Actualizando...</h1>
+    <p id="msg">Limpiando caché y reinstalando la app</p>
+    <p class="done" id="done">✓ Listo — redirigiendo...</p>
+    <p class="error" id="error"></p>
+  </div>
+  <script>
+    (async () => {
+      try {
+        // 1. Unregister all service workers
+        const regs = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(regs.map(r => r.unregister()));
+
+        // 2. Delete all caches
+        const keys = await caches.keys();
+        await Promise.all(keys.map(k => caches.delete(k)));
+
+        // 3. Show success
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('title').textContent = '¡Actualizado!';
+        document.getElementById('msg').style.display = 'none';
+        document.getElementById('done').style.display = 'block';
+
+        // 4. Redirect back to app after a beat
+        setTimeout(() => {
+          window.location.replace('./');
+        }, 1200);
+      } catch (e) {
+        document.getElementById('spinner').style.display = 'none';
+        document.getElementById('title').textContent = 'Error';
+        document.getElementById('msg').style.display = 'none';
+        const err = document.getElementById('error');
+        err.style.display = 'block';
+        err.textContent = e.message + ' — cerrá todas las pestañas de Trainer y volvé a intentar.';
+      }
+    })();
+  </script>
+</body>
+</html>
