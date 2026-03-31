@@ -41,6 +41,31 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     descripcion: 'Con kettlebells en cada mano y posición sumo (pies separados, puntas afuera), hacé sentadillas profundas manteniendo las campanas entre las piernas. Ideal para activar glúteos medios y aductores junto con cuádriceps.'
   },
+  {
+    nombre: 'Prensa de piernas',
+    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentado en la máquina de prensa con los pies al ancho de hombros en la plataforma. Bajá la plataforma flexionando las rodillas hasta 90° y empujá hacia arriba sin bloquear los codos de las piernas. Trabaja cuádriceps, glúteos y femorales con menor carga en la espalda baja.'
+  },
+  {
+    nombre: 'Extensión de cuádriceps',
+    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentado en la máquina con el rodillo apoyado en los tobillos y las rodillas alineadas con el eje de rotación. Extendé las piernas hasta arriba y bajá controlado. Aislamiento puro de cuádriceps. Evitá hiperextender la rodilla al final del movimiento.'
+  },
+  {
+    nombre: 'Curl femoral',
+    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Acostado boca abajo en la máquina con el rodillo detrás de los tobillos. Flexioná las rodillas llevando los talones hacia los glúteos y bajá controlado. Aislamiento de isquiotibiales. Mantené las caderas pegadas al banco durante todo el recorrido.'
+  },
+  {
+    nombre: 'Sentadilla búlgara',
+    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
+    descripcion: 'De pie con un pie apoyado en un banco detrás. Con mancuernas en las manos, bajá la rodilla trasera hacia el piso manteniendo el torso recto. La rodilla delantera no pasa la punta del pie. Trabaja cuádriceps, glúteos y estabilidad de cadera unilateral.'
+  },
+  {
+    nombre: 'Gemelos en máquina',
+    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
+    descripcion: 'De pie en la máquina de gemelos con los hombros bajo las almohadillas y las puntas de los pies en el borde. Subí elevando los talones lo más alto posible y bajá lentamente estirando bien. Trabaja gastrocnemio y sóleo. Mantené las rodillas levemente flexionadas.'
+  },
   // ── CORE ────────────────────────────────────────────────────────────────────
   {
     nombre: 'Plancha',
@@ -72,11 +97,36 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     descripcion: 'Secuencia encadenada de movimientos sin pausa: generalmente incluye plancha, mountain climbers y burpee. La combinación varía según la programación. Trabaja coordinación, resistencia y estabilidad de todo el tronco.'
   },
+  {
+    nombre: 'Plancha lateral',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Apoyado sobre un antebrazo y el pie lateral, mantenés el cuerpo recto como tabla con la cadera elevada. Activá oblicuos y glúteo medio para no dejar caer la cadera. Aguantá el tiempo indicado por lado. Ideal para estabilidad lateral del tronco.'
+  },
+  {
+    nombre: 'Crunch en polea',
+    grupo: 'Core', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Arrodillado frente a la polea alta con la cuerda detrás de la cabeza, flexioná el torso hacia abajo contrayendo los abdominales. Volvé controlado sin soltar la tensión. El peso extra permite progresión de fuerza en los abdominales.'
+  },
   // ── PECHO ───────────────────────────────────────────────────────────────────
   {
     nombre: 'Press de pecho',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     descripcion: 'Sentado en la máquina de press de pecho, agarra las manijas al ancho de hombros o más. Empujá hacia adelante extendiendo los codos completamente y volvé lento. Pies apoyados, espalda pegada al respaldo. Trabaja pectoral mayor y anterior del deltoides.'
+  },
+  {
+    nombre: 'Press Hammer',
+    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentado en la máquina Hammer Strength con agarre neutro o prono, empujá las palancas hacia adelante extendiendo los codos. Cada brazo trabaja de forma independiente, lo que permite corregir asimetrías. Movimiento guiado que permite cargar más peso con seguridad. Trabaja pectoral mayor, deltoides anterior y tríceps.'
+  },
+  {
+    nombre: 'Press de banca con barra',
+    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Acostado en banco plano, desenganchá la barra con agarre al ancho de hombros o más. Bajá la barra controlada hasta el pecho medio y empujá hacia arriba. Requiere estabilización de hombros y core. Trabaja pectoral mayor, deltoides anterior y tríceps con máxima demanda de estabilidad.'
+  },
+  {
+    nombre: 'Press inclinado en máquina',
+    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentado en la máquina de press inclinado, empujá las palancas hacia arriba y adelante siguiendo la trayectoria guiada. El ángulo inclinado focaliza la porción clavicular del pectoral. Movimiento guiado que permite concentrarse en la contracción sin preocuparse por la estabilización.'
   },
   {
     nombre: 'Fondos de pecho suspendido en maquina',
@@ -107,6 +157,16 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Flexiones diamante',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     descripcion: 'Flexión estándar pero con las manos juntas formando un triángulo (diamante) debajo del pecho. Esta posición cierra los codos junto al cuerpo, transfiriendo el trabajo del pecho a los tríceps. Ideal para activar la cabeza larga del tríceps.'
+  },
+  {
+    nombre: 'Aperturas con mancuernas',
+    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Acostado en banco plano con una mancuerna en cada mano, brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados hasta sentir estiramiento en el pecho. Volvé cerrando el arco. Trabaja la porción esternal del pectoral en rango completo.'
+  },
+  {
+    nombre: 'Pullover con mancuerna',
+    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Acostado en banco, sostén una mancuerna con ambas manos sobre el pecho. Bajá la mancuerna por detrás de la cabeza con los brazos casi extendidos hasta sentir el estiramiento. Volvé contrayendo pecho y dorsal. Trabaja pectoral, serrato y dorsal ancho.'
   },
   // ── ESPALDA ─────────────────────────────────────────────────────────────────
   {
@@ -139,6 +199,16 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     descripcion: 'Sentado en la máquina de jalón, agarrá la barra con agarre prono más ancho que los hombros. Tirá la barra hacia el pecho superior inclinando ligeramente el torso hacia atrás. Sentí que los codos van hacia abajo y atrás. Trabaja el dorsal ancho en su porción superior.'
   },
+  {
+    nombre: 'Remo con mancuerna',
+    grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Con una rodilla y mano apoyadas en el banco, el otro brazo sostiene la mancuerna. Tirá la mancuerna hacia la cadera llevando el codo atrás y arriba. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps de forma unilateral, permitiendo corregir asimetrías.'
+  },
+  {
+    nombre: 'Pulldown agarre cerrado',
+    grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentado en la máquina de jalón con agarre en V cerrado (palmas enfrentadas). Tirá hacia el pecho manteniendo los codos pegados al cuerpo. Trabaja la porción inferior del dorsal ancho con mayor participación del bíceps y braquial.'
+  },
   // ── HOMBROS ─────────────────────────────────────────────────────────────────
   {
     nombre: 'Press militar con mancuernas',
@@ -169,6 +239,16 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Elevaciones de hombro hacia arriba',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     descripcion: 'Con mancuernas o barra, elevá los hombros hacia las orejas (encogimiento) sin doblar los codos. Mantené un segundo arriba y bajá lento. Trabaja trapecios superiores. Útil para equilibrar la musculatura del cuello y parte alta de la espalda.'
+  },
+  {
+    nombre: 'Arnold press',
+    grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentado con mancuernas al nivel del mentón y palmas hacia vos. Al empujar hacia arriba, rotá las muñecas hasta que las palmas miren hacia afuera al final. Bajá invirtiendo la rotación. Trabaja las tres cabezas del deltoides en un solo movimiento.'
+  },
+  {
+    nombre: 'Encogimientos con mancuernas',
+    grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
+    descripcion: 'De pie con mancuernas pesadas a los lados, elevá los hombros hacia las orejas sin doblar los codos. Mantené arriba 1-2 segundos y bajá controlado. Trabaja trapecios superiores. Podés inclinar levemente el torso para mayor activación del trapecio medio.'
   },
   // ── BRAZOS ──────────────────────────────────────────────────────────────────
   {
@@ -216,6 +296,16 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     descripcion: 'Parado sobre la banda con agarre supino en cada extremo, flexioná los codos subiendo los puños hacia los hombros. La resistencia aumenta al final del movimiento. Permite trabajar sin mancuernas y en cualquier entorno. Alto volumen con bajo impacto articular.'
   },
+  {
+    nombre: 'Curl concentrado',
+    grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentado con el codo apoyado en la cara interna del muslo, una mancuerna en la mano. Flexioná el brazo subiendo la mancuerna hacia el hombro y bajá controlado. El apoyo en el muslo elimina impulso y aísla completamente el bíceps. Ideal para contracción pico.'
+  },
+  {
+    nombre: 'Fondos en banco',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con las manos apoyadas en un banco detrás y los pies en el suelo, bajá el cuerpo flexionando los codos hasta 90° y subí empujando. Codos apuntan hacia atrás, no hacia afuera. Trabaja tríceps, deltoides anterior y pectorales. Se puede agregar peso en las piernas.'
+  },
   // ── GLÚTEOS ─────────────────────────────────────────────────────────────────
   {
     nombre: 'Empuje de cadera en cajon',
@@ -231,6 +321,16 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Aductores en maquina',
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     descripcion: 'Sentada en la máquina de aductores con los pads en la cara interna de los muslos, cerrá las piernas contra la resistencia. Bajá lento resistiendo la apertura. Trabaja aductores (grácil, pectíneo, aductor largo/corto). Complementa el trabajo de glúteos y caderas.'
+  },
+  {
+    nombre: 'Abductores en maquina',
+    grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Sentada en la máquina con los pads en la cara externa de los muslos, abrí las piernas contra la resistencia. Volvé controlado. Trabaja glúteo medio y menor, claves para la estabilidad de cadera y la forma del glúteo lateral.'
+  },
+  {
+    nombre: 'Peso muerto sumo',
+    grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Con pies muy separados y puntas afuera, agarrá la barra entre las piernas con brazos rectos. Levantá extendiendo las caderas, mantené la espalda recta. Activa glúteos y aductores más que el peso muerto convencional. Excelente para fortalecer la cadena posterior.'
   },
   // ── HIIT / FUNCIONAL ────────────────────────────────────────────────────────
   {

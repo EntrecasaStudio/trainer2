@@ -35,7 +35,7 @@ export function mountHistorial(container) {
     if (sesiones.length === 0) {
       listEl.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state-icon">📊</div>
+          <div class="empty-state-icon"><i class="ph-light ph-chart-bar" style="font-size:48px;"></i></div>
           <div class="empty-state-text">Sin sesiones registradas</div>
         </div>
       `;
@@ -52,8 +52,8 @@ export function mountHistorial(container) {
           <div class="historial-date">${formatDateLong(new Date(s.fecha))}</div>
           <div class="historial-name">${s.rutinaNombre || 'Sesión'}</div>
           <div class="historial-stats">
-            <span>⏱ ${formatDuration(s.duracion || 0)}</span>
-            <span>💪 ${totalSeries} series</span>
+            <span><i class="ph-light ph-timer" style="font-size:14px;"></i> ${formatDuration(s.duracion || 0)}</span>
+            <span><i class="ph-light ph-barbell" style="font-size:14px;"></i> ${totalSeries} series</span>
           </div>
         </div>
       `;

@@ -18,7 +18,7 @@ const GRUPO_ICONS = {
 
 let searchQuery = '';
 let tipoFilter = 'todos';
-let expandedGroups = new Set(['Piernas', 'Core', 'Pecho']);
+let expandedGroups = new Set();
 let editingEjercicio = null;
 
 // Local overrides stored in localStorage
@@ -50,11 +50,20 @@ export function openEjercicioInfo(nombre) {
 
 function render(container) {
   container.innerHTML = `
-    <div class="ejercicios-header">
-      <div>
-        <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Ejercicios</h1>
-        <p style="font-size:var(--text-sm);color:var(--color-text-muted);">${EJERCICIOS_CATALOGO.length} ejercicios</p>
+    <div class="rutinas-header">
+      <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Ejercicios</h1>
+      <div class="rutinas-header-actions">
+        <button class="btn-icon-header" data-action="toggle-search" title="Buscar">
+          <i class="ph ph-magnifying-glass"></i>
+        </button>
+        <button class="btn-icon-header" data-action="new-ejercicio" title="Nuevo ejercicio">
+          <i class="ph ph-plus"></i>
+        </button>
       </div>
+    </div>
+    <div class="rutinas-search" id="ej-search-wrap">
+      <input type="text" class="rutinas-search-input" id="ej-search-input"
+             placeholder="Buscar ejercicio..." value="${searchQuery}" autocomplete="off">
     </div>
 
     <div class="ejercicios-tipo-tabs">
@@ -63,13 +72,33 @@ function render(container) {
       <button class="tipo-tab ${tipoFilter==='maquina'?'active':''}" data-tipo="maquina">Máquinas</button>
     </div>
 
-    <div class="ejercicios-search">
-      <i class="ph ph-magnifying-glass" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--color-text-muted);font-size:18px;"></i>
-      <input type="text" class="search-input" placeholder="Buscar ejercicio..." value="${searchQuery}" style="padding-left:36px;">
-    </div>
-
     <div id="ejercicios-list"></div>
   `;
+
+  // Search toggle
+  container.querySelector('[data-action="toggle-search"]').addEventListener('click', () => {
+    const wrap = document.getElementById('ej-search-wrap');
+    const isOpen = wrap.classList.toggle('open');
+    if (isOpen) {
+      const input = document.getElementById('ej-search-input');
+      if (input) setTimeout(() => input.focus(), 100);
+    } else {
+      searchQuery = '';
+      document.getElementById('ej-search-input').value = '';
+      renderList(container);
+    }
+  });
+
+  // Search input
+  document.getElementById('ej-search-input').addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    renderList(container);
+  });
+
+  // New ejercicio
+  container.querySelector('[data-action="new-ejercicio"]').addEventListener('click', () => {
+    openNewEjercicioModal(container);
+  });
 
   // Tipo filter tabs
   container.querySelectorAll('.tipo-tab').forEach(tab => {
@@ -81,12 +110,10 @@ function render(container) {
     });
   });
 
-  // Search
-  const searchInput = container.querySelector('.search-input');
-  searchInput.addEventListener('input', (e) => {
-    searchQuery = e.target.value;
-    renderList(container);
-  });
+  // If search had text, open it
+  if (searchQuery) {
+    document.getElementById('ej-search-wrap')?.classList.add('open');
+  }
 
   renderList(container);
 }
@@ -99,7 +126,7 @@ function renderList(container) {
   const custom = getCustomEjercicios();
 
   if (results.length === 0) {
-    listEl.innerHTML = `<div class="empty-state"><div class="empty-state-icon">🔍</div><div class="empty-state-text">Sin resultados</div></div>`;
+    listEl.innerHTML = `<div class="empty-state"><div class="empty-state-icon"><i class="ph-light ph-magnifying-glass" style="font-size:48px;"></i></div><div class="empty-state-text">Sin resultados</div></div>`;
     return;
   }
 
@@ -271,5 +298,104 @@ function openEditModal(data) {
     if (container) {
       import('./ejercicios.js').then(m => m.mountEjercicios(container));
     }
+  });
+}
+
+function openNewEjercicioModal(viewContainer) {
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.remove('hidden');
+
+  overlay.innerHTML = `
+    <div class="modal-sheet">
+      <div class="modal-header">
+        <h2 class="modal-title">Nuevo ejercicio</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:var(--space-md);">
+        <div class="edit-field">
+          <label class="edit-label">Nombre</label>
+          <input type="text" class="edit-input" id="new-ej-nombre" placeholder="Nombre del ejercicio" autocomplete="off">
+        </div>
+        <div class="edit-field">
+          <label class="edit-label">Grupo muscular</label>
+          <div style="display:flex;gap:var(--space-xs);flex-wrap:wrap;" id="new-ej-grupos">
+            ${GRUPOS_MUSCULARES.map(g => `
+              <button class="lugar-chip" data-grupo="${g}">${g}</button>
+            `).join('')}
+          </div>
+        </div>
+        <div class="edit-field">
+          <label class="edit-label">Tipo</label>
+          <div style="display:flex;gap:var(--space-sm);">
+            <button class="tipo-pill active" data-tipo="funcional">Funcional</button>
+            <button class="tipo-pill" data-tipo="maquina">Máquina</button>
+          </div>
+        </div>
+        <div class="edit-field">
+          <label class="edit-label">Descripción (opcional)</label>
+          <textarea id="new-ej-desc" rows="3" style="background:var(--color-surface-alt);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-sm);color:var(--color-text);font-family:var(--font-main);font-size:var(--text-sm);resize:vertical;"></textarea>
+        </div>
+        <button class="btn btn-primary btn-lg" id="btn-create-ejercicio" style="width:100%;">Crear ejercicio</button>
+      </div>
+    </div>
+  `;
+
+  let selectedGrupo = null;
+  let selectedTipo = 'funcional';
+
+  // Grupo selection
+  overlay.querySelectorAll('[data-grupo]').forEach(chip => {
+    chip.addEventListener('click', () => {
+      selectedGrupo = chip.dataset.grupo;
+      overlay.querySelectorAll('[data-grupo]').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  // Tipo selection
+  overlay.querySelectorAll('.tipo-pill[data-tipo]').forEach(pill => {
+    pill.addEventListener('click', () => {
+      selectedTipo = pill.dataset.tipo;
+      overlay.querySelectorAll('.tipo-pill[data-tipo]').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  // Close
+  overlay.querySelector('.modal-close').addEventListener('click', () => {
+    overlay.classList.add('hidden');
+    overlay.innerHTML = '';
+  });
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) { overlay.classList.add('hidden'); overlay.innerHTML = ''; }
+  });
+
+  // Create
+  overlay.querySelector('#btn-create-ejercicio').addEventListener('click', () => {
+    const nombre = overlay.querySelector('#new-ej-nombre').value.trim();
+    if (!nombre) return;
+    if (!selectedGrupo) { selectedGrupo = 'Core'; }
+    const desc = overlay.querySelector('#new-ej-desc').value.trim();
+
+    saveCustomEjercicio(nombre, {
+      nombre,
+      grupo: selectedGrupo,
+      tipo: selectedTipo,
+      usaPeso: true,
+      descripcion: desc,
+    });
+
+    // Also add to catalog runtime so it appears immediately
+    EJERCICIOS_CATALOGO.push({
+      nombre,
+      grupo: selectedGrupo,
+      tipo: selectedTipo,
+      usaPeso: true,
+      descripcion: desc,
+    });
+
+    overlay.classList.add('hidden');
+    overlay.innerHTML = '';
+    renderList(viewContainer);
   });
 }

@@ -6,6 +6,7 @@ import { mountWorkout } from './js/views/workout.js';
 import { mountEjercicios } from './js/views/ejercicios.js';
 import { mountHistorial } from './js/views/historial.js';
 import { mountProgreso } from './js/views/progreso.js';
+import { mountRutinaEdit } from './js/views/rutina-edit.js';
 import { seedV2 } from './seed.js';
 
 async function init() {
@@ -20,6 +21,7 @@ async function init() {
   router.register('', mountHome);
   router.register('rutinas', mountRutinas);
   router.register('workout', mountWorkout);
+  router.register('rutina-edit', mountRutinaEdit);
   router.register('ejercicios', mountEjercicios);
   router.register('historial', mountHistorial);
   router.register('progreso', mountProgreso);
@@ -33,7 +35,7 @@ async function init() {
   router.init(viewContainer, (route) => {
     updateNavActive(route);
     // Hide nav during workout
-    navEl.classList.toggle('hidden', route === 'workout');
+    navEl.classList.toggle('hidden', route === 'workout' || route === 'rutina-edit');
   });
 
   // Animate splash progress and hide

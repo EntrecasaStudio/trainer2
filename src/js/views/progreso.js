@@ -42,7 +42,7 @@ export function mountProgreso(container) {
     if (entries.length === 0) {
       listEl.innerHTML = `
         <div class="empty-state">
-          <div class="empty-state-icon">📈</div>
+          <div class="empty-state-icon"><i class="ph-light ph-trend-up" style="font-size:48px;"></i></div>
           <div class="empty-state-text">Sin datos de progresión aún.<br>Completá un entrenamiento para ver tus pesos.</div>
         </div>
       `;

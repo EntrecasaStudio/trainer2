@@ -1,4 +1,4 @@
-const CACHE = 'trainer2-v2-015';
+const CACHE = 'trainer2-v2-037';
 const PRECACHE = [
   './',
   './index.html',
@@ -16,6 +16,7 @@ const PRECACHE = [
   './src/js/views/rutinas.js',
   './src/js/views/workout.js',
   './src/js/views/ejercicios.js',
+  './src/js/views/rutina-edit.js',
   './src/js/views/historial.js',
   './src/js/views/progreso.js',
   './src/js/components/toast.js',

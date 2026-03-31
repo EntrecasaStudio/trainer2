@@ -68,13 +68,19 @@ function renderRoutineCard() {
     const nextRutina = getRoutineForDate(nextDay, activeUsuario);
     container.innerHTML = `
       <div class="rest-day-card">
-        <div class="rest-day-emoji">🔒</div>
-        <div class="rest-day-text">Hoy descansas</div>
+        <div class="rest-day-emoji"><i class="ph-light ph-moon" style="font-size:var(--text-3xl);color:var(--color-text-muted);"></i></div>
+        <div class="rest-day-text">Día libre</div>
         <div class="rest-day-next">
           Próximo: ${nextRutina ? nextRutina.nombre : 'Sin asignar'} · ${formatDateLong(nextDay)}
         </div>
+        <button class="btn btn-secondary" id="btn-assign-day" style="margin-top:var(--space-md);">
+          <i class="ph ph-plus" style="font-size:16px;margin-right:var(--space-xs);"></i> Asignar rutina
+        </button>
       </div>
     `;
+    document.getElementById('btn-assign-day')?.addEventListener('click', () => {
+      openAssignSheet();
+    });
     return;
   }
 
@@ -96,30 +102,75 @@ function renderRoutineCard() {
     progressPct = total > 0 ? Math.round((done / total) * 100) : 100;
   }
 
+  const isExpanded = container._homeExpanded || false;
+
   container.innerHTML = `
     <div class="routine-card">
-      <div class="routine-card-header">
-        <span class="routine-code">${rutina.numero}</span>
-        <span class="badge ${badge.cls}">${badge.text}</span>
+      <div class="routine-card-top" id="routine-card-top">
+        <div style="flex:1;min-width:0;">
+          <div class="routine-card-header">
+            <span class="badge ${badge.cls}">${badge.text} ${rutina.numero}</span>
+          </div>
+          <div class="routine-name">${rutina.nombre}</div>
+        </div>
+        <i class="ph ph-caret-down rutina-caret ${isExpanded ? 'rotated' : ''}"></i>
       </div>
-      <div class="routine-name">${rutina.nombre}</div>
-      <div class="routine-progress-bar">
-        <div class="routine-progress-fill" style="width:${progressPct}%"></div>
-      </div>
-      ${rutina.circuitos.map(c => renderCircuit(c)).join('')}
-      <div class="routine-card-actions">
-        <button class="btn btn-secondary" id="btn-edit-routine">✏️ Editar</button>
-        <button class="btn btn-primary btn-lg" id="btn-start-workout">▶ Iniciar</button>
+      <div class="rutina-expand-wrap ${isExpanded ? 'open' : ''}">
+        <div class="rutina-expand-inner">
+          ${rutina.circuitos.map(c => renderCircuit(c)).join('')}
+          <div class="rutina-actions">
+            <button class="btn-action-icon btn-action-delete" id="btn-delete-routine" title="Eliminar">
+              <i class="ph ph-trash" style="font-size:18px;"></i>
+            </button>
+            <button class="btn-action-icon btn-action-edit" id="btn-edit-routine" title="Editar">
+              <i class="ph ph-pencil-simple" style="font-size:18px;"></i>
+            </button>
+            <button class="btn-action-icon btn-action-calendar" id="btn-swap-routine" title="Cambiar rutina">
+              <i class="ph ph-swap" style="font-size:18px;"></i>
+            </button>
+            <button class="btn-action-icon btn-action-icon--primary" id="btn-start-workout" title="Iniciar">
+              <i class="ph ph-play" style="font-size:20px;"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   `;
 
-  document.getElementById('btn-start-workout')?.addEventListener('click', () => {
+  // Expand/collapse
+  document.getElementById('routine-card-top')?.addEventListener('click', () => {
+    container._homeExpanded = !container._homeExpanded;
+    const wrap = container.querySelector('.rutina-expand-wrap');
+    const caret = container.querySelector('.rutina-caret');
+    wrap.classList.toggle('open');
+    caret.classList.toggle('rotated');
+  });
+
+  document.getElementById('btn-start-workout')?.addEventListener('click', (e) => {
+    e.stopPropagation();
     router.navigate(`workout/${rutina.id}/${formatDateISO(selectedDate)}`);
   });
 
-  document.getElementById('btn-edit-routine')?.addEventListener('click', () => {
+  document.getElementById('btn-edit-routine')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    router.navigate(`rutina-edit/${rutina.id}`);
+  });
+
+  document.getElementById('btn-swap-routine')?.addEventListener('click', (e) => {
+    e.stopPropagation();
     openEditSheet(rutina);
+  });
+
+  document.getElementById('btn-delete-routine')?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Remove override for this date
+    const dateStr = formatDateISO(selectedDate);
+    const overrides = store.getObj(store.KEYS.overrides);
+    if (overrides[activeUsuario]?.[dateStr]) {
+      delete overrides[activeUsuario][dateStr];
+      store.set(store.KEYS.overrides, overrides);
+    }
+    renderRoutineCard();
   });
 
   // Info buttons on exercise rows
@@ -157,37 +208,250 @@ function renderCircuit(c) {
   `;
 }
 
-function openEditSheet(currentRutina) {
-  const rutinas = store.getAll(store.KEYS.rutinas);
-  const candidates = rutinas.filter(r =>
-    r.usuario === activeUsuario &&
-    r.lugar === currentRutina.lugar &&
-    r.foco === currentRutina.foco
-  );
+function openAssignSheet() {
+  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'URUGUAY'];
+  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', URUGUAY: '🇺🇾' };
+  const LUGAR_LABELS = { SPORT_FITNESS: 'Sport Fitness', RIO: 'Río', URUGUAY: '🇺🇾 Uruguay' };
 
-  const listHTML = candidates.map(r => `
-    <div class="rutina-list-item" data-id="${r.id}" style="${r.id === currentRutina.id ? 'border-left: 3px solid var(--color-accent);' : ''}">
-      <div class="rutina-list-header">
-        <span class="rutina-list-code">${r.numero}</span>
+  let activeLugares = [...LUGAR_ORDER];
+  let query = '';
+
+  function buildList() {
+    const q = query.toLowerCase();
+    const rutinas = store.getAll(store.KEYS.rutinas)
+      .filter(r => r.usuario === activeUsuario && activeLugares.includes(r.lugar))
+      .filter(r => !q || r.nombre.toLowerCase().includes(q) || (r.numero || '').toLowerCase().includes(q));
+
+    const grouped = {};
+    rutinas.forEach(r => {
+      if (!grouped[r.lugar]) grouped[r.lugar] = [];
+      grouped[r.lugar].push(r);
+    });
+
+    return LUGAR_ORDER.filter(l => grouped[l]).map(lugar => `
+      <div style="margin-bottom:var(--space-md);">
+        <div style="font-size:var(--text-xs);font-weight:var(--fw-semibold);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.5px;padding:var(--space-xs) 0;">${LUGAR_LABELS[lugar]}</div>
+        ${grouped[lugar].map(r => `
+          <div class="rutina-list-item assign-pick" data-id="${r.id}" style="cursor:pointer;">
+            <div class="rutina-list-header">
+              <span class="rutina-list-code">${r.numero}</span>
+            </div>
+            <div class="rutina-list-name">${r.nombre}</div>
+          </div>
+        `).join('')}
       </div>
-      <div class="rutina-list-name">${r.nombre}</div>
-    </div>
+    `).join('') || '<div style="color:var(--color-text-muted);text-align:center;padding:var(--space-lg);">Sin resultados</div>';
+  }
+
+  const filterHTML = LUGAR_ORDER.map(l => `
+    <button class="lugar-chip active" data-lugar="${l}">${LUGAR_CHIPS[l]}</button>
   `).join('');
 
-  openModal('Cambiar rutina', listHTML, {
+  const contentHTML = `
+    <div style="display:flex;gap:var(--space-sm);margin-bottom:var(--space-sm);flex-wrap:wrap;" id="assign-filters">${filterHTML}</div>
+    <input type="text" class="search-input" id="assign-search" placeholder="Buscar rutina..." style="width:100%;margin-bottom:var(--space-md);box-sizing:border-box;">
+    <div id="assign-list" style="max-height:50vh;overflow-y:auto;">${buildList()}</div>
+  `;
+
+  openModal('Asignar rutina', contentHTML, {
     onMount(body) {
-      body.querySelectorAll('.rutina-list-item').forEach(item => {
-        item.addEventListener('click', () => {
-          const newId = item.dataset.id;
-          const dateStr = formatDateISO(selectedDate);
-          const overrides = store.getObj(store.KEYS.overrides);
-          if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
-          overrides[activeUsuario][dateStr] = { rutinaId: newId, tipo: currentRutina.foco };
-          store.set(store.KEYS.overrides, overrides);
-          closeModal();
-          renderRoutineCard();
+      function bindListClicks() {
+        body.querySelectorAll('.assign-pick').forEach(item => {
+          item.addEventListener('click', () => {
+            const newId = item.dataset.id;
+            const dateStr = formatDateISO(selectedDate);
+            const overrides = store.getObj(store.KEYS.overrides);
+            if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
+            overrides[activeUsuario][dateStr] = { rutinaId: newId };
+            store.set(store.KEYS.overrides, overrides);
+            closeModal();
+            renderRoutineCard();
+            renderCalendar();
+          });
+        });
+      }
+
+      function refreshList() {
+        const listEl = body.querySelector('#assign-list');
+        listEl.innerHTML = buildList();
+        bindListClicks();
+      }
+
+      // Lugar filter chips
+      body.querySelectorAll('.lugar-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const lugar = chip.dataset.lugar;
+          if (activeLugares.includes(lugar)) {
+            activeLugares = activeLugares.filter(l => l !== lugar);
+            if (activeLugares.length === 0) activeLugares = [lugar];
+            chip.classList.toggle('active', activeLugares.includes(lugar));
+          } else {
+            activeLugares.push(lugar);
+            chip.classList.add('active');
+          }
+          body.querySelectorAll('.lugar-chip').forEach(c => {
+            c.classList.toggle('active', activeLugares.includes(c.dataset.lugar));
+          });
+          refreshList();
         });
       });
+
+      // Search
+      body.querySelector('#assign-search').addEventListener('input', (e) => {
+        query = e.target.value;
+        refreshList();
+      });
+
+      bindListClicks();
+    }
+  });
+}
+
+function openEditSheet(currentRutina) {
+  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'URUGUAY'];
+  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', URUGUAY: '🇺🇾' };
+
+  let activeLugares = [currentRutina.lugar];
+  let query = '';
+  let expandedId = null;
+
+  function buildList() {
+    const q = query.toLowerCase();
+    const rutinas = store.getAll(store.KEYS.rutinas)
+      .filter(r => r.usuario === activeUsuario && activeLugares.includes(r.lugar))
+      .filter(r => !q || r.nombre.toLowerCase().includes(q) || (r.numero || '').toLowerCase().includes(q));
+
+    if (rutinas.length === 0) {
+      return '<div style="color:var(--color-text-muted);text-align:center;padding:var(--space-lg);">Sin resultados</div>';
+    }
+
+    return rutinas.map(r => {
+      const isCurrent = r.id === currentRutina.id;
+      const isExpanded = expandedId === r.id;
+      const badge = getLugarBadge(r.lugar);
+      return `
+        <div class="swap-item ${isCurrent ? 'swap-item--current' : ''}" data-id="${r.id}">
+          <div class="swap-item-top" data-action="expand" data-id="${r.id}">
+            <div style="flex:1;min-width:0;">
+              <span class="badge ${badge.cls}" style="font-size:var(--text-xs);">${badge.text} ${r.numero}</span>
+              <div style="font-weight:var(--fw-bold);margin-top:2px;">${r.nombre}</div>
+              <div style="font-size:var(--text-sm);color:var(--color-text-muted);">${r.foco || ''} · ${r.circuitos.length} circuitos</div>
+            </div>
+            <i class="ph ph-caret-down" style="font-size:16px;color:var(--color-text-muted);transition:transform 0.2s;${isExpanded ? 'transform:rotate(180deg);' : ''}"></i>
+          </div>
+          ${isExpanded ? `
+            <div class="swap-item-detail">
+              ${r.circuitos.map(c => {
+                const color = getCircuitColor(c.nombre);
+                return `
+                  <div style="margin-bottom:var(--space-sm);">
+                    <div style="display:flex;align-items:center;gap:var(--space-xs);margin-bottom:2px;">
+                      <span style="font-size:var(--text-sm);color:var(--color-text-muted);">${c.numero}</span>
+                      <span style="font-size:var(--text-sm);font-weight:var(--fw-semibold);color:${color};">${c.nombre}</span>
+                    </div>
+                    ${c.ejercicios.map(e => `
+                      <div style="display:flex;justify-content:space-between;padding-left:20px;font-size:var(--text-sm);color:var(--color-text-muted);">
+                        <span>${e.nombre}</span>
+                        <span style="font-weight:var(--fw-semibold);">${formatSetsReps(e)}</span>
+                      </div>
+                    `).join('')}
+                  </div>
+                `;
+              }).join('')}
+              <button class="btn btn-primary btn-sm swap-select-btn" data-id="${r.id}" style="width:100%;margin-top:var(--space-sm);">
+                ${isCurrent ? 'Mantener esta' : 'Elegir esta'}
+              </button>
+            </div>
+          ` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
+  const filterHTML = LUGAR_ORDER.map(l => `
+    <button class="lugar-chip ${activeLugares.includes(l) ? 'active' : ''}" data-lugar="${l}">${LUGAR_CHIPS[l]}</button>
+  `).join('');
+
+  const contentHTML = `
+    <div style="display:flex;gap:var(--space-sm);margin-bottom:var(--space-sm);flex-wrap:wrap;" id="swap-filters">${filterHTML}</div>
+    <input type="text" class="search-input" id="swap-search" placeholder="Buscar rutina..." style="width:100%;margin-bottom:var(--space-md);box-sizing:border-box;">
+    <div id="swap-list" style="max-height:50vh;overflow-y:auto;">${buildList()}</div>
+    <button class="btn btn-secondary" id="btn-dejar-libre" style="width:100%;margin-top:var(--space-md);">
+      <i class="ph-light ph-moon" style="font-size:16px;margin-right:var(--space-xs);"></i> Dejar libre
+    </button>
+  `;
+
+  openModal('Cambiar rutina', contentHTML, {
+    onMount(body) {
+      function bindListEvents() {
+        // Expand/collapse
+        body.querySelectorAll('[data-action="expand"]').forEach(top => {
+          top.addEventListener('click', () => {
+            const id = top.dataset.id;
+            expandedId = expandedId === id ? null : id;
+            refreshList();
+          });
+        });
+        // Select buttons
+        body.querySelectorAll('.swap-select-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const newId = btn.dataset.id;
+            const dateStr = formatDateISO(selectedDate);
+            const overrides = store.getObj(store.KEYS.overrides);
+            if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
+            overrides[activeUsuario][dateStr] = { rutinaId: newId };
+            store.set(store.KEYS.overrides, overrides);
+            closeModal();
+            renderRoutineCard();
+            renderCalendar();
+          });
+        });
+      }
+
+      function refreshList() {
+        const listEl = body.querySelector('#swap-list');
+        listEl.innerHTML = buildList();
+        bindListEvents();
+      }
+
+      // Lugar filter chips
+      body.querySelectorAll('.lugar-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          const lugar = chip.dataset.lugar;
+          if (activeLugares.includes(lugar)) {
+            activeLugares = activeLugares.filter(l => l !== lugar);
+            if (activeLugares.length === 0) activeLugares = [lugar];
+          } else {
+            activeLugares.push(lugar);
+          }
+          body.querySelectorAll('.lugar-chip').forEach(c => {
+            c.classList.toggle('active', activeLugares.includes(c.dataset.lugar));
+          });
+          refreshList();
+        });
+      });
+
+      // Search
+      body.querySelector('#swap-search').addEventListener('input', (e) => {
+        query = e.target.value;
+        refreshList();
+      });
+
+      // Dejar libre
+      body.querySelector('#btn-dejar-libre').addEventListener('click', () => {
+        const dateStr = formatDateISO(selectedDate);
+        const overrides = store.getObj(store.KEYS.overrides);
+        if (overrides[activeUsuario]?.[dateStr]) {
+          delete overrides[activeUsuario][dateStr];
+          store.set(store.KEYS.overrides, overrides);
+        }
+        closeModal();
+        renderRoutineCard();
+        renderCalendar();
+      });
+
+      bindListEvents();
     }
   });
 }
