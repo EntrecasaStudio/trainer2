@@ -1,4 +1,4 @@
-const CACHE = 'trainer2-v2-043';
+const CACHE = 'trainer2-v2-044';
 const PRECACHE = [
   './',
   './index.html',
@@ -38,6 +38,23 @@ self.addEventListener('install', (e) => {
 });
 
 self.addEventListener('fetch', (e) => {
+  const url = new URL(e.request.url);
+
+  // Network-first for own JS/CSS/HTML — always get latest, fallback to cache offline
+  if (url.origin === self.location.origin && (url.pathname.endsWith('.js') || url.pathname.endsWith('.css') || url.pathname.endsWith('.html') || url.pathname === '/' || url.pathname.endsWith('/'))) {
+    e.respondWith(
+      fetch(e.request)
+        .then(resp => {
+          const clone = resp.clone();
+          caches.open(CACHE).then(c => c.put(e.request, clone));
+          return resp;
+        })
+        .catch(() => caches.match(e.request))
+    );
+    return;
+  }
+
+  // Cache-first for images, fonts, external CDN
   e.respondWith(
     caches.match(e.request).then(r => r || fetch(e.request))
   );

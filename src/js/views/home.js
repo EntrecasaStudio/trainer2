@@ -182,8 +182,15 @@ function renderRoutineCard() {
   });
 }
 
+function getCircName(c) {
+  if (c.nombre) return c.nombre;
+  if (Array.isArray(c.grupoMuscular)) return c.grupoMuscular.join(' · ');
+  if (typeof c.grupoMuscular === 'string') return c.grupoMuscular;
+  return 'Circuito';
+}
+
 function renderCircuit(c, i) {
-  const circName = c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : 'Circuito');
+  const circName = getCircName(c);
   const circNum = c.numero != null ? c.numero : (i + 1);
   const color = getCircuitColor(circName);
   return `

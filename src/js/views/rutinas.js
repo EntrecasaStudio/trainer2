@@ -252,7 +252,7 @@ function renderExpanded(rutina) {
   return `
     <div class="rutina-circuits-detail">
       ${rutina.circuitos.map((c, i) => {
-        const circName = c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : 'Circuito');
+        const circName = c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : (typeof c.grupoMuscular === 'string' ? c.grupoMuscular : 'Circuito'));
         const circNum = c.numero != null ? c.numero : (i + 1);
         const color = getCircuitColor(circName);
         return `

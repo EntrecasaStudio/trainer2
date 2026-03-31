@@ -104,7 +104,7 @@ export function mountWorkout(container, params) {
     startTime: new Date().toISOString(),
     circuitos: rutina.circuitos.map(c => ({
       id: c.id,
-      nombre: c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : 'Circuito'),
+      nombre: c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : (typeof c.grupoMuscular === 'string' ? c.grupoMuscular : 'Circuito')),
       completed: false,
       ejercicios: c.ejercicios.map(e => ({
         id: e.id,
