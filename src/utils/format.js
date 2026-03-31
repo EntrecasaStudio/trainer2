@@ -53,7 +53,12 @@ export function getCircuitColor(nombre) {
 
 export function formatSetsReps(ej) {
   if (ej.tipo === 'hiit' && ej.duracion) {
-    return `${ej.series}×${ej.duracion}s`;
+    return `${ej.series || 1}×${ej.duracion}s`;
   }
-  return `${ej.series}×${ej.reps}`;
+  const series = ej.series;
+  const reps = ej.reps || ej.repsObjetivo;
+  if (!series && !reps) return '';
+  if (!series) return `${reps} rep`;
+  if (!reps) return `${series}s`;
+  return `${series}×${reps}`;
 }
