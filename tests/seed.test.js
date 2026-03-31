@@ -17,7 +17,7 @@ vi.stubGlobal('crypto', cryptoMock);
 vi.stubGlobal('fetch', vi.fn(() => Promise.resolve({ ok: false })));
 
 // Now import
-const { createLeanRoutines, createNatRoutines, assignCalendar, verifySeedV2, seedV2 } = await import('../src/seed.js');
+const { createLeanRoutines, createNatRoutines, createRioRoutines, assignCalendar, verifySeedV2, seedV2 } = await import('../src/seed.js');
 const { store } = await import('../src/store.js');
 
 describe('Seed v2', () => {
@@ -31,10 +31,10 @@ describe('Seed v2', () => {
     const natRoutines = createNatRoutines();
     const allRoutines = [...leanRoutines, ...natRoutines];
 
-    it('seed genera 20 rutinas SPORT_FITNESS exactas', () => {
-      expect(allRoutines.length).toBe(20);
-      expect(leanRoutines.length).toBe(10);
-      expect(natRoutines.length).toBe(10);
+    it('seed genera 30 rutinas SPORT_FITNESS exactas', () => {
+      expect(allRoutines.length).toBe(30);
+      expect(leanRoutines.length).toBe(15);
+      expect(natRoutines.length).toBe(15);
     });
 
     it('todas SF tienen 6 circuitos', () => {
@@ -129,7 +129,8 @@ describe('Calendar assignment', () => {
     const startDate = '2026-03-30'; // Monday
     const leanRoutines = createLeanRoutines();
     const natRoutines = createNatRoutines();
-    const allRoutines = [...leanRoutines, ...natRoutines];
+    const rioRoutines = createRioRoutines();
+    const allRoutines = [...leanRoutines, ...natRoutines, ...rioRoutines];
 
     const overrides = assignCalendar(allRoutines, startDate);
 
@@ -141,7 +142,7 @@ describe('Calendar assignment', () => {
 
   it('miércoles semana 1 = pull', () => {
     const startDate = '2026-03-30';
-    const allRoutines = [...createLeanRoutines(), ...createNatRoutines()];
+    const allRoutines = [...createLeanRoutines(), ...createNatRoutines(), ...createRioRoutines()];
     const overrides = assignCalendar(allRoutines, startDate);
 
     // Wednesday = 2026-04-01
@@ -152,7 +153,7 @@ describe('Calendar assignment', () => {
 
   it('lunes semana 2 = pull', () => {
     const startDate = '2026-03-30';
-    const allRoutines = [...createLeanRoutines(), ...createNatRoutines()];
+    const allRoutines = [...createLeanRoutines(), ...createNatRoutines(), ...createRioRoutines()];
     const overrides = assignCalendar(allRoutines, startDate);
 
     // Monday week 2 = 2026-04-06
@@ -161,17 +162,16 @@ describe('Calendar assignment', () => {
     expect(leanMon2.tipo).toBe('pull');
   });
 
-  it('no hay asignaciones en Mar/Jue/Sab/Dom', () => {
+  it('no hay asignaciones en Mar/Jue/Dom', () => {
     const startDate = '2026-03-30';
-    const allRoutines = [...createLeanRoutines(), ...createNatRoutines()];
+    const allRoutines = [...createLeanRoutines(), ...createNatRoutines(), ...createRioRoutines()];
     const overrides = assignCalendar(allRoutines, startDate);
 
-    // Check Lean dates
+    // Check Lean dates — Mon(1), Wed(3), Fri(5), Sat(6)
     for (const [dateStr, val] of Object.entries(overrides.Lean)) {
       const d = new Date(dateStr + 'T00:00:00');
       const dow = d.getDay();
-      // Should only be Mon(1), Wed(3), Fri(5)
-      expect([1, 3, 5].includes(dow), `${dateStr} is day ${dow}`).toBe(true);
+      expect([1, 3, 5, 6].includes(dow), `${dateStr} is day ${dow}`).toBe(true);
     }
   });
 });
