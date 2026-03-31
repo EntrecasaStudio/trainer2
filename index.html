@@ -7,6 +7,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Entrecasa Trainer</title>
+  <script>
+    // Force SW update — nuke old cache-first SW
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistration().then(reg => {
+        if (reg) reg.update();
+      });
+    }
+  </script>
   <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="images/icon-192.png">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">

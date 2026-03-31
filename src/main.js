@@ -38,9 +38,12 @@ async function bootApp() {
   mountAvatarMenu();
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js').catch(e =>
-      console.warn('[SW] Registration failed', e)
-    );
+    navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
+      .then(reg => {
+        // Force update check on every page load
+        reg.update().catch(() => {});
+      })
+      .catch(e => console.warn('[SW] Registration failed', e));
   }
 }
 
