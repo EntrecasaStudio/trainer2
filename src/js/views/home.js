@@ -117,7 +117,7 @@ function renderRoutineCard() {
       </div>
       <div class="rutina-expand-wrap ${isExpanded ? 'open' : ''}">
         <div class="rutina-expand-inner">
-          ${rutina.circuitos.map(c => renderCircuit(c)).join('')}
+          ${rutina.circuitos.map((c, i) => renderCircuit(c, i)).join('')}
           <div class="rutina-actions">
             <button class="btn-action-icon btn-action-delete" id="btn-delete-routine" title="Eliminar">
               <i class="ph ph-trash" style="font-size:18px;"></i>
@@ -182,13 +182,15 @@ function renderRoutineCard() {
   });
 }
 
-function renderCircuit(c) {
-  const color = getCircuitColor(c.nombre);
+function renderCircuit(c, i) {
+  const circName = c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : 'Circuito');
+  const circNum = c.numero != null ? c.numero : (i + 1);
+  const color = getCircuitColor(circName);
   return `
     <div class="circuit-item">
       <div class="circuit-header">
-        <span class="circuit-number">${c.numero}</span>
-        <span class="circuit-name" style="color: ${color}">${c.nombre}</span>
+        <span class="circuit-number">${circNum}</span>
+        <span class="circuit-name" style="color: ${color}">${circName}</span>
       </div>
       <div class="circuit-exercises">
         ${c.ejercicios.map(e => `

@@ -104,19 +104,19 @@ export function mountWorkout(container, params) {
     startTime: new Date().toISOString(),
     circuitos: rutina.circuitos.map(c => ({
       id: c.id,
-      nombre: c.nombre,
+      nombre: c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : 'Circuito'),
       completed: false,
       ejercicios: c.ejercicios.map(e => ({
         id: e.id,
         nombre: e.nombre,
         tipo: e.tipo || 'fuerza',
         series: e.series || 2,
-        reps: e.reps || '8-12',
+        reps: e.reps || e.repsObjetivo || '8-12',
         duracion: e.duracion,
         descanso: e.descanso,
         usaPeso: inferUsaPeso(e.nombre),
         seriesData: Array.from({ length: e.series || 2 }, () => ({
-          reps: typeof e.reps === 'number' ? e.reps : parseRepsDefault(e.reps),
+          reps: typeof (e.reps || e.repsObjetivo) === 'number' ? (e.reps || e.repsObjetivo) : parseRepsDefault(e.reps || e.repsObjetivo),
           peso: 0,
           done: false,
         })),
@@ -745,12 +745,18 @@ function finishWorkout(container) {
 
   container.innerHTML = `
     <div class="workout-summary">
-      <div style="font-size:48px;text-align:center;margin-bottom:var(--space-md);">🏁</div>
+      <div style="text-align:center;margin-bottom:var(--space-md);"><i class="ph-light ph-flag-checkered" style="font-size:48px;color:var(--color-accent);"></i></div>
       <div class="workout-summary-title">¡Entrenamiento completado!</div>
       <div class="workout-summary-stats">
         <div><div class="workout-stat-value">${minutes}</div><div class="workout-stat-label">minutos</div></div>
         <div><div class="workout-stat-value">${totalSeriesDone}</div><div class="workout-stat-label">series</div></div>
         <div><div class="workout-stat-value">${circuitsDone}/${sesion.circuitos.length}</div><div class="workout-stat-label">circuitos</div></div>
+      </div>
+      <div style="margin-top:var(--space-lg);display:flex;align-items:center;gap:var(--space-sm);justify-content:center;">
+        <i class="ph-light ph-fire" style="font-size:20px;color:var(--color-warning);"></i>
+        <input type="number" id="input-calorias" placeholder="kcal" inputmode="numeric"
+          style="width:100px;text-align:center;background:var(--color-surface-alt);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-sm);color:var(--color-text);font-family:var(--font-main);font-size:var(--text-base);font-weight:var(--fw-semibold);">
+        <span style="font-size:var(--text-sm);color:var(--color-text-muted);">calorías</span>
       </div>
       <button class="btn btn-primary btn-lg" id="btn-back-home" style="width:100%;margin-top:var(--space-lg);">
         <i class="ph ph-house"></i> Volver al inicio
@@ -758,7 +764,19 @@ function finishWorkout(container) {
     </div>
   `;
 
-  document.getElementById('btn-back-home')?.addEventListener('click', () => router.navigate(''));
+  document.getElementById('btn-back-home')?.addEventListener('click', () => {
+    const kcalInput = document.getElementById('input-calorias');
+    const kcal = kcalInput ? parseInt(kcalInput.value, 10) : 0;
+    if (kcal > 0) {
+      const sesiones = store.getAll(store.KEYS.sesiones);
+      const idx = sesiones.findIndex(s => s.id === sesion.id);
+      if (idx !== -1) {
+        sesiones[idx].calorias = kcal;
+        store.set(store.KEYS.sesiones, sesiones);
+      }
+    }
+    router.navigate('');
+  });
   showToast('Entrenamiento guardado ✓');
 }
 
