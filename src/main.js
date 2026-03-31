@@ -8,16 +8,15 @@ import { mountHistorial } from './js/views/historial.js';
 import { mountProgreso } from './js/views/progreso.js';
 import { mountRutinaEdit } from './js/views/rutina-edit.js';
 import { seedV2 } from './seed.js';
+import { initFirebase, loginWithGoogle, logout, onAuth, getCurrentUser } from './js/services/firebase.js';
+import { uploadAllData, downloadAllData, startRealtimeSync, stopRealtimeSync, clearSyncState, getSyncStatus, onSyncStatusChange } from './js/services/sync.js';
 
-async function init() {
-  // Run seed
-  await seedV2();
+let _appBooted = false;
 
-  // Apply user theme on boot
+async function bootApp() {
   const { store } = await import('./store.js');
   document.body.setAttribute('data-usuario', store.getActiveUser());
 
-  // Register routes
   router.register('', mountHome);
   router.register('rutinas', mountRutinas);
   router.register('workout', mountWorkout);
@@ -26,43 +25,199 @@ async function init() {
   router.register('historial', mountHistorial);
   router.register('progreso', mountProgreso);
 
-  // Init nav
   const navEl = document.getElementById('nav');
   renderNav(navEl);
 
-  // Init router
   const viewContainer = document.getElementById('view-container');
   router.init(viewContainer, (route) => {
     updateNavActive(route);
-    // Hide nav during workout
     navEl.classList.toggle('hidden', route === 'workout' || route === 'rutina-edit');
   });
 
-  // Animate splash progress and hide
-  const progressBar = document.getElementById('splash-progress-bar');
-  if (progressBar) progressBar.style.width = '100%';
-  setTimeout(() => {
-    const splash = document.getElementById('splash');
-    if (splash) {
-      splash.style.opacity = '0';
-      splash.style.transform = 'scale(1.05)';
-      splash.style.filter = 'blur(8px)';
-      setTimeout(() => {
-        splash.remove();
-        document.getElementById('app').classList.remove('hidden');
-      }, 400);
-    }
-  }, 900);
+  // Mount avatar menu
+  mountAvatarMenu();
 
-  // Register service worker
   if ('serviceWorker' in navigator) {
-    try {
-      await navigator.serviceWorker.register('./sw.js');
-      console.log('[SW] Registered');
-    } catch (e) {
-      console.warn('[SW] Registration failed', e);
-    }
+    navigator.serviceWorker.register('./sw.js').catch(e =>
+      console.warn('[SW] Registration failed', e)
+    );
   }
 }
 
-init().catch(console.error);
+function dismissSplash() {
+  const splash = document.getElementById('splash');
+  if (!splash) return;
+  const progressBar = document.getElementById('splash-progress-bar');
+  if (progressBar) progressBar.style.width = '100%';
+  setTimeout(() => {
+    splash.style.opacity = '0';
+    splash.style.transform = 'scale(1.05)';
+    splash.style.filter = 'blur(8px)';
+    setTimeout(() => splash.remove(), 400);
+  }, 300);
+}
+
+// ── Avatar menu ─────────────────────────────────
+
+function mountAvatarMenu() {
+  const container = document.getElementById('avatar-menu');
+  if (!container) return;
+
+  updateAvatarButton();
+
+  container.addEventListener('click', (e) => {
+    if (e.target.closest('#avatar-btn')) {
+      toggleAvatarDropdown();
+    }
+  });
+
+  // Update sync dot
+  onSyncStatusChange(() => updateAvatarButton());
+}
+
+function updateAvatarButton() {
+  const container = document.getElementById('avatar-menu');
+  if (!container) return;
+
+  const user = getCurrentUser();
+  const status = getSyncStatus();
+
+  const dotColor = {
+    synced: '#22c55e',
+    syncing: 'var(--color-warning)',
+    pending: 'var(--color-warning)',
+    offline: 'var(--color-danger)',
+  }[status] || 'var(--color-danger)';
+
+  if (user) {
+    const photo = user.photoURL
+      ? `<img src="${user.photoURL}" referrerpolicy="no-referrer" class="avatar-btn-photo">`
+      : `<span class="avatar-btn-initial">${(user.displayName || user.email || '?')[0].toUpperCase()}</span>`;
+    container.innerHTML = `
+      <button class="avatar-btn" id="avatar-btn" title="${user.displayName || user.email}">
+        ${photo}
+        <span class="avatar-sync-dot" style="background:${dotColor};"></span>
+      </button>
+    `;
+  } else {
+    container.innerHTML = `
+      <button class="avatar-btn" id="avatar-btn" title="Sin conexión">
+        <i class="ph-light ph-user" style="font-size:20px;color:var(--color-text-muted);"></i>
+        <span class="avatar-sync-dot" style="background:var(--color-text-muted);"></span>
+      </button>
+    `;
+  }
+}
+
+function toggleAvatarDropdown() {
+  const existing = document.getElementById('avatar-dropdown-wrap');
+  if (existing) { existing.remove(); return; }
+
+  const user = getCurrentUser();
+
+  let content;
+  if (user) {
+    content = `
+      <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
+        ${user.photoURL ? `<img src="${user.photoURL}" referrerpolicy="no-referrer" style="width:36px;height:36px;border-radius:50%;">` : ''}
+        <div>
+          <div style="font-size:var(--text-sm);font-weight:var(--fw-medium);">${user.displayName || ''}</div>
+          <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${user.email || ''}</div>
+        </div>
+      </div>
+      <button class="btn btn-secondary" data-action="logout" style="width:100%;font-size:var(--text-sm);">
+        <i class="ph ph-sign-out" style="font-size:16px;"></i> Cerrar sesión
+      </button>
+    `;
+  } else {
+    content = `
+      <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-sm);">Sin conexión — los datos se guardan solo en este dispositivo</div>
+      <button class="btn btn-primary" data-action="login" style="width:100%;font-size:var(--text-sm);">
+        <i class="ph ph-google-logo" style="font-size:16px;"></i> Conectar con Google
+      </button>
+    `;
+  }
+
+  const wrap = document.createElement('div');
+  wrap.id = 'avatar-dropdown-wrap';
+  wrap.innerHTML = `
+    <div class="avatar-backdrop" id="avatar-backdrop"></div>
+    <div class="avatar-dropdown">
+      ${content}
+    </div>
+  `;
+  document.body.appendChild(wrap);
+
+  // Animate in
+  requestAnimationFrame(() => {
+    wrap.querySelector('.avatar-dropdown')?.classList.add('open');
+  });
+
+  // Backdrop close
+  wrap.querySelector('#avatar-backdrop').addEventListener('click', () => wrap.remove());
+
+  // Actions
+  wrap.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-action]');
+    if (!btn) return;
+
+    const action = btn.dataset.action;
+    if (action === 'logout') {
+      wrap.remove();
+      await logout();
+    } else if (action === 'login') {
+      wrap.remove();
+      try {
+        await loginWithGoogle();
+      } catch (e) {
+        console.warn('[Auth] Login failed:', e.message);
+      }
+    }
+  });
+}
+
+// ── Start ─────────────────────────────────────
+
+async function start() {
+  const progressBar = document.getElementById('splash-progress-bar');
+  if (progressBar) progressBar.style.width = '40%';
+
+  const firebaseOk = await initFirebase();
+  if (progressBar) progressBar.style.width = '70%';
+
+  // Always boot the app (offline-first)
+  await seedV2();
+
+  // Store ref for avatar menu
+  const { store } = await import('./store.js');
+  window._storeRef = { store };
+
+  document.getElementById('app')?.classList.remove('hidden');
+
+  await bootApp();
+  _appBooted = true;
+  dismissSplash();
+
+  if (!firebaseOk) return;
+
+  // Auth listener — sync when logged in
+  onAuth(async (user) => {
+    if (user) {
+      try {
+        await downloadAllData();
+        await uploadAllData();
+        startRealtimeSync(() => router._handleRoute());
+      } catch (e) {
+        console.warn('[Sync] Error:', e.message);
+      }
+      // Re-render to reflect synced data
+      router._handleRoute();
+    } else {
+      stopRealtimeSync();
+      clearSyncState();
+    }
+    updateAvatarButton();
+  });
+}
+
+start().catch(console.error);

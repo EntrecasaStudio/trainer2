@@ -97,7 +97,7 @@ export function mountRutinas(container) {
     const all = store.getAll(store.KEYS.rutinas);
     all.push(nueva);
     store.set(store.KEYS.rutinas, all);
-    router.navigate('rutina-edit', { rutinaId: nueva.id });
+    router.navigate(`rutina-edit/${nueva.id}`);
   });
 
   // User toggle

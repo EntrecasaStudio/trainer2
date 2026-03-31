@@ -2,6 +2,13 @@ import { store } from '../../store.js';
 import { router } from '../../router.js';
 import { showToast } from '../components/toast.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
+import { openEjercicioInfo } from './ejercicios.js';
+
+const LUGAR_OPTIONS = [
+  { key: 'SPORT_FITNESS', label: 'Sport' },
+  { key: 'RIO', label: 'Río' },
+  { key: 'URUGUAY', label: '🇺🇾' },
+];
 
 let _rutina = null;
 let _original = null;
@@ -38,6 +45,15 @@ function render(container) {
         <input type="text" id="edit-nombre" class="edit-input" value="${_rutina.nombre}">
       </div>
 
+      <div class="edit-field">
+        <label class="edit-label">Lugar</label>
+        <div class="edit-lugar-chips" id="edit-lugar-chips">
+          ${LUGAR_OPTIONS.map(l => `
+            <button class="lugar-chip ${_rutina.lugar === l.key ? 'active' : ''}" data-lugar="${l.key}">${l.label}</button>
+          `).join('')}
+        </div>
+      </div>
+
       <div id="circuitos-editor">
         ${_rutina.circuitos.map((c, ci) => renderCircuitEditor(c, ci)).join('')}
       </div>
@@ -67,6 +83,15 @@ function render(container) {
     _isDirty = true;
   });
 
+  // Lugar chips
+  container.querySelectorAll('#edit-lugar-chips .lugar-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      _rutina.lugar = chip.dataset.lugar;
+      _isDirty = true;
+      container.querySelectorAll('#edit-lugar-chips .lugar-chip').forEach(c => c.classList.toggle('active', c.dataset.lugar === _rutina.lugar));
+    });
+  });
+
   // Add circuit
   container.querySelector('#btn-add-circuit').addEventListener('click', () => {
     _rutina.circuitos.push({
@@ -93,13 +118,23 @@ function render(container) {
   bindCircuitEvents(container);
 }
 
+function getCircuitMuscleGroups(circ) {
+  const groups = new Set();
+  circ.ejercicios.forEach(ej => {
+    const cat = EJERCICIOS_CATALOGO.find(c => c.nombre.toLowerCase() === (ej.nombre || '').toLowerCase());
+    if (cat?.grupo) groups.add(cat.grupo.toUpperCase());
+  });
+  return [...groups];
+}
+
 function renderCircuitEditor(circ, ci) {
-  const circName = circ.nombre || (Array.isArray(circ.grupoMuscular) ? circ.grupoMuscular.join(' · ') : 'Circuito');
+  const muscleGroups = getCircuitMuscleGroups(circ);
+  const autoName = muscleGroups.length > 0 ? muscleGroups.join(' · ') : '';
   return `
     <div class="edit-circuit" data-ci="${ci}">
       <div class="edit-circuit-header">
         <span class="edit-circuit-num">C${circ.numero != null ? circ.numero : ci + 1}</span>
-        <input type="text" class="edit-circuit-name-input" value="${circName}" data-ci="${ci}">
+        ${autoName ? `<span class="edit-circuit-muscles">${autoName}</span>` : '<span class="edit-circuit-muscles" style="color:var(--color-text-muted);">Sin ejercicios</span>'}
         <button class="btn-icon edit-circuit-remove" data-ci="${ci}" title="Quitar circuito">
           <i class="ph ph-x" style="font-size:16px;color:var(--color-danger);"></i>
         </button>
@@ -125,6 +160,9 @@ function renderEjercicioEditor(ej, ci, ei) {
       <button class="edit-ej-name-btn" data-ci="${ci}" data-ei="${ei}" title="Cambiar ejercicio">
         ${ej.nombre || '<span style="color:var(--color-text-muted);">Elegir ejercicio</span>'}
       </button>
+      <button class="btn-icon edit-ej-info" data-nombre="${ej.nombre || ''}" title="Info del ejercicio" ${!ej.nombre ? 'disabled style="opacity:0.3;"' : ''}>
+        <i class="ph ph-info" style="font-size:16px;color:var(--color-text-muted);"></i>
+      </button>
       <input type="number" class="edit-ej-series" value="${series}" data-ci="${ci}" data-ei="${ei}" placeholder="S" min="1" max="20">
       <span style="color:var(--color-text-muted);font-size:var(--text-xs);">×</span>
       <input type="text" class="edit-ej-reps" value="${reps}" data-ci="${ci}" data-ei="${ei}" placeholder="Reps">
@@ -133,15 +171,6 @@ function renderEjercicioEditor(ej, ci, ei) {
 }
 
 function bindCircuitEvents(container) {
-  // Circuit name changes
-  container.querySelectorAll('.edit-circuit-name-input').forEach(input => {
-    input.addEventListener('input', () => {
-      const ci = parseInt(input.dataset.ci);
-      _rutina.circuitos[ci].nombre = input.value;
-      _isDirty = true;
-    });
-  });
-
   // Remove circuit
   container.querySelectorAll('.edit-circuit-remove').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -179,6 +208,15 @@ function bindCircuitEvents(container) {
       const ei = parseInt(input.dataset.ei);
       _rutina.circuitos[ci].ejercicios[ei].reps = input.value;
       _isDirty = true;
+    });
+  });
+
+  // Info button
+  container.querySelectorAll('.edit-ej-info').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const nombre = btn.dataset.nombre;
+      if (nombre) openEjercicioInfo(nombre);
     });
   });
 

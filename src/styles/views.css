@@ -107,7 +107,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-xs) 0;
+  padding: var(--space-sm) 0;
+  min-height: 36px;
   font-size: var(--text-sm);
   color: var(--color-text-muted);
 }
@@ -379,7 +380,7 @@
 }
 
 .rutina-list-name {
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   font-weight: var(--fw-bold);
   line-height: 1.3;
 }
@@ -552,7 +553,8 @@
   padding: var(--space-sm) var(--space-md);
   color: var(--color-text);
   font-family: var(--font-main);
-  font-size: var(--text-sm);
+  font-size: var(--text-lg);
+  font-weight: var(--fw-semibold);
 }
 .edit-input:focus { outline: none; border-color: var(--color-accent); }
 
@@ -576,20 +578,19 @@
   min-width: 24px;
 }
 
-.edit-circuit-name-input {
+.edit-circuit-muscles {
   flex: 1;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--color-border);
-  color: var(--color-text);
-  font-family: var(--font-main);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   font-weight: var(--fw-semibold);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  padding: 2px 0;
+  color: var(--color-text-muted);
 }
-.edit-circuit-name-input:focus { outline: none; border-bottom-color: var(--color-accent); }
+
+.edit-lugar-chips {
+  display: flex;
+  gap: var(--space-sm);
+}
 
 .edit-circuit-exercises {
   display: flex;
@@ -601,6 +602,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  min-height: 40px;
 }
 
 .edit-ej-name-btn {
@@ -610,7 +612,7 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  padding: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm) var(--space-sm);
   font-size: var(--text-sm);
   color: var(--color-text);
   cursor: pointer;
@@ -669,7 +671,8 @@
 }
 .btn-add-ej:active { border-color: var(--color-accent); color: var(--color-accent); }
 
-/* Exercise picker item hover */
+/* Exercise picker */
+.ej-picker-item { letter-spacing: 0.01em; }
 .ej-picker-item:active { background: var(--color-surface-alt); }
 
 /* Historial */
@@ -697,6 +700,25 @@
   margin-top: var(--space-sm);
   font-size: var(--text-sm);
   color: var(--color-text-muted);
+}
+
+/* Historial detail */
+.hist-circuit {
+  margin-bottom: var(--space-md);
+}
+
+.hist-ej-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.hist-ej-row:active {
+  background: var(--color-surface-alt);
 }
 
 /* Progreso */
