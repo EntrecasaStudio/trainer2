@@ -185,7 +185,16 @@ async function start() {
   const progressBar = document.getElementById('splash-progress-bar');
   if (progressBar) progressBar.style.width = '40%';
 
-  const firebaseOk = await initFirebase();
+  // Firebase init with 5s timeout — never block the boot
+  let firebaseOk = false;
+  try {
+    firebaseOk = await Promise.race([
+      initFirebase(),
+      new Promise(resolve => setTimeout(() => resolve(false), 5000)),
+    ]);
+  } catch (e) {
+    console.warn('[Boot] Firebase init error:', e.message);
+  }
   if (progressBar) progressBar.style.width = '70%';
 
   // Always boot the app (offline-first)
@@ -223,4 +232,19 @@ async function start() {
   });
 }
 
-start().catch(console.error);
+start().catch(e => {
+  console.error('[Boot] Fatal:', e);
+  // Force dismiss splash on error so app isn't stuck
+  dismissSplash();
+  document.getElementById('app')?.classList.remove('hidden');
+});
+
+// Safety net: force dismiss splash after 8s no matter what
+setTimeout(() => {
+  const splash = document.getElementById('splash');
+  if (splash) {
+    console.warn('[Boot] Splash timeout — forcing dismiss');
+    splash.remove();
+    document.getElementById('app')?.classList.remove('hidden');
+  }
+}, 8000);
