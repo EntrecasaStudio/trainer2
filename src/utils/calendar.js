@@ -56,6 +56,13 @@ export function getNextTrainingDay(fromDate) {
   return d;
 }
 
+// RIO Saturday focus — inverse of Friday's foco
+export function getRioFocusForSaturday(cycleWeek) {
+  // Friday: semana 1 → press, semana 2 → pull
+  // Saturday (inverse): semana 1 → pull, semana 2 → press
+  return cycleWeek === 1 ? 'pull' : 'press';
+}
+
 // Days of week labels in Spanish
 export const WEEKDAY_LABELS = ['L', 'M', 'X', 'J', 'V', 'S', 'D'];
 export const WEEKDAY_FULL = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
