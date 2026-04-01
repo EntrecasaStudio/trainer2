@@ -29,9 +29,12 @@ async function bootApp() {
   renderNav(navEl);
 
   const viewContainer = document.getElementById('view-container');
+  const avatarMenuEl = document.getElementById('avatar-menu');
   router.init(viewContainer, (route) => {
     updateNavActive(route);
-    navEl.classList.toggle('hidden', route === 'workout' || route === 'rutina-edit');
+    const hideChrome = route === 'workout' || route === 'rutina-edit';
+    navEl.classList.toggle('hidden', hideChrome);
+    if (avatarMenuEl) avatarMenuEl.classList.toggle('hidden', hideChrome);
   });
 
   // Mount avatar menu
