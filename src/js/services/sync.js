@@ -37,7 +37,7 @@ let _suppressSync = false;
 const _dirtyKeys = new Set();
 
 // ── Sync status ──────────────────────────
-let _syncStatus = navigator.onLine ? 'synced' : 'offline';
+let _syncStatus = (typeof navigator !== 'undefined' && navigator.onLine) ? 'synced' : 'offline';
 const _statusListeners = new Set();
 
 export function getSyncStatus() { return _syncStatus; }
