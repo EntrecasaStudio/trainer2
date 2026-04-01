@@ -318,244 +318,244 @@ function createRioRoutines() {
     // ── LEAN RIO ROUTINES (15) ─────────────────────────────────────────────
     // RÍO Pull A — Lean
     rutinaRio('#001', 'RÍO Pull A — Espalda', 'Lean', 'pull', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Thoracic rotation', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara con KB 12kg', 3, '10'), ej('Peso muerto a una pierna KB 8kg', 3, '10')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas wide grip con chaleco', 3, 'AMRAP'), ej('Remo invertido en TRX', 3, '12')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 3, '10'), ej('Peso muerto rumano', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas abiertas', 3, 'AMRAP'), ej('TRX row', 3, '12')]),
       circuito(4, 'ESPALDA ALT', [ej('Remo alto en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel rollout', 3, '10'), ej('Mountain climbers', 3, '20'), ej('Sprint', 4, '20m')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Mountain climbers', 3, '20'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
     // RÍO Pull B — Lean
     rutinaRio('#002', 'RÍO Pull B — Espalda', 'Lean', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 2, '15'), ej('Movilidad de cadera', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Hip thrust en banco con KB 12kg', 3, '12'), ej('Sentadilla sumo KB 8kg', 3, '12')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas cerradas con chaleco', 3, 'AMRAP'), ej('Remo TRX supino', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con banda', 3, '15'), ej('Hammer curl KB 8kg', 3, '10')]),
-      circuito(5, 'CORE+CARDIO', [ej('Hollow body hold', 3, '30s'), ej('Dead bug', 3, '10'), ej('Jumping jacks con chaleco', 3, '30')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en cajon', 3, '12'), ej('Sentadilla sumo', 3, '12')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas cerradas', 3, 'AMRAP'), ej('TRX row', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Banda curl biceps', 3, '15'), ej('Curl martillo', 3, '10')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Dead bug', 3, '10'), ej('Jumping jacks', 3, '30')]),
     ]),
     // RÍO Pull C — Lean
     rutinaRio('#003', 'RÍO Pull C — Espalda', 'Lean', 'pull', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 2, '15'), ej('Rotación de hombros con banda', 2, '15')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Zancadas con KB 8kg + chaleco', 3, '10'), ej('Step-up en banco con KB', 3, '10')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('Remo TRX con pausa', 3, '10')]),
-      circuito(4, 'ESPALDA ALT', [ej('Band pull-apart', 3, '20'), ej('Remo alto con banda', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Sprint', 4, '30m'), ej('Burpees', 3, '8')]),
+      circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 2, '15'), ej('Rotación de hombros', 2, '15')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Zancadas con mancuernas', 3, '10'), ej('Step-up en banco', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '10')]),
+      circuito(4, 'ESPALDA ALT', [ej('Banda pull-apart', 3, '20'), ej('Remo alto en polea', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Pasadas de velocidad', 4, '30m'), ej('Burpees', 3, '8')]),
     ]),
     // RÍO Pull D — Lean
     rutinaRio('#004', 'RÍO Pull D — Espalda', 'Lean', 'pull', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Cat-cow + thoracic rotation', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla con chaleco', 3, '15'), ej('Peso muerto sumo KB 12kg', 3, '12')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas grip neutro con chaleco', 3, 'AMRAP'), ej('TRX row', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl con KB 8kg', 3, '12'), ej('Banda curl 21s', 3, '1')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Cat-cow', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla sumo', 3, '15'), ej('Peso muerto sumo', 3, '12')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas grip neutro', 3, 'AMRAP'), ej('TRX row', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '1')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación alternada', 3, '10'), ej('L-sit en paralelas', 3, '20s'), ej('Mountain climbers', 3, '20')]),
     ]),
     // RÍO Pull E — Lean
     rutinaRio('#005', 'RÍO Pull E — Espalda', 'Lean', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Zancadas con chaleco', 3, '12'), ej('Hip thrust en banco KB 12kg', 3, '15')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas wide grip', 3, 'AMRAP'), ej('Remo TRX con chaleco', 3, '12')]),
-      circuito(4, 'ESPALDA ALT', [ej('Remo con KB 12kg', 3, '10'), ej('Band pull-apart superset', 3, '20')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Bear crawl', 4, '10m'), ej('Sprint', 4, '20m')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Zancadas con mancuernas', 3, '12'), ej('Empuje de cadera en cajon', 3, '15')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas abiertas', 3, 'AMRAP'), ej('TRX row', 3, '12')]),
+      circuito(4, 'ESPALDA ALT', [ej('Remo con mancuerna', 3, '10'), ej('Banda pull-apart', 3, '20')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Bear crawl', 4, '10m'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
     // RÍO Pull F — Lean
     rutinaRio('#006', 'RÍO Pull F — Espalda', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda face pull', 2, '15'), ej('Movilidad de hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Box step-up con KB 12kg', 3, '10'), ej('Sentadilla búlgara con chaleco', 3, '8')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Step-up en banco', 3, '10'), ej('Sentadilla búlgara', 3, '8')]),
       circuito(3, 'ESPALDA', [ej('Muscle-up negativo en barra', 3, '5'), ej('Dominadas australianas', 3, '12')]),
-      circuito(4, 'BÍCEPS·POSTERIOR', [ej('Curl KB supino 8kg', 3, '12'), ej('Banda pull-apart', 3, '20')]),
-      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Ab wheel', 3, '10'), ej('Jumping jacks con chaleco', 3, '30')]),
+      circuito(4, 'BÍCEPS·POSTERIOR', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda pull-apart', 3, '20')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Ab wheel', 3, '10'), ej('Jumping jacks', 3, '30')]),
     ]),
     // RÍO Pull G — Lean
     rutinaRio('#007', 'RÍO Pull G — Espalda', 'Lean', 'pull', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band abducción en suelo', 2, '15'), ej('Thoracic rotation', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla jump con chaleco', 3, '10'), ej('Peso muerto a una pierna KB 12kg', 3, '8')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas con chaleco', 3, 'AMRAP'), ej('TRX row con pausa', 3, '10')]),
-      circuito(4, 'ESPALDA ALT', [ej('Remo alto TRX', 3, '12'), ej('Band pull-apart', 3, '20')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Sprint', 4, '30m'), ej('Burpees con chaleco', 3, '6')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla con salto', 3, '10'), ej('Peso muerto rumano', 3, '8')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas', 3, 'AMRAP'), ej('TRX row', 3, '10')]),
+      circuito(4, 'ESPALDA ALT', [ej('Remo alto en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Pasadas de velocidad', 4, '30m'), ej('Burpees', 3, '6')]),
     ]),
     // RÍO Pull H — Lean
     rutinaRio('#008', 'RÍO Pull H — Espalda', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 2, '15'), ej('Hip 90/90 mobility', 2, '8')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla sumo KB 12kg', 3, '15'), ej('Zancadas reversas con chaleco', 3, '10')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas grip cerrado', 3, 'AMRAP'), ej('Remo TRX supino', 3, '15')]),
-      circuito(4, 'BÍCEPS', [ej('Curl KB 8kg alternado', 3, '12'), ej('Curl con banda superset', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('L-sit paralelas', 3, '20s'), ej('Mountain climbers', 3, '25'), ej('Sprint', 4, '20m')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla sumo', 3, '15'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas cerradas', 3, 'AMRAP'), ej('TRX row', 3, '15')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('L-sit en paralelas', 3, '20s'), ej('Mountain climbers', 3, '25'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
     // RÍO Press A — Lean
     rutinaRio('#009', 'RÍO Press A — Hombros', 'Lean', 'press', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda press de pecho', 2, '15'), ej('Rotación de hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla con chaleco', 3, '15'), ej('Zancadas con KB 8kg', 3, '10')]),
-      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones con chaleco', 3, '12'), ej('Dips en paralelas', 3, 'AMRAP')]),
-      circuito(4, 'HOMBROS', [ej('Press KB 12kg de pie', 3, '10'), ej('Elevaciones laterales con banda', 3, '15')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '15'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones', 3, '12'), ej('Dips en paralelas', 3, 'AMRAP')]),
+      circuito(4, 'HOMBROS', [ej('Press militar con mancuernas', 3, '10'), ej('Vuelos laterales', 3, '15')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha en paralelas', 3, '45s'), ej('Ab wheel', 3, '10'), ej('Hollow body', 3, '30s')]),
     ]),
     // RÍO Press B — Lean
     rutinaRio('#010', 'RÍO Press B — Pecho', 'Lean', 'press', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda rotación torácica', 2, '10'), ej('Movilidad de hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Box jump en banco', 3, '8'), ej('Sentadilla sumo KB 12kg', 3, '12')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Rotación torácica', 2, '10'), ej('Movilidad de hombros', 2, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Saltos al cajón', 3, '8'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'PECHO', [ej('Flexiones diamante', 3, '12'), ej('TRX chest press', 3, '12')]),
-      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press overhead KB 12kg', 3, '10'), ej('Dips en paralelas con chaleco', 3, 'AMRAP')]),
+      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con mancuernas', 3, '10'), ej('Dips en paralelas', 3, 'AMRAP')]),
       circuito(5, 'CORE+CARDIO', [ej('Bear crawl', 4, '10m'), ej('Mountain climbers', 3, '20'), ej('Ab wheel', 3, '10')]),
     ]),
     // RÍO Press C — Lean
     rutinaRio('#011', 'RÍO Press C — Pecho', 'Lean', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda pull-apart', 2, '15'), ej('Movilidad de cadera', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla búlgara KB 8kg', 3, '10'), ej('Step-up en banco con chaleco', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones con chaleco', 3, '12'), ej('TRX chest press inclinado', 3, '12')]),
-      circuito(4, 'HOMBROS', [ej('Arnold press KB 8kg', 3, '10'), ej('Face pull TRX', 3, '12')]),
-      circuito(5, 'CORE', [ej('L-sit paralelas', 3, '20s'), ej('Plancha', 3, '45s'), ej('Dead bug', 3, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla búlgara', 3, '10'), ej('Step-up en banco', 3, '10')]),
+      circuito(3, 'PECHO', [ej('Flexiones', 3, '12'), ej('TRX chest press', 3, '12')]),
+      circuito(4, 'HOMBROS', [ej('Arnold press', 3, '10'), ej('TRX face pull', 3, '12')]),
+      circuito(5, 'CORE', [ej('L-sit en paralelas', 3, '20s'), ej('Plancha', 3, '45s'), ej('Dead bug', 3, '10')]),
     ]),
     // RÍO Press D — Lean
     rutinaRio('#012', 'RÍO Press D — Pecho + Hombros', 'Lean', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS', [ej('Sentadilla jump con chaleco', 3, '10'), ej('Zancadas inversas KB 12kg', 3, '10')]),
-      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones explosivas', 3, '8'), ej('Press KB 12kg bilateral', 3, '10')]),
-      circuito(4, 'TRÍCEPS', [ej('Dips en banco con chaleco', 3, 'AMRAP'), ej('Extensión tríceps con banda', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Sprint', 4, '20m'), ej('Burpees', 3, '8')]),
+      circuito(2, 'PIERNAS', [ej('Sentadilla con salto', 3, '10'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones explosivas', 3, '8'), ej('Press militar con mancuernas', 3, '10')]),
+      circuito(4, 'TRÍCEPS', [ej('Fondos en banco', 3, 'AMRAP'), ej('Banda triceps pushdown', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Pasadas de velocidad', 4, '20m'), ej('Burpees', 3, '8')]),
     ]),
     // RÍO Press E — Lean
     rutinaRio('#013', 'RÍO Press E — Pecho', 'Lean', 'press', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda press', 2, '15'), ej('Movilidad de hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla con chaleco', 3, '15'), ej('Box step-up KB 8kg', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones con chaleco', 3, '12'), ej('Flexiones en banco inclinado', 3, '15')]),
-      circuito(4, 'HOMBROS', [ej('Press KB 12kg alternado', 3, '10'), ej('Elevaciones laterales con banda', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Plancha lateral alternada', 3, '20s'), ej('Ab wheel', 3, '10')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda press de pecho', 2, '15'), ej('Movilidad de hombros', 2, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '15'), ej('Step-up en banco', 3, '10')]),
+      circuito(3, 'PECHO', [ej('Flexiones', 3, '12'), ej('Flexiones inclinadas', 3, '15')]),
+      circuito(4, 'HOMBROS', [ej('Press militar con mancuernas', 3, '10'), ej('Vuelos laterales', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Plancha lateral', 3, '20s'), ej('Ab wheel', 3, '10')]),
     ]),
     // RÍO Press F — Lean
     rutinaRio('#014', 'RÍO Press F — Pecho + Hombros', 'Lean', 'press', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS', [ej('Box jump', 3, '8'), ej('Sentadilla búlgara con chaleco', 3, '8')]),
-      circuito(3, 'PECHO·HOMBROS', [ej('TRX chest press', 3, '15'), ej('Dips paralelas', 3, 'AMRAP')]),
-      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press KB 12kg', 3, '10'), ej('Extensión tríceps sobre cabeza KB', 3, '12')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Bear crawl', 4, '10m'), ej('Sprint', 4, '30m')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS', [ej('Saltos al cajón', 3, '8'), ej('Sentadilla búlgara', 3, '8')]),
+      circuito(3, 'PECHO·HOMBROS', [ej('TRX chest press', 3, '15'), ej('Dips en paralelas', 3, 'AMRAP')]),
+      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con mancuernas', 3, '10'), ej('Extensión de triceps sobre cabeza', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Bear crawl', 4, '10m'), ej('Pasadas de velocidad', 4, '30m')]),
     ]),
     // RÍO Press G — Lean
     rutinaRio('#015', 'RÍO Press G — Pecho', 'Lean', 'press', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda press', 2, '15'), ej('Cat-cow + thoracic rotation', 2, '10')]),
-      circuito(2, 'PIERNAS', [ej('Sentadilla jump con chaleco', 3, '10'), ej('Zancadas con KB 12kg', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones diamante', 3, '12'), ej('Flexiones con chaleco', 3, '10')]),
-      circuito(4, 'HOMBROS', [ej('Arnold press KB 8kg', 3, '10'), ej('TRX face pull', 3, '12')]),
-      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Ab wheel', 3, '10'), ej('Burpees con chaleco', 3, '6')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda press de pecho', 2, '15'), ej('Cat-cow', 2, '10')]),
+      circuito(2, 'PIERNAS', [ej('Sentadilla con salto', 3, '10'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO', [ej('Flexiones diamante', 3, '12'), ej('Flexiones', 3, '10')]),
+      circuito(4, 'HOMBROS', [ej('Arnold press', 3, '10'), ej('TRX face pull', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Ab wheel', 3, '10'), ej('Burpees', 3, '6')]),
     ]),
 
     // ── NAT RIO ROUTINES (15) ──────────────────────────────────────────────
     // RÍO Pull A — Nat
     rutinaRio('#016', 'RÍO Pull A — Nat', 'Nat', 'pull', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band lateral walk', 2, '15'), ej('Banda dislocates', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara KB 8kg + tobilleras', 3, '12'), ej('Hip thrust banco KB 12kg', 3, '15')]),
-      circuito(3, 'ESPALDA', [ej('Remo TRX supino', 3, '15'), ej('Dominadas australianas', 3, '12')]),
-      circuito(4, 'ESPALDA ALT', [ej('Remo alto TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20'), ej('Sprint', 4, '15m')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Banda dislocates', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 3, '12'), ej('Empuje de cadera en cajon', 3, '15')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12')]),
+      circuito(4, 'ESPALDA ALT', [ej('Remo alto en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Pull B — Nat
     rutinaRio('#017', 'RÍO Pull B — Nat', 'Nat', 'pull', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band abducción en suelo', 2, '15'), ej('Thoracic rotation', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Hip thrust banco KB 12kg + loop band', 3, '15'), ej('Sentadilla sumo KB 8kg + tobilleras', 3, '12')]),
-      circuito(3, 'ESPALDA', [ej('Remo TRX', 3, '15'), ej('Dominadas australianas con chaleco', 3, '10')]),
-      circuito(4, 'BÍCEPS', [ej('Curl KB 8kg', 3, '12'), ej('Banda curl', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Dead bug', 3, '10'), ej('Jumping jacks con chaleco', 3, '25')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en cajon', 3, '15'), ej('Sentadilla sumo', 3, '12')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '10')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Dead bug', 3, '10'), ej('Jumping jacks', 3, '25')]),
     ]),
     // RÍO Pull C — Nat
     rutinaRio('#018', 'RÍO Pull C — Nat', 'Nat', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 2, '15'), ej('Movilidad de cadera', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera en banco', 3, '15'), ej('Zancadas KB 8kg', 3, '10')]),
-      circuito(3, 'ESPALDA', [ej('Remo TRX con pausa', 3, '12'), ej('Dominadas australianas', 3, '12')]),
-      circuito(4, 'ESPALDA ALT', [ej('Banda pull-apart', 3, '20'), ej('Remo alto TRX', 3, '12')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Burpees', 3, '6'), ej('Sprint', 4, '15m')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera', 3, '15'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '12'), ej('Dominadas australianas', 3, '12')]),
+      circuito(4, 'ESPALDA ALT', [ej('Banda pull-apart', 3, '20'), ej('Remo alto en TRX', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Burpees', 3, '6'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Pull D — Nat
     rutinaRio('#019', 'RÍO Pull D — Nat', 'Nat', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Cat-cow', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Hip thrust banco KB 12kg', 3, '15'), ej('Peso muerto a una pierna KB 8kg + tobilleras', 3, '10')]),
-      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas con loop band', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl KB 8kg alternado', 3, '12'), ej('Banda curl 21s', 3, '1')]),
-      circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación', 3, '10'), ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en cajon', 3, '15'), ej('Peso muerto rumano', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '1')]),
+      circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación alternada', 3, '10'), ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20')]),
     ]),
     // RÍO Pull E — Nat
     rutinaRio('#020', 'RÍO Pull E — Nat', 'Nat', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Loop band abducción parada', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla con chaleco + loop band', 3, '15'), ej('Hip thrust KB 12kg banco', 3, '15')]),
-      circuito(3, 'ESPALDA', [ej('Remo TRX supino', 3, '15'), ej('TRX face pull', 3, '15')]),
-      circuito(4, 'ESPALDA ALT', [ej('Remo alto TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
-      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Ab wheel', 3, '8'), ej('Sprint', 4, '15m')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla sumo', 3, '15'), ej('Empuje de cadera en cajon', 3, '15')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('TRX face pull', 3, '15')]),
+      circuito(4, 'ESPALDA ALT', [ej('Remo alto en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Ab wheel', 3, '8'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Pull F — Nat
     rutinaRio('#021', 'RÍO Pull F — Nat', 'Nat', 'pull', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band lateral walk', 2, '15'), ej('Hip 90/90 mobility', 2, '8')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Extensión de cadera en suelo con tobilleras', 3, '20'), ej('Sentadilla KB 8kg + loop band', 3, '12')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Hip 90/90 mobility', 2, '8')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera', 3, '20'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '15'), ej('TRX row', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl KB 8kg', 3, '12'), ej('Banda curl superset', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('L-sit bench', 3, '15s'), ej('Ab wheel', 3, '8'), ej('Jumping jacks', 3, '25')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('L-sit en paralelas', 3, '15s'), ej('Ab wheel', 3, '8'), ej('Jumping jacks', 3, '25')]),
     ]),
     // RÍO Pull G — Nat
     rutinaRio('#022', 'RÍO Pull G — Nat', 'Nat', 'pull', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 2, '15'), ej('Glúteo activación con loop band', 2, '15')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Zancadas con chaleco', 3, '10'), ej('Hip thrust KB 12kg + loop band', 3, '15')]),
-      circuito(3, 'ESPALDA', [ej('TRX row con pausa', 3, '12'), ej('Remo alto TRX', 3, '15')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 2, '15'), ej('Activación glúteo con loop band', 2, '15')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Zancadas con mancuernas', 3, '10'), ej('Empuje de cadera en cajon', 3, '15')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '12'), ej('Remo alto en TRX', 3, '15')]),
       circuito(4, 'ESPALDA ALT', [ej('Dominadas australianas', 3, '12'), ej('Banda pull-apart', 3, '20')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Bear crawl', 4, '8m'), ej('Sprint', 4, '15m')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Bear crawl', 4, '8m'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Pull H — Nat
     rutinaRio('#023', 'RÍO Pull H — Nat', 'Nat', 'pull', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band abducción en suelo', 2, '15'), ej('Thoracic rotation', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Step-up banco con KB 8kg + tobilleras', 3, '10'), ej('Sentadilla búlgara KB 8kg', 3, '10')]),
-      circuito(3, 'ESPALDA', [ej('Remo TRX supino', 3, '15'), ej('Dominadas australianas', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl KB 8kg', 3, '12'), ej('Banda curl', 3, '15')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Step-up en banco', 3, '10'), ej('Sentadilla búlgara', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '15')]),
       circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20')]),
     ]),
     // RÍO Press A — Nat
     rutinaRio('#024', 'RÍO Press A — Nat', 'Nat', 'press', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda press', 2, '15'), ej('Rotación de hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla con chaleco + loop band', 3, '15'), ej('Zancadas KB 8kg', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones en banco inclinado', 3, '12'), ej('TRX chest press', 3, '12')]),
-      circuito(4, 'HOMBROS', [ej('Press KB 8kg de pie', 3, '12'), ej('Elevaciones laterales con banda', 3, '15')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda press de pecho', 2, '15'), ej('Rotación de hombros', 2, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '15'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO', [ej('Flexiones inclinadas', 3, '12'), ej('TRX chest press', 3, '12')]),
+      circuito(4, 'HOMBROS', [ej('Press militar con mancuernas', 3, '12'), ej('Vuelos laterales', 3, '15')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha', 3, '45s'), ej('Ab wheel', 3, '8'), ej('Hollow body', 3, '25s')]),
     ]),
     // RÍO Press B — Nat
     rutinaRio('#025', 'RÍO Press B — Nat', 'Nat', 'press', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda rotación torácica', 2, '10'), ej('Movilidad hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Box step-up banco KB 8kg', 3, '10'), ej('Sentadilla sumo KB 8kg + loop band', 3, '12')]),
-      circuito(3, 'PECHO', [ej('Flexiones con chaleco', 3, '10'), ej('TRX chest press', 3, '12')]),
-      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press KB 8kg overhead', 3, '12'), ej('Dips en banco', 3, '15')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Rotación torácica', 2, '10'), ej('Movilidad de hombros', 2, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Step-up en banco', 3, '10'), ej('Sentadilla sumo', 3, '12')]),
+      circuito(3, 'PECHO', [ej('Flexiones', 3, '10'), ej('TRX chest press', 3, '12')]),
+      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con mancuernas', 3, '12'), ej('Fondos en banco', 3, '15')]),
       circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20'), ej('Bear crawl', 4, '8m')]),
     ]),
     // RÍO Press C — Nat
     rutinaRio('#026', 'RÍO Press C — Nat', 'Nat', 'press', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band lateral walk', 2, '15'), ej('Banda pull-apart', 2, '15')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla búlgara KB 8kg', 3, '10'), ej('Step-up con chaleco', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones', 3, '15'), ej('TRX chest press inclinado', 3, '12')]),
-      circuito(4, 'HOMBROS', [ej('Arnold press KB 8kg', 3, '10'), ej('Face pull TRX', 3, '12')]),
-      circuito(5, 'CORE', [ej('L-sit bench', 3, '15s'), ej('Dead bug', 3, '10'), ej('Plancha', 3, '40s')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Banda pull-apart', 2, '15')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla búlgara', 3, '10'), ej('Step-up en banco', 3, '10')]),
+      circuito(3, 'PECHO', [ej('Flexiones', 3, '15'), ej('TRX chest press', 3, '12')]),
+      circuito(4, 'HOMBROS', [ej('Arnold press', 3, '10'), ej('TRX face pull', 3, '12')]),
+      circuito(5, 'CORE', [ej('L-sit en paralelas', 3, '15s'), ej('Dead bug', 3, '10'), ej('Plancha', 3, '40s')]),
     ]),
     // RÍO Press D — Nat
     rutinaRio('#027', 'RÍO Press D — Nat', 'Nat', 'press', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS', [ej('Sentadilla jump', 3, '8'), ej('Zancadas inversas KB 8kg', 3, '10')]),
-      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones con chaleco', 3, '10'), ej('Press KB 8kg bilateral', 3, '12')]),
-      circuito(4, 'TRÍCEPS', [ej('Dips en banco', 3, '15'), ej('Extensión tríceps banda sobre cabeza', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Sprint', 4, '15m'), ej('Burpees', 3, '6')]),
+      circuito(2, 'PIERNAS', [ej('Sentadilla con salto', 3, '8'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones', 3, '10'), ej('Press militar con mancuernas', 3, '12')]),
+      circuito(4, 'TRÍCEPS', [ej('Fondos en banco', 3, '15'), ej('Extensión de triceps sobre cabeza', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Pasadas de velocidad', 4, '15m'), ej('Burpees', 3, '6')]),
     ]),
     // RÍO Press E — Nat
     rutinaRio('#028', 'RÍO Press E — Nat', 'Nat', 'press', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda press', 2, '15'), ej('Movilidad hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla con chaleco', 3, '15'), ej('Box step-up KB 8kg', 3, '10')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda press de pecho', 2, '15'), ej('Movilidad de hombros', 2, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '15'), ej('Step-up en banco', 3, '10')]),
       circuito(3, 'PECHO', [ej('Flexiones', 3, '15'), ej('TRX chest press', 3, '12')]),
-      circuito(4, 'HOMBROS', [ej('Press KB 8kg alternado', 3, '12'), ej('Elevaciones laterales banda', 3, '15')]),
+      circuito(4, 'HOMBROS', [ej('Press militar con mancuernas', 3, '12'), ej('Vuelos laterales', 3, '15')]),
       circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Plancha lateral', 3, '20s'), ej('Ab wheel', 3, '8')]),
     ]),
     // RÍO Press F — Nat
     rutinaRio('#029', 'RÍO Press F — Nat', 'Nat', 'press', 2, [
-      circuito(1, 'ACTIVACIÓN', [ej('Loop band lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS', [ej('Box jump banco', 3, '6'), ej('Sentadilla KB 8kg + chaleco', 3, '12')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS', [ej('Saltos al cajón', 3, '6'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'PECHO', [ej('TRX chest press', 3, '15'), ej('Flexiones diamante', 3, '10')]),
-      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press KB 8kg', 3, '12'), ej('Extensión tríceps KB sobre cabeza', 3, '12')]),
-      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Bear crawl', 4, '8m'), ej('Sprint', 4, '15m')]),
+      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con mancuernas', 3, '12'), ej('Extensión de triceps sobre cabeza', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Bear crawl', 4, '8m'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Press G — Nat
     rutinaRio('#030', 'RÍO Press G — Nat', 'Nat', 'press', 1, [
-      circuito(1, 'ACTIVACIÓN', [ej('Banda press', 2, '15'), ej('Cat-cow + thoracic', 2, '10')]),
-      circuito(2, 'PIERNAS', [ej('Sentadilla jump', 3, '8'), ej('Zancadas con KB 8kg', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones con chaleco', 3, '10'), ej('Flexiones inclinadas en banco', 3, '12')]),
-      circuito(4, 'HOMBROS', [ej('Arnold press KB 8kg', 3, '10'), ej('TRX face pull', 3, '12')]),
+      circuito(1, 'ACTIVACIÓN', [ej('Banda press de pecho', 2, '15'), ej('Cat-cow', 2, '10')]),
+      circuito(2, 'PIERNAS', [ej('Sentadilla con salto', 3, '8'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO', [ej('Flexiones', 3, '10'), ej('Flexiones inclinadas', 3, '12')]),
+      circuito(4, 'HOMBROS', [ej('Arnold press', 3, '10'), ej('TRX face pull', 3, '12')]),
       circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Ab wheel', 3, '8'), ej('Burpees', 3, '6')]),
     ]),
   ];
@@ -671,10 +671,10 @@ function migrateBackup(backup) {
     }
   }
 
-  // Rutinas RIO + URUGUAY (deduplicate — backup has 4x copies of each)
+  // Rutinas URUGUAY only from backup (RIO routines are now generated by createRioRoutines)
   if (backup.rutinas_rio_uruguay) {
     const existing = store.getAll(store.KEYS.rutinas);
-    const existingIds = existing.filter(r => r.lugar === 'RIO' || r.lugar === 'URUGUAY').map(r => r.id);
+    const existingIds = existing.filter(r => r.lugar === 'URUGUAY').map(r => r.id);
 
     // Deduplicate by usuario+numero (keep first occurrence)
     const seen = new Set();
@@ -682,26 +682,25 @@ function migrateBackup(backup) {
       const key = `${r.usuario}|${r.numero}`;
       if (seen.has(key)) return false;
       seen.add(key);
-      return true;
+      // Only keep URUGUAY routines — RIO are now generated fresh
+      const isUY = (r.nombre || '').includes('🇺🇾');
+      return isUY;
     });
 
     const newRutinas = deduped
       .map(r => {
-        const isUY = (r.nombre || '').includes('🇺🇾');
-        return { ...r, id: r.id || uid(), lugar: isUY ? 'URUGUAY' : 'RIO', tipo: 'cross', pendingSync: false };
+        return { ...r, id: r.id || uid(), lugar: 'URUGUAY', tipo: 'cross', pendingSync: false };
       })
       .filter(r => !existingIds.includes(r.id));
 
-    // Renumber per lugar: #001, #002, ...
-    const counters = { RIO: 0, URUGUAY: 0 };
-    newRutinas.forEach(r => {
-      counters[r.lugar] = (counters[r.lugar] || 0) + 1;
-      r.numero = `#${String(counters[r.lugar]).padStart(3, '0')}`;
+    // Renumber: #001, #002, ...
+    newRutinas.forEach((r, i) => {
+      r.numero = `#${String(i + 1).padStart(3, '0')}`;
     });
 
     if (newRutinas.length > 0) {
       store.set(store.KEYS.rutinas, [...existing, ...newRutinas]);
-      console.log(`[Seed] Loaded ${newRutinas.length} RIO/UY routines (deduped from ${backup.rutinas_rio_uruguay.length})`);
+      console.log(`[Seed] Loaded ${newRutinas.length} URUGUAY routines (from ${backup.rutinas_rio_uruguay.length} backup entries)`);
     }
   }
 }
@@ -789,12 +788,12 @@ export function verifySeedV2() {
 
 export async function seedV2() {
   const version = store.getVersion();
-  if (version === '2.11') {
-    console.log('[Seed] Already at v2.11');
+  if (version === '2.12') {
+    console.log('[Seed] Already at v2.12');
     return;
   }
 
-  console.log('[Seed] Initializing v2.11...');
+  console.log('[Seed] Initializing v2.12...');
 
   // Create SPORT_FITNESS routines
   const leanRoutines = createLeanRoutines();
@@ -829,7 +828,7 @@ export async function seedV2() {
   store.set(store.KEYS.overrides, overrides);
 
   // Set version
-  store.setVersion('2.11');
+  store.setVersion('2.12');
 
   // Verify
   verifySeedV2();

@@ -383,6 +383,167 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'Secuencia combinada de ejercicios abdominales sin pausa: crunches + bicicleta + elevación de piernas + plancha. Cada ejercicio por 10-15 reps antes de pasar al siguiente. Trabaja recto abdominal, oblicuos y core profundo.'
   },
+  // ── FUNCIONAL / RÍO ────────────────────────────────────────────────────────
+  {
+    nombre: 'Flexiones',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Cuerpo recto como tabla, manos al ancho de hombros. Bajá el pecho al suelo flexionando los codos a ~45° del torso y empujá hasta extensión. Trabaja pectoral, deltoides anterior y tríceps. Ejercicio base de empuje con peso corporal.'
+  },
+  {
+    nombre: 'Flexiones explosivas',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Flexión donde al subir empujás con fuerza suficiente para que las manos se despeguen del suelo. Aterrizá suave y repetí. Trabaja potencia de pectoral y tríceps. Podés aplaudir arriba para mayor dificultad.'
+  },
+  {
+    nombre: 'Flexiones inclinadas',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Flexiones con los pies elevados en un banco. El ángulo de declive traslada el trabajo al pectoral superior y deltoides anterior. Mantené el core firme y bajá el pecho controlado entre las manos.'
+  },
+  {
+    nombre: 'Dips en paralelas',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Apoyado en barras paralelas, bajá el cuerpo flexionando los codos con el torso inclinado hacia adelante. Subí empujando. La inclinación enfatiza el pectoral; más erguido trabaja más tríceps. Codos a ~45° del cuerpo.'
+  },
+  {
+    nombre: 'Dominadas',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Colgado de la barra con agarre prono al ancho de hombros, empujá los codos hacia abajo hasta que el mentón supere la barra. Bajá controlado a extensión completa. Trabaja dorsal ancho, romboides, trapecio y bíceps.'
+  },
+  {
+    nombre: 'Dominadas australianas',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Remo invertido bajo una barra baja con los pies en el suelo y el cuerpo recto. Tirá el pecho hacia la barra apretando omóplatos. Ajustá el ángulo del cuerpo para mayor o menor dificultad. Trabaja dorsales, romboides y bíceps.'
+  },
+  {
+    nombre: 'Dominadas cerradas',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Dominada con agarre supino o neutro cerrado, manos al ancho de hombros o menos. Mayor participación de bíceps y braquial que el agarre abierto. Subí hasta que el mentón supere la barra y bajá controlado.'
+  },
+  {
+    nombre: 'Dominadas grip neutro',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Dominada con palmas enfrentadas (agarre neutro). Posición más natural para el hombro que permite mayor rango de movimiento. Trabaja dorsales y bíceps de forma equilibrada con menor estrés articular.'
+  },
+  {
+    nombre: 'TRX row',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Colgado de las correas del TRX con el cuerpo inclinado, tirá el pecho hacia las manos llevando los codos atrás. Apretá omóplatos al final. Cuanto más horizontal el cuerpo, más difícil. Trabaja dorsales, romboides y bíceps.'
+  },
+  {
+    nombre: 'Remo alto en TRX',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Remo en TRX con codos altos a la altura de los hombros, tirando hacia la cara. Similar a un face pull pero con peso corporal. Enfatiza deltoides posterior, trapecio medio y rotadores externos del hombro.'
+  },
+  {
+    nombre: 'TRX face pull',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con las correas del TRX, tirá hacia la cara abriendo los codos y rotando externamente los hombros al final. Las manos quedan a los lados de la cabeza. Trabaja deltoides posterior, manguito rotador y retractores de escápula.'
+  },
+  {
+    nombre: 'Muscle-up negativo en barra',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Empezá arriba de la barra (saltando o con impulso) y bajá lo más lento posible: primero la fase de dip y luego la fase de dominada. Trabaja la fuerza excéntrica necesaria para progresar hacia el muscle-up completo.'
+  },
+  {
+    nombre: 'Banda pull-apart',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con banda tomada frente al pecho con ambas manos, separá las manos estirando la banda hasta que toque el pecho. Apretá omóplatos al final. Trabaja romboides, trapecio medio y deltoides posterior.'
+  },
+  {
+    nombre: 'Banda lateral walk',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con una mini-band en tobillos o rodillas, caminá lateralmente con pasos cortos manteniendo tensión constante. Rodillas semiflexionadas, torso erguido. Activa glúteo medio, abductores y estabilizadores de cadera.'
+  },
+  {
+    nombre: 'Banda dislocates',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con una banda elástica ancha tomada con ambas manos y brazos rectos, pasala por encima de la cabeza hacia atrás y volvé al frente. Abre los hombros, mejora movilidad del manguito rotador y corrige postura.'
+  },
+  {
+    nombre: 'Banda face pull',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con una banda anclada a la altura de la cara, tirá hacia la cara abriendo los codos y rotando externamente los hombros. Activa deltoides posterior, trapecio y rotadores externos. Calentamiento clave para empuje y tracción.'
+  },
+  {
+    nombre: 'Rotación de hombros',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Círculos amplios con los brazos, progresando de pequeños a grandes, hacia adelante y atrás. Calienta la articulación del hombro activando deltoides, manguito rotador y trapecios. Esencial antes de ejercicios de tren superior.'
+  },
+  {
+    nombre: 'Rotación torácica',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En cuatro puntos o sentado, con una mano detrás de la cabeza, rotá el torso abriendo el codo hacia el techo. Volvé controlado. Mejora la movilidad torácica sin compensar con la lumbar. Ideal antes de empuje y tracción.'
+  },
+  {
+    nombre: 'Cat-cow',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En cuatro puntos, alterná entre arquear la espalda hacia arriba (gato) y hundirla hacia abajo (vaca), coordinando con la respiración. Moviliza toda la columna vertebral, alivia tensión y prepara la espalda para el entrenamiento.'
+  },
+  {
+    nombre: 'Hip 90/90 mobility',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Sentado en el suelo con ambas piernas a 90°, rotá las caderas alternando la posición de las piernas de un lado al otro. Mejora la rotación interna y externa de cadera, clave para sentadillas y zancadas.'
+  },
+  {
+    nombre: 'Movilidad de cadera',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Serie de movimientos para abrir las caderas: círculos, 90/90, estocadas profundas, apertura de mariposa. Mejora el rango de movimiento de cadera y previene lesiones en ejercicios de tren inferior.'
+  },
+  {
+    nombre: 'Movilidad de hombros',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Secuencia de rotaciones, dislocaciones y círculos de hombro para preparar la articulación. Incluye rotación interna/externa, flexión y extensión activa. Previene lesiones del manguito rotador.'
+  },
+  {
+    nombre: 'Activación glúteo con loop band',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con una mini-band en las rodillas, hacé puentes de glúteo, clamshells o abducción lateral. Activa glúteo medio y mayor antes del entrenamiento de piernas. Mejora la conexión mente-músculo y protege la espalda baja.'
+  },
+  {
+    nombre: 'Loop band abducción parada',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De pie con mini-band en los tobillos, levantá una pierna lateralmente contra la resistencia manteniendo el torso erguido. Activa glúteo medio y estabilizadores de cadera en posición funcional.'
+  },
+  {
+    nombre: 'Patada de glúteo con tobillera',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'En cuatro puntos o apoyada en banco, con tobillera con peso, extendé una pierna hacia atrás y arriba. Apretá glúteos arriba y bajá controlado. Aislamiento de glúteo mayor con resistencia adicional.'
+  },
+  {
+    nombre: 'Step-up en banco',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Subí a un banco con una pierna empujando con el talón, extendé completamente la cadera arriba y bajá controlado con la misma pierna. Trabaja cuádriceps y glúteos de forma unilateral. Se puede agregar carga con KB o chaleco.'
+  },
+  {
+    nombre: 'Ab wheel',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Arrodillado con la rueda abdominal, rodá hacia adelante extendiendo el cuerpo lo más posible manteniendo el core firme y la espalda sin arquear. Volvé contrayendo abdominales. Trabaja recto abdominal, oblicuos y serrato con intensidad alta.'
+  },
+  {
+    nombre: 'Hollow body',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Acostado boca arriba, levantá hombros y piernas del suelo con los brazos extendidos junto a las orejas. Mantené la zona lumbar pegada al piso. Posición de tensión total del core anterior. Mantené el tiempo indicado.'
+  },
+  {
+    nombre: 'L-sit en paralelas',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Apoyado en barras paralelas con los brazos extendidos, elevá las piernas rectas hasta paralelas al suelo formando una L. Mantené la posición. Trabaja abdominales, flexores de cadera y tríceps isométrico.'
+  },
+  {
+    nombre: 'Plancha con elevación alternada',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Desde posición de plancha, levantá brazo y pierna opuestos alternando (bird-dog en plancha). Mantené 2s cada lado sin rotar la cadera. Trabaja anti-rotación del core y coordinación neuromuscular.'
+  },
+  {
+    nombre: 'Plancha en paralelas',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Plancha con las manos apoyadas en barras paralelas. La elevación aumenta el rango y la inestabilidad. Mantené el cuerpo recto activando core y glúteos. Trabaja estabilidad de hombros y core profundo.'
+  },
+  {
+    nombre: 'Bear crawl',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En cuatro puntos con las rodillas apenas despegadas del suelo, avanzá moviendo mano y pie opuestos simultáneamente. Mantené la espalda plana y la cadera baja. Trabaja core, hombros, cuádriceps y coordinación.'
+  },
 ];
 
 // Helper: get all exercises for a given group
