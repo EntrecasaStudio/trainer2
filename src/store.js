@@ -1,4 +1,5 @@
 // store.js — localStorage as primary source of truth, Firestore sync
+import { queueSync } from './js/services/sync.js';
 
 const KEYS = {
   rutinas: 'gym_rutinas',
@@ -25,6 +26,7 @@ export const store = {
   set(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
     this._notify(key, value);
+    queueSync(key);
   },
 
   // Array helpers
