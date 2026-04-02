@@ -37,21 +37,21 @@
 .home-day-card-body:active { transform: scale(0.99); transition: transform 0.1s; }
 
 .home-day-card-rest {
+  text-align: center;
   align-items: center;
-  gap: var(--space-md);
-  cursor: default;
+  justify-content: center;
+  padding: var(--space-2xl) var(--space-lg);
 }
-.home-day-card-rest:active { transform: none; }
 
-.home-day-title {
+.rest-day-emoji { font-size: var(--text-2xl); margin-bottom: var(--space-md); }
+.rest-day-text {
   font-size: var(--text-lg);
   font-weight: var(--fw-bold);
-  line-height: 1.2;
+  margin-bottom: var(--space-sm);
 }
-.home-day-subtitle {
+.rest-day-next {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
-  margin-top: 2px;
 }
 
 .home-day-card-actions {
@@ -172,7 +172,6 @@
   margin-left: var(--space-sm);
 }
 
-/* (old rest-day-card and routine-card-actions replaced by home-day-card) */
 
 /* Calendar */
 .calendar {
