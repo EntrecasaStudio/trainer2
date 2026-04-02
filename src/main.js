@@ -34,7 +34,8 @@ async function bootApp() {
     updateNavActive(route);
     const hideChrome = route === 'workout' || route === 'rutina-edit';
     navEl.classList.toggle('hidden', hideChrome);
-    if (avatarMenuEl) avatarMenuEl.classList.toggle('hidden', hideChrome);
+    const hideAvatar = hideChrome || route === 'rutinas' || route === 'ejercicios';
+    if (avatarMenuEl) avatarMenuEl.classList.toggle('hidden', hideAvatar);
   });
 
   // Mount avatar menu
