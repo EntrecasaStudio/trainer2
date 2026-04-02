@@ -270,7 +270,7 @@ function renderExpanded(rutina) {
             `).join('')}
           </div>
         </div>
-      `}).join('')}
+      `}).join('<div class="circuit-divider"></div>')}
       <div class="rutina-actions">
         <button class="btn-action-icon btn-action-delete" title="Eliminar">
           <i class="ph ph-trash" style="font-size:18px;"></i>

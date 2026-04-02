@@ -200,46 +200,21 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+}
+.exercise-name-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
 }
 .exercise-card-name {
   font-size: var(--text-base);
   font-weight: var(--fw-bold);
-  flex: 1;
   min-width: 0;
 }
 
-/* ── Collapsed summary + check-all (v1 pattern) ─────────────────────────── */
-.exercise-summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--text-sm);
-  color: var(--color-text-muted);
-  padding: var(--space-xs) 0 0;
-  font-variant-numeric: tabular-nums;
-}
-
-.check-all-btn {
-  width: 32px; height: 32px;
-  border-radius: 50%;
-  border: 2px solid var(--color-border);
-  background: transparent;
-  color: var(--color-text-muted);
-  font-size: var(--text-base);
-  cursor: pointer;
-  flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
-.check-all-btn.all-done {
-  border-color: var(--color-accent);
-  background: var(--color-accent);
-  color: var(--color-bg);
-  font-weight: var(--fw-bold);
-}
+/* (collapsed summary removed — series always visible) */
 
 /* ── Expanded body ───────────────────────────────────────────────────────── */
 .exercise-body {

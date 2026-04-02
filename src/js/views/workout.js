@@ -6,10 +6,8 @@ import { showToast } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 
-// ── SVG icons (v1 style) ────────────────────────────────────────────────────
+// ── SVG icons ────────────────────────────────────────────────────────────────
 const SVG_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-const SVG_CIRCLE = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/></svg>`;
-const SVG_CHECK_CIRCLE = `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`;
 
 // ── Auto-derive muscle groups from exercises ────────────────────────────────
 function getCircuitGrupos(circ) {
@@ -33,7 +31,6 @@ let timerInterval = null;
 let elapsedSeconds = 0;
 let activeCircuitIdx = 0;
 let incremento = 2.5;
-let expandedExercises = new Set();
 let editMode = false;
 
 const WS_KEY = 'gym_active_workout';
@@ -54,7 +51,6 @@ function restoreWorkout() {
     elapsedSeconds = data.elapsedSeconds || 0;
     activeCircuitIdx = data.activeCircuitIdx || 0;
     incremento = data.incremento || 2.5;
-    expandedExercises = new Set([`${activeCircuitIdx}-0`]);
     return true;
   } catch { return false; }
 }
@@ -91,7 +87,6 @@ export function mountWorkout(container, params) {
   const usuario = store.getActiveUser();
   elapsedSeconds = 0;
   activeCircuitIdx = 0;
-  expandedExercises = new Set(['0-0']);
   incremento = 2.5;
   editMode = false;
 
@@ -223,25 +218,20 @@ function renderWorkout(container) {
 
 // ── Exercise card (v1-style: collapsed summary+check, expanded steppers) ────
 function renderExerciseCard(e, ci, ei) {
-  const key = `${ci}-${ei}`;
-  const isExpanded = expandedExercises.has(key);
-  const doneCount = e.seriesData.filter(s => s.done).length;
   const totalSeries = e.seriesData.length;
-  const allDone = doneCount === totalSeries;
+  const allDone = e.seriesData.every(s => s.done);
   const circ = workoutState.circuitos[ci];
   const canRemove = editMode && circ.ejercicios.length > 1;
 
-  // Summary text for collapsed state
-  const summaryParts = [`${totalSeries} series`];
-  if (e.seriesData[0]) summaryParts.push(`${e.seriesData[0].reps} rep`);
-  if (e.usaPeso && e.seriesData[0]) summaryParts.push(`${e.seriesData[0].peso} kg`);
-  if (doneCount > 0) summaryParts.push(`${doneCount}/${totalSeries} ✓`);
-  const summaryText = summaryParts.join(' · ');
-
   return `
-    <div class="exercise-card ${isExpanded ? 'expanded' : ''} ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
-      <div class="exercise-card-header" data-expand-key="${key}">
-        <div class="exercise-card-name">${e.nombre}</div>
+    <div class="exercise-card expanded ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
+      <div class="exercise-card-header">
+        <div class="exercise-name-group">
+          <div class="exercise-card-name">${e.nombre}</div>
+          <button class="btn-icon info-btn" data-nombre="${e.nombre}" title="Info">
+            <i class="ph ph-info" style="font-size:20px;color:var(--color-text-muted);"></i>
+          </button>
+        </div>
         <div style="display:flex;align-items:center;gap:4px;">
           ${editMode ? `
             <button class="btn-icon edit-action-btn" data-action="replace-exercise" data-ci="${ci}" data-ei="${ei}" title="Reemplazar">
@@ -252,23 +242,10 @@ function renderExerciseCard(e, ci, ei) {
               <i class="ph ph-trash" style="font-size:18px;color:var(--color-danger);"></i>
             </button>` : ''}
           ` : ''}
-          <button class="btn-icon info-btn" data-nombre="${e.nombre}" title="Info">
-            <i class="ph ph-info" style="font-size:18px;color:var(--color-text-muted);"></i>
-          </button>
-          <button class="btn-icon ej-toggle-btn" data-expand-key="${key}">
-            <i class="ph ph-caret-down" style="font-size:16px;color:var(--color-text-muted);transition:transform 0.2s;${isExpanded ? 'transform:rotate(180deg);' : ''}"></i>
-          </button>
         </div>
       </div>
 
-      <div class="exercise-summary" data-summary-key="${key}" ${isExpanded ? 'style="display:none;"' : ''}>
-        <span>${summaryText}</span>
-        <button class="check-all-btn ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
-          ${allDone ? '✓' : '○'}
-        </button>
-      </div>
-
-      <div class="exercise-body" data-body-key="${key}" ${isExpanded ? '' : 'style="display:none;"'}>
+      <div class="exercise-body">
         ${e._suggestion ? `
           <div class="suggestion-banner">
             <i class="ph ph-trend-up"></i> +${incremento}kg sugerido (→ ${e._suggestion}kg)
@@ -302,7 +279,7 @@ function renderExerciseCard(e, ci, ei) {
             <div class="vuelta-right">
               <span class="vuelta-label">S${si + 1}</span>
               <button class="vuelta-check" data-ci="${ci}" data-ei="${ei}" data-si="${si}">
-                ${s.done ? SVG_CHECK_CIRCLE : SVG_CIRCLE}
+                <i class="${s.done ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:22px;"></i>
               </button>
               ${totalSeries > 1 ? `
               <button class="vuelta-remove" data-ci="${ci}" data-ei="${ei}" data-si="${si}" title="Quitar serie">
@@ -395,37 +372,9 @@ function bindEvents(container) {
 }
 
 function bindExerciseEvents(container, scope) {
-  // Expand/collapse — header click (excluding buttons)
-  scope.querySelectorAll('.exercise-card-header[data-expand-key]').forEach(header => {
-    header.addEventListener('click', (evt) => {
-      if (evt.target.closest('.btn-icon') || evt.target.closest('.edit-action-btn')) return;
-      toggleExpand(header.dataset.expandKey, container);
-    });
-  });
-  // Chevron toggle
-  scope.querySelectorAll('.ej-toggle-btn[data-expand-key]').forEach(btn => {
-    btn.addEventListener('click', (evt) => {
-      evt.stopPropagation();
-      toggleExpand(btn.dataset.expandKey, container);
-    });
-  });
-
   // Info buttons
   scope.querySelectorAll('.info-btn').forEach(btn => {
     btn.addEventListener('click', (e) => { e.stopPropagation(); openEjercicioInfo(btn.dataset.nombre); });
-  });
-
-  // Check-all button (collapsed)
-  scope.querySelectorAll('.check-all-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const { ci, ei } = btn.dataset;
-      const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
-      const allDone = ejercicio.seriesData.every(s => s.done);
-      ejercicio.seriesData.forEach(s => { s.done = !allDone; });
-      checkCircuitCompletion(ci, container);
-      persistWorkout();
-      refreshExercises(container);
-    });
   });
 
   // Stepper buttons
@@ -514,24 +463,6 @@ function bindExerciseEvents(container, scope) {
   });
 }
 
-function toggleExpand(key, container) {
-  if (expandedExercises.has(key)) expandedExercises.delete(key);
-  else expandedExercises.add(key);
-  // Toggle DOM directly for speed
-  const summary = document.querySelector(`[data-summary-key="${key}"]`);
-  const body = document.querySelector(`[data-body-key="${key}"]`);
-  const card = summary?.closest('.exercise-card');
-  if (summary && body) {
-    const isNowExpanded = expandedExercises.has(key);
-    summary.style.display = isNowExpanded ? 'none' : '';
-    body.style.display = isNowExpanded ? '' : 'none';
-    card?.classList.toggle('expanded', isNowExpanded);
-    // Flip chevron
-    const chevron = card?.querySelector('.ej-toggle-btn i');
-    if (chevron) chevron.style.transform = isNowExpanded ? 'rotate(180deg)' : '';
-  }
-}
-
 function refreshExercises(container) {
   const el = document.getElementById('exercises-container');
   if (!el) return;
@@ -560,7 +491,6 @@ function checkCircuitCompletion(ci, container) {
   if (circ.completed && activeCircuitIdx < workoutState.circuitos.length - 1) {
     setTimeout(() => {
       activeCircuitIdx++;
-      expandedExercises = new Set([`${activeCircuitIdx}-0`]);
       renderWorkout(container);
     }, 800);
   }

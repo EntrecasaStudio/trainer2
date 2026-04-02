@@ -75,7 +75,14 @@
 
 /* Circuit list */
 .circuit-item {
-  margin-bottom: var(--space-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.circuit-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-xs) 0;
+  opacity: 0.5;
 }
 
 .circuit-header {

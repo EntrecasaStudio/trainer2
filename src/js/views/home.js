@@ -117,7 +117,7 @@ function renderRoutineCard() {
       </div>
       <div class="rutina-expand-wrap ${isExpanded ? 'open' : ''}">
         <div class="rutina-expand-inner">
-          ${rutina.circuitos.map((c, i) => renderCircuit(c, i)).join('')}
+          ${renderCircuits(rutina.circuitos)}
           <div class="rutina-actions">
             <button class="btn-action-icon btn-action-delete" id="btn-delete-routine" title="Eliminar">
               <i class="ph ph-trash" style="font-size:18px;"></i>
@@ -215,6 +215,11 @@ function renderCircuit(c, i) {
       </div>
     </div>
   `;
+}
+
+// Wrapper to join circuits with dividers
+function renderCircuits(circuitos) {
+  return circuitos.map((c, i) => renderCircuit(c, i)).join('<div class="circuit-divider"></div>');
 }
 
 function openAssignSheet() {
