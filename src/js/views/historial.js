@@ -11,7 +11,7 @@ export function mountHistorial(container) {
   _currentUser = store.getActiveUser();
 
   container.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg);">
+    <div class="rutinas-header">
       <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Historial</h1>
       <div class="user-toggle" style="margin:0;">
         <button class="user-toggle-btn ${_currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>

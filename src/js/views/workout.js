@@ -260,7 +260,7 @@ function renderExerciseCard(e, ci, ei) {
           <div class="exercise-summary">
             <span>${summaryText}</span>
             <button class="check-all-btn ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
-              ${allDone ? '✓' : '○'}
+              <i class="${allDone ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:24px;"></i>
             </button>
           </div>
         </div>

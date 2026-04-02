@@ -5,7 +5,7 @@ export function mountProgreso(container) {
   let currentUser = activeUsuario;
 
   container.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg);">
+    <div class="rutinas-header">
       <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Progreso</h1>
       <div class="user-toggle" style="margin:0;">
         <button class="user-toggle-btn ${currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
