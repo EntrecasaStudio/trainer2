@@ -3,6 +3,7 @@ import { router } from '../../router.js';
 import { getGreeting, formatDateLong, getLugarBadge, getCircuitColor, formatSetsReps } from '../../utils/format.js';
 import { formatDateISO, getNextTrainingDay, isTrainingDay, WEEKDAY_LABELS, MONTH_NAMES, getISODayOfWeek, getCycleWeek, getFocusForDay } from '../../utils/calendar.js';
 import { openModal, closeModal } from '../components/modal.js';
+import { showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 
 let selectedDate = new Date();
@@ -18,9 +19,11 @@ export function mountHome(container) {
 
 function render(container) {
   container.innerHTML = `
-    <div class="user-toggle" style="margin-top:var(--space-sm);">
-      <button class="user-toggle-btn ${activeUsuario === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
-      <button class="user-toggle-btn ${activeUsuario === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+    <div style="display:flex;justify-content:flex-end;margin-top:var(--space-sm);margin-bottom:var(--space-md);">
+      <div class="user-toggle" style="margin:0;">
+        <button class="user-toggle-btn ${activeUsuario === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
+        <button class="user-toggle-btn ${activeUsuario === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+      </div>
     </div>
     <div id="routine-card-container"></div>
     <div id="calendar-container"></div>
@@ -147,11 +150,19 @@ function renderRoutineCard() {
     e.stopPropagation();
     const dateStr = formatDateISO(selectedDate);
     const overrides = store.getObj(store.KEYS.overrides);
-    if (overrides[activeUsuario]?.[dateStr]) {
+    const saved = overrides[activeUsuario]?.[dateStr];
+    if (saved) {
       delete overrides[activeUsuario][dateStr];
       store.set(store.KEYS.overrides, overrides);
+      renderRoutineCard();
+      showToastAction('Día de descanso', 'Deshacer', () => {
+        const ov = store.getObj(store.KEYS.overrides);
+        if (!ov[activeUsuario]) ov[activeUsuario] = {};
+        ov[activeUsuario][dateStr] = saved;
+        store.set(store.KEYS.overrides, ov);
+        renderRoutineCard();
+      });
     }
-    renderRoutineCard();
   });
 
   // Info buttons on exercise rows

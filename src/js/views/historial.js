@@ -11,10 +11,12 @@ export function mountHistorial(container) {
   _currentUser = store.getActiveUser();
 
   container.innerHTML = `
-    <h1 style="font-size: var(--text-xl); font-weight: var(--fw-bold); margin-bottom: var(--space-md);">Historial</h1>
-    <div class="user-toggle" style="margin-bottom: var(--space-lg);">
-      <button class="user-toggle-btn ${_currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
-      <button class="user-toggle-btn ${_currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg);">
+      <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Historial</h1>
+      <div class="user-toggle" style="margin:0;">
+        <button class="user-toggle-btn ${_currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
+        <button class="user-toggle-btn ${_currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+      </div>
     </div>
     <div id="historial-list"></div>
   `;

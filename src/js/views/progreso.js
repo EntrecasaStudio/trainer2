@@ -5,10 +5,12 @@ export function mountProgreso(container) {
   let currentUser = activeUsuario;
 
   container.innerHTML = `
-    <h1 style="font-size: var(--text-xl); font-weight: var(--fw-bold); margin-bottom: var(--space-md);">Progreso</h1>
-    <div class="user-toggle" style="margin-bottom: var(--space-lg);">
-      <button class="user-toggle-btn ${currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
-      <button class="user-toggle-btn ${currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:var(--space-lg);">
+      <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Progreso</h1>
+      <div class="user-toggle" style="margin:0;">
+        <button class="user-toggle-btn ${currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
+        <button class="user-toggle-btn ${currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+      </div>
     </div>
     <div id="progreso-list"></div>
   `;

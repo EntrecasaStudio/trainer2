@@ -2,7 +2,7 @@
 .avatar-menu {
   position: fixed;
   top: var(--space-md);
-  right: var(--space-md);
+  left: var(--space-md);
   z-index: 90;
 }
 
