@@ -255,14 +255,20 @@ function renderExerciseCard(e, ci, ei) {
         </div>
       </div>
 
-      <div class="exercise-summary" data-summary-key="${key}" ${isExpanded ? 'style="display:none;"' : ''}>
-        <span>${summaryText}</span>
-        <button class="check-all-btn ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
-          ${allDone ? '✓' : '○'}
-        </button>
+      <div class="exercise-collapse-wrap ${isExpanded ? '' : 'show'}" data-summary-key="${key}">
+        <div class="exercise-collapse-inner">
+          <div class="exercise-summary">
+            <span>${summaryText}</span>
+            <button class="check-all-btn ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
+              ${allDone ? '✓' : '○'}
+            </button>
+          </div>
+        </div>
       </div>
 
-      <div class="exercise-body" data-body-key="${key}" ${isExpanded ? '' : 'style="display:none;"'}>
+      <div class="exercise-collapse-wrap ${isExpanded ? 'show' : ''}" data-body-key="${key}">
+        <div class="exercise-collapse-inner">
+          <div class="exercise-body">
         ${e._suggestion ? `
           <div class="suggestion-banner">
             <i class="ph ph-trend-up"></i> +${incremento}kg sugerido (→ ${e._suggestion}kg)
@@ -309,6 +315,8 @@ function renderExerciseCard(e, ci, ei) {
         <button class="add-serie-btn" data-ci="${ci}" data-ei="${ei}">
           <i class="ph ph-plus"></i> Serie
         </button>
+          </div>
+        </div>
       </div>
     </div>
   `;
@@ -504,13 +512,13 @@ function bindExerciseEvents(container, scope) {
 function toggleExpand(key, container) {
   if (expandedExercises.has(key)) expandedExercises.delete(key);
   else expandedExercises.add(key);
-  const summary = document.querySelector(`[data-summary-key="${key}"]`);
-  const body = document.querySelector(`[data-body-key="${key}"]`);
-  const card = summary?.closest('.exercise-card');
-  if (summary && body) {
+  const summaryWrap = document.querySelector(`[data-summary-key="${key}"]`);
+  const bodyWrap = document.querySelector(`[data-body-key="${key}"]`);
+  const card = summaryWrap?.closest('.exercise-card');
+  if (summaryWrap && bodyWrap) {
     const isNowExpanded = expandedExercises.has(key);
-    summary.style.display = isNowExpanded ? 'none' : '';
-    body.style.display = isNowExpanded ? '' : 'none';
+    summaryWrap.classList.toggle('show', !isNowExpanded);
+    bodyWrap.classList.toggle('show', isNowExpanded);
     card?.classList.toggle('expanded', isNowExpanded);
   }
 }

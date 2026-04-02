@@ -247,6 +247,19 @@
   font-weight: var(--fw-bold);
 }
 
+/* ── Animated collapse wrapper ──────────────────────────────────────────── */
+.exercise-collapse-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+.exercise-collapse-wrap.show {
+  grid-template-rows: 1fr;
+}
+.exercise-collapse-inner {
+  overflow: hidden;
+}
+
 /* ── Expanded body ───────────────────────────────────────────────────────── */
 .exercise-body {
   padding-top: var(--space-sm);
