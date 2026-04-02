@@ -786,14 +786,36 @@ export function verifySeedV2() {
   return true;
 }
 
+const SEED_VERSION = '2.13';
+
+// One-time dedup: clean duplicates from previous buggy seed runs
+function deduplicateRutinas() {
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  if (rutinas.length <= 400) return; // already clean
+
+  console.log(`[Dedup] Found ${rutinas.length} rutinas, deduplicating...`);
+  const seen = new Set();
+  const unique = rutinas.filter(r => {
+    const key = `${r.nombre}__${r.usuario}__${r.lugar}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+  store.set(store.KEYS.rutinas, unique);
+  console.log(`[Dedup] ✅ ${rutinas.length} → ${unique.length} rutinas`);
+}
+
 export async function seedV2() {
+  // Always dedup first (idempotent, fast if clean)
+  deduplicateRutinas();
+
   const version = store.getVersion();
-  if (version === '2.12') {
-    console.log('[Seed] Already at v2.12');
+  if (version === SEED_VERSION) {
+    console.log(`[Seed] Already at v${SEED_VERSION}`);
     return;
   }
 
-  console.log('[Seed] Initializing v2.12...');
+  console.log(`[Seed] Initializing v${SEED_VERSION}...`);
 
   // Create SPORT_FITNESS routines
   const leanRoutines = createLeanRoutines();
@@ -827,14 +849,14 @@ export async function seedV2() {
   const overrides = assignCalendar(allRutinas, planStartDate);
   store.set(store.KEYS.overrides, overrides);
 
-  // Set version
-  store.setVersion('2.12');
+  // Set version AFTER everything succeeds
+  store.setVersion(SEED_VERSION);
 
   // Verify
   verifySeedV2();
   verifyRioSeed();
 
-  console.log('[Seed] v2.11 complete');
+  console.log(`[Seed] v${SEED_VERSION} complete`);
 }
 
 // Export for testing

@@ -191,7 +191,6 @@ function renderList() {
               <span>${r.circuitos.length} circuitos</span>
             </div>
           </div>
-          <i class="ph ph-caret-down rutina-caret ${isExpanded ? 'rotated' : ''}"></i>
         </div>
         <div class="rutina-expand-wrap ${isExpanded ? 'open' : ''}">
           <div class="rutina-expand-inner">
@@ -208,18 +207,15 @@ function renderList() {
 
     item.querySelector('.rutina-list-top').addEventListener('click', () => {
       const wrap = item.querySelector('.rutina-expand-wrap');
-      const caret = item.querySelector('.rutina-caret');
       const isOpen = expandedRutinas.has(id);
 
       if (isOpen) {
         expandedRutinas.delete(id);
         wrap.classList.remove('open');
-        caret.classList.remove('rotated');
         item.classList.remove('expanded');
       } else {
         expandedRutinas.add(id);
         wrap.classList.add('open');
-        caret.classList.add('rotated');
         item.classList.add('expanded');
       }
     });

@@ -174,4 +174,35 @@ describe('Calendar assignment', () => {
       expect([1, 3, 5, 6].includes(dow), `${dateStr} is day ${dow}`).toBe(true);
     }
   });
+
+  describe('dedup and re-run guard', () => {
+    it('seedV2 does not duplicate on re-runs', async () => {
+      await seedV2();
+      const count1 = store.getAll(store.KEYS.rutinas).length;
+      await seedV2(); // second run
+      const count2 = store.getAll(store.KEYS.rutinas).length;
+      await seedV2(); // third run
+      const count3 = store.getAll(store.KEYS.rutinas).length;
+      expect(count2).toBe(count1);
+      expect(count3).toBe(count1);
+    });
+
+    it('dedup cleans duplicated rutinas', async () => {
+      // Seed once
+      await seedV2();
+      const rutinas = store.getAll(store.KEYS.rutinas);
+      const original = rutinas.length;
+
+      // Manually inject duplicates
+      store.set(store.KEYS.rutinas, [...rutinas, ...rutinas, ...rutinas]);
+      expect(store.getAll(store.KEYS.rutinas).length).toBe(original * 3);
+
+      // Re-seed triggers dedup
+      store.setVersion('0'); // force re-seed
+      await seedV2();
+      const cleaned = store.getAll(store.KEYS.rutinas);
+      // Should not have tripled
+      expect(cleaned.length).toBeLessThanOrEqual(original + 10);
+    });
+  });
 });

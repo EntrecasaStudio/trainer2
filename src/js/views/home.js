@@ -113,7 +113,6 @@ function renderRoutineCard() {
           </div>
           <div class="routine-name">${rutina.nombre}</div>
         </div>
-        <i class="ph ph-caret-down rutina-caret ${isExpanded ? 'rotated' : ''}"></i>
       </div>
       <div class="rutina-expand-wrap ${isExpanded ? 'open' : ''}">
         <div class="rutina-expand-inner">
@@ -141,9 +140,7 @@ function renderRoutineCard() {
   document.getElementById('routine-card-top')?.addEventListener('click', () => {
     container._homeExpanded = !container._homeExpanded;
     const wrap = container.querySelector('.rutina-expand-wrap');
-    const caret = container.querySelector('.rutina-caret');
     wrap.classList.toggle('open');
-    caret.classList.toggle('rotated');
   });
 
   document.getElementById('btn-start-workout')?.addEventListener('click', (e) => {
