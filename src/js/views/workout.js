@@ -286,7 +286,7 @@ function renderExerciseCard(e, ci, ei) {
               <div class="vuelta-group">
                 <div class="stepper stepper-sm">
                   <button class="stepper-btn" data-action="dec" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}">−</button>
-                  <span class="stepper-value" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}">${s.reps}</span>
+                  <input type="number" class="stepper-input" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}" value="${s.reps}" inputmode="numeric">
                   <button class="stepper-btn" data-action="inc" data-field="reps" data-ci="${ci}" data-ei="${ei}" data-si="${si}">+</button>
                 </div>
               </div>
@@ -294,7 +294,7 @@ function renderExerciseCard(e, ci, ei) {
               <div class="vuelta-group">
                 <div class="stepper stepper-sm">
                   <button class="stepper-btn" data-action="dec" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">−</button>
-                  <span class="stepper-value" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">${s.peso}</span>
+                  <input type="number" class="stepper-input" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}" value="${s.peso}" inputmode="decimal">
                   <button class="stepper-btn" data-action="inc" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">+</button>
                 </div>
               </div>` : ''}
@@ -433,16 +433,33 @@ function bindExerciseEvents(container, scope) {
       } else {
         series.peso = Math.max(0, parseFloat((series.peso + (action === 'inc' ? incremento : -incremento)).toFixed(2)));
       }
-      // Update displayed value
-      const valEl = btn.closest('.stepper')?.querySelector('.stepper-value');
+      const valEl = btn.closest('.stepper')?.querySelector('.stepper-input');
       if (valEl) {
-        valEl.textContent = field === 'peso' ? series.peso : series.reps;
+        valEl.value = field === 'peso' ? series.peso : series.reps;
         valEl.classList.remove('value-bump');
         void valEl.offsetWidth;
         valEl.classList.add('value-bump');
       }
       persistWorkout();
     });
+  });
+
+  // Stepper direct input
+  scope.querySelectorAll('.stepper-input').forEach(input => {
+    input.addEventListener('change', () => {
+      const { field, ci, ei, si } = input.dataset;
+      const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
+      const val = parseFloat(input.value) || 0;
+      if (field === 'reps') {
+        series.reps = Math.max(0, Math.round(val));
+        input.value = series.reps;
+      } else {
+        series.peso = Math.max(0, parseFloat(val.toFixed(2)));
+        input.value = series.peso;
+      }
+      persistWorkout();
+    });
+    input.addEventListener('focus', () => { input.select(); });
   });
 
   // Series done

@@ -666,6 +666,7 @@
   color: var(--color-text-muted);
   line-height: 1.6;
   white-space: pre-wrap;
+  margin-bottom: var(--space-xl);
 }
 
 /* ── selected rutina item ────────────────────────────────────────────────── */
