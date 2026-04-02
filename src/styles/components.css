@@ -551,15 +551,21 @@
   border-radius: var(--radius-full);
 }
 
+.grupo-exercises-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+  overflow: hidden;
+}
+.grupo-exercises-wrap.open {
+  grid-template-rows: 1fr;
+}
 .grupo-exercises {
   padding: var(--space-xs) 0;
   display: flex;
   flex-direction: column;
   gap: 2px;
-}
-
-.grupo-exercises.collapsed {
-  display: none;
+  overflow: hidden;
 }
 
 /* ── Ejercicio row ───────────────────────────────────────────────────────── */

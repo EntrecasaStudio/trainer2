@@ -154,12 +154,10 @@ function renderList(container) {
             <span class="ej-category-muscle">${muscleSvg}</span>
             <span class="grupo-name">${grupo}</span>
           </div>
-          <div style="display:flex;align-items:center;gap:var(--space-sm);">
-            <span class="grupo-count">${ejs.length}</span>
-            <i class="ph ph-caret-${isExpanded ? 'up' : 'down'}" style="color:var(--color-text-muted);font-size:14px;"></i>
-          </div>
+          <span class="grupo-count">${ejs.length}</span>
         </div>
-        <div class="grupo-exercises ${isExpanded ? '' : 'collapsed'}">
+        <div class="grupo-exercises-wrap ${isExpanded ? 'open' : ''}">
+          <div class="grupo-exercises">
           ${ejs.map(e => {
             const hasCustom = !!custom[e.nombre];
             return `
@@ -174,6 +172,7 @@ function renderList(container) {
               </div>
             `;
           }).join('')}
+          </div>
         </div>
       </div>
     `;
@@ -185,7 +184,9 @@ function renderList(container) {
       const grupo = header.dataset.grupo;
       if (expandedGroups.has(grupo)) expandedGroups.delete(grupo);
       else expandedGroups.add(grupo);
-      renderList(container);
+      const section = header.closest('.grupo-section');
+      const wrap = section?.querySelector('.grupo-exercises-wrap');
+      if (wrap) wrap.classList.toggle('open', expandedGroups.has(grupo));
     });
   });
 

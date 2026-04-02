@@ -21,7 +21,6 @@
   border-radius: var(--radius-xl);
   padding: var(--space-lg);
   margin-bottom: var(--space-lg);
-  min-height: 200px;
   display: flex;
   flex-direction: column;
 }
@@ -40,14 +39,14 @@
   text-align: center;
   align-items: center;
   justify-content: center;
-  padding: var(--space-xl) var(--space-lg);
+  padding: var(--space-md) var(--space-lg);
 }
 
-.rest-day-emoji { font-size: var(--text-2xl); margin-bottom: var(--space-md); }
+.rest-day-emoji { margin-bottom: var(--space-sm); }
 .rest-day-text {
   font-size: var(--text-lg);
   font-weight: var(--fw-bold);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
 }
 .rest-day-next {
   font-size: var(--text-sm);

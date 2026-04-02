@@ -68,13 +68,13 @@ function renderRoutineCard() {
     const nextRutina = getRoutineForDate(nextDay, activeUsuario);
     container.innerHTML = `
       <div class="home-day-card home-day-card-rest">
-        <div class="rest-day-emoji"><i class="ph-light ph-moon" style="font-size:var(--text-3xl);color:var(--color-text-muted);"></i></div>
+        <div class="rest-day-emoji"><i class="ph-light ph-moon" style="font-size:28px;color:var(--color-text-muted);"></i></div>
         <div class="rest-day-text">Día libre</div>
         <div class="rest-day-next">
           Próximo: ${nextRutina ? nextRutina.nombre : 'Sin asignar'} · ${formatDateLong(nextDay)}
         </div>
-        <button class="btn btn-secondary" id="btn-assign-day" style="margin-top:var(--space-md);">
-          <i class="ph ph-plus" style="font-size:16px;margin-right:var(--space-xs);"></i> Asignar rutina
+        <button class="btn btn-secondary btn-sm" id="btn-assign-day" style="margin-top:var(--space-sm);">
+          <i class="ph ph-plus" style="font-size:14px;margin-right:var(--space-xs);"></i> Asignar rutina
         </button>
       </div>
     `;
