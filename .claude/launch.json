@@ -3,7 +3,7 @@
   "configurations": [
     {
       "name": "dev",
-      "runtimeExecutable": "npx",
+      "runtimeExecutable": "/Users/claudio/.nvm/versions/node/v24.14.0/bin/npx",
       "runtimeArgs": ["serve", ".", "-l", "3000", "-s"],
       "port": 3000
     }

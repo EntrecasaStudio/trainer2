@@ -5,26 +5,41 @@ import { formatDateISO, getNextTrainingDay, isTrainingDay, WEEKDAY_LABELS, MONTH
 import { openModal, closeModal } from '../components/modal.js';
 import { showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
+import { EJERCICIOS_CATALOGO } from '../../ejercicios-catalogo.js';
 
 let selectedDate = new Date();
 let activeUsuario = null;
+let _searchQuery = '';
+let _searchVisible = false;
 
 export function mountHome(container) {
   activeUsuario = store.getActiveUser();
   document.body.setAttribute('data-usuario', activeUsuario);
   selectedDate = new Date();
   selectedDate.setHours(0, 0, 0, 0);
+  _searchQuery = '';
+  _searchVisible = false;
   render(container);
 }
 
 function render(container) {
   container.innerHTML = `
-    <div style="display:flex;justify-content:flex-end;margin-top:var(--space-sm);margin-bottom:var(--space-md);">
-      <div class="user-toggle" style="margin:0;">
-        <button class="user-toggle-btn ${activeUsuario === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
-        <button class="user-toggle-btn ${activeUsuario === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+    <div class="rutinas-header" style="margin-top:var(--space-sm);">
+      <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Home</h1>
+      <div class="rutinas-header-actions">
+        <button class="btn-icon-header" data-action="toggle-search" title="Buscar">
+          <i class="ph ph-magnifying-glass"></i>
+        </button>
+        <div class="user-toggle" style="margin:0;">
+          <button class="user-toggle-btn ${activeUsuario === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
+          <button class="user-toggle-btn ${activeUsuario === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+        </div>
       </div>
     </div>
+    <div class="rutina-search-wrap" id="home-search-wrap" style="display:none;">
+      <input type="text" class="search-input" id="home-search" placeholder="Buscar ejercicio..." autocomplete="off">
+    </div>
+    <div id="home-search-results" style="display:none;"></div>
     <div id="routine-card-container"></div>
     <div id="calendar-container"></div>
     <div id="next-workout-container"></div>
@@ -44,6 +59,27 @@ function render(container) {
     });
   });
 
+  // Search handlers
+  container.querySelector('[data-action="toggle-search"]').addEventListener('click', () => {
+    _searchVisible = !_searchVisible;
+    const wrap = document.getElementById('home-search-wrap');
+    const results = document.getElementById('home-search-results');
+    wrap.style.display = _searchVisible ? '' : 'none';
+    if (_searchVisible) {
+      document.getElementById('home-search').focus();
+    } else {
+      _searchQuery = '';
+      document.getElementById('home-search').value = '';
+      results.style.display = 'none';
+      results.innerHTML = '';
+    }
+  });
+
+  document.getElementById('home-search').addEventListener('input', (e) => {
+    _searchQuery = e.target.value.toLowerCase().trim();
+    renderSearchResults();
+  });
+
   renderRoutineCard();
   renderCalendar();
   renderNextWorkout();
@@ -58,6 +94,46 @@ function getRoutineForDate(date, usuario) {
 
   const rutinas = store.getAll(store.KEYS.rutinas);
   return rutinas.find(r => r.id === override.rutinaId) || null;
+}
+
+function renderSearchResults() {
+  const container = document.getElementById('home-search-results');
+  if (!container) return;
+
+  if (!_searchQuery) {
+    container.style.display = 'none';
+    container.innerHTML = '';
+    return;
+  }
+
+  const matches = EJERCICIOS_CATALOGO
+    .filter(e => e.nombre.toLowerCase().includes(_searchQuery) || e.grupo.toLowerCase().includes(_searchQuery))
+    .slice(0, 12);
+
+  if (matches.length === 0) {
+    container.style.display = '';
+    container.innerHTML = `
+      <div style="color:var(--color-text-muted);text-align:center;padding:var(--space-md);font-size:var(--text-sm);">Sin resultados</div>
+    `;
+    return;
+  }
+
+  container.style.display = '';
+  container.innerHTML = matches.map(e => `
+    <div class="home-search-item" data-nombre="${e.nombre}">
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:var(--text-sm);font-weight:var(--fw-medium);">${e.nombre}</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${e.grupo}</div>
+      </div>
+      <i class="ph ph-info" style="font-size:16px;color:var(--color-text-muted);"></i>
+    </div>
+  `).join('');
+
+  container.querySelectorAll('.home-search-item').forEach(item => {
+    item.addEventListener('click', () => {
+      openEjercicioInfo(item.dataset.nombre);
+    });
+  });
 }
 
 function renderRoutineCard() {
