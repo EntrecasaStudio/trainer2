@@ -5,18 +5,30 @@ import { showToast, showToastAction } from '../components/toast.js';
 
 let _container = null;
 let _currentUser = '';
+let _searchQuery = '';
+let _searchVisible = false;
 
 export function mountHistorial(container) {
   _container = container;
   _currentUser = store.getActiveUser();
+  _searchQuery = '';
+  _searchVisible = false;
 
   container.innerHTML = `
     <div class="rutinas-header">
       <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Historial</h1>
-      <div class="user-toggle" style="margin:0;">
-        <button class="user-toggle-btn ${_currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
-        <button class="user-toggle-btn ${_currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+      <div class="rutinas-header-actions">
+        <button class="btn-icon-header" data-action="toggle-search" title="Buscar">
+          <i class="ph ph-magnifying-glass"></i>
+        </button>
+        <div class="user-toggle" style="margin:0;">
+          <button class="user-toggle-btn ${_currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
+          <button class="user-toggle-btn ${_currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+        </div>
       </div>
+    </div>
+    <div class="rutina-search-wrap" id="historial-search-wrap" style="display:none;">
+      <input type="text" class="search-input" id="historial-search" placeholder="Buscar sesión..." autocomplete="off">
     </div>
     <div id="historial-list"></div>
   `;
@@ -31,6 +43,19 @@ export function mountHistorial(container) {
     });
   });
 
+  container.querySelector('[data-action="toggle-search"]').addEventListener('click', () => {
+    _searchVisible = !_searchVisible;
+    const wrap = document.getElementById('historial-search-wrap');
+    wrap.style.display = _searchVisible ? '' : 'none';
+    if (_searchVisible) document.getElementById('historial-search').focus();
+    else { _searchQuery = ''; document.getElementById('historial-search').value = ''; renderList(); }
+  });
+
+  document.getElementById('historial-search').addEventListener('input', (e) => {
+    _searchQuery = e.target.value.toLowerCase();
+    renderList();
+  });
+
   renderList();
 }
 
@@ -38,15 +63,17 @@ function renderList() {
   const listEl = document.getElementById('historial-list');
   if (!listEl) return;
 
+  const q = _searchQuery;
   const sesiones = store.getAll(store.KEYS.sesiones)
     .filter(s => s.usuario === _currentUser)
+    .filter(s => !q || (s.rutinaNombre || '').toLowerCase().includes(q))
     .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
   if (sesiones.length === 0) {
     listEl.innerHTML = `
       <div class="empty-state">
         <div class="empty-state-icon"><i class="ph-light ph-chart-bar" style="font-size:48px;"></i></div>
-        <div class="empty-state-text">Sin sesiones registradas</div>
+        <div class="empty-state-text">${q ? 'Sin resultados' : 'Sin sesiones registradas'}</div>
       </div>
     `;
     return;

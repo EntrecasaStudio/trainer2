@@ -1,16 +1,29 @@
 import { store } from '../../store.js';
 
+let _searchQuery = '';
+let _searchVisible = false;
+
 export function mountProgreso(container) {
   const activeUsuario = store.getActiveUser();
   let currentUser = activeUsuario;
+  _searchQuery = '';
+  _searchVisible = false;
 
   container.innerHTML = `
     <div class="rutinas-header">
       <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Progreso</h1>
-      <div class="user-toggle" style="margin:0;">
-        <button class="user-toggle-btn ${currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
-        <button class="user-toggle-btn ${currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+      <div class="rutinas-header-actions">
+        <button class="btn-icon-header" data-action="toggle-search" title="Buscar">
+          <i class="ph ph-magnifying-glass"></i>
+        </button>
+        <div class="user-toggle" style="margin:0;">
+          <button class="user-toggle-btn ${currentUser === 'Lean' ? 'active' : ''}" data-usuario="Lean">Lean</button>
+          <button class="user-toggle-btn ${currentUser === 'Nat' ? 'active' : ''}" data-usuario="Nat">Nat</button>
+        </div>
       </div>
+    </div>
+    <div class="rutina-search-wrap" id="progreso-search-wrap" style="display:none;">
+      <input type="text" class="search-input" id="progreso-search" placeholder="Buscar ejercicio..." autocomplete="off">
     </div>
     <div id="progreso-list"></div>
   `;
@@ -25,17 +38,33 @@ export function mountProgreso(container) {
     });
   });
 
+  container.querySelector('[data-action="toggle-search"]').addEventListener('click', () => {
+    _searchVisible = !_searchVisible;
+    const wrap = document.getElementById('progreso-search-wrap');
+    wrap.style.display = _searchVisible ? '' : 'none';
+    if (_searchVisible) document.getElementById('progreso-search').focus();
+    else { _searchQuery = ''; document.getElementById('progreso-search').value = ''; renderList(); }
+  });
+
+  document.getElementById('progreso-search').addEventListener('input', (e) => {
+    _searchQuery = e.target.value.toLowerCase();
+    renderList();
+  });
+
   renderList();
 
   function renderList() {
     const listEl = document.getElementById('progreso-list');
     const progresion = store.getObj(store.KEYS.progresion);
+    const q = _searchQuery;
     const entries = [];
 
     for (const [ejercicio, users] of Object.entries(progresion)) {
       const data = users[currentUser];
       if (data) {
-        entries.push({ ejercicio, ...data });
+        if (!q || ejercicio.toLowerCase().includes(q)) {
+          entries.push({ ejercicio, ...data });
+        }
       }
     }
 
@@ -45,7 +74,7 @@ export function mountProgreso(container) {
       listEl.innerHTML = `
         <div class="empty-state">
           <div class="empty-state-icon"><i class="ph-light ph-trend-up" style="font-size:48px;"></i></div>
-          <div class="empty-state-text">Sin datos de progresión aún.<br>Completá un entrenamiento para ver tus pesos.</div>
+          <div class="empty-state-text">${q ? 'Sin resultados' : 'Sin datos de progresión aún.<br>Completá un entrenamiento para ver tus pesos.'}</div>
         </div>
       `;
       return;
