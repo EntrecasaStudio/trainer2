@@ -41,10 +41,20 @@ async function bootApp() {
   mountAvatarMenu();
 
   if ('serviceWorker' in navigator) {
+    let refreshing = false;
+    // Reload page when new SW takes control (deploy detected)
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (!refreshing) {
+        refreshing = true;
+        window.location.reload();
+      }
+    });
     navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
       .then(reg => {
         // Force update check on every page load
         reg.update().catch(() => {});
+        // Also check periodically (every 60s)
+        setInterval(() => reg.update().catch(() => {}), 60000);
       })
       .catch(e => console.warn('[SW] Registration failed', e));
   }

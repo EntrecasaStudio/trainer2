@@ -67,15 +67,19 @@ function renderRoutineCard() {
     const nextDay = getNextTrainingDay(selectedDate);
     const nextRutina = getRoutineForDate(nextDay, activeUsuario);
     container.innerHTML = `
-      <div class="rest-day-card">
-        <div class="rest-day-emoji"><i class="ph-light ph-moon" style="font-size:var(--text-3xl);color:var(--color-text-muted);"></i></div>
-        <div class="rest-day-text">Día libre</div>
-        <div class="rest-day-next">
-          Próximo: ${nextRutina ? nextRutina.nombre : 'Sin asignar'} · ${formatDateLong(nextDay)}
+      <div class="home-day-card">
+        <div class="home-day-card-body home-day-card-rest">
+          <i class="ph-light ph-moon" style="font-size:32px;color:var(--color-text-muted);"></i>
+          <div>
+            <div class="home-day-title">Día libre</div>
+            <div class="home-day-subtitle">Próximo: ${nextRutina ? nextRutina.nombre : 'Sin asignar'} · ${formatDateLong(nextDay)}</div>
+          </div>
         </div>
-        <button class="btn btn-secondary" id="btn-assign-day" style="margin-top:var(--space-md);">
-          <i class="ph ph-plus" style="font-size:16px;margin-right:var(--space-xs);"></i> Asignar rutina
-        </button>
+        <div class="home-day-card-actions">
+          <button class="btn btn-secondary btn-sm" id="btn-assign-day">
+            <i class="ph ph-plus" style="font-size:14px;"></i> Asignar rutina
+          </button>
+        </div>
       </div>
     `;
     document.getElementById('btn-assign-day')?.addEventListener('click', () => {
@@ -85,28 +89,11 @@ function renderRoutineCard() {
   }
 
   const badge = getLugarBadge(rutina.lugar);
-
-  // Calculate completion for this date
-  const sesiones = store.getAll(store.KEYS.sesiones);
-  const dateStr = formatDateISO(selectedDate);
-  const sesionHoy = sesiones.find(s => s.fecha === dateStr && s.usuario === activeUsuario && s.rutinaId === rutina.id);
-  let progressPct = 0;
-  if (sesionHoy) {
-    let done = 0, total = 0;
-    (sesionHoy.circuitos || []).forEach(c => {
-      (c.ejercicios || []).forEach(e => {
-        total += (e.seriesData || []).length;
-        done += (e.seriesData || []).filter(s => s.done).length;
-      });
-    });
-    progressPct = total > 0 ? Math.round((done / total) * 100) : 100;
-  }
-
   const isExpanded = container._homeExpanded || false;
 
   container.innerHTML = `
-    <div class="routine-card">
-      <div class="routine-card-top" id="routine-card-top">
+    <div class="home-day-card">
+      <div class="home-day-card-body" id="routine-card-top">
         <div style="flex:1;min-width:0;">
           <div class="routine-card-header">
             <span class="badge ${badge.cls}">${badge.text} ${rutina.numero}</span>
@@ -114,23 +101,25 @@ function renderRoutineCard() {
           <div class="routine-name">${rutina.nombre}</div>
         </div>
       </div>
+
+      <div class="home-day-card-actions">
+        <button class="btn-action-icon" id="btn-rest-day" title="Descanso">
+          <i class="ph ph-moon" style="font-size:18px;"></i>
+        </button>
+        <button class="btn-action-icon" id="btn-edit-routine" title="Editar">
+          <i class="ph ph-pencil-simple" style="font-size:18px;"></i>
+        </button>
+        <button class="btn-action-icon" id="btn-swap-routine" title="Cambiar rutina">
+          <i class="ph ph-swap" style="font-size:18px;"></i>
+        </button>
+        <button class="btn-action-icon btn-action-icon--primary" id="btn-start-workout" title="Iniciar">
+          <i class="ph ph-play" style="font-size:20px;"></i>
+        </button>
+      </div>
+
       <div class="rutina-expand-wrap ${isExpanded ? 'open' : ''}">
         <div class="rutina-expand-inner">
           ${renderCircuits(rutina.circuitos)}
-          <div class="rutina-actions">
-            <button class="btn-action-icon btn-action-delete" id="btn-delete-routine" title="Eliminar">
-              <i class="ph ph-trash" style="font-size:18px;"></i>
-            </button>
-            <button class="btn-action-icon btn-action-edit" id="btn-edit-routine" title="Editar">
-              <i class="ph ph-pencil-simple" style="font-size:18px;"></i>
-            </button>
-            <button class="btn-action-icon btn-action-calendar" id="btn-swap-routine" title="Cambiar rutina">
-              <i class="ph ph-swap" style="font-size:18px;"></i>
-            </button>
-            <button class="btn-action-icon btn-action-icon--primary" id="btn-start-workout" title="Iniciar">
-              <i class="ph ph-play" style="font-size:20px;"></i>
-            </button>
-          </div>
         </div>
       </div>
     </div>
@@ -155,12 +144,11 @@ function renderRoutineCard() {
 
   document.getElementById('btn-swap-routine')?.addEventListener('click', (e) => {
     e.stopPropagation();
-    openEditSheet(rutina);
+    openAssignSheet();
   });
 
-  document.getElementById('btn-delete-routine')?.addEventListener('click', (e) => {
+  document.getElementById('btn-rest-day')?.addEventListener('click', (e) => {
     e.stopPropagation();
-    // Remove override for this date
     const dateStr = formatDateISO(selectedDate);
     const overrides = store.getObj(store.KEYS.overrides);
     if (overrides[activeUsuario]?.[dateStr]) {
