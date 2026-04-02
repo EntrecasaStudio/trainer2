@@ -31,6 +31,7 @@ let timerInterval = null;
 let elapsedSeconds = 0;
 let activeCircuitIdx = 0;
 let incremento = 2.5;
+let expandedExercises = new Set();
 let editMode = false;
 
 const WS_KEY = 'gym_active_workout';
@@ -218,14 +219,23 @@ function renderWorkout(container) {
 
 // ── Exercise card (v1-style: collapsed summary+check, expanded steppers) ────
 function renderExerciseCard(e, ci, ei) {
+  const key = `${ci}-${ei}`;
+  const isExpanded = expandedExercises.has(key);
   const totalSeries = e.seriesData.length;
-  const allDone = e.seriesData.every(s => s.done);
+  const doneCount = e.seriesData.filter(s => s.done).length;
+  const allDone = doneCount === totalSeries;
   const circ = workoutState.circuitos[ci];
   const canRemove = editMode && circ.ejercicios.length > 1;
 
+  const summaryParts = [`${totalSeries} series`];
+  if (e.seriesData[0]) summaryParts.push(`${e.seriesData[0].reps} rep`);
+  if (e.usaPeso && e.seriesData[0]) summaryParts.push(`${e.seriesData[0].peso} kg`);
+  if (doneCount > 0) summaryParts.push(`${doneCount}/${totalSeries} ✓`);
+  const summaryText = summaryParts.join(' · ');
+
   return `
-    <div class="exercise-card expanded ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
-      <div class="exercise-card-header">
+    <div class="exercise-card ${isExpanded ? 'expanded' : ''} ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
+      <div class="exercise-card-header" data-expand-key="${key}">
         <div class="exercise-name-group">
           <div class="exercise-card-name">${e.nombre}</div>
           <button class="btn-icon info-btn" data-nombre="${e.nombre}" title="Info">
@@ -245,7 +255,14 @@ function renderExerciseCard(e, ci, ei) {
         </div>
       </div>
 
-      <div class="exercise-body">
+      <div class="exercise-summary" data-summary-key="${key}" ${isExpanded ? 'style="display:none;"' : ''}>
+        <span>${summaryText}</span>
+        <button class="check-all-btn ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
+          ${allDone ? '✓' : '○'}
+        </button>
+      </div>
+
+      <div class="exercise-body" data-body-key="${key}" ${isExpanded ? '' : 'style="display:none;"'}>
         ${e._suggestion ? `
           <div class="suggestion-banner">
             <i class="ph ph-trend-up"></i> +${incremento}kg sugerido (→ ${e._suggestion}kg)
@@ -372,6 +389,27 @@ function bindEvents(container) {
 }
 
 function bindExerciseEvents(container, scope) {
+  // Expand/collapse — header tap (no chevron)
+  scope.querySelectorAll('.exercise-card-header[data-expand-key]').forEach(header => {
+    header.addEventListener('click', (evt) => {
+      if (evt.target.closest('.btn-icon') || evt.target.closest('.edit-action-btn')) return;
+      toggleExpand(header.dataset.expandKey, container);
+    });
+  });
+
+  // Check-all button (collapsed)
+  scope.querySelectorAll('.check-all-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { ci, ei } = btn.dataset;
+      const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
+      const allDone = ejercicio.seriesData.every(s => s.done);
+      ejercicio.seriesData.forEach(s => { s.done = !allDone; });
+      checkCircuitCompletion(ci, container);
+      persistWorkout();
+      refreshExercises(container);
+    });
+  });
+
   // Info buttons
   scope.querySelectorAll('.info-btn').forEach(btn => {
     btn.addEventListener('click', (e) => { e.stopPropagation(); openEjercicioInfo(btn.dataset.nombre); });
@@ -461,6 +499,20 @@ function bindExerciseEvents(container, scope) {
       }
     });
   });
+}
+
+function toggleExpand(key, container) {
+  if (expandedExercises.has(key)) expandedExercises.delete(key);
+  else expandedExercises.add(key);
+  const summary = document.querySelector(`[data-summary-key="${key}"]`);
+  const body = document.querySelector(`[data-body-key="${key}"]`);
+  const card = summary?.closest('.exercise-card');
+  if (summary && body) {
+    const isNowExpanded = expandedExercises.has(key);
+    summary.style.display = isNowExpanded ? 'none' : '';
+    body.style.display = isNowExpanded ? '' : 'none';
+    card?.classList.toggle('expanded', isNowExpanded);
+  }
 }
 
 function refreshExercises(container) {
