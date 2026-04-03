@@ -5,7 +5,6 @@ import { formatDateISO, getNextTrainingDay, isTrainingDay, WEEKDAY_LABELS, MONTH
 import { openModal, closeModal } from '../components/modal.js';
 import { showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
-import { EJERCICIOS_CATALOGO } from '../../ejercicios-catalogo.js';
 
 let selectedDate = new Date();
 let activeUsuario = null;
@@ -36,8 +35,8 @@ function render(container) {
         </div>
       </div>
     </div>
-    <div class="rutina-search-wrap" id="home-search-wrap" style="display:none;">
-      <input type="text" class="search-input" id="home-search" placeholder="Buscar ejercicio..." autocomplete="off">
+    <div class="rutina-search-wrap" id="home-search-wrap" style="display:none;margin-bottom:var(--space-md);">
+      <input type="text" class="search-input" id="home-search" placeholder="Buscar rutina..." autocomplete="off">
     </div>
     <div id="home-search-results" style="display:none;"></div>
     <div id="routine-card-container"></div>
@@ -106,11 +105,12 @@ function renderSearchResults() {
     return;
   }
 
-  const matches = EJERCICIOS_CATALOGO
-    .filter(e => e.nombre.toLowerCase().includes(_searchQuery) || e.grupo.toLowerCase().includes(_searchQuery))
+  const rutinas = store.getAll(store.KEYS.rutinas)
+    .filter(r => r.usuario === activeUsuario)
+    .filter(r => r.nombre.toLowerCase().includes(_searchQuery) || (r.numero || '').toLowerCase().includes(_searchQuery))
     .slice(0, 12);
 
-  if (matches.length === 0) {
+  if (rutinas.length === 0) {
     container.style.display = '';
     container.innerHTML = `
       <div style="color:var(--color-text-muted);text-align:center;padding:var(--space-md);font-size:var(--text-sm);">Sin resultados</div>
@@ -119,19 +119,22 @@ function renderSearchResults() {
   }
 
   container.style.display = '';
-  container.innerHTML = matches.map(e => `
-    <div class="home-search-item" data-nombre="${e.nombre}">
+  container.innerHTML = rutinas.map(r => {
+    const badge = getLugarBadge(r.lugar);
+    return `
+    <div class="home-search-item" data-id="${r.id}">
       <div style="flex:1;min-width:0;">
-        <div style="font-size:var(--text-sm);font-weight:var(--fw-medium);">${e.nombre}</div>
-        <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${e.grupo}</div>
+        <div style="font-size:var(--text-sm);font-weight:var(--fw-medium);">${r.nombre}</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${badge.text} ${r.numero} · ${r.circuitos.length} circuitos</div>
       </div>
-      <i class="ph ph-info" style="font-size:16px;color:var(--color-text-muted);"></i>
+      <i class="ph ph-caret-right" style="font-size:14px;color:var(--color-text-muted);"></i>
     </div>
-  `).join('');
+  `}).join('');
 
   container.querySelectorAll('.home-search-item').forEach(item => {
     item.addEventListener('click', () => {
-      openEjercicioInfo(item.dataset.nombre);
+      const dateStr = formatDateISO(selectedDate);
+      router.navigate(`workout/${item.dataset.id}/${dateStr}`);
     });
   });
 }
@@ -171,16 +174,15 @@ function renderRoutineCard() {
 
   container.innerHTML = `
     <div class="home-day-card ${isCompleted ? 'home-day-card--done' : ''}">
-      ${isCompleted ? `
-      <div class="home-day-card-done-badge">
-        <i class="ph-fill ph-check-circle" style="font-size:16px;"></i> Completada
-      </div>` : ''}
       <div class="home-day-card-body" id="routine-card-top">
         <div style="flex:1;min-width:0;">
           <div class="routine-card-header">
             <span class="badge ${badge.cls}">${badge.text} ${rutina.numero}</span>
           </div>
           <div class="routine-name">${rutina.nombre}</div>
+          <div class="home-day-card-status">
+            ${isCompleted ? `<span class="home-day-card-done-badge"><i class="ph-fill ph-check-circle" style="font-size:14px;"></i> Completada</span>` : ''}
+          </div>
         </div>
       </div>
 
@@ -194,8 +196,8 @@ function renderRoutineCard() {
         <button class="btn-action-icon" id="btn-swap-routine" title="Cambiar rutina">
           <i class="ph ph-swap" style="font-size:18px;"></i>
         </button>
-        <button class="btn-action-icon btn-action-icon--primary" id="btn-start-workout" title="Iniciar">
-          <i class="ph ph-play" style="font-size:20px;"></i>
+        <button class="btn btn-primary" id="btn-start-workout" style="margin-left:auto;">
+          <i class="ph ph-barbell" style="font-size:18px;"></i> Entrenar
         </button>
       </div>
 

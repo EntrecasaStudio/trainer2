@@ -56,8 +56,8 @@ export function mountRutinas(container) {
     </div>
     <div class="rutinas-filters-row">
       <div class="rutinas-filters" id="lugar-filters"></div>
-      <button class="btn-icon-header" data-action="open-ejercicios" title="Ejercicios" style="flex-shrink:0;">
-        <i class="ph ph-barbell"></i>
+      <button class="btn btn-secondary btn-sm" data-action="open-ejercicios" style="flex-shrink:0;gap:4px;">
+        <i class="ph ph-barbell" style="font-size:16px;"></i> Ejercicios
       </button>
     </div>
     <div id="rutinas-list"></div>

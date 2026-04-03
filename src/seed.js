@@ -786,23 +786,59 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.14';
+const SEED_VERSION = '2.15';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
   const rutinas = store.getAll(store.KEYS.rutinas);
-  if (rutinas.length <= 400) return; // already clean
+  // Group by dedup key, collect all IDs per group, pick winner
+  const groups = new Map(); // dedupKey → { winner, loserIds[] }
+  for (const r of rutinas) {
+    const dk = `${r.nombre}__${r.usuario}__${r.lugar}`;
+    const group = groups.get(dk);
+    if (!group) {
+      groups.set(dk, { winner: r, loserIds: [] });
+    } else {
+      const existTs = group.winner.updatedAt || '';
+      const curTs = r.updatedAt || '';
+      if (curTs > existTs) {
+        group.loserIds.push(group.winner.id);
+        group.winner = r;
+      } else {
+        group.loserIds.push(r.id);
+      }
+    }
+  }
 
-  console.log(`[Dedup] Found ${rutinas.length} rutinas, deduplicating...`);
-  const seen = new Set();
-  const unique = rutinas.filter(r => {
-    const key = `${r.nombre}__${r.usuario}__${r.lugar}`;
-    if (seen.has(key)) return false;
-    seen.add(key);
-    return true;
-  });
+  // Build ID remap: loserId → winnerId
+  const idRemap = new Map();
+  for (const { winner, loserIds } of groups.values()) {
+    for (const lid of loserIds) {
+      idRemap.set(lid, winner.id);
+    }
+  }
+
+  if (idRemap.size === 0) return;
+
+  const unique = [...groups.values()].map(g => g.winner);
   store.set(store.KEYS.rutinas, unique);
-  console.log(`[Dedup] ✅ ${rutinas.length} → ${unique.length} rutinas`);
+
+  // Remap overrides so calendar assignments survive
+  const overrides = store.getObj(store.KEYS.overrides);
+  let remapped = false;
+  for (const usuario of Object.keys(overrides)) {
+    const userOv = overrides[usuario];
+    for (const date of Object.keys(userOv)) {
+      const oldId = userOv[date].rutinaId;
+      if (idRemap.has(oldId)) {
+        userOv[date].rutinaId = idRemap.get(oldId);
+        remapped = true;
+      }
+    }
+  }
+  if (remapped) store.set(store.KEYS.overrides, overrides);
+
+  console.log(`[Dedup] ${rutinas.length} → ${unique.length} rutinas, remapped ${idRemap.size} IDs`);
 }
 
 export async function seedV2() {

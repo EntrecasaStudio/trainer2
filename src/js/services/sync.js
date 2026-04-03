@@ -136,7 +136,7 @@ export async function uploadAllData() {
 
 // ── Item-level merge for arrays ─────────
 
-function mergeArraysById(localArr, remoteArr) {
+function mergeArraysById(localArr, remoteArr, key) {
   if (!Array.isArray(localArr) || !Array.isArray(remoteArr)) return remoteArr;
 
   const localMap = new Map(localArr.map(item => [item.id, item]));
@@ -156,7 +156,53 @@ function mergeArraysById(localArr, remoteArr) {
     }
   }
 
-  return [...merged.values()];
+  let result = [...merged.values()];
+
+  // Deduplicate rutinas by nombre+usuario+lugar (seed creates new IDs each version)
+  if (key === 'gym_rutinas') {
+    const groups = new Map();
+    for (const r of result) {
+      const dedupKey = `${r.nombre}__${r.usuario}__${r.lugar}`;
+      const group = groups.get(dedupKey);
+      if (!group) {
+        groups.set(dedupKey, { winner: r, loserIds: [] });
+      } else {
+        const existTs = group.winner.updatedAt || '';
+        const curTs = r.updatedAt || '';
+        if (curTs > existTs) {
+          group.loserIds.push(group.winner.id);
+          group.winner = r;
+        } else {
+          group.loserIds.push(r.id);
+        }
+      }
+    }
+    // Remap overrides for any removed duplicate IDs
+    const idRemap = new Map();
+    for (const { winner, loserIds } of groups.values()) {
+      for (const lid of loserIds) idRemap.set(lid, winner.id);
+    }
+    if (idRemap.size > 0) {
+      try {
+        const ovRaw = localStorage.getItem('gym_day_overrides');
+        const overrides = ovRaw ? JSON.parse(ovRaw) : {};
+        let changed = false;
+        for (const usuario of Object.keys(overrides)) {
+          for (const date of Object.keys(overrides[usuario])) {
+            const oldId = overrides[usuario][date].rutinaId;
+            if (idRemap.has(oldId)) {
+              overrides[usuario][date].rutinaId = idRemap.get(oldId);
+              changed = true;
+            }
+          }
+        }
+        if (changed) localStorage.setItem('gym_day_overrides', JSON.stringify(overrides));
+      } catch {}
+    }
+    result = [...groups.values()].map(g => g.winner);
+  }
+
+  return result;
 }
 
 // ── Download ────────────────────────────
@@ -192,7 +238,7 @@ export async function downloadAllData() {
       if (MERGEABLE_KEYS.has(key) && Array.isArray(data[field])) {
         const localRaw = localStorage.getItem(key);
         const localArr = localRaw ? JSON.parse(localRaw) : [];
-        const merged = mergeArraysById(localArr, data[field]);
+        const merged = mergeArraysById(localArr, data[field], key);
         localStorage.setItem(key, JSON.stringify(merged));
       } else {
         localStorage.setItem(key, JSON.stringify(data[field]));
@@ -233,7 +279,7 @@ export async function startRealtimeSync(onUpdate) {
       if (MERGEABLE_KEYS.has(key) && Array.isArray(data[field])) {
         const localRaw = localStorage.getItem(key);
         const localArr = localRaw ? JSON.parse(localRaw) : [];
-        const merged = mergeArraysById(localArr, data[field]);
+        const merged = mergeArraysById(localArr, data[field], key);
         const mergedJSON = JSON.stringify(merged);
         if (mergedJSON !== localRaw) {
           localStorage.setItem(key, mergedJSON);

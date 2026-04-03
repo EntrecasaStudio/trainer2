@@ -19,11 +19,12 @@
 .home-day-card {
   background: var(--color-surface);
   border-radius: var(--radius-xl);
-  padding: var(--space-lg);
+  padding: var(--space-lg) var(--space-lg) var(--space-md) var(--space-lg);
   margin-bottom: var(--space-lg);
   display: flex;
   flex-direction: column;
   min-height: 180px;
+  border: 1.5px solid transparent;
 }
 
 .home-day-card-body {
@@ -37,17 +38,21 @@
 .home-day-card-body:active { transform: scale(0.99); transition: transform 0.1s; }
 
 .home-day-card--done {
-  border: 1.5px solid #4ade80;
+  border-color: #4ade80;
+}
+
+.home-day-card-status {
+  min-height: 22px;
+  margin-top: 4px;
 }
 
 .home-day-card-done-badge {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
   color: #4ade80;
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   font-weight: var(--fw-semibold);
-  margin-bottom: var(--space-xs);
 }
 
 .home-day-card-rest {
@@ -71,11 +76,11 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  padding-top: var(--space-md);
-  margin-top: auto;
+  padding-top: var(--space-sm);
+  margin-top: var(--space-sm);
   border-top: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
 }
-.home-day-card-actions .btn-action-icon:last-child {
+.home-day-card-actions > :last-child {
   margin-left: auto;
 }
 
@@ -253,7 +258,7 @@
 
 .cal-day {
   position: relative;
-  padding: var(--space-sm) 0 var(--space-md) 0;
+  padding: var(--space-sm) 0 calc(var(--space-md) + 1px) 0;
   font-size: var(--text-sm);
   border-radius: var(--radius-md);
   cursor: pointer;
@@ -291,7 +296,7 @@
 .cal-day.today.has-workout::after { background: var(--color-bg); }
 
 .cal-day.completed::after { background: #4ade80; }
-.cal-day.today.completed::after { background: #4ade80; }
+.cal-day.today.completed::after { background: #4ade80; outline: 1px solid var(--color-text); outline-offset: 0.5px; }
 
 /* Next workout */
 .next-workout {
