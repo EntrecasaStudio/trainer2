@@ -31,6 +31,7 @@ let _searchQuery = '';
 export function mountRutinas(container) {
   _container = container;
   _currentUser = store.getActiveUser();
+  document.body.setAttribute('data-usuario', _currentUser);
   _activeLugares = store.getFilterLugar();
   _searchQuery = '';
 
@@ -115,6 +116,7 @@ export function mountRutinas(container) {
     btn.addEventListener('click', () => {
       _currentUser = btn.dataset.usuario;
       store.setActiveUser(_currentUser);
+      document.body.setAttribute('data-usuario', _currentUser);
       container.querySelectorAll('.user-toggle-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderList();
@@ -287,8 +289,8 @@ function renderExpanded(rutina) {
         <button class="btn-action-icon btn-action-calendar" title="Asignar día">
           <i class="ph ph-calendar" style="font-size:18px;"></i>
         </button>
-        <button class="btn-action-icon btn-action-icon--primary btn-action-start" title="Iniciar">
-          <i class="ph ph-play" style="font-size:20px;"></i>
+        <button class="btn btn-primary btn-action-start" style="margin-left:auto;">
+          <i class="ph ph-barbell" style="font-size:18px;"></i> Entrenar
         </button>
       </div>
     </div>

@@ -6,6 +6,7 @@ let _searchVisible = false;
 export function mountProgreso(container) {
   const activeUsuario = store.getActiveUser();
   let currentUser = activeUsuario;
+  document.body.setAttribute('data-usuario', currentUser);
   _searchQuery = '';
   _searchVisible = false;
 

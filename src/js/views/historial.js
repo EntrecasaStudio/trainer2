@@ -11,6 +11,7 @@ let _searchVisible = false;
 export function mountHistorial(container) {
   _container = container;
   _currentUser = store.getActiveUser();
+  document.body.setAttribute('data-usuario', _currentUser);
   _searchQuery = '';
   _searchVisible = false;
 
