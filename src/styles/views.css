@@ -415,7 +415,7 @@
 
 .rutina-expand-inner {
   overflow: hidden;
-  padding-top: var(--space-sm);
+  padding-top: var(--space-md);
 }
 
 .rutina-list-header {
@@ -703,6 +703,14 @@
   font-size: var(--text-sm);
 }
 .edit-ej-series:focus, .edit-ej-reps:focus { outline: none; border-color: var(--color-accent); }
+
+.edit-ej-peso-toggle {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.edit-ej-peso-toggle input { display: none; }
 
 .btn-add-ej {
   display: flex;

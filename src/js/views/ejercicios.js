@@ -2,9 +2,10 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio
 import { store } from '../../store.js';
 import { router } from '../../router.js';
 import { getMuscleSvgCropped } from '../../utils/muscle-illustrations.js';
+import { inferUsaPeso, setUsaPeso } from '../../utils/inferUsaPeso.js';
 
 const TIPO_LABELS = { funcional: 'F', maquina: 'M' };
-const TIPO_COLORS = { funcional: 'var(--color-tag-core)', maquina: 'var(--color-tag-brazos)' };
+const TIPO_COLORS = { funcional: '#30D158', maquina: '#0A84FF' };
 
 const GRUPO_ICONS = {
   'Piernas':  'ph-person-simple-run',
@@ -74,8 +75,8 @@ function render(container) {
 
     <div class="ejercicios-tipo-tabs">
       <button class="tipo-tab ${tipoFilter==='todos'?'active':''}" data-tipo="todos">Todos</button>
-      <button class="tipo-tab ${tipoFilter==='funcional'?'active':''}" data-tipo="funcional">Funcional</button>
-      <button class="tipo-tab ${tipoFilter==='maquina'?'active':''}" data-tipo="maquina">Máquinas</button>
+      <button class="tipo-tab tipo-tab--funcional ${tipoFilter==='funcional'?'active':''}" data-tipo="funcional">Funcional</button>
+      <button class="tipo-tab tipo-tab--maquina ${tipoFilter==='maquina'?'active':''}" data-tipo="maquina">Máquinas</button>
     </div>
 
     <div id="ejercicios-list"></div>
@@ -230,8 +231,8 @@ function showDetailModal(data, allowEdit) {
 
       <div class="ejercicio-detail-body">
         <div class="ejercicio-tipo-toggle">
-          <span class="tipo-pill ${data.tipo === 'funcional' ? 'active' : ''}" style="pointer-events:none;">Funcional</span>
-          <span class="tipo-pill ${data.tipo === 'maquina' ? 'active' : ''}" style="pointer-events:none;">Máquina</span>
+          <span class="tipo-pill tipo-tab--funcional ${data.tipo === 'funcional' ? 'active' : ''}" style="pointer-events:none;">Funcional</span>
+          <span class="tipo-pill tipo-tab--maquina ${data.tipo === 'maquina' ? 'active' : ''}" style="pointer-events:none;">Máquina</span>
         </div>
 
         <div class="ejercicio-attrs">
@@ -276,9 +277,15 @@ function openEditModal(data) {
 
         <label style="font-size:var(--text-sm);color:var(--color-text-muted);">Tipo</label>
         <div style="display:flex;gap:var(--space-sm);">
-          <button class="tipo-pill ${data.tipo==='funcional'?'active':''}" data-tipo="funcional">Funcional</button>
-          <button class="tipo-pill ${data.tipo==='maquina'?'active':''}" data-tipo="maquina">Máquina</button>
+          <button class="tipo-pill tipo-tab--funcional ${data.tipo==='funcional'?'active':''}" data-tipo="funcional">Funcional</button>
+          <button class="tipo-pill tipo-tab--maquina ${data.tipo==='maquina'?'active':''}" data-tipo="maquina">Máquina</button>
         </div>
+
+        <label style="font-size:var(--text-sm);color:var(--color-text-muted);">Usa peso</label>
+        <label class="peso-toggle-row" style="display:flex;align-items:center;gap:var(--space-sm);cursor:pointer;">
+          <input type="checkbox" id="edit-usa-peso" class="peso-toggle-cb" ${inferUsaPeso(data.nombre) ? 'checked' : ''}>
+          <span style="font-size:var(--text-sm);color:var(--color-text);">${inferUsaPeso(data.nombre) ? 'Sí — muestra campo de peso en entrenamiento' : 'No — sin campo de peso'}</span>
+        </label>
 
         <button class="btn btn-primary btn-lg" id="btn-save-ejercicio" style="width:100%;margin-top:var(--space-sm);">Guardar</button>
       </div>
@@ -295,6 +302,13 @@ function openEditModal(data) {
     });
   });
 
+  // Usa peso toggle label update
+  const pesoCb = overlay.querySelector('#edit-usa-peso');
+  pesoCb?.addEventListener('change', () => {
+    const label = pesoCb.parentElement.querySelector('span');
+    label.textContent = pesoCb.checked ? 'Sí — muestra campo de peso en entrenamiento' : 'No — sin campo de peso';
+  });
+
   overlay.querySelector('.modal-close').addEventListener('click', () => {
     overlay.classList.add('hidden');
     overlay.innerHTML = '';
@@ -302,6 +316,8 @@ function openEditModal(data) {
 
   overlay.querySelector('#btn-save-ejercicio').addEventListener('click', () => {
     const desc = overlay.querySelector('#edit-desc').value.trim();
+    const usaPesoVal = overlay.querySelector('#edit-usa-peso').checked;
+    setUsaPeso(data.nombre, usaPesoVal);
     saveCustomEjercicio(data.nombre, { descripcion: desc, tipo: selectedTipo });
     overlay.classList.add('hidden');
     overlay.innerHTML = '';
@@ -339,8 +355,8 @@ function openNewEjercicioModal(viewContainer) {
         <div class="edit-field">
           <label class="edit-label">Tipo</label>
           <div style="display:flex;gap:var(--space-sm);">
-            <button class="tipo-pill active" data-tipo="funcional">Funcional</button>
-            <button class="tipo-pill" data-tipo="maquina">Máquina</button>
+            <button class="tipo-pill tipo-tab--funcional active" data-tipo="funcional">Funcional</button>
+            <button class="tipo-pill tipo-tab--maquina" data-tipo="maquina">Máquina</button>
           </div>
         </div>
         <div class="edit-field">

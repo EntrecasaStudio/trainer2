@@ -489,6 +489,16 @@
   color: #1A1A1A;
   font-weight: var(--fw-semibold);
 }
+.tipo-tab--funcional.active {
+  background: #30D158;
+  border-color: #30D158;
+  color: #1A1A1A;
+}
+.tipo-tab--maquina.active {
+  background: #0A84FF;
+  border-color: #0A84FF;
+  color: #fff;
+}
 
 .tipo-tab:active { transform: scale(0.95); }
 
