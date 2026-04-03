@@ -261,10 +261,11 @@
 
 .cal-day.other-month { color: var(--color-border); }
 
-.cal-day.has-workout::after {
+.cal-day.has-workout::after,
+.cal-day.completed::after {
   content: '';
   position: absolute;
-  bottom: 2px;
+  bottom: 4px;
   left: 50%;
   transform: translateX(-50%);
   width: 4px;
@@ -276,6 +277,7 @@
 .cal-day.today.has-workout::after { background: var(--color-bg); }
 
 .cal-day.completed::after { background: #4ade80; }
+.cal-day.today.completed::after { background: #4ade80; }
 
 /* Next workout */
 .next-workout {
