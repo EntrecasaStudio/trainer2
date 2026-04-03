@@ -277,6 +277,23 @@
   margin-bottom: var(--space-sm);
 }
 
+/* ── Peso toggle ─────────────────────────────────────────────────────────── */
+.peso-toggle-row {
+  margin-bottom: var(--space-xs);
+}
+.peso-toggle-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.peso-toggle-cb {
+  accent-color: var(--color-accent);
+}
+
 /* ── Vuelta headers ──────────────────────────────────────────────────────── */
 .vuelta-headers {
   display: flex;

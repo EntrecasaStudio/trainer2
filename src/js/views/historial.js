@@ -141,6 +141,14 @@ function openSesionDetail(sesion) {
 
   const contentHTML = `
     <div style="display:flex;flex-direction:column;gap:var(--space-md);">
+      <div style="display:flex;gap:var(--space-sm);margin-bottom:var(--space-xs);">
+        <button class="btn btn-primary btn-sm" id="hist-save" style="flex:1;">
+          <i class="ph ph-floppy-disk" style="font-size:14px;margin-right:4px;"></i> Guardar
+        </button>
+        <button class="btn btn-sm" id="hist-delete" style="color:var(--color-danger);">
+          <i class="ph ph-trash" style="font-size:16px;"></i>
+        </button>
+      </div>
       <div style="display:flex;gap:var(--space-md);flex-wrap:wrap;">
         <div class="edit-field" style="flex:1;min-width:120px;">
           <label class="edit-label">Fecha</label>
@@ -157,12 +165,6 @@ function openSesionDetail(sesion) {
       </div>
       <div style="border-top:1px solid var(--color-border);padding-top:var(--space-md);">
         ${circuitsHTML}
-      </div>
-      <div style="display:flex;gap:var(--space-sm);">
-        <button class="btn btn-primary btn-lg" id="hist-save" style="flex:1;">Guardar</button>
-        <button class="btn btn-lg" id="hist-delete" style="color:var(--color-danger);">
-          <i class="ph ph-trash" style="font-size:18px;"></i>
-        </button>
       </div>
     </div>
   `;

@@ -1,6 +1,6 @@
 import { store } from '../../store.js';
 import { router } from '../../router.js';
-import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
+import { inferUsaPeso, setUsaPeso } from '../../utils/inferUsaPeso.js';
 import { formatTimer } from '../../utils/format.js';
 import { showToast } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
@@ -37,17 +37,23 @@ let editMode = false;
 const WS_KEY = 'gym_active_workout';
 
 function persistWorkout() {
-  if (!workoutState) { sessionStorage.removeItem(WS_KEY); return; }
-  sessionStorage.setItem(WS_KEY, JSON.stringify({
+  if (!workoutState) { localStorage.removeItem(WS_KEY); return; }
+  localStorage.setItem(WS_KEY, JSON.stringify({
     workoutState, elapsedSeconds, activeCircuitIdx, incremento,
+    savedAt: Date.now(),
   }));
 }
 
 function restoreWorkout() {
   try {
-    const raw = sessionStorage.getItem(WS_KEY);
+    const raw = localStorage.getItem(WS_KEY);
     if (!raw) return false;
     const data = JSON.parse(raw);
+    // Discard sessions older than 6 hours
+    if (data.savedAt && Date.now() - data.savedAt > 6 * 60 * 60 * 1000) {
+      localStorage.removeItem(WS_KEY);
+      return false;
+    }
     workoutState = data.workoutState;
     elapsedSeconds = data.elapsedSeconds || 0;
     activeCircuitIdx = data.activeCircuitIdx || 0;
@@ -57,6 +63,7 @@ function restoreWorkout() {
 }
 
 window.addEventListener('beforeunload', () => { persistWorkout(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) persistWorkout(); });
 
 export function hasActiveWorkout() { return workoutState !== null; }
 
@@ -269,6 +276,12 @@ function renderExerciseCard(e, ci, ei) {
       <div class="exercise-collapse-wrap ${isExpanded ? 'show' : ''}" data-body-key="${key}">
         <div class="exercise-collapse-inner">
           <div class="exercise-body">
+        <div class="peso-toggle-row">
+          <label class="peso-toggle-label">
+            <input type="checkbox" class="peso-toggle-cb" data-ci="${ci}" data-ei="${ei}" ${e.usaPeso ? 'checked' : ''}>
+            <i class="ph ph-barbell" style="font-size:14px;"></i> Peso
+          </label>
+        </div>
         ${e._suggestion ? `
           <div class="suggestion-banner">
             <i class="ph ph-trend-up"></i> +${incremento}kg sugerido (→ ${e._suggestion}kg)
@@ -412,7 +425,7 @@ function bindExerciseEvents(container, scope) {
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
       const allDone = ejercicio.seriesData.every(s => s.done);
       ejercicio.seriesData.forEach(s => { s.done = !allDone; });
-      checkCircuitCompletion(ci, container);
+      checkCircuitCompletion(ci);
       persistWorkout();
       refreshExercises(container);
     });
@@ -462,13 +475,25 @@ function bindExerciseEvents(container, scope) {
     input.addEventListener('focus', () => { input.select(); });
   });
 
+  // Peso toggle
+  scope.querySelectorAll('.peso-toggle-cb').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const { ci, ei } = cb.dataset;
+      const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
+      ejercicio.usaPeso = cb.checked;
+      setUsaPeso(ejercicio.nombre, cb.checked);
+      persistWorkout();
+      refreshExercises(container);
+    });
+  });
+
   // Series done
   scope.querySelectorAll('.vuelta-check').forEach(btn => {
     btn.addEventListener('click', () => {
       const { ci, ei, si } = btn.dataset;
       const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
       series.done = !series.done;
-      checkCircuitCompletion(ci, container);
+      checkCircuitCompletion(ci);
       persistWorkout();
       refreshExercises(container);
     });
@@ -562,15 +587,9 @@ function getOverallProgress() {
   return total === 0 ? 0 : Math.round((done / total) * 100);
 }
 
-function checkCircuitCompletion(ci, container) {
+function checkCircuitCompletion(ci) {
   const circ = workoutState.circuitos[ci];
   circ.completed = circ.ejercicios.every(ex => ex.seriesData.every(s => s.done));
-  if (circ.completed && activeCircuitIdx < workoutState.circuitos.length - 1) {
-    setTimeout(() => {
-      activeCircuitIdx++;
-      renderWorkout(container);
-    }, 800);
-  }
 }
 
 function updateCircuitTabs(container) {
@@ -706,7 +725,7 @@ function showExitDialog(container) {
   });
   overlay.querySelector('#btn-descartar').addEventListener('click', () => {
     overlay.classList.add('hidden'); overlay.innerHTML = '';
-    workoutState = null; sessionStorage.removeItem(WS_KEY);
+    workoutState = null; localStorage.removeItem(WS_KEY);
     clearInterval(timerInterval); router.navigate('');
   });
 }
@@ -748,7 +767,7 @@ function finishWorkout(container) {
   const circuitsDone = sesion.circuitos.filter(c => c.completed).length;
 
   workoutState = null;
-  sessionStorage.removeItem(WS_KEY);
+  localStorage.removeItem(WS_KEY);
 
   container.innerHTML = `
     <div class="workout-summary">
