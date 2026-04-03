@@ -36,6 +36,20 @@
 }
 .home-day-card-body:active { transform: scale(0.99); transition: transform 0.1s; }
 
+.home-day-card--done {
+  border: 1.5px solid #4ade80;
+}
+
+.home-day-card-done-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #4ade80;
+  font-size: var(--text-sm);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-xs);
+}
+
 .home-day-card-rest {
   text-align: center;
   align-items: center;

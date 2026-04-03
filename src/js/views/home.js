@@ -165,9 +165,16 @@ function renderRoutineCard() {
 
   const badge = getLugarBadge(rutina.lugar);
   const isExpanded = container._homeExpanded || false;
+  const dateStr = formatDateISO(selectedDate);
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
 
   container.innerHTML = `
-    <div class="home-day-card">
+    <div class="home-day-card ${isCompleted ? 'home-day-card--done' : ''}">
+      ${isCompleted ? `
+      <div class="home-day-card-done-badge">
+        <i class="ph-fill ph-check-circle" style="font-size:16px;"></i> Completada
+      </div>` : ''}
       <div class="home-day-card-body" id="routine-card-top">
         <div style="flex:1;min-width:0;">
           <div class="routine-card-header">
