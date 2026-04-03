@@ -35,8 +35,8 @@ function render(container) {
         </div>
       </div>
     </div>
-    <div class="rutina-search-wrap" id="home-search-wrap" style="display:none;margin-bottom:var(--space-md);">
-      <input type="text" class="search-input" id="home-search" placeholder="Buscar rutina..." autocomplete="off">
+    <div class="rutinas-search" id="home-search-wrap">
+      <input type="text" class="rutinas-search-input" id="home-search" placeholder="Buscar rutina..." autocomplete="off">
     </div>
     <div id="home-search-results" style="display:none;"></div>
     <div id="routine-card-container"></div>
@@ -63,9 +63,9 @@ function render(container) {
     _searchVisible = !_searchVisible;
     const wrap = document.getElementById('home-search-wrap');
     const results = document.getElementById('home-search-results');
-    wrap.style.display = _searchVisible ? '' : 'none';
+    wrap.classList.toggle('open', _searchVisible);
     if (_searchVisible) {
-      document.getElementById('home-search').focus();
+      setTimeout(() => document.getElementById('home-search').focus(), 100);
     } else {
       _searchQuery = '';
       document.getElementById('home-search').value = '';

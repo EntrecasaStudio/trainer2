@@ -27,8 +27,8 @@ export function mountHistorial(container) {
         </div>
       </div>
     </div>
-    <div class="rutina-search-wrap" id="historial-search-wrap" style="display:none;">
-      <input type="text" class="search-input" id="historial-search" placeholder="Buscar sesión..." autocomplete="off">
+    <div class="rutinas-search" id="historial-search-wrap">
+      <input type="text" class="rutinas-search-input" id="historial-search" placeholder="Buscar sesión..." autocomplete="off">
     </div>
     <div id="historial-list"></div>
   `;
@@ -37,6 +37,7 @@ export function mountHistorial(container) {
     btn.addEventListener('click', () => {
       _currentUser = btn.dataset.usuario;
       store.setActiveUser(_currentUser);
+      document.body.setAttribute('data-usuario', _currentUser);
       container.querySelectorAll('.user-toggle-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderList();
@@ -46,8 +47,8 @@ export function mountHistorial(container) {
   container.querySelector('[data-action="toggle-search"]').addEventListener('click', () => {
     _searchVisible = !_searchVisible;
     const wrap = document.getElementById('historial-search-wrap');
-    wrap.style.display = _searchVisible ? '' : 'none';
-    if (_searchVisible) document.getElementById('historial-search').focus();
+    wrap.classList.toggle('open', _searchVisible);
+    if (_searchVisible) setTimeout(() => document.getElementById('historial-search').focus(), 100);
     else { _searchQuery = ''; document.getElementById('historial-search').value = ''; renderList(); }
   });
 
@@ -89,9 +90,9 @@ function renderList() {
         <div class="historial-date">${formatDateLong(new Date(s.fecha))}</div>
         <div class="historial-name">${s.rutinaNombre || 'Sesión'}</div>
         <div class="historial-stats">
-          <span><i class="ph-light ph-timer" style="font-size:14px;"></i> ${formatDuration(s.duracion || 0)}</span>
-          <span><i class="ph-light ph-barbell" style="font-size:14px;"></i> ${totalSeries} series</span>
-          ${s.calorias ? `<span><i class="ph-light ph-fire" style="font-size:14px;"></i> ${s.calorias} kcal</span>` : ''}
+          <span><i class="ph ph-timer" style="font-size:14px;color:#30D158;"></i> ${formatDuration(s.duracion || 0)}</span>
+          <span><i class="ph ph-barbell" style="font-size:14px;color:#FF9F0A;"></i> ${totalSeries} series</span>
+          ${s.calorias ? `<span><i class="ph ph-flame" style="font-size:14px;color:#FF375F;"></i> ${s.calorias} kcal</span>` : ''}
         </div>
       </div>
     `;

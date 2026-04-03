@@ -22,8 +22,8 @@ export function mountProgreso(container) {
         </div>
       </div>
     </div>
-    <div class="rutina-search-wrap" id="progreso-search-wrap" style="display:none;">
-      <input type="text" class="search-input" id="progreso-search" placeholder="Buscar ejercicio..." autocomplete="off">
+    <div class="rutinas-search" id="progreso-search-wrap">
+      <input type="text" class="rutinas-search-input" id="progreso-search" placeholder="Buscar ejercicio..." autocomplete="off">
     </div>
     <div id="progreso-list"></div>
   `;
@@ -32,6 +32,7 @@ export function mountProgreso(container) {
     btn.addEventListener('click', () => {
       currentUser = btn.dataset.usuario;
       store.setActiveUser(currentUser);
+      document.body.setAttribute('data-usuario', currentUser);
       container.querySelectorAll('.user-toggle-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       renderList();
@@ -41,8 +42,8 @@ export function mountProgreso(container) {
   container.querySelector('[data-action="toggle-search"]').addEventListener('click', () => {
     _searchVisible = !_searchVisible;
     const wrap = document.getElementById('progreso-search-wrap');
-    wrap.style.display = _searchVisible ? '' : 'none';
-    if (_searchVisible) document.getElementById('progreso-search').focus();
+    wrap.classList.toggle('open', _searchVisible);
+    if (_searchVisible) setTimeout(() => document.getElementById('progreso-search').focus(), 100);
     else { _searchQuery = ''; document.getElementById('progreso-search').value = ''; renderList(); }
   });
 
