@@ -3,9 +3,9 @@ import { router } from '../../router.js';
 const NAV_ITEMS = [
   { id: 'home',      label: 'Entreno',    icon: 'ph-house',        route: '' },
   { id: 'rutinas',   label: 'Rutinas',    icon: 'ph-list',         route: 'rutinas' },
-  { id: 'ejercicios',label: 'Ejercicios', icon: 'ph-barbell',      route: 'ejercicios' },
   { id: 'historial', label: 'Historial',  icon: 'ph-clock',        route: 'historial' },
   { id: 'progreso',  label: 'Progreso',   icon: 'ph-trend-up',     route: 'progreso' },
+  { id: 'usuario',   label: 'Usuario',    icon: 'ph-user-circle',  route: 'usuario' },
 ];
 
 function iconClass(item, isActive) {

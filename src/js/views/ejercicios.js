@@ -1,5 +1,6 @@
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio } from '../../ejercicios-catalogo.js';
 import { store } from '../../store.js';
+import { router } from '../../router.js';
 import { getMuscleSvgCropped } from '../../utils/muscle-illustrations.js';
 
 const TIPO_LABELS = { funcional: 'F', maquina: 'M' };
@@ -51,7 +52,12 @@ export function openEjercicioInfo(nombre) {
 function render(container) {
   container.innerHTML = `
     <div class="rutinas-header">
-      <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);">Ejercicios</h1>
+      <div style="display:flex;align-items:center;gap:var(--space-sm);">
+        <button class="btn-icon-header" data-action="back-to-rutinas" title="Volver a Rutinas">
+          <i class="ph ph-arrow-left"></i>
+        </button>
+        <h1 style="font-size:var(--text-xl);font-weight:var(--fw-bold);margin:0;">Ejercicios</h1>
+      </div>
       <div class="rutinas-header-actions">
         <button class="btn-icon-header" data-action="toggle-search" title="Buscar">
           <i class="ph ph-magnifying-glass"></i>
@@ -74,6 +80,11 @@ function render(container) {
 
     <div id="ejercicios-list"></div>
   `;
+
+  // Back to rutinas
+  container.querySelector('[data-action="back-to-rutinas"]').addEventListener('click', () => {
+    router.navigate('rutinas');
+  });
 
   // Search toggle
   container.querySelector('[data-action="toggle-search"]').addEventListener('click', () => {

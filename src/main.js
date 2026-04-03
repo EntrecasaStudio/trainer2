@@ -7,6 +7,7 @@ import { mountEjercicios } from './js/views/ejercicios.js';
 import { mountHistorial } from './js/views/historial.js';
 import { mountProgreso } from './js/views/progreso.js';
 import { mountRutinaEdit } from './js/views/rutina-edit.js';
+import { mountUsuario } from './js/views/usuario.js';
 import { seedV2 } from './seed.js';
 import { initFirebase, loginWithGoogle, logout, onAuth, getCurrentUser } from './js/services/firebase.js';
 import { uploadAllData, downloadAllData, startRealtimeSync, stopRealtimeSync, clearSyncState, getSyncStatus, onSyncStatusChange } from './js/services/sync.js';
@@ -24,6 +25,7 @@ async function bootApp() {
   router.register('ejercicios', mountEjercicios);
   router.register('historial', mountHistorial);
   router.register('progreso', mountProgreso);
+  router.register('usuario', mountUsuario);
 
   const navEl = document.getElementById('nav');
   renderNav(navEl);
@@ -34,8 +36,8 @@ async function bootApp() {
     updateNavActive(route);
     const hideChrome = route === 'workout' || route === 'rutina-edit';
     navEl.classList.toggle('hidden', hideChrome);
-    const showAvatar = route === '' || route === 'home';
-    if (avatarMenuEl) avatarMenuEl.classList.toggle('hidden', !showAvatar);
+    // Avatar menu hidden — login moved to Usuario tab
+    if (avatarMenuEl) avatarMenuEl.classList.add('hidden');
   });
 
   // Mount avatar menu

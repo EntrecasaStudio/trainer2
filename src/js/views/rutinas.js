@@ -54,7 +54,12 @@ export function mountRutinas(container) {
       <input type="text" class="rutinas-search-input" id="rutinas-search-input"
              placeholder="Buscar rutina..." value="" autocomplete="off">
     </div>
-    <div class="rutinas-filters" id="lugar-filters"></div>
+    <div class="rutinas-filters-row">
+      <div class="rutinas-filters" id="lugar-filters"></div>
+      <button class="btn-icon-header" data-action="open-ejercicios" title="Ejercicios" style="flex-shrink:0;">
+        <i class="ph ph-barbell"></i>
+      </button>
+    </div>
     <div id="rutinas-list"></div>
   `;
 
@@ -76,6 +81,11 @@ export function mountRutinas(container) {
   document.getElementById('rutinas-search-input').addEventListener('input', (e) => {
     _searchQuery = e.target.value;
     renderList();
+  });
+
+  // Open ejercicios
+  container.querySelector('[data-action="open-ejercicios"]').addEventListener('click', () => {
+    router.navigate('ejercicios');
   });
 
   // New rutina
