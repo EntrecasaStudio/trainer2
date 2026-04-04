@@ -220,29 +220,32 @@ export function mountProgreso(container) {
   function renderList() {
     const listEl = document.getElementById('progreso-list');
     const sesiones = store.getAll(store.KEYS.sesiones).filter(s => s.usuario === currentUser && s.fecha);
-    const progresion = store.getObj(store.KEYS.progresion);
     const q = _searchQuery;
 
-    // Build exercise history from sesiones
+    // Build exercise history from sesiones (source of truth for lugar)
     const exerciseHistory = buildExerciseHistory(sesiones);
 
-    // Build entries from progresion
+    // Build entries directly from sesion history (not from progresion store)
     const entries = [];
-    for (const [ejercicio, users] of Object.entries(progresion)) {
-      const userData = users[currentUser];
-      if (!userData) continue;
+    for (const [key, history] of Object.entries(exerciseHistory)) {
+      const [ejercicio, lugar] = key.split('__');
+      if (!ejercicio || !lugar) continue;
       if (q && !ejercicio.toLowerCase().includes(q)) continue;
+      if (history.length === 0) continue;
 
-      // New format: userData is { SPORT_FITNESS: {...}, RIO: {...} }
-      // Old format: userData is { lastWeight, lastDate, ... }
-      const isOldFormat = userData.lastWeight !== undefined;
-      const lugares = isOldFormat ? { SPORT_FITNESS: userData } : userData;
+      const last = history[history.length - 1];
+      // Get completedAllReps from progresion store if available
+      const prog = store.getProgresion(ejercicio, currentUser, lugar);
+      const completedAllReps = prog?.completedAllReps || false;
 
-      for (const [lugar, data] of Object.entries(lugares)) {
-        if (!data.lastWeight) continue;
-        const history = exerciseHistory[`${ejercicio}__${lugar}`] || exerciseHistory[`${ejercicio}__`] || [];
-        entries.push({ ejercicio, lugar, history, ...data });
-      }
+      entries.push({
+        ejercicio,
+        lugar,
+        history,
+        lastWeight: last.peso,
+        lastDate: last.fecha,
+        completedAllReps,
+      });
     }
 
     entries.sort((a, b) => (b.lastDate || '').localeCompare(a.lastDate || ''));
