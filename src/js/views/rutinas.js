@@ -259,6 +259,20 @@ function renderList() {
 function renderExpanded(rutina) {
   return `
     <div class="rutina-circuits-detail">
+      <div class="rutina-actions">
+        <button class="btn-action-icon btn-action-delete" title="Eliminar">
+          <i class="ph ph-trash" style="font-size:18px;"></i>
+        </button>
+        <button class="btn-action-icon btn-action-edit" title="Editar">
+          <i class="ph ph-pencil-simple" style="font-size:18px;"></i>
+        </button>
+        <button class="btn-action-icon btn-action-calendar" title="Asignar día">
+          <i class="ph ph-calendar" style="font-size:18px;"></i>
+        </button>
+        <button class="btn btn-primary btn-action-start" style="margin-left:auto;">
+          <i class="ph ph-barbell" style="font-size:18px;"></i> Entrenar
+        </button>
+      </div>
       ${rutina.circuitos.map((c, i) => {
         const circName = c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : (typeof c.grupoMuscular === 'string' ? c.grupoMuscular : 'Circuito'));
         const circNum = c.numero != null ? c.numero : (i + 1);
@@ -279,20 +293,6 @@ function renderExpanded(rutina) {
           </div>
         </div>
       `}).join('<div class="circuit-divider"></div>')}
-      <div class="rutina-actions">
-        <button class="btn-action-icon btn-action-delete" title="Eliminar">
-          <i class="ph ph-trash" style="font-size:18px;"></i>
-        </button>
-        <button class="btn-action-icon btn-action-edit" title="Editar">
-          <i class="ph ph-pencil-simple" style="font-size:18px;"></i>
-        </button>
-        <button class="btn-action-icon btn-action-calendar" title="Asignar día">
-          <i class="ph ph-calendar" style="font-size:18px;"></i>
-        </button>
-        <button class="btn btn-primary btn-action-start" style="margin-left:auto;">
-          <i class="ph ph-barbell" style="font-size:18px;"></i> Entrenar
-        </button>
-      </div>
     </div>
   `;
 }

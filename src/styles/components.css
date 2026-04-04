@@ -465,6 +465,7 @@
 
 .ejercicios-tipo-tabs {
   display: flex;
+  align-items: center;
   gap: var(--space-xs);
   margin-bottom: var(--space-md);
 }
@@ -490,8 +491,8 @@
   font-weight: var(--fw-semibold);
 }
 .tipo-tab--funcional.active {
-  background: #30D158;
-  border-color: #30D158;
+  background: #5AC8FA;
+  border-color: #5AC8FA;
   color: #1A1A1A;
 }
 .tipo-tab--maquina.active {
@@ -501,6 +502,15 @@
 }
 
 .tipo-tab:active { transform: scale(0.95); }
+
+.tipo-tab--peso {
+  padding: 7px 10px;
+}
+.tipo-tab--peso.active {
+  background: var(--color-text-muted);
+  border-color: var(--color-text-muted);
+  color: #fff;
+}
 
 .ejercicios-search {
   position: relative;
@@ -634,6 +644,16 @@
   color: #1A1A1A;
   font-weight: var(--fw-semibold);
 }
+.tipo-pill.tipo-tab--funcional.active {
+  background: #5AC8FA;
+  border-color: #5AC8FA;
+  color: #1A1A1A;
+}
+.tipo-pill.tipo-tab--maquina.active {
+  background: #0A84FF;
+  border-color: #0A84FF;
+  color: #fff;
+}
 
 /* ── Ejercicio detail modal ──────────────────────────────────────────────── */
 .ejercicio-detail-sheet {
@@ -692,7 +712,7 @@
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
-  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  background: color-mix(in srgb, var(--grupo-color, var(--color-text-muted)) 12%, var(--color-surface));
   flex-shrink: 0;
 }
 
@@ -708,8 +728,8 @@
 }
 
 .muscle-silhouette .muscle-active polygon {
-  fill: color-mix(in srgb, var(--color-accent) 20%, transparent);
-  stroke: var(--color-accent);
+  fill: color-mix(in srgb, var(--grupo-color, var(--color-accent)) 20%, transparent);
+  stroke: var(--grupo-color, var(--color-accent));
   stroke-width: 1.0;
   opacity: 1;
 }

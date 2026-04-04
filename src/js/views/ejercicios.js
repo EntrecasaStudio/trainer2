@@ -2,10 +2,11 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio
 import { store } from '../../store.js';
 import { router } from '../../router.js';
 import { getMuscleSvgCropped } from '../../utils/muscle-illustrations.js';
-import { inferUsaPeso, setUsaPeso } from '../../utils/inferUsaPeso.js';
+import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
+import { getGrupoColor } from '../../utils/format.js';
 
 const TIPO_LABELS = { funcional: 'F', maquina: 'M' };
-const TIPO_COLORS = { funcional: '#30D158', maquina: '#0A84FF' };
+const TIPO_COLORS = { funcional: '#5AC8FA', maquina: '#0A84FF' };
 
 const GRUPO_ICONS = {
   'Piernas':  'ph-person-simple-run',
@@ -20,17 +21,28 @@ const GRUPO_ICONS = {
 
 let searchQuery = '';
 let tipoFilter = 'todos';
+let pesoFilter = false;
 let expandedGroups = new Set();
 let editingEjercicio = null;
 
 // Local overrides stored in localStorage
 function getCustomEjercicios() {
-  return store.getObj('gym_ejercicios_custom');
+  let custom = store.getObj('gym_ejercicios_custom');
+  // Migrate: if stored as array (from old sync), convert to object keyed by nombre
+  if (Array.isArray(custom)) {
+    const obj = {};
+    custom.forEach(item => {
+      if (item && item.nombre) obj[item.nombre] = item;
+    });
+    store.set('gym_ejercicios_custom', obj);
+    custom = obj;
+  }
+  return custom;
 }
 
 function saveCustomEjercicio(nombre, data) {
   const custom = getCustomEjercicios();
-  custom[nombre] = data;
+  custom[nombre] = { ...(custom[nombre] || {}), ...data };
   store.setObj('gym_ejercicios_custom', custom);
 }
 
@@ -77,6 +89,10 @@ function render(container) {
       <button class="tipo-tab ${tipoFilter==='todos'?'active':''}" data-tipo="todos">Todos</button>
       <button class="tipo-tab tipo-tab--funcional ${tipoFilter==='funcional'?'active':''}" data-tipo="funcional">Funcional</button>
       <button class="tipo-tab tipo-tab--maquina ${tipoFilter==='maquina'?'active':''}" data-tipo="maquina">Máquinas</button>
+      <span style="flex:1;"></span>
+      <button class="tipo-tab tipo-tab--peso ${pesoFilter?'active':''}" id="btn-peso-filter">
+        <i class="ph ph-barbell" style="font-size:14px;"></i>
+      </button>
     </div>
 
     <div id="ejercicios-list"></div>
@@ -113,13 +129,20 @@ function render(container) {
   });
 
   // Tipo filter tabs
-  container.querySelectorAll('.tipo-tab').forEach(tab => {
+  container.querySelectorAll('.tipo-tab[data-tipo]').forEach(tab => {
     tab.addEventListener('click', () => {
       tipoFilter = tab.dataset.tipo;
-      container.querySelectorAll('.tipo-tab').forEach(t => t.classList.remove('active'));
+      container.querySelectorAll('.tipo-tab[data-tipo]').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
       renderList(container);
     });
+  });
+
+  // Peso filter toggle
+  container.querySelector('#btn-peso-filter').addEventListener('click', () => {
+    pesoFilter = !pesoFilter;
+    container.querySelector('#btn-peso-filter').classList.toggle('active', pesoFilter);
+    renderList(container);
   });
 
   // If search had text, open it
@@ -134,7 +157,10 @@ function renderList(container) {
   const listEl = document.getElementById('ejercicios-list');
   if (!listEl) return;
 
-  const results = searchEjercicios(searchQuery, tipoFilter);
+  let results = searchEjercicios(searchQuery, tipoFilter);
+  if (pesoFilter) {
+    results = results.filter(e => inferUsaPeso(e.nombre));
+  }
   const custom = getCustomEjercicios();
 
   if (results.length === 0) {
@@ -159,27 +185,30 @@ function renderList(container) {
     const isExpanded = expandedGroups.has(grupo) || searchQuery;
     const muscleSvg = getMuscleSvgCropped(grupo, 36);
 
+    const grupoColor = getGrupoColor(grupo);
     return `
-      <div class="grupo-section" data-grupo="${grupo}">
+      <div class="grupo-section" data-grupo="${grupo}" style="--grupo-color:${grupoColor};">
         <div class="grupo-header" data-grupo="${grupo}">
           <div style="display:flex;align-items:center;gap:var(--space-sm);">
             <span class="ej-category-muscle">${muscleSvg}</span>
-            <span class="grupo-name">${grupo}</span>
+            <span class="grupo-name" style="color:${grupoColor};">${grupo}</span>
           </div>
           <span class="grupo-count">${ejs.length}</span>
         </div>
         <div class="grupo-exercises-wrap ${isExpanded ? 'open' : ''}">
           <div class="grupo-exercises">
           ${ejs.map(e => {
-            const hasCustom = !!custom[e.nombre];
+            const usaPeso = inferUsaPeso(e.nombre);
             return `
               <div class="ejercicio-row" data-nombre="${e.nombre}">
                 <div class="ejercicio-row-main">
                   <div>
                     <div class="ejercicio-row-name">${e.nombre}</div>
-                    ${hasCustom ? '<span style="font-size:var(--text-xs);color:var(--color-accent);">editado</span>' : ''}
                   </div>
-                  <span class="tipo-badge" style="background:${TIPO_COLORS[e.tipo]}20;color:${TIPO_COLORS[e.tipo]};">${TIPO_LABELS[e.tipo]}</span>
+                  <div style="display:flex;align-items:center;gap:4px;">
+                    ${usaPeso ? '<i class="ph ph-barbell" style="font-size:12px;color:var(--color-text-muted);"></i>' : ''}
+                    <span class="tipo-badge" style="background:${TIPO_COLORS[e.tipo]}20;color:${TIPO_COLORS[e.tipo]};">${TIPO_LABELS[e.tipo]}</span>
+                  </div>
                 </div>
               </div>
             `;
@@ -220,7 +249,7 @@ function showDetailModal(data, allowEdit) {
     <div class="modal-sheet ejercicio-detail-sheet">
       <div class="modal-header">
         <div>
-          <span style="font-size:var(--text-xs);color:var(--color-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:1px;">${data.grupo}</span>
+          <span style="font-size:var(--text-xs);color:${getGrupoColor(data.grupo)};font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:1px;">${data.grupo}</span>
           <h2 class="modal-title" style="margin-top:2px;">${data.nombre}</h2>
         </div>
         <div style="display:flex;gap:var(--space-sm);align-items:center;">
@@ -236,7 +265,7 @@ function showDetailModal(data, allowEdit) {
         </div>
 
         <div class="ejercicio-attrs">
-          ${data.usaPeso ? `<span class="attr-chip"><i class="ph ph-barbell"></i> Usa peso</span>` : ''}
+          ${inferUsaPeso(data.nombre) ? `<span class="attr-chip"><i class="ph ph-barbell"></i> Usa peso</span>` : ''}
         </div>
 
         <p class="ejercicio-descripcion" id="ejercicio-desc-text">${data.descripcion || 'Sin descripción.'}</p>
@@ -317,14 +346,17 @@ function openEditModal(data) {
   overlay.querySelector('#btn-save-ejercicio').addEventListener('click', () => {
     const desc = overlay.querySelector('#edit-desc').value.trim();
     const usaPesoVal = overlay.querySelector('#edit-usa-peso').checked;
-    setUsaPeso(data.nombre, usaPesoVal);
-    saveCustomEjercicio(data.nombre, { descripcion: desc, tipo: selectedTipo });
+    // Single atomic write for all custom fields
+    const custom = store.getObj('gym_ejercicios_custom');
+    if (!custom[data.nombre]) custom[data.nombre] = {};
+    Object.assign(custom[data.nombre], { descripcion: desc, tipo: selectedTipo, usaPeso: usaPesoVal });
+    store.set('gym_ejercicios_custom', custom);
     overlay.classList.add('hidden');
     overlay.innerHTML = '';
-    // Re-render the list if we're in ejercicios view
-    const container = document.getElementById('view-container');
-    if (container) {
-      import('./ejercicios.js').then(m => m.mountEjercicios(container));
+    // Force full re-render of ejercicios view
+    const vc = document.getElementById('view-container');
+    if (vc && document.getElementById('ejercicios-list')) {
+      render(vc);
     }
   });
 }

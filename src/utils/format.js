@@ -51,6 +51,20 @@ export function getCircuitColor(nombre) {
   return 'var(--color-tag-core)';
 }
 
+export function getGrupoColor(grupo) {
+  const GRUPO_COLORS = {
+    'Piernas': 'var(--color-tag-piernas)',
+    'Core': 'var(--color-tag-core)',
+    'Pecho': 'var(--color-tag-pecho)',
+    'Espalda': 'var(--color-tag-espalda)',
+    'Brazos': 'var(--color-tag-brazos)',
+    'Glúteos': 'var(--color-tag-gluteos)',
+    'Hombros': 'var(--color-tag-hombros)',
+    'HIIT': 'var(--color-tag-hiit)',
+  };
+  return GRUPO_COLORS[grupo] || 'var(--color-tag-core)';
+}
+
 export function formatSetsReps(ej) {
   if (ej.tipo === 'hiit' && ej.duracion) {
     return `${ej.series?.length || ej.series || 1}×${ej.duracion}s`;
