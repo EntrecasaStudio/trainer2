@@ -320,7 +320,7 @@ function createRioRoutines() {
     rutinaRio('#001', 'RÍO Pull A — Espalda', 'Lean', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 3, '10'), ej('Peso muerto rumano', 3, '10')]),
-      circuito(3, 'ESPALDA', [ej('Dominadas abiertas', 3, 'AMRAP'), ej('TRX row', 3, '12')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '12')]),
       circuito(4, 'ESPALDA ALT', [ej('Remo alto en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Mountain climbers', 3, '20'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
