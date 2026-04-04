@@ -852,9 +852,71 @@ function deduplicateRutinas() {
   console.log(`[Dedup] ${rutinas.length} → ${unique.length} rutinas, remapped ${idRemap.size} IDs`);
 }
 
+function backfillSesionLugar() {
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  let changed = false;
+  for (const s of sesiones) {
+    if (s.lugar) continue;
+    // Try to find lugar from rutina
+    if (s.rutinaId) {
+      const r = rutinas.find(rt => rt.id === s.rutinaId);
+      if (r?.lugar) { s.lugar = r.lugar; changed = true; continue; }
+    }
+    // Infer from name
+    const name = (s.rutinaNombre || '').toUpperCase();
+    if (name.includes('RÍO') || name.includes('RIO')) { s.lugar = 'RIO'; changed = true; }
+    else if (name.includes('URUGUAY')) { s.lugar = 'URUGUAY'; changed = true; }
+    else { s.lugar = 'SPORT_FITNESS'; changed = true; }
+  }
+  if (changed) store.set(store.KEYS.sesiones, sesiones);
+}
+
+function rebuildProgresionWithLugar() {
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  const prog = store.getObj(store.KEYS.progresion);
+  // Check if migration needed: any user-level entry with lastWeight (old format)
+  let needsMigration = false;
+  for (const [, users] of Object.entries(prog)) {
+    for (const [, data] of Object.entries(users)) {
+      if (data?.lastWeight !== undefined) { needsMigration = true; break; }
+    }
+    if (needsMigration) break;
+  }
+  if (!needsMigration) return;
+
+  // Rebuild from sesiones
+  const newProg = {};
+  const sorted = [...sesiones].sort((a, b) => (a.fecha || '').localeCompare(b.fecha || ''));
+  for (const s of sorted) {
+    const lugar = s.lugar || 'SPORT_FITNESS';
+    const usuario = s.usuario;
+    for (const c of (s.circuitos || [])) {
+      for (const e of (c.ejercicios || [])) {
+        if (!e.usaPeso) continue;
+        const done = (e.seriesData || []).filter(sr => sr.done && sr.peso > 0);
+        if (done.length === 0) continue;
+        const maxPeso = Math.max(...done.map(sr => sr.peso));
+        const allReps = (e.seriesData || []).every(sr => sr.done);
+        if (!newProg[e.nombre]) newProg[e.nombre] = {};
+        if (!newProg[e.nombre][usuario]) newProg[e.nombre][usuario] = {};
+        newProg[e.nombre][usuario][lugar] = {
+          lastWeight: maxPeso,
+          completedAllReps: allReps,
+          lastDate: s.fecha,
+        };
+      }
+    }
+  }
+  store.set(store.KEYS.progresion, newProg);
+  console.log('[Seed] Rebuilt progresion with lugar separation');
+}
+
 export async function seedV2() {
-  // Always dedup first (idempotent, fast if clean)
+  // Always run migrations (idempotent, fast)
   deduplicateRutinas();
+  backfillSesionLugar();
+  rebuildProgresionWithLugar();
 
   const version = store.getVersion();
   if (version === SEED_VERSION) {

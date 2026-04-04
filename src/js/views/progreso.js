@@ -207,12 +207,25 @@ export function mountProgreso(container) {
   }
 
   // ── Helpers ─────────────────────────────────────────────────────────────
+  function getSesionLugar(s) {
+    if (s.lugar) return s.lugar;
+    // Infer from rutina or name
+    if (s.rutinaId) {
+      const rutina = store.findById(store.KEYS.rutinas, s.rutinaId);
+      if (rutina?.lugar) return rutina.lugar;
+    }
+    const name = (s.rutinaNombre || '').toUpperCase();
+    if (name.includes('RÍO') || name.includes('RIO')) return 'RIO';
+    if (name.includes('URUGUAY') || name.includes('🇺🇾')) return 'URUGUAY';
+    return 'SPORT_FITNESS';
+  }
+
   function buildExerciseHistory(sesiones) {
     const map = {}; // key: "ejercicio__lugar" → [{fecha, peso, dateShort}]
     const sorted = [...sesiones].sort((a, b) => (a.fecha || '').localeCompare(b.fecha || ''));
 
     for (const s of sorted) {
-      const lugar = s.lugar || 'SPORT_FITNESS';
+      const lugar = getSesionLugar(s);
       for (const c of (s.circuitos || [])) {
         for (const e of (c.ejercicios || [])) {
           const done = (e.seriesData || []).filter(sr => sr.done && sr.peso > 0);

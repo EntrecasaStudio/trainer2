@@ -91,6 +91,18 @@ function renderFilters() {
   });
 }
 
+function getSesionLugar(s) {
+  if (s.lugar) return s.lugar;
+  if (s.rutinaId) {
+    const rutina = store.findById(store.KEYS.rutinas, s.rutinaId);
+    if (rutina?.lugar) return rutina.lugar;
+  }
+  const name = (s.rutinaNombre || '').toUpperCase();
+  if (name.includes('RÍO') || name.includes('RIO')) return 'RIO';
+  if (name.includes('URUGUAY') || name.includes('🇺🇾')) return 'URUGUAY';
+  return 'SPORT_FITNESS';
+}
+
 function getMonday(date) {
   const d = new Date(date);
   d.setHours(0, 0, 0, 0);
@@ -107,7 +119,7 @@ function renderList() {
   const sesiones = store.getAll(store.KEYS.sesiones)
     .filter(s => s.usuario === _currentUser)
     .filter(s => !q || (s.rutinaNombre || '').toLowerCase().includes(q))
-    .filter(s => !_filterLugar || (s.lugar || 'SPORT_FITNESS') === _filterLugar)
+    .filter(s => !_filterLugar || getSesionLugar(s) === _filterLugar)
     .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
   if (sesiones.length === 0) {
@@ -153,7 +165,7 @@ function renderList() {
           const totalSeries = (s.circuitos || []).reduce((sum, c) =>
             sum + (c.ejercicios || []).reduce((s2, e) =>
               s2 + (e.seriesData || []).filter(sr => sr.done).length, 0), 0);
-          const lugar = s.lugar || 'SPORT_FITNESS';
+          const lugar = getSesionLugar(s);
           const badge = getLugarBadge(lugar);
 
           return `
