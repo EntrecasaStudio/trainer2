@@ -276,8 +276,10 @@
   margin-bottom: var(--space-sm);
 }
 
-/* ── Peso toggle ─────────────────────────────────────────────────────────── */
+/* ── Peso / Chaleco toggle ───────────────────────────────────────────────── */
 .peso-toggle-row {
+  display: flex;
+  align-items: center;
   margin-bottom: var(--space-xs);
 }
 .peso-toggle-label {
@@ -289,7 +291,7 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-.peso-toggle-cb {
+.peso-toggle-cb, .chaleco-toggle-cb {
   accent-color: var(--color-accent);
 }
 

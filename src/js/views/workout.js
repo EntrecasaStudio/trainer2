@@ -1,6 +1,6 @@
 import { store } from '../../store.js';
 import { router } from '../../router.js';
-import { inferUsaPeso, setUsaPeso } from '../../utils/inferUsaPeso.js';
+import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { formatTimer } from '../../utils/format.js';
 import { showToast } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
@@ -276,12 +276,22 @@ function renderExerciseCard(e, ci, ei) {
       <div class="exercise-collapse-wrap ${isExpanded ? 'show' : ''}" data-body-key="${key}">
         <div class="exercise-collapse-inner">
           <div class="exercise-body">
+        ${(() => {
+          const cat = EJERCICIOS_CATALOGO.find(c => c.nombre === e.nombre);
+          const isFuncional = cat?.tipo === 'funcional';
+          return isFuncional ? `
         <div class="peso-toggle-row">
           <label class="peso-toggle-label">
-            <input type="checkbox" class="peso-toggle-cb" data-ci="${ci}" data-ei="${ei}" ${e.usaPeso ? 'checked' : ''}>
-            <i class="ph ph-barbell" style="font-size:14px;"></i> Peso
+            <input type="checkbox" class="chaleco-toggle-cb" data-ci="${ci}" data-ei="${ei}" ${e.chaleco ? 'checked' : ''}>
+            <i class="ph ph-coat-hanger" style="font-size:14px;"></i> Chaleco
           </label>
-        </div>
+          ${e.chaleco ? `
+          <div class="chaleco-peso-input" style="display:flex;align-items:center;gap:4px;margin-left:var(--space-sm);">
+            <input type="number" class="stepper-input chaleco-peso-field" data-ci="${ci}" data-ei="${ei}" value="${e.chalecoPeso || 0}" inputmode="decimal" style="width:60px;text-align:center;">
+            <span style="font-size:var(--text-xs);color:var(--color-text-muted);">kg</span>
+          </div>` : ''}
+        </div>` : '';
+        })()}
         ${e._suggestion ? `
           <div class="suggestion-banner">
             <i class="ph ph-trend-up"></i> +${incremento}kg sugerido (→ ${e._suggestion}kg)
@@ -475,16 +485,27 @@ function bindExerciseEvents(container, scope) {
     input.addEventListener('focus', () => { input.select(); });
   });
 
-  // Peso toggle
-  scope.querySelectorAll('.peso-toggle-cb').forEach(cb => {
+  // Chaleco toggle
+  scope.querySelectorAll('.chaleco-toggle-cb').forEach(cb => {
     cb.addEventListener('change', () => {
       const { ci, ei } = cb.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
-      ejercicio.usaPeso = cb.checked;
-      setUsaPeso(ejercicio.nombre, cb.checked);
+      ejercicio.chaleco = cb.checked;
+      if (!cb.checked) ejercicio.chalecoPeso = 0;
       persistWorkout();
       refreshExercises(container);
     });
+  });
+
+  // Chaleco peso input
+  scope.querySelectorAll('.chaleco-peso-field').forEach(input => {
+    input.addEventListener('change', () => {
+      const { ci, ei } = input.dataset;
+      const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
+      ejercicio.chalecoPeso = Math.max(0, parseFloat(input.value) || 0);
+      persistWorkout();
+    });
+    input.addEventListener('focus', () => { input.select(); });
   });
 
   // Series done
