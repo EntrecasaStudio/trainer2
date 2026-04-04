@@ -42,8 +42,8 @@ describe('inferUsaPeso', () => {
     expect(inferUsaPeso('Curl de bíceps con barra')).toBe(true);
   });
 
-  it('Pallof press === false', () => {
-    expect(inferUsaPeso('Pallof press')).toBe(false);
+  it('Pallof press === true (uses cable)', () => {
+    expect(inferUsaPeso('Pallof press')).toBe(true);
   });
 
   it('Empuje de cadera en cajon === true', () => {
@@ -54,8 +54,8 @@ describe('inferUsaPeso', () => {
     expect(inferUsaPeso('Aductores en maquina')).toBe(true);
   });
 
-  it('Espinales con disco === false', () => {
-    expect(inferUsaPeso('Espinales con disco')).toBe(false);
+  it('Espinales con disco === true (uses disco)', () => {
+    expect(inferUsaPeso('Espinales con disco')).toBe(true);
   });
 
   it('TRX chest press === false', () => {
@@ -64,6 +64,34 @@ describe('inferUsaPeso', () => {
 
   it('Banda press de pecho === false', () => {
     expect(inferUsaPeso('Banda press de pecho')).toBe(false);
+  });
+
+  it('Banda triceps pushdown === false (banda override)', () => {
+    expect(inferUsaPeso('Banda triceps pushdown')).toBe(false);
+  });
+
+  it('Remo alto en TRX === false (trx override)', () => {
+    expect(inferUsaPeso('Remo alto en TRX')).toBe(false);
+  });
+
+  it('Muscle-up negativo en barra === false (muscle-up override)', () => {
+    expect(inferUsaPeso('Muscle-up negativo en barra')).toBe(false);
+  });
+
+  it('Plancha con elevación alternada === false (plancha override)', () => {
+    expect(inferUsaPeso('Plancha con elevación alternada')).toBe(false);
+  });
+
+  it('Pulldown agarre cerrado === true', () => {
+    expect(inferUsaPeso('Pulldown agarre cerrado')).toBe(true);
+  });
+
+  it('Face pulls === true', () => {
+    expect(inferUsaPeso('Face pulls')).toBe(true);
+  });
+
+  it('Patada de glúteo con tobillera === true', () => {
+    expect(inferUsaPeso('Patada de glúteo con tobillera')).toBe(true);
   });
 
   it('null/empty returns false', () => {
