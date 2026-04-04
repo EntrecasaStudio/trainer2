@@ -111,6 +111,7 @@ export function mountWorkout(container, params) {
     rutinaId: rutina.id,
     rutinaNombre: rutina.nombre,
     rutinaNumero: rutina.numero,
+    lugar: rutina.lugar || 'SPORT_FITNESS',
     usuario,
     fecha: fecha || new Date().toISOString().slice(0, 10),
     startTime: new Date().toISOString(),
@@ -136,11 +137,12 @@ export function mountWorkout(container, params) {
     })),
   };
 
-  // Pre-fill weights from progression
+  // Pre-fill weights from progression (lugar-aware)
+  const lugar = workoutState.lugar;
   workoutState.circuitos.forEach(c => {
     c.ejercicios.forEach(e => {
       if (e.usaPeso) {
-        const prog = store.getProgresion(e.nombre, usuario);
+        const prog = store.getProgresion(e.nombre, usuario, lugar);
         if (prog) {
           e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
           e._lastWeight = prog.lastWeight;
@@ -782,7 +784,7 @@ function finishWorkout(container) {
       if (doneSeries.length === 0) return;
       const maxPeso = Math.max(...doneSeries.map(s => s.peso));
       const allReps = e.seriesData.every(s => s.done);
-      store.setProgresion(e.nombre, usuario, { lastWeight: maxPeso, completedAllReps: allReps });
+      store.setProgresion(e.nombre, usuario, { lastWeight: maxPeso, completedAllReps: allReps }, workoutState.lugar);
     });
   });
 
@@ -790,6 +792,7 @@ function finishWorkout(container) {
     id: crypto.randomUUID(),
     rutinaId: workoutState.rutinaId,
     rutinaNombre: workoutState.rutinaNombre,
+    lugar: workoutState.lugar,
     usuario,
     fecha: workoutState.fecha,
     startTime: workoutState.startTime,

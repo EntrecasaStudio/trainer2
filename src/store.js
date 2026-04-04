@@ -92,15 +92,38 @@ export const store = {
   },
 
   // Progresion
-  getProgresion(ejercicio, usuario) {
+  getProgresion(ejercicio, usuario, lugar) {
     const prog = this.getObj(KEYS.progresion);
-    return prog[ejercicio]?.[usuario] || null;
+    // New format: prog[ejercicio][usuario][lugar]
+    // Backwards compat: if old format (no lugar nesting), return as-is
+    const userProg = prog[ejercicio]?.[usuario];
+    if (!userProg) return null;
+    if (lugar && userProg[lugar]) return userProg[lugar];
+    // Old format: userProg has lastWeight directly
+    if (userProg.lastWeight !== undefined) return userProg;
+    return null;
   },
 
-  setProgresion(ejercicio, usuario, data) {
+  getProgresionAllLugares(ejercicio, usuario) {
+    const prog = this.getObj(KEYS.progresion);
+    const userProg = prog[ejercicio]?.[usuario];
+    if (!userProg) return {};
+    // Old format
+    if (userProg.lastWeight !== undefined) return { SPORT_FITNESS: userProg };
+    return userProg;
+  },
+
+  setProgresion(ejercicio, usuario, data, lugar) {
     const prog = this.getObj(KEYS.progresion);
     if (!prog[ejercicio]) prog[ejercicio] = {};
-    prog[ejercicio][usuario] = { ...data, lastDate: new Date().toISOString().slice(0, 10) };
+    const key = lugar || 'SPORT_FITNESS';
+    // Migrate old format if needed
+    if (prog[ejercicio][usuario]?.lastWeight !== undefined) {
+      const old = prog[ejercicio][usuario];
+      prog[ejercicio][usuario] = { SPORT_FITNESS: old };
+    }
+    if (!prog[ejercicio][usuario]) prog[ejercicio][usuario] = {};
+    prog[ejercicio][usuario][key] = { ...data, lastDate: new Date().toISOString().slice(0, 10) };
     this.set(KEYS.progresion, prog);
   },
 

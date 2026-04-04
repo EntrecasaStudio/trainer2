@@ -1,5 +1,6 @@
 import { store } from '../../store.js';
 import { formatDateLong, formatDuration, getLugarBadge, formatSetsReps, getCircuitColor } from '../../utils/format.js';
+import { formatDateISO } from '../../utils/calendar.js';
 import { openModal, closeModal } from '../components/modal.js';
 import { showToast, showToastAction } from '../components/toast.js';
 
@@ -7,6 +8,8 @@ let _container = null;
 let _currentUser = '';
 let _searchQuery = '';
 let _searchVisible = false;
+let _filterLugar = null; // null = all, 'SPORT_FITNESS', 'RIO', 'URUGUAY'
+let _filterFoco = null; // null = all, 'pull', 'press'
 
 export function mountHistorial(container) {
   _container = container;
@@ -14,6 +17,8 @@ export function mountHistorial(container) {
   document.body.setAttribute('data-usuario', _currentUser);
   _searchQuery = '';
   _searchVisible = false;
+  _filterLugar = null;
+  _filterFoco = null;
 
   container.innerHTML = `
     <div class="rutinas-header">
@@ -31,6 +36,7 @@ export function mountHistorial(container) {
     <div class="rutinas-search" id="historial-search-wrap">
       <input type="text" class="rutinas-search-input" id="historial-search" placeholder="Buscar sesión..." autocomplete="off">
     </div>
+    <div id="historial-filters" class="historial-filters"></div>
     <div id="historial-list"></div>
   `;
 
@@ -41,6 +47,7 @@ export function mountHistorial(container) {
       document.body.setAttribute('data-usuario', _currentUser);
       container.querySelectorAll('.user-toggle-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      renderFilters();
       renderList();
     });
   });
@@ -58,7 +65,38 @@ export function mountHistorial(container) {
     renderList();
   });
 
+  renderFilters();
   renderList();
+}
+
+function renderFilters() {
+  const el = document.getElementById('historial-filters');
+  if (!el) return;
+
+  el.innerHTML = `
+    <div style="display:flex;gap:var(--space-xs);flex-wrap:wrap;">
+      <button class="hist-filter-chip ${!_filterLugar ? 'active' : ''}" data-lugar="">Todas</button>
+      <button class="hist-filter-chip ${_filterLugar === 'SPORT_FITNESS' ? 'active' : ''}" data-lugar="SPORT_FITNESS">Gym</button>
+      <button class="hist-filter-chip ${_filterLugar === 'RIO' ? 'active' : ''}" data-lugar="RIO">Río</button>
+      <button class="hist-filter-chip ${_filterLugar === 'URUGUAY' ? 'active' : ''}" data-lugar="URUGUAY">Uruguay</button>
+    </div>
+  `;
+
+  el.querySelectorAll('.hist-filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      _filterLugar = chip.dataset.lugar || null;
+      renderFilters();
+      renderList();
+    });
+  });
+}
+
+function getMonday(date) {
+  const d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  const dow = d.getDay();
+  d.setDate(d.getDate() - (dow === 0 ? 6 : dow - 1));
+  return d;
 }
 
 function renderList() {
@@ -69,32 +107,70 @@ function renderList() {
   const sesiones = store.getAll(store.KEYS.sesiones)
     .filter(s => s.usuario === _currentUser)
     .filter(s => !q || (s.rutinaNombre || '').toLowerCase().includes(q))
-    .sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+    .filter(s => !_filterLugar || (s.lugar || 'SPORT_FITNESS') === _filterLugar)
+    .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
 
   if (sesiones.length === 0) {
     listEl.innerHTML = `
       <div class="empty-state">
         <div class="empty-state-icon"><i class="ph-light ph-chart-bar" style="font-size:48px;"></i></div>
-        <div class="empty-state-text">${q ? 'Sin resultados' : 'Sin sesiones registradas'}</div>
+        <div class="empty-state-text">${q || _filterLugar ? 'Sin resultados' : 'Sin sesiones registradas'}</div>
       </div>
     `;
     return;
   }
 
-  listEl.innerHTML = sesiones.map(s => {
-    const totalSeries = (s.circuitos || []).reduce((sum, c) =>
-      sum + (c.ejercicios || []).reduce((s2, e) =>
-        s2 + (e.seriesData || []).filter(sr => sr.done).length, 0), 0);
+  // Group by week
+  const weeks = new Map(); // mondayStr → { sesiones: [], label }
+  for (const s of sesiones) {
+    const d = new Date(s.fecha + 'T00:00:00');
+    const mon = getMonday(d);
+    const monStr = formatDateISO(mon);
+    if (!weeks.has(monStr)) {
+      const sun = new Date(mon);
+      sun.setDate(sun.getDate() + 6);
+      const label = `${mon.getDate()}/${mon.getMonth() + 1} — ${sun.getDate()}/${sun.getMonth() + 1}`;
+      weeks.set(monStr, { sesiones: [], label, monday: mon });
+    }
+    weeks.get(monStr).sesiones.push(s);
+  }
+
+  // Check if current week
+  const thisMonday = formatDateISO(getMonday(new Date()));
+
+  listEl.innerHTML = [...weeks.entries()].map(([monStr, week]) => {
+    const totalMin = Math.round(week.sesiones.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
+    const totalKcal = week.sesiones.reduce((sum, s) => sum + (s.calorias || 0), 0);
+    const isThisWeek = monStr === thisMonday;
 
     return `
-      <div class="historial-item" data-id="${s.id}" style="cursor:pointer;">
-        <div class="historial-date">${formatDateLong(new Date(s.fecha + 'T00:00:00'))}</div>
-        <div class="historial-name">${s.rutinaNombre || 'Sesión'}</div>
-        <div class="historial-stats">
-          <span><i class="ph ph-timer" style="font-size:14px;color:#30D158;"></i> ${formatDuration(s.duracion || 0)}</span>
-          <span><i class="ph ph-barbell" style="font-size:14px;color:#FF9F0A;"></i> ${totalSeries} series</span>
-          ${s.calorias ? `<span><i class="ph ph-flame" style="font-size:14px;color:#FF375F;"></i> ${s.calorias} kcal</span>` : ''}
+      <div class="hist-week-group">
+        <div class="hist-week-header">
+          <span class="hist-week-label">${isThisWeek ? 'Esta semana' : `Semana ${week.label}`}</span>
+          <span class="hist-week-summary">${week.sesiones.length} sesiones · ${totalMin} min${totalKcal > 0 ? ` · ${totalKcal} kcal` : ''}</span>
         </div>
+        ${week.sesiones.map(s => {
+          const totalSeries = (s.circuitos || []).reduce((sum, c) =>
+            sum + (c.ejercicios || []).reduce((s2, e) =>
+              s2 + (e.seriesData || []).filter(sr => sr.done).length, 0), 0);
+          const lugar = s.lugar || 'SPORT_FITNESS';
+          const badge = getLugarBadge(lugar);
+
+          return `
+            <div class="historial-item" data-id="${s.id}" style="cursor:pointer;">
+              <div style="display:flex;align-items:center;gap:var(--space-sm);">
+                <div class="historial-date" style="flex:1;">${formatDateLong(new Date(s.fecha + 'T00:00:00'))}</div>
+                <span class="badge ${badge.cls}" style="font-size:9px;padding:1px 6px;">${badge.text}</span>
+              </div>
+              <div class="historial-name">${s.rutinaNombre || 'Sesión'}</div>
+              <div class="historial-stats">
+                <span><i class="ph ph-timer" style="font-size:14px;color:#30D158;"></i> ${formatDuration(s.duracion || 0)}</span>
+                <span><i class="ph ph-barbell" style="font-size:14px;color:#FF9F0A;"></i> ${totalSeries} series</span>
+                ${s.calorias ? `<span><i class="ph ph-flame" style="font-size:14px;color:#FF375F;"></i> ${s.calorias} kcal</span>` : ''}
+              </div>
+            </div>
+          `;
+        }).join('')}
       </div>
     `;
   }).join('');
