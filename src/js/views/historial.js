@@ -88,7 +88,7 @@ function renderList() {
 
     return `
       <div class="historial-item" data-id="${s.id}" style="cursor:pointer;">
-        <div class="historial-date">${formatDateLong(new Date(s.fecha))}</div>
+        <div class="historial-date">${formatDateLong(new Date(s.fecha + 'T00:00:00'))}</div>
         <div class="historial-name">${s.rutinaNombre || 'Sesión'}</div>
         <div class="historial-stats">
           <span><i class="ph ph-timer" style="font-size:14px;color:#30D158;"></i> ${formatDuration(s.duracion || 0)}</span>
