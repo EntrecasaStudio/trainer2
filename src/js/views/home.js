@@ -321,7 +321,7 @@ function openAssignSheet() {
 
     return LUGAR_ORDER.filter(l => grouped[l]).map(lugar => `
       <div style="margin-bottom:var(--space-md);">
-        <div style="font-size:var(--text-xs);font-weight:var(--fw-semibold);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.5px;padding:var(--space-xs) 0;">${LUGAR_LABELS[lugar]}</div>
+        <div style="font-size:var(--text-xs);font-weight:var(--fw-semibold);color:var(--color-text-muted);letter-spacing:0.5px;padding:var(--space-xs) 0;">${LUGAR_LABELS[lugar]}</div>
         ${grouped[lugar].map(r => `
           <div class="rutina-list-item assign-pick" data-id="${r.id}" style="cursor:pointer;">
             <div class="rutina-list-header">

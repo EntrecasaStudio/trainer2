@@ -170,8 +170,7 @@
 .circuit-label-text {
   font-size: var(--text-base);
   font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
 }
 .circuit-done-check {
   color: #4ade80;

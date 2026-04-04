@@ -249,7 +249,7 @@ function showDetailModal(data, allowEdit) {
     <div class="modal-sheet ejercicio-detail-sheet">
       <div class="modal-header">
         <div>
-          <span style="font-size:var(--text-xs);color:${getGrupoColor(data.grupo)};font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:1px;">${data.grupo}</span>
+          <span style="font-size:var(--text-xs);color:${getGrupoColor(data.grupo)};font-weight:var(--fw-semibold);letter-spacing:0.5px;">${data.grupo}</span>
           <h2 class="modal-title" style="margin-top:2px;">${data.nombre}</h2>
         </div>
         <div style="display:flex;gap:var(--space-sm);align-items:center;">

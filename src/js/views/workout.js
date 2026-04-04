@@ -633,7 +633,7 @@ function showExercisePicker(container, ci, ei) {
         </div>
         <div style="max-height:60vh;overflow-y:auto;display:flex;flex-direction:column;gap:2px;">
           ${Object.entries(grouped).map(([grupo, ejs]) => `
-            <div style="font-size:var(--text-xs);color:var(--color-accent);font-weight:var(--fw-semibold);text-transform:uppercase;letter-spacing:1px;padding:var(--space-sm) var(--space-xs);">${grupo}</div>
+            <div style="font-size:var(--text-xs);color:var(--color-accent);font-weight:var(--fw-semibold);letter-spacing:0.5px;padding:var(--space-sm) var(--space-xs);">${grupo}</div>
             ${ejs.map(e => `
               <div class="ejercicio-picker-item" data-nombre="${e.nombre}" style="padding:var(--space-sm) var(--space-md);background:var(--color-surface-alt);border-radius:var(--radius-sm);cursor:pointer;">
                 <span style="font-size:var(--text-sm);">${e.nombre}</span>

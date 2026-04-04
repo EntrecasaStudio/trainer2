@@ -338,7 +338,7 @@ function showExercisePicker(container, ci, ei) {
           <div class="ej-picker-list" style="max-height:50vh;overflow-y:auto;">
             ${GRUPOS_MUSCULARES.filter(g => grouped[g]).map(grupo => `
               <div style="margin-bottom:var(--space-sm);">
-                <div style="font-size:var(--text-xs);font-weight:var(--fw-semibold);color:var(--color-text-muted);text-transform:uppercase;letter-spacing:0.5px;padding:var(--space-xs) 0;">${grupo}</div>
+                <div style="font-size:var(--text-xs);font-weight:var(--fw-semibold);color:var(--color-text-muted);letter-spacing:0.5px;padding:var(--space-xs) 0;">${grupo}</div>
                 ${grouped[grupo].map(e => `
                   <div class="ej-picker-item" data-nombre="${e.nombre}" style="padding:var(--space-sm);cursor:pointer;border-radius:var(--radius-sm);transition:background 0.1s;">
                     <span style="font-size:var(--text-sm);color:var(--color-text);">${e.nombre}</span>
