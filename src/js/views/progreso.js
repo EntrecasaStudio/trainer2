@@ -68,7 +68,7 @@ export function mountProgreso(container) {
     const el = document.getElementById('progreso-summary');
     if (_searchQuery) { el.innerHTML = ''; return; }
 
-    const sesiones = store.getAll(store.KEYS.sesiones).filter(s => s.usuario === currentUser);
+    const sesiones = store.getAll(store.KEYS.sesiones).filter(s => s.usuario === currentUser && s.fecha);
     if (sesiones.length === 0) { el.innerHTML = ''; return; }
 
     const today = new Date();
@@ -129,7 +129,7 @@ export function mountProgreso(container) {
   // ── Per-exercise progression ────────────────────────────────────────────
   function renderList() {
     const listEl = document.getElementById('progreso-list');
-    const sesiones = store.getAll(store.KEYS.sesiones).filter(s => s.usuario === currentUser);
+    const sesiones = store.getAll(store.KEYS.sesiones).filter(s => s.usuario === currentUser && s.fecha);
     const progresion = store.getObj(store.KEYS.progresion);
     const q = _searchQuery;
 

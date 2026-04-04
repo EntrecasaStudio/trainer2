@@ -44,6 +44,7 @@ export function getMonday(date) {
 // Format date as YYYY-MM-DD
 export function formatDateISO(date) {
   const d = new Date(date);
+  if (isNaN(d.getTime())) return '';
   return d.toISOString().slice(0, 10);
 }
 
