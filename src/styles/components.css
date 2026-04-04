@@ -558,6 +558,8 @@
 .grupo-name {
   font-size: var(--text-sm);
   font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
   color: var(--color-text);
 }
 
