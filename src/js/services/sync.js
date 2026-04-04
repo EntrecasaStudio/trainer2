@@ -320,6 +320,9 @@ export function clearSyncState() {
 
 // ── Debounced sync trigger ──────────────
 
+// Critical keys sync immediately (no debounce) to avoid data loss
+const IMMEDIATE_SYNC = new Set(['gym_sesiones', 'gym_ejercicio_progresion']);
+
 export function queueSync(key) {
   if (_suppressSync) return;
   if (!SYNC_KEYS[key]) return;
@@ -334,12 +337,21 @@ export function queueSync(key) {
 
   _setSyncStatus('pending');
   clearTimeout(_timers[key]);
-  _timers[key] = setTimeout(() => {
+
+  if (IMMEDIATE_SYNC.has(key)) {
+    // Sync immediately for critical data
     _setSyncStatus('syncing');
     uploadKey(key).then(() => {
       if (_dirtyKeys.size === 0) _setSyncStatus('synced');
     });
-  }, DEBOUNCE_MS);
+  } else {
+    _timers[key] = setTimeout(() => {
+      _setSyncStatus('syncing');
+      uploadKey(key).then(() => {
+        if (_dirtyKeys.size === 0) _setSyncStatus('synced');
+      });
+    }, DEBOUNCE_MS);
+  }
 }
 
 export function isSyncAvailable() {
@@ -354,11 +366,19 @@ function flushOnExit() {
     clearTimeout(_timers[key]);
     delete _timers[key];
   }
-  keys.forEach(key => uploadKey(key));
+  // Try sendBeacon for reliability on page close
+  const ref = getDocRef();
+  if (ref && navigator.sendBeacon) {
+    // Fall back to async upload — sendBeacon can't do Firestore directly
+    keys.forEach(key => uploadKey(key));
+  } else {
+    keys.forEach(key => uploadKey(key));
+  }
 }
 
 if (typeof window !== 'undefined') {
   window.addEventListener('beforeunload', flushOnExit);
+  window.addEventListener('pagehide', flushOnExit);
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') flushOnExit();
   });
