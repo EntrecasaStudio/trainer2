@@ -290,10 +290,10 @@ function renderExerciseCard(e, ci, ei) {
           const isFuncional = cat?.tipo === 'funcional';
           return isFuncional ? `
         <div class="peso-toggle-row">
-          <label class="peso-toggle-label">
-            <input type="checkbox" class="chaleco-toggle-cb" data-ci="${ci}" data-ei="${ei}" ${e.chaleco ? 'checked' : ''}>
+          <button class="chaleco-toggle-btn" data-ci="${ci}" data-ei="${ei}" title="Chaleco">
+            <i class="${e.chaleco ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:20px;"></i>
             <i class="ph ph-shield-plus" style="font-size:14px;"></i> Chaleco
-          </label>
+          </button>
           ${e.chaleco ? `
           <div class="chaleco-peso-input" style="display:flex;align-items:center;gap:4px;margin-left:var(--space-sm);">
             <input type="number" class="stepper-input chaleco-peso-field" data-ci="${ci}" data-ei="${ei}" value="${e.chalecoPeso || 0}" inputmode="decimal" style="width:60px;text-align:center;">
@@ -495,12 +495,12 @@ function bindExerciseEvents(container, scope) {
   });
 
   // Chaleco toggle
-  scope.querySelectorAll('.chaleco-toggle-cb').forEach(cb => {
-    cb.addEventListener('change', () => {
-      const { ci, ei } = cb.dataset;
+  scope.querySelectorAll('.chaleco-toggle-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { ci, ei } = btn.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
-      ejercicio.chaleco = cb.checked;
-      if (!cb.checked) ejercicio.chalecoPeso = 0;
+      ejercicio.chaleco = !ejercicio.chaleco;
+      if (!ejercicio.chaleco) ejercicio.chalecoPeso = 0;
       persistWorkout();
       refreshExercises(container);
     });
