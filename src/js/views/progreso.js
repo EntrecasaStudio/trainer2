@@ -79,10 +79,6 @@ export function mountProgreso(container) {
     // This week
     const thisWeek = sesiones.filter(s => s.fecha >= mondayStr);
     const totalMin = Math.round(thisWeek.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
-    const totalSeries = thisWeek.reduce((sum, s) =>
-      sum + (s.circuitos || []).reduce((cs, c) =>
-        cs + (c.ejercicios || []).reduce((es, e) =>
-          es + (e.seriesData || []).filter(sr => sr.done).length, 0), 0), 0);
 
     // Last week for comparison
     const lastMonday = new Date(monday);
@@ -90,10 +86,6 @@ export function mountProgreso(container) {
     const lastMondayStr = formatDateISO(lastMonday);
     const lastWeek = sesiones.filter(s => s.fecha >= lastMondayStr && s.fecha < mondayStr);
     const lastWeekSessions = lastWeek.length;
-    const lastWeekSeries = lastWeek.reduce((sum, s) =>
-      sum + (s.circuitos || []).reduce((cs, c) =>
-        cs + (c.ejercicios || []).reduce((es, e) =>
-          es + (e.seriesData || []).filter(sr => sr.done).length, 0), 0), 0);
     const lastWeekMin = Math.round(lastWeek.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
 
     // Streak
@@ -101,7 +93,13 @@ export function mountProgreso(container) {
 
     const sessionsDiff = thisWeek.length - lastWeekSessions;
     const minDiff = totalMin - lastWeekMin;
-    const seriesDiff = totalSeries - lastWeekSeries;
+
+    // Volume trend — last 8 weeks as bars + month comparison
+    const weeklyVolumes = calcWeeklyVolumes(sesiones, monday, 8);
+    const thisMonthVol = weeklyVolumes.slice(-4).reduce((s, w) => s + w.vol, 0);
+    const lastMonthVol = weeklyVolumes.slice(0, 4).reduce((s, w) => s + w.vol, 0);
+    const volPctChange = lastMonthVol > 0 ? Math.round(((thisMonthVol - lastMonthVol) / lastMonthVol) * 100) : 0;
+    const volBarsHTML = buildVolumeBars(weeklyVolumes);
 
     // Muscle group distribution (last 4 weeks)
     const fourWeeksAgo = new Date(monday);
@@ -124,15 +122,20 @@ export function mountProgreso(container) {
             ${minDiff !== 0 ? `<div class="progreso-stat-diff ${minDiff > 0 ? 'up' : 'down'}">${minDiff > 0 ? '+' : ''}${minDiff} min</div>` : ''}
           </div>
           <div class="progreso-stat-card">
-            <div class="progreso-stat-value">${totalSeries}</div>
-            <div class="progreso-stat-label">Series</div>
-            ${seriesDiff !== 0 ? `<div class="progreso-stat-diff ${seriesDiff > 0 ? 'up' : 'down'}">${seriesDiff > 0 ? '+' : ''}${seriesDiff} vs sem. ant.</div>` : ''}
+            <div class="progreso-stat-value">${formatVol(thisMonthVol)}</div>
+            <div class="progreso-stat-label">Volumen</div>
+            ${volPctChange !== 0 ? `<div class="progreso-stat-diff ${volPctChange > 0 ? 'up' : 'down'}">${volPctChange > 0 ? '+' : ''}${volPctChange}% vs mes ant.</div>` : ''}
           </div>
           <div class="progreso-stat-card">
             <div class="progreso-stat-value">${streak}</div>
             <div class="progreso-stat-label">Racha sem.</div>
           </div>
         </div>
+        ${weeklyVolumes.some(w => w.vol > 0) ? `
+        <div class="progreso-vol-trend">
+          <div class="progreso-vol-title">Tendencia de volumen · 8 semanas</div>
+          ${volBarsHTML}
+        </div>` : ''}
         ${muscleData.length > 0 ? `
         <div class="progreso-muscle-chart">
           <div class="progreso-muscle-title">Distribución muscular · últimas 4 semanas</div>
@@ -386,4 +389,51 @@ export function mountProgreso(container) {
     return d;
   }
 
+  function calcSessionVolume(s) {
+    return (s.circuitos || []).reduce((cs, c) =>
+      cs + (c.ejercicios || []).reduce((es, e) =>
+        es + (e.seriesData || []).filter(sr => sr.done).reduce((vs, sr) =>
+          vs + (sr.reps || 0) * (sr.peso || 0), 0), 0), 0);
+  }
+
+  function calcWeeklyVolumes(sesiones, currentMonday, numWeeks) {
+    const weeks = [];
+    for (let i = numWeeks - 1; i >= 0; i--) {
+      const mon = new Date(currentMonday);
+      mon.setDate(mon.getDate() - i * 7);
+      const monStr = formatDateISO(mon);
+      const sun = new Date(mon);
+      sun.setDate(sun.getDate() + 7);
+      const sunStr = formatDateISO(sun);
+      const weekSesiones = sesiones.filter(s => s.fecha >= monStr && s.fecha < sunStr);
+      const vol = weekSesiones.reduce((sum, s) => sum + calcSessionVolume(s), 0);
+      const d = mon.getDate();
+      const m = mon.getMonth() + 1;
+      weeks.push({ vol, label: `${d}/${m}`, isCurrent: i === 0 });
+    }
+    return weeks;
+  }
+
+  function buildVolumeBars(weeks) {
+    const maxVol = Math.max(...weeks.map(w => w.vol), 1);
+    return `
+      <div class="progreso-vol-bars">
+        ${weeks.map(w => {
+          const h = Math.max(4, Math.round((w.vol / maxVol) * 64));
+          const cls = w.isCurrent ? 'current' : '';
+          return `
+            <div class="progreso-vol-bar-col">
+              <div class="progreso-vol-bar ${cls}" style="height:${h}px;"></div>
+              <div class="progreso-vol-bar-label">${w.label}</div>
+            </div>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  function formatVol(v) {
+    if (v >= 1000000) return `${(v / 1000000).toFixed(1)}M`;
+    if (v >= 1000) return `${(v / 1000).toFixed(1)}t`;
+    return `${Math.round(v)}kg`;
+  }
 }
