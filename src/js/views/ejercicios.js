@@ -189,7 +189,7 @@ function renderList(container) {
     return `
       <div class="grupo-section" data-grupo="${grupo}" style="--grupo-color:${grupoColor};">
         <div class="grupo-header" data-grupo="${grupo}">
-          <div style="display:flex;align-items:center;gap:var(--space-sm);">
+          <div style="display:flex;align-items:center;gap:var(--space-md);">
             <span class="ej-category-muscle">${muscleSvg}</span>
             <span class="grupo-name" style="color:${grupoColor};">${grupo}</span>
           </div>

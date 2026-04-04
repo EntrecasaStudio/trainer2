@@ -511,7 +511,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
 }
 
 .btn-action-icon {
