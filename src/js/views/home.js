@@ -89,10 +89,21 @@ function getRoutineForDate(date, usuario) {
   const overrides = store.getObj(store.KEYS.overrides);
   const override = overrides[usuario]?.[dateStr];
 
-  if (!override) return null;
+  if (override) {
+    const rutinas = store.getAll(store.KEYS.rutinas);
+    const found = rutinas.find(r => r.id === override.rutinaId);
+    if (found) return found;
+  }
 
-  const rutinas = store.getAll(store.KEYS.rutinas);
-  return rutinas.find(r => r.id === override.rutinaId) || null;
+  // Fallback: check if there's a completed session for this date
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  const sesion = sesiones.find(s => s.fecha === dateStr && s.usuario === usuario);
+  if (sesion) {
+    const rutinas = store.getAll(store.KEYS.rutinas);
+    return rutinas.find(r => r.id === sesion.rutinaId) || null;
+  }
+
+  return null;
 }
 
 function renderSearchResults() {
@@ -139,6 +150,47 @@ function renderSearchResults() {
   });
 }
 
+function getPausedWorkout() {
+  try {
+    const raw = localStorage.getItem('gym_active_workout');
+    if (!raw) return null;
+    const data = JSON.parse(raw);
+    if (data.savedAt && Date.now() - data.savedAt > 6 * 60 * 60 * 1000) return null;
+    if (!data.workoutState) return null;
+    return { ...data.workoutState, _elapsedSeconds: data.elapsedSeconds || 0 };
+  } catch { return null; }
+}
+
+function renderPausedBanner(container) {
+  const paused = getPausedWorkout();
+  if (!paused || paused.usuario !== activeUsuario) return '';
+
+  const completedCircuits = (paused.circuitos || []).filter(c => c.completed).length;
+  const totalCircuits = (paused.circuitos || []).length;
+
+  const banner = document.createElement('div');
+  banner.className = 'home-paused-banner';
+  banner.innerHTML = `
+    <div style="display:flex;align-items:center;gap:var(--space-sm);flex:1;min-width:0;">
+      <i class="ph-fill ph-pause-circle" style="font-size:24px;color:var(--color-warning);flex-shrink:0;"></i>
+      <div style="min-width:0;">
+        <div style="font-size:var(--text-sm);font-weight:var(--fw-semibold);">Entrenamiento en pausa</div>
+        <div style="font-size:var(--text-xs);color:var(--color-text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+          ${paused.rutinaNombre} · ${completedCircuits}/${totalCircuits} circuitos
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-sm" id="btn-resume-workout">
+      <i class="ph ph-play" style="font-size:14px;"></i> Continuar
+    </button>
+  `;
+  container.prepend(banner);
+
+  document.getElementById('btn-resume-workout')?.addEventListener('click', () => {
+    router.navigate(`workout/${paused.rutinaId}/${paused.fecha}`);
+  });
+}
+
 function renderRoutineCard() {
   const container = document.getElementById('routine-card-container');
   if (!container) return;
@@ -163,6 +215,7 @@ function renderRoutineCard() {
     document.getElementById('btn-assign-day')?.addEventListener('click', () => {
       openAssignSheet();
     });
+    renderPausedBanner(container);
     return;
   }
 
@@ -257,6 +310,8 @@ function renderRoutineCard() {
       openEjercicioInfo(btn.dataset.nombre);
     });
   });
+
+  renderPausedBanner(container);
 }
 
 function getCircName(c) {

@@ -61,6 +61,17 @@
   justify-content: center;
 }
 
+.home-paused-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: color-mix(in srgb, var(--color-warning) 10%, var(--color-surface));
+  border: 1px solid color-mix(in srgb, var(--color-warning) 30%, transparent);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--space-sm);
+}
+
 .rest-day-emoji { margin-bottom: var(--space-sm); }
 .rest-day-text {
   font-size: var(--text-lg);
