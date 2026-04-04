@@ -1,6 +1,7 @@
 import { store } from '../../store.js';
 import { formatDateISO } from '../../utils/calendar.js';
 import { getLugarBadge } from '../../utils/format.js';
+import { EJERCICIOS_CATALOGO } from '../../ejercicios-catalogo.js';
 
 let _searchQuery = '';
 let _searchVisible = false;
@@ -78,7 +79,6 @@ export function mountProgreso(container) {
     // This week
     const thisWeek = sesiones.filter(s => s.fecha >= mondayStr);
     const totalMin = Math.round(thisWeek.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
-    const totalKcal = thisWeek.reduce((sum, s) => sum + (s.calorias || 0), 0);
     const totalVol = thisWeek.reduce((sum, s) => {
       return sum + (s.circuitos || []).reduce((cs, c) =>
         cs + (c.ejercicios || []).reduce((es, e) =>
@@ -99,13 +99,20 @@ export function mountProgreso(container) {
     const sessionsDiff = thisWeek.length - lastWeekSessions;
     const minDiff = totalMin - lastWeekMin;
 
+    // Muscle group distribution (last 4 weeks)
+    const fourWeeksAgo = new Date(monday);
+    fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28);
+    const fourWeeksStr = formatDateISO(fourWeeksAgo);
+    const recentSesiones = sesiones.filter(s => s.fecha >= fourWeeksStr);
+    const muscleData = buildMuscleDistribution(recentSesiones);
+
     el.innerHTML = `
       <div class="progreso-dashboard">
         <div class="progreso-stat-grid">
           <div class="progreso-stat-card">
             <div class="progreso-stat-value">${thisWeek.length}</div>
             <div class="progreso-stat-label">Sesiones</div>
-            ${sessionsDiff !== 0 ? `<div class="progreso-stat-diff ${sessionsDiff > 0 ? 'up' : 'down'}">${sessionsDiff > 0 ? '+' : ''}${sessionsDiff} vs semana ant.</div>` : ''}
+            ${sessionsDiff !== 0 ? `<div class="progreso-stat-diff ${sessionsDiff > 0 ? 'up' : 'down'}">${sessionsDiff > 0 ? '+' : ''}${sessionsDiff} vs sem. ant.</div>` : ''}
           </div>
           <div class="progreso-stat-card">
             <div class="progreso-stat-value">${totalMin}</div>
@@ -113,17 +120,92 @@ export function mountProgreso(container) {
             ${minDiff !== 0 ? `<div class="progreso-stat-diff ${minDiff > 0 ? 'up' : 'down'}">${minDiff > 0 ? '+' : ''}${minDiff} min</div>` : ''}
           </div>
           <div class="progreso-stat-card">
-            <div class="progreso-stat-value">${totalKcal > 0 ? totalKcal : '—'}</div>
-            <div class="progreso-stat-label">kcal</div>
+            <div class="progreso-stat-value">${totalVol > 0 ? formatVol(totalVol) : '—'}</div>
+            <div class="progreso-stat-label">Volumen</div>
           </div>
           <div class="progreso-stat-card">
             <div class="progreso-stat-value">${streak}</div>
             <div class="progreso-stat-label">Racha sem.</div>
           </div>
         </div>
-        ${totalVol > 0 ? `<div class="progreso-vol">Volumen semanal: <strong>${formatVol(totalVol)}</strong></div>` : ''}
+        ${muscleData.length > 0 ? `
+        <div class="progreso-muscle-chart">
+          <div class="progreso-muscle-title">Distribución muscular · últimas 4 semanas</div>
+          <div class="progreso-muscle-ring">${buildRingSVG(muscleData)}</div>
+          <div class="progreso-muscle-bars">
+            ${muscleData.map(m => `
+              <div class="progreso-muscle-row">
+                <div class="progreso-muscle-dot" style="background:${m.color};"></div>
+                <div class="progreso-muscle-name">${m.grupo}</div>
+                <div class="progreso-muscle-bar-wrap">
+                  <div class="progreso-muscle-bar" style="width:${m.pct}%;background:${m.color};"></div>
+                </div>
+                <div class="progreso-muscle-pct">${m.pct}%</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>` : ''}
       </div>
     `;
+  }
+
+  function buildMuscleDistribution(sesiones) {
+    const counts = {}; // grupo → series count
+    for (const s of sesiones) {
+      for (const c of (s.circuitos || [])) {
+        for (const e of (c.ejercicios || [])) {
+          const doneSeries = (e.seriesData || []).filter(sr => sr.done).length;
+          if (doneSeries === 0) continue;
+          const cat = EJERCICIOS_CATALOGO.find(ce => ce.nombre === e.nombre);
+          const grupo = cat?.grupo || inferGrupoFromCircuit(c.nombre);
+          if (!grupo || grupo === 'HIIT') continue;
+          counts[grupo] = (counts[grupo] || 0) + doneSeries;
+        }
+      }
+    }
+
+    const total = Object.values(counts).reduce((s, v) => s + v, 0);
+    if (total === 0) return [];
+
+    const COLORS = {
+      Piernas: '#34d399', Core: '#fbbf24', Pecho: '#f87171',
+      Espalda: '#60a5fa', Brazos: '#a78bfa', Glúteos: '#f472b6',
+      Hombros: '#fb923c', HIIT: '#94a3b8',
+    };
+
+    return Object.entries(counts)
+      .map(([grupo, count]) => ({
+        grupo,
+        count,
+        pct: Math.round((count / total) * 100),
+        color: COLORS[grupo] || '#94a3b8',
+      }))
+      .sort((a, b) => b.count - a.count);
+  }
+
+  function inferGrupoFromCircuit(nombre) {
+    const n = (nombre || '').toLowerCase();
+    if (n.includes('pierna') || n.includes('glúteo') || n.includes('gluteo')) return 'Piernas';
+    if (n.includes('pecho')) return 'Pecho';
+    if (n.includes('espalda')) return 'Espalda';
+    if (n.includes('brazo') || n.includes('bíceps') || n.includes('biceps') || n.includes('tríceps') || n.includes('triceps')) return 'Brazos';
+    if (n.includes('hombro')) return 'Hombros';
+    if (n.includes('core')) return 'Core';
+    if (n.includes('hiit') || n.includes('cardio')) return 'HIIT';
+    return null;
+  }
+
+  function buildRingSVG(data) {
+    const size = 120, cx = 60, cy = 60, r = 48, strokeW = 14;
+    const circumference = 2 * Math.PI * r;
+    let offset = 0;
+    const segments = data.map(m => {
+      const len = (m.pct / 100) * circumference;
+      const seg = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${m.color}" stroke-width="${strokeW}" stroke-dasharray="${len} ${circumference - len}" stroke-dashoffset="${-offset}" stroke-linecap="round" style="transform:rotate(-90deg);transform-origin:center;"/>`;
+      offset += len;
+      return seg;
+    });
+    return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${segments.join('')}</svg>`;
   }
 
   // ── Per-exercise progression ────────────────────────────────────────────
