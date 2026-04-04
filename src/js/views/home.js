@@ -10,12 +10,16 @@ let selectedDate = new Date();
 let activeUsuario = null;
 let _searchQuery = '';
 let _searchVisible = false;
+let _viewMonth = null;
+let _viewYear = null;
 
 export function mountHome(container) {
   activeUsuario = store.getActiveUser();
   document.body.setAttribute('data-usuario', activeUsuario);
   selectedDate = new Date();
   selectedDate.setHours(0, 0, 0, 0);
+  _viewMonth = selectedDate.getMonth();
+  _viewYear = selectedDate.getFullYear();
   _searchQuery = '';
   _searchVisible = false;
   render(container);
@@ -100,7 +104,9 @@ function getRoutineForDate(date, usuario) {
   const sesion = sesiones.find(s => s.fecha === dateStr && s.usuario === usuario);
   if (sesion) {
     const rutinas = store.getAll(store.KEYS.rutinas);
-    return rutinas.find(r => r.id === sesion.rutinaId) || null;
+    return rutinas.find(r => r.id === sesion.rutinaId)
+      || rutinas.find(r => r.nombre === sesion.rutinaNombre && r.usuario === usuario)
+      || null;
   }
 
   return null;
@@ -608,11 +614,9 @@ function renderCalendar() {
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  const viewMonth = selectedDate.getMonth();
-  const viewYear = selectedDate.getFullYear();
 
   // Get first day of month and pad to Monday
-  const firstDay = new Date(viewYear, viewMonth, 1);
+  const firstDay = new Date(_viewYear, _viewMonth, 1);
   const startDow = firstDay.getDay();
   const startOffset = startDow === 0 ? -6 : 1 - startDow;
   const calStart = new Date(firstDay);
@@ -630,12 +634,18 @@ function renderCalendar() {
   const overrides = store.getObj(store.KEYS.overrides);
   const sesiones = store.getAll(store.KEYS.sesiones);
 
-  const monthName = MONTH_NAMES[viewMonth];
+  const monthName = MONTH_NAMES[_viewMonth];
 
   container.innerHTML = `
     <div class="calendar">
       <div class="calendar-header">
-        <span class="calendar-title">Hoy · ${formatDateLong(today)}</span>
+        <button class="btn-icon-header" id="cal-prev" title="Mes anterior">
+          <i class="ph ph-caret-left"></i>
+        </button>
+        <span class="calendar-title">${monthName} ${_viewYear}</span>
+        <button class="btn-icon-header" id="cal-next" title="Mes siguiente">
+          <i class="ph ph-caret-right"></i>
+        </button>
       </div>
       <div class="calendar-grid">
         ${WEEKDAY_LABELS.map(l => `<span class="cal-weekday">${l}</span>`).join('')}
@@ -643,7 +653,7 @@ function renderCalendar() {
           const dateStr = formatDateISO(day);
           const isToday = dateStr === formatDateISO(today);
           const isSelected = dateStr === formatDateISO(selectedDate);
-          const isOtherMonth = day.getMonth() !== viewMonth;
+          const isOtherMonth = day.getMonth() !== _viewMonth;
           const hasWorkout = overrides[activeUsuario]?.[dateStr];
           const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
 
@@ -662,10 +672,25 @@ function renderCalendar() {
     </div>
   `;
 
+  // Month navigation
+  document.getElementById('cal-prev')?.addEventListener('click', () => {
+    _viewMonth--;
+    if (_viewMonth < 0) { _viewMonth = 11; _viewYear--; }
+    renderCalendar();
+  });
+  document.getElementById('cal-next')?.addEventListener('click', () => {
+    _viewMonth++;
+    if (_viewMonth > 11) { _viewMonth = 0; _viewYear++; }
+    renderCalendar();
+  });
+
+  // Day selection
   container.querySelectorAll('.cal-day').forEach(dayEl => {
     dayEl.addEventListener('click', () => {
       const date = new Date(dayEl.dataset.date + 'T00:00:00');
       selectedDate = date;
+      _viewMonth = date.getMonth();
+      _viewYear = date.getFullYear();
       renderRoutineCard();
       renderCalendar();
       renderNextWorkout();
