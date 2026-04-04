@@ -292,6 +292,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Con una banda de resistencia anclada arriba, empujá hacia abajo extendiendo los codos completamente. Similar al triceps en polea pero con banda. Resistencia progresiva. Útil como finalizador de alto volumen para mantener tensión en todo el rango.'
   },
   {
+    nombre: 'French press',
+    grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
+    descripcion: 'Acostado en banco plano con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento.'
+  },
+  {
     nombre: 'Banda curl biceps',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     descripcion: 'Parado sobre la banda con agarre supino en cada extremo, flexioná los codos subiendo los puños hacia los hombros. La resistencia aumenta al final del movimiento. Permite trabajar sin mancuernas y en cualquier entorno. Alto volumen con bajo impacto articular.'
