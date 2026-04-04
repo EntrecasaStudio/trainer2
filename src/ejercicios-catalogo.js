@@ -339,6 +339,11 @@ export const EJERCICIOS_CATALOGO = [
   },
   // ── HIIT / FUNCIONAL ────────────────────────────────────────────────────────
   {
+    nombre: 'Plancha estrella con peso',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En plancha lateral, elevá la pierna superior abierta en posición de estrella. Con el brazo libre sosteniendo una mancuerna, subí y bajá el peso con el brazo extendido desde la cadera hasta arriba. Trabaja oblicuos, glúteo medio, deltoides y estabilidad de todo el cuerpo. Mantené la cadera elevada y el core firme durante todo el movimiento.'
+  },
+  {
     nombre: 'Copenhague',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     descripcion: 'En posición de plancha lateral, apoyá la pierna de arriba sobre un banco o cajón con la cara interna del pie. La pierna de abajo queda suspendida. Subí y bajá la cadera manteniendo el cuerpo alineado. Trabaja aductores, core y estabilidad de cadera. Excelente para prevención de lesiones de ingle.'
