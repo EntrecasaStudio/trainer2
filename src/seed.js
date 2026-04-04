@@ -838,6 +838,17 @@ function deduplicateRutinas() {
   }
   if (remapped) store.set(store.KEYS.overrides, overrides);
 
+  // Remap sesiones so completed days still link to current routines
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  let sesionesRemapped = false;
+  for (const s of sesiones) {
+    if (s.rutinaId && idRemap.has(s.rutinaId)) {
+      s.rutinaId = idRemap.get(s.rutinaId);
+      sesionesRemapped = true;
+    }
+  }
+  if (sesionesRemapped) store.set(store.KEYS.sesiones, sesiones);
+
   console.log(`[Dedup] ${rutinas.length} → ${unique.length} rutinas, remapped ${idRemap.size} IDs`);
 }
 

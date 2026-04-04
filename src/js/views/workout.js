@@ -292,7 +292,7 @@ function renderExerciseCard(e, ci, ei) {
         <div class="peso-toggle-row">
           <label class="peso-toggle-label">
             <input type="checkbox" class="chaleco-toggle-cb" data-ci="${ci}" data-ei="${ei}" ${e.chaleco ? 'checked' : ''}>
-            <i class="ph ph-coat-hanger" style="font-size:14px;"></i> Chaleco
+            <i class="ph ph-shield-plus" style="font-size:14px;"></i> Chaleco
           </label>
           ${e.chaleco ? `
           <div class="chaleco-peso-input" style="display:flex;align-items:center;gap:4px;margin-left:var(--space-sm);">
