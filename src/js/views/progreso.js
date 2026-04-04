@@ -79,11 +79,10 @@ export function mountProgreso(container) {
     // This week
     const thisWeek = sesiones.filter(s => s.fecha >= mondayStr);
     const totalMin = Math.round(thisWeek.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
-    const totalVol = thisWeek.reduce((sum, s) => {
-      return sum + (s.circuitos || []).reduce((cs, c) =>
+    const totalSeries = thisWeek.reduce((sum, s) =>
+      sum + (s.circuitos || []).reduce((cs, c) =>
         cs + (c.ejercicios || []).reduce((es, e) =>
-          es + (e.seriesData || []).filter(sr => sr.done).reduce((vs, sr) => vs + (sr.reps || 0) * (sr.peso || 0), 0), 0), 0);
-    }, 0);
+          es + (e.seriesData || []).filter(sr => sr.done).length, 0), 0), 0);
 
     // Last week for comparison
     const lastMonday = new Date(monday);
@@ -91,6 +90,10 @@ export function mountProgreso(container) {
     const lastMondayStr = formatDateISO(lastMonday);
     const lastWeek = sesiones.filter(s => s.fecha >= lastMondayStr && s.fecha < mondayStr);
     const lastWeekSessions = lastWeek.length;
+    const lastWeekSeries = lastWeek.reduce((sum, s) =>
+      sum + (s.circuitos || []).reduce((cs, c) =>
+        cs + (c.ejercicios || []).reduce((es, e) =>
+          es + (e.seriesData || []).filter(sr => sr.done).length, 0), 0), 0);
     const lastWeekMin = Math.round(lastWeek.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
 
     // Streak
@@ -98,6 +101,7 @@ export function mountProgreso(container) {
 
     const sessionsDiff = thisWeek.length - lastWeekSessions;
     const minDiff = totalMin - lastWeekMin;
+    const seriesDiff = totalSeries - lastWeekSeries;
 
     // Muscle group distribution (last 4 weeks)
     const fourWeeksAgo = new Date(monday);
@@ -120,8 +124,9 @@ export function mountProgreso(container) {
             ${minDiff !== 0 ? `<div class="progreso-stat-diff ${minDiff > 0 ? 'up' : 'down'}">${minDiff > 0 ? '+' : ''}${minDiff} min</div>` : ''}
           </div>
           <div class="progreso-stat-card">
-            <div class="progreso-stat-value">${totalVol > 0 ? formatVol(totalVol) : '—'}</div>
-            <div class="progreso-stat-label">Volumen</div>
+            <div class="progreso-stat-value">${totalSeries}</div>
+            <div class="progreso-stat-label">Series</div>
+            ${seriesDiff !== 0 ? `<div class="progreso-stat-diff ${seriesDiff > 0 ? 'up' : 'down'}">${seriesDiff > 0 ? '+' : ''}${seriesDiff} vs sem. ant.</div>` : ''}
           </div>
           <div class="progreso-stat-card">
             <div class="progreso-stat-value">${streak}</div>
@@ -381,8 +386,4 @@ export function mountProgreso(container) {
     return d;
   }
 
-  function formatVol(v) {
-    if (v >= 1000) return `${(v / 1000).toFixed(1)}t`;
-    return `${Math.round(v)}kg`;
-  }
 }
