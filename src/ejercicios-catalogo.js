@@ -339,6 +339,11 @@ export const EJERCICIOS_CATALOGO = [
   },
   // ── HIIT / FUNCIONAL ────────────────────────────────────────────────────────
   {
+    nombre: 'Copenhague',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En posición de plancha lateral, apoyá la pierna de arriba sobre un banco o cajón con la cara interna del pie. La pierna de abajo queda suspendida. Subí y bajá la cadera manteniendo el cuerpo alineado. Trabaja aductores, core y estabilidad de cadera. Excelente para prevención de lesiones de ingle.'
+  },
+  {
     nombre: 'Pasadas de velocidad',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'Carreras de máxima intensidad en distancias cortas (40-60m). Salir explosivamente, mantener la velocidad y desacelerar al final. Descansar caminando de vuelta. Trabaja potencia de piernas, sistema cardiovascular y resistencia anaeróbica.'
