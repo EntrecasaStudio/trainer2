@@ -290,7 +290,7 @@ function renderExerciseCard(e, ci, ei) {
           const isFuncional = cat?.tipo === 'funcional';
           return isFuncional ? `
         <div class="peso-toggle-row">
-          <button class="chaleco-toggle-btn" data-ci="${ci}" data-ei="${ei}" title="Chaleco">
+          <button class="chaleco-toggle-btn ${e.chaleco ? 'active' : ''}" data-ci="${ci}" data-ei="${ei}" title="Chaleco">
             <i class="${e.chaleco ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:20px;"></i>
             <i class="ph ph-shield-plus" style="font-size:14px;"></i> Chaleco
           </button>
