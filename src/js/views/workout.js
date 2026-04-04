@@ -55,7 +55,7 @@ function restoreWorkout() {
       return false;
     }
     workoutState = data.workoutState;
-    elapsedSeconds = data.elapsedSeconds || 0;
+    elapsedSeconds = getElapsedSeconds();
     activeCircuitIdx = data.activeCircuitIdx || 0;
     incremento = data.incremento || 2.5;
     return true;
@@ -63,7 +63,16 @@ function restoreWorkout() {
 }
 
 window.addEventListener('beforeunload', () => { persistWorkout(); });
-document.addEventListener('visibilitychange', () => { if (document.hidden) persistWorkout(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    persistWorkout();
+  } else if (workoutState) {
+    // Screen turned back on — resync timer from startTime
+    elapsedSeconds = getElapsedSeconds();
+    const el = document.getElementById('workout-timer');
+    if (el) el.textContent = formatTimer(elapsedSeconds);
+  }
+});
 
 export function hasActiveWorkout() { return workoutState !== null; }
 
@@ -709,10 +718,19 @@ function showExercisePicker(container, ci, ei) {
 }
 
 // ── Timer ────────────────────────────────────────────────────────────────────
+function getElapsedSeconds() {
+  if (!workoutState?.startTime) return 0;
+  return Math.floor((Date.now() - new Date(workoutState.startTime).getTime()) / 1000);
+}
+
 function startTimer(container) {
   if (timerInterval) clearInterval(timerInterval);
+  // Immediately sync display
+  elapsedSeconds = getElapsedSeconds();
+  const el = document.getElementById('workout-timer');
+  if (el) el.textContent = formatTimer(elapsedSeconds);
   timerInterval = setInterval(() => {
-    elapsedSeconds++;
+    elapsedSeconds = getElapsedSeconds();
     const el = document.getElementById('workout-timer');
     if (el) el.textContent = formatTimer(elapsedSeconds);
   }, 1000);
