@@ -912,11 +912,49 @@ function rebuildProgresionWithLugar() {
   console.log('[Seed] Rebuilt progresion with lugar separation');
 }
 
+function repairOverrides() {
+  const overrides = store.getObj(store.KEYS.overrides);
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  const rutinaById = new Map(rutinas.map(r => [r.id, r]));
+  let repaired = false;
+
+  for (const usuario of Object.keys(overrides)) {
+    const userOv = overrides[usuario];
+    for (const date of Object.keys(userOv)) {
+      const ov = userOv[date];
+      if (!ov?.rutinaId) continue;
+      if (rutinaById.has(ov.rutinaId)) continue; // valid
+
+      // Stale rutinaId — try to find a matching rutina
+      const lugar = ov.lugar || 'SPORT_FITNESS';
+      const tipo = ov.tipo; // 'press' or 'pull'
+      const match = rutinas.find(r =>
+        r.usuario === usuario && r.lugar === lugar && r.foco === tipo
+      );
+
+      if (match) {
+        ov.rutinaId = match.id;
+        repaired = true;
+      } else {
+        // No match at all, remove stale override
+        delete userOv[date];
+        repaired = true;
+      }
+    }
+  }
+
+  if (repaired) {
+    store.set(store.KEYS.overrides, overrides);
+    console.log('[Seed] Repaired stale override rutinaIds');
+  }
+}
+
 export async function seedV2() {
   // Always run migrations (idempotent, fast)
   deduplicateRutinas();
   backfillSesionLugar();
   rebuildProgresionWithLugar();
+  repairOverrides();
 
   const version = store.getVersion();
   if (version === SEED_VERSION) {

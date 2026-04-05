@@ -97,6 +97,12 @@ function getRoutineForDate(date, usuario) {
     const rutinas = store.getAll(store.KEYS.rutinas);
     const found = rutinas.find(r => r.id === override.rutinaId);
     if (found) return found;
+
+    // Stale ID — try to match by metadata
+    const lugar = override.lugar || 'SPORT_FITNESS';
+    const tipo = override.tipo;
+    const match = rutinas.find(r => r.usuario === usuario && r.lugar === lugar && r.foco === tipo);
+    if (match) return match;
   }
 
   // Fallback: check if there's a completed session for this date
@@ -630,8 +636,10 @@ function renderCalendar() {
     d.setDate(d.getDate() + 1);
   }
 
-  // Check overrides for dots
+  // Check overrides for dots — only show dot if the rutina actually exists
   const overrides = store.getObj(store.KEYS.overrides);
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  const rutinaIds = new Set(rutinas.map(r => r.id));
   const sesiones = store.getAll(store.KEYS.sesiones);
 
   const monthName = MONTH_NAMES[_viewMonth];
@@ -654,7 +662,8 @@ function renderCalendar() {
           const isToday = dateStr === formatDateISO(today);
           const isSelected = dateStr === formatDateISO(selectedDate);
           const isOtherMonth = day.getMonth() !== _viewMonth;
-          const hasWorkout = overrides[activeUsuario]?.[dateStr];
+          const ov = overrides[activeUsuario]?.[dateStr];
+          const hasWorkout = ov && rutinaIds.has(ov.rutinaId);
           const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
 
           const classes = [
