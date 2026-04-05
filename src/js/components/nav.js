@@ -9,7 +9,6 @@ const NAV_ITEMS = [
 ];
 
 function iconClass(item, isActive) {
-  if (item.primary) return `ph-fill ${item.icon}`;
   return isActive ? `ph-fill ${item.icon}` : `ph-light ${item.icon}`;
 }
 

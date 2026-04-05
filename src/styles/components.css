@@ -179,27 +179,26 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: var(--color-accent);
-  color: var(--color-bg);
+  background: var(--color-surface-alt);
+  color: var(--color-text-muted);
   font-size: 24px;
   margin-top: -22px;
-  box-shadow: 0 2px 12px color-mix(in srgb, var(--color-accent) 40%, transparent);
-  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: none;
+  transition: transform 0.15s, box-shadow 0.25s, background 0.25s, color 0.25s;
 }
 
 .nav-primary:active .nav-ph-icon {
   transform: scale(0.92);
-  box-shadow: 0 1px 6px color-mix(in srgb, var(--color-accent) 25%, transparent);
 }
 
 .nav-primary.active .nav-ph-icon {
   background: var(--color-accent);
   color: var(--color-bg);
-  box-shadow: 0 2px 16px color-mix(in srgb, var(--color-accent) 55%, transparent);
+  box-shadow: 0 2px 16px color-mix(in srgb, var(--color-accent) 50%, transparent);
 }
 
-/* Override muted color — primary always uses accent for label */
-.nav-primary span { color: var(--color-accent); font-weight: var(--fw-medium); }
+/* Label follows active state */
+.nav-primary span { font-weight: var(--fw-medium); }
 
 .nav-icon {
   width: 24px;
