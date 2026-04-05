@@ -41,11 +41,14 @@ export function getMonday(date) {
   return d;
 }
 
-// Format date as YYYY-MM-DD
+// Format date as YYYY-MM-DD (local timezone, not UTC)
 export function formatDateISO(date) {
   const d = new Date(date);
   if (isNaN(d.getTime())) return '';
-  return d.toISOString().slice(0, 10);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
 }
 
 // Get next training day from a given date
