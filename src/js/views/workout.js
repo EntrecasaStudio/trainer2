@@ -782,9 +782,9 @@ function finishWorkout(container) {
       if (!e.usaPeso) return;
       const doneSeries = e.seriesData.filter(s => s.done && s.peso > 0);
       if (doneSeries.length === 0) return;
-      const maxPeso = Math.max(...doneSeries.map(s => s.peso));
+      const firstPeso = doneSeries[0].peso;
       const allReps = e.seriesData.every(s => s.done);
-      store.setProgresion(e.nombre, usuario, { lastWeight: maxPeso, completedAllReps: allReps }, workoutState.lugar);
+      store.setProgresion(e.nombre, usuario, { lastWeight: firstPeso, completedAllReps: allReps }, workoutState.lugar);
     });
   });
 
