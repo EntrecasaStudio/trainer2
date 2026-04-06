@@ -57,9 +57,9 @@ export function mountEjercicios(container) {
 }
 
 export function openEjercicioInfo(nombre) {
-  // Can be called from workout or home to show info modal
+  // Can be called from workout or home to show info modal (with edit)
   const data = getEjercicioData(nombre);
-  showDetailModal(data, false);
+  showDetailModal(data, true);
 }
 
 function render(container) {

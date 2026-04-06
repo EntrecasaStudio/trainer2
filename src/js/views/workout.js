@@ -2,7 +2,7 @@ import { store } from '../../store.js';
 import { router } from '../../router.js';
 import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { formatTimer } from '../../utils/format.js';
-import { showToast } from '../components/toast.js';
+import { showToast, showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 
@@ -395,7 +395,12 @@ function bindEvents(container) {
     activeCircuitIdx = workoutState.circuitos.length - 1;
     persistWorkout();
     renderWorkout(container);
-    showToast('Circuito agregado');
+    showToastAction('Circuito agregado', '↺ Deshacer', () => {
+      workoutState.circuitos.pop();
+      activeCircuitIdx = Math.min(activeCircuitIdx, workoutState.circuitos.length - 1);
+      persistWorkout();
+      renderWorkout(container);
+    });
   });
 
   // Remove circuit (edit mode)
@@ -404,11 +409,17 @@ function bindEvents(container) {
       e.stopPropagation();
       const ci = parseInt(btn.dataset.removeCi);
       if (workoutState.circuitos.length <= 1) return;
-      workoutState.circuitos.splice(ci, 1);
+      const removed = workoutState.circuitos.splice(ci, 1)[0];
+      const prevIdx = activeCircuitIdx;
       if (activeCircuitIdx >= workoutState.circuitos.length) activeCircuitIdx = workoutState.circuitos.length - 1;
       persistWorkout();
       renderWorkout(container);
-      showToast('Circuito eliminado');
+      showToastAction('Circuito eliminado', '↺ Deshacer', () => {
+        workoutState.circuitos.splice(ci, 0, removed);
+        activeCircuitIdx = prevIdx;
+        persistWorkout();
+        renderWorkout(container);
+      });
     });
   });
 
@@ -574,10 +585,14 @@ function bindExerciseEvents(container, scope) {
       const ei = parseInt(btn.dataset.ei);
       const circ = workoutState.circuitos[ci];
       if (circ.ejercicios.length > 1) {
-        circ.ejercicios.splice(ei, 1);
+        const removed = circ.ejercicios.splice(ei, 1)[0];
         persistWorkout();
         refreshExercises(container);
-        showToast('Ejercicio eliminado');
+        showToastAction('Ejercicio eliminado', '↺ Deshacer', () => {
+          circ.ejercicios.splice(ei, 0, removed);
+          persistWorkout();
+          refreshExercises(container);
+        });
       }
     });
   });
@@ -694,6 +709,7 @@ function showExercisePicker(container, ci, ei) {
         const nombre = item.dataset.nombre;
         const circ = workoutState.circuitos[ci];
         const oldE = circ.ejercicios[ei];
+        const backup = { ...oldE };
         circ.ejercicios[ei] = {
           id: crypto.randomUUID(),
           nombre,
@@ -711,7 +727,11 @@ function showExercisePicker(container, ci, ei) {
         overlay.innerHTML = '';
         persistWorkout();
         refreshExercises(container);
-        showToast(`Reemplazado → ${nombre}`);
+        showToastAction(`Reemplazado → ${nombre}`, '↺ Deshacer', () => {
+          circ.ejercicios[ei] = backup;
+          persistWorkout();
+          refreshExercises(container);
+        });
       });
     });
   }
