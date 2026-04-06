@@ -3,6 +3,7 @@ import { router } from '../../router.js';
 import { getGreeting, formatDateLong, getLugarBadge, getCircuitColor, formatSetsReps } from '../../utils/format.js';
 import { formatDateISO, getNextTrainingDay, isTrainingDay, WEEKDAY_LABELS, MONTH_NAMES, getISODayOfWeek, getCycleWeek, getFocusForDay } from '../../utils/calendar.js';
 import { openModal, closeModal } from '../components/modal.js';
+import { showToast } from '../components/toast.js';
 import { showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 
@@ -48,9 +49,9 @@ function render(container) {
     <div id="next-workout-container"></div>
   `;
 
-  // Toggle handlers
+  // Toggle handlers — switch user & pull latest data from Firestore
   container.querySelectorAll('.user-toggle-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       activeUsuario = btn.dataset.usuario;
       store.setActiveUser(activeUsuario);
       document.body.setAttribute('data-usuario', activeUsuario);
@@ -59,6 +60,17 @@ function render(container) {
       renderRoutineCard();
       renderCalendar();
       renderNextWorkout();
+
+      // Pull latest from Firestore to get other device's sessions
+      try {
+        const { downloadAllData } = await import('../../js/services/sync.js');
+        const updated = await downloadAllData();
+        if (updated) {
+          renderRoutineCard();
+          renderCalendar();
+          renderNextWorkout();
+        }
+      } catch {}
     });
   });
 
@@ -665,8 +677,6 @@ function renderCalendar() {
           const ov = overrides[activeUsuario]?.[dateStr];
           const hasWorkout = ov && rutinaIds.has(ov.rutinaId);
           const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
-          const otherUser = activeUsuario === 'Lean' ? 'Nat' : 'Lean';
-          const otherCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === otherUser);
 
           const classes = [
             'cal-day',
@@ -677,17 +687,7 @@ function renderCalendar() {
             isCompleted ? 'completed' : '',
           ].filter(Boolean).join(' ');
 
-          // Dots: active user dot + other user dot
-          let dots = '';
-          if (isCompleted || otherCompleted || hasWorkout) {
-            dots = '<span class="cal-dots">';
-            if (isCompleted) dots += '<span class="cal-dot cal-dot--active"></span>';
-            else if (hasWorkout) dots += '<span class="cal-dot cal-dot--workout"></span>';
-            if (otherCompleted) dots += `<span class="cal-dot cal-dot--other"></span>`;
-            dots += '</span>';
-          }
-
-          return `<span class="${classes}" data-date="${dateStr}">${day.getDate()}${dots}</span>`;
+          return `<span class="${classes}" data-date="${dateStr}">${day.getDate()}</span>`;
         }).join('')}
       </div>
     </div>
