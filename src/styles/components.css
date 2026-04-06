@@ -144,8 +144,8 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  padding: var(--space-md) 0;
-  padding-bottom: max(var(--space-lg), env(safe-area-inset-bottom));
+  padding: var(--space-sm) 0 0;
+  padding-bottom: max(var(--space-md), env(safe-area-inset-bottom));
   z-index: 50;
 }
 
@@ -163,42 +163,60 @@
   padding: var(--space-xs) var(--space-sm);
   transition: color 0.15s;
   -webkit-tap-highlight-color: transparent;
+  min-width: 56px;
+}
+
+.nav-item .nav-ph-icon {
+  font-size: 22px;
+  line-height: 1;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .nav-item.active { color: var(--color-accent); }
 
+/* Active pill indicator behind icon (M3 style) */
+.nav-item.active .nav-ph-icon {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  border-radius: 14px;
+  padding: 0 12px;
+}
+
 /* Primary center button (Entreno) */
 .nav-primary {
   position: relative;
-  /* Same vertical footprint as other nav-items so labels align */
+  padding-top: 0;
 }
 
 .nav-primary .nav-ph-icon {
   position: absolute;
-  bottom: calc(100% - 6px);
+  bottom: calc(100% + 2px);
   left: 50%;
   translate: -50% 0;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-lg, 14px);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   background: var(--color-surface-alt);
+  border: 3px solid var(--color-bg);
   color: var(--color-text-muted);
-  font-size: 21px;
+  font-size: 24px;
+  padding: 0;
   box-shadow: none;
-  transition: transform 0.15s, box-shadow 0.25s, background 0.25s, color 0.25s;
+  transition: transform 0.15s ease-out, box-shadow 0.25s, background 0.25s, color 0.25s;
+}
+
+/* Override the pill style for primary */
+.nav-primary.active .nav-ph-icon {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-bg);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
 
 .nav-primary:active .nav-ph-icon {
   transform: scale(0.92);
-}
-
-.nav-primary.active .nav-ph-icon {
-  background: var(--color-accent);
-  color: var(--color-bg);
-  box-shadow: 0 2px 12px color-mix(in srgb, var(--color-accent) 40%, transparent);
 }
 
 .nav-primary span { font-weight: var(--fw-medium); }
@@ -468,11 +486,7 @@
 .tag-cardio { background: rgba(48,209,88,0.12); color: var(--color-tag-espalda); }
 .tag-hiit { background: rgba(255,69,58,0.12); color: var(--color-tag-hiit); }
 
-/* ── Phosphor icon sizing ────────────────────────────────────────────────── */
-.nav-ph-icon {
-  font-size: 22px;
-  line-height: 1;
-}
+/* ── Phosphor icon sizing (nav handled inline above) ───────────────────── */
 
 /* ── Icon-only button ────────────────────────────────────────────────────── */
 .btn-icon {
