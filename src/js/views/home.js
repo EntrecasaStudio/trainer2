@@ -665,6 +665,8 @@ function renderCalendar() {
           const ov = overrides[activeUsuario]?.[dateStr];
           const hasWorkout = ov && rutinaIds.has(ov.rutinaId);
           const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
+          const otherUser = activeUsuario === 'Lean' ? 'Nat' : 'Lean';
+          const otherCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === otherUser);
 
           const classes = [
             'cal-day',
@@ -675,7 +677,17 @@ function renderCalendar() {
             isCompleted ? 'completed' : '',
           ].filter(Boolean).join(' ');
 
-          return `<span class="${classes}" data-date="${dateStr}">${day.getDate()}</span>`;
+          // Dots: active user dot + other user dot
+          let dots = '';
+          if (isCompleted || otherCompleted || hasWorkout) {
+            dots = '<span class="cal-dots">';
+            if (isCompleted) dots += '<span class="cal-dot cal-dot--active"></span>';
+            else if (hasWorkout) dots += '<span class="cal-dot cal-dot--workout"></span>';
+            if (otherCompleted) dots += `<span class="cal-dot cal-dot--other"></span>`;
+            dots += '</span>';
+          }
+
+          return `<span class="${classes}" data-date="${dateStr}">${day.getDate()}${dots}</span>`;
         }).join('')}
       </div>
     </div>

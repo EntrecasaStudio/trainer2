@@ -2,6 +2,7 @@ import { store } from '../../store.js';
 import { router } from '../../router.js';
 import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { formatTimer } from '../../utils/format.js';
+import { formatDateISO } from '../../utils/calendar.js';
 import { showToast, showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
@@ -113,7 +114,7 @@ export function mountWorkout(container, params) {
     rutinaNumero: rutina.numero,
     lugar: rutina.lugar || 'SPORT_FITNESS',
     usuario,
-    fecha: fecha || new Date().toISOString().slice(0, 10),
+    fecha: fecha || formatDateISO(new Date()),
     startTime: new Date().toISOString(),
     circuitos: rutina.circuitos.map(c => ({
       id: c.id,
