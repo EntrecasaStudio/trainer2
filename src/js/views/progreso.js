@@ -175,10 +175,12 @@ export function mountProgreso(container) {
     const total = Object.values(counts).reduce((s, v) => s + v, 0);
     if (total === 0) return [];
 
+    const style = getComputedStyle(document.documentElement);
+    const tv = (v) => style.getPropertyValue(v).trim();
     const COLORS = {
-      Piernas: '#34d399', Core: '#fbbf24', Pecho: '#f87171',
-      Espalda: '#60a5fa', Brazos: '#a78bfa', Glúteos: '#f472b6',
-      Hombros: '#fb923c', HIIT: '#94a3b8',
+      Piernas: tv('--color-tag-piernas'), Core: tv('--color-tag-core'), Pecho: tv('--color-tag-pecho'),
+      Espalda: tv('--color-tag-espalda'), Brazos: tv('--color-tag-brazos'), Glúteos: tv('--color-tag-gluteos'),
+      Hombros: tv('--color-tag-hombros'), HIIT: tv('--color-tag-hiit'),
     };
 
     return Object.entries(counts)
