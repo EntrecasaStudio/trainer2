@@ -6,6 +6,14 @@ const BACKUP_URL_LOCAL = './data/backup-v1.json';
 
 function uid() { return crypto.randomUUID(); }
 
+function getThisMonday() {
+  const d = new Date();
+  const dow = d.getDay();
+  d.setDate(d.getDate() - (dow === 0 ? 6 : dow - 1));
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+
 function ej(nombre, series = 2, reps = '8-12', opts = {}) {
   return { id: uid(), nombre, series, reps, tipo: opts.tipo || 'fuerza', ...opts };
 }
@@ -561,9 +569,9 @@ function createRioRoutines() {
   ];
 }
 
-function assignCalendar(rutinas, startDate) {
+function assignCalendar(rutinas, startDate, calendarStart) {
   const overrides = { Lean: {}, Nat: {} };
-  const today = new Date(startDate);
+  const today = new Date(calendarStart || startDate);
   today.setHours(0, 0, 0, 0);
 
   for (const usuario of ['Lean', 'Nat']) {
@@ -786,7 +794,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.16';
+const SEED_VERSION = '2.17';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -981,19 +989,16 @@ export async function seedV2() {
   const uruguayOnly = existing.filter(r => r.lugar === 'URUGUAY');
   store.set(store.KEYS.rutinas, [...uruguayOnly, ...sfRoutines, ...rioRoutines]);
 
-  // Assign calendar — start from today's Monday
-  const today = new Date();
-  const monday = new Date(today);
-  const dayOfWeek = monday.getDay();
-  const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-  monday.setDate(monday.getDate() + diff);
-  monday.setHours(0, 0, 0, 0);
+  // Assign calendar — plan started March 30, preserve to maintain press/pull cycle
+  const PLAN_ORIGIN = '2026-03-30';
+  const planStartDate = PLAN_ORIGIN;
 
-  const planStartDate = formatDateISO(monday);
   store.set(store.KEYS.plan, { startDate: planStartDate });
 
+  // Generate overrides from this week forward (8 weeks)
+  const calendarStart = formatDateISO(getThisMonday());
   const allRutinas = store.getAll(store.KEYS.rutinas);
-  const overrides = assignCalendar(allRutinas, planStartDate);
+  const overrides = assignCalendar(allRutinas, planStartDate, calendarStart);
   store.set(store.KEYS.overrides, overrides);
 
   // Set version AFTER everything succeeds
