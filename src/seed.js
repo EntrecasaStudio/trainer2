@@ -593,7 +593,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C02', 'Casa Press B — Lean', 'Lean', 'press', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Rotación de hombros con banda', 2, '10'), ej('Movilidad de hombros', 2, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Step-up con chaleco de peso', 3, '10'), ej('Sentadilla sumo con kettlebell 12k', 3, '12')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Zancadas con chaleco de peso', 3, '10'), ej('Sentadilla sumo con kettlebell 12k', 3, '12')]),
       circuito(3, 'PECHO·HOMBROS', [ej('Flexiones explosivas en paralelas', 3, '8'), ej('Banda press de pecho', 3, '15')]),
       circuito(4, 'HOMBROS', [ej('Arnold press con kettlebell 12k', 3, '10'), ej('Vuelos laterales con banda', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body con plato rucking', 3, '30s'), ej('Plancha con elevación alternada', 3, '10')]),
@@ -627,7 +627,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C06', 'Casa Pull C — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda face pull', 2, '15'), ej('Hip 90/90 mobility', 2, '8')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera con plato rucking', 3, '12'), ej('Step-up con chaleco de peso', 3, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera con plato rucking', 3, '12'), ej('Sentadilla búlgara con kettlebell 12k', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('Remo con kettlebell 12k', 3, '10'), ej('Dominadas australianas con chaleco', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl martillo con kettlebell 12k', 3, '12'), ej('Banda curl biceps', 3, '15')]),
       circuito(5, 'CORE', [ej('L-sit en paralelas', 3, '15s'), ej('Ab wheel', 3, '10')]),
@@ -913,7 +913,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.20';
+const SEED_VERSION = '2.21';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
