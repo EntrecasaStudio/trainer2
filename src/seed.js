@@ -569,6 +569,96 @@ function createRioRoutines() {
   ];
 }
 
+function rutinaCasa(numero, nombre, usuario, foco, semana_ciclo, circuitos) {
+  return {
+    id: uid(), numero, nombre, usuario,
+    lugar: 'CASA', tipo: 'cross', foco, semana_ciclo,
+    circuitos, updatedAt: new Date().toISOString(), pendingSync: false,
+  };
+}
+
+function createCasaRoutines() {
+  return [
+    // ── LEAN PRESS ─────────────────────────────────────────
+    rutinaCasa('#C01', 'Casa Press A — Lean', 'Lean', 'press', 1, [
+      circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 2, '15'), ej('Rotación de hombros', 2, '15')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '12'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO', [ej('TRX chest press', 3, '12'), ej('Flexiones', 3, '12')]),
+      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con mancuernas', 3, '10'), ej('Fondos en banco', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Plancha', 3, '30s'), ej('Mountain climbers', 3, '20')]),
+    ]),
+    rutinaCasa('#C02', 'Casa Press B — Lean', 'Lean', 'press', 2, [
+      circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 2, '10'), ej('Movilidad de hombros', 2, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Step-up en banco', 3, '10'), ej('Sentadilla con salto', 3, '10')]),
+      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones explosivas', 3, '8'), ej('Banda press de pecho', 3, '15')]),
+      circuito(4, 'HOMBROS', [ej('Arnold press', 3, '10'), ej('Vuelos laterales', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Plancha con elevación alternada', 3, '10'), ej('Burpees', 3, '8')]),
+    ]),
+
+    // ── LEAN PULL ──────────────────────────────────────────
+    rutinaCasa('#C03', 'Casa Pull A — Lean', 'Lean', 'pull', 1, [
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 3, '10'), ej('Peso muerto rumano', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Bear crawl', 4, '8m'), ej('Pasadas de velocidad', 4, '20m')]),
+    ]),
+    rutinaCasa('#C04', 'Casa Pull B — Lean', 'Lean', 'pull', 2, [
+      circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 2, '15'), ej('Movilidad de cadera', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Peso muerto rumano', 3, '10'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '12'), ej('Remo con mancuerna', 3, '10')]),
+      circuito(4, 'ESPALDA ALT', [ej('Dominadas australianas', 3, '12'), ej('Banda pull-apart', 3, '20')]),
+      circuito(5, 'CORE+CARDIO', [ej('Plancha lateral', 3, '20s'), ej('Ab wheel', 3, '10'), ej('Jumping jacks', 3, '30')]),
+    ]),
+    rutinaCasa('#C05', 'Casa Pull C — Lean', 'Lean', 'pull', 1, [
+      circuito(1, 'ACTIVACIÓN', [ej('Banda face pull', 2, '15'), ej('Hip 90/90 mobility', 2, '8')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en cajon', 3, '12'), ej('Step-up en banco', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('Remo con mancuerna', 3, '10'), ej('Dominadas australianas', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl martillo', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('L-sit en paralelas', 3, '15s'), ej('Ab wheel', 3, '10'), ej('Mountain climbers', 3, '20')]),
+    ]),
+
+    // ── NAT PRESS ──────────────────────────────────────────
+    rutinaCasa('#C01', 'Casa Press A — Nat', 'Nat', 'press', 1, [
+      circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 2, '15'), ej('Rotación de hombros', 2, '15')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en cajon', 3, '15'), ej('Sentadilla sumo', 3, '12')]),
+      circuito(3, 'PECHO', [ej('TRX chest press', 3, '12'), ej('Flexiones inclinadas', 3, '10')]),
+      circuito(4, 'HOMBROS', [ej('Press militar con mancuernas', 3, '10'), ej('Vuelos laterales', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Plancha', 3, '25s'), ej('Jumping jacks', 3, '25')]),
+    ]),
+    rutinaCasa('#C02', 'Casa Press B — Nat', 'Nat', 'press', 2, [
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Movilidad de hombros', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera', 3, '15'), ej('Zancadas con mancuernas', 3, '10')]),
+      circuito(3, 'PECHO·HOMBROS', [ej('Banda press de pecho', 3, '15'), ej('Flexiones', 3, '10')]),
+      circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press', 3, '10'), ej('Fondos en banco', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Ab wheel', 3, '8'), ej('Burpees', 3, '6')]),
+    ]),
+
+    // ── NAT PULL ───────────────────────────────────────────
+    rutinaCasa('#C03', 'Casa Pull A — Nat', 'Nat', 'pull', 1, [
+      circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 2, '15'), ej('Rotación torácica', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 3, '12'), ej('Empuje de cadera en cajon', 3, '15')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '8'), ej('Dead bug', 3, '10'), ej('Jumping jacks', 3, '25')]),
+    ]),
+    rutinaCasa('#C04', 'Casa Pull B — Nat', 'Nat', 'pull', 2, [
+      circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 2, '15'), ej('Movilidad de cadera', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera', 3, '20'), ej('Peso muerto rumano', 3, '10')]),
+      circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Remo con mancuerna', 3, '10')]),
+      circuito(4, 'ESPALDA ALT', [ej('Banda pull-apart', 3, '20'), ej('Dominadas australianas', 3, '10')]),
+      circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación alternada', 3, '8'), ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20')]),
+    ]),
+    rutinaCasa('#C05', 'Casa Pull C — Nat', 'Nat', 'pull', 1, [
+      circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Cat-cow', 2, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Loop band abducción parada', 3, '15'), ej('Sentadilla sumo', 3, '12')]),
+      circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '15'), ej('TRX row', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con mancuerna', 3, '12'), ej('Curl martillo', 3, '12')]),
+      circuito(5, 'CORE+CARDIO', [ej('L-sit en paralelas', 3, '10s'), ej('Ab wheel', 3, '8'), ej('Pasadas de velocidad', 4, '15m')]),
+    ]),
+  ];
+}
+
 function assignCalendar(rutinas, startDate, calendarStart) {
   const overrides = { Lean: {}, Nat: {} };
   const today = new Date(calendarStart || startDate);
@@ -794,7 +884,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.17';
+const SEED_VERSION = '2.18';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -875,6 +965,7 @@ function backfillSesionLugar() {
     const name = (s.rutinaNombre || '').toUpperCase();
     if (name.includes('RÍO') || name.includes('RIO')) { s.lugar = 'RIO'; changed = true; }
     else if (name.includes('URUGUAY')) { s.lugar = 'URUGUAY'; changed = true; }
+    else if (name.includes('CASA')) { s.lugar = 'CASA'; changed = true; }
     else { s.lugar = 'SPORT_FITNESS'; changed = true; }
   }
   if (changed) store.set(store.KEYS.sesiones, sesiones);
@@ -980,14 +1071,17 @@ export async function seedV2() {
   // Create RIO routines
   const rioRoutines = createRioRoutines();
 
+  // Create CASA routines
+  const casaRoutines = createCasaRoutines();
+
   // Load and migrate backup
   const backup = await loadBackup();
   migrateBackup(backup);
 
-  // Merge: keep URUGUAY intact, replace SPORT_FITNESS and RIO
+  // Merge: keep URUGUAY intact, replace SPORT_FITNESS, RIO and CASA
   const existing = store.getAll(store.KEYS.rutinas);
   const uruguayOnly = existing.filter(r => r.lugar === 'URUGUAY');
-  store.set(store.KEYS.rutinas, [...uruguayOnly, ...sfRoutines, ...rioRoutines]);
+  store.set(store.KEYS.rutinas, [...uruguayOnly, ...sfRoutines, ...rioRoutines, ...casaRoutines]);
 
   // Assign calendar — plan started March 30, preserve to maintain press/pull cycle
   const PLAN_ORIGIN = '2026-03-30';
@@ -999,6 +1093,13 @@ export async function seedV2() {
   const calendarStart = formatDateISO(getThisMonday());
   const allRutinas = store.getAll(store.KEYS.rutinas);
   const overrides = assignCalendar(allRutinas, planStartDate, calendarStart);
+
+  // Override 2026-04-08 (Wed) with CASA press S2 — indoor training day
+  const casaLeanPress2 = casaRoutines.find(r => r.usuario === 'Lean' && r.foco === 'press' && r.semana_ciclo === 2);
+  const casaNatPress2 = casaRoutines.find(r => r.usuario === 'Nat' && r.foco === 'press' && r.semana_ciclo === 2);
+  if (casaLeanPress2) overrides.Lean['2026-04-08'] = { rutinaId: casaLeanPress2.id, tipo: 'press', lugar: 'CASA' };
+  if (casaNatPress2) overrides.Nat['2026-04-08'] = { rutinaId: casaNatPress2.id, tipo: 'press', lugar: 'CASA' };
+
   store.set(store.KEYS.overrides, overrides);
 
   // Set version AFTER everything succeeds
@@ -1012,4 +1113,4 @@ export async function seedV2() {
 }
 
 // Export for testing
-export { createLeanRoutines, createNatRoutines, createRioRoutines, assignCalendar };
+export { createLeanRoutines, createNatRoutines, createRioRoutines, createCasaRoutines, assignCalendar };

@@ -34,6 +34,7 @@ export function getLugarBadge(lugar) {
   switch (lugar) {
     case 'SPORT_FITNESS': return { text: 'SPORT', cls: 'badge-sport' };
     case 'RIO': return { text: 'RÍO', cls: 'badge-rio' };
+    case 'CASA': return { text: 'CASA', cls: 'badge-casa' };
     case 'URUGUAY': return { text: '🇺🇾', cls: 'badge-uy' };
     default: return { text: lugar, cls: '' };
   }

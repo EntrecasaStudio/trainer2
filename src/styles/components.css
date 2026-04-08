@@ -463,6 +463,7 @@
 
 .badge-sport { background: rgba(255,205,0,0.15); color: var(--color-accent); }
 .badge-rio { background: rgba(10,132,255,0.12); color: var(--color-tag-piernas); }
+.badge-casa { background: rgba(48,209,88,0.12); color: #30D158; }
 .badge-uy { background: rgba(167,139,250,0.15); color: var(--color-nat); }
 
 /* Tags (muscle group pills) */
