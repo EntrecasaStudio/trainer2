@@ -209,6 +209,7 @@ function renderWorkout(container) {
 
     <div id="exercises-container">
       ${c.ejercicios.map((e, ei) => renderExerciseCard(e, activeCircuitIdx, ei)).join('')}
+      ${editMode ? `<button class="btn-add-ej" data-ci="${activeCircuitIdx}"><i class="ph ph-plus" style="font-size:14px;"></i> Ejercicio</button>` : ''}
     </div>
 
     <div class="incremento-bar">
@@ -568,6 +569,14 @@ function bindExerciseEvents(container, scope) {
     });
   });
 
+  // Edit mode: add exercise to circuit
+  scope.querySelectorAll('.btn-add-ej').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const ci = parseInt(btn.dataset.ci);
+      showExercisePicker(container, ci, null);
+    });
+  });
+
   // Edit mode: replace exercise
   scope.querySelectorAll('[data-action="replace-exercise"]').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -673,7 +682,7 @@ function showExercisePicker(container, ci, ei) {
     overlay.innerHTML = `
       <div class="modal-sheet" style="max-height:85vh;">
         <div class="modal-header">
-          <h2 class="modal-title">Reemplazar ejercicio</h2>
+          <h2 class="modal-title">${ei === null ? 'Agregar ejercicio' : 'Reemplazar ejercicio'}</h2>
           <button class="modal-close">&times;</button>
         </div>
         <div style="position:relative;margin-bottom:var(--space-md);">
@@ -709,30 +718,55 @@ function showExercisePicker(container, ci, ei) {
       item.addEventListener('click', () => {
         const nombre = item.dataset.nombre;
         const circ = workoutState.circuitos[ci];
-        const oldE = circ.ejercicios[ei];
-        const backup = { ...oldE };
-        circ.ejercicios[ei] = {
-          id: crypto.randomUUID(),
-          nombre,
-          tipo: 'fuerza',
-          series: oldE.series,
-          reps: oldE.reps,
-          usaPeso: inferUsaPeso(nombre),
-          seriesData: Array.from({ length: oldE.seriesData.length }, () => ({
-            reps: oldE.seriesData[0]?.reps || 8,
-            peso: 0,
-            done: false,
-          })),
-        };
-        overlay.classList.add('hidden');
-        overlay.innerHTML = '';
-        persistWorkout();
-        refreshExercises(container);
-        showToastAction(`Reemplazado → ${nombre}`, '↺ Deshacer', () => {
-          circ.ejercicios[ei] = backup;
+
+        if (ei === null) {
+          // ADD new exercise
+          const newEj = {
+            id: crypto.randomUUID(),
+            nombre,
+            tipo: 'fuerza',
+            series: 3,
+            reps: '10',
+            usaPeso: inferUsaPeso(nombre),
+            seriesData: Array.from({ length: 3 }, () => ({ reps: 10, peso: 0, done: false })),
+          };
+          circ.ejercicios.push(newEj);
+          overlay.classList.add('hidden');
+          overlay.innerHTML = '';
           persistWorkout();
           refreshExercises(container);
-        });
+          showToastAction(`Agregado: ${nombre}`, '↺ Deshacer', () => {
+            circ.ejercicios.pop();
+            persistWorkout();
+            refreshExercises(container);
+          });
+        } else {
+          // REPLACE existing exercise
+          const oldE = circ.ejercicios[ei];
+          const backup = { ...oldE };
+          circ.ejercicios[ei] = {
+            id: crypto.randomUUID(),
+            nombre,
+            tipo: 'fuerza',
+            series: oldE.series,
+            reps: oldE.reps,
+            usaPeso: inferUsaPeso(nombre),
+            seriesData: Array.from({ length: oldE.seriesData.length }, () => ({
+              reps: oldE.seriesData[0]?.reps || 8,
+              peso: 0,
+              done: false,
+            })),
+          };
+          overlay.classList.add('hidden');
+          overlay.innerHTML = '';
+          persistWorkout();
+          refreshExercises(container);
+          showToastAction(`Reemplazado → ${nombre}`, '↺ Deshacer', () => {
+            circ.ejercicios[ei] = backup;
+            persistWorkout();
+            refreshExercises(container);
+          });
+        }
       });
     });
   }
