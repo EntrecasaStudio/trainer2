@@ -559,6 +559,194 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'En cuatro puntos con las rodillas apenas despegadas del suelo, avanzá moviendo mano y pie opuestos simultáneamente. Mantené la espalda plana y la cadera baja. Trabaja core, hombros, cuádriceps y coordinación.'
   },
+
+  // ── CASA — VARIANTES CON EQUIPAMIENTO ──────────────────────────────────────
+  // Kettlebell
+  {
+    nombre: 'Sentadilla goblet con kettlebell 12k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Sostené la kettlebell de 12 kg contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
+  },
+  {
+    nombre: 'Sentadilla goblet con kettlebell 8k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Sostené la kettlebell de 8 kg contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
+  },
+  {
+    nombre: 'Sentadilla sumo con kettlebell 12k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Pies más anchos que los hombros, puntas hacia afuera. Sostenés la kettlebell de 12 kg colgando entre las piernas. Bajá con la cadera hasta que los muslos queden paralelos, empujá para subir. Énfasis en aductores y glúteos.'
+  },
+  {
+    nombre: 'Sentadilla sumo con kettlebell 8k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Pies más anchos que los hombros, puntas hacia afuera. Sostenés la kettlebell de 8 kg colgando entre las piernas. Bajá con la cadera hasta que los muslos queden paralelos, empujá para subir. Énfasis en aductores y glúteos.'
+  },
+  {
+    nombre: 'Sentadilla búlgara con kettlebell 12k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Pie trasero apoyado en una superficie elevada. Sostenés la kettlebell de 12 kg en goblet o a un lado. Bajá la rodilla trasera hacia el piso y empujá para subir. Trabaja cuádriceps, glúteo y estabilidad unilateral.'
+  },
+  {
+    nombre: 'Sentadilla búlgara con kettlebell 8k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Pie trasero apoyado en una superficie elevada. Sostenés la kettlebell de 8 kg en goblet o a un lado. Bajá la rodilla trasera hacia el piso y empujá para subir. Trabaja cuádriceps, glúteo y estabilidad unilateral.'
+  },
+  {
+    nombre: 'Sentadilla con salto con chaleco',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Sentadilla explosiva con chaleco de peso. Bajá a paralelo y saltá con máxima potencia, aterrizá suave absorbiendo con las piernas. El chaleco agrega resistencia al movimiento pliométrico.'
+  },
+  {
+    nombre: 'Zancadas con chaleco de peso',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Zancadas alternadas con chaleco de peso puesto. Dá un paso largo al frente, bajá la rodilla trasera casi al piso y volvé. El chaleco añade carga distribuida al torso manteniendo las manos libres.'
+  },
+  {
+    nombre: 'Zancadas con kettlebell 8k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Zancadas alternadas sosteniendo la kettlebell de 8 kg en goblet o a los costados. Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
+  },
+  {
+    nombre: 'Peso muerto rumano con kettlebell 12k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con la kettlebell de 12 kg en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
+  },
+  {
+    nombre: 'Peso muerto rumano con kettlebell 8k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con la kettlebell de 8 kg en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
+  },
+  {
+    nombre: 'Empuje de cadera con plato rucking',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Espalda apoyada en un banco o el piso, plato de rucking de 4 kg sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
+  },
+  {
+    nombre: 'Patada de glúteo con tobillera 4k',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'En cuatro puntos con tobillera de 4 kg en el tobillo. Elevá la pierna hacia atrás y arriba manteniendo la rodilla a 90°, apretá el glúteo arriba. Bajá controlado sin apoyar. Aislamiento de glúteo mayor.'
+  },
+  // Chaleco de peso — Tren superior
+  {
+    nombre: 'Flexiones con chaleco',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Flexiones estándar con chaleco de peso. Cuerpo recto, manos al ancho de hombros, bajá el pecho al suelo y empujá. El chaleco agrega resistencia significativa al empuje corporal.'
+  },
+  {
+    nombre: 'Fondos en banco con chaleco',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Manos en el borde de un banco, piernas extendidas. Bajá flexionando los codos hasta 90° y empujá para subir. El chaleco de peso intensifica el trabajo de tríceps y deltoides anterior.'
+  },
+  {
+    nombre: 'Dominadas australianas con chaleco',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Colgado bajo una barra o TRX con el cuerpo inclinado y chaleco de peso. Tirá el pecho hacia la barra apretando los omóplatos. Bajá controlado. El chaleco aumenta la carga en dorsales y bíceps.'
+  },
+  // Kettlebell — Tren superior
+  {
+    nombre: 'Press militar con kettlebell 12k',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie, kettlebell de 12 kg en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
+  },
+  {
+    nombre: 'Press militar con kettlebell 8k',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie, kettlebell de 8 kg en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
+  },
+  {
+    nombre: 'Arnold press con kettlebell 12k',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Sentado o de pie con kettlebell de 12 kg. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
+  },
+  {
+    nombre: 'Arnold press con kettlebell 8k',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Sentado o de pie con kettlebell de 8 kg. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
+  },
+  {
+    nombre: 'Remo con kettlebell 12k',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell de 12 kg. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
+  },
+  {
+    nombre: 'Remo con kettlebell 8k',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell de 8 kg. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
+  },
+  {
+    nombre: 'Curl de bíceps con kettlebell 12k',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con kettlebell de 12 kg. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
+  },
+  {
+    nombre: 'Curl de bíceps con kettlebell 8k',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con kettlebell de 8 kg. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
+  },
+  {
+    nombre: 'Curl martillo con kettlebell 12k',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Curl con kettlebell de 12 kg manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
+  },
+  {
+    nombre: 'Curl martillo con kettlebell 8k',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Curl con kettlebell de 8 kg manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
+  },
+  // Bandas
+  {
+    nombre: 'Vuelos laterales con banda',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De pie pisando la banda, brazos a los costados. Elevá los brazos lateralmente hasta la altura de los hombros con los codos levemente flexionados. Bajá controlado. Trabaja deltoides lateral.'
+  },
+  {
+    nombre: 'Extensión de tríceps con banda',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Banda anclada arriba o pisada por detrás. Extendé los codos empujando las manos hacia abajo o arriba según el anclaje. Mantené los brazos pegados a la cabeza o al torso. Aislamiento de tríceps.'
+  },
+  {
+    nombre: 'Rotación de hombros con banda',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Sostenés la banda con ambas manos al frente. Llevala por encima de la cabeza y atrás hasta la zona lumbar, y volvé. Mantené los brazos rectos. Movilidad y calentamiento del manguito rotador.'
+  },
+  // Core con carga
+  {
+    nombre: 'Plancha con chaleco',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Plancha estándar en antebrazos con chaleco de peso. Cuerpo recto de cabeza a talones, apretá abdomen y glúteos. El chaleco aumenta la demanda de estabilización del core.'
+  },
+  {
+    nombre: 'Plancha lateral con chaleco',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Apoyado en un antebrazo de costado con chaleco de peso. Cadera elevada, cuerpo recto. Mantené la posición sin dejar caer la cadera. Trabaja oblicuos y estabilizadores laterales del core.'
+  },
+  {
+    nombre: 'Hollow body con plato rucking',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Acostado boca arriba con el plato de rucking de 4 kg sostenido con los brazos extendidos sobre la cabeza. Elevá piernas y hombros del piso, formando una banana. Mantené la zona lumbar pegada al suelo.'
+  },
+  // HIIT con chaleco
+  {
+    nombre: 'Burpees con chaleco',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Burpee completo con chaleco de peso: bajá al suelo, pecho toca, empujá, saltá los pies hacia las manos y saltá arriba. El chaleco aumenta la intensidad cardiovascular y la demanda de fuerza.'
+  },
+  {
+    nombre: 'Mountain climbers con chaleco',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En posición de plancha alta con chaleco de peso. Llevá las rodillas alternadamente al pecho a máxima velocidad. Mantené la cadera baja y el core apretado. El chaleco agrega resistencia al cardio.'
+  },
+  {
+    nombre: 'Jumping jacks con chaleco',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Saltá abriendo piernas y subiendo brazos simultáneamente, volvé al centro. Con chaleco de peso se intensifica el trabajo cardiovascular y de resistencia muscular en piernas y hombros.'
+  },
+  {
+    nombre: 'Bear crawl con chaleco',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Desplazamiento en cuatro puntos con chaleco de peso. Rodillas apenas despegadas del suelo, avanzá mano y pie opuestos. El chaleco añade carga al core, hombros y cuádriceps durante el recorrido.'
+  },
 ];
 
 // Helper: get all exercises for a given group
