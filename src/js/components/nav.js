@@ -1,10 +1,10 @@
 import { router } from '../../router.js';
 
 const NAV_ITEMS = [
-  { id: 'rutinas',   label: 'Rutinas',    icon: 'ph-list',         route: 'rutinas' },
   { id: 'historial', label: 'Historial',  icon: 'ph-clock',        route: 'historial' },
-  { id: 'home',      label: 'Entreno',    icon: 'ph-barbell',      route: '',          primary: true },
   { id: 'progreso',  label: 'Progreso',   icon: 'ph-trend-up',     route: 'progreso' },
+  { id: 'home',      label: 'Entreno',    icon: 'ph-barbell',      route: '',          primary: true },
+  { id: 'rutinas',   label: 'Rutinas',    icon: 'ph-list',         route: 'rutinas' },
   { id: 'usuario',   label: 'Usuario',    icon: 'ph-user-circle',  route: 'usuario' },
 ];
 

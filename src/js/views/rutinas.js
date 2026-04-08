@@ -8,6 +8,7 @@ import { WEEKDAY_FULL, formatDateISO } from '../../utils/calendar.js';
 const LUGAR_LABELS = {
   SPORT_FITNESS: 'Sport',
   RIO: 'Río',
+  CASA: 'Casa',
   URUGUAY: '🇺🇾',
 };
 
