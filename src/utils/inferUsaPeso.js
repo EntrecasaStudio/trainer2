@@ -2,7 +2,8 @@ const USA_PESO = ['press','remo','curl','extensión','extension','barra',
   'mancuerna','kettlebell','rusa','disco','polea','maquina','máquina','sentadilla',
   'peso muerto','hip thrust','jalón','jalon','dominada','vuelo',
   'elevación','elevacion','empuje','fondos','biceps','triceps','tobillera','prensa',
-  'aductor','abductor','gemelo','pulldown','face pull','encogimiento'];
+  'aductor','abductor','gemelo','pulldown','face pull','encogimiento',
+  'plato rucking'];
 
 // These override USA_PESO when both match (e.g. "Banda press de pecho")
 const BODYWEIGHT_OVERRIDE = ['trx','banda','muscle-up','muscle up','plancha'];
