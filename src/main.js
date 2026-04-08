@@ -56,6 +56,20 @@ async function bootApp() {
       .then(reg => {
         // Force update check on every page load
         reg.update().catch(() => {});
+        // If a waiting SW exists, activate it immediately
+        if (reg.waiting) {
+          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
+        }
+        reg.addEventListener('updatefound', () => {
+          const newSW = reg.installing;
+          if (newSW) {
+            newSW.addEventListener('statechange', () => {
+              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+                newSW.postMessage({ type: 'SKIP_WAITING' });
+              }
+            });
+          }
+        });
         // Also check periodically (every 60s)
         setInterval(() => reg.update().catch(() => {}), 60000);
       })

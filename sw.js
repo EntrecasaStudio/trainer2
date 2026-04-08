@@ -1,4 +1,4 @@
-const CACHE = 'trainer2-v2-127';
+const CACHE = 'trainer2-v2-128';
 const PRECACHE = [
   './',
   './index.html',
@@ -58,6 +58,10 @@ self.addEventListener('fetch', (e) => {
   e.respondWith(
     caches.match(e.request).then(r => r || fetch(e.request))
   );
+});
+
+self.addEventListener('message', (e) => {
+  if (e.data?.type === 'SKIP_WAITING') self.skipWaiting();
 });
 
 self.addEventListener('activate', (e) => {
