@@ -231,7 +231,7 @@ function openSesionDetail(sesion) {
     `;
   }).join('');
 
-  const inputStyle = 'font-size:var(--text-base);font-weight:var(--fw-medium);height:42px;';
+  const inputStyle = 'font-size:var(--text-sm);font-weight:var(--fw-medium);height:40px;padding:var(--space-xs) var(--space-sm);';
 
   const contentHTML = `
     <div style="display:flex;flex-direction:column;gap:var(--space-md);">
@@ -243,16 +243,16 @@ function openSesionDetail(sesion) {
           <i class="ph ph-trash" style="font-size:18px;"></i>
         </button>
       </div>
-      <div style="display:flex;gap:var(--space-sm);align-items:flex-end;flex-wrap:wrap;">
-        <div class="edit-field" style="flex:1;min-width:110px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-sm);">
+        <div class="edit-field">
           <label class="edit-label">Fecha</label>
           <input type="date" class="edit-input" id="hist-fecha" value="${sesion.fecha}" style="${inputStyle}">
         </div>
-        <div class="edit-field" style="width:90px;">
+        <div class="edit-field">
           <label class="edit-label">Min</label>
           <input type="number" class="edit-input" id="hist-duracion" value="${minutes}" inputmode="numeric" style="${inputStyle}text-align:center;">
         </div>
-        <div class="edit-field" style="width:90px;">
+        <div class="edit-field">
           <label class="edit-label">Kcal</label>
           <input type="number" class="edit-input" id="hist-calorias" value="${sesion.calorias || ''}" placeholder="—" inputmode="numeric" style="${inputStyle}text-align:center;">
         </div>
