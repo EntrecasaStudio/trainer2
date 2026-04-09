@@ -1,7 +1,14 @@
 let activeModal = null;
+let _onCloseCallback = null;
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
 
 export function openModal(title, contentHTML, options = {}) {
-  closeModal();
+  closeModal(true); // suppress onClose when replacing modal
+
+  _onCloseCallback = options.onClose || null;
 
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.remove('hidden');
@@ -15,11 +22,9 @@ export function openModal(title, contentHTML, options = {}) {
     </div>
   `;
 
-  const close = overlay.querySelector('.modal-close');
-  close.addEventListener('click', closeModal);
-  overlay.addEventListener('click', (e) => {
-    if (e.target === overlay) closeModal();
-  });
+  overlay.querySelector('.modal-close').addEventListener('click', () => closeModal());
+  overlay.removeEventListener('click', handleOverlayClick);
+  overlay.addEventListener('click', handleOverlayClick);
 
   activeModal = overlay;
 
@@ -28,11 +33,14 @@ export function openModal(title, contentHTML, options = {}) {
   }
 }
 
-export function closeModal() {
+export function closeModal(_suppress) {
   const overlay = document.getElementById('modal-overlay');
   if (overlay) {
     overlay.classList.add('hidden');
     overlay.innerHTML = '';
   }
   activeModal = null;
+  const cb = _onCloseCallback;
+  _onCloseCallback = null;
+  if (!_suppress && cb) cb();
 }

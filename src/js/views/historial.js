@@ -8,7 +8,7 @@ let _container = null;
 let _currentUser = '';
 let _searchQuery = '';
 let _searchVisible = false;
-let _filterLugar = null; // null = all, 'SPORT_FITNESS', 'RIO', 'URUGUAY'
+let _filterLugar = null; // null = all, 'SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY'
 let _filterFoco = null; // null = all, 'pull', 'press'
 
 export function mountHistorial(container) {
@@ -78,6 +78,7 @@ function renderFilters() {
       <button class="hist-filter-chip ${!_filterLugar ? 'active' : ''}" data-lugar="">Todas</button>
       <button class="hist-filter-chip ${_filterLugar === 'SPORT_FITNESS' ? 'active' : ''}" data-lugar="SPORT_FITNESS">Gym</button>
       <button class="hist-filter-chip ${_filterLugar === 'RIO' ? 'active' : ''}" data-lugar="RIO">Río</button>
+      <button class="hist-filter-chip ${_filterLugar === 'CASA' ? 'active' : ''}" data-lugar="CASA">Casa</button>
       <button class="hist-filter-chip ${_filterLugar === 'URUGUAY' ? 'active' : ''}" data-lugar="URUGUAY">Uruguay</button>
     </div>
   `;
@@ -99,6 +100,7 @@ function getSesionLugar(s) {
   }
   const name = (s.rutinaNombre || '').toUpperCase();
   if (name.includes('RÍO') || name.includes('RIO')) return 'RIO';
+  if (name.includes('CASA')) return 'CASA';
   if (name.includes('URUGUAY') || name.includes('🇺🇾')) return 'URUGUAY';
   return 'SPORT_FITNESS';
 }
@@ -229,28 +231,30 @@ function openSesionDetail(sesion) {
     `;
   }).join('');
 
+  const inputStyle = 'font-size:var(--text-base);font-weight:var(--fw-medium);height:42px;';
+
   const contentHTML = `
     <div style="display:flex;flex-direction:column;gap:var(--space-md);">
       <div style="display:flex;gap:var(--space-sm);margin-bottom:var(--space-xs);">
-        <button class="btn btn-primary btn-sm" id="hist-save" style="flex:1;">
-          <i class="ph ph-floppy-disk" style="font-size:14px;margin-right:4px;"></i> Guardar
+        <button class="btn btn-primary" id="hist-save" style="flex:1;min-height:44px;">
+          <i class="ph ph-floppy-disk" style="font-size:16px;margin-right:4px;"></i> Guardar
         </button>
-        <button class="btn btn-sm" id="hist-delete" style="color:var(--color-danger);">
-          <i class="ph ph-trash" style="font-size:16px;"></i>
+        <button class="btn" id="hist-delete" style="color:var(--color-danger);min-height:44px;padding:0 var(--space-md);">
+          <i class="ph ph-trash" style="font-size:18px;"></i>
         </button>
       </div>
-      <div style="display:flex;gap:var(--space-md);flex-wrap:wrap;">
-        <div class="edit-field" style="flex:1;min-width:120px;">
+      <div style="display:flex;gap:var(--space-sm);align-items:flex-end;flex-wrap:wrap;">
+        <div class="edit-field" style="flex:1;min-width:110px;">
           <label class="edit-label">Fecha</label>
-          <input type="date" class="edit-input" id="hist-fecha" value="${sesion.fecha}">
+          <input type="date" class="edit-input" id="hist-fecha" value="${sesion.fecha}" style="${inputStyle}">
         </div>
-        <div class="edit-field" style="width:100px;">
-          <label class="edit-label">Duración (min)</label>
-          <input type="number" class="edit-input" id="hist-duracion" value="${minutes}" inputmode="numeric" style="text-align:center;">
+        <div class="edit-field" style="width:90px;">
+          <label class="edit-label">Min</label>
+          <input type="number" class="edit-input" id="hist-duracion" value="${minutes}" inputmode="numeric" style="${inputStyle}text-align:center;">
         </div>
-        <div class="edit-field" style="width:100px;">
-          <label class="edit-label">Calorías</label>
-          <input type="number" class="edit-input" id="hist-calorias" value="${sesion.calorias || ''}" placeholder="kcal" inputmode="numeric" style="text-align:center;">
+        <div class="edit-field" style="width:90px;">
+          <label class="edit-label">Kcal</label>
+          <input type="number" class="edit-input" id="hist-calorias" value="${sesion.calorias || ''}" placeholder="—" inputmode="numeric" style="${inputStyle}text-align:center;">
         </div>
       </div>
       <div style="border-top:1px solid var(--color-border);padding-top:var(--space-md);">
@@ -343,7 +347,14 @@ function openSeriesEditor(sesion, circuitNombre, ejNombre) {
     </div>
   `;
 
+  function reopenDetail() {
+    const fresh = store.getAll(store.KEYS.sesiones).find(s => s.id === sesion.id);
+    if (fresh) openSesionDetail(fresh);
+    else renderList();
+  }
+
   openModal(ejNombre, contentHTML, {
+    onClose: reopenDetail,
     onMount(body) {
       // Toggle check icon on checkbox change
       body.querySelectorAll('.hist-done').forEach(cb => {
@@ -376,12 +387,7 @@ function openSeriesEditor(sesion, circuitNombre, ejNombre) {
           store.set(store.KEYS.sesiones, sesiones);
         }
 
-        closeModal();
-        // Reopen the session detail to reflect changes
-        const updatedSesiones = store.getAll(store.KEYS.sesiones);
-        const updated = updatedSesiones.find(s => s.id === sesion.id);
-        if (updated) openSesionDetail(updated);
-        else renderList();
+        closeModal(); // onClose reopens session detail with fresh data
       });
     }
   });
