@@ -599,7 +599,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Zancadas con chaleco de peso',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     descripcion: 'Zancadas alternadas con chaleco de peso puesto. Dá un paso largo al frente, bajá la rodilla trasera casi al piso y volvé. El chaleco añade carga distribuida al torso manteniendo las manos libres.'
   },
   {
@@ -616,6 +616,16 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Peso muerto rumano con kettlebell 8k',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     descripcion: 'De pie con la kettlebell de 8 kg en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
+  },
+  {
+    nombre: 'Peso muerto a una pierna con kettlebell 12k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie sobre una pierna, kettlebell de 12 kg en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
+  },
+  {
+    nombre: 'Peso muerto a una pierna con kettlebell 8k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie sobre una pierna, kettlebell de 8 kg en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
   },
   {
     nombre: 'Empuje de cadera con plato rucking',
