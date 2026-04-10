@@ -148,6 +148,8 @@ export function mountWorkout(container, params) {
           e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
           e._lastWeight = prog.lastWeight;
           e._suggestion = prog.completedAllReps ? prog.lastWeight + incremento : null;
+        } else if (e.nombre.toLowerCase().includes('chaleco')) {
+          e.seriesData.forEach(s => { s.peso = 9; });
         }
       }
     });
