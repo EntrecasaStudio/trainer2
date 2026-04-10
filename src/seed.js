@@ -912,7 +912,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.25';
+const SEED_VERSION = '2.26';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1127,6 +1127,11 @@ export async function seedV2() {
   const casaNatPress2 = casaRoutines.find(r => r.usuario === 'Nat' && r.foco === 'press' && r.semana_ciclo === 2);
   if (casaLeanPress2) overrides.Lean['2026-04-08'] = { rutinaId: casaLeanPress2.id, tipo: 'press', lugar: 'CASA' };
   if (casaNatPress2) overrides.Nat['2026-04-08'] = { rutinaId: casaNatPress2.id, tipo: 'press', lugar: 'CASA' };
+
+  // Override 2026-04-10 (Fri) — Lean: CASA pull S2, Nat: rest
+  const casaLeanPull2 = casaRoutines.find(r => r.usuario === 'Lean' && r.foco === 'pull' && r.semana_ciclo === 2);
+  if (casaLeanPull2) overrides.Lean['2026-04-10'] = { rutinaId: casaLeanPull2.id, tipo: 'pull', lugar: 'CASA' };
+  overrides.Nat['2026-04-10'] = { rest: true };
 
   store.set(store.KEYS.overrides, overrides);
 

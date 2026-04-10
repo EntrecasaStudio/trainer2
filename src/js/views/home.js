@@ -379,9 +379,9 @@ function renderCircuits(circuitos) {
 }
 
 function openAssignSheet() {
-  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'URUGUAY'];
-  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', URUGUAY: '🇺🇾' };
-  const LUGAR_LABELS = { SPORT_FITNESS: 'Sport Fitness', RIO: 'Río', URUGUAY: '🇺🇾 Uruguay' };
+  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY'];
+  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾' };
+  const LUGAR_LABELS = { SPORT_FITNESS: 'Sport Fitness', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾 Uruguay' };
 
   let activeLugares = [...LUGAR_ORDER];
   let query = '';
@@ -390,7 +390,7 @@ function openAssignSheet() {
     const q = query.toLowerCase();
     const rutinas = store.getAll(store.KEYS.rutinas)
       .filter(r => r.usuario === activeUsuario && activeLugares.includes(r.lugar))
-      .filter(r => !q || r.nombre.toLowerCase().includes(q) || (r.numero || '').toLowerCase().includes(q));
+      .filter(r => !q || r.nombre.toLowerCase().includes(q) || String(r.numero || '').toLowerCase().includes(q));
 
     const grouped = {};
     rutinas.forEach(r => {
@@ -478,8 +478,8 @@ function openAssignSheet() {
 }
 
 function openEditSheet(currentRutina) {
-  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'URUGUAY'];
-  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', URUGUAY: '🇺🇾' };
+  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY'];
+  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾' };
 
   let activeLugares = [currentRutina.lugar];
   let query = '';
@@ -489,7 +489,7 @@ function openEditSheet(currentRutina) {
     const q = query.toLowerCase();
     const rutinas = store.getAll(store.KEYS.rutinas)
       .filter(r => r.usuario === activeUsuario && activeLugares.includes(r.lugar))
-      .filter(r => !q || r.nombre.toLowerCase().includes(q) || (r.numero || '').toLowerCase().includes(q));
+      .filter(r => !q || r.nombre.toLowerCase().includes(q) || String(r.numero || '').toLowerCase().includes(q));
 
     if (rutinas.length === 0) {
       return '<div style="color:var(--color-text-muted);text-align:center;padding:var(--space-lg);">Sin resultados</div>';
