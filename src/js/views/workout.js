@@ -469,7 +469,17 @@ function bindExerciseEvents(container, scope) {
 
   // Info buttons
   scope.querySelectorAll('.info-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => { e.stopPropagation(); openEjercicioInfo(btn.dataset.nombre); });
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEjercicioInfo(btn.dataset.nombre, () => {
+        // Re-check usaPeso for all exercises after edit
+        workoutState.circuitos.forEach(c => {
+          c.ejercicios.forEach(ej => { ej.usaPeso = inferUsaPeso(ej.nombre); });
+        });
+        persistWorkout();
+        renderWorkout(document.getElementById('view-container'));
+      });
+    });
   });
 
   // Stepper buttons

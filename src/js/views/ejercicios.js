@@ -56,10 +56,10 @@ export function mountEjercicios(container) {
   render(container);
 }
 
-export function openEjercicioInfo(nombre) {
+export function openEjercicioInfo(nombre, onChange) {
   // Can be called from workout or home to show info modal (with edit)
   const data = getEjercicioData(nombre);
-  showDetailModal(data, true);
+  showDetailModal(data, true, onChange);
 }
 
 function render(container) {
@@ -241,7 +241,7 @@ function renderList(container) {
   });
 }
 
-function showDetailModal(data, allowEdit) {
+function showDetailModal(data, allowEdit, onChange) {
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.remove('hidden');
 
@@ -288,11 +288,11 @@ function showDetailModal(data, allowEdit) {
   });
 
   overlay.querySelector('#btn-edit-ejercicio')?.addEventListener('click', () => {
-    openEditModal(data);
+    openEditModal(data, onChange);
   });
 }
 
-function openEditModal(data) {
+function openEditModal(data, onChange) {
   const overlay = document.getElementById('modal-overlay');
   overlay.innerHTML = `
     <div class="modal-sheet">
@@ -353,6 +353,8 @@ function openEditModal(data) {
     store.set('gym_ejercicios_custom', custom);
     overlay.classList.add('hidden');
     overlay.innerHTML = '';
+    // Notify caller (e.g. workout) of changes
+    if (onChange) onChange();
     // Force full re-render of ejercicios view
     const vc = document.getElementById('view-container');
     if (vc && document.getElementById('ejercicios-list')) {
