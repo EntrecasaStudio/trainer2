@@ -493,8 +493,8 @@ function bindExerciseEvents(container, scope) {
     });
   });
 
-  // Stepper direct input
-  scope.querySelectorAll('.stepper-input').forEach(input => {
+  // Stepper direct input (exclude chaleco peso which has its own handler)
+  scope.querySelectorAll('.stepper-input:not(.chaleco-peso-field)').forEach(input => {
     input.addEventListener('change', () => {
       const { field, ci, ei, si } = input.dataset;
       const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
