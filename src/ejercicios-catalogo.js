@@ -628,6 +628,16 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Sostenés la kettlebell de 8 kg con ambas manos a la altura del pecho (posición goblet). Bajá a sentadilla profunda y al subir empujá la kettlebell hacia arriba en press sobre la cabeza estirando los brazos. Bajá la kettlebell al pecho y repetí. Trabaja piernas, hombros y core en un solo movimiento.'
   },
   {
+    nombre: 'Squat to press a una mano con kettlebell 12k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Kettlebell de 12 kg en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
+  },
+  {
+    nombre: 'Squat to press a una mano con kettlebell 8k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Kettlebell de 8 kg en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
+  },
+  {
     nombre: 'Peso muerto a una pierna con kettlebell 12k',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     descripcion: 'De pie sobre una pierna, kettlebell de 12 kg en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
