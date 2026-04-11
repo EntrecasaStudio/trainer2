@@ -146,7 +146,17 @@ export const EJERCICIOS_CATALOGO = [
   {
     nombre: 'TRX chest press',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Con las correas del TRX ajustadas a altura de pecho, sujetá las asas y posicioná el cuerpo inclinado hacia adelante. Bajá el cuerpo flexionando los codos como en una flexión, volvé empujando. Más inclinación = más difícil. Trabaja estabilidad + pectoral.'
+    descripcion: 'Con las correas del TRX, cuerpo inclinado hacia adelante. Bajá flexionando los codos como una flexión, empujá para volver. Más inclinación = más difícil. Trabaja pectoral y estabilidad.'
+  },
+  {
+    nombre: 'TRX chest press narrow',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Igual que TRX chest press pero con manos juntas (agarre cerrado). Al bajar los codos van pegados al cuerpo. Enfatiza tríceps y pectoral interno. Más inclinación = más difícil.'
+  },
+  {
+    nombre: 'TRX archer press',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Desde posición de TRX chest press, bajá llevando el peso hacia un brazo mientras el otro se extiende al costado como un arquero. Empujá con el brazo cargado para volver. Alterná lados. Trabaja pectoral unilateral con mayor intensidad.'
   },
   {
     nombre: 'Banda press de pecho',
