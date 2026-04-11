@@ -603,9 +603,14 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Zancadas alternadas con chaleco de peso puesto. Dá un paso largo al frente, bajá la rodilla trasera casi al piso y volvé. El chaleco añade carga distribuida al torso manteniendo las manos libres.'
   },
   {
+    nombre: 'Zancadas con kettlebell 12k',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Zancadas alternadas sosteniendo la kettlebell de 12 kg al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
+  },
+  {
     nombre: 'Zancadas con kettlebell 8k',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Zancadas alternadas sosteniendo la kettlebell de 8 kg en goblet o a los costados. Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
+    descripcion: 'Zancadas alternadas sosteniendo la kettlebell de 8 kg al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
   },
   {
     nombre: 'Peso muerto rumano con kettlebell 12k',
