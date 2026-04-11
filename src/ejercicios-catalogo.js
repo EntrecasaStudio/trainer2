@@ -563,34 +563,19 @@ export const EJERCICIOS_CATALOGO = [
   // ── CASA — VARIANTES CON EQUIPAMIENTO ──────────────────────────────────────
   // Kettlebell
   {
-    nombre: 'Sentadilla goblet con kettlebell 12k',
+    nombre: 'Sentadilla goblet con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Sostené la kettlebell de 12 kg contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
+    descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
   },
   {
-    nombre: 'Sentadilla goblet con kettlebell 8k',
+    nombre: 'Sentadilla sumo con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Sostené la kettlebell de 8 kg contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
+    descripcion: 'Pies más anchos que los hombros, puntas hacia afuera. Sostenés la kettlebell colgando entre las piernas. Bajá con la cadera hasta que los muslos queden paralelos, empujá para subir. Énfasis en aductores y glúteos.'
   },
   {
-    nombre: 'Sentadilla sumo con kettlebell 12k',
+    nombre: 'Sentadilla búlgara con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Pies más anchos que los hombros, puntas hacia afuera. Sostenés la kettlebell de 12 kg colgando entre las piernas. Bajá con la cadera hasta que los muslos queden paralelos, empujá para subir. Énfasis en aductores y glúteos.'
-  },
-  {
-    nombre: 'Sentadilla sumo con kettlebell 8k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Pies más anchos que los hombros, puntas hacia afuera. Sostenés la kettlebell de 8 kg colgando entre las piernas. Bajá con la cadera hasta que los muslos queden paralelos, empujá para subir. Énfasis en aductores y glúteos.'
-  },
-  {
-    nombre: 'Sentadilla búlgara con kettlebell 12k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Pie trasero apoyado en una superficie elevada. Sostenés la kettlebell de 12 kg en goblet o a un lado. Bajá la rodilla trasera hacia el piso y empujá para subir. Trabaja cuádriceps, glúteo y estabilidad unilateral.'
-  },
-  {
-    nombre: 'Sentadilla búlgara con kettlebell 8k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Pie trasero apoyado en una superficie elevada. Sostenés la kettlebell de 8 kg en goblet o a un lado. Bajá la rodilla trasera hacia el piso y empujá para subir. Trabaja cuádriceps, glúteo y estabilidad unilateral.'
+    descripcion: 'Pie trasero apoyado en una superficie elevada. Sostenés la kettlebell en goblet o a un lado. Bajá la rodilla trasera hacia el piso y empujá para subir. Trabaja cuádriceps, glúteo y estabilidad unilateral.'
   },
   {
     nombre: 'Sentadilla con salto con chaleco',
@@ -603,54 +588,29 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Zancadas alternadas con chaleco de peso puesto. Dá un paso largo al frente, bajá la rodilla trasera casi al piso y volvé. El chaleco añade carga distribuida al torso manteniendo las manos libres.'
   },
   {
-    nombre: 'Zancadas con kettlebell 12k',
+    nombre: 'Zancadas con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Zancadas alternadas sosteniendo la kettlebell de 12 kg al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
+    descripcion: 'Zancadas alternadas sosteniendo la kettlebell al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
   },
   {
-    nombre: 'Zancadas con kettlebell 8k',
+    nombre: 'Peso muerto rumano con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Zancadas alternadas sosteniendo la kettlebell de 8 kg al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
+    descripcion: 'De pie con la kettlebell en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
   },
   {
-    nombre: 'Peso muerto rumano con kettlebell 12k',
+    nombre: 'Squat to press con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie con la kettlebell de 12 kg en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
+    descripcion: 'Sostenés la kettlebell con ambas manos a la altura del pecho (posición goblet). Bajá a sentadilla profunda y al subir empujá la kettlebell hacia arriba en press sobre la cabeza estirando los brazos. Bajá la kettlebell al pecho y repetí. Trabaja piernas, hombros y core en un solo movimiento.'
   },
   {
-    nombre: 'Peso muerto rumano con kettlebell 8k',
+    nombre: 'Squat to press a una mano con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie con la kettlebell de 8 kg en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
+    descripcion: 'Kettlebell en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
   },
   {
-    nombre: 'Squat to press con kettlebell 12k',
+    nombre: 'Peso muerto a una pierna con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Sostenés la kettlebell de 12 kg con ambas manos a la altura del pecho (posición goblet). Bajá a sentadilla profunda y al subir empujá la kettlebell hacia arriba en press sobre la cabeza estirando los brazos. Bajá la kettlebell al pecho y repetí. Trabaja piernas, hombros y core en un solo movimiento.'
-  },
-  {
-    nombre: 'Squat to press con kettlebell 8k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Sostenés la kettlebell de 8 kg con ambas manos a la altura del pecho (posición goblet). Bajá a sentadilla profunda y al subir empujá la kettlebell hacia arriba en press sobre la cabeza estirando los brazos. Bajá la kettlebell al pecho y repetí. Trabaja piernas, hombros y core en un solo movimiento.'
-  },
-  {
-    nombre: 'Squat to press a una mano con kettlebell 12k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Kettlebell de 12 kg en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
-  },
-  {
-    nombre: 'Squat to press a una mano con kettlebell 8k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Kettlebell de 8 kg en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
-  },
-  {
-    nombre: 'Peso muerto a una pierna con kettlebell 12k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie sobre una pierna, kettlebell de 12 kg en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
-  },
-  {
-    nombre: 'Peso muerto a una pierna con kettlebell 8k',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie sobre una pierna, kettlebell de 8 kg en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
+    descripcion: 'De pie sobre una pierna, kettlebell en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
   },
   {
     nombre: 'Empuje de cadera con plato rucking',
@@ -680,54 +640,29 @@ export const EJERCICIOS_CATALOGO = [
   },
   // Kettlebell — Tren superior
   {
-    nombre: 'Press militar con kettlebell 12k',
+    nombre: 'Press militar con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie, kettlebell de 12 kg en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
+    descripcion: 'De pie, kettlebell en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
   },
   {
-    nombre: 'Press militar con kettlebell 8k',
+    nombre: 'Arnold press con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie, kettlebell de 8 kg en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
+    descripcion: 'Sentado o de pie con kettlebell. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
   },
   {
-    nombre: 'Arnold press con kettlebell 12k',
-    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Sentado o de pie con kettlebell de 12 kg. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
-  },
-  {
-    nombre: 'Arnold press con kettlebell 8k',
-    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Sentado o de pie con kettlebell de 8 kg. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
-  },
-  {
-    nombre: 'Remo con kettlebell 12k',
+    nombre: 'Remo con kettlebell',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell de 12 kg. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
+    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
   },
   {
-    nombre: 'Remo con kettlebell 8k',
-    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell de 8 kg. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
-  },
-  {
-    nombre: 'Curl de bíceps con kettlebell 12k',
+    nombre: 'Curl de bíceps con kettlebell',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie con kettlebell de 12 kg. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
+    descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
   },
   {
-    nombre: 'Curl de bíceps con kettlebell 8k',
+    nombre: 'Curl martillo con kettlebell',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
-    descripcion: 'De pie con kettlebell de 8 kg. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
-  },
-  {
-    nombre: 'Curl martillo con kettlebell 12k',
-    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Curl con kettlebell de 12 kg manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
-  },
-  {
-    nombre: 'Curl martillo con kettlebell 8k',
-    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Curl con kettlebell de 8 kg manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
+    descripcion: 'Curl con kettlebell manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
   },
   // Bandas
   {
