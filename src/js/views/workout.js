@@ -527,6 +527,7 @@ function bindExerciseEvents(container, scope) {
       const { ci, ei } = btn.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
       ejercicio.chaleco = !ejercicio.chaleco;
+      if (ejercicio.chaleco && !ejercicio.chalecoPeso) ejercicio.chalecoPeso = 9;
       if (!ejercicio.chaleco) ejercicio.chalecoPeso = 0;
       persistWorkout();
       refreshExercises(container);
