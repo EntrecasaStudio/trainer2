@@ -727,6 +727,23 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'Desplazamiento en cuatro puntos con chaleco de peso. Rodillas apenas despegadas del suelo, avanzá mano y pie opuestos. El chaleco añade carga al core, hombros y cuádriceps durante el recorrido.'
   },
+  // Equilibrio + kettlebell
+  {
+    nombre: 'Curl de bíceps en equilibrio con kettlebell',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie sobre una pierna, kettlebell en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series.'
+  },
+  {
+    nombre: 'Vuelos laterales en equilibrio con kettlebell',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Parado sobre una pierna, kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar.'
+  },
+  // TRX — Tríceps
+  {
+    nombre: 'Tríceps alto en TRX',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De espaldas al anclaje del TRX, brazos extendidos sobre la cabeza sosteniendo las correas. Flexioná los codos bajando la cabeza entre las manos, manteniendo los brazos pegados a las orejas. Extendé para volver. Similar a un french press con peso corporal. Cuanto más inclinado, más difícil.'
+  },
 ];
 
 // Helper: get all exercises for a given group
