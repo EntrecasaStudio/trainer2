@@ -7,6 +7,26 @@ import { showToast, showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 
+// Patterns where the chaleco doesn't add real load (handheld weight isolated movements)
+const NO_CHALECO_PATTERNS = [
+  'press militar', 'arnold press', 'vuelos laterales',
+  'curl', 'extensión de tríceps', 'extension de triceps',
+  'remo con kettlebell', 'remo con mancuerna', 'remo con barra',
+  'peso muerto', 'swing',
+];
+function chalecoApplies(nombre) {
+  const n = (nombre || '').toLowerCase();
+  return !NO_CHALECO_PATTERNS.some(p => n.includes(p));
+}
+
+// Default kettlebell weight when no progression data exists yet
+function defaultKettlebellWeight(nombre, usuario) {
+  const n = (nombre || '').toLowerCase();
+  if (!n.includes('kettlebell')) return null;
+  if (n.includes('suave')) return null; // recovery exercises stay at 0
+  return usuario === 'Lean' ? 12 : 8;
+}
+
 // ── SVG icons ────────────────────────────────────────────────────────────────
 const SVG_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
 
@@ -148,6 +168,11 @@ export function mountWorkout(container, params) {
           e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
           e._lastWeight = prog.lastWeight;
           e._suggestion = prog.completedAllReps ? prog.lastWeight + incremento : null;
+        } else {
+          const kbDefault = defaultKettlebellWeight(e.nombre, usuario);
+          if (kbDefault != null) {
+            e.seriesData.forEach(s => { s.peso = kbDefault; });
+          }
         }
       }
     });
@@ -298,7 +323,7 @@ function renderExerciseCard(e, ci, ei) {
         ${(() => {
           const cat = EJERCICIOS_CATALOGO.find(c => c.nombre === e.nombre);
           const isFuncional = cat?.tipo === 'funcional';
-          return isFuncional ? `
+          return isFuncional && chalecoApplies(e.nombre) ? `
         <div class="peso-toggle-row">
           <button class="chaleco-toggle-btn ${e.chaleco ? 'active' : ''}" data-ci="${ci}" data-ei="${ei}" title="Chaleco">
             <i class="${e.chaleco ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:20px;"></i>
