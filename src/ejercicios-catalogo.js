@@ -78,6 +78,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Igual que la plancha estándar pero apoyado en los antebrazos en lugar de las palmas. Mayor activación del core al reducir el brazo de palanca. Codos directamente debajo de los hombros, espalda plana.'
   },
   {
+    nombre: 'Plancha oscilante en codos',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Plancha apoyada en antebrazos. Sin mover los codos, desplazá el cuerpo hacia adelante (los hombros pasan la línea de los codos) y luego hacia atrás, como una sierra. 30 oscilaciones en total: 10 con las dos piernas apoyadas, 10 con la pierna derecha elevada y 10 con la pierna izquierda elevada. Mantené cadera y espalda alineadas, core y glúteos activos en todo el recorrido.'
+  },
+  {
     nombre: 'Dead bug',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     descripcion: 'Acostado boca arriba, brazos extendidos al techo y rodillas a 90°. Simultáneamente bajá el brazo derecho al suelo y extendé la pierna izquierda sin tocar el piso. Volvé y alternás. Lumbar pegada al suelo en todo momento.'
