@@ -148,8 +148,6 @@ export function mountWorkout(container, params) {
           e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
           e._lastWeight = prog.lastWeight;
           e._suggestion = prog.completedAllReps ? prog.lastWeight + incremento : null;
-        } else if (e.nombre.toLowerCase().includes('chaleco')) {
-          e.seriesData.forEach(s => { s.peso = 9; });
         }
       }
     });
@@ -249,9 +247,15 @@ function renderExerciseCard(e, ci, ei) {
   const circ = workoutState.circuitos[ci];
   const canRemove = editMode && circ.ejercicios.length > 1;
 
+  const chalecoExtra = e.chaleco ? (e.chalecoPeso || 0) : 0;
   const summaryParts = [`${totalSeries} series`];
   if (e.seriesData[0]) summaryParts.push(`${e.seriesData[0].reps} rep`);
-  if (e.usaPeso && e.seriesData[0]) summaryParts.push(`${e.seriesData[0].peso} kg`);
+  if (e.usaPeso && e.seriesData[0]) {
+    const effective = (e.seriesData[0].peso || 0) + chalecoExtra;
+    summaryParts.push(`${effective} kg${chalecoExtra ? ` (+${chalecoExtra} chaleco)` : ''}`);
+  } else if (chalecoExtra) {
+    summaryParts.push(`${chalecoExtra} kg chaleco`);
+  }
   if (doneCount > 0) summaryParts.push(`${doneCount}/${totalSeries} ✓`);
   const summaryText = summaryParts.join(' · ');
 

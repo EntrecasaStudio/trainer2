@@ -216,12 +216,17 @@ function openSesionDetail(sesion) {
         ${(c.ejercicios || []).map(e => {
           const doneSeries = (e.seriesData || []).filter(s => s.done);
           const maxPeso = doneSeries.length > 0 ? Math.max(...doneSeries.map(s => s.peso || 0)) : 0;
+          const chalecoExtra = e.chaleco ? (e.chalecoPeso || 0) : 0;
+          const effectiveMax = maxPeso + chalecoExtra;
+          const pesoLabel = effectiveMax > 0
+            ? ` · ${effectiveMax}kg${chalecoExtra ? ` (+${chalecoExtra} chaleco)` : ''}`
+            : '';
           return `
             <div class="hist-ej-row" data-ej-nombre="${e.nombre}" data-circuit-nombre="${c.nombre || ''}">
               <div style="flex:1;min-width:0;">
                 <div style="font-size:var(--text-sm);">${e.nombre}</div>
                 <div style="font-size:var(--text-xs);color:var(--color-text-muted);">
-                  ${doneSeries.length}/${(e.seriesData || []).length} series${maxPeso > 0 ? ` · ${maxPeso}kg` : ''}
+                  ${doneSeries.length}/${(e.seriesData || []).length} series${pesoLabel}
                 </div>
               </div>
               <i class="ph ph-caret-right" style="font-size:14px;color:var(--color-text-muted);"></i>

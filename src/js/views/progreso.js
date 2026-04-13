@@ -323,9 +323,10 @@ export function mountProgreso(container) {
       const lugar = getSesionLugar(s);
       for (const c of (s.circuitos || [])) {
         for (const e of (c.ejercicios || [])) {
-          const done = (e.seriesData || []).filter(sr => sr.done && sr.peso > 0);
+          const chalecoExtra = e.chaleco ? (e.chalecoPeso || 0) : 0;
+          const done = (e.seriesData || []).filter(sr => sr.done && (sr.peso > 0 || chalecoExtra > 0));
           if (done.length === 0) continue;
-          const maxPeso = Math.max(...done.map(sr => sr.peso));
+          const maxPeso = Math.max(...done.map(sr => (sr.peso || 0) + chalecoExtra));
           const key = `${e.nombre}__${lugar}`;
           if (!map[key]) map[key] = [];
           // Avoid duplicate dates
@@ -396,9 +397,11 @@ export function mountProgreso(container) {
 
   function calcSessionVolume(s) {
     return (s.circuitos || []).reduce((cs, c) =>
-      cs + (c.ejercicios || []).reduce((es, e) =>
-        es + (e.seriesData || []).filter(sr => sr.done).reduce((vs, sr) =>
-          vs + (sr.reps || 0) * (sr.peso || 0), 0), 0), 0);
+      cs + (c.ejercicios || []).reduce((es, e) => {
+        const chalecoExtra = e.chaleco ? (e.chalecoPeso || 0) : 0;
+        return es + (e.seriesData || []).filter(sr => sr.done).reduce((vs, sr) =>
+          vs + (sr.reps || 0) * ((sr.peso || 0) + chalecoExtra), 0);
+      }, 0), 0);
   }
 
   function calcWeeklyVolumes(sesiones, currentMonday, numWeeks) {
