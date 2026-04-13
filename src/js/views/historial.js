@@ -8,7 +8,7 @@ let _container = null;
 let _currentUser = '';
 let _searchQuery = '';
 let _searchVisible = false;
-let _filterLugar = null; // null = all, 'SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY'
+let _filterLugar = null; // null = all, 'SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY', 'RECOVERY'
 let _filterFoco = null; // null = all, 'pull', 'press'
 
 export function mountHistorial(container) {
@@ -80,6 +80,7 @@ function renderFilters() {
       <button class="hist-filter-chip ${_filterLugar === 'RIO' ? 'active' : ''}" data-lugar="RIO">Río</button>
       <button class="hist-filter-chip ${_filterLugar === 'CASA' ? 'active' : ''}" data-lugar="CASA">Casa</button>
       <button class="hist-filter-chip ${_filterLugar === 'URUGUAY' ? 'active' : ''}" data-lugar="URUGUAY">Uruguay</button>
+      <button class="hist-filter-chip ${_filterLugar === 'RECOVERY' ? 'active' : ''}" data-lugar="RECOVERY">Recovery</button>
     </div>
   `;
 

@@ -7,7 +7,9 @@ import { openEjercicioInfo } from './ejercicios.js';
 const LUGAR_OPTIONS = [
   { key: 'SPORT_FITNESS', label: 'Sport' },
   { key: 'RIO', label: 'Río' },
+  { key: 'CASA', label: 'Casa' },
   { key: 'URUGUAY', label: '🇺🇾' },
+  { key: 'RECOVERY', label: 'Recovery' },
 ];
 
 let _rutina = null;

@@ -465,6 +465,7 @@
 .badge-rio { background: rgba(10,132,255,0.12); color: var(--color-tag-piernas); }
 .badge-casa { background: rgba(48,209,88,0.12); color: #30D158; }
 .badge-uy { background: rgba(167,139,250,0.15); color: var(--color-nat); }
+.badge-recovery { background: rgba(255,107,139,0.12); color: #FF6B8B; }
 
 /* Tags (muscle group pills) */
 .tag {

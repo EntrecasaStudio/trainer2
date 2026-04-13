@@ -10,6 +10,7 @@ const LUGAR_LABELS = {
   RIO: 'Río',
   CASA: 'Casa',
   URUGUAY: '🇺🇾',
+  RECOVERY: 'Recovery',
 };
 
 const DAYS = [

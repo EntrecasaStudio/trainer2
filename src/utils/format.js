@@ -36,6 +36,7 @@ export function getLugarBadge(lugar) {
     case 'RIO': return { text: 'RÍO', cls: 'badge-rio' };
     case 'CASA': return { text: 'CASA', cls: 'badge-casa' };
     case 'URUGUAY': return { text: '🇺🇾', cls: 'badge-uy' };
+    case 'RECOVERY': return { text: 'REC', cls: 'badge-recovery' };
     default: return { text: lugar, cls: '' };
   }
 }

@@ -717,6 +717,57 @@ function createCasaRoutines() {
   ];
 }
 
+function rutinaRecovery(numero, nombre, usuario, semana_ciclo, circuitos) {
+  return {
+    id: uid(), numero, nombre, usuario,
+    lugar: 'RECOVERY', tipo: 'cross', foco: 'recovery', semana_ciclo,
+    circuitos, updatedAt: new Date().toISOString(), pendingSync: false,
+  };
+}
+
+function createRecoveryRoutines() {
+  // Recovery post-cirugía ósea (injerto + membrana + tachuelas)
+  // Reglas: sin Valsalva, sin inversiones, sin presión abdominal alta,
+  // cargas livianas 40-50%, respiración continua.
+  return [
+    // Lunes 13 — Movilidad y activación suave
+    rutinaRecovery('#R01', 'Recovery 1 · Movilidad y activación', 'Nat', 1, [
+      circuito(1, 'MOVILIDAD', [ej('Cat-cow', 3, '10'), ej('Yoga suave', 1, '8 min', { tipo: 'movilidad' })]),
+      circuito(2, 'ACTIVACIÓN SUAVE', [ej('Puente de glúteos', 3, '12'), ej('Bird-dog', 3, '10')]),
+      circuito(3, 'PIERNAS LIVIANAS', [ej('Sentadilla corporal', 3, '12'), ej('Calf raises', 3, '15')]),
+      circuito(4, 'CORE POSTURAL', [ej('Plancha isométrica', 3, '20s'), ej('Face pull con banda', 3, '15')]),
+    ]),
+    // Martes 14 — Glúteos y piernas sin carga axial
+    rutinaRecovery('#R02', 'Recovery 2 · Glúteos y piernas suave', 'Nat', 1, [
+      circuito(1, 'MOVILIDAD', [ej('Cat-cow', 2, '10'), ej('Rotación de hombros con banda', 2, '12')]),
+      circuito(2, 'GLÚTEOS', [ej('Puente de glúteos una pierna', 3, '10'), ej('Extensión de cadera en 4 puntos', 3, '12')]),
+      circuito(3, 'PIERNAS', [ej('Estocadas estáticas', 3, '10'), ej('Hip hinge corporal', 3, '12')]),
+      circuito(4, 'CORE SUAVE', [ej('Plancha lateral', 3, '15s'), ej('Bird-dog', 3, '10')]),
+    ]),
+    // Miércoles 15 — Core, movilidad y tren superior muy liviano
+    rutinaRecovery('#R03', 'Recovery 3 · Core y movilidad', 'Nat', 1, [
+      circuito(1, 'MOVILIDAD', [ej('Yoga suave', 1, '10 min', { tipo: 'movilidad' })]),
+      circuito(2, 'CORE SIN PRESIÓN', [ej('Plancha isométrica', 3, '20s'), ej('Bird-dog', 3, '10'), ej('Cat-cow', 3, '8')]),
+      circuito(3, 'POSTURA', [ej('Face pull con banda', 3, '15'), ej('Banda pull-apart', 3, '15')]),
+      circuito(4, 'ACTIVACIÓN PIERNA', [ej('Sentadilla corporal', 3, '12'), ej('Puente de glúteos', 3, '15')]),
+    ]),
+    // Jueves 16 — Tren superior liviano con kettlebell chica
+    rutinaRecovery('#R04', 'Recovery 4 · Tren superior liviano', 'Nat', 1, [
+      circuito(1, 'MOVILIDAD', [ej('Rotación de hombros con banda', 3, '12'), ej('Cat-cow', 2, '10')]),
+      circuito(2, 'HOMBROS SUAVE', [ej('Press militar suave con kettlebell', 3, '10'), ej('Face pull con banda', 3, '15')]),
+      circuito(3, 'BRAZOS', [ej('Curl de bíceps suave', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(4, 'GLÚTEOS', [ej('Puente de glúteos', 3, '15'), ej('Extensión de cadera en 4 puntos', 3, '12')]),
+    ]),
+    // Viernes 17 — Integrativa suave cierre de semana
+    rutinaRecovery('#R05', 'Recovery 5 · Integrativa suave', 'Nat', 1, [
+      circuito(1, 'MOVILIDAD', [ej('Cat-cow', 3, '10'), ej('Rotación de hombros con banda', 2, '12')]),
+      circuito(2, 'PIERNAS · GLÚTEOS', [ej('Sentadilla corporal', 3, '12'), ej('Puente de glúteos una pierna', 3, '10')]),
+      circuito(3, 'CORE', [ej('Plancha isométrica', 3, '25s'), ej('Plancha lateral', 3, '15s'), ej('Bird-dog', 3, '10')]),
+      circuito(4, 'CIERRE', [ej('Face pull con banda', 3, '15'), ej('Yoga suave', 1, '6 min', { tipo: 'movilidad' })]),
+    ]),
+  ];
+}
+
 function assignCalendar(rutinas, startDate, calendarStart) {
   const overrides = { Lean: {}, Nat: {} };
   const today = new Date(calendarStart || startDate);
@@ -942,7 +993,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.28';
+const SEED_VERSION = '2.29';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1132,14 +1183,17 @@ export async function seedV2() {
   // Create CASA routines
   const casaRoutines = createCasaRoutines();
 
+  // Create RECOVERY routines (post-cirugía, Nat solo)
+  const recoveryRoutines = createRecoveryRoutines();
+
   // Load and migrate backup
   const backup = await loadBackup();
   migrateBackup(backup);
 
-  // Merge: keep URUGUAY intact, replace SPORT_FITNESS, RIO and CASA
+  // Merge: keep URUGUAY intact, replace SPORT_FITNESS, RIO, CASA and RECOVERY
   const existing = store.getAll(store.KEYS.rutinas);
   const uruguayOnly = existing.filter(r => r.lugar === 'URUGUAY');
-  store.set(store.KEYS.rutinas, [...uruguayOnly, ...sfRoutines, ...rioRoutines, ...casaRoutines]);
+  store.set(store.KEYS.rutinas, [...uruguayOnly, ...sfRoutines, ...rioRoutines, ...casaRoutines, ...recoveryRoutines]);
 
   // Assign calendar — plan started March 30, preserve to maintain press/pull cycle
   const PLAN_ORIGIN = '2026-03-30';
@@ -1163,6 +1217,17 @@ export async function seedV2() {
   if (casaLeanPull2) overrides.Lean['2026-04-10'] = { rutinaId: casaLeanPull2.id, tipo: 'pull', lugar: 'CASA' };
   overrides.Nat['2026-04-10'] = { rest: true };
 
+  // Nat Recovery week: 2026-04-13 (Mon) to 2026-04-17 (Fri) post-cirugía
+  const recoveryDays = ['2026-04-13', '2026-04-14', '2026-04-15', '2026-04-16', '2026-04-17'];
+  recoveryDays.forEach((date, i) => {
+    const r = recoveryRoutines[i];
+    if (r) overrides.Nat[date] = { rutinaId: r.id, tipo: 'recovery', lugar: 'RECOVERY' };
+  });
+
+  // Lean 2026-04-13 (Mon, week 1 press) → CASA Press Lean (Nat entrenando en recovery)
+  const casaLeanPress1 = casaRoutines.find(r => r.usuario === 'Lean' && r.foco === 'press' && r.semana_ciclo === 1);
+  if (casaLeanPress1) overrides.Lean['2026-04-13'] = { rutinaId: casaLeanPress1.id, tipo: 'press', lugar: 'CASA' };
+
   store.set(store.KEYS.overrides, overrides);
 
   // Set version AFTER everything succeeds
@@ -1176,4 +1241,4 @@ export async function seedV2() {
 }
 
 // Export for testing
-export { createLeanRoutines, createNatRoutines, createRioRoutines, createCasaRoutines, assignCalendar };
+export { createLeanRoutines, createNatRoutines, createRioRoutines, createCasaRoutines, createRecoveryRoutines, assignCalendar };

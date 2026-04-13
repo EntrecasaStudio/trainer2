@@ -379,9 +379,9 @@ function renderCircuits(circuitos) {
 }
 
 function openAssignSheet() {
-  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY'];
-  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾' };
-  const LUGAR_LABELS = { SPORT_FITNESS: 'Sport Fitness', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾 Uruguay' };
+  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY', 'RECOVERY'];
+  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾', RECOVERY: 'Recovery' };
+  const LUGAR_LABELS = { SPORT_FITNESS: 'Sport Fitness', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾 Uruguay', RECOVERY: 'Recovery' };
 
   let activeLugares = [...LUGAR_ORDER];
   let query = '';
@@ -478,8 +478,8 @@ function openAssignSheet() {
 }
 
 function openEditSheet(currentRutina) {
-  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY'];
-  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾' };
+  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY', 'RECOVERY'];
+  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾', RECOVERY: 'Recovery' };
 
   let activeLugares = [currentRutina.lugar];
   let query = '';

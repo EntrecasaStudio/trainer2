@@ -744,6 +744,87 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     descripcion: 'De espaldas al anclaje del TRX, brazos extendidos sobre la cabeza sosteniendo las correas. Flexioná los codos bajando la cabeza entre las manos, manteniendo los brazos pegados a las orejas. Extendé para volver. Similar a un french press con peso corporal. Cuanto más inclinado, más difícil.'
   },
+  // ── RECOVERY (post-cirugía, sin Valsalva, cargas livianas) ─────────────────
+  {
+    nombre: 'Sentadilla corporal',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De pie con pies al ancho de caderas. Bajá como si fueras a sentarte en una silla, flexionando rodillas y caderas. Mantené el pecho erguido y la espalda recta. Respiración normal, sin aguantar aire. Ideal para recuperación sin carga.'
+  },
+  {
+    nombre: 'Puente de glúteos',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Acostada boca arriba, rodillas dobladas y pies apoyados al ancho de caderas. Elevá la cadera contrayendo los glúteos hasta formar una línea recta entre hombros, caderas y rodillas. Bajá controlado. Respiración continua, sin apnea. Base de activación de glúteo y cadena posterior.'
+  },
+  {
+    nombre: 'Puente de glúteos una pierna',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Igual que el puente clásico pero con una pierna extendida en el aire. Apoyás solo un pie, la otra pierna queda estirada hacia arriba. Subí la cadera contrayendo el glúteo de apoyo. Mayor demanda unilateral y control de pelvis. Sin aguantar aire.'
+  },
+  {
+    nombre: 'Plancha isométrica',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Apoyada en antebrazos y puntas de pies. Cuerpo recto como tabla, caderas alineadas con hombros. Mantené la posición respirando normal, sin Valsalva. Activa core profundo sin generar presión intra-abdominal. Ideal post-cirugía.'
+  },
+  {
+    nombre: 'Extensión de cadera en 4 puntos',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En posición de 4 apoyos (manos y rodillas). Extendé una pierna hacia atrás hasta alinear con el torso, apretando el glúteo al final. Bajá controlado. Core activado todo el tiempo, sin arquear la columna. Trabajá glúteo mayor y estabilidad lumbopélvica.'
+  },
+  {
+    nombre: 'Estocadas estáticas',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Dá un paso al frente y quedate en esa posición. Bajá la rodilla trasera hacia el suelo sin apoyarla y subí. Hacé todas las reps de un lado antes de cambiar. Sin saltos, movimiento controlado. Trabajá cuádriceps, glúteos y estabilidad unilateral.'
+  },
+  {
+    nombre: 'Calf raises',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De pie en el suelo o en el borde de un escalón con las puntas de los pies apoyadas. Subí elevando los talones lo más alto posible y bajá lentamente estirando. Si estás en escalón, ganás más rango. Trabaja gemelos y sóleo.'
+  },
+  {
+    nombre: 'Plancha lateral',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Apoyá el antebrazo y el lado del pie inferior. Levantá la cadera formando una línea recta del tobillo al hombro. Mantené la posición respirando continuo. Trabaja oblicuos y estabilizadores laterales sin generar presión abdominal alta.'
+  },
+  {
+    nombre: 'Cat-cow',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En 4 apoyos. En la fase "cat" redondeá toda la columna hacia arriba llevando el mentón al pecho. En la fase "cow" dejá caer el abdomen y mirá al frente. Cuello relajado, sin tensión. Movilidad de toda la columna vertebral, ideal para calentar y despertar el core.'
+  },
+  {
+    nombre: 'Bird-dog',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En 4 apoyos, extendé simultáneamente brazo derecho y pierna izquierda hasta alinear con el torso. Mantené 1-2 segundos y volvé. Alterná. Sin rotación de cadera ni hombros. Control total, core activado. Estabilidad antirotacional y coordinación cruzada.'
+  },
+  {
+    nombre: 'Hip hinge corporal',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De pie, pies al ancho de caderas. Empujá la cadera hacia atrás manteniendo la espalda recta y rodillas levemente flexionadas. El torso se inclina por la bisagra de cadera, no por la columna. Activa isquiotibiales y glúteos. Patrón base del peso muerto sin carga.'
+  },
+  {
+    nombre: 'Yoga suave',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Secuencia de posturas suaves sin inversiones ni presión abdominal intensa: postura del niño, gato-vaca, paloma, torsión suave sentada, savasana. Respiración profunda y consciente. Ideal para días de recuperación y movilidad.'
+  },
+  {
+    nombre: 'Plancha toque de hombro',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En plancha sobre manos (no antebrazos), pies un poco más separados que hombros. Tocá el hombro contrario con una mano alternando lados sin que la cadera rote. Core antirotacional en acción. Respiración continua, sin contener aire.'
+  },
+  {
+    nombre: 'Press militar suave con kettlebell',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Press militar con kettlebell liviana, sentada o de pie. Sin apnea, sin aguantar aire. Ideal con el 40-50% de tu peso habitual. Empujá controlado hacia arriba y bajá al rack del hombro. Estímulo de deltoides sin generar presión intracraneal.'
+  },
+  {
+    nombre: 'Curl de bíceps suave',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie o sentada, kettlebell liviana en cada mano o bilateral. Flexioná el codo con control total en la bajada. Respiración continua. Cargas del 40-50% de lo habitual para mantener estímulo sin fatiga excesiva.'
+  },
+  {
+    nombre: 'Face pull con banda',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Ancla una banda elástica a la altura de los ojos. Tirá la banda hacia tu cara abriendo los codos y rotando externamente los hombros. Trabaja postura, deltoides posterior y manguito rotador. Excelente para compensar horas sentada y mejorar postura.'
+  },
 ];
 
 // Helper: get all exercises for a given group
