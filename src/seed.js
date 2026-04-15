@@ -625,7 +625,7 @@ function createCasaRoutines() {
       circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Zancadas con chaleco de peso', 3, '10'), ej('Sentadilla sumo con kettlebell', 3, '12')]),
       circuito(3, 'PECHO·HOMBROS', [ej('Flexiones explosivas', 3, '8'), ej('Banda press de pecho', 3, '15')]),
       circuito(4, 'HOMBROS', [ej('Arnold press con kettlebell', 3, '10'), ej('Vuelos laterales con banda', 3, '12')]),
-      circuito(5, 'CORE', [ej('Hollow body con plato rucking', 3, '30s'), ej('Plancha con elevación alternada', 3, '10')]),
+      circuito(5, 'CORE', [ej('Hollow body con peso', 3, '30s'), ej('Plancha con elevación alternada', 3, '10')]),
       circuito(6, 'HIIT', [ej('Burpees con chaleco', 3, '8'), ej('Jumping jacks', 3, '30'), ej('Mountain climbers', 3, '20')]),
     ]),
     rutinaCasa('#C03', 'Casa Press C — Lean', 'Lean', 'press', 1, [
@@ -643,7 +643,7 @@ function createCasaRoutines() {
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara con kettlebell', 3, '10'), ej('Peso muerto a una pierna con kettlebell', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas con chaleco', 3, '12'), ej('TRX row', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '15')]),
-      circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Hollow body con plato rucking', 3, '30s')]),
+      circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Hollow body con peso', 3, '30s')]),
       circuito(6, 'HIIT', [ej('Bear crawl con chaleco', 4, '8m'), ej('Pasadas de velocidad', 4, '20m'), ej('Burpees', 3, '8')]),
     ]),
     rutinaCasa('#C05', 'Casa Pull B — Lean', 'Lean', 'pull', 2, [
@@ -677,7 +677,7 @@ function createCasaRoutines() {
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera 4k', 3, '15'), ej('Zancadas con kettlebell', 3, '10')]),
       circuito(3, 'PECHO·HOMBROS', [ej('Banda press de pecho', 3, '15'), ej('Flexiones', 3, '10')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Fondos en banco', 3, '12')]),
-      circuito(5, 'CORE', [ej('Hollow body con plato rucking', 3, '25s'), ej('Ab wheel', 3, '8')]),
+      circuito(5, 'CORE', [ej('Hollow body con peso', 3, '25s'), ej('Ab wheel', 3, '8')]),
       circuito(6, 'HIIT', [ej('Burpees', 3, '6'), ej('Jumping jacks', 3, '25'), ej('Mountain climbers', 3, '15')]),
     ]),
     rutinaCasa('#C03', 'Casa Press C — Nat', 'Nat', 'press', 1, [
@@ -1190,6 +1190,55 @@ function renameHomeDeadliftsToSingleLeg() {
   }
 }
 
+// Generic exercise rename — updates rutinas, sesiones (historical) and
+// progresion keys so references stay consistent across the app.
+function renameExercise(oldName, newName) {
+  let anyChanged = false;
+
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  let rutinasChanged = false;
+  for (const r of rutinas || []) {
+    for (const c of (r.circuitos || [])) {
+      for (const e of (c.ejercicios || [])) {
+        if (e.nombre === oldName) {
+          e.nombre = newName;
+          rutinasChanged = true;
+        }
+      }
+    }
+    if (rutinasChanged) r.updatedAt = new Date().toISOString();
+  }
+  if (rutinasChanged) { store.set(store.KEYS.rutinas, rutinas); anyChanged = true; }
+
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  let sesionesChanged = false;
+  for (const s of sesiones || []) {
+    for (const c of (s.circuitos || [])) {
+      for (const e of (c.ejercicios || [])) {
+        if (e.nombre === oldName) {
+          e.nombre = newName;
+          sesionesChanged = true;
+        }
+      }
+    }
+  }
+  if (sesionesChanged) { store.set(store.KEYS.sesiones, sesiones); anyChanged = true; }
+
+  const prog = store.getObj(store.KEYS.progresion);
+  if (prog && prog[oldName]) {
+    prog[newName] = { ...(prog[newName] || {}), ...prog[oldName] };
+    delete prog[oldName];
+    store.set(store.KEYS.progresion, prog);
+    anyChanged = true;
+  }
+
+  if (anyChanged) console.log(`[Seed] renamed exercise: "${oldName}" → "${newName}"`);
+}
+
+function applyExerciseRenames() {
+  renameExercise('Hollow body con plato rucking', 'Hollow body con peso');
+}
+
 // One-off calendar adjustments that run every boot so they apply without
 // needing a full re-seed (which rolls rutina IDs).
 function ensureCalendarOverrides() {
@@ -1221,6 +1270,7 @@ export async function seedV2() {
   rebuildProgresionWithLugar();
   repairOverrides();
   renameHomeDeadliftsToSingleLeg();
+  applyExerciseRenames();
   ensureCalendarOverrides();
 
   const version = store.getVersion();

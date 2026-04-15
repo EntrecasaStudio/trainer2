@@ -707,9 +707,9 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Apoyado en un antebrazo de costado con chaleco de peso. Cadera elevada, cuerpo recto. Mantené la posición sin dejar caer la cadera. Trabaja oblicuos y estabilizadores laterales del core.'
   },
   {
-    nombre: 'Hollow body con plato rucking',
+    nombre: 'Hollow body con peso',
     grupo: 'Core', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Acostado boca arriba con el plato de rucking de 4 kg sostenido con los brazos extendidos sobre la cabeza. Elevá piernas y hombros del piso, formando una banana. Mantené la zona lumbar pegada al suelo.'
+    descripcion: 'Acostado boca arriba con un peso (plato de rucking 4kg, kettlebell o mancuerna) sostenido con los brazos extendidos sobre la cabeza. Elevá piernas y hombros del piso, formando una banana. Mantené la zona lumbar pegada al suelo.'
   },
   // HIIT con chaleco
   {
