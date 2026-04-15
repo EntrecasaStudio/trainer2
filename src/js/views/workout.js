@@ -29,6 +29,33 @@ function defaultKettlebellWeight(nombre, usuario) {
   return usuario === 'Lean' ? 12 : 8;
 }
 
+// BC Strength miniband exercises — track per-series size (Sm/Lg) + level (1-3)
+const BANDA_MINI_PATTERNS = [
+  'banda lateral walk', 'loop band',
+];
+function bandaAplica(nombre) {
+  const n = (nombre || '').toLowerCase();
+  return BANDA_MINI_PATTERNS.some(p => n.includes(p));
+}
+// Pick the most recent banda values for this exercise/user from past sesiones
+function lastBandaValues(nombre, usuario) {
+  try {
+    const sesiones = store.getAll(store.KEYS.sesiones) || [];
+    for (let i = sesiones.length - 1; i >= 0; i--) {
+      const s = sesiones[i];
+      if (s.usuario !== usuario) continue;
+      for (const c of (s.circuitos || [])) {
+        for (const e of (c.ejercicios || [])) {
+          if (e.nombre !== nombre) continue;
+          const sr = (e.seriesData || []).find(x => x.bandaSize || x.bandaNivel);
+          if (sr) return { size: sr.bandaSize || 'sm', nivel: sr.bandaNivel || 1 };
+        }
+      }
+    }
+  } catch {}
+  return null;
+}
+
 // ── SVG icons ────────────────────────────────────────────────────────────────
 const SVG_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
 
@@ -176,6 +203,14 @@ export function mountWorkout(container, params) {
             e.seriesData.forEach(s => { s.peso = kbDefault; });
           }
         }
+      }
+      // Pre-fill banda size/nivel from last session for miniband exercises
+      if (bandaAplica(e.nombre)) {
+        const last = lastBandaValues(e.nombre, usuario) || { size: 'sm', nivel: 1 };
+        e.seriesData.forEach(s => {
+          if (s.bandaSize == null) s.bandaSize = last.size;
+          if (s.bandaNivel == null) s.bandaNivel = last.nivel;
+        });
       }
     });
   });
@@ -349,7 +384,9 @@ function renderExerciseCard(e, ci, ei) {
           <span class="vuelta-header-right"></span>
         </div>
 
-        ${e.seriesData.map((s, si) => `
+        ${(() => {
+          const showBanda = bandaAplica(e.nombre);
+          return e.seriesData.map((s, si) => `
           <div class="vuelta-row ${s.done ? 'vuelta-done' : ''}">
             <div class="vuelta-left">
               <div class="vuelta-group">
@@ -367,6 +404,13 @@ function renderExerciseCard(e, ci, ei) {
                   <button class="stepper-btn" data-action="inc" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">+</button>
                 </div>
               </div>` : ''}
+              ${showBanda ? `
+              <div class="banda-selector">
+                <button class="banda-size-btn" data-ci="${ci}" data-ei="${ei}" data-si="${si}" title="Tamaño">${(s.bandaSize || 'sm') === 'lg' ? 'Lg' : 'Sm'}</button>
+                <div class="banda-level-group">
+                  ${[1,2,3].map(n => `<button class="banda-level-btn ${(s.bandaNivel || 1) === n ? 'active' : ''}" data-ci="${ci}" data-ei="${ei}" data-si="${si}" data-nivel="${n}">${n}</button>`).join('')}
+                </div>
+              </div>` : ''}
             </div>
             <div class="vuelta-right">
               <span class="vuelta-label">S${si + 1}</span>
@@ -379,7 +423,8 @@ function renderExerciseCard(e, ci, ei) {
               </button>` : ''}
             </div>
           </div>
-        `).join('')}
+        `).join('');
+        })()}
 
         <button class="add-serie-btn" data-ci="${ci}" data-ei="${ei}">
           <i class="ph ph-plus"></i> Serie
@@ -576,6 +621,28 @@ function bindExerciseEvents(container, scope) {
     input.addEventListener('focus', () => { input.select(); });
   });
 
+  // Banda size toggle (sm/lg)
+  scope.querySelectorAll('.banda-size-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { ci, ei, si } = btn.dataset;
+      const s = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
+      s.bandaSize = (s.bandaSize || 'sm') === 'sm' ? 'lg' : 'sm';
+      persistWorkout();
+      refreshExercises(container);
+    });
+  });
+
+  // Banda level (1/2/3)
+  scope.querySelectorAll('.banda-level-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const { ci, ei, si, nivel } = btn.dataset;
+      const s = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
+      s.bandaNivel = parseInt(nivel);
+      persistWorkout();
+      refreshExercises(container);
+    });
+  });
+
   // Series done
   scope.querySelectorAll('.vuelta-check').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -607,7 +674,12 @@ function bindExerciseEvents(container, scope) {
       const { ci, ei } = btn.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
       const last = ejercicio.seriesData[ejercicio.seriesData.length - 1];
-      ejercicio.seriesData.push({ reps: last?.reps || 8, peso: last?.peso || 0, done: false });
+      const newSerie = { reps: last?.reps || 8, peso: last?.peso || 0, done: false };
+      if (bandaAplica(ejercicio.nombre)) {
+        newSerie.bandaSize = last?.bandaSize || 'sm';
+        newSerie.bandaNivel = last?.bandaNivel || 1;
+      }
+      ejercicio.seriesData.push(newSerie);
       persistWorkout();
       refreshExercises(container);
     });

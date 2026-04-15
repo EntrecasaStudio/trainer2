@@ -301,6 +301,53 @@
   opacity: 1;
 }
 
+/* ── Miniband per-series selector (Sm/Lg + 1/2/3) ─────────────────────────── */
+.banda-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.banda-size-btn {
+  min-width: 28px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.banda-level-group {
+  display: inline-flex;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.banda-level-btn {
+  width: 22px;
+  height: 24px;
+  padding: 0;
+  background: var(--color-surface-alt);
+  border: none;
+  border-right: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-family: inherit;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.banda-level-btn:last-child { border-right: none; }
+.banda-level-btn.active {
+  background: var(--color-accent);
+  color: #0a0a0a;
+}
+
 /* ── Vuelta headers ──────────────────────────────────────────────────────── */
 .vuelta-headers {
   display: flex;
