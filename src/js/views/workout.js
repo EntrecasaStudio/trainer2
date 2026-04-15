@@ -56,6 +56,37 @@ function lastBandaValues(nombre, usuario) {
   return null;
 }
 
+// Pick the reps from the most recent session where this exercise was done
+// (prefers same lugar, falls back to any lugar). Only counts series marked done.
+function lastRepsValue(nombre, usuario, lugar) {
+  try {
+    const sesiones = store.getAll(store.KEYS.sesiones) || [];
+    const sorted = [...sesiones].sort((a, b) =>
+      (b.fecha || '').localeCompare(a.fecha || '') ||
+      (b.startTime || '').localeCompare(a.startTime || '')
+    );
+    const findIn = (matchLugar) => {
+      for (const s of sorted) {
+        if (s.usuario !== usuario) continue;
+        if (matchLugar && s.lugar !== lugar) continue;
+        for (const c of (s.circuitos || [])) {
+          for (const e of (c.ejercicios || [])) {
+            if (e.nombre !== nombre) continue;
+            const done = (e.seriesData || []).filter(
+              x => x.done && typeof x.reps === 'number' && x.reps > 0
+            );
+            if (done.length > 0) return done[0].reps;
+          }
+        }
+      }
+      return null;
+    };
+    return findIn(true) ?? findIn(false);
+  } catch {
+    return null;
+  }
+}
+
 // ── SVG icons ────────────────────────────────────────────────────────────────
 const SVG_CHECK = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
 
@@ -211,6 +242,11 @@ export function mountWorkout(container, params) {
           if (s.bandaSize == null) s.bandaSize = last.size;
           if (s.bandaNivel == null) s.bandaNivel = last.nivel;
         });
+      }
+      // Pre-fill reps from last session (overrides template if user progressed)
+      const lastReps = lastRepsValue(e.nombre, usuario, lugar);
+      if (lastReps != null) {
+        e.seriesData.forEach(s => { s.reps = lastReps; });
       }
     });
   });
