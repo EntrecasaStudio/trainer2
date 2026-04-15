@@ -644,7 +644,7 @@ function createCasaRoutines() {
       circuito(3, 'ESPALDA', [ej('Dominadas australianas con chaleco', 3, '12'), ej('TRX row', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '15')]),
       circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Hollow body con peso', 3, '30s')]),
-      circuito(6, 'HIIT', [ej('Bear crawl con chaleco', 4, '8m'), ej('Pasadas de velocidad', 4, '20m'), ej('Burpees', 3, '8')]),
+      circuito(6, 'HIIT', [ej('Bear crawl con chaleco', 4, '8m'), ej('Sentadilla con salto con chaleco', 3, '10'), ej('Burpees', 3, '8')]),
     ]),
     rutinaCasa('#C05', 'Casa Pull B — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 3, '15'), ej('Movilidad de cadera', 3, '10')]),
@@ -660,7 +660,7 @@ function createCasaRoutines() {
       circuito(3, 'ESPALDA', [ej('Remo con kettlebell', 3, '10'), ej('Dominadas australianas con chaleco', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl martillo con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '15')]),
       circuito(5, 'CORE', [ej('Dead bug', 3, '12'), ej('Ab wheel', 3, '10')]),
-      circuito(6, 'HIIT', [ej('Mountain climbers con chaleco', 3, '20'), ej('Pasadas de velocidad', 4, '20m'), ej('Jumping jacks', 3, '30')]),
+      circuito(6, 'HIIT', [ej('Mountain climbers con chaleco', 3, '20'), ej('Burpees con chaleco', 3, '8'), ej('Jumping jacks', 3, '30')]),
     ]),
 
     // ── NAT PRESS ──────────────────────────────────────────
@@ -704,7 +704,7 @@ function createCasaRoutines() {
       circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Remo con kettlebell', 3, '10')]),
       circuito(4, 'ESPALDA ALT', [ej('Banda pull-apart', 3, '20'), ej('Dominadas australianas', 3, '10')]),
       circuito(5, 'CORE', [ej('Plancha con elevación alternada', 3, '8'), ej('Ab wheel', 3, '8')]),
-      circuito(6, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Jumping jacks', 3, '25'), ej('Pasadas de velocidad', 3, '15m')]),
+      circuito(6, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Jumping jacks', 3, '25'), ej('Sentadilla con salto', 3, '10')]),
     ]),
     rutinaCasa('#C06', 'Casa Pull C — Nat', 'Nat', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 3, '15'), ej('Cat-cow', 3, '10')]),
@@ -712,7 +712,7 @@ function createCasaRoutines() {
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '15'), ej('TRX row', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Curl martillo con kettlebell', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body', 3, '25s'), ej('Ab wheel', 3, '8')]),
-      circuito(6, 'HIIT', [ej('Pasadas de velocidad', 4, '15m'), ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '6')]),
+      circuito(6, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '6')]),
     ]),
   ];
 }
@@ -1239,6 +1239,38 @@ function applyExerciseRenames() {
   renameExercise('Hollow body con plato rucking', 'Hollow body con peso');
 }
 
+// Replace "Pasadas de velocidad" (outdoor sprints) in CASA rutinas with
+// "Sentadilla con salto" — CASA is indoor, no distance to sprint. Only
+// rewrites rutinas (not historical sesiones) since the old exercise was
+// still legitimate when it was performed.
+function replacePasadasInCasa() {
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  if (!Array.isArray(rutinas) || rutinas.length === 0) return;
+  let changed = false;
+  for (const r of rutinas) {
+    if (r.lugar !== 'CASA') continue;
+    let rutinaChanged = false;
+    for (const c of (r.circuitos || [])) {
+      for (const e of (c.ejercicios || [])) {
+        if (e.nombre === 'Pasadas de velocidad') {
+          e.nombre = 'Sentadilla con salto';
+          e.reps = '10';
+          e.series = 3;
+          rutinaChanged = true;
+        }
+      }
+    }
+    if (rutinaChanged) {
+      r.updatedAt = new Date().toISOString();
+      changed = true;
+    }
+  }
+  if (changed) {
+    store.set(store.KEYS.rutinas, rutinas);
+    console.log('[Seed] replaced Pasadas de velocidad → Sentadilla con salto in CASA rutinas');
+  }
+}
+
 // One-off calendar adjustments that run every boot so they apply without
 // needing a full re-seed (which rolls rutina IDs).
 function ensureCalendarOverrides() {
@@ -1271,6 +1303,7 @@ export async function seedV2() {
   repairOverrides();
   renameHomeDeadliftsToSingleLeg();
   applyExerciseRenames();
+  replacePasadasInCasa();
   ensureCalendarOverrides();
 
   const version = store.getVersion();
