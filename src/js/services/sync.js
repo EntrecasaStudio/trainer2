@@ -106,31 +106,33 @@ export async function uploadAllData() {
   const ref = getDocRef();
   if (!ref) return;
 
-  const payload = { lastUpdated: Date.now() };
+  const { doc, setDoc } = await fs();
+  const user = getCurrentUser();
+
+  // Upload each key in its own setDoc so one oversized field doesn't block
+  // the others. Log per-key results so sync issues are visible in the console.
   for (const [key, field] of Object.entries(SYNC_KEYS)) {
     try {
       const raw = localStorage.getItem(key);
-      payload[field] = raw ? JSON.parse(raw) : null;
-    } catch {
-      payload[field] = null;
+      const data = raw ? JSON.parse(raw) : null;
+      const size = raw ? raw.length : 0;
+      await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
+      console.log(`[sync] uploaded ${key}: ${Array.isArray(data) ? data.length + ' items' : 'obj'} (~${Math.round(size / 1024)}KB)`);
+    } catch (err) {
+      console.warn(`[sync] upload error for ${key}:`, err.message);
     }
   }
 
-  const user = getCurrentUser();
   if (user) {
-    payload.profile = {
-      nombre: user.displayName || '',
-      email: user.email || '',
-      photoURL: user.photoURL || '',
-    };
-  }
-
-  try {
-    const { doc, setDoc } = await fs();
-    await setDoc(doc(ref.db, 'users', ref.uid), payload, { merge: true });
-    console.log('[sync] uploaded all data');
-  } catch (err) {
-    console.warn('[sync] upload all error:', err.message);
+    try {
+      await setDoc(doc(ref.db, 'users', ref.uid), {
+        profile: {
+          nombre: user.displayName || '',
+          email: user.email || '',
+          photoURL: user.photoURL || '',
+        },
+      }, { merge: true });
+    } catch {}
   }
 }
 
@@ -287,22 +289,34 @@ export async function downloadAllData() {
   try {
     const { doc, getDoc } = await fs();
     const snap = await getDoc(doc(ref.db, 'users', ref.uid));
-    if (!snap.exists()) return false;
+    if (!snap.exists()) {
+      console.log('[sync] no remote doc exists yet');
+      return false;
+    }
 
     const data = snap.data();
     _suppressSync = true;
 
     for (const [key, field] of Object.entries(SYNC_KEYS)) {
-      if (_dirtyKeys.has(key)) continue;
-      if (data[field] === undefined || data[field] === null) continue;
+      try {
+        if (_dirtyKeys.has(key)) continue;
+        if (data[field] === undefined || data[field] === null) {
+          console.log(`[sync] skip ${key}: no remote data`);
+          continue;
+        }
 
-      if (MERGEABLE_KEYS.has(key) && Array.isArray(data[field])) {
-        const localRaw = localStorage.getItem(key);
-        const localArr = localRaw ? JSON.parse(localRaw) : [];
-        const merged = mergeArraysById(localArr, data[field], key);
-        localStorage.setItem(key, JSON.stringify(merged));
-      } else {
-        localStorage.setItem(key, JSON.stringify(data[field]));
+        if (MERGEABLE_KEYS.has(key) && Array.isArray(data[field])) {
+          const localRaw = localStorage.getItem(key);
+          const localArr = localRaw ? JSON.parse(localRaw) : [];
+          const merged = mergeArraysById(localArr, data[field], key);
+          localStorage.setItem(key, JSON.stringify(merged));
+          console.log(`[sync] merged ${key}: local ${localArr.length} + remote ${data[field].length} → ${merged.length}`);
+        } else {
+          localStorage.setItem(key, JSON.stringify(data[field]));
+          console.log(`[sync] wrote ${key}`);
+        }
+      } catch (keyErr) {
+        console.warn(`[sync] error processing ${key}:`, keyErr.message);
       }
     }
 

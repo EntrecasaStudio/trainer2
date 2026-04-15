@@ -1,5 +1,6 @@
 import { getCurrentUser, loginWithGoogle, logout } from '../services/firebase.js';
-import { getSyncStatus } from '../services/sync.js';
+import { getSyncStatus, downloadAllData, uploadAllData } from '../services/sync.js';
+import { store } from '../../store.js';
 
 export function mountUsuario(container) {
   render(container);
@@ -21,6 +22,11 @@ function render(container) {
     pending: 'var(--color-accent)',
     offline: 'var(--color-danger)',
   };
+
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  const sesionesCount = Array.isArray(sesiones) ? sesiones.length : 0;
+  const leanCount = sesiones.filter(s => s.usuario === 'Lean').length;
+  const natCount = sesiones.filter(s => s.usuario === 'Nat').length;
 
   if (user) {
     const photo = user.photoURL
@@ -45,7 +51,16 @@ function render(container) {
         <span>${statusLabels[status] || 'Sin conexión'}</span>
       </div>
 
-      <button class="btn btn-secondary" id="btn-logout" style="width:100%;margin-top:var(--space-lg);">
+      <div style="margin-top:var(--space-md);padding:var(--space-md);background:var(--color-surface-alt);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text-muted);">
+        Sesiones locales: <strong style="color:var(--color-text);">${sesionesCount}</strong>
+        <span style="opacity:0.7;"> · Lean ${leanCount} · Nat ${natCount}</span>
+      </div>
+
+      <button class="btn btn-secondary" id="btn-force-sync" style="width:100%;margin-top:var(--space-md);">
+        <i class="ph ph-arrows-clockwise" style="font-size:16px;margin-right:var(--space-xs);"></i> Forzar sincronización
+      </button>
+
+      <button class="btn btn-secondary" id="btn-logout" style="width:100%;margin-top:var(--space-sm);">
         <i class="ph ph-sign-out" style="font-size:16px;margin-right:var(--space-xs);"></i> Cerrar sesión
       </button>
     `;
@@ -53,6 +68,22 @@ function render(container) {
     container.querySelector('#btn-logout').addEventListener('click', async () => {
       await logout();
       render(container);
+    });
+
+    container.querySelector('#btn-force-sync').addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="ph ph-arrows-clockwise ph-spin" style="font-size:16px;margin-right:var(--space-xs);"></i> Sincronizando...';
+      try {
+        const ok = await downloadAllData();
+        if (ok) await uploadAllData();
+        btn.innerHTML = `<i class="ph ph-check" style="font-size:16px;margin-right:var(--space-xs);"></i> ${ok ? 'Listo' : 'Sin datos remotos'}`;
+        setTimeout(() => render(container), 800);
+      } catch (err) {
+        console.warn('[Usuario] sync failed:', err);
+        btn.innerHTML = '<i class="ph ph-warning" style="font-size:16px;margin-right:var(--space-xs);"></i> Error';
+        setTimeout(() => render(container), 1500);
+      }
     });
   } else {
     container.innerHTML = `
