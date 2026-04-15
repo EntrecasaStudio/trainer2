@@ -205,6 +205,67 @@ function mergeArraysById(localArr, remoteArr, key) {
   return result;
 }
 
+// ── Post-sync repair ────────────────────
+// After downloading remote data, overrides and sesiones may reference rutinaIds
+// that don't exist locally (e.g. remote rutinas lost dedup but overrides came
+// from remote with old IDs). Remap stale IDs to matching local rutinas.
+function repairStaleReferences() {
+  try {
+    const rutinasRaw = localStorage.getItem('gym_rutinas');
+    const rutinas = rutinasRaw ? JSON.parse(rutinasRaw) : [];
+    if (!Array.isArray(rutinas) || rutinas.length === 0) return;
+    const rutinaById = new Map(rutinas.map(r => [r.id, r]));
+
+    // Repair overrides
+    const ovRaw = localStorage.getItem('gym_day_overrides');
+    if (ovRaw) {
+      const overrides = JSON.parse(ovRaw);
+      let repaired = false;
+      for (const usuario of Object.keys(overrides || {})) {
+        const userOv = overrides[usuario];
+        for (const date of Object.keys(userOv || {})) {
+          const ov = userOv[date];
+          if (!ov?.rutinaId) continue;
+          if (rutinaById.has(ov.rutinaId)) continue;
+          const lugar = ov.lugar || 'SPORT_FITNESS';
+          const tipo = ov.tipo;
+          const match = rutinas.find(r =>
+            r.usuario === usuario && r.lugar === lugar && r.foco === tipo
+          );
+          if (match) { ov.rutinaId = match.id; repaired = true; }
+          else { delete userOv[date]; repaired = true; }
+        }
+      }
+      if (repaired) {
+        localStorage.setItem('gym_day_overrides', JSON.stringify(overrides));
+        console.log('[sync] repaired stale override rutinaIds');
+      }
+    }
+
+    // Repair sesiones (match by rutinaNombre + usuario + lugar)
+    const sesRaw = localStorage.getItem('gym_sesiones');
+    if (sesRaw) {
+      const sesiones = JSON.parse(sesRaw);
+      let repaired = false;
+      for (const s of sesiones || []) {
+        if (!s.rutinaId || rutinaById.has(s.rutinaId)) continue;
+        const match = rutinas.find(r =>
+          r.usuario === s.usuario &&
+          r.lugar === (s.lugar || 'SPORT_FITNESS') &&
+          (r.nombre === s.rutinaNombre || r.foco === s.foco)
+        );
+        if (match) { s.rutinaId = match.id; repaired = true; }
+      }
+      if (repaired) {
+        localStorage.setItem('gym_sesiones', JSON.stringify(sesiones));
+        console.log('[sync] repaired stale sesion rutinaIds');
+      }
+    }
+  } catch (err) {
+    console.warn('[sync] repair error:', err.message);
+  }
+}
+
 // ── Download ────────────────────────────
 
 async function flushPendingSyncs() {
@@ -244,6 +305,8 @@ export async function downloadAllData() {
         localStorage.setItem(key, JSON.stringify(data[field]));
       }
     }
+
+    repairStaleReferences();
 
     _suppressSync = false;
     console.log('[sync] downloaded all data');
@@ -294,6 +357,8 @@ export async function startRealtimeSync(onUpdate) {
         }
       }
     }
+
+    if (changed) repairStaleReferences();
 
     _suppressSync = false;
     if (changed && onUpdate) onUpdate();

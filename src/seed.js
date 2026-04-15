@@ -1157,12 +1157,37 @@ function repairOverrides() {
   }
 }
 
+// One-off calendar adjustments that run every boot so they apply without
+// needing a full re-seed (which rolls rutina IDs).
+function ensureCalendarOverrides() {
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  const overrides = store.getObj(store.KEYS.overrides);
+  if (!overrides.Lean) overrides.Lean = {};
+  if (!overrides.Nat) overrides.Nat = {};
+  let changed = false;
+
+  // Lean 2026-04-15 (Wed, week 3 pull) → CASA Pull S1 (Nat en recovery)
+  const casaLeanPull1 = rutinas.find(r =>
+    r.usuario === 'Lean' && r.lugar === 'CASA' && r.foco === 'pull' && r.semana_ciclo === 1
+  );
+  if (casaLeanPull1) {
+    const cur = overrides.Lean['2026-04-15'];
+    if (!cur || cur.rutinaId !== casaLeanPull1.id || cur.lugar !== 'CASA') {
+      overrides.Lean['2026-04-15'] = { rutinaId: casaLeanPull1.id, tipo: 'pull', lugar: 'CASA' };
+      changed = true;
+    }
+  }
+
+  if (changed) store.set(store.KEYS.overrides, overrides);
+}
+
 export async function seedV2() {
   // Always run migrations (idempotent, fast)
   deduplicateRutinas();
   backfillSesionLugar();
   rebuildProgresionWithLugar();
   repairOverrides();
+  ensureCalendarOverrides();
 
   const version = store.getVersion();
   if (version === SEED_VERSION) {
@@ -1227,6 +1252,10 @@ export async function seedV2() {
   // Lean 2026-04-13 (Mon, week 1 press) → CASA Press Lean (Nat entrenando en recovery)
   const casaLeanPress1 = casaRoutines.find(r => r.usuario === 'Lean' && r.foco === 'press' && r.semana_ciclo === 1);
   if (casaLeanPress1) overrides.Lean['2026-04-13'] = { rutinaId: casaLeanPress1.id, tipo: 'press', lugar: 'CASA' };
+
+  // Lean 2026-04-15 (Wed, week 3 pull) → CASA Pull Lean (indoor day)
+  const casaLeanPull1 = casaRoutines.find(r => r.usuario === 'Lean' && r.foco === 'pull' && r.semana_ciclo === 1);
+  if (casaLeanPull1) overrides.Lean['2026-04-15'] = { rutinaId: casaLeanPull1.id, tipo: 'pull', lugar: 'CASA' };
 
   store.set(store.KEYS.overrides, overrides);
 
