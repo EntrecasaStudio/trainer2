@@ -7,12 +7,14 @@ import { showToast, showToastAction } from '../components/toast.js';
 import { openEjercicioInfo } from './ejercicios.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 
-// Patterns where the chaleco doesn't add real load (handheld weight isolated movements)
+// Patterns where the chaleco doesn't add real load (handheld weight isolated
+// movements) or isn't advisable (axial load on spinal mobility drills).
 const NO_CHALECO_PATTERNS = [
   'press militar', 'arnold press', 'vuelos laterales',
   'curl', 'extensión de tríceps', 'extension de triceps',
   'remo con kettlebell', 'remo con mancuerna', 'remo con barra',
   'peso muerto', 'swing',
+  'rotación torácica', 'rotacion toracica',
 ];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
