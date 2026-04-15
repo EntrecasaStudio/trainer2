@@ -327,7 +327,7 @@ function createRioRoutines() {
     // RÍO Pull A — Lean
     rutinaRio('#001', 'RÍO Pull A — Espalda', 'Lean', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 3, '10'), ej('Peso muerto rumano', 3, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 3, '10'), ej('Peso muerto a una pierna con kettlebell', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '12')]),
       circuito(4, 'ESPALDA ALT', [ej('Remo alto en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Mountain climbers', 3, '20'), ej('Pasadas de velocidad', 4, '20m')]),
@@ -354,7 +354,7 @@ function createRioRoutines() {
     // RÍO Pull D — Lean
     rutinaRio('#004', 'RÍO Pull D — Espalda', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Cat-cow', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla sumo', 3, '15'), ej('Peso muerto sumo', 3, '12')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla sumo', 3, '15'), ej('Peso muerto a una pierna con kettlebell', 3, '12')]),
       circuito(3, 'ESPALDA', [ej('Dominadas grip neutro', 3, 'AMRAP'), ej('TRX row', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '1')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación alternada', 3, '10'), ej('L-sit en paralelas', 3, '20s'), ej('Mountain climbers', 3, '20')]),
@@ -381,7 +381,7 @@ function createRioRoutines() {
     // RÍO Pull G — Lean
     rutinaRio('#007', 'RÍO Pull G — Espalda', 'Lean', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 2, '15'), ej('Rotación torácica', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla con salto', 3, '10'), ej('Peso muerto rumano', 3, '8')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla con salto', 3, '10'), ej('Peso muerto a una pierna con kettlebell', 3, '8')]),
       circuito(3, 'ESPALDA', [ej('Dominadas', 3, 'AMRAP'), ej('TRX row', 3, '10')]),
       circuito(4, 'ESPALDA ALT', [ej('Remo alto en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'CORE+CARDIO', [ej('Ab wheel', 3, '10'), ej('Pasadas de velocidad', 4, '30m'), ej('Burpees', 3, '6')]),
@@ -491,7 +491,7 @@ function createRioRoutines() {
     // RÍO Pull D — Nat
     rutinaRio('#019', 'RÍO Pull D — Nat', 'Nat', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 2, '15'), ej('Cat-cow', 2, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en cajon', 3, '15'), ej('Peso muerto rumano', 3, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en cajon', 3, '15'), ej('Peso muerto a una pierna con kettlebell', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '1')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación alternada', 3, '10'), ej('Ab wheel', 3, '8'), ej('Mountain climbers', 3, '20')]),
@@ -640,7 +640,7 @@ function createCasaRoutines() {
     // ── LEAN PULL ──────────────────────────────────────────
     rutinaCasa('#C04', 'Casa Pull A — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 3, '15'), ej('Rotación torácica', 3, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara con kettlebell', 3, '10'), ej('Peso muerto rumano con kettlebell', 3, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara con kettlebell', 3, '10'), ej('Peso muerto a una pierna con kettlebell', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas con chaleco', 3, '12'), ej('TRX row', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '15')]),
       circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Hollow body con plato rucking', 3, '30s')]),
@@ -648,7 +648,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C05', 'Casa Pull B — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 3, '15'), ej('Movilidad de cadera', 3, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Peso muerto rumano con kettlebell', 3, '10'), ej('Zancadas con chaleco de peso', 3, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Peso muerto a una pierna con kettlebell', 3, '10'), ej('Zancadas con chaleco de peso', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('TRX row', 3, '12'), ej('Remo con kettlebell', 3, '10')]),
       circuito(4, 'ESPALDA ALT', [ej('Dominadas australianas con chaleco', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'CORE', [ej('Plancha lateral con chaleco', 3, '20s'), ej('Ab wheel', 3, '10')]),
@@ -700,7 +700,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C05', 'Casa Pull B — Nat', 'Nat', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 3, '15'), ej('Movilidad de cadera', 3, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera 4k', 3, '20'), ej('Peso muerto rumano con kettlebell', 3, '10')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera 4k', 3, '20'), ej('Peso muerto a una pierna con kettlebell', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Remo con kettlebell', 3, '10')]),
       circuito(4, 'ESPALDA ALT', [ej('Banda pull-apart', 3, '20'), ej('Dominadas australianas', 3, '10')]),
       circuito(5, 'CORE', [ej('Plancha con elevación alternada', 3, '8'), ej('Ab wheel', 3, '8')]),
@@ -1157,6 +1157,39 @@ function repairOverrides() {
   }
 }
 
+// Rename old "Peso muerto rumano/sumo" variants in CASA and RIO rutinas
+// to "Peso muerto a una pierna con kettlebell" — the gym barbell equivalent
+// doesn't scale at home/river with kettlebells 8/12kg, so switch to a
+// single-leg version that's challenging even with light load.
+function renameHomeDeadliftsToSingleLeg() {
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  if (!Array.isArray(rutinas) || rutinas.length === 0) return;
+  const OLD_NAMES = new Set([
+    'Peso muerto rumano',
+    'Peso muerto rumano con kettlebell',
+    'Peso muerto sumo',
+    'Peso muerto con barra',
+  ]);
+  const NEW_NAME = 'Peso muerto a una pierna con kettlebell';
+  let changed = false;
+  for (const r of rutinas) {
+    if (r.lugar !== 'CASA' && r.lugar !== 'RIO') continue;
+    for (const c of (r.circuitos || [])) {
+      for (const e of (c.ejercicios || [])) {
+        if (OLD_NAMES.has(e.nombre)) {
+          e.nombre = NEW_NAME;
+          changed = true;
+        }
+      }
+    }
+    if (changed) r.updatedAt = new Date().toISOString();
+  }
+  if (changed) {
+    store.set(store.KEYS.rutinas, rutinas);
+    console.log('[Seed] renamed peso muerto → una pierna in CASA/RIO rutinas');
+  }
+}
+
 // One-off calendar adjustments that run every boot so they apply without
 // needing a full re-seed (which rolls rutina IDs).
 function ensureCalendarOverrides() {
@@ -1187,6 +1220,7 @@ export async function seedV2() {
   backfillSesionLugar();
   rebuildProgresionWithLugar();
   repairOverrides();
+  renameHomeDeadliftsToSingleLeg();
   ensureCalendarOverrides();
 
   const version = store.getVersion();
