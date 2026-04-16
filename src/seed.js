@@ -1273,47 +1273,100 @@ function replacePasadasInCasa() {
 
 // One-off calendar adjustments that run every boot so they apply without
 // needing a full re-seed (which rolls rutina IDs).
+//
+// Letter rotation helper: given a user + foco (press/pull) + lugar + date,
+// picks the next CASA/RIO rutina in A→B→C→A rotation based on the most
+// recent prior assignment (override or completed session).
+function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesiones }) {
+  const rutinaById = new Map((rutinas || []).map(r => [r.id, r]));
+  const candidates = (rutinas || []).filter(r =>
+    r.usuario === usuario && r.lugar === lugar && r.foco === foco
+  );
+  if (candidates.length === 0) return null;
+  if (candidates.length === 1) return candidates[0];
+
+  // Stable ordering by numero (e.g. #C01, #C02, #C03)
+  const sorted = [...candidates].sort((a, b) => (a.numero || '').localeCompare(b.numero || ''));
+
+  // Collect prior uses (strictly before `date`)
+  const uses = [];
+  const userOv = (overrides && overrides[usuario]) || {};
+  for (const [d, ov] of Object.entries(userOv)) {
+    if (!d || d >= date) continue;
+    if (ov.lugar !== lugar) continue;
+    if (ov.tipo !== foco) continue;
+    if (!ov.rutinaId) continue;
+    uses.push({ date: d, rutinaId: ov.rutinaId });
+  }
+  for (const s of (sesiones || [])) {
+    if (s.usuario !== usuario) continue;
+    if ((s.lugar || 'SPORT_FITNESS') !== lugar) continue;
+    const sd = s.fecha || '';
+    if (!sd || sd >= date) continue;
+    const r = rutinaById.get(s.rutinaId);
+    if (r && r.foco === foco) uses.push({ date: sd, rutinaId: s.rutinaId });
+  }
+  if (uses.length === 0) return sorted[0];
+
+  uses.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const lastId = uses[0].rutinaId;
+  const idx = sorted.findIndex(r => r.id === lastId);
+  if (idx < 0) return sorted[0];
+  return sorted[(idx + 1) % sorted.length];
+}
+
 function ensureCalendarOverrides() {
   const rutinas = store.getAll(store.KEYS.rutinas);
   const overrides = store.getObj(store.KEYS.overrides);
+  const sesiones = store.getAll(store.KEYS.sesiones) || [];
   if (!overrides.Lean) overrides.Lean = {};
   if (!overrides.Nat) overrides.Nat = {};
   let changed = false;
 
-  // Lean 2026-04-15 (Wed, week 3 pull) → CASA Pull S1 (Nat en recovery)
-  const casaLeanPull1 = rutinas.find(r =>
-    r.usuario === 'Lean' && r.lugar === 'CASA' && r.foco === 'pull' && r.semana_ciclo === 1
-  );
-  if (casaLeanPull1) {
-    const cur = overrides.Lean['2026-04-15'];
-    if (!cur || cur.rutinaId !== casaLeanPull1.id || cur.lugar !== 'CASA') {
-      overrides.Lean['2026-04-15'] = { rutinaId: casaLeanPull1.id, tipo: 'pull', lugar: 'CASA' };
-      changed = true;
-    }
+  // Days where Lean trains at home (CASA) this week — assign in date order
+  // so each day sees the previous day's assignment when rotating letters.
+  // Respects existing overrides that already point to a valid CASA rutina
+  // for that foco (don't clobber past/completed days).
+  const casaLeanDays = [
+    { date: '2026-04-15', foco: 'pull' },
+    { date: '2026-04-16', foco: 'press' },
+    { date: '2026-04-17', foco: 'pull' },
+  ];
+
+  const rutinaById = new Map(rutinas.map(r => [r.id, r]));
+  const sesionByDate = new Map();
+  for (const s of sesiones) {
+    if (s.usuario !== 'Lean') continue;
+    if (!s.fecha) continue;
+    if (!sesionByDate.has(s.fecha)) sesionByDate.set(s.fecha, []);
+    sesionByDate.get(s.fecha).push(s);
   }
 
-  // Lean 2026-04-16 (Thu) → CASA Press S2
-  const casaLeanPress2 = rutinas.find(r =>
-    r.usuario === 'Lean' && r.lugar === 'CASA' && r.foco === 'press' && r.semana_ciclo === 2
-  );
-  if (casaLeanPress2) {
-    const cur = overrides.Lean['2026-04-16'];
-    if (!cur || cur.rutinaId !== casaLeanPress2.id || cur.lugar !== 'CASA') {
-      overrides.Lean['2026-04-16'] = { rutinaId: casaLeanPress2.id, tipo: 'press', lugar: 'CASA' };
-      changed = true;
-    }
-  }
+  const todayISO = formatDateISO(new Date());
 
-  // Lean 2026-04-17 (Fri) → CASA Pull S2
-  const casaLeanPull2 = rutinas.find(r =>
-    r.usuario === 'Lean' && r.lugar === 'CASA' && r.foco === 'pull' && r.semana_ciclo === 2
-  );
-  if (casaLeanPull2) {
-    const cur = overrides.Lean['2026-04-17'];
-    if (!cur || cur.rutinaId !== casaLeanPull2.id || cur.lugar !== 'CASA') {
-      overrides.Lean['2026-04-17'] = { rutinaId: casaLeanPull2.id, tipo: 'pull', lugar: 'CASA' };
-      changed = true;
-    }
+  for (const { date, foco } of casaLeanDays) {
+    const cur = overrides.Lean[date];
+    const curR = cur?.rutinaId ? rutinaById.get(cur.rutinaId) : null;
+    const curValid = curR && curR.usuario === 'Lean' && curR.lugar === 'CASA' && curR.foco === foco;
+    // If a session was already completed for this date, never overwrite
+    const doneAlready = (sesionByDate.get(date) || []).some(s => {
+      const r = rutinaById.get(s.rutinaId);
+      return r && r.lugar === 'CASA' && r.foco === foco;
+    });
+    if (doneAlready) continue;
+    // For past dates, keep any valid existing assignment (the user may have
+    // trained it). For today and future dates, always re-pick with rotation
+    // so letters advance A→B→C even if a prior boot assigned the same letter.
+    if (date < todayISO && curValid) continue;
+
+    const r = pickNextRutina({
+      usuario: 'Lean', foco, lugar: 'CASA', date,
+      rutinas, overrides, sesiones,
+    });
+    if (!r) continue;
+    if (cur?.rutinaId === r.id && cur.lugar === 'CASA') continue; // no-op
+    overrides.Lean[date] = { rutinaId: r.id, tipo: foco, lugar: 'CASA' };
+    changed = true;
   }
 
   if (changed) store.set(store.KEYS.overrides, overrides);
