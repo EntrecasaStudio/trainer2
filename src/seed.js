@@ -1292,6 +1292,30 @@ function ensureCalendarOverrides() {
     }
   }
 
+  // Lean 2026-04-16 (Thu) → CASA Press S2
+  const casaLeanPress2 = rutinas.find(r =>
+    r.usuario === 'Lean' && r.lugar === 'CASA' && r.foco === 'press' && r.semana_ciclo === 2
+  );
+  if (casaLeanPress2) {
+    const cur = overrides.Lean['2026-04-16'];
+    if (!cur || cur.rutinaId !== casaLeanPress2.id || cur.lugar !== 'CASA') {
+      overrides.Lean['2026-04-16'] = { rutinaId: casaLeanPress2.id, tipo: 'press', lugar: 'CASA' };
+      changed = true;
+    }
+  }
+
+  // Lean 2026-04-17 (Fri) → CASA Pull S2
+  const casaLeanPull2 = rutinas.find(r =>
+    r.usuario === 'Lean' && r.lugar === 'CASA' && r.foco === 'pull' && r.semana_ciclo === 2
+  );
+  if (casaLeanPull2) {
+    const cur = overrides.Lean['2026-04-17'];
+    if (!cur || cur.rutinaId !== casaLeanPull2.id || cur.lugar !== 'CASA') {
+      overrides.Lean['2026-04-17'] = { rutinaId: casaLeanPull2.id, tipo: 'pull', lugar: 'CASA' };
+      changed = true;
+    }
+  }
+
   if (changed) store.set(store.KEYS.overrides, overrides);
 }
 
