@@ -668,6 +668,11 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     descripcion: 'Colgado bajo una barra o TRX con el cuerpo inclinado y chaleco de peso. Tirá el pecho hacia la barra apretando los omóplatos. Bajá controlado. El chaleco aumenta la carga en dorsales y bíceps.'
   },
+  {
+    nombre: 'Curl de bíceps en TRX con chaleco',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Curl de bíceps en TRX con chaleco de peso. Agarre supino, cuerpo inclinado hacia atrás. Flexioná los codos llevando las manos a la frente con los codos altos y fijos. El chaleco aumenta significativamente la carga en bíceps y braquial.'
+  },
   // Kettlebell — Tren superior
   {
     nombre: 'Press militar con kettlebell',
