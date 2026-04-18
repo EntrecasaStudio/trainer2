@@ -333,6 +333,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Con la espalda apoyada en un cajón o banco y una barra/mancuernas sobre las caderas, empujá la cadera hacia arriba extendiendo la cadera. Mantené las rodillas a 90° y apretá los glúteos al tope. Bajá sin tocar el piso. También conocido como hip thrust.'
   },
   {
+    nombre: 'Empuje de cadera en piso con peso',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Acostado boca arriba con las rodillas flexionadas y los pies en el piso, colocá una kettlebell o plato sobre el abdomen bajo. Empujá la cadera hacia arriba apretando los glúteos al tope. Bajá controlado sin tocar el piso. Variante sin cajón del hip thrust.'
+  },
+  {
     nombre: 'Gluteos patada en polea',
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     descripcion: 'Parada frente a la polea baja con el tobillo enganchado al cable, empujá la pierna hacia atrás y arriba extendiendo la cadera. Mantené el torso levemente inclinado y la pelvis estable. Bajá controlado. Trabaja glúteo mayor en aislamiento.'
@@ -387,6 +392,11 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sentadilla con salto',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'Realizar una sentadilla profunda y al subir explotar en un salto vertical con los brazos arriba. Aterrizar suave y volver directo a la sentadilla. Trabaja cuádriceps, glúteos y potencia explosiva.'
+  },
+  {
+    nombre: 'Tuck jumps',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Desde parado, saltá verticalmente llevando las rodillas al pecho en el aire. Aterrizá suave con rodillas semiflexionadas y repetí. Trabaja potencia explosiva de piernas, cuádriceps, core y sistema cardiovascular.'
   },
   {
     nombre: 'Estocada con salto',
@@ -458,6 +468,11 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'TRX row',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     descripcion: 'Colgado de las correas del TRX con el cuerpo inclinado, tirá el pecho hacia las manos llevando los codos atrás. Apretá omóplatos al final. Cuanto más horizontal el cuerpo, más difícil. Trabaja dorsales, romboides y bíceps.'
+  },
+  {
+    nombre: 'TRX power pull',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Colgado del TRX con una mano, cuerpo inclinado. Tirá con un brazo mientras rotás el torso y extendés el brazo libre hacia el techo. Volvé controlado. Trabaja dorsales, romboides, oblicuos y estabilizadores con componente rotacional.'
   },
   {
     nombre: 'Remo alto en TRX',
@@ -742,6 +757,12 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Vuelos laterales en equilibrio con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     descripcion: 'Parado sobre una pierna, kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar.'
+  },
+  // TRX — Bíceps
+  {
+    nombre: 'Curl de bíceps en TRX',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De frente al anclaje del TRX, agarrá las correas con agarre supino y el cuerpo inclinado hacia atrás. Flexioná los codos llevando las manos a la frente, manteniendo los codos altos y fijos. Extendé controlado. Cuanto más horizontal el cuerpo, más difícil. Trabaja bíceps y braquial con peso corporal.'
   },
   // TRX — Tríceps
   {
