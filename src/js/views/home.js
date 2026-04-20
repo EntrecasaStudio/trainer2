@@ -106,6 +106,7 @@ function getRoutineForDate(date, usuario) {
   const override = overrides[usuario]?.[dateStr];
 
   if (override) {
+    if (override.rest) return null;
     const rutinas = store.getAll(store.KEYS.rutinas);
     const found = rutinas.find(r => r.id === override.rutinaId);
     if (found) return found;
@@ -312,19 +313,22 @@ function renderRoutineCard() {
     e.stopPropagation();
     const dateStr = formatDateISO(selectedDate);
     const overrides = store.getObj(store.KEYS.overrides);
-    const saved = overrides[activeUsuario]?.[dateStr];
-    if (saved) {
-      delete overrides[activeUsuario][dateStr];
-      store.set(store.KEYS.overrides, overrides);
-      renderRoutineCard();
-      showToastAction('Día de descanso', 'Deshacer', () => {
-        const ov = store.getObj(store.KEYS.overrides);
-        if (!ov[activeUsuario]) ov[activeUsuario] = {};
+    if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
+    const saved = overrides[activeUsuario][dateStr];
+    overrides[activeUsuario][dateStr] = { rest: true };
+    store.set(store.KEYS.overrides, overrides);
+    renderRoutineCard();
+    showToastAction('Día de descanso', 'Deshacer', () => {
+      const ov = store.getObj(store.KEYS.overrides);
+      if (!ov[activeUsuario]) ov[activeUsuario] = {};
+      if (saved) {
         ov[activeUsuario][dateStr] = saved;
-        store.set(store.KEYS.overrides, ov);
-        renderRoutineCard();
-      });
-    }
+      } else {
+        delete ov[activeUsuario][dateStr];
+      }
+      store.set(store.KEYS.overrides, ov);
+      renderRoutineCard();
+    });
   });
 
   // Info buttons on exercise rows
