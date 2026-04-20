@@ -451,17 +451,22 @@ function openAssignSheet() {
         bindListClicks();
       }
 
-      // Lugar filter chips
+      // Lugar filter chips — single tap toggles, double tap solo-selects
+      let lastChipTap = { lugar: null, time: 0 };
       body.querySelectorAll('.lugar-chip').forEach(chip => {
         chip.addEventListener('click', () => {
           const lugar = chip.dataset.lugar;
-          if (activeLugares.includes(lugar)) {
+          const now = Date.now();
+          const isDoubleTap = lastChipTap.lugar === lugar && (now - lastChipTap.time) < 400;
+          lastChipTap = { lugar, time: now };
+
+          if (isDoubleTap) {
+            activeLugares = [lugar];
+          } else if (activeLugares.includes(lugar)) {
             activeLugares = activeLugares.filter(l => l !== lugar);
             if (activeLugares.length === 0) activeLugares = [lugar];
-            chip.classList.toggle('active', activeLugares.includes(lugar));
           } else {
             activeLugares.push(lugar);
-            chip.classList.add('active');
           }
           body.querySelectorAll('.lugar-chip').forEach(c => {
             c.classList.toggle('active', activeLugares.includes(c.dataset.lugar));
@@ -589,11 +594,18 @@ function openEditSheet(currentRutina) {
         bindListEvents();
       }
 
-      // Lugar filter chips
+      // Lugar filter chips — single tap toggles, double tap solo-selects
+      let lastChipTap = { lugar: null, time: 0 };
       body.querySelectorAll('.lugar-chip').forEach(chip => {
         chip.addEventListener('click', () => {
           const lugar = chip.dataset.lugar;
-          if (activeLugares.includes(lugar)) {
+          const now = Date.now();
+          const isDoubleTap = lastChipTap.lugar === lugar && (now - lastChipTap.time) < 400;
+          lastChipTap = { lugar, time: now };
+
+          if (isDoubleTap) {
+            activeLugares = [lugar];
+          } else if (activeLugares.includes(lugar)) {
             activeLugares = activeLugares.filter(l => l !== lugar);
             if (activeLugares.length === 0) activeLugares = [lugar];
           } else {
