@@ -644,7 +644,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Empuje de cadera',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     descripcion: 'Espalda apoyada en un banco o el piso, peso sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
   },
   {
