@@ -643,9 +643,9 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie sobre una pierna, kettlebell en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
   },
   {
-    nombre: 'Empuje de cadera con plato rucking',
+    nombre: 'Empuje de cadera',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Espalda apoyada en un banco o el piso, plato de rucking de 4 kg sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
+    descripcion: 'Espalda apoyada en un banco o el piso, peso sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
   },
   {
     nombre: 'Patada de glúteo con tobillera 4k',
