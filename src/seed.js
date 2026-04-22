@@ -1488,11 +1488,12 @@ function ensureCalendarOverrides() {
     { date: '2026-04-15', foco: 'pull' },
     { date: '2026-04-16', foco: 'press' },
     { date: '2026-04-17', foco: 'pull' },
-    { date: '2026-04-22', foco: 'press' },
-    { date: '2026-04-24', foco: 'pull' },
-    { date: '2026-04-27', foco: 'press' },
-    { date: '2026-04-29', foco: 'pull' },
-    { date: '2026-05-01', foco: 'press' },
+    { date: '2026-04-20', foco: 'press' },
+    { date: '2026-04-22', foco: 'pull' },
+    { date: '2026-04-24', foco: 'press' },
+    { date: '2026-04-27', foco: 'pull' },
+    { date: '2026-04-29', foco: 'press' },
+    { date: '2026-05-01', foco: 'pull' },
   ];
 
   const casaNatDays = [
