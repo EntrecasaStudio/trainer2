@@ -1484,50 +1484,58 @@ function ensureCalendarOverrides() {
   if (!overrides.Nat) overrides.Nat = {};
   let changed = false;
 
-  // Days where Lean trains at home (CASA) this week — assign in date order
-  // so each day sees the previous day's assignment when rotating letters.
-  // Respects existing overrides that already point to a valid CASA rutina
-  // for that foco (don't clobber past/completed days).
   const casaLeanDays = [
     { date: '2026-04-15', foco: 'pull' },
     { date: '2026-04-16', foco: 'press' },
     { date: '2026-04-17', foco: 'pull' },
+    { date: '2026-04-22', foco: 'press' },
+    { date: '2026-04-24', foco: 'pull' },
+    { date: '2026-04-27', foco: 'press' },
+    { date: '2026-04-29', foco: 'pull' },
+    { date: '2026-05-01', foco: 'press' },
+  ];
+
+  const casaNatDays = [
+    { date: '2026-04-22', foco: 'pull' },
+    { date: '2026-04-24', foco: 'press' },
+    { date: '2026-04-27', foco: 'pull' },
+    { date: '2026-04-29', foco: 'press' },
+    { date: '2026-05-01', foco: 'pull' },
   ];
 
   const rutinaById = new Map(rutinas.map(r => [r.id, r]));
-  const sesionByDate = new Map();
-  for (const s of sesiones) {
-    if (s.usuario !== 'Lean') continue;
-    if (!s.fecha) continue;
-    if (!sesionByDate.has(s.fecha)) sesionByDate.set(s.fecha, []);
-    sesionByDate.get(s.fecha).push(s);
-  }
-
   const todayISO = formatDateISO(new Date());
 
-  for (const { date, foco } of casaLeanDays) {
-    const cur = overrides.Lean[date];
-    const curR = cur?.rutinaId ? rutinaById.get(cur.rutinaId) : null;
-    const curValid = curR && curR.usuario === 'Lean' && curR.lugar === 'CASA' && curR.foco === foco;
-    if (cur?.rest) continue;
-    const doneAlready = (sesionByDate.get(date) || []).some(s => {
-      const r = rutinaById.get(s.rutinaId);
-      return r && r.lugar === 'CASA' && r.foco === foco;
-    });
-    if (doneAlready) continue;
-    // For past dates, keep any valid existing assignment (the user may have
-    // trained it). For today and future dates, always re-pick with rotation
-    // so letters advance A→B→C even if a prior boot assigned the same letter.
-    if (date < todayISO && curValid) continue;
+  for (const [usuario, casaDays] of [['Lean', casaLeanDays], ['Nat', casaNatDays]]) {
+    const sesionByDate = new Map();
+    for (const s of sesiones) {
+      if (s.usuario !== usuario) continue;
+      if (!s.fecha) continue;
+      if (!sesionByDate.has(s.fecha)) sesionByDate.set(s.fecha, []);
+      sesionByDate.get(s.fecha).push(s);
+    }
 
-    const r = pickNextRutina({
-      usuario: 'Lean', foco, lugar: 'CASA', date,
-      rutinas, overrides, sesiones,
-    });
-    if (!r) continue;
-    if (cur?.rutinaId === r.id && cur.lugar === 'CASA') continue; // no-op
-    overrides.Lean[date] = { rutinaId: r.id, tipo: foco, lugar: 'CASA' };
-    changed = true;
+    for (const { date, foco } of casaDays) {
+      const cur = overrides[usuario][date];
+      const curR = cur?.rutinaId ? rutinaById.get(cur.rutinaId) : null;
+      const curValid = curR && curR.usuario === usuario && curR.lugar === 'CASA' && curR.foco === foco;
+      if (cur?.rest) continue;
+      const doneAlready = (sesionByDate.get(date) || []).some(s => {
+        const r = rutinaById.get(s.rutinaId);
+        return r && r.lugar === 'CASA' && r.foco === foco;
+      });
+      if (doneAlready) continue;
+      if (date < todayISO && curValid) continue;
+
+      const r = pickNextRutina({
+        usuario, foco, lugar: 'CASA', date,
+        rutinas, overrides, sesiones,
+      });
+      if (!r) continue;
+      if (cur?.rutinaId === r.id && cur.lugar === 'CASA') continue;
+      overrides[usuario][date] = { rutinaId: r.id, tipo: foco, lugar: 'CASA' };
+      changed = true;
+    }
   }
 
   if (changed) store.set(store.KEYS.overrides, overrides);
