@@ -402,7 +402,7 @@ function createRioRoutines() {
       circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '15'), ej('Zancadas con kettlebell', 3, '10')]),
       circuito(3, 'PECHO·HOMBROS', [ej('Flexiones', 3, '12'), ej('Fondos en banco', 3, '15')]),
       circuito(4, 'HOMBROS', [ej('Press militar con kettlebell', 3, '10'), ej('Vuelos laterales', 3, '15')]),
-      circuito(5, 'CORE+CARDIO', [ej('Plancha', 3, '45s'), ej('Ab wheel', 3, '10'), ej('Hollow body', 3, '30s')]),
+      circuito(5, 'CORE+CARDIO', [ej('Plancha en paralelas', 3, '45s'), ej('Ab wheel', 3, '10'), ej('Hollow body', 3, '30s')]),
       circuito(6, 'HIIT', [ej('Burpees', 3, '8'), ej('Sentadilla con salto', 3, '10'), ej('Mountain climbers', 3, '20')]),
     ]),
     // RÍO Press B — Lean
