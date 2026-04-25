@@ -27,19 +27,9 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con una mancuerna en cada mano, dá un paso hacia adelante y bajá la rodilla trasera hacia el piso sin apoyarla. Volvé al centro y alterná las piernas. Mantené el torso recto y la rodilla delantera a 90°.'
   },
   {
-    nombre: 'Sumo con barra',
-    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
-    descripcion: 'Pies más separados que el ancho de hombros, puntas hacia afuera ~45°. Con la barra frente al cuerpo, hacé una sentadilla manteniendo la espalda recta y pecho erguido. Los codos van hacia adentro rozando las rodillas al bajar.'
-  },
-  {
     nombre: 'Sentadilla sumo',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Con pies muy separados y puntas hacia afuera, bajá las caderas lentamente hasta paralelo o más. Rodillas siguen la dirección de los pies. Ideal para activar glúteos y aductores. Se puede hacer con peso corporal o con mancuerna sostenida verticalmente.'
-  },
-  {
-    nombre: 'Sumo con rusas',
-    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
-    descripcion: 'Con kettlebells en cada mano y posición sumo (pies separados, puntas afuera), hacé sentadillas profundas manteniendo las campanas entre las piernas. Ideal para activar glúteos medios y aductores junto con cuádriceps.'
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Con pies muy separados y puntas hacia afuera, bajá las caderas lentamente hasta paralelo o más. Rodillas siguen la dirección de los pies. Ideal para activar glúteos y aductores. Se puede hacer con peso corporal, mancuerna, barra o kettlebells.'
   },
   {
     nombre: 'Prensa de piernas',
@@ -596,11 +586,6 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sentadilla goblet con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
-  },
-  {
-    nombre: 'Sentadilla sumo con kettlebell',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Pies más anchos que los hombros, puntas hacia afuera. Sostenés la kettlebell colgando entre las piernas. Bajá con la cadera hasta que los muslos queden paralelos, empujá para subir. Énfasis en aductores y glúteos.'
   },
   {
     nombre: 'Sentadilla búlgara con kettlebell',

@@ -44,7 +44,7 @@ function createLeanRoutines() {
     ]),
     // Press B — semana 1 — Banca (estabilidad) → inclinado máquina (guiada)
     rutina('#002', 'Press B — Pecho + Hombros', 'Lean', 'press', 1, [
-      circuito(1, 'PIERNAS · CORE', [ej('Zancadas con mancuernas'), ej('Sumo con barra'), ej('Dead bug', 2, '30s')]),
+      circuito(1, 'PIERNAS · CORE', [ej('Zancadas con mancuernas'), ej('Sentadilla sumo'), ej('Dead bug', 2, '30s')]),
       circuito(2, 'PECHO', [ej('Press de banca con barra'), ej('Pecho con polea doble')]),
       circuito(3, 'PECHO ALT', [ej('Press inclinado en máquina'), ej('Aperturas con mancuernas')]),
       circuito(4, 'HOMBROS', [ej('Empuje de hombros con barra en banco'), ej('Face pulls')]),
@@ -89,7 +89,7 @@ function createLeanRoutines() {
     ]),
     // Pull B — semana 1
     rutina('#007', 'Pull B — Espalda + Brazos', 'Lean', 'pull', 1, [
-      circuito(1, 'PIERNAS · CORE', [ej('Zancadas con mancuernas'), ej('Sumo con barra'), ej('Dead bug', 2, '30s')]),
+      circuito(1, 'PIERNAS · CORE', [ej('Zancadas con mancuernas'), ej('Sentadilla sumo'), ej('Dead bug', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Remo en maquina'), ej('Dominadas abiertas')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
       circuito(4, 'BRAZOS', [ej('Curl de bíceps con barra'), ej('Biceps en banco')]),
@@ -203,7 +203,7 @@ function createNatRoutines() {
     ]),
     // Press D — Hammer (guiada) en pecho secundario
     rutina('#014', 'Press D — Pecho + Glúteos', 'Nat', 'press', 2, [
-      circuito(1, 'PIERNAS · CORE', [ej('Sumo con rusas'), ej('Sentadilla sumo'), ej('Plancha en codos', 2, '30s')]),
+      circuito(1, 'PIERNAS · CORE', [ej('Sentadilla sumo'), ej('Zancadas con mancuernas'), ej('Plancha en codos', 2, '30s')]),
       circuito(2, 'PECHO', [ej('Press Hammer'), ej('Press inclinado con mancuernas')]),
       circuito(3, 'HOMBROS', [ej('Empuje de hombros con barra en banco'), ej('Vuelos laterales')]),
       circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
@@ -248,7 +248,7 @@ function createNatRoutines() {
     ]),
     // Pull D
     rutina('#019', 'Pull D — Espalda + Glúteos', 'Nat', 'pull', 2, [
-      circuito(1, 'PIERNAS · CORE', [ej('Sumo con rusas'), ej('Zancadas con mancuernas'), ej('Espinales con disco', 2, '30s')]),
+      circuito(1, 'PIERNAS · CORE', [ej('Sentadilla sumo'), ej('Zancadas con mancuernas'), ej('Espinales con disco', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Remo en maquina separado'), ej('Remo alto en polea')]),
       circuito(3, 'ESPALDA ALT', [ej('Dominada en maquina ascensor'), ej('Jalón al pecho')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro hacia arriba')]),
@@ -622,7 +622,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C02', 'Casa Press B — Lean', 'Lean', 'press', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Rotación de hombros con banda', 3, '10'), ej('Movilidad de hombros', 3, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Zancadas con chaleco de peso', 3, '10'), ej('Sentadilla sumo con kettlebell', 3, '12')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Zancadas con chaleco de peso', 3, '10'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'PECHO·HOMBROS', [ej('Flexiones explosivas', 3, '8'), ej('Banda press de pecho', 3, '15')]),
       circuito(4, 'HOMBROS', [ej('Arnold press con kettlebell', 3, '10'), ej('Vuelos laterales con banda', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body con peso', 3, '30s'), ej('Plancha con elevación alternada', 3, '10')]),
@@ -664,7 +664,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C07', 'Casa Press D — Lean', 'Lean', 'press', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda press de pecho', 3, '15'), ej('Movilidad de cadera', 3, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo con kettlebell', 3, '12'), ej('Sentadilla con salto con chaleco', 3, '8')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '12'), ej('Sentadilla con salto con chaleco', 3, '8')]),
       circuito(3, 'PECHO', [ej('Flexiones inclinadas', 3, '12'), ej('Flexiones con chaleco', 3, '10')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Tríceps alto en TRX', 3, '12')]),
       circuito(5, 'CORE', [ej('Plancha lateral con chaleco', 3, '25s'), ej('Hollow body con peso', 3, '30s')]),
@@ -696,7 +696,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C11', 'Casa Press F — Lean', 'Lean', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda dislocates', 3, '10'), ej('Movilidad de hombros', 3, '10')]),
-      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo con kettlebell', 3, '12'), ej('Sentadilla goblet con kettlebell', 3, '10')]),
+      circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '12'), ej('Sentadilla goblet con kettlebell', 3, '10')]),
       circuito(3, 'PECHO·HOMBROS', [ej('TRX chest press', 3, '12'), ej('Flexiones explosivas', 3, '8')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Fondos en banco con chaleco', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body con peso', 3, '30s'), ej('Plancha con chaleco', 3, '30s')]),
@@ -730,7 +730,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C03', 'Casa Press C — Nat', 'Nat', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Activación glúteo con loop band', 3, '15'), ej('Banda dislocates', 3, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera', 3, '15'), ej('Sentadilla sumo con kettlebell', 3, '12')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera', 3, '15'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'PECHO', [ej('Flexiones', 3, '10'), ej('TRX chest press', 3, '12')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con kettlebell', 3, '10'), ej('Extensión de tríceps con banda', 3, '15')]),
       circuito(5, 'CORE', [ej('Ab wheel', 3, '8'), ej('Plancha con elevación alternada', 3, '8')]),
@@ -796,7 +796,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C10', 'Casa Press F — Nat', 'Nat', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 3, '15'), ej('Banda dislocates', 3, '10')]),
-      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera', 3, '15'), ej('Sentadilla sumo con kettlebell', 3, '12')]),
+      circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera', 3, '15'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'PECHO·HOMBROS', [ej('Flexiones inclinadas', 3, '12'), ej('Banda press de pecho', 3, '15')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Fondos en banco', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body', 3, '25s'), ej('Plancha con elevación alternada', 3, '10')]),
@@ -1346,6 +1346,9 @@ function applyExerciseRenames() {
   renameExercise('Muscle-up negativo en barra', 'TRX power pull');
   renameExercise('Empuje de cadera con plato rucking', 'Empuje de cadera');
   renameExercise('Curl de bíceps en TRX con chaleco', 'Curl de bíceps en TRX');
+  renameExercise('Sumo con barra', 'Sentadilla sumo');
+  renameExercise('Sumo con rusas', 'Sentadilla sumo');
+  renameExercise('Sentadilla sumo con kettlebell', 'Sentadilla sumo');
 }
 
 function replaceVerticalDominadasInRio() {
