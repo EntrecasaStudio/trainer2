@@ -436,7 +436,11 @@ function openAssignSheet() {
             const dateStr = formatDateISO(selectedDate);
             const overrides = store.getObj(store.KEYS.overrides);
             if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
-            overrides[activeUsuario][dateStr] = { rutinaId: newId };
+            const allRutinas = store.getAll(store.KEYS.rutinas);
+            const picked = allRutinas.find(r => r.id === newId);
+            const ov = { rutinaId: newId };
+            if (picked) { ov.lugar = picked.lugar; ov.tipo = picked.foco; }
+            overrides[activeUsuario][dateStr] = ov;
             store.set(store.KEYS.overrides, overrides);
             closeModal();
             renderRoutineCard();
@@ -579,7 +583,11 @@ function openEditSheet(currentRutina) {
             const dateStr = formatDateISO(selectedDate);
             const overrides = store.getObj(store.KEYS.overrides);
             if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
-            overrides[activeUsuario][dateStr] = { rutinaId: newId };
+            const allRutinas = store.getAll(store.KEYS.rutinas);
+            const picked = allRutinas.find(r => r.id === newId);
+            const ov = { rutinaId: newId };
+            if (picked) { ov.lugar = picked.lugar; ov.tipo = picked.foco; }
+            overrides[activeUsuario][dateStr] = ov;
             store.set(store.KEYS.overrides, overrides);
             closeModal();
             renderRoutineCard();

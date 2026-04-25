@@ -1227,20 +1227,30 @@ function repairOverrides() {
     for (const date of Object.keys(userOv)) {
       const ov = userOv[date];
       if (!ov?.rutinaId) continue;
-      if (rutinaById.has(ov.rutinaId)) continue; // valid
+
+      const r = rutinaById.get(ov.rutinaId);
+      if (r) {
+        if (!ov.lugar || !ov.tipo) {
+          ov.lugar = r.lugar;
+          ov.tipo = r.foco;
+          repaired = true;
+        }
+        continue;
+      }
 
       // Stale rutinaId — try to find a matching rutina
       const lugar = ov.lugar || 'SPORT_FITNESS';
       const tipo = ov.tipo; // 'press' or 'pull'
-      const match = rutinas.find(r =>
-        r.usuario === usuario && r.lugar === lugar && r.foco === tipo
+      const match = rutinas.find(r2 =>
+        r2.usuario === usuario && r2.lugar === lugar && r2.foco === tipo
       );
 
       if (match) {
         ov.rutinaId = match.id;
+        ov.lugar = match.lugar;
+        ov.tipo = match.foco;
         repaired = true;
       } else {
-        // No match at all, remove stale override
         delete userOv[date];
         repaired = true;
       }
@@ -1486,59 +1496,73 @@ function ensureCalendarOverrides() {
   if (!overrides.Nat) overrides.Nat = {};
   let changed = false;
 
-  const casaLeanDays = [
-    { date: '2026-04-15', foco: 'pull' },
-    { date: '2026-04-16', foco: 'press' },
-    { date: '2026-04-17', foco: 'pull' },
-    { date: '2026-04-20', foco: 'press' },
-    { date: '2026-04-22', foco: 'pull' },
-    { date: '2026-04-24', foco: 'press' },
-    { date: '2026-04-27', foco: 'pull' },
-    { date: '2026-04-29', foco: 'press' },
-    { date: '2026-05-01', foco: 'pull' },
-  ];
-
-  const casaNatDays = [
-    { date: '2026-04-22', foco: 'pull' },
-    { date: '2026-04-24', foco: 'press' },
-    { date: '2026-04-27', foco: 'pull' },
-    { date: '2026-04-29', foco: 'press' },
-    { date: '2026-05-01', foco: 'pull' },
+  const schedule = [
+    // CASA — Lean
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-15', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-16', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-17', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-20', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-22', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-24', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-27', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-04-29', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-01', foco: 'pull' },
+    // CASA — Nat
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-04-22', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-04-24', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-04-27', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-04-29', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-01', foco: 'pull' },
+    // RÍO sábados — Lean (Apr 11 fue press)
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-04-11', foco: 'press' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-04-18', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-04-25', foco: 'press' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-02', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-09', foco: 'press' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-16', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-23', foco: 'press' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-30', foco: 'pull' },
+    // RÍO sábados — Nat
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-04-11', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-04-18', foco: 'press' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-04-25', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-02', foco: 'press' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-09', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-16', foco: 'press' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-23', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-30', foco: 'press' },
   ];
 
   const rutinaById = new Map(rutinas.map(r => [r.id, r]));
   const todayISO = formatDateISO(new Date());
 
-  for (const [usuario, casaDays] of [['Lean', casaLeanDays], ['Nat', casaNatDays]]) {
-    const sesionByDate = new Map();
-    for (const s of sesiones) {
-      if (s.usuario !== usuario) continue;
-      if (!s.fecha) continue;
-      if (!sesionByDate.has(s.fecha)) sesionByDate.set(s.fecha, []);
-      sesionByDate.get(s.fecha).push(s);
-    }
+  const sesionByKey = new Map();
+  for (const s of sesiones) {
+    const key = `${s.usuario}|${s.fecha}`;
+    if (!sesionByKey.has(key)) sesionByKey.set(key, []);
+    sesionByKey.get(key).push(s);
+  }
 
-    for (const { date, foco } of casaDays) {
-      const cur = overrides[usuario][date];
-      const curR = cur?.rutinaId ? rutinaById.get(cur.rutinaId) : null;
-      const curValid = curR && curR.usuario === usuario && curR.lugar === 'CASA' && curR.foco === foco;
-      if (cur?.rest) continue;
-      const doneAlready = (sesionByDate.get(date) || []).some(s => {
-        const r = rutinaById.get(s.rutinaId);
-        return r && r.lugar === 'CASA' && r.foco === foco;
-      });
-      if (doneAlready) continue;
-      if (date < todayISO && curValid) continue;
+  for (const { usuario, lugar, date, foco } of schedule) {
+    const cur = overrides[usuario][date];
+    const curR = cur?.rutinaId ? rutinaById.get(cur.rutinaId) : null;
+    const curValid = curR && curR.usuario === usuario && curR.lugar === lugar && curR.foco === foco;
+    if (cur?.rest) continue;
+    const doneAlready = (sesionByKey.get(`${usuario}|${date}`) || []).some(s => {
+      const r = rutinaById.get(s.rutinaId);
+      return r && r.lugar === lugar && r.foco === foco;
+    });
+    if (doneAlready) continue;
+    if (date < todayISO && curValid) continue;
 
-      const r = pickNextRutina({
-        usuario, foco, lugar: 'CASA', date,
-        rutinas, overrides, sesiones,
-      });
-      if (!r) continue;
-      if (cur?.rutinaId === r.id && cur.lugar === 'CASA') continue;
-      overrides[usuario][date] = { rutinaId: r.id, tipo: foco, lugar: 'CASA' };
-      changed = true;
-    }
+    const r = pickNextRutina({
+      usuario, foco, lugar, date,
+      rutinas, overrides, sesiones,
+    });
+    if (!r) continue;
+    if (cur?.rutinaId === r.id && cur.lugar === lugar) continue;
+    overrides[usuario][date] = { rutinaId: r.id, tipo: foco, lugar };
+    changed = true;
   }
 
   if (changed) store.set(store.KEYS.overrides, overrides);
