@@ -48,8 +48,8 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Sentadilla búlgara',
-    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
-    descripcion: 'De pie con un pie apoyado en un banco detrás. Con mancuernas en las manos, bajá la rodilla trasera hacia el piso manteniendo el torso recto. La rodilla delantera no pasa la punta del pie. Trabaja cuádriceps, glúteos y estabilidad de cadera unilateral.'
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con un pie apoyado en un banco o superficie elevada detrás. Bajá la rodilla trasera hacia el piso manteniendo el torso recto. Se puede hacer con peso corporal, mancuernas o kettlebell. Trabaja cuádriceps, glúteos y estabilidad de cadera unilateral.'
   },
   {
     nombre: 'Gemelos en máquina',
@@ -222,8 +222,8 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Vuelos laterales',
-    grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
-    descripcion: 'De pie o sentado con mancuernas a los costados, levantá los brazos lateralmente hasta la altura de los hombros con una leve flexión en los codos (no completamente rectos). Bajá lento. Trabaja exclusivamente el deltoides lateral. Evitá el balanceo del torso.'
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con mancuernas, kettlebells o bandas a los costados, levantá los brazos lateralmente hasta la altura de los hombros con leve flexión en los codos. Bajá lento. Trabaja exclusivamente el deltoides lateral.'
   },
   {
     nombre: 'Empuje de hombros con barra en banco',
@@ -588,11 +588,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
   },
   {
-    nombre: 'Sentadilla búlgara con kettlebell',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Pie trasero apoyado en una superficie elevada. Sostenés la kettlebell en goblet o a un lado. Bajá la rodilla trasera hacia el piso y empujá para subir. Trabaja cuádriceps, glúteo y estabilidad unilateral.'
-  },
-  {
     nombre: 'Sentadilla con salto con chaleco',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     descripcion: 'Sentadilla explosiva con chaleco de peso. Bajá a paralelo y saltá con máxima potencia, aterrizá suave absorbiendo con las piernas. El chaleco agrega resistencia al movimiento pliométrico.'
@@ -681,11 +676,6 @@ export const EJERCICIOS_CATALOGO = [
   },
   // Bandas
   {
-    nombre: 'Vuelos laterales con banda',
-    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
-    descripcion: 'De pie pisando la banda, brazos a los costados. Elevá los brazos lateralmente hasta la altura de los hombros con los codos levemente flexionados. Bajá controlado. Trabaja deltoides lateral.'
-  },
-  {
     nombre: 'Extensión de tríceps con banda',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     descripcion: 'Banda anclada arriba o pisada por detrás. Extendé los codos empujando las manos hacia abajo o arriba según el anclaje. Mantené los brazos pegados a la cabeza o al torso. Aislamiento de tríceps.'
@@ -742,6 +732,12 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Vuelos laterales en equilibrio con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     descripcion: 'Parado sobre una pierna, kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar.'
+  },
+  // TRX — Piernas
+  {
+    nombre: 'Sentadilla búlgara con TRX',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Pie trasero en el estribo del TRX. Bajá la rodilla trasera hacia el piso manteniendo el torso recto. Empujá para subir. El TRX permite mayor rango de movimiento y desafía la estabilidad. Trabaja cuádriceps, glúteos y equilibrio unilateral.'
   },
   // TRX — Bíceps
   {
