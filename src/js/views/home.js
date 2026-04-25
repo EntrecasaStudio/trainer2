@@ -699,7 +699,7 @@ function renderCalendar() {
           const isSelected = dateStr === formatDateISO(selectedDate);
           const isOtherMonth = day.getMonth() !== _viewMonth;
           const ov = overrides[activeUsuario]?.[dateStr];
-          const hasWorkout = ov && rutinaIds.has(ov.rutinaId);
+          const hasWorkout = ov && !ov.rest && rutinaIds.has(ov.rutinaId);
           const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
 
           const classes = [
