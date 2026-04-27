@@ -13,7 +13,7 @@ const NO_CHALECO_PATTERNS = [
   'press militar', 'arnold press', 'vuelos laterales',
   'curl', 'extensión de tríceps', 'extension de triceps',
   'remo con kettlebell', 'remo con mancuerna', 'remo con barra',
-  'peso muerto', 'swing',
+  'swing',
   'rotación torácica', 'rotacion toracica',
 ];
 function chalecoApplies(nombre) {
