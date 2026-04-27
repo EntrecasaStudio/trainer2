@@ -13,6 +13,7 @@ const NO_CHALECO_PATTERNS = [
   'press militar', 'arnold press', 'vuelos laterales',
   'curl de bíceps con kettlebell', 'curl martillo con kettlebell',
   'extensión de tríceps', 'extension de triceps',
+  'hollow body',
   'remo con kettlebell', 'remo con mancuerna', 'remo con barra',
   'swing',
   'rotación torácica', 'rotacion toracica',
