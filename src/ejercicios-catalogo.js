@@ -643,11 +643,6 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     descripcion: 'Manos en el borde de un banco, piernas extendidas. Bajá flexionando los codos hasta 90° y empujá para subir. El chaleco de peso intensifica el trabajo de tríceps y deltoides anterior.'
   },
-  {
-    nombre: 'Dominadas australianas con chaleco',
-    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Colgado bajo una barra o TRX con el cuerpo inclinado y chaleco de peso. Tirá el pecho hacia la barra apretando los omóplatos. Bajá controlado. El chaleco aumenta la carga en dorsales y bíceps.'
-  },
   // Kettlebell — Tren superior
   {
     nombre: 'Press militar con kettlebell',
