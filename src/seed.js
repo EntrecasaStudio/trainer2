@@ -1457,11 +1457,20 @@ function replacePasadasInCasa() {
 // Letter rotation helper: given a user + foco (press/pull) + lugar + date,
 // picks the next CASA/RIO rutina in A→B→C→A rotation based on the most
 // recent prior assignment (override or completed session).
-function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesiones }) {
+function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesiones, letraMin, letraMax }) {
   const rutinaById = new Map((rutinas || []).map(r => [r.id, r]));
-  const candidates = (rutinas || []).filter(r =>
+  let candidates = (rutinas || []).filter(r =>
     r.usuario === usuario && r.lugar === lugar && r.foco === foco
   );
+  if (letraMin || letraMax) {
+    candidates = candidates.filter(r => {
+      const letra = (r.nombre || '').match(/ ([A-Z]) — /)?.[1];
+      if (!letra) return true;
+      if (letraMin && letra < letraMin) return false;
+      if (letraMax && letra > letraMax) return false;
+      return true;
+    });
+  }
   if (candidates.length === 0) return null;
   if (candidates.length === 1) return candidates[0];
 
@@ -1546,24 +1555,32 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-15', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-18', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-20', foco: 'pull' },
-    // RÍO sábados — Lean (Apr 11 fue press)
+    // RÍO sábados — Lean (desde May 2 = letra C en adelante)
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-11', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-18', foco: 'pull' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-25', foco: 'press' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-02', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-09', foco: 'press' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-16', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-23', foco: 'press' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-30', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-02', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-09', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-16', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-23', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-30', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-06', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-13', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-20', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-27', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     // RÍO sábados — Nat
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-11', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-18', foco: 'press' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-25', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-02', foco: 'press' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-09', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-16', foco: 'press' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-23', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-30', foco: 'press' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-02', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-16', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-23', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-30', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-06', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-13', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-20', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-27', foco: 'press', letraMin: 'C', letraMax: 'F' },
   ];
 
   const rutinaById = new Map(rutinas.map(r => [r.id, r]));
@@ -1576,7 +1593,8 @@ function ensureCalendarOverrides() {
     sesionByKey.get(key).push(s);
   }
 
-  for (const { usuario, lugar, date, foco } of schedule) {
+  for (const entry of schedule) {
+    const { usuario, lugar, date, foco, letraMin, letraMax } = entry;
     const cur = overrides[usuario][date];
     const curR = cur?.rutinaId ? rutinaById.get(cur.rutinaId) : null;
     const curValid = curR && curR.usuario === usuario && curR.lugar === lugar && curR.foco === foco;
@@ -1591,6 +1609,7 @@ function ensureCalendarOverrides() {
     const r = pickNextRutina({
       usuario, foco, lugar, date,
       rutinas, overrides, sesiones,
+      letraMin, letraMax,
     });
     if (!r) continue;
     if (cur?.rutinaId === r.id && cur.lugar === lugar) continue;
