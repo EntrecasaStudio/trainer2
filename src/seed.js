@@ -1493,6 +1493,15 @@ function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesion
   return sorted[(idx + 1) % sorted.length];
 }
 
+function ensureCasaRoutinesExist() {
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  const hasCasa = rutinas.some(r => r.lugar === 'CASA');
+  if (hasCasa) return;
+  const casaRoutines = createCasaRoutines();
+  store.set(store.KEYS.rutinas, [...rutinas, ...casaRoutines]);
+  console.log('[Seed] Created ' + casaRoutines.length + ' CASA routines');
+}
+
 function ensureCalendarOverrides() {
   const rutinas = store.getAll(store.KEYS.rutinas);
   const overrides = store.getObj(store.KEYS.overrides);
@@ -1584,6 +1593,7 @@ export async function seedV2() {
   replacePasadasInCasa();
   replaceVerticalDominadasInRio();
   replaceBoxExercisesInRio();
+  ensureCasaRoutinesExist();
   ensureCalendarOverrides();
 
   const version = store.getVersion();
