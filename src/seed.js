@@ -644,7 +644,7 @@ function createCasaRoutines() {
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '12')]),
       circuito(4, 'BÍCEPS', [ej('Curl de bíceps en TRX', 3, '10'), ej('Curl de bíceps con kettlebell', 3, '12')]),
       circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Hollow body con peso', 3, '30s')]),
-      circuito(6, 'HIIT', [ej('Bear crawl con chaleco', 4, '8m'), ej('Sentadilla con salto con chaleco', 3, '10'), ej('Burpees', 3, '8')]),
+      circuito(6, 'HIIT', [ej('Bear crawl', 4, '8m'), ej('Sentadilla con salto con chaleco', 3, '10'), ej('Burpees', 3, '8')]),
     ]),
     rutinaCasa('#C05', 'Casa Pull B — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 3, '15'), ej('Movilidad de cadera', 3, '10')]),
@@ -668,7 +668,7 @@ function createCasaRoutines() {
       circuito(3, 'PECHO', [ej('Flexiones inclinadas', 3, '12'), ej('Flexiones con chaleco', 3, '10')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Tríceps alto en TRX', 3, '12')]),
       circuito(5, 'CORE', [ej('Plancha lateral con chaleco', 3, '25s'), ej('Hollow body con peso', 3, '30s')]),
-      circuito(6, 'HIIT', [ej('Bear crawl con chaleco', 4, '8m'), ej('Burpees', 3, '8'), ej('Jumping jacks con chaleco', 3, '30')]),
+      circuito(6, 'HIIT', [ej('Bear crawl', 4, '8m'), ej('Burpees', 3, '8'), ej('Jumping jacks con chaleco', 3, '30')]),
     ]),
     rutinaCasa('#C08', 'Casa Pull D — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Rotación de hombros con banda', 3, '10'), ej('Movilidad de hombros', 3, '10')]),
@@ -700,7 +700,7 @@ function createCasaRoutines() {
       circuito(3, 'PECHO·HOMBROS', [ej('TRX chest press', 3, '12'), ej('Flexiones explosivas', 3, '8')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Fondos en banco con chaleco', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body con peso', 3, '30s'), ej('Plancha con chaleco', 3, '30s')]),
-      circuito(6, 'HIIT', [ej('Bear crawl con chaleco', 4, '8m'), ej('Burpees con chaleco', 3, '8'), ej('Mountain climbers', 3, '20')]),
+      circuito(6, 'HIIT', [ej('Bear crawl', 4, '8m'), ej('Burpees con chaleco', 3, '8'), ej('Mountain climbers', 3, '20')]),
     ]),
     rutinaCasa('#C12', 'Casa Pull F — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 3, '15'), ej('Hip 90/90 mobility', 3, '8')]),
@@ -1352,6 +1352,7 @@ function applyExerciseRenames() {
   renameExercise('Sentadilla búlgara con kettlebell', 'Sentadilla búlgara');
   renameExercise('Vuelos laterales con banda', 'Vuelos laterales');
   renameExercise('Dominadas australianas con chaleco', 'Dominadas australianas');
+  renameExercise('Bear crawl con chaleco', 'Bear crawl');
 }
 
 function replaceVerticalDominadasInRio() {

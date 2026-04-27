@@ -712,11 +712,6 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'Saltá abriendo piernas y subiendo brazos simultáneamente, volvé al centro. Con chaleco de peso se intensifica el trabajo cardiovascular y de resistencia muscular en piernas y hombros.'
   },
-  {
-    nombre: 'Bear crawl con chaleco',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Desplazamiento en cuatro puntos con chaleco de peso. Rodillas apenas despegadas del suelo, avanzá mano y pie opuestos. El chaleco añade carga al core, hombros y cuádriceps durante el recorrido.'
-  },
   // Equilibrio + kettlebell
   {
     nombre: 'Curl de bíceps en equilibrio con kettlebell',
