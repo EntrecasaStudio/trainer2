@@ -394,6 +394,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Desde posición de zancada, saltar y alternar las piernas en el aire, aterrizando en zancada con la pierna contraria adelante. Mantener el torso erguido. Trabaja cuádriceps, glúteos, coordinación y potencia.'
   },
   {
+    nombre: 'Estocada-estocada-sentadilla con salto',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Combo explosivo: estocada con salto pierna izquierda, estocada con salto pierna derecha, sentadilla con salto con ambas piernas. Repetir la secuencia sin pausa. Trabaja potencia, coordinación y cardio.'
+  },
+  {
     nombre: 'Jumping jacks',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'De pie con los pies juntos y brazos al costado, saltar abriendo las piernas al ancho de hombros mientras subís los brazos por arriba de la cabeza. Volver a la posición inicial saltando. Ejercicio cardiovascular completo.'
