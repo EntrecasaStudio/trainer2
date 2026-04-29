@@ -18,6 +18,7 @@ const NO_CHALECO_PATTERNS = [
   'swing',
   'rotación torácica', 'rotacion toracica',
   'rotación de hombros', 'rotacion de hombros', 'movilidad de hombros',
+  'abs complex',
 ];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
