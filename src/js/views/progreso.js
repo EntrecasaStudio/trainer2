@@ -158,6 +158,13 @@ export function mountProgreso(container) {
   }
 
   function buildMuscleDistribution(sesiones) {
+    const SECONDARY_GRUPO = [
+      ['sentadilla sumo', 'Glúteos'],
+      ['sentadilla búlgara', 'Glúteos'],
+      ['sentadilla goblet', 'Glúteos'],
+      ['zancada', 'Glúteos'],
+      ['peso muerto', 'Glúteos'],
+    ];
     const counts = {}; // grupo → series count
     for (const s of sesiones) {
       for (const c of (s.circuitos || [])) {
@@ -168,6 +175,13 @@ export function mountProgreso(container) {
           const grupo = cat?.grupo || inferGrupoFromCircuit(c.nombre);
           if (!grupo || grupo === 'HIIT') continue;
           counts[grupo] = (counts[grupo] || 0) + doneSeries;
+          const nombre = (e.nombre || '').toLowerCase();
+          for (const [pattern, secGrupo] of SECONDARY_GRUPO) {
+            if (nombre.includes(pattern)) {
+              counts[secGrupo] = (counts[secGrupo] || 0) + doneSeries;
+              break;
+            }
+          }
         }
       }
     }
