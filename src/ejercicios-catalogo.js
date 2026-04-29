@@ -708,11 +708,6 @@ export const EJERCICIOS_CATALOGO = [
   },
   // HIIT con chaleco
   {
-    nombre: 'Burpees con chaleco',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Burpee completo con chaleco de peso: bajá al suelo, pecho toca, empujá, saltá los pies hacia las manos y saltá arriba. El chaleco aumenta la intensidad cardiovascular y la demanda de fuerza.'
-  },
-  {
     nombre: 'Mountain climbers con chaleco',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     descripcion: 'En posición de plancha alta con chaleco de peso. Llevá las rodillas alternadamente al pecho a máxima velocidad. Mantené la cadera baja y el core apretado. El chaleco agrega resistencia al cardio.'
