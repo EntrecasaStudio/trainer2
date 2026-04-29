@@ -615,7 +615,7 @@ function createCasaRoutines() {
     rutinaCasa('#C01', 'Casa Press A — Lean', 'Lean', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 3, '15'), ej('Banda dislocates', 3, '10')]),
       circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla goblet con kettlebell', 3, '12'), ej('Zancadas con chaleco de peso', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones con chaleco', 3, '12'), ej('TRX chest press', 3, '12'), ej('Flexiones diamante', 3, '8')]),
+      circuito(3, 'PECHO', [ej('Floor press con kettlebell', 3, '10'), ej('Flexiones con chaleco', 3, '12'), ej('TRX chest press', 3, '12')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con kettlebell', 3, '10'), ej('Fondos en banco con chaleco', 3, '12')]),
       circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Plancha con chaleco', 3, '30s')]),
       circuito(6, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '8'), ej('Jumping jacks', 3, '30')]),
@@ -631,7 +631,7 @@ function createCasaRoutines() {
     rutinaCasa('#C03', 'Casa Press C — Lean', 'Lean', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('TRX face pull', 3, '15'), ej('Rotación de hombros con banda', 3, '10')]),
       circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla goblet con kettlebell', 3, '10'), ej('Sentadilla con salto con chaleco', 3, '8')]),
-      circuito(3, 'PECHO', [ej('TRX chest press', 3, '12'), ej('Flexiones diamante', 3, '10'), ej('Flexiones inclinadas', 3, '10')]),
+      circuito(3, 'PECHO', [ej('Floor press con kettlebell', 3, '10'), ej('TRX chest press', 3, '12'), ej('Flexiones diamante', 3, '10')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con kettlebell', 3, '10'), ej('Extensión de tríceps con banda', 3, '15')]),
       circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Plancha con chaleco', 3, '30s')]),
       circuito(6, 'HIIT', [ej('Burpees con chaleco', 3, '8'), ej('Mountain climbers', 3, '20'), ej('Jumping jacks con chaleco', 3, '30')]),
@@ -689,7 +689,7 @@ function createCasaRoutines() {
     rutinaCasa('#C10', 'Casa Press E — Lean', 'Lean', 'press', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Rotación de hombros con banda', 3, '10'), ej('Rotación torácica', 3, '10')]),
       circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla búlgara', 3, '10'), ej('Zancadas con chaleco de peso', 3, '10')]),
-      circuito(3, 'PECHO', [ej('Flexiones con chaleco', 3, '12'), ej('Flexiones diamante', 3, '10'), ej('Flexiones explosivas', 3, '8')]),
+      circuito(3, 'PECHO', [ej('Floor press con kettlebell', 3, '10'), ej('Flexiones con chaleco', 3, '12'), ej('Flexiones explosivas', 3, '8')]),
       circuito(4, 'HOMBROS', [ej('Press militar con kettlebell', 3, '10'), ej('Vuelos laterales en equilibrio con kettlebell', 3, '10')]),
       circuito(5, 'CORE', [ej('Ab wheel', 3, '10'), ej('Plancha lateral con chaleco', 3, '25s')]),
       circuito(6, 'HIIT', [ej('Mountain climbers con chaleco', 3, '20'), ej('Sentadilla con salto con chaleco', 3, '8'), ej('Jumping jacks', 3, '30')]),

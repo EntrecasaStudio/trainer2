@@ -644,6 +644,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Flexiones estándar con chaleco de peso. Cuerpo recto, manos al ancho de hombros, bajá el pecho al suelo y empujá. El chaleco agrega resistencia significativa al empuje corporal.'
   },
   {
+    nombre: 'Floor press con kettlebell',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Acostado en el suelo boca arriba, un brazo a la vez. Kettlebell en una mano, codo apoyado en el piso. Empujá hacia arriba extendiendo el brazo y bajá controlado hasta que el codo toque el suelo. Trabaja pectoral, tríceps y estabilizadores de hombro con rango limitado que protege la articulación.'
+  },
+  {
     nombre: 'Fondos en banco con chaleco',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     descripcion: 'Manos en el borde de un banco, piernas extendidas. Bajá flexionando los codos hasta 90° y empujá para subir. El chaleco de peso intensifica el trabajo de tríceps y deltoides anterior.'
