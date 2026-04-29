@@ -723,7 +723,7 @@ function createCasaRoutines() {
     rutinaCasa('#C02', 'Casa Press B — Nat', 'Nat', 'press', 2, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 3, '15'), ej('Movilidad de hombros', 3, '10')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Patada de glúteo con tobillera 4k', 3, '15'), ej('Zancadas con kettlebell', 3, '10')]),
-      circuito(3, 'PECHO·HOMBROS', [ej('Banda press de pecho', 3, '15'), ej('Flexiones', 3, '10')]),
+      circuito(3, 'PECHO', [ej('TRX chest press', 3, '12'), ej('Flexiones', 3, '10')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Fondos en banco', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body con peso', 3, '25s'), ej('Ab wheel', 3, '8')]),
       circuito(6, 'HIIT', [ej('Burpees', 3, '6'), ej('Jumping jacks', 3, '25'), ej('Mountain climbers', 3, '15')]),
@@ -797,7 +797,7 @@ function createCasaRoutines() {
     rutinaCasa('#C10', 'Casa Press F — Nat', 'Nat', 'press', 1, [
       circuito(1, 'ACTIVACIÓN', [ej('Banda lateral walk', 3, '15'), ej('Banda dislocates', 3, '10')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera', 3, '15'), ej('Sentadilla sumo', 3, '12')]),
-      circuito(3, 'PECHO·HOMBROS', [ej('Flexiones inclinadas', 3, '12'), ej('Banda press de pecho', 3, '15')]),
+      circuito(3, 'PECHO', [ej('Flexiones inclinadas', 3, '12'), ej('TRX chest press', 3, '12')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 3, '10'), ej('Fondos en banco', 3, '12')]),
       circuito(5, 'CORE', [ej('Hollow body', 3, '25s'), ej('Plancha con elevación alternada', 3, '10')]),
       circuito(6, 'HIIT', [ej('Jumping jacks', 3, '25'), ej('Mountain climbers', 3, '15'), ej('Sentadilla con salto', 3, '8')]),
