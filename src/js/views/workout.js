@@ -17,6 +17,7 @@ const NO_CHALECO_PATTERNS = [
   'remo con kettlebell', 'remo con mancuerna', 'remo con barra',
   'swing',
   'rotación torácica', 'rotacion toracica',
+  'rotación de hombros', 'rotacion de hombros', 'movilidad de hombros',
 ];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
