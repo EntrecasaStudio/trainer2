@@ -565,6 +565,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Acostado boca arriba, levantá hombros y piernas del suelo con los brazos extendidos junto a las orejas. Mantené la zona lumbar pegada al piso. Posición de tensión total del core anterior. Mantené el tiempo indicado.'
   },
   {
+    nombre: 'Abs complex',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Circuito sin pausa: Hollow body (10s) + Dead bug (6 reps) + Elevación de piernas (8 reps). Eso es una serie. Trabaja core anterior, estabilización anti-extensión y flexores de cadera.'
+  },
+  {
     nombre: 'L-sit en paralelas',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     descripcion: 'Apoyado en barras paralelas con los brazos extendidos, elevá las piernas rectas hasta paralelas al suelo formando una L. Mantené la posición. Trabaja abdominales, flexores de cadera y tríceps isométrico.'
@@ -700,11 +705,6 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plancha lateral con chaleco',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     descripcion: 'Apoyado en un antebrazo de costado con chaleco de peso. Cadera elevada, cuerpo recto. Mantené la posición sin dejar caer la cadera. Trabaja oblicuos y estabilizadores laterales del core.'
-  },
-  {
-    nombre: 'Hollow body con peso',
-    grupo: 'Core', tipo: 'funcional', usaPeso: true,
-    descripcion: 'Acostado boca arriba con un peso (plato de rucking 4kg, kettlebell o mancuerna) sostenido con los brazos extendidos sobre la cabeza. Elevá piernas y hombros del piso, formando una banana. Mantené la zona lumbar pegada al suelo.'
   },
   // HIIT con chaleco
   {
