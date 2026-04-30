@@ -638,6 +638,81 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Espalda apoyada en un banco o el piso, peso sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
   },
   {
+    nombre: 'Hip thrust a una pierna',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Espalda apoyada en banco, una pierna extendida en el aire. Empujá la cadera hacia arriba con la pierna de apoyo apretando el glúteo. Bajá controlado. Trabaja glúteo mayor unilateral con énfasis en estabilidad.'
+  },
+  {
+    nombre: 'Abducción con pausa',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De costado o parada, elevá la pierna hacia afuera y mantené 2-3 segundos en el punto más alto. Bajá controlado. La pausa aumenta la tensión en glúteo medio y menor.'
+  },
+  {
+    nombre: 'Step up',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Frente a un banco o cajón, subí con una pierna y extendé la cadera arriba. Bajá controlado con la misma pierna. Se puede agregar peso con kettlebell o chaleco. Trabaja cuádriceps, glúteos y equilibrio.'
+  },
+  {
+    nombre: 'Plié squat',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Piernas bien abiertas, puntas de pie hacia afuera. Bajá la cadera manteniendo la espalda recta y rodillas en dirección de los pies. Subí apretando glúteos e interno de muslo. Trabaja aductores, cuádriceps y glúteos.'
+  },
+  {
+    nombre: 'Plié dips',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'En posición de plié squat baja, hacé pulsos cortos bajando y subiendo unos centímetros. Mantené la tensión constante en aductores y glúteos durante todo el movimiento.'
+  },
+  {
+    nombre: 'Elevated side leg lifts',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De costado con la cadera elevada (apoyada en banco o step), elevá la pierna superior hacia arriba. Bajá controlado sin apoyar. Trabaja glúteo medio y abductores con mayor rango de movimiento.'
+  },
+  {
+    nombre: 'Elevated side reaches',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    descripcion: 'De costado con la cadera elevada, extendé el brazo superior hacia el piso y volvé a la posición inicial. Trabaja oblicuos, core lateral y estabilizadores de cadera.'
+  },
+  {
+    nombre: 'Glute bridge',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Acostada boca arriba, pies apoyados, empujá la cadera hacia arriba apretando glúteos. Mantené 1-2 segundos arriba y bajá controlado. Se puede agregar peso con kettlebell o plato sobre la cadera.'
+  },
+  {
+    nombre: 'Narrow to wide squat',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Alterná entre una sentadilla con pies juntos y una sentadilla abierta (sumo) en cada repetición. Saltá o caminá los pies para cambiar de posición. Trabaja cuádriceps, aductores y glúteos.'
+  },
+  {
+    nombre: 'Split squat pulses',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'En posición de zancada estática, hacé pulsos cortos bajando y subiendo sin volver arriba del todo. La tensión continua intensifica el trabajo en cuádriceps y glúteos.'
+  },
+  {
+    nombre: 'Sumo squat to calf raise',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Sentadilla sumo y al subir elevá los talones en punta de pie. Bajá los talones y repetí. Trabaja aductores, glúteos, cuádriceps y pantorrillas en un solo movimiento.'
+  },
+  {
+    nombre: 'Déficit reverse lunge',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Parada sobre un step o disco, dá un paso largo hacia atrás bajando la rodilla por debajo del nivel de la plataforma. Mayor rango de movimiento que la zancada normal. Trabaja glúteos y cuádriceps.'
+  },
+  {
+    nombre: 'Standing weighted hip abduction',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    descripcion: 'De pie con tobillera o banda, elevá la pierna lateralmente manteniéndola recta. Controlá la bajada sin apoyar. Trabaja glúteo medio y estabilizadores de cadera.'
+  },
+  {
+    nombre: 'Sumo squat to RDL',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    descripcion: 'Sentadilla sumo seguida de un peso muerto rumano al subir: cerrá piernas y bajá el torso con piernas casi rectas. Volvé a posición sumo y repetí. Trabaja glúteos, aductores y femorales.'
+  },
+  {
+    nombre: 'Banded narrow to wide squat',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    descripcion: 'Con banda de resistencia en las rodillas, alterná sentadilla cerrada y abierta. La banda agrega resistencia a la abducción, activando más el glúteo medio durante todo el movimiento.'
+  },
+  {
     nombre: 'Patada de glúteo con tobillera 4k',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     descripcion: 'En cuatro puntos con tobillera de 4 kg en el tobillo. Elevá la pierna hacia atrás y arriba manteniendo la rodilla a 90°, apretá el glúteo arriba. Bajá controlado sin apoyar. Aislamiento de glúteo mayor.'

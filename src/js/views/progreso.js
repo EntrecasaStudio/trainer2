@@ -164,6 +164,12 @@ export function mountProgreso(container) {
       ['sentadilla goblet', 'Glúteos'],
       ['zancada', 'Glúteos'],
       ['peso muerto', 'Glúteos'],
+      ['step up', 'Glúteos'],
+      ['plié', 'Glúteos'],
+      ['split squat', 'Glúteos'],
+      ['lunge', 'Glúteos'],
+      ['narrow to wide', 'Glúteos'],
+      ['sumo squat', 'Glúteos'],
     ];
     const counts = {}; // grupo → series count
     for (const s of sesiones) {
