@@ -227,7 +227,7 @@
 }
 
 .check-all-btn {
-  width: 32px; height: 32px;
+  width: 44px; height: 44px;
   border: none;
   background: transparent;
   color: var(--color-text-muted);
@@ -396,7 +396,7 @@
 .vuelta-right {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 0;
   flex-shrink: 0;
   padding-left: var(--space-xs);
 }
@@ -412,7 +412,7 @@
 }
 
 .vuelta-check {
-  width: 32px; height: 32px;
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   color: var(--color-text-muted);
@@ -427,7 +427,7 @@
 .vuelta-done .vuelta-check { color: #4ade80; opacity: 1; }
 
 .vuelta-remove {
-  width: 28px; height: 28px;
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
   color: var(--color-text-muted);
@@ -503,17 +503,17 @@
 }
 
 .stepper-sm .stepper-btn {
-  width: 32px; height: 38px;
+  width: 40px; height: 44px;
   font-size: var(--text-sm);
 }
 .stepper-sm .stepper-btn:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
 .stepper-sm .stepper-btn:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
 .stepper-sm .stepper-value {
-  width: 48px; height: 38px;
+  width: 48px; height: 44px;
   font-size: var(--text-lg);
 }
 .stepper-sm .stepper-input {
-  width: 48px; height: 38px;
+  width: 48px; height: 44px;
   font-size: var(--text-lg);
 }
 
@@ -531,6 +531,7 @@
   justify-content: center;
   gap: 6px;
   width: 100%;
+  min-height: 44px;
   padding: var(--space-sm);
   margin-top: var(--space-sm);
   border: 1.5px dashed var(--color-border);
