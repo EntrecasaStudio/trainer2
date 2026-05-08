@@ -598,11 +598,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
   },
   {
-    nombre: 'Sentadilla con salto con chaleco',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
-    descripcion: 'Sentadilla explosiva con chaleco de peso. Bajá a paralelo y saltá con máxima potencia, aterrizá suave absorbiendo con las piernas. El chaleco agrega resistencia al movimiento pliométrico.'
-  },
-  {
     nombre: 'Zancadas con chaleco de peso',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     descripcion: 'Zancadas alternadas con chaleco de peso puesto. Dá un paso largo al frente, bajá la rodilla trasera casi al piso y volvé. El chaleco añade carga distribuida al torso manteniendo las manos libres.'
