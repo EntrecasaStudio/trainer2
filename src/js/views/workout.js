@@ -659,6 +659,7 @@ function bindExerciseEvents(container, scope) {
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
       ejercicio.chalecoPeso = Math.max(0, parseFloat(input.value) || 0);
       persistWorkout();
+      refreshExercises(container);
     });
     input.addEventListener('focus', () => { input.select(); });
   });
