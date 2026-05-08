@@ -23,9 +23,13 @@ function circuito(numero, nombre, ejercicios) {
   return { id: uid(), numero, nombre, ejercicios };
 }
 
+function stableId(nombre, usuario, lugar) {
+  return `${lugar}-${usuario}-${nombre}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+}
+
 function rutina(numero, nombre, usuario, foco, semana_ciclo, circuitos) {
   return {
-    id: uid(), numero, nombre, usuario,
+    id: stableId(nombre, usuario, 'SF'), numero, nombre, usuario,
     lugar: 'SPORT_FITNESS', tipo: 'gimnasio', foco, semana_ciclo,
     circuitos, updatedAt: new Date().toISOString(), pendingSync: false,
   };
@@ -315,7 +319,7 @@ function createNatRoutines() {
 
 function rutinaRio(numero, nombre, usuario, foco, semana_ciclo, circuitos) {
   return {
-    id: uid(), numero, nombre, usuario,
+    id: stableId(nombre, usuario, 'RIO'), numero, nombre, usuario,
     lugar: 'RIO', tipo: 'cross', foco, semana_ciclo,
     circuitos, updatedAt: new Date().toISOString(), pendingSync: false,
   };
@@ -577,7 +581,7 @@ function createRioRoutines() {
 
 function rutinaCasa(numero, nombre, usuario, foco, semana_ciclo, circuitos) {
   return {
-    id: uid(), numero, nombre, usuario,
+    id: stableId(nombre, usuario, 'CASA'), numero, nombre, usuario,
     lugar: 'CASA', tipo: 'cross', foco, semana_ciclo,
     circuitos, updatedAt: new Date().toISOString(), pendingSync: false,
   };
@@ -791,7 +795,7 @@ function createCasaRoutines() {
 
 function rutinaRecovery(numero, nombre, usuario, semana_ciclo, circuitos) {
   return {
-    id: uid(), numero, nombre, usuario,
+    id: stableId(nombre, usuario, 'REC'), numero, nombre, usuario,
     lugar: 'RECOVERY', tipo: 'cross', foco: 'recovery', semana_ciclo,
     circuitos, updatedAt: new Date().toISOString(), pendingSync: false,
   };
@@ -1644,7 +1648,43 @@ export async function seedV2() {
   // Merge: keep URUGUAY intact, replace SPORT_FITNESS, RIO, CASA and RECOVERY
   const existing = store.getAll(store.KEYS.rutinas);
   const uruguayOnly = existing.filter(r => r.lugar === 'URUGUAY');
-  store.set(store.KEYS.rutinas, [...uruguayOnly, ...sfRoutines, ...rioRoutines, ...casaRoutines, ...recoveryRoutines]);
+  const allNew = [...sfRoutines, ...rioRoutines, ...casaRoutines, ...recoveryRoutines];
+
+  // Build old-ID → new-stable-ID remap (by nombre+usuario)
+  const newByKey = new Map(allNew.map(r => [`${r.nombre}|${r.usuario}`, r.id]));
+  const idRemap = new Map();
+  for (const old of existing) {
+    if (old.lugar === 'URUGUAY') continue;
+    const key = `${old.nombre}|${old.usuario}`;
+    const newId = newByKey.get(key);
+    if (newId && old.id !== newId) idRemap.set(old.id, newId);
+  }
+
+  // Remap rutinaId in saved sessions
+  if (idRemap.size > 0) {
+    const sesiones = store.getAll(store.KEYS.sesiones) || [];
+    let sesChanged = false;
+    for (const s of sesiones) {
+      if (idRemap.has(s.rutinaId)) { s.rutinaId = idRemap.get(s.rutinaId); sesChanged = true; }
+    }
+    if (sesChanged) store.set(store.KEYS.sesiones, sesiones);
+
+    // Remap active workout in localStorage
+    try {
+      const wsRaw = localStorage.getItem('gym_active_workout');
+      if (wsRaw) {
+        const ws = JSON.parse(wsRaw);
+        if (ws.workoutState && idRemap.has(ws.workoutState.rutinaId)) {
+          ws.workoutState.rutinaId = idRemap.get(ws.workoutState.rutinaId);
+          localStorage.setItem('gym_active_workout', JSON.stringify(ws));
+        }
+      }
+    } catch {}
+
+    console.log(`[Seed] Remapped ${idRemap.size} old rutina IDs to stable IDs`);
+  }
+
+  store.set(store.KEYS.rutinas, [...uruguayOnly, ...allNew]);
 
   // Assign calendar — plan started March 30, preserve to maintain press/pull cycle
   const PLAN_ORIGIN = '2026-03-30';
