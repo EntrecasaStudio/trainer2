@@ -295,6 +295,9 @@
   border: none;
   padding: 0;
   font-family: inherit;
+  min-width: 48px;
+  min-height: 48px;
+  justify-content: center;
 }
 .chaleco-toggle-btn.active {
   color: #4ade80;
