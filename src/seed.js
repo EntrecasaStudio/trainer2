@@ -1073,7 +1073,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.29';
+const SEED_VERSION = '2.30';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
