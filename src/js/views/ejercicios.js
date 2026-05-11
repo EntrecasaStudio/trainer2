@@ -269,6 +269,8 @@ function showDetailModal(data, allowEdit, onChange) {
           ${inferUsaPeso(data.nombre) ? `<span class="attr-chip"><i class="ph ph-barbell"></i> Usa peso</span>` : ''}
         </div>
 
+        ${data.musculos ? `<div class="ejercicio-musculos"><i class="ph ph-person-arms-spread" style="font-size:16px;flex-shrink:0;color:var(--color-primary);"></i><span>${data.musculos}</span></div>` : ''}
+
         <p class="ejercicio-descripcion" id="ejercicio-desc-text">${data.descripcion || 'Sin descripción.'}</p>
       </div>
     </div>
