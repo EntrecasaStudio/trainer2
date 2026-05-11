@@ -869,8 +869,8 @@ function assignCalendar(rutinas, startDate, calendarStart) {
       const dow = getISODayOfWeek(date);
       const cycleWeek = getCycleWeek(date, startDate);
 
-      // Mon(1), Wed(3), Fri(5) → SPORT_FITNESS
-      if (dow === 1 || dow === 3 || dow === 5) {
+      // Mon(1), Wed(3), Fri(5) → SPORT_FITNESS (only before May 11)
+      if ((dow === 1 || dow === 3 || dow === 5) && formatDateISO(date) < '2026-05-11') {
         const foco = getFocusForDay(dow, cycleWeek);
         if (!foco) continue;
 
@@ -1628,8 +1628,7 @@ function ensureCalendarOverrides() {
       if (date < '2026-05-11') continue;
       const ov = overrides[usuario][date];
       if (!ov?.rutinaId) continue;
-      const r = rutinaById.get(ov.rutinaId);
-      if (r && r.lugar === 'SPORT_FITNESS') {
+      if (!ov.lugar || ov.lugar === 'SPORT_FITNESS') {
         delete overrides[usuario][date];
         changed = true;
       }
