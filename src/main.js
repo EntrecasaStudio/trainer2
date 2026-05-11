@@ -247,8 +247,12 @@ async function start() {
     if (user) {
       try {
         await downloadAllData();
+        await seedV2();
         await uploadAllData();
-        startRealtimeSync(() => router._handleRoute());
+        startRealtimeSync(() => {
+          seedV2();
+          router._handleRoute();
+        });
       } catch (e) {
         console.warn('[Sync] Error:', e.message);
       }
