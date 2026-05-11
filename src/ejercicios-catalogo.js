@@ -696,13 +696,13 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plancha en paralelas',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Deltoides anterior',
-    descripcion: 'Plancha con las manos apoyadas en barras' paralelas. La elevación aumenta el rango y la inestabilidad. Mantené el cuerpo recto activando core y glúteos. Trabaja estabilidad de hombros y core profundo.'
+    descripcion: 'Plancha con las manos apoyadas en barras paralelas. La elevación aumenta el rango y la inestabilidad. Mantené el cuerpo recto activando core y glúteos. Trabaja estabilidad de hombros y core profundo.'
   },
   {
     nombre: 'Bear crawl',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides anterior, Cuádriceps, Recto abdominal',
-    descripcion: 'En cuatro puntos con las rodillas' apenas despegadas del suelo, avanzá moviendo mano y pie opuestos simultáneamente. Mantené la espalda plana y la cadera baja. Trabaja core, hombros, cuádriceps y coordinación.'
+    descripcion: 'En cuatro puntos con las rodillas apenas despegadas del suelo, avanzá moviendo mano y pie opuestos simultáneamente. Mantené la espalda plana y la cadera baja. Trabaja core, hombros, cuádriceps y coordinación.'
   },
 
   // ── CASA — VARIANTES CON EQUIPAMIENTO ──────────────────────────────────────
@@ -711,7 +711,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sentadilla goblet con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Sostené la kettlebell contra el pecho' con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
+    descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
   },
   {
     nombre: 'Zancadas con chaleco de peso',
@@ -723,298 +723,352 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Zancadas con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Zancadas alternadas sosteniendo la kettlebell' al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
+    descripcion: 'Zancadas alternadas sosteniendo la kettlebell al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
   },
   {
     nombre: 'Peso muerto rumano con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
-    descripcion: 'De pie con la kettlebell en ambas manos'. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
+    descripcion: 'De pie con la kettlebell en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
   },
   {
     nombre: 'Squat to press con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Deltoides anterior',
-    descripcion: 'Sostenés la kettlebell con ambas manos' a la altura del pecho (posición goblet). Bajá a sentadilla profunda y al subir empujá la kettlebell hacia arriba en press sobre la cabeza estirando los brazos. Bajá la kettlebell al pecho y repetí. Trabaja piernas, hombros y core en un solo movimiento.'
+    descripcion: 'Sostenés la kettlebell con ambas manos a la altura del pecho (posición goblet). Bajá a sentadilla profunda y al subir empujá la kettlebell hacia arriba en press sobre la cabeza estirando los brazos. Bajá la kettlebell al pecho y repetí. Trabaja piernas, hombros y core en un solo movimiento.'
   },
   {
     nombre: 'Squat to press a una mano con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Deltoides anterior',
     descripcion: 'Kettlebell en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
   },
   {
     nombre: 'Peso muerto a una pierna con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Isquiotibiales, Glúteos, Erector espinal',
     descripcion: 'De pie sobre una pierna, kettlebell en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
   },
   {
     nombre: 'Empuje de cadera',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Isquiotibiales',
     descripcion: 'Espalda apoyada en un banco o el piso, peso sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
   },
   {
     nombre: 'Hip thrust a una pierna',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Isquiotibiales',
     descripcion: 'Espalda apoyada en banco, una pierna extendida en el aire. Empujá la cadera hacia arriba con la pierna de apoyo apretando el glúteo. Bajá controlado. Trabaja glúteo mayor unilateral con énfasis en estabilidad.'
   },
   {
     nombre: 'Abducción con pausa',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Abductores',
     descripcion: 'De costado o parada, elevá la pierna hacia afuera y mantené 2-3 segundos en el punto más alto. Bajá controlado. La pausa aumenta la tensión en glúteo medio y menor.'
   },
   {
     nombre: 'Step up',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos',
     descripcion: 'Frente a un banco o cajón, subí con una pierna y extendé la cadera arriba. Bajá controlado con la misma pierna. Se puede agregar peso con kettlebell o chaleco. Trabaja cuádriceps, glúteos y equilibrio.'
   },
   {
     nombre: 'Plié squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Aductores, Cuádriceps, Glúteos',
     descripcion: 'Piernas bien abiertas, puntas de pie hacia afuera. Bajá la cadera manteniendo la espalda recta y rodillas en dirección de los pies. Subí apretando glúteos e interno de muslo. Trabaja aductores, cuádriceps y glúteos.'
   },
   {
     nombre: 'Plié dips',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Aductores, Cuádriceps, Glúteos',
     descripcion: 'En posición de plié squat baja, hacé pulsos cortos bajando y subiendo unos centímetros. Mantené la tensión constante en aductores y glúteos durante todo el movimiento.'
   },
   {
     nombre: 'Elevated side leg lifts',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Abductores',
     descripcion: 'De costado con la cadera elevada (apoyada en banco o step), elevá la pierna superior hacia arriba. Bajá controlado sin apoyar. Trabaja glúteo medio y abductores con mayor rango de movimiento.'
   },
   {
     nombre: 'Elevated side reaches',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Oblicuos, Transverso abdominal, Glúteos',
     descripcion: 'De costado con la cadera elevada, extendé el brazo superior hacia el piso y volvé a la posición inicial. Trabaja oblicuos, core lateral y estabilizadores de cadera.'
   },
   {
     nombre: 'Glute bridge',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Isquiotibiales',
     descripcion: 'Acostada boca arriba, pies apoyados, empujá la cadera hacia arriba apretando glúteos. Mantené 1-2 segundos arriba y bajá controlado. Se puede agregar peso con kettlebell o plato sobre la cadera.'
   },
   {
     nombre: 'Narrow to wide squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Aductores, Glúteos',
     descripcion: 'Alterná entre una sentadilla con pies juntos y una sentadilla abierta (sumo) en cada repetición. Saltá o caminá los pies para cambiar de posición. Trabaja cuádriceps, aductores y glúteos.'
   },
   {
     nombre: 'Split squat pulses',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos',
     descripcion: 'En posición de zancada estática, hacé pulsos cortos bajando y subiendo sin volver arriba del todo. La tensión continua intensifica el trabajo en cuádriceps y glúteos.'
   },
   {
     nombre: 'Sumo squat to calf raise',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Aductores, Glúteos, Cuádriceps, Pantorrillas',
     descripcion: 'Sentadilla sumo y al subir elevá los talones en punta de pie. Bajá los talones y repetí. Trabaja aductores, glúteos, cuádriceps y pantorrillas en un solo movimiento.'
   },
   {
     nombre: 'Déficit reverse lunge',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Cuádriceps, Isquiotibiales',
     descripcion: 'Parada sobre un step o disco, dá un paso largo hacia atrás bajando la rodilla por debajo del nivel de la plataforma. Mayor rango de movimiento que la zancada normal. Trabaja glúteos y cuádriceps.'
   },
   {
     nombre: 'Standing weighted hip abduction',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Abductores',
     descripcion: 'De pie con tobillera o banda, elevá la pierna lateralmente manteniéndola recta. Controlá la bajada sin apoyar. Trabaja glúteo medio y estabilizadores de cadera.'
   },
   {
     nombre: 'Sumo squat to RDL',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Aductores, Isquiotibiales',
     descripcion: 'Sentadilla sumo seguida de un peso muerto rumano al subir: cerrá piernas y bajá el torso con piernas casi rectas. Volvé a posición sumo y repetí. Trabaja glúteos, aductores y femorales.'
   },
   {
     nombre: 'Banded narrow to wide squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Abductores',
     descripcion: 'Con banda de resistencia en las rodillas, alterná sentadilla cerrada y abierta. La banda agrega resistencia a la abducción, activando más el glúteo medio durante todo el movimiento.'
   },
   {
     nombre: 'Patada de glúteo con tobillera 4k',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Isquiotibiales',
     descripcion: 'En cuatro puntos con tobillera de 4 kg en el tobillo. Elevá la pierna hacia atrás y arriba manteniendo la rodilla a 90°, apretá el glúteo arriba. Bajá controlado sin apoyar. Aislamiento de glúteo mayor.'
   },
   // Chaleco de peso — Tren superior
   {
     nombre: 'Flexiones con chaleco',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
     descripcion: 'Flexiones estándar con chaleco de peso. Cuerpo recto, manos al ancho de hombros, bajá el pecho al suelo y empujá. El chaleco agrega resistencia significativa al empuje corporal.'
   },
   {
     nombre: 'Floor press con kettlebell',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
+    musculos: 'Pectoral mayor, Tríceps, Deltoides anterior',
     descripcion: 'Acostado en el suelo boca arriba, un brazo a la vez. Kettlebell en una mano, codo apoyado en el piso. Empujá hacia arriba extendiendo el brazo y bajá controlado hasta que el codo toque el suelo. Trabaja pectoral, tríceps y estabilizadores de hombro con rango limitado que protege la articulación.'
   },
   {
     nombre: 'Fondos en banco con chaleco',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Tríceps, Deltoides anterior, Pectoral mayor',
     descripcion: 'Manos en el borde de un banco, piernas extendidas. Bajá flexionando los codos hasta 90° y empujá para subir. El chaleco de peso intensifica el trabajo de tríceps y deltoides anterior.'
   },
   // Kettlebell — Tren superior
   {
     nombre: 'Press militar con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides anterior, Deltoides lateral, Tríceps',
     descripcion: 'De pie, kettlebell en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
   },
   {
     nombre: 'Arnold press con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides anterior, Deltoides lateral, Deltoides posterior',
     descripcion: 'Sentado o de pie con kettlebell. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
   },
   {
     nombre: 'Remo con kettlebell',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
+    musculos: 'Dorsal ancho, Romboides, Bíceps',
     descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
   },
   {
     nombre: 'Curl de bíceps con kettlebell',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
   },
   {
     nombre: 'Curl martillo con kettlebell',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Braquial, Bíceps, Antebrazo',
     descripcion: 'Curl con kettlebell manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
   },
   // Bandas
   {
     nombre: 'Extensión de tríceps con banda',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Tríceps',
     descripcion: 'Banda anclada arriba o pisada por detrás. Extendé los codos empujando las manos hacia abajo o arriba según el anclaje. Mantené los brazos pegados a la cabeza o al torso. Aislamiento de tríceps.'
   },
   {
     nombre: 'Rotación de hombros con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
     descripcion: 'Sostenés la banda con ambas manos al frente. Llevala por encima de la cabeza y atrás hasta la zona lumbar, y volvé. Mantené los brazos rectos. Movilidad y calentamiento del manguito rotador.'
   },
   // Core con carga
   {
     nombre: 'Plancha con chaleco',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
     descripcion: 'Plancha estándar en antebrazos con chaleco de peso. Cuerpo recto de cabeza a talones, apretá abdomen y glúteos. El chaleco aumenta la demanda de estabilización del core.'
   },
   {
     nombre: 'Plancha lateral con chaleco',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Oblicuos, Transverso abdominal, Glúteos',
     descripcion: 'Apoyado en un antebrazo de costado con chaleco de peso. Cadera elevada, cuerpo recto. Mantené la posición sin dejar caer la cadera. Trabaja oblicuos y estabilizadores laterales del core.'
   },
   // HIIT con chaleco
   {
     nombre: 'Mountain climbers con chaleco',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Recto abdominal, Deltoides anterior, Cuádriceps',
     descripcion: 'En posición de plancha alta con chaleco de peso. Llevá las rodillas alternadamente al pecho a máxima velocidad. Mantené la cadera baja y el core apretado. El chaleco agrega resistencia al cardio.'
   },
   {
     nombre: 'Jumping jacks con chaleco',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Deltoides lateral, Gemelos',
     descripcion: 'Saltá abriendo piernas y subiendo brazos simultáneamente, volvé al centro. Con chaleco de peso se intensifica el trabajo cardiovascular y de resistencia muscular en piernas y hombros.'
   },
   // Equilibrio + kettlebell
   {
     nombre: 'Curl de bíceps en equilibrio con kettlebell',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Bíceps, Braquial, Glúteos',
     descripcion: 'De pie sobre una pierna, kettlebell en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series.'
   },
   {
     nombre: 'Vuelos laterales en equilibrio con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides lateral, Trapecio, Glúteos',
     descripcion: 'Parado sobre una pierna, kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar.'
   },
   // TRX — Piernas
   {
     nombre: 'Sentadilla búlgara con TRX',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
     descripcion: 'Pie trasero en el estribo del TRX. Bajá la rodilla trasera hacia el piso manteniendo el torso recto. Empujá para subir. El TRX permite mayor rango de movimiento y desafía la estabilidad. Trabaja cuádriceps, glúteos y equilibrio unilateral.'
   },
   // TRX — Bíceps
   {
     nombre: 'Curl de bíceps en TRX',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Bíceps, Braquial',
     descripcion: 'De frente al anclaje del TRX, agarrá las correas con agarre supino y el cuerpo inclinado hacia atrás. Flexioná los codos llevando las manos a la frente, manteniendo los codos altos y fijos. Extendé controlado. Cuanto más horizontal el cuerpo, más difícil. Trabaja bíceps y braquial con peso corporal.'
   },
   // TRX — Tríceps
   {
     nombre: 'Tríceps alto en TRX',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Tríceps, Deltoides anterior',
     descripcion: 'De espaldas al anclaje del TRX, brazos extendidos sobre la cabeza sosteniendo las correas. Flexioná los codos bajando la cabeza entre las manos, manteniendo los brazos pegados a las orejas. Extendé para volver. Similar a un french press con peso corporal. Cuanto más inclinado, más difícil.'
   },
   // ── RECOVERY (post-cirugía, sin Valsalva, cargas livianas) ─────────────────
   {
     nombre: 'Sentadilla corporal',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
     descripcion: 'De pie con pies al ancho de caderas. Bajá como si fueras a sentarte en una silla, flexionando rodillas y caderas. Mantené el pecho erguido y la espalda recta. Respiración normal, sin aguantar aire. Ideal para recuperación sin carga.'
   },
   {
     nombre: 'Puente de glúteos',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Isquiotibiales',
     descripcion: 'Acostada boca arriba, rodillas dobladas y pies apoyados al ancho de caderas. Elevá la cadera contrayendo los glúteos hasta formar una línea recta entre hombros, caderas y rodillas. Bajá controlado. Respiración continua, sin apnea. Base de activación de glúteo y cadena posterior.'
   },
   {
     nombre: 'Puente de glúteos una pierna',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Isquiotibiales',
     descripcion: 'Igual que el puente clásico pero con una pierna extendida en el aire. Apoyás solo un pie, la otra pierna queda estirada hacia arriba. Subí la cadera contrayendo el glúteo de apoyo. Mayor demanda unilateral y control de pelvis. Sin aguantar aire.'
   },
   {
     nombre: 'Plancha isométrica',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
     descripcion: 'Apoyada en antebrazos y puntas de pies. Cuerpo recto como tabla, caderas alineadas con hombros. Mantené la posición respirando normal, sin Valsalva. Activa core profundo sin generar presión intra-abdominal. Ideal post-cirugía.'
   },
   {
     nombre: 'Extensión de cadera en 4 puntos',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Isquiotibiales, Erector espinal',
     descripcion: 'En posición de 4 apoyos (manos y rodillas). Extendé una pierna hacia atrás hasta alinear con el torso, apretando el glúteo al final. Bajá controlado. Core activado todo el tiempo, sin arquear la columna. Trabajá glúteo mayor y estabilidad lumbopélvica.'
   },
   {
     nombre: 'Estocadas estáticas',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
     descripcion: 'Dá un paso al frente y quedate en esa posición. Bajá la rodilla trasera hacia el suelo sin apoyarla y subí. Hacé todas las reps de un lado antes de cambiar. Sin saltos, movimiento controlado. Trabajá cuádriceps, glúteos y estabilidad unilateral.'
   },
   {
     nombre: 'Calf raises',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Gemelos, Pantorrillas',
     descripcion: 'De pie en el suelo o en el borde de un escalón con las puntas de los pies apoyadas. Subí elevando los talones lo más alto posible y bajá lentamente estirando. Si estás en escalón, ganás más rango. Trabaja gemelos y sóleo.'
   },
   {
     nombre: 'Plancha lateral',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Oblicuos, Transverso abdominal, Glúteos',
     descripcion: 'Apoyá el antebrazo y el lado del pie inferior. Levantá la cadera formando una línea recta del tobillo al hombro. Mantené la posición respirando continuo. Trabaja oblicuos y estabilizadores laterales sin generar presión abdominal alta.'
   },
   {
     nombre: 'Cat-cow',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Erector espinal, Recto abdominal, Transverso abdominal',
     descripcion: 'En 4 apoyos. En la fase "cat" redondeá toda la columna hacia arriba llevando el mentón al pecho. En la fase "cow" dejá caer el abdomen y mirá al frente. Cuello relajado, sin tensión. Movilidad de toda la columna vertebral, ideal para calentar y despertar el core.'
   },
   {
     nombre: 'Bird-dog',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Transverso abdominal, Erector espinal, Glúteos',
     descripcion: 'En 4 apoyos, extendé simultáneamente brazo derecho y pierna izquierda hasta alinear con el torso. Mantené 1-2 segundos y volvé. Alterná. Sin rotación de cadera ni hombros. Control total, core activado. Estabilidad antirotacional y coordinación cruzada.'
   },
   {
     nombre: 'Hip hinge corporal',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Isquiotibiales, Glúteos, Erector espinal',
     descripcion: 'De pie, pies al ancho de caderas. Empujá la cadera hacia atrás manteniendo la espalda recta y rodillas levemente flexionadas. El torso se inclina por la bisagra de cadera, no por la columna. Activa isquiotibiales y glúteos. Patrón base del peso muerto sin carga.'
   },
   {
     nombre: 'Yoga suave',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Erector espinal, Transverso abdominal, Hip flexors',
     descripcion: 'Secuencia de posturas suaves sin inversiones ni presión abdominal intensa: postura del niño, gato-vaca, paloma, torsión suave sentada, savasana. Respiración profunda y consciente. Ideal para días de recuperación y movilidad.'
   },
   {
     nombre: 'Plancha toque de hombro',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Transverso abdominal, Oblicuos, Deltoides anterior',
     descripcion: 'En plancha sobre manos (no antebrazos), pies un poco más separados que hombros. Tocá el hombro contrario con una mano alternando lados sin que la cadera rote. Core antirotacional en acción. Respiración continua, sin contener aire.'
   },
   {
     nombre: 'Press militar suave con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides anterior, Deltoides lateral, Tríceps',
     descripcion: 'Press militar con kettlebell liviana, sentada o de pie. Sin apnea, sin aguantar aire. Ideal con el 40-50% de tu peso habitual. Empujá controlado hacia arriba y bajá al rack del hombro. Estímulo de deltoides sin generar presión intracraneal.'
   },
   {
     nombre: 'Curl de bíceps suave',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie o sentada, kettlebell liviana en cada mano o bilateral. Flexioná el codo con control total en la bajada. Respiración continua. Cargas del 40-50% de lo habitual para mantener estímulo sin fatiga excesiva.'
   },
   {
     nombre: 'Face pull con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
+    musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
     descripcion: 'Ancla una banda elástica a la altura de los ojos. Tirá la banda hacia tu cara abriendo los codos y rotando externamente los hombros. Trabaja postura, deltoides posterior y manguito rotador. Excelente para compensar horas sentada y mejorar postura.'
   },
 ];
