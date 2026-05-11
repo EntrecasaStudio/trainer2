@@ -929,12 +929,6 @@ export const EJERCICIOS_CATALOGO = [
   },
   // HIIT con chaleco
   {
-    nombre: 'Mountain climbers con chaleco',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    musculos: 'Recto abdominal, Deltoides anterior, Cuádriceps',
-    descripcion: 'En posición de plancha alta con chaleco de peso. Llevá las rodillas alternadamente al pecho a máxima velocidad. Mantené la cadera baja y el core apretado. El chaleco agrega resistencia al cardio.'
-  },
-  {
     nombre: 'Jumping jacks con chaleco',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Deltoides lateral, Gemelos',
