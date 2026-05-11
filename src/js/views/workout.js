@@ -367,6 +367,7 @@ function renderExerciseCard(e, ci, ei) {
     <div class="exercise-card ${isExpanded ? 'expanded' : ''} ${allDone ? 'all-done' : ''}" data-ci="${ci}" data-ei="${ei}">
       <div class="exercise-card-header" data-expand-key="${key}">
         <div class="exercise-name-group">
+          ${editMode ? `<i class="ph ph-dots-six-vertical drag-handle" style="font-size:20px;color:var(--color-text-muted);cursor:grab;touch-action:none;flex-shrink:0;"></i>` : ''}
           <div class="exercise-card-name">${e.nombre}</div>
           <button class="btn-icon info-btn" data-nombre="${e.nombre}" title="Info">
             <i class="ph ph-info" style="font-size:20px;color:var(--color-text-muted);"></i>
@@ -561,13 +562,106 @@ function bindEvents(container) {
   container.querySelector('#btn-finish-workout')?.addEventListener('click', () => finishWorkout(container));
 
   bindExerciseEvents(container, container);
+  if (editMode) initDragReorder(container);
+}
+
+// ── Drag-to-reorder exercises within a circuit ───────────────────────────────
+function initDragReorder(container) {
+  const exercisesContainer = container.querySelector('#exercises-container');
+  if (!exercisesContainer) return;
+
+  let dragEl = null;
+  let placeholder = null;
+  let startY = 0;
+  let offsetY = 0;
+  let cards = [];
+
+  exercisesContainer.querySelectorAll('.drag-handle').forEach(handle => {
+    handle.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dragEl = handle.closest('.exercise-card');
+      if (!dragEl) return;
+
+      const rect = dragEl.getBoundingClientRect();
+      startY = e.clientY;
+      offsetY = e.clientY - rect.top;
+
+      placeholder = document.createElement('div');
+      placeholder.className = 'drag-placeholder';
+      placeholder.style.height = rect.height + 'px';
+
+      dragEl.style.position = 'fixed';
+      dragEl.style.top = rect.top + 'px';
+      dragEl.style.left = rect.left + 'px';
+      dragEl.style.width = rect.width + 'px';
+      dragEl.style.zIndex = '1000';
+      dragEl.style.opacity = '0.9';
+      dragEl.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
+      dragEl.style.transition = 'none';
+      dragEl.style.pointerEvents = 'none';
+
+      dragEl.parentNode.insertBefore(placeholder, dragEl);
+
+      cards = [...exercisesContainer.querySelectorAll('.exercise-card:not([style*="position: fixed"])')];
+
+      document.addEventListener('pointermove', onMove);
+      document.addEventListener('pointerup', onUp, { once: true });
+    });
+  });
+
+  function onMove(e) {
+    if (!dragEl) return;
+    const y = e.clientY - offsetY;
+    dragEl.style.top = y + 'px';
+
+    const centerY = e.clientY;
+    for (const card of cards) {
+      const r = card.getBoundingClientRect();
+      const mid = r.top + r.height / 2;
+      if (centerY < mid) {
+        exercisesContainer.insertBefore(placeholder, card);
+        return;
+      }
+    }
+    const addBtn = exercisesContainer.querySelector('.btn-add-ej');
+    exercisesContainer.insertBefore(placeholder, addBtn || null);
+  }
+
+  function onUp() {
+    document.removeEventListener('pointermove', onMove);
+    if (!dragEl || !placeholder) return;
+
+    dragEl.style.position = '';
+    dragEl.style.top = '';
+    dragEl.style.left = '';
+    dragEl.style.width = '';
+    dragEl.style.zIndex = '';
+    dragEl.style.opacity = '';
+    dragEl.style.boxShadow = '';
+    dragEl.style.transition = '';
+    dragEl.style.pointerEvents = '';
+
+    placeholder.replaceWith(dragEl);
+
+    const newOrder = [...exercisesContainer.querySelectorAll('.exercise-card')].map(c => parseInt(c.dataset.ei));
+    const circ = workoutState.circuitos[activeCircuitIdx];
+    const reordered = newOrder.map(i => circ.ejercicios[i]);
+    circ.ejercicios = reordered;
+    persistWorkout();
+    renderWorkout(container);
+
+    dragEl = null;
+    placeholder = null;
+    cards = [];
+  }
 }
 
 function bindExerciseEvents(container, scope) {
   // Expand/collapse — header tap (no chevron)
   scope.querySelectorAll('.exercise-card-header[data-expand-key]').forEach(header => {
     header.addEventListener('click', (evt) => {
-      if (evt.target.closest('.btn-icon') || evt.target.closest('.edit-action-btn')) return;
+      if (evt.target.closest('.btn-icon') || evt.target.closest('.edit-action-btn') || evt.target.closest('.drag-handle')) return;
       toggleExpand(header.dataset.expandKey, container);
     });
   });

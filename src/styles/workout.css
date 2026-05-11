@@ -215,6 +215,21 @@
   min-width: 0;
 }
 
+/* ── Drag reorder ─────────────────────────────────────────────────────── */
+.drag-handle {
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drag-placeholder {
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  opacity: 0.5;
+  margin-bottom: var(--space-sm);
+}
+
 /* ── Collapsed summary + check-all ──────────────────────────────────────── */
 .exercise-summary {
   display: flex;
