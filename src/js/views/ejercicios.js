@@ -1,7 +1,7 @@
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio } from '../../ejercicios-catalogo.js';
 import { store } from '../../store.js';
 import { router } from '../../router.js';
-import { getMuscleSvgCropped } from '../../utils/muscle-illustrations.js';
+import { getMuscleSvgCropped, getMuscleSvg } from '../../utils/muscle-illustrations.js';
 import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { getGrupoColor } from '../../utils/format.js';
 
@@ -269,7 +269,13 @@ function showDetailModal(data, allowEdit, onChange) {
           ${inferUsaPeso(data.nombre) ? `<span class="attr-chip"><i class="ph ph-barbell"></i> Usa peso</span>` : ''}
         </div>
 
-        ${data.musculos ? `<div class="ejercicio-musculos"><i class="ph ph-person-arms-spread" style="font-size:16px;flex-shrink:0;color:var(--color-primary);"></i><span>${data.musculos}</span></div>` : ''}
+        <div class="ejercicio-muscle-section">
+          <div class="ejercicio-muscle-svg">${getMuscleSvg(data.grupo, 100)}</div>
+          <div class="ejercicio-muscle-text">
+            <span class="ejercicio-muscle-grupo" style="color:${getGrupoColor(data.grupo)};">${data.grupo}</span>
+            ${data.musculos ? `<span class="ejercicio-muscle-detail">${data.musculos}</span>` : ''}
+          </div>
+        </div>
 
         <p class="ejercicio-descripcion" id="ejercicio-desc-text">${data.descripcion || 'Sin descripción.'}</p>
       </div>
