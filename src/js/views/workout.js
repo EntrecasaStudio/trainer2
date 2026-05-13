@@ -115,6 +115,7 @@ const TAG_CLASS = {
 
 // ── Persistent workout state (survives navigation + page reload) ─────────────
 let workoutState = null;
+let finishedSummary = null;
 let timerInterval = null;
 let elapsedSeconds = 0;
 let activeCircuitIdx = 0;
@@ -170,6 +171,11 @@ export function resumeWorkout(container) {
 
 export function mountWorkout(container, params) {
   const [rutinaId, fecha] = params;
+
+  if (finishedSummary) {
+    renderSummary(container);
+    return;
+  }
 
   if (workoutState && workoutState.rutinaId === rutinaId) {
     renderWorkout(container);
@@ -1120,6 +1126,14 @@ function finishWorkout(container) {
   workoutState = null;
   localStorage.removeItem(WS_KEY);
 
+  finishedSummary = { minutes, totalSeriesDone, circuitsDone, totalCircuits: sesion.circuitos.length, sesionId: sesion.id };
+  renderSummary(container);
+  showToast('Entrenamiento guardado ✓');
+}
+
+function renderSummary(container) {
+  const { minutes, totalSeriesDone, circuitsDone, totalCircuits, sesionId } = finishedSummary;
+
   container.innerHTML = `
     <div class="workout-summary">
       <div style="text-align:center;margin-bottom:var(--space-md);"><i class="ph-light ph-flag-checkered" style="font-size:48px;color:var(--color-accent);"></i></div>
@@ -1127,7 +1141,7 @@ function finishWorkout(container) {
       <div class="workout-summary-stats">
         <div><div class="workout-stat-value">${minutes}</div><div class="workout-stat-label">minutos</div></div>
         <div><div class="workout-stat-value">${totalSeriesDone}</div><div class="workout-stat-label">series</div></div>
-        <div><div class="workout-stat-value">${circuitsDone}/${sesion.circuitos.length}</div><div class="workout-stat-label">circuitos</div></div>
+        <div><div class="workout-stat-value">${circuitsDone}/${totalCircuits}</div><div class="workout-stat-label">circuitos</div></div>
       </div>
       <div style="margin-top:var(--space-lg);display:flex;align-items:center;gap:var(--space-sm);justify-content:center;">
         <i class="ph-light ph-fire" style="font-size:20px;color:var(--color-warning);"></i>
@@ -1146,15 +1160,15 @@ function finishWorkout(container) {
     const kcal = kcalInput ? parseInt(kcalInput.value, 10) : 0;
     if (kcal > 0) {
       const sesiones = store.getAll(store.KEYS.sesiones);
-      const idx = sesiones.findIndex(s => s.id === sesion.id);
+      const idx = sesiones.findIndex(s => s.id === sesionId);
       if (idx !== -1) {
         sesiones[idx].calorias = kcal;
         store.set(store.KEYS.sesiones, sesiones);
       }
     }
+    finishedSummary = null;
     router.navigate('');
   });
-  showToast('Entrenamiento guardado ✓');
 }
 
 function getCircuitColor(nombre) {
