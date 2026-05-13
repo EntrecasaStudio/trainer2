@@ -610,7 +610,7 @@
 }
 
 /* ── Edit mode action buttons ────────────────────────────────────────────── */
-.edit-action-btn { opacity: 0.7; }
+.edit-action-btn { opacity: 0.7; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 .edit-action-btn:active { opacity: 1; }
 
 /* ── HIIT card ───────────────────────────────────────────────────────────── */
