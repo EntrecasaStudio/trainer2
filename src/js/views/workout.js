@@ -11,10 +11,10 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../
 // movements) or isn't advisable (axial load on spinal mobility drills).
 const NO_CHALECO_PATTERNS = [
   'press militar', 'arnold press', 'vuelos laterales',
-  'curl de bíceps con kettlebell', 'curl martillo con kettlebell',
+  'curl de bíceps', 'curl martillo',
   'extensión de tríceps', 'extension de triceps',
   'hollow body',
-  'remo con kettlebell', 'remo con mancuerna', 'remo con barra',
+  'remo',
   'swing',
   'rotación torácica', 'rotacion toracica',
   'rotación de hombros', 'rotacion de hombros', 'movilidad de hombros',
@@ -22,6 +22,7 @@ const NO_CHALECO_PATTERNS = [
   '90/90', 'mobility',
   'dead bug',
   'floor press',
+  'banda',
 ];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
