@@ -884,7 +884,7 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Sentado o de pie con kettlebell. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
   },
   {
-    nombre: 'Remo con kettlebell',
+    nombre: 'Remo',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
     descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
