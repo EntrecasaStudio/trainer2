@@ -890,7 +890,7 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
   },
   {
-    nombre: 'Curl de bíceps con kettlebell',
+    nombre: 'Curl de bíceps',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'

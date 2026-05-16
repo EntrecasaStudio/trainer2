@@ -341,7 +341,7 @@ function createRioRoutines() {
       circuito(1, 'PECHO·TRÍCEPS', [ej('TRX chest press', 3, '12'), ej('Extensión de tríceps con kettlebell', 3, '10')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en piso con peso', 3, '12'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl de bíceps en TRX', 3, '12'), ej('Curl de bíceps con kettlebell', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps en TRX', 3, '12'), ej('Curl de bíceps', 3, '12')]),
       circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Dead bug', 3, '10'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
     // RÍO Pull C — Lean
@@ -357,7 +357,7 @@ function createRioRoutines() {
       circuito(1, 'PECHO·TRÍCEPS', [ej('Flexiones inclinadas', 3, '12'), ej('Extensión de tríceps con kettlebell', 3, '10')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Sentadilla sumo', 3, '15'), ej('Peso muerto a una pierna', 3, '12')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Curl de bíceps en TRX', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps', 3, '12'), ej('Curl de bíceps en TRX', 3, '12')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación alternada', 3, '10'), ej('Plancha lateral', 3, '20s'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
     // RÍO Pull E — Lean
@@ -373,7 +373,7 @@ function createRioRoutines() {
       circuito(1, 'PECHO·TRÍCEPS', [ej('Flexiones explosivas', 3, '8'), ej('Extensión de tríceps con kettlebell', 3, '10')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Step-up en banco', 3, '10'), ej('Empuje de cadera en piso con peso', 3, '12')]),
       circuito(3, 'ESPALDA', [ej('TRX power pull', 3, '8'), ej('Dominadas australianas', 3, '12')]),
-      circuito(4, 'BÍCEPS·POSTERIOR', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda pull-apart', 3, '20')]),
+      circuito(4, 'BÍCEPS·POSTERIOR', [ej('Curl de bíceps', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '30s'), ej('Ab wheel', 3, '10'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
     // RÍO Pull G — Lean
@@ -389,7 +389,7 @@ function createRioRoutines() {
       circuito(1, 'PECHO·TRÍCEPS', [ej('Flexiones diamante', 3, '10'), ej('Fondos en banco', 3, '12')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Peso muerto a una pierna', 3, '10'), ej('Zancadas con kettlebell', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '15')]),
-      circuito(4, 'BÍCEPS', [ej('Curl de bíceps en TRX', 3, '12'), ej('Curl de bíceps con kettlebell', 3, '12')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps en TRX', 3, '12'), ej('Curl de bíceps', 3, '12')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha lateral', 3, '20s'), ej('Hollow body', 3, '30s'), ej('Pasadas de velocidad', 4, '20m')]),
     ]),
     // RÍO Press A — Lean
@@ -403,7 +403,7 @@ function createRioRoutines() {
     ]),
     // RÍO Press B — Lean
     rutinaRio('#010', 'RÍO Press B — Pecho', 'Lean', 'press', 2, [
-      circuito(1, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '12'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(1, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '12'), ej('Curl de bíceps', 3, '10')]),
       circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla con salto', 3, '8'), ej('Sentadilla sumo', 3, '12')]),
       circuito(3, 'PECHO', [ej('Flexiones diamante', 3, '12'), ej('TRX chest press', 3, '12')]),
       circuito(4, 'HOMBROS·TRÍCEPS', [ej('Press militar con kettlebell', 3, '10'), ej('Fondos en banco', 3, '15')]),
@@ -428,7 +428,7 @@ function createRioRoutines() {
     ]),
     // RÍO Press E — Lean
     rutinaRio('#013', 'RÍO Press E — Pecho', 'Lean', 'press', 2, [
-      circuito(1, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 3, '12'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(1, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 3, '12'), ej('Curl de bíceps', 3, '10')]),
       circuito(2, 'PIERNAS·CUÁDRICEPS', [ej('Sentadilla sumo', 3, '15'), ej('Step-up en banco', 3, '10')]),
       circuito(3, 'PECHO', [ej('Flexiones', 3, '12'), ej('Flexiones inclinadas', 3, '15')]),
       circuito(4, 'HOMBROS', [ej('Press militar con kettlebell', 3, '10'), ej('Vuelos laterales', 3, '15')]),
@@ -482,7 +482,7 @@ function createRioRoutines() {
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Step up', 3, '10'), ej('Banded narrow to wide squat', 3, '12')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en piso con peso', 3, '15'), ej('Peso muerto a una pierna', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '1')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps', 3, '12'), ej('Banda curl biceps', 3, '1')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha con elevación alternada', 3, '10'), ej('Ab wheel', 3, '8'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Pull E — Nat
@@ -498,7 +498,7 @@ function createRioRoutines() {
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Split squat pulses', 3, '10'), ej('Abducción con pausa', 3, '10')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Abducción con pausa', 3, '12'), ej('Sumo squat to RDL', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('Dominadas australianas', 3, '15'), ej('TRX row', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps', 3, '12'), ej('Banda curl biceps', 3, '15')]),
       circuito(5, 'CORE+CARDIO', [ej('Plancha lateral', 3, '20s'), ej('Ab wheel', 3, '8'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Pull G — Nat
@@ -514,7 +514,7 @@ function createRioRoutines() {
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Standing weighted hip abduction', 3, '12'), ej('Glute bridge', 3, '15')]),
       circuito(2, 'PIERNAS·GLÚTEOS', [ej('Empuje de cadera en piso con peso', 3, '12'), ej('Sentadilla búlgara', 3, '10')]),
       circuito(3, 'ESPALDA', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12')]),
-      circuito(4, 'BÍCEPS', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda curl biceps', 3, '15')]),
+      circuito(4, 'BÍCEPS', [ej('Curl de bíceps', 3, '12'), ej('Banda curl biceps', 3, '15')]),
       circuito(5, 'CORE+CARDIO', [ej('Hollow body', 3, '25s'), ej('Ab wheel', 3, '8'), ej('Pasadas de velocidad', 4, '15m')]),
     ]),
     // RÍO Press A — Nat
@@ -596,7 +596,7 @@ function createCasaRoutines() {
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla goblet', 3, '12'), ej('Zancadas con chaleco de peso', 3, '10'), ej('Remo', 3, '10')]),
       circuito(2, 'PECHO', [ej('Floor press con kettlebell', 3, '10'), ej('Flexiones con chaleco', 3, '12'), ej('TRX chest press', 3, '12')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Press militar con kettlebell', 3, '10'), ej('Fondos en banco con chaleco', 3, '12'), ej('Vuelos laterales', 3, '12')]),
-      circuito(4, 'CORE·BÍCEPS', [ej('Ab wheel', 3, '10'), ej('Plancha con chaleco', 3, '30s'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Ab wheel', 3, '10'), ej('Plancha con chaleco', 3, '30s'), ej('Curl de bíceps', 3, '10')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '8'), ej('Jumping jacks', 3, '30')]),
     ]),
     rutinaCasa('#C02', 'Casa Press B — Lean', 'Lean', 'press', 2, [
@@ -610,7 +610,7 @@ function createCasaRoutines() {
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla goblet', 3, '10'), ej('Sentadilla con salto', 3, '8'), ej('Remo', 3, '10')]),
       circuito(2, 'PECHO', [ej('Floor press con kettlebell', 3, '10'), ej('TRX chest press', 3, '12'), ej('Flexiones diamante', 3, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Press militar con kettlebell', 3, '10'), ej('Extensión de tríceps con banda', 3, '15'), ej('Fondos en banco con chaleco', 3, '12')]),
-      circuito(4, 'CORE·BÍCEPS', [ej('Ab wheel', 3, '10'), ej('Plancha con chaleco', 3, '30s'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Ab wheel', 3, '10'), ej('Plancha con chaleco', 3, '30s'), ej('Curl de bíceps', 3, '10')]),
       circuito(5, 'HIIT', [ej('Burpees', 3, '8'), ej('Mountain climbers', 3, '20'), ej('Jumping jacks con chaleco', 3, '30')]),
     ]),
     rutinaCasa('#C07', 'Casa Press D — Lean', 'Lean', 'press', 2, [
@@ -624,7 +624,7 @@ function createCasaRoutines() {
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla búlgara', 3, '10'), ej('Zancadas con chaleco de peso', 3, '10'), ej('Remo', 3, '10')]),
       circuito(2, 'PECHO', [ej('Floor press con kettlebell', 3, '10'), ej('Flexiones con chaleco', 3, '12'), ej('Flexiones explosivas', 3, '8')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Press militar con kettlebell', 3, '10'), ej('Vuelos laterales en equilibrio con kettlebell', 3, '10'), ej('Fondos en banco con chaleco', 3, '12')]),
-      circuito(4, 'CORE·BÍCEPS', [ej('Ab wheel', 3, '10'), ej('Plancha lateral con chaleco', 3, '25s'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Ab wheel', 3, '10'), ej('Plancha lateral con chaleco', 3, '25s'), ej('Curl de bíceps', 3, '10')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Sentadilla con salto', 3, '8'), ej('Jumping jacks', 3, '30')]),
     ]),
     rutinaCasa('#C11', 'Casa Press F — Lean', 'Lean', 'press', 1, [
@@ -639,14 +639,14 @@ function createCasaRoutines() {
     rutinaCasa('#C04', 'Casa Pull A — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'PIERNAS·CORE', [ej('Sentadilla búlgara', 3, '10'), ej('Peso muerto a una pierna', 3, '10'), ej('Ab wheel', 3, '10')]),
       circuito(2, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('TRX row', 3, '12'), ej('Remo', 3, '10')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps en TRX', 3, '10'), ej('Curl de bíceps con kettlebell', 3, '12'), ej('Abs complex', 3, '30s')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps en TRX', 3, '10'), ej('Curl de bíceps', 3, '12'), ej('Abs complex', 3, '30s')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Floor press con kettlebell', 3, '10'), ej('Fondos en banco', 3, '12'), ej('Flexiones', 3, '12')]),
       circuito(5, 'HIIT', [ej('Bear crawl', 4, '8m'), ej('Sentadilla con salto', 3, '10'), ej('Burpees', 3, '8')]),
     ]),
     rutinaCasa('#C05', 'Casa Pull B — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'PIERNAS·CORE', [ej('Peso muerto a una pierna', 3, '10'), ej('Zancadas con chaleco de peso', 3, '10'), ej('Plancha lateral con chaleco', 3, '20s')]),
       circuito(2, 'ESPALDA', [ej('TRX row', 3, '12'), ej('Remo', 3, '10'), ej('Dominadas australianas', 3, '12')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Banda pull-apart', 3, '20'), ej('Ab wheel', 3, '10')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps', 3, '12'), ej('Banda pull-apart', 3, '20'), ej('Ab wheel', 3, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones', 3, '12'), ej('Extensión de tríceps con kettlebell', 3, '10'), ej('Extensión de tríceps con banda', 3, '15')]),
       circuito(5, 'HIIT', [ej('Jumping jacks con chaleco', 3, '30'), ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '8')]),
     ]),
@@ -660,21 +660,21 @@ function createCasaRoutines() {
     rutinaCasa('#C08', 'Casa Pull D — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'PIERNAS·CORE', [ej('Zancadas con chaleco de peso', 3, '10'), ej('Empuje de cadera', 3, '15'), ej('Plancha con chaleco', 3, '30s')]),
       circuito(2, 'ESPALDA', [ej('TRX power pull', 3, '8'), ej('TRX row', 3, '12'), ej('Remo', 3, '10')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps con kettlebell', 3, '12'), ej('Curl de bíceps en TRX', 3, '10'), ej('Ab wheel', 3, '10')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps', 3, '12'), ej('Curl de bíceps en TRX', 3, '10'), ej('Ab wheel', 3, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Floor press con kettlebell', 3, '10'), ej('Extensión de tríceps con kettlebell', 3, '10'), ej('Fondos en banco con chaleco', 3, '12')]),
       circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '8')]),
     ]),
     rutinaCasa('#C09', 'Casa Pull E — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'PIERNAS·CORE', [ej('Sentadilla goblet', 3, '12'), ej('Peso muerto a una pierna', 3, '10'), ej('Abs complex', 3, '30s')]),
       circuito(2, 'ESPALDA', [ej('Dominadas australianas', 3, '12'), ej('Remo', 3, '10'), ej('Remo alto en TRX', 3, '12')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps con kettlebell', 3, '10'), ej('Banda pull-apart', 3, '20'), ej('Plancha estrella con peso', 3, '6')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps', 3, '10'), ej('Banda pull-apart', 3, '20'), ej('Plancha estrella con peso', 3, '6')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones inclinadas', 3, '12'), ej('Fondos en banco', 3, '12'), ej('Extensión de tríceps con banda', 3, '15')]),
       circuito(5, 'HIIT', [ej('Jumping jacks con chaleco', 3, '30'), ej('Burpees', 3, '8'), ej('Mountain climbers', 3, '20')]),
     ]),
     rutinaCasa('#C12', 'Casa Pull F — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'PIERNAS·CORE', [ej('Empuje de cadera', 3, '15'), ej('Peso muerto a una pierna', 3, '10'), ej('Dead bug', 3, '12')]),
       circuito(2, 'ESPALDA', [ej('TRX row', 3, '12'), ej('TRX power pull', 3, '8'), ej('Dominadas australianas', 3, '12')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps en TRX', 3, '10'), ej('Curl de bíceps con kettlebell', 3, '12'), ej('Plancha con elevación alternada', 3, '10')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps en TRX', 3, '10'), ej('Curl de bíceps', 3, '12'), ej('Plancha con elevación alternada', 3, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones', 3, '10'), ej('Extensión de tríceps con kettlebell', 3, '10'), ej('Floor press con kettlebell', 3, '10')]),
       circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Jumping jacks con chaleco', 3, '30'), ej('Burpees', 3, '8')]),
     ]),
@@ -727,35 +727,35 @@ function createCasaRoutines() {
     rutinaCasa('#C04', 'Casa Pull A — Nat', 'Nat', 'pull', 1, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Plié dips', 3, '12'), ej('Elevated side reaches', 3, '12'), ej('Split squat pulses', 3, '12')]),
       circuito(2, 'PIERNAS·CORE', [ej('Hip thrust a una pierna', 3, '12'), ej('Step up', 3, '12'), ej('Ab wheel', 3, '8')]),
-      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12'), ej('Curl de bíceps con kettlebell', 3, '12')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '15'), ej('Dominadas australianas', 3, '12'), ej('Curl de bíceps', 3, '12')]),
       circuito(4, 'CORE·ACCESORIOS', [ej('Plancha estrella con peso', 3, '6'), ej('Curl de bíceps en TRX', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'HIIT', [ej('Jumping jacks', 3, '25'), ej('Mountain climbers', 3, '15'), ej('Burpees', 3, '6')]),
     ]),
     rutinaCasa('#C05', 'Casa Pull B — Nat', 'Nat', 'pull', 2, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Split squat pulses', 3, '10'), ej('Abducción con pausa', 3, '10'), ej('Elevated side leg lifts', 3, '15')]),
       circuito(2, 'PIERNAS·CORE', [ej('Sumo squat to RDL', 3, '10'), ej('Banded narrow to wide squat', 3, '12'), ej('Plancha con elevación alternada', 3, '8')]),
-      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '15'), ej('Remo', 3, '10'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '15'), ej('Remo', 3, '10'), ej('Curl de bíceps', 3, '10')]),
       circuito(4, 'CORE·ACCESORIOS', [ej('Ab wheel', 3, '8'), ej('Dominadas australianas', 3, '10'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Jumping jacks', 3, '25'), ej('Sentadilla con salto', 3, '10')]),
     ]),
     rutinaCasa('#C06', 'Casa Pull C — Nat', 'Nat', 'pull', 1, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Narrow to wide squat', 3, '12'), ej('Plié squat', 3, '15'), ej('Banded narrow to wide squat', 3, '15')]),
       circuito(2, 'PIERNAS·CORE', [ej('Peso muerto a una pierna', 3, '10'), ej('Elevated side leg lifts', 3, '12'), ej('Hollow body', 3, '25s')]),
-      circuito(3, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 3, '15'), ej('TRX row', 3, '12'), ej('Curl de bíceps con kettlebell', 3, '12')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 3, '15'), ej('TRX row', 3, '12'), ej('Curl de bíceps', 3, '12')]),
       circuito(4, 'CORE·ACCESORIOS', [ej('Ab wheel', 3, '8'), ej('Curl martillo con kettlebell', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '6')]),
     ]),
     rutinaCasa('#C07', 'Casa Pull D — Nat', 'Nat', 'pull', 2, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Sumo squat to calf raise', 3, '12'), ej('Hip thrust a una pierna', 3, '10'), ej('Déficit reverse lunge', 3, '10')]),
       circuito(2, 'PIERNAS·CORE', [ej('Glute bridge', 3, '15'), ej('Standing weighted hip abduction', 3, '12'), ej('Plancha estrella con peso', 3, '6')]),
-      circuito(3, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 3, '12'), ej('Remo', 3, '10'), ej('Curl de bíceps con kettlebell', 3, '12')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 3, '12'), ej('Remo', 3, '10'), ej('Curl de bíceps', 3, '12')]),
       circuito(4, 'CORE·ACCESORIOS', [ej('Elevated side reaches', 3, '10'), ej('Curl de bíceps en TRX', 3, '10'), ej('Dead bug', 3, '10')]),
       circuito(5, 'HIIT', [ej('Burpees', 3, '6'), ej('Mountain climbers', 3, '15'), ej('Sentadilla con salto', 3, '8')]),
     ]),
     rutinaCasa('#C08', 'Casa Pull E — Nat', 'Nat', 'pull', 1, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Déficit reverse lunge', 3, '10'), ej('Elevated side leg lifts', 3, '12'), ej('Sumo squat to calf raise', 3, '12')]),
       circuito(2, 'PIERNAS·CORE', [ej('Sentadilla búlgara', 3, '10'), ej('Step up', 3, '12'), ej('Abs complex', 3, '25s')]),
-      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '15'), ej('Remo alto en TRX', 3, '12'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX row', 3, '15'), ej('Remo alto en TRX', 3, '12'), ej('Curl de bíceps', 3, '10')]),
       circuito(4, 'CORE·ACCESORIOS', [ej('Ab wheel', 3, '8'), ej('Dominadas australianas', 3, '12'), ej('Banda pull-apart', 3, '20')]),
       circuito(5, 'HIIT', [ej('Jumping jacks', 3, '25'), ej('Burpees', 3, '6'), ej('Mountain climbers', 3, '20')]),
     ]),
@@ -763,7 +763,7 @@ function createCasaRoutines() {
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Abducción con pausa', 3, '10'), ej('Split squat pulses', 3, '10'), ej('Step up', 3, '12')]),
       circuito(2, 'PIERNAS·CORE', [ej('Elevated side leg lifts', 3, '15'), ej('Plié dips', 3, '12'), ej('Dead bug', 3, '10')]),
       circuito(3, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 3, '12'), ej('Remo', 3, '10'), ej('Curl martillo con kettlebell', 3, '12')]),
-      circuito(4, 'CORE·ACCESORIOS', [ej('Plancha', 3, '30s'), ej('Curl de bíceps en TRX', 3, '10'), ej('Curl de bíceps con kettlebell', 3, '10')]),
+      circuito(4, 'CORE·ACCESORIOS', [ej('Plancha', 3, '30s'), ej('Curl de bíceps en TRX', 3, '10'), ej('Curl de bíceps', 3, '10')]),
       circuito(5, 'HIIT', [ej('Burpees', 3, '6'), ej('Jumping jacks', 3, '25'), ej('Sentadilla con salto', 3, '10')]),
     ]),
   ];
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.37';
+const SEED_VERSION = '2.38';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1320,6 +1320,7 @@ function applyExerciseRenames() {
   renameExercise('Sentadilla goblet con kettlebell', 'Sentadilla goblet');
   renameExercise('Peso muerto a una pierna con kettlebell', 'Peso muerto a una pierna');
   renameExercise('Remo con kettlebell', 'Remo');
+  renameExercise('Curl de bíceps con kettlebell', 'Curl de bíceps');
 }
 
 function replaceVerticalDominadasInRio() {
