@@ -80,10 +80,10 @@ function lastRepsValue(nombre, usuario, lugar) {
         for (const c of (s.circuitos || [])) {
           for (const e of (c.ejercicios || [])) {
             if (e.nombre !== nombre) continue;
-            const done = (e.seriesData || []).filter(
-              x => x.done && typeof x.reps === 'number' && x.reps > 0
-            );
-            if (done.length > 0) return done[0].reps;
+            const series = e.seriesData || [];
+            if (series.length > 0 && typeof series[0].reps === 'number' && series[0].reps > 0) {
+              return series[0].reps;
+            }
           }
         }
       }
