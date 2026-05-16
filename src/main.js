@@ -10,7 +10,7 @@ import { mountRutinaEdit } from './js/views/rutina-edit.js';
 import { mountUsuario } from './js/views/usuario.js';
 import { seedV2 } from './seed.js';
 import { initFirebase, loginWithGoogle, logout, onAuth, getCurrentUser } from './js/services/firebase.js';
-import { uploadAllData, downloadAllData, startRealtimeSync, stopRealtimeSync, clearSyncState, getSyncStatus, onSyncStatusChange } from './js/services/sync.js';
+import { uploadAllData, downloadAllData, startRealtimeSync, stopRealtimeSync, clearSyncState, getSyncStatus, onSyncStatusChange, setOnResumeCallback } from './js/services/sync.js';
 
 let _appBooted = false;
 
@@ -250,6 +250,10 @@ async function start() {
         await seedV2();
         await uploadAllData();
         startRealtimeSync(() => {
+          seedV2();
+          router._handleRoute();
+        });
+        setOnResumeCallback(() => {
           seedV2();
           router._handleRoute();
         });
