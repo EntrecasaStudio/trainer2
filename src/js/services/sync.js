@@ -459,6 +459,24 @@ if (typeof window !== 'undefined') {
   window.addEventListener('beforeunload', flushOnExit);
   window.addEventListener('pagehide', flushOnExit);
   document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') flushOnExit();
+    if (document.visibilityState === 'hidden') {
+      flushOnExit();
+    } else if (document.visibilityState === 'visible') {
+      resyncOnResume();
+    }
   });
+}
+
+let _onResumeCallback = null;
+export function setOnResumeCallback(fn) { _onResumeCallback = fn; }
+
+async function resyncOnResume() {
+  if (!getCurrentUser()) return;
+  if (!navigator.onLine) return;
+  try {
+    await downloadAllData();
+    if (_onResumeCallback) _onResumeCallback();
+  } catch (e) {
+    console.warn('[sync] resync on resume failed:', e.message);
+  }
 }
