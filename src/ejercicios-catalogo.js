@@ -896,7 +896,7 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
   },
   {
-    nombre: 'Curl martillo con kettlebell',
+    nombre: 'Curl martillo',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Braquial, Bíceps, Antebrazo',
     descripcion: 'Curl con kettlebell manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
