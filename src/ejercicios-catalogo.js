@@ -708,7 +708,7 @@ export const EJERCICIOS_CATALOGO = [
   // ── CASA — VARIANTES CON EQUIPAMIENTO ──────────────────────────────────────
   // Kettlebell
   {
-    nombre: 'Sentadilla goblet con kettlebell',
+    nombre: 'Sentadilla goblet',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
     descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
@@ -744,7 +744,7 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Kettlebell en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
   },
   {
-    nombre: 'Peso muerto a una pierna con kettlebell',
+    nombre: 'Peso muerto a una pierna',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
     descripcion: 'De pie sobre una pierna, kettlebell en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
