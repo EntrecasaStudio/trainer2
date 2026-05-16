@@ -928,12 +928,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Apoyado en un antebrazo de costado con chaleco de peso. Cadera elevada, cuerpo recto. Mantené la posición sin dejar caer la cadera. Trabaja oblicuos y estabilizadores laterales del core.'
   },
   // HIIT con chaleco
-  {
-    nombre: 'Jumping jacks con chaleco',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
-    musculos: 'Cuádriceps, Deltoides lateral, Gemelos',
-    descripcion: 'Saltá abriendo piernas y subiendo brazos simultáneamente, volvé al centro. Con chaleco de peso se intensifica el trabajo cardiovascular y de resistencia muscular en piernas y hombros.'
-  },
   // Equilibrio + kettlebell
   {
     nombre: 'Curl de bíceps en equilibrio con kettlebell',
