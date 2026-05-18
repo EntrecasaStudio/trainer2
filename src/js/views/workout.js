@@ -24,7 +24,7 @@ const NO_CHALECO_PATTERNS = [
   'floor press',
   'banda',
 ];
-const CHALECO_OVERRIDE = ['curl de bíceps en trx'];
+const CHALECO_OVERRIDE = ['curl de bíceps en trx', 'remo alto en trx'];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
   if (CHALECO_OVERRIDE.some(p => n.includes(p))) return true;
