@@ -909,6 +909,12 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Banda anclada arriba o pisada por detrás. Extendé los codos empujando las manos hacia abajo o arriba según el anclaje. Mantené los brazos pegados a la cabeza o al torso. Aislamiento de tríceps.'
   },
   {
+    nombre: 'Extensión de tríceps con kettlebell',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Tríceps',
+    descripcion: 'De pie o sentado, sostené la kettlebell por los cuernos detrás de la cabeza con los codos apuntando al techo. Extendé los codos hacia arriba y bajá controlado. Trabaja la cabeza larga del tríceps con buen rango de movimiento.'
+  },
+  {
     nombre: 'Rotación de hombros con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
