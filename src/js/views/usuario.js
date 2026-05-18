@@ -60,10 +60,16 @@ function render(container) {
         <i class="ph ph-arrows-clockwise" style="font-size:16px;margin-right:var(--space-xs);"></i> Forzar sincronización
       </button>
 
+      <button class="btn btn-secondary" id="btn-reset-app" style="width:100%;margin-top:var(--space-sm);color:var(--color-danger);">
+        <i class="ph ph-trash" style="font-size:16px;margin-right:var(--space-xs);"></i> Resetear app
+      </button>
+
       <button class="btn btn-secondary" id="btn-logout" style="width:100%;margin-top:var(--space-sm);">
         <i class="ph ph-sign-out" style="font-size:16px;margin-right:var(--space-xs);"></i> Cerrar sesión
       </button>
     `;
+
+    container.querySelector('#btn-reset-app').addEventListener('click', () => resetApp());
 
     container.querySelector('#btn-logout').addEventListener('click', async () => {
       await logout();
@@ -102,7 +108,13 @@ function render(container) {
       <button class="btn btn-primary" id="btn-login" style="width:100%;margin-top:var(--space-lg);">
         <i class="ph ph-google-logo" style="font-size:16px;margin-right:var(--space-xs);"></i> Conectar con Google
       </button>
+
+      <button class="btn btn-secondary" id="btn-reset-app" style="width:100%;margin-top:var(--space-sm);color:var(--color-danger);">
+        <i class="ph ph-trash" style="font-size:16px;margin-right:var(--space-xs);"></i> Resetear app
+      </button>
     `;
+
+    container.querySelector('#btn-reset-app').addEventListener('click', () => resetApp());
 
     container.querySelector('#btn-login').addEventListener('click', async () => {
       try {
@@ -113,4 +125,16 @@ function render(container) {
       }
     });
   }
+}
+
+async function resetApp() {
+  if (!confirm('Esto borra todos los datos locales y recarga la app desde cero. Los datos se recuperan de Google al volver a entrar. ¿Continuar?')) return;
+  try {
+    const regs = await navigator.serviceWorker?.getRegistrations() || [];
+    await Promise.all(regs.map(r => r.unregister()));
+    const keys = await caches.keys();
+    await Promise.all(keys.map(k => caches.delete(k)));
+  } catch {}
+  localStorage.clear();
+  window.location.replace(window.location.pathname);
 }
