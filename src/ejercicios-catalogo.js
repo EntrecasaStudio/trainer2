@@ -859,7 +859,7 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Flexiones estándar con chaleco de peso. Cuerpo recto, manos al ancho de hombros, bajá el pecho al suelo y empujá. El chaleco agrega resistencia significativa al empuje corporal.'
   },
   {
-    nombre: 'Floor press con kettlebell',
+    nombre: 'Floor press',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
     musculos: 'Pectoral mayor, Tríceps, Deltoides anterior',
     descripcion: 'Acostado en el suelo boca arriba, un brazo a la vez. Kettlebell en una mano, codo apoyado en el piso. Empujá hacia arriba extendiendo el brazo y bajá controlado hasta que el codo toque el suelo. Trabaja pectoral, tríceps y estabilizadores de hombro con rango limitado que protege la articulación.'
@@ -872,7 +872,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   // Kettlebell — Tren superior
   {
-    nombre: 'Press militar con kettlebell',
+    nombre: 'Press militar',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Deltoides lateral, Tríceps',
     descripcion: 'De pie, kettlebell en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'

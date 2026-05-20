@@ -334,8 +334,13 @@ export async function downloadAllData() {
 
 // ── Real-time listener ──────────────────
 
+let _syncCallback = null;
+let _pollTimer = null;
+const POLL_MS = 60000;
+
 export async function startRealtimeSync(onUpdate) {
   stopRealtimeSync();
+  _syncCallback = onUpdate;
 
   const ref = getDocRef();
   if (!ref) return;
@@ -379,12 +384,24 @@ export async function startRealtimeSync(onUpdate) {
   }, (err) => {
     console.warn('[sync] realtime error:', err.message);
   });
+
+  _pollTimer = setInterval(async () => {
+    if (!getCurrentUser() || !navigator.onLine || _suppressSync) return;
+    try {
+      const changed = await downloadAllData();
+      if (changed && onUpdate) onUpdate();
+    } catch {}
+  }, POLL_MS);
 }
 
 export function stopRealtimeSync() {
   if (_unsubscribe) {
     _unsubscribe();
     _unsubscribe = null;
+  }
+  if (_pollTimer) {
+    clearInterval(_pollTimer);
+    _pollTimer = null;
   }
 }
 
@@ -475,6 +492,7 @@ async function resyncOnResume() {
   if (!navigator.onLine) return;
   try {
     await downloadAllData();
+    if (_syncCallback) await startRealtimeSync(_syncCallback);
     if (_onResumeCallback) _onResumeCallback();
   } catch (e) {
     console.warn('[sync] resync on resume failed:', e.message);
