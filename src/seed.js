@@ -638,7 +638,7 @@ function createCasaRoutines() {
     // ── LEAN PULL ──────────────────────────────────────────
     rutinaCasa('#C04', 'Casa Pull A — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'PIERNAS·CORE', [ej('Empuje de cadera', 2, '15'), ej('Calf raises', 2, '15'), ej('Plancha con chaleco', 2, '30s')]),
-      circuito(2, 'ESPALDA', [ej('Dominadas australianas', 2, '12'), ej('Remo', 2, '10'), ej('TRX face pull', 2, '12')]),
+      circuito(2, 'ESPALDA', [ej('Dominadas australianas', 2, '12'), ej('Remo alto en TRX', 2, '12'), ej('TRX face pull', 2, '12')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps en TRX', 2, '10'), ej('Curl de bíceps', 2, '12'), ej('Dead bug', 2, '12')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones', 2, '12'), ej('Fondos en banco', 2, '12'), ej('Extensión de tríceps con banda', 2, '15')]),
       circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Bear crawl', 3, '8m'), ej('Saltos laterales', 3, '20')]),
@@ -673,7 +673,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C12', 'Casa Pull F — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'PIERNAS·CORE', [ej('Step up', 2, '12'), ej('Sentadilla sumo', 2, '12'), ej('Abs complex', 2, '30s')]),
-      circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('TRX power pull', 2, '8'), ej('Face pull con banda', 2, '12')]),
+      circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('TRX power pull', 2, '8'), ej('Remo', 2, '10')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Banda curl biceps', 2, '12'), ej('Curl concentrado', 2, '10'), ej('Bird-dog', 2, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones explosivas', 2, '8'), ej('TRX chest press', 2, '12'), ej('Tríceps alto en TRX', 2, '12')]),
       circuito(5, 'HIIT', [ej('Caminata a plancha', 3, '8'), ej('Tuck jumps', 3, '8'), ej('Estocada con salto', 3, '8')]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.49';
+const SEED_VERSION = '2.50';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
