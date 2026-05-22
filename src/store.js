@@ -94,14 +94,19 @@ export const store = {
   // Progresion
   getProgresion(ejercicio, usuario, lugar) {
     const prog = this.getObj(KEYS.progresion);
-    // New format: prog[ejercicio][usuario][lugar]
-    // Backwards compat: if old format (no lugar nesting), return as-is
     const userProg = prog[ejercicio]?.[usuario];
     if (!userProg) return null;
     if (lugar && userProg[lugar]) return userProg[lugar];
     // Old format: userProg has lastWeight directly
     if (userProg.lastWeight !== undefined) return userProg;
-    return null;
+    // Fallback: return most recent from any lugar
+    let best = null;
+    for (const v of Object.values(userProg)) {
+      if (v && typeof v === 'object' && v.lastWeight !== undefined) {
+        if (!best || (v.lastDate || '') > (best.lastDate || '')) best = v;
+      }
+    }
+    return best;
   },
 
   getProgresionAllLugares(ejercicio, usuario) {
