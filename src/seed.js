@@ -651,14 +651,14 @@ function createCasaRoutines() {
       circuito(5, 'HIIT', [ej('Burpees', 3, '8'), ej('Jumping jacks', 3, '30'), ej('Estocada con salto', 3, '8')]),
     ]),
     rutinaCasa('#C06', 'Casa Pull C — Lean', 'Lean', 'pull', 1, [
-      circuito(1, 'PIERNAS·CORE', [ej('Zancadas con chaleco de peso', 2, '10'), ej('Sentadilla con salto', 2, '8'), ej('Hollow body', 2, '25s')]),
+      circuito(1, 'PIERNAS·CORE', [ej('Zancadas con chaleco de peso', 2, '10'), ej('Sentadilla búlgara con TRX', 2, '10'), ej('Hollow body', 2, '25s')]),
       circuito(2, 'ESPALDA', [ej('Remo alto en TRX', 2, '12'), ej('Dominadas australianas', 2, '12'), ej('Banda face pull', 2, '15')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps en equilibrio con kettlebell', 2, '10'), ej('Curl de bíceps en TRX', 2, '10'), ej('Abs complex', 2, '30s')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones diamante', 2, '10'), ej('Fondos en banco con chaleco', 2, '12'), ej('Extensión de tríceps con kettlebell', 2, '10')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Tuck jumps', 3, '8'), ej('Jumping jacks', 3, '30')]),
     ]),
     rutinaCasa('#C08', 'Casa Pull D — Lean', 'Lean', 'pull', 2, [
-      circuito(1, 'PIERNAS·CORE', [ej('Zancadas con kettlebell', 2, '10'), ej('Empuje de cadera', 2, '15'), ej('Plancha toque de hombro', 2, '12')]),
+      circuito(1, 'PIERNAS·CORE', [ej('Sentadilla búlgara', 2, '10'), ej('Empuje de cadera', 2, '15'), ej('Plancha toque de hombro', 2, '12')]),
       circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('Remo', 2, '10'), ej('Face pull con banda', 2, '12')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Curl de bíceps', 2, '12'), ej('Curl martillo', 2, '12'), ej('Bird-dog', 2, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('TRX chest press', 2, '12'), ej('Fondos en banco', 2, '12'), ej('Extensión de tríceps con banda', 2, '15')]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.47';
+const SEED_VERSION = '2.48';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
