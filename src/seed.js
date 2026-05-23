@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.50';
+const SEED_VERSION = '2.51';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1582,7 +1582,7 @@ function ensureCalendarOverrides() {
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     // From May 16: RIO Sat = opposite of Fri CASA
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-05-23', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-30', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-06-06', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-06-13', foco: 'pull', letraMin: 'C', letraMax: 'F' },
@@ -1595,7 +1595,7 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     // From May 16: RIO Sat = opposite of Fri CASA
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-05-23', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-30', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-06-06', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-06-13', foco: 'pull', letraMin: 'C', letraMax: 'F' },
