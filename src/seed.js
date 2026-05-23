@@ -702,7 +702,7 @@ function createCasaRoutines() {
       circuito(5, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Burpees', 3, '6'), ej('Jumping jacks', 3, '25')]),
     ]),
     rutinaCasa('#C07', 'Casa Press D — Nat', 'Nat', 'press', 2, [
-      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Narrow to wide squat', 2, '12'), ej('Abducción con pausa', 2, '10'), ej('Zancadas con kettlebell', 2, '10')]),
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 2, '10'), ej('Abducción con pausa', 2, '10'), ej('Zancadas con kettlebell', 2, '10')]),
       circuito(2, 'PECHO·HOMBROS', [ej('Flexiones inclinadas', 2, '12'), ej('TRX chest press', 2, '12'), ej('Arnold press con kettlebell', 2, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de tríceps con kettlebell', 2, '10'), ej('Banda triceps pushdown', 2, '15')]),
       circuito(4, 'CORE·PIERNAS', [ej('Plancha estrella con peso', 2, '6'), ej('Bird-dog', 2, '10'), ej('Loop band abducción parada', 2, '15')]),
@@ -746,7 +746,7 @@ function createCasaRoutines() {
       circuito(5, 'HIIT', [ej('Burpees', 3, '6'), ej('Estocada con salto', 3, '8'), ej('Bear crawl', 3, '8m')]),
     ]),
     rutinaCasa('#C07', 'Casa Pull D — Nat', 'Nat', 'pull', 2, [
-      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Sumo squat to RDL', 2, '10'), ej('Plié squat', 2, '15'), ej('Banded narrow to wide squat', 2, '12')]),
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Sumo squat to RDL', 2, '10'), ej('Plié squat', 2, '15'), ej('Hip thrust a una pierna', 2, '10')]),
       circuito(2, 'PIERNAS·CORE', [ej('Glute bridge', 2, '15'), ej('Sentadilla sumo', 2, '12'), ej('Plancha con elevación alternada', 2, '8')]),
       circuito(3, 'ESPALDA·BÍCEPS', [ej('Remo alto en TRX', 2, '12'), ej('Banda face pull', 2, '15'), ej('Curl de bíceps en TRX', 2, '10')]),
       circuito(4, 'CORE·TRÍCEPS', [ej('Hollow body', 2, '25s'), ej('Fondos en banco con chaleco', 2, '12'), ej('Face pull con banda', 2, '15')]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.51';
+const SEED_VERSION = '2.52';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
