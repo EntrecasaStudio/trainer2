@@ -712,6 +712,15 @@
 .ejercicio-detail-sheet {
   max-height: 70vh;
 }
+.ejercicio-detail-sheet .modal-header .btn-icon,
+.ejercicio-detail-sheet .modal-header .modal-close {
+  min-width: 48px;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
 
 .ejercicio-detail-body {
   display: flex;
