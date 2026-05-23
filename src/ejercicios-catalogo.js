@@ -306,22 +306,22 @@ export const EJERCICIOS_CATALOGO = [
   },
   // ── BRAZOS ──────────────────────────────────────────────────────────────────
   {
-    nombre: 'Curl de bíceps con barra',
+    nombre: 'Bíceps curl con barra',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie con la barra en agarre supino, codos pegados al cuerpo. Flexioná los codos subiendo la barra hacia el pecho sin mover los hombros. Bajá lento controlando la extensión. Trabaja cabeza larga y corta del bíceps braquial.'
   },
   {
-    nombre: 'Curl de bíceps con mancuerna',
+    nombre: 'Bíceps curl con mancuerna',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie o sentado, una mancuerna en cada mano en agarre supino. Flexioná alternando o simultáneamente manteniendo los codos fijos al costado. Permite rotar la muñeca al subir para mayor contracción del bíceps. Bajá controlado.'
   },
   {
-    nombre: 'Curl martillo',
+    nombre: 'Bíceps curl martillo',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Braquial, Bíceps, Antebrazo',
-    descripcion: 'Igual que el curl con mancuernas pero el agarre es neutro (palmas mirando hacia adentro durante todo el recorrido, como si sostuvieras un martillo). Trabaja más el braquial y braquiorradial, y la parte externa del bíceps.'
+    descripcion: 'Agarre neutro (palmas enfrentadas). Con mancuerna o kettlebell, flexioná el codo sin rotar la muñeca. Trabaja braquial, braquiorradial y la parte externa del bíceps.'
   },
   {
     nombre: 'Biceps en banco',
@@ -360,13 +360,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Acostado en banco plano con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento.'
   },
   {
-    nombre: 'Banda curl biceps',
+    nombre: 'Bíceps curl con banda',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'Parado sobre la banda con agarre supino en cada extremo, flexioná los codos subiendo los puños hacia los hombros. La resistencia aumenta al final del movimiento. Permite trabajar sin mancuernas y en cualquier entorno. Alto volumen con bajo impacto articular.'
   },
   {
-    nombre: 'Curl concentrado',
+    nombre: 'Bíceps curl concentrado',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial',
     descripcion: 'Sentado con el codo apoyado en la cara interna del muslo, una mancuerna en la mano. Flexioná el brazo subiendo la mancuerna hacia el hombro y bajá controlado. El apoyo en el muslo elimina impulso y aísla completamente el bíceps. Ideal para contracción pico.'
@@ -890,16 +890,12 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
   },
   {
-    nombre: 'Curl de bíceps',
+    nombre: 'Bíceps curl',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
   },
   {
-    nombre: 'Curl martillo',
-    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
-    musculos: 'Braquial, Bíceps, Antebrazo',
-    descripcion: 'Curl con kettlebell manteniendo agarre neutro (palmas enfrentadas). Flexioná el codo sin rotar la muñeca. Trabaja bíceps, braquial y braquiorradial.'
   },
   // Bandas
   {
@@ -936,7 +932,7 @@ export const EJERCICIOS_CATALOGO = [
   // HIIT con chaleco
   // Equilibrio + kettlebell
   {
-    nombre: 'Curl de bíceps en equilibrio con kettlebell',
+    nombre: 'Bíceps curl en equilibrio con kettlebell',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Glúteos',
     descripcion: 'De pie sobre una pierna, kettlebell en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series.'
@@ -956,7 +952,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   // TRX — Bíceps
   {
-    nombre: 'Curl de bíceps en TRX',
+    nombre: 'Bíceps curl en TRX',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial',
     descripcion: 'De frente al anclaje del TRX, agarrá las correas con agarre supino y el cuerpo inclinado hacia atrás. Flexioná los codos llevando las manos a la frente, manteniendo los codos altos y fijos. Extendé controlado. Cuanto más horizontal el cuerpo, más difícil. Trabaja bíceps y braquial con peso corporal.'
@@ -1054,7 +1050,7 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Press militar con kettlebell liviana, sentada o de pie. Sin apnea, sin aguantar aire. Ideal con el 40-50% de tu peso habitual. Empujá controlado hacia arriba y bajá al rack del hombro. Estímulo de deltoides sin generar presión intracraneal.'
   },
   {
-    nombre: 'Curl de bíceps suave',
+    nombre: 'Bíceps curl suave',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie o sentada, kettlebell liviana en cada mano o bilateral. Flexioná el codo con control total en la bajada. Respiración continua. Cargas del 40-50% de lo habitual para mantener estímulo sin fatiga excesiva.'

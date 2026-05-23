@@ -11,7 +11,7 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../
 // movements) or isn't advisable (axial load on spinal mobility drills).
 const NO_CHALECO_PATTERNS = [
   'press militar', 'arnold press', 'vuelos laterales',
-  'curl de bíceps', 'curl martillo',
+  'bíceps curl',
   'extensión de tríceps', 'extension de triceps',
   'hollow body',
   'remo',
@@ -24,7 +24,7 @@ const NO_CHALECO_PATTERNS = [
   'floor press',
   'banda',
 ];
-const CHALECO_OVERRIDE = ['curl de bíceps en trx', 'remo alto en trx'];
+const CHALECO_OVERRIDE = ['bíceps curl en trx', 'remo alto en trx'];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
   if (CHALECO_OVERRIDE.some(p => n.includes(p))) return true;
