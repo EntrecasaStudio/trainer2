@@ -263,6 +263,8 @@
 .exercise-collapse-wrap {
   display: grid;
   grid-template-rows: 0fr;
+}
+.exercise-collapse-wrap.animate {
   transition: grid-template-rows 0.25s ease;
 }
 .exercise-collapse-wrap.show {
