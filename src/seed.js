@@ -630,7 +630,7 @@ function createCasaRoutines() {
     rutinaCasa('#C11', 'Casa Press F — Lean', 'Lean', 'press', 1, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna', 2, '10'), ej('Sentadilla búlgara', 2, '10'), ej('Banda pull-apart', 2, '20')]),
       circuito(2, 'PECHO', [ej('Flexiones inclinadas', 2, '12'), ej('TRX chest press', 2, '12'), ej('Floor press', 2, '10')]),
-      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de tríceps con kettlebell', 2, '10'), ej('Tríceps alto en TRX', 2, '12')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de tríceps con banda', 2, '15'), ej('Tríceps alto en TRX', 2, '12')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Hollow body', 2, '25s'), ej('Plancha con elevación alternada', 2, '10'), ej('Bíceps curl martillo', 2, '10')]),
       circuito(5, 'HIIT', [ej('Saltos laterales', 3, '20'), ej('Sentadilla con salto', 3, '10'), ej('Bear crawl', 3, '8m')]),
     ]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.61';
+const SEED_VERSION = '2.62';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
