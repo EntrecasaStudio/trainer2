@@ -601,7 +601,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C02', 'Casa Press B — Lean', 'Lean', 'press', 2, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla sumo', 2, '12'), ej('Sentadilla búlgara', 2, '10'), ej('Remo', 2, '12')]),
-      circuito(2, 'PECHO', [ej('Flexiones explosivas', 2, '8'), ej('TRX archer press', 2, '10'), ej('Banda press de pecho', 2, '15')]),
+      circuito(2, 'PECHO', [ej('Flexiones explosivas', 2, '8'), ej('TRX archer press', 2, '10'), ej('TRX chest press', 2, '12')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 2, '10'), ej('Extensión de tríceps con kettlebell', 2, '10'), ej('Elevaciones de hombro adelante', 2, '12')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Abs complex', 2, '30s'), ej('Plancha con elevación alternada', 2, '10'), ej('Bíceps curl martillo', 2, '10')]),
       circuito(5, 'HIIT', [ej('Bear crawl', 3, '8m'), ej('Tuck jumps', 3, '8'), ej('Saltos laterales', 3, '20')]),
@@ -615,7 +615,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C07', 'Casa Press D — Lean', 'Lean', 'press', 2, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna', 2, '10'), ej('Sentadilla sumo', 2, '12'), ej('Remo alto en TRX', 2, '12')]),
-      circuito(2, 'PECHO', [ej('Banda press de pecho', 2, '15'), ej('Flexiones inclinadas', 2, '12'), ej('Flexiones explosivas', 2, '8')]),
+      circuito(2, 'PECHO', [ej('TRX chest press', 2, '12'), ej('Flexiones inclinadas', 2, '12'), ej('Flexiones explosivas', 2, '8')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Arnold press con kettlebell', 2, '10'), ej('Tríceps alto en TRX', 2, '12'), ej('Extensión de tríceps con banda', 2, '15')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Plancha lateral con chaleco', 2, '25s'), ej('Abs complex', 2, '30s'), ej('Bíceps curl en equilibrio con kettlebell', 2, '10')]),
       circuito(5, 'HIIT', [ej('Bear crawl', 3, '8m'), ej('Burpees', 3, '8'), ej('Saltos laterales', 3, '20')]),
@@ -629,7 +629,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C11', 'Casa Press F — Lean', 'Lean', 'press', 1, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna', 2, '10'), ej('Sentadilla búlgara', 2, '10'), ej('Banda pull-apart', 2, '20')]),
-      circuito(2, 'PECHO', [ej('Flexiones inclinadas', 2, '12'), ej('Banda press de pecho', 2, '15'), ej('Floor press', 2, '10')]),
+      circuito(2, 'PECHO', [ej('Flexiones inclinadas', 2, '12'), ej('TRX chest press', 2, '12'), ej('Floor press', 2, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de tríceps con kettlebell', 2, '10'), ej('Tríceps alto en TRX', 2, '12')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Hollow body', 2, '25s'), ej('Plancha con elevación alternada', 2, '10'), ej('Bíceps curl martillo', 2, '10')]),
       circuito(5, 'HIIT', [ej('Saltos laterales', 3, '20'), ej('Sentadilla con salto', 3, '10'), ej('Bear crawl', 3, '8m')]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.60';
+const SEED_VERSION = '2.61';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1538,17 +1538,18 @@ function ensureCalendarOverrides() {
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-20', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-22', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-25', foco: 'press' },
+    // From May 28: fixed Lun=Press, Mié=Pull, Vie=Press
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-27', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-29', foco: 'press' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-01', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-03', foco: 'press' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-05', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-01', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-03', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-05', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-08', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-10', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-12', foco: 'press' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-15', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-17', foco: 'press' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-19', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-15', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-17', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-19', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-22', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
@@ -1569,17 +1570,18 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-20', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-22', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-25', foco: 'press' },
+    // From May 28: fixed Lun=Press, Mié=Pull, Vie=Press
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-27', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-29', foco: 'press' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-01', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-03', foco: 'press' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-05', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-01', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-03', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-05', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-08', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-10', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-12', foco: 'press' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-15', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-17', foco: 'press' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-19', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-15', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-17', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-19', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-22', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
@@ -1589,26 +1591,26 @@ function ensureCalendarOverrides() {
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-02', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    // From May 16: RIO Sat = opposite of Fri CASA
+    // From May 16: Sat = always pull (RIO or CASA)
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-30', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-06', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-06', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-06-13', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-20', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-20', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-06-27', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-11', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-02', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    // From May 16: RIO Sat = opposite of Fri CASA
+    // From May 16: Sat = always pull (RIO or CASA)
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-30', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-06', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-06', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-06-13', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-20', foco: 'press', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-20', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-06-27', foco: 'pull', letraMin: 'C', letraMax: 'F' },
   ];
 
