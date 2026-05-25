@@ -703,21 +703,21 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C07', 'Casa Press D — Nat', 'Nat', 'press', 2, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Sentadilla búlgara', 2, '10'), ej('Abducción con pausa', 2, '10'), ej('Zancadas con kettlebell', 2, '10')]),
-      circuito(2, 'PECHO·HOMBROS', [ej('Flexiones inclinadas', 2, '12'), ej('TRX chest press', 2, '12'), ej('Arnold press con kettlebell', 2, '10')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('Flexiones inclinadas', 2, '12'), ej('TRX archer press', 2, '10'), ej('Press militar', 2, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de tríceps con kettlebell', 2, '10'), ej('Banda triceps pushdown', 2, '15')]),
       circuito(4, 'CORE·PIERNAS', [ej('Plancha estrella con peso', 2, '6'), ej('Bird-dog', 2, '10'), ej('Loop band abducción parada', 2, '15')]),
       circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '8'), ej('Saltos laterales', 3, '20'), ej('Estocada con salto', 3, '8')]),
     ]),
     rutinaCasa('#C09', 'Casa Press E — Nat', 'Nat', 'press', 2, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Hip thrust a una pierna', 2, '10'), ej('Sumo squat to calf raise', 2, '12'), ej('Split squat pulses', 2, '12')]),
-      circuito(2, 'PECHO·HOMBROS', [ej('Flexiones', 2, '12'), ej('Banda press de pecho', 2, '15'), ej('Press militar', 2, '10')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('Flexiones diamante', 2, '10'), ej('TRX chest press', 2, '12'), ej('Arnold press con kettlebell', 2, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Vuelos laterales', 2, '12'), ej('Fondos en banco', 2, '12'), ej('Extensión de tríceps con banda', 2, '15')]),
       circuito(4, 'CORE·PIERNAS', [ej('Ab wheel', 2, '8'), ej('Plancha con chaleco', 2, '25s'), ej('Extensión de cadera en 4 puntos', 2, '12')]),
       circuito(5, 'HIIT', [ej('Jumping jacks', 3, '25'), ej('Mountain climbers', 3, '15'), ej('Burpees', 3, '6')]),
     ]),
     rutinaCasa('#C10', 'Casa Press F — Nat', 'Nat', 'press', 1, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Elevated side reaches', 2, '12'), ej('Plié dips', 2, '12'), ej('Déficit reverse lunge', 2, '10')]),
-      circuito(2, 'PECHO·HOMBROS', [ej('TRX archer press', 2, '10'), ej('Flexiones', 2, '10'), ej('Arnold press con kettlebell', 2, '10')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('Banda press de pecho', 2, '15'), ej('Flexiones', 2, '10'), ej('Vuelos laterales', 2, '12')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de tríceps con kettlebell', 2, '10'), ej('Banda triceps pushdown', 2, '15')]),
       circuito(4, 'CORE·PIERNAS', [ej('Abs complex', 2, '25s'), ej('Dead bug', 2, '10'), ej('Banda lateral walk', 2, '15')]),
       circuito(5, 'HIIT', [ej('Estocada con salto', 3, '8'), ej('Sentadilla con salto', 3, '8'), ej('Saltos laterales', 3, '20')]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.59';
+const SEED_VERSION = '2.60';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
