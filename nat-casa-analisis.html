@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nat CASA — Análisis de Ejercicios</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0d1117; color: #e6edf3; padding: 20px; }
+  h1 { font-size: 22px; margin-bottom: 4px; }
+  h2 { font-size: 18px; margin: 30px 0 12px; color: #58a6ff; }
+  .subtitle { color: #8b949e; font-size: 14px; margin-bottom: 24px; }
+  .table-wrap { overflow-x: auto; margin-bottom: 32px; }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; min-width: 900px; }
+  th, td { padding: 6px 10px; border: 1px solid #30363d; text-align: left; vertical-align: top; }
+  th { background: #161b22; color: #58a6ff; font-weight: 600; position: sticky; top: 0; z-index: 1; white-space: nowrap; }
+  th.routine-col { min-width: 130px; }
+  td { white-space: nowrap; }
+  tr:nth-child(even) td { background: #161b22; }
+  tr:nth-child(odd) td { background: #0d1117; }
+  .section-header { background: #1c2333 !important; font-weight: 700; color: #c9d1d9; font-size: 14px; }
+  .section-header td { border-bottom: 2px solid #58a6ff; }
+  .freq-badge { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 6px; border-radius: 10px; margin-left: 4px; }
+
+  /* Color palette for repeated exercises */
+  .rep-2 { background: rgba(56,139,253,0.15); color: #58a6ff; }
+  .rep-3 { background: rgba(187,128,9,0.2); color: #e3b341; }
+  .rep-4 { background: rgba(218,95,38,0.2); color: #db6d28; }
+  .rep-5 { background: rgba(248,81,73,0.2); color: #f85149; }
+  .rep-6 { background: rgba(188,55,200,0.2); color: #bc37c8; }
+
+  .highlight-2 { background: rgba(56,139,253,0.08) !important; }
+  .highlight-3 { background: rgba(187,128,9,0.1) !important; }
+  .highlight-4 { background: rgba(218,95,38,0.1) !important; }
+  .highlight-5 { background: rgba(248,81,73,0.1) !important; }
+  .highlight-6 { background: rgba(188,55,200,0.1) !important; }
+
+  .freq-table { max-width: 700px; }
+  .freq-table td:first-child { font-weight: 500; }
+  .freq-table td:last-child { text-align: center; font-weight: 700; width: 60px; }
+
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0 20px; font-size: 13px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 3px; }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 16px 0 24px; }
+  .summary-card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 14px; text-align: center; }
+  .summary-card .num { font-size: 28px; font-weight: 700; color: #58a6ff; }
+  .summary-card .label { font-size: 12px; color: #8b949e; margin-top: 4px; }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    th { background: #f0f0f0; color: #000; }
+    td { background: #fff !important; color: #000; }
+    .section-header { background: #e8e8e8 !important; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Nat CASA — Tabla Comparativa de Ejercicios</h1>
+<p class="subtitle">12 rutinas (6 Press + 6 Pull) · 5 circuitos cada una · Generado: 23 mayo 2026</p>
+
+<script>
+const routines = {
+  'Press A': {
+    c1: ['Hip thrust a una pierna', 'Sumo squat to calf raise', 'Sentadilla goblet'],
+    c2: ['Floor press', 'Flexiones inclinadas', 'Press militar'],
+    c3: ['Vuelos laterales', 'Fondos en banco', 'Extensión de tríceps con banda'],
+    c4: ['Ab wheel', 'Plancha con chaleco', 'Glute bridge'],
+    c5: ['Jumping jacks', 'Mountain climbers', 'Burpees'],
+  },
+  'Press B': {
+    c1: ['Elevated side leg lifts', 'Déficit reverse lunge', 'Step up'],
+    c2: ['TRX chest press', 'Flexiones', 'Arnold press con kettlebell'],
+    c3: ['Elevaciones de hombro adelante', 'Extensión de tríceps con kettlebell', 'Banda triceps pushdown'],
+    c4: ['Abs complex', 'Dead bug', 'Standing weighted hip abduction'],
+    c5: ['Estocada con salto', 'Saltos laterales', 'Sentadilla con salto'],
+  },
+  'Press C': {
+    c1: ['Plié squat', 'Loop band abducción parada', 'Sentadilla sumo'],
+    c2: ['Banda press de pecho', 'Floor press', 'Vuelos laterales en equilibrio con kettlebell'],
+    c3: ['Press militar', 'Fondos en banco', 'Extensión de tríceps con banda'],
+    c4: ['Plancha con elevación alternada', 'Hollow body', 'Puente de glúteos una pierna'],
+    c5: ['Mountain climbers', 'Burpees', 'Jumping jacks'],
+  },
+  'Press D': {
+    c1: ['Sentadilla búlgara', 'Abducción con pausa', 'Zancadas con kettlebell'],
+    c2: ['Flexiones inclinadas', 'TRX chest press', 'Arnold press con kettlebell'],
+    c3: ['Elevaciones de hombro adelante', 'Extensión de tríceps con kettlebell', 'Banda triceps pushdown'],
+    c4: ['Plancha estrella con peso', 'Bird-dog', 'Loop band abducción parada'],
+    c5: ['Sentadilla con salto', 'Saltos laterales', 'Estocada con salto'],
+  },
+  'Press E': {
+    c1: ['Hip thrust a una pierna', 'Sumo squat to calf raise', 'Split squat pulses'],
+    c2: ['Flexiones', 'Banda press de pecho', 'Press militar'],
+    c3: ['Vuelos laterales', 'Fondos en banco', 'Extensión de tríceps con banda'],
+    c4: ['Ab wheel', 'Plancha con chaleco', 'Extensión de cadera en 4 puntos'],
+    c5: ['Jumping jacks', 'Mountain climbers', 'Burpees'],
+  },
+  'Press F': {
+    c1: ['Elevated side reaches', 'Plié dips', 'Déficit reverse lunge'],
+    c2: ['TRX archer press', 'Flexiones', 'Arnold press con kettlebell'],
+    c3: ['Elevaciones de hombro adelante', 'Extensión de tríceps con kettlebell', 'Banda triceps pushdown'],
+    c4: ['Abs complex', 'Dead bug', 'Banda lateral walk'],
+    c5: ['Estocada con salto', 'Sentadilla con salto', 'Saltos laterales'],
+  },
+  'Pull A': {
+    c1: ['Plié dips', 'Elevated side reaches', 'Sentadilla búlgara con TRX'],
+    c2: ['Peso muerto a una pierna', 'Empuje de cadera', 'Plancha con chaleco'],
+    c3: ['TRX row', 'TRX face pull', 'Bíceps curl'],
+    c4: ['Plancha estrella con peso', 'Banda pull-apart', 'Tríceps alto en TRX'],
+    c5: ['Tuck jumps', 'Bear crawl', 'Saltos laterales'],
+  },
+  'Pull B': {
+    c1: ['Sumo squat to RDL', 'Sentadilla búlgara', 'Calf raises'],
+    c2: ['Puente de glúteos una pierna', 'Sentadilla goblet', 'Abs complex'],
+    c3: ['Remo', 'TRX face pull', 'Bíceps curl martillo'],
+    c4: ['Pallof press', 'Fondos en banco', 'Remo alto en TRX'],
+    c5: ['Sentadilla con salto', 'Mountain climbers', 'Jumping jacks'],
+  },
+  'Pull C': {
+    c1: ['Split squat pulses', 'Standing weighted hip abduction', 'Step up'],
+    c2: ['Zancadas con chaleco de peso', 'Elevated side leg lifts', 'Dead bug'],
+    c3: ['Dominadas australianas', 'TRX power pull', 'Bíceps curl con banda'],
+    c4: ['Ab wheel', 'Extensión de tríceps con banda', 'Bíceps curl en equilibrio con kettlebell'],
+    c5: ['Burpees', 'Estocada con salto', 'Bear crawl'],
+  },
+  'Pull D': {
+    c1: ['Sumo squat to RDL', 'Abducción con pausa', 'Hip thrust a una pierna'],
+    c2: ['Glute bridge', 'Sentadilla sumo', 'Plancha con elevación alternada'],
+    c3: ['Remo alto en TRX', 'TRX face pull', 'Bíceps curl en TRX'],
+    c4: ['Hollow body', 'Fondos en banco con chaleco', 'Remo alto en TRX'],
+    c5: ['Tuck jumps', 'Saltos laterales', 'Mountain climbers'],
+  },
+  'Pull E': {
+    c1: ['Step up', 'Elevated side reaches', 'Loop band abducción parada'],
+    c2: ['Peso muerto a una pierna', 'Extensión de cadera en 4 puntos', 'Plancha con chaleco'],
+    c3: ['TRX row', 'Dominadas australianas', 'Bíceps curl concentrado'],
+    c4: ['Plancha toque de hombro', 'Tríceps alto en TRX', 'Banda pull-apart'],
+    c5: ['Burpees', 'Sentadilla con salto', 'Jumping jacks'],
+  },
+  'Pull F': {
+    c1: ['Plié squat', 'Calf raises', 'Déficit reverse lunge'],
+    c2: ['Puente de glúteos una pierna', 'Sentadilla sumo', 'Bird-dog'],
+    c3: ['TRX power pull', 'Remo', 'Bíceps curl martillo'],
+    c4: ['Copenhague', 'Extensión de tríceps con kettlebell', 'Bíceps curl con banda'],
+    c5: ['Estocada con salto', 'Bear crawl', 'Saltos laterales'],
+  },
+};
+
+// Count frequency
+const freq = {};
+const routineNames = Object.keys(routines);
+for (const [rName, circuits] of Object.entries(routines)) {
+  for (const [cKey, exercises] of Object.entries(circuits)) {
+    for (const ex of exercises) {
+      if (!freq[ex]) freq[ex] = { count: 0, routines: [] };
+      freq[ex].count++;
+      freq[ex].routines.push(rName);
+    }
+  }
+}
+
+// Color class by frequency
+function repClass(count) {
+  if (count <= 1) return '';
+  if (count === 2) return 'rep-2';
+  if (count === 3) return 'rep-3';
+  if (count === 4) return 'rep-4';
+  if (count === 5) return 'rep-5';
+  return 'rep-6';
+}
+function highlightClass(count) {
+  if (count <= 1) return '';
+  if (count === 2) return 'highlight-2';
+  if (count === 3) return 'highlight-3';
+  if (count === 4) return 'highlight-4';
+  if (count === 5) return 'highlight-5';
+  return 'highlight-6';
+}
+
+// Summary stats
+const totalExercises = Object.keys(freq).length;
+const hiitExercises = new Set();
+for (const [rName, circuits] of Object.entries(routines)) {
+  for (const ex of circuits.c5) hiitExercises.add(ex);
+}
+const uniqueNonHiit = Object.keys(freq).filter(e => !hiitExercises.has(e) || freq[e].routines.some(r => {
+  const c = routines[r];
+  return c.c1.includes(e) || c.c2.includes(e) || c.c3.includes(e) || c.c4.includes(e);
+}));
+const repeatedMoreThan2 = Object.entries(freq).filter(([,v]) => v.count > 2);
+const repeatedMoreThan4 = Object.entries(freq).filter(([,v]) => v.count > 4);
+
+document.write(`
+<div class="summary-grid">
+  <div class="summary-card"><div class="num">${totalExercises}</div><div class="label">Ejercicios únicos</div></div>
+  <div class="summary-card"><div class="num">${Object.values(freq).reduce((s,v) => s + v.count, 0)}</div><div class="label">Total apariciones</div></div>
+  <div class="summary-card"><div class="num">${repeatedMoreThan2.length}</div><div class="label">Repiten 3+ veces</div></div>
+  <div class="summary-card"><div class="num">${repeatedMoreThan4.length}</div><div class="label">Repiten 5+ veces</div></div>
+</div>
+`);
+
+// Legend
+document.write(`
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(56,139,253,0.3);"></div> 2 apariciones</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(187,128,9,0.4);"></div> 3 apariciones</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(218,95,38,0.4);"></div> 4 apariciones</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(248,81,73,0.4);"></div> 5 apariciones</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(188,55,200,0.4);"></div> 6+ apariciones</div>
+</div>
+`);
+
+// ── MAIN TABLE ──
+document.write('<h2>Tabla Comparativa — Todas las Rutinas</h2>');
+document.write('<div class="table-wrap"><table>');
+document.write('<tr><th class="routine-col">Rutina</th><th>C1 — Piernas/Glúteos</th><th>C2 — Tren sup. / Core</th><th>C3 — Hombros/Espalda</th><th>C4 — Core / Tríceps</th><th>C5 — HIIT</th></tr>');
+
+const circuitKeys = ['c1','c2','c3','c4','c5'];
+
+// Press section
+document.write('<tr class="section-header"><td colspan="7">PRESS (6 rutinas)</td></tr>');
+for (const rName of routineNames.filter(n => n.startsWith('Press'))) {
+  document.write(`<tr><td><strong>${rName}</strong></td>`);
+  for (const ck of circuitKeys) {
+    const exercises = routines[rName][ck];
+    const cells = exercises.map(ex => {
+      const f = freq[ex];
+      const cls = highlightClass(f.count);
+      const badge = f.count > 1 ? `<span class="freq-badge ${repClass(f.count)}">${f.count}×</span>` : '';
+      return `<span class="${cls}" style="display:inline-block;padding:2px 4px;border-radius:4px;">${ex}${badge}</span>`;
+    });
+    document.write(`<td>${cells.join('<br>')}</td>`);
+  }
+  document.write('</tr>');
+}
+
+// Pull section
+document.write('<tr class="section-header"><td colspan="7">PULL (6 rutinas)</td></tr>');
+for (const rName of routineNames.filter(n => n.startsWith('Pull'))) {
+  document.write(`<tr><td><strong>${rName}</strong></td>`);
+  for (const ck of circuitKeys) {
+    const exercises = routines[rName][ck];
+    const cells = exercises.map(ex => {
+      const f = freq[ex];
+      const cls = highlightClass(f.count);
+      const badge = f.count > 1 ? `<span class="freq-badge ${repClass(f.count)}">${f.count}×</span>` : '';
+      return `<span class="${cls}" style="display:inline-block;padding:2px 4px;border-radius:4px;">${ex}${badge}</span>`;
+    });
+    document.write(`<td>${cells.join('<br>')}</td>`);
+  }
+  document.write('</tr>');
+}
+document.write('</table></div>');
+
+// ── FREQUENCY TABLE ──
+document.write('<h2>Frecuencia de Ejercicios (ordenado por repeticiones)</h2>');
+const sorted = Object.entries(freq).sort((a,b) => b[1].count - a[1].count);
+
+document.write('<div class="table-wrap"><table class="freq-table">');
+document.write('<tr><th>Ejercicio</th><th>En qué rutinas</th><th>Veces</th></tr>');
+for (const [name, data] of sorted) {
+  const cls = highlightClass(data.count);
+  const badge = data.count > 1 ? `<span class="freq-badge ${repClass(data.count)}">${data.count}×</span>` : '';
+  document.write(`<tr><td class="${cls}">${name} ${badge}</td><td style="font-size:11px;color:#8b949e;white-space:normal;">${data.routines.join(', ')}</td><td class="${cls}">${data.count}</td></tr>`);
+}
+document.write('</table></div>');
+
+// ── WEEKLY ANALYSIS ──
+document.write('<h2>Análisis Semanal (3 press + 3 pull por semana)</h2>');
+document.write('<p style="color:#8b949e;font-size:13px;margin-bottom:12px;">Con 6 rutinas de cada tipo y 3 sesiones/semana, cada rutina se repite cada ~2 semanas. Ejercicios que aparecen en rutinas consecutivas (ej: C y D) tienen mayor riesgo de repetirse en la misma semana.</p>');
+
+// Check consecutive appearances
+const pressOrder = ['Press A','Press B','Press C','Press D','Press E','Press F'];
+const pullOrder = ['Pull A','Pull B','Pull C','Pull D','Pull E','Pull F'];
+
+function findConsecutive(order, exerciseName) {
+  const positions = [];
+  for (let i = 0; i < order.length; i++) {
+    const r = routines[order[i]];
+    const allEx = [...r.c1, ...r.c2, ...r.c3, ...r.c4, ...r.c5];
+    if (allEx.includes(exerciseName)) positions.push(i);
+  }
+  let hasConsecutive = false;
+  for (let i = 1; i < positions.length; i++) {
+    if (positions[i] - positions[i-1] === 1) hasConsecutive = true;
+  }
+  return { positions, hasConsecutive, letters: positions.map(p => order[p]) };
+}
+
+document.write('<div class="table-wrap"><table class="freq-table">');
+document.write('<tr><th>Ejercicio</th><th>Rutinas consecutivas</th><th>Riesgo semanal</th></tr>');
+const riskyOnes = [];
+for (const [name, data] of sorted) {
+  if (data.count < 2) continue;
+  const pressCheck = findConsecutive(pressOrder, name);
+  const pullCheck = findConsecutive(pullOrder, name);
+  const risks = [];
+  if (pressCheck.hasConsecutive) risks.push('Press ' + pressCheck.letters.join(', '));
+  if (pullCheck.hasConsecutive) risks.push('Pull ' + pullCheck.letters.join(', '));
+  if (risks.length > 0) {
+    riskyOnes.push([name, risks]);
+  }
+}
+if (riskyOnes.length === 0) {
+  document.write('<tr><td colspan="3" style="color:#3fb950;">✓ No hay ejercicios en rutinas consecutivas del mismo tipo</td></tr>');
+} else {
+  for (const [name, risks] of riskyOnes) {
+    document.write(`<tr><td class="highlight-4">${name}</td><td style="font-size:12px;">${risks.join(' · ')}</td><td style="color:#f85149;font-weight:700;">⚠ Puede repetir</td></tr>`);
+  }
+}
+document.write('</table></div>');
+</script>
+
+</body>
+</html>

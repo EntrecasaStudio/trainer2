@@ -895,8 +895,6 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Bíceps, Braquial, Antebrazo',
     descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
   },
-  {
-  },
   // Bandas
   {
     nombre: 'Extensión de tríceps con banda',
