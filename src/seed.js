@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.58';
+const SEED_VERSION = '2.59';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1742,7 +1742,7 @@ export async function seedV2() {
     console.log(`[Seed] Remapped ${idRemap.size} old rutina IDs to stable IDs`);
   }
 
-  // Protect routines in use today: don't overwrite active or assigned-for-today
+  // Protect only the routine with an active (started) workout
   const _protectedIds = new Set();
   try {
     const wsRaw = localStorage.getItem('gym_active_workout');
@@ -1751,12 +1751,6 @@ export async function seedV2() {
       if (ws.workoutState?.rutinaId) _protectedIds.add(ws.workoutState.rutinaId);
     }
   } catch {}
-  const _todayStr = new Date().toISOString().slice(0, 10);
-  const _curOverrides = store.getObj(store.KEYS.overrides);
-  for (const u of ['Lean', 'Nat']) {
-    const ov = _curOverrides[u]?.[_todayStr];
-    if (ov?.rutinaId) _protectedIds.add(ov.rutinaId);
-  }
   for (const pid of _protectedIds) {
     const oldDef = existing.find(r => r.id === pid);
     if (oldDef) {

@@ -203,6 +203,7 @@ export function mountWorkout(container, params) {
   activeCircuitIdx = 0;
   incremento = 2.5;
   editMode = false;
+  expandedExercises = new Set();
 
   workoutState = {
     rutinaId: rutina.id,
@@ -879,6 +880,8 @@ function toggleExpand(key, container) {
   const card = summaryWrap?.closest('.exercise-card');
   if (summaryWrap && bodyWrap) {
     const isNowExpanded = expandedExercises.has(key);
+    summaryWrap.classList.add('animate');
+    bodyWrap.classList.add('animate');
     summaryWrap.classList.toggle('show', !isNowExpanded);
     bodyWrap.classList.toggle('show', isNowExpanded);
     card?.classList.toggle('expanded', isNowExpanded);
