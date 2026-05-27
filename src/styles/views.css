@@ -865,6 +865,10 @@
   font-size: var(--text-xs);
   font-weight: var(--fw-medium);
 }
+.progreso-suggestion--progress {
+  background: rgba(100,180,255,0.08);
+  color: var(--color-text-muted);
+}
 
 /* Dashboard */
 .progreso-dashboard {
