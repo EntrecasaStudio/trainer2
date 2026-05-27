@@ -256,9 +256,10 @@ export function mountProgreso(container) {
       if (history.length === 0) continue;
 
       const last = history[history.length - 1];
-      // Get completedAllReps from progresion store if available
       const prog = store.getProgresion(ejercicio, currentUser, lugar);
-      const completedAllReps = prog?.completedAllReps || false;
+      const consecutiveComplete = prog?.consecutiveComplete ?? (prog?.completedAllReps ? 1 : 0);
+      const cat = EJERCICIOS_CATALOGO.find(c => c.nombre === ejercicio);
+      const smartInc = cat?.tipo === 'maquina' ? 2.5 : 1;
 
       entries.push({
         ejercicio,
@@ -266,7 +267,8 @@ export function mountProgreso(container) {
         history,
         lastWeight: last.peso,
         lastDate: last.fecha,
-        completedAllReps,
+        consecutiveComplete,
+        smartInc,
       });
     }
 
@@ -299,7 +301,11 @@ export function mountProgreso(container) {
         <div style="display:flex;align-items:baseline;gap:var(--space-sm);">
           <span class="progreso-weight">${e.lastWeight}</span>
           <span class="progreso-weight-unit">kg</span>
-          ${e.completedAllReps ? `<span class="progreso-suggestion">↑ +2.5kg sugerido</span>` : ''}
+          ${e.consecutiveComplete >= 2
+            ? `<span class="progreso-suggestion">↑ +${e.smartInc}kg sugerido</span>`
+            : e.consecutiveComplete === 1
+              ? `<span class="progreso-suggestion progreso-suggestion--progress">1/2 sesiones</span>`
+              : ''}
         </div>
         ${cols.length > 1 ? `
         <div class="progreso-history">

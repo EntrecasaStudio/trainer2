@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.63';
+const SEED_VERSION = '2.64';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1164,9 +1164,15 @@ function rebuildProgresionWithLugar() {
         const allReps = (e.seriesData || []).every(sr => sr.done);
         if (!newProg[e.nombre]) newProg[e.nombre] = {};
         if (!newProg[e.nombre][usuario]) newProg[e.nombre][usuario] = {};
+        const prev = newProg[e.nombre][usuario][lugar];
+        const prevCount = prev?.consecutiveComplete ?? 0;
+        const weightChanged = prev && prev.lastWeight && maxPeso !== prev.lastWeight;
+        const consecutiveComplete = weightChanged
+          ? (allReps ? 1 : 0)
+          : (allReps ? prevCount + 1 : 0);
         newProg[e.nombre][usuario][lugar] = {
           lastWeight: maxPeso,
-          completedAllReps: allReps,
+          consecutiveComplete,
           lastDate: s.fecha,
         };
       }
