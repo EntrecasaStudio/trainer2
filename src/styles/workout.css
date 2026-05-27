@@ -292,6 +292,11 @@
   border-left: 3px solid var(--color-accent);
   margin-bottom: var(--space-sm);
 }
+.suggestion-banner--progress {
+  background: rgba(100,180,255,0.08);
+  color: var(--color-text-muted);
+  border-left-color: rgba(100,180,255,0.5);
+}
 
 /* ── Peso / Chaleco toggle ───────────────────────────────────────────────── */
 .peso-toggle-row {

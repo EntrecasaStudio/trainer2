@@ -244,7 +244,15 @@ export function mountWorkout(container, params) {
         if (prog) {
           e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
           e._lastWeight = prog.lastWeight;
-          e._suggestion = prog.completedAllReps ? prog.lastWeight + incremento : null;
+          const count = prog.consecutiveComplete ?? (prog.completedAllReps ? 1 : 0);
+          const cat = EJERCICIOS_CATALOGO.find(c => c.nombre === e.nombre);
+          const smartInc = cat?.tipo === 'maquina' ? 2.5 : 1;
+          if (count >= 2) {
+            e._suggestion = prog.lastWeight + smartInc;
+            e._sugInc = smartInc;
+          } else if (count === 1) {
+            e._progressCount = 1;
+          }
         } else {
           const kbDefault = defaultKettlebellWeight(e.nombre, usuario);
           if (kbDefault != null) {
@@ -429,7 +437,10 @@ function renderExerciseCard(e, ci, ei) {
         })()}
         ${e._suggestion ? `
           <div class="suggestion-banner">
-            <i class="ph ph-trend-up"></i> +${incremento}kg sugerido (→ ${e._suggestion}kg)
+            <i class="ph ph-trend-up"></i> +${e._sugInc}kg sugerido (→ ${e._suggestion}kg)
+          </div>` : e._progressCount === 1 ? `
+          <div class="suggestion-banner suggestion-banner--progress">
+            <i class="ph ph-timer"></i> 1/2 sesiones — mantener peso
           </div>` : ''}
 
         <div class="vuelta-headers">
@@ -1105,7 +1116,16 @@ function finishWorkout(container) {
       if (doneSeries.length === 0) return;
       const firstPeso = doneSeries[0].peso;
       const allReps = e.seriesData.every(s => s.done);
-      store.setProgresion(e.nombre, usuario, { lastWeight: firstPeso, completedAllReps: allReps }, workoutState.lugar);
+      const prev = store.getProgresion(e.nombre, usuario, workoutState.lugar);
+      const prevCount = prev?.consecutiveComplete ?? (prev?.completedAllReps ? 1 : 0);
+      const weightChanged = prev && prev.lastWeight && firstPeso !== prev.lastWeight;
+      let consecutiveComplete;
+      if (weightChanged) {
+        consecutiveComplete = allReps ? 1 : 0;
+      } else {
+        consecutiveComplete = allReps ? prevCount + 1 : 0;
+      }
+      store.setProgresion(e.nombre, usuario, { lastWeight: firstPeso, consecutiveComplete }, workoutState.lugar);
     });
   });
 
