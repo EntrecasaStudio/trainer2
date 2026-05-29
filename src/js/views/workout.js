@@ -66,6 +66,24 @@ function lastBandaValues(nombre, usuario) {
   return null;
 }
 
+// Pick the most recent chaleco peso for this exercise/user from past sesiones
+function lastChalecoPeso(nombre, usuario) {
+  try {
+    const sesiones = store.getAll(store.KEYS.sesiones) || [];
+    for (let i = sesiones.length - 1; i >= 0; i--) {
+      const s = sesiones[i];
+      if (s.usuario !== usuario) continue;
+      for (const c of (s.circuitos || [])) {
+        for (const e of (c.ejercicios || [])) {
+          if (e.nombre !== nombre) continue;
+          if (e.chaleco && e.chalecoPeso > 0) return e.chalecoPeso;
+        }
+      }
+    }
+  } catch {}
+  return null;
+}
+
 // Pick the reps from the most recent session where this exercise was done
 // (prefers same lugar, falls back to any lugar). Only counts series marked done.
 function lastRepsValue(nombre, usuario, lugar) {
@@ -761,7 +779,10 @@ function bindExerciseEvents(container, scope) {
       const { ci, ei } = btn.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
       ejercicio.chaleco = !ejercicio.chaleco;
-      if (ejercicio.chaleco && !ejercicio.chalecoPeso) ejercicio.chalecoPeso = 9;
+      if (ejercicio.chaleco && !ejercicio.chalecoPeso) {
+        const last = lastChalecoPeso(ejercicio.nombre, workoutState.usuario);
+        ejercicio.chalecoPeso = last || 9;
+      }
       if (!ejercicio.chaleco) ejercicio.chalecoPeso = 0;
       persistWorkout();
       refreshExercises(container);
