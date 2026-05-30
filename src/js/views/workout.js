@@ -1128,6 +1128,19 @@ function showSaveRoutineChangesModal(container, rutinaId, circuitos, skipLabel, 
   const rutina = store.findById(store.KEYS.rutinas, rutinaId);
   if (!rutina) { onDone(); return; }
 
+  let nextLetter = '';
+  const match = rutina.nombre.match(/^(.+) ([A-Z]) (— .+)$/);
+  if (match) {
+    const [, prefix, , suffix] = match;
+    const rutinas = store.getAll(store.KEYS.rutinas);
+    const letters = rutinas
+      .filter(r => r.nombre?.startsWith(prefix + ' ') && r.nombre.endsWith(suffix))
+      .map(r => { const m = r.nombre.match(/ ([A-Z]) —/); return m ? m[1] : null; })
+      .filter(Boolean);
+    const maxCode = letters.length ? Math.max(...letters.map(l => l.charCodeAt(0))) : 64;
+    nextLetter = String.fromCharCode(maxCode + 1);
+  }
+
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.remove('hidden');
   overlay.innerHTML = `
@@ -1138,10 +1151,10 @@ function showSaveRoutineChangesModal(container, rutinaId, circuitos, skipLabel, 
       </p>
       <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
         <button class="btn btn-primary btn-lg" id="btn-update-rutina">
-          <i class="ph ph-arrows-clockwise"></i> Actualizar ${rutina.numero}
+          <i class="ph ph-arrows-clockwise"></i> Actualizar ${rutina.nombre}
         </button>
         <button class="btn btn-secondary btn-lg" id="btn-save-new-rutina">
-          <i class="ph ph-copy"></i> Guardar como nueva
+          <i class="ph ph-copy"></i> Guardar como nueva${nextLetter ? ` (${nextLetter})` : ''}
         </button>
         <button class="btn btn-lg" id="btn-skip-save" style="color:var(--color-text-muted);">
           ${skipLabel}
@@ -1166,16 +1179,30 @@ function showSaveRoutineChangesModal(container, rutinaId, circuitos, skipLabel, 
       .filter(r => typeof r.numero === 'string' && r.numero.startsWith('#'))
       .map(r => parseInt(r.numero.replace('#', '')) || 0);
     const nextNum = `#${String((nums.length ? Math.max(...nums) : 0) + 1).padStart(3, '0')}`;
+
+    let newNombre = rutina.nombre;
+    const match = rutina.nombre.match(/^(.+) ([A-Z]) (— .+)$/);
+    if (match) {
+      const [, prefix, , suffix] = match;
+      const letters = rutinas
+        .filter(r => r.nombre?.startsWith(prefix + ' ') && r.nombre.endsWith(suffix))
+        .map(r => { const m = r.nombre.match(/ ([A-Z]) —/); return m ? m[1] : null; })
+        .filter(Boolean);
+      const maxCode = letters.length ? Math.max(...letters.map(l => l.charCodeAt(0))) : 64;
+      newNombre = `${prefix} ${String.fromCharCode(maxCode + 1)} ${suffix}`;
+    }
+
     store.push(store.KEYS.rutinas, {
       ...rutina,
       id: crypto.randomUUID(),
+      nombre: newNombre,
       numero: nextNum,
       custom: true,
       circuitos: cleanCircuitos,
       updatedAt: new Date().toISOString(),
     });
     close();
-    showToast(`Nueva rutina ${nextNum} creada`);
+    showToast(`Nueva rutina: ${newNombre}`);
     onDone();
   });
 
