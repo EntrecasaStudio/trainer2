@@ -43,12 +43,17 @@ async function bootApp() {
   // Mount avatar menu
   mountAvatarMenu();
 
-  // iOS PWA black screen fix: force repaint when returning from background
+  // iOS PWA: force repaint + SW update check when returning from background
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
       document.body.style.display = 'none';
       document.body.offsetHeight;
       document.body.style.display = '';
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistration().then(reg => {
+          if (reg) reg.update().catch(() => {});
+        });
+      }
     }
   });
 
