@@ -58,6 +58,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sentadilla búlgara',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
+    tags: 'bulgarian split squat',
     descripcion: 'De pie con un pie apoyado en un banco o superficie elevada detrás. Bajá la rodilla trasera hacia el piso manteniendo el torso recto. Se puede hacer con peso corporal, mancuernas o kettlebell. Trabaja cuádriceps, glúteos y estabilidad de cadera unilateral.'
   },
   {
@@ -382,12 +383,14 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Empuje de cadera en cajon',
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales, Cuádriceps',
+    tags: 'hip thrust, glute bridge',
     descripcion: 'Con la espalda apoyada en un cajón o banco y una barra/mancuernas sobre las caderas, empujá la cadera hacia arriba extendiendo la cadera. Mantené las rodillas a 90° y apretá los glúteos al tope. Bajá sin tocar el piso. También conocido como hip thrust.'
   },
   {
     nombre: 'Empuje de cadera en piso con peso',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales',
+    tags: 'glute bridge, hip thrust, puente de gluteos',
     descripcion: 'Acostado boca arriba con las rodillas flexionadas y los pies en el piso, colocá una kettlebell o plato sobre el abdomen bajo. Empujá la cadera hacia arriba apretando los glúteos al tope. Bajá controlado sin tocar el piso. Variante sin cajón del hip thrust.'
   },
   {
@@ -711,6 +714,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sentadilla goblet',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
+    tags: 'goblet squat',
     descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
   },
   {
@@ -735,6 +739,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Squat to press con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Deltoides anterior',
+    tags: 'thruster, sentadilla con press',
     descripcion: 'Sostenés la kettlebell con ambas manos a la altura del pecho (posición goblet). Bajá a sentadilla profunda y al subir empujá la kettlebell hacia arriba en press sobre la cabeza estirando los brazos. Bajá la kettlebell al pecho y repetí. Trabaja piernas, hombros y core en un solo movimiento.'
   },
   {
@@ -753,12 +758,14 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Empuje de cadera',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales',
+    tags: 'hip thrust, glute bridge, puente de gluteos',
     descripcion: 'Espalda apoyada en un banco o el piso, peso sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
   },
   {
     nombre: 'Hip thrust a una pierna',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales',
+    tags: 'empuje de cadera una pierna, single leg glute bridge',
     descripcion: 'Espalda apoyada en banco, una pierna extendida en el aire. Empujá la cadera hacia arriba con la pierna de apoyo apretando el glúteo. Bajá controlado. Trabaja glúteo mayor unilateral con énfasis en estabilidad.'
   },
   {
@@ -796,12 +803,6 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Oblicuos, Transverso abdominal, Glúteos',
     descripcion: 'De costado con la cadera elevada, extendé el brazo superior hacia el piso y volvé a la posición inicial. Trabaja oblicuos, core lateral y estabilizadores de cadera.'
-  },
-  {
-    nombre: 'Glute bridge',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
-    musculos: 'Glúteos, Isquiotibiales',
-    descripcion: 'Acostada boca arriba, pies apoyados, empujá la cadera hacia arriba apretando glúteos. Mantené 1-2 segundos arriba y bajá controlado. Se puede agregar peso con kettlebell o plato sobre la cadera.'
   },
   {
     nombre: 'Narrow to wide squat',
@@ -973,12 +974,14 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Puente de glúteos',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales',
+    tags: 'glute bridge, empuje de cadera',
     descripcion: 'Acostada boca arriba, rodillas dobladas y pies apoyados al ancho de caderas. Elevá la cadera contrayendo los glúteos hasta formar una línea recta entre hombros, caderas y rodillas. Bajá controlado. Respiración continua, sin apnea. Base de activación de glúteo y cadena posterior.'
   },
   {
     nombre: 'Puente de glúteos una pierna',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales',
+    tags: 'single leg glute bridge, empuje de cadera una pierna',
     descripcion: 'Igual que el puente clásico pero con una pierna extendida en el aire. Apoyás solo un pie, la otra pierna queda estirada hacia arriba. Subí la cadera contrayendo el glúteo de apoyo. Mayor demanda unilateral y control de pelvis. Sin aguantar aire.'
   },
   {
@@ -1076,7 +1079,7 @@ export function findEjercicio(nombre) {
 export function searchEjercicios(query, tipoFilter = 'todos') {
   const q = (query || '').toLowerCase();
   return EJERCICIOS_CATALOGO.filter(e => {
-    const matchQuery = !q || e.nombre.toLowerCase().includes(q) || e.grupo.toLowerCase().includes(q);
+    const matchQuery = !q || e.nombre.toLowerCase().includes(q) || e.grupo.toLowerCase().includes(q) || (e.tags && e.tags.toLowerCase().includes(q));
     const matchTipo = tipoFilter === 'todos' || e.tipo === tipoFilter;
     return matchQuery && matchTipo;
   });
