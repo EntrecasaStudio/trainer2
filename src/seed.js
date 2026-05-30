@@ -1811,6 +1811,10 @@ export async function seedV2() {
 
   store.set(store.KEYS.overrides, overrides);
 
+  // Re-run schedule overrides on fresh calendar (assignCalendar sets all
+  // Saturdays as RIO; repairOverrides applies per-date CASA/RIO switches)
+  repairOverrides();
+
   // Set version AFTER everything succeeds
   store.setVersion(SEED_VERSION);
 
