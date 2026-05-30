@@ -1,7 +1,7 @@
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio } from '../../ejercicios-catalogo.js';
 import { store } from '../../store.js';
 import { router } from '../../router.js';
-import { getMuscleSvgCropped, getMuscleSvg } from '../../utils/muscle-illustrations.js';
+import { getMuscleSvgCropped, getMuscleSvg, musculosToGrupoSvg } from '../../utils/muscle-illustrations.js';
 import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { getGrupoColor } from '../../utils/format.js';
 
@@ -270,7 +270,7 @@ function showDetailModal(data, allowEdit, onChange) {
         </div>
 
         <div class="ejercicio-muscle-section">
-          <div class="ejercicio-muscle-svg">${getMuscleSvg(data.grupo, 100)}</div>
+          <div class="ejercicio-muscle-svg">${getMuscleSvg(musculosToGrupoSvg(data.grupo, data.musculos), 100)}</div>
           <div class="ejercicio-muscle-text">
             <span class="ejercicio-muscle-grupo" style="color:${getGrupoColor(data.grupo)};">${data.grupo}</span>
             ${data.musculos ? `<span class="ejercicio-muscle-detail">${data.musculos}</span>` : ''}

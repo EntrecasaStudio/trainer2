@@ -186,12 +186,19 @@ const GRUPO_VIEWBOX = {
  * @returns {string} SVG markup
  */
 export function getMuscleSvg(grupo, size = 64, opts = {}) {
-  const mapping = GRUPO_MAP[grupo];
-  if (!mapping) return '';
+  const grupos = grupo.includes('·') ? grupo.split('·').map(g => g.trim()) : [grupo];
+  const frontActive = new Set();
+  const backActive = new Set();
+  for (const g of grupos) {
+    const m = GRUPO_MAP[g];
+    if (!m) continue;
+    m.front.forEach(p => frontActive.add(p));
+    m.back.forEach(p => backActive.add(p));
+  }
+  if (frontActive.size === 0 && backActive.size === 0) return '';
 
-  // Pick the view that has the most active parts
-  const view = mapping.back.length >= mapping.front.length ? 'back' : 'front';
-  const activeParts = view === 'front' ? mapping.front : mapping.back;
+  const view = backActive.size > frontActive.size ? 'back' : 'front';
+  const activeParts = view === 'front' ? frontActive : backActive;
   const allParts = view === 'front' ? FRONT_PARTS : BACK_PARTS;
   const vb = view === 'front' ? '0 0 100 200' : '0 0 100 225';
   const vbH = view === 'front' ? 200 : 225;
@@ -199,7 +206,7 @@ export function getMuscleSvg(grupo, size = 64, opts = {}) {
 
   let polygonsHtml = '';
   for (const [partName, polygons] of Object.entries(allParts)) {
-    const isActive = activeParts.includes(partName);
+    const isActive = activeParts.has(partName);
     const cls = isActive ? 'muscle-part muscle-active' : 'muscle-part';
     const polys = polygons.map((p) => `<polygon points="${p}"/>`).join('');
     polygonsHtml += `<g class="${cls}" data-muscle="${partName}">${polys}</g>`;
@@ -213,18 +220,25 @@ export function getMuscleSvg(grupo, size = 64, opts = {}) {
  * Shows surrounding muscles as muted context.
  */
 export function getMuscleSvgCropped(grupo, size = 40) {
-  const mapping = GRUPO_MAP[grupo];
-  const crop = GRUPO_VIEWBOX[grupo];
+  const primaryGrupo = grupo.includes('·') ? grupo.split('·')[0].trim() : grupo;
+  const mapping = GRUPO_MAP[primaryGrupo];
+  const crop = GRUPO_VIEWBOX[primaryGrupo];
   if (!mapping || !crop) return getMuscleSvg(grupo, size);
 
-  const activeParts = crop.view === 'front' ? mapping.front : mapping.back;
+  const grupos = grupo.includes('·') ? grupo.split('·').map(g => g.trim()) : [grupo];
+  const allActive = new Set();
+  for (const g of grupos) {
+    const m = GRUPO_MAP[g];
+    if (m) (crop.view === 'front' ? m.front : m.back).forEach(p => allActive.add(p));
+  }
+  const activeParts = allActive;
   const allParts = crop.view === 'front' ? FRONT_PARTS : BACK_PARTS;
   const [, , vbW, vbH] = crop.vb.split(' ').map(Number);
   const w = size * (vbW / vbH);
 
   let polygonsHtml = '';
   for (const [partName, polygons] of Object.entries(allParts)) {
-    const isActive = activeParts.includes(partName);
+    const isActive = activeParts.has(partName);
     const cls = isActive ? 'muscle-part muscle-active' : 'muscle-part';
     const polys = polygons.map((p) => `<polygon points="${p}"/>`).join('');
     polygonsHtml += `<g class="${cls}" data-muscle="${partName}">${polys}</g>`;
@@ -308,6 +322,28 @@ export function getMuscleHeatmapSvg(intensityMap, size = 120) {
   const backSvg = renderView(BACK_PARTS, backIntensity, '0 0 100 225', 225);
 
   return `<div class="muscle-heatmap-pair">${frontSvg}${backSvg}</div>`;
+}
+
+const MUSCULO_TO_GRUPO = {
+  'cuádriceps': 'Piernas', 'isquiotibiales': 'Piernas', 'aductores': 'Piernas',
+  'gemelos': 'Piernas', 'tibial': 'Piernas', 'pantorrillas': 'Piernas',
+  'glúteos': 'Glúteos', 'glúteo': 'Glúteos',
+  'deltoides': 'Hombros', 'hombro': 'Hombros',
+  'pectoral': 'Pecho', 'pecho': 'Pecho',
+  'dorsal': 'Espalda', 'trapecio': 'Espalda', 'romboides': 'Espalda',
+  'bíceps': 'Brazos', 'tríceps': 'Brazos', 'antebrazo': 'Brazos',
+  'abdominales': 'Core', 'oblicuos': 'Core', 'erector': 'Core', 'core': 'Core',
+};
+
+export function musculosToGrupoSvg(grupo, musculos) {
+  if (!musculos) return grupo;
+  const grupos = new Set();
+  if (grupo) grupos.add(grupo);
+  const lower = musculos.toLowerCase();
+  for (const [term, g] of Object.entries(MUSCULO_TO_GRUPO)) {
+    if (lower.includes(term)) grupos.add(g);
+  }
+  return [...grupos].join('·');
 }
 
 // Re-export for backward compat with existing MUSCLE_GROUP_SVG consumers
