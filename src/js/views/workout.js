@@ -1091,6 +1091,100 @@ function startTimer(container) {
   }, 1000);
 }
 
+// ── Routine modification detection & save ───────────────────────────────────
+function detectRoutineModifications(rutinaId, currentCircuitos) {
+  const rutina = store.findById(store.KEYS.rutinas, rutinaId);
+  if (!rutina) return false;
+  const orig = rutina.circuitos;
+  if (orig.length !== currentCircuitos.length) return true;
+  for (let ci = 0; ci < orig.length; ci++) {
+    const oe = orig[ci].ejercicios;
+    const ce = currentCircuitos[ci].ejercicios;
+    if (oe.length !== ce.length) return true;
+    for (let ei = 0; ei < oe.length; ei++) {
+      if (oe[ei].nombre !== ce[ei].nombre) return true;
+      if ((oe[ei].series || 2) !== (ce[ei].seriesData?.length || ce[ei].series || 2)) return true;
+    }
+  }
+  return false;
+}
+
+function workoutCircuitosToRoutine(circuitos) {
+  return circuitos.map((c, i) => ({
+    id: c.id || crypto.randomUUID(),
+    numero: i + 1,
+    nombre: c.nombre,
+    ejercicios: c.ejercicios.map(e => ({
+      id: crypto.randomUUID(),
+      nombre: e.nombre,
+      series: e.seriesData?.length || e.series || 2,
+      reps: e.reps || '8-12',
+      tipo: e.tipo || 'fuerza',
+    })),
+  }));
+}
+
+function showSaveRoutineChangesModal(container, rutinaId, circuitos, skipLabel, onDone) {
+  const rutina = store.findById(store.KEYS.rutinas, rutinaId);
+  if (!rutina) { onDone(); return; }
+
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.remove('hidden');
+  overlay.innerHTML = `
+    <div class="modal-sheet" style="text-align:center;">
+      <h2 class="modal-title" style="margin-bottom:var(--space-xs);">Cambios en la rutina</h2>
+      <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-lg);">
+        Modificaste ejercicios durante la sesión.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
+        <button class="btn btn-primary btn-lg" id="btn-update-rutina">
+          <i class="ph ph-arrows-clockwise"></i> Actualizar ${rutina.numero}
+        </button>
+        <button class="btn btn-secondary btn-lg" id="btn-save-new-rutina">
+          <i class="ph ph-copy"></i> Guardar como nueva
+        </button>
+        <button class="btn btn-lg" id="btn-skip-save" style="color:var(--color-text-muted);">
+          ${skipLabel}
+        </button>
+      </div>
+    </div>
+  `;
+
+  const cleanCircuitos = workoutCircuitosToRoutine(circuitos);
+  const close = () => { overlay.classList.add('hidden'); overlay.innerHTML = ''; };
+
+  overlay.querySelector('#btn-update-rutina').addEventListener('click', () => {
+    store.update(store.KEYS.rutinas, rutina.id, { circuitos: cleanCircuitos });
+    close();
+    showToast(`Rutina ${rutina.numero} actualizada`);
+    onDone();
+  });
+
+  overlay.querySelector('#btn-save-new-rutina').addEventListener('click', () => {
+    const rutinas = store.getAll(store.KEYS.rutinas);
+    const nums = rutinas
+      .filter(r => typeof r.numero === 'string' && r.numero.startsWith('#'))
+      .map(r => parseInt(r.numero.replace('#', '')) || 0);
+    const nextNum = `#${String((nums.length ? Math.max(...nums) : 0) + 1).padStart(3, '0')}`;
+    store.push(store.KEYS.rutinas, {
+      ...rutina,
+      id: crypto.randomUUID(),
+      numero: nextNum,
+      custom: true,
+      circuitos: cleanCircuitos,
+      updatedAt: new Date().toISOString(),
+    });
+    close();
+    showToast(`Nueva rutina ${nextNum} creada`);
+    onDone();
+  });
+
+  overlay.querySelector('#btn-skip-save').addEventListener('click', () => {
+    close();
+    onDone();
+  });
+}
+
 // ── Exit dialog ──────────────────────────────────────────────────────────────
 function showExitDialog(container) {
   clearInterval(timerInterval);
@@ -1119,8 +1213,18 @@ function showExitDialog(container) {
   });
   overlay.querySelector('#btn-descartar').addEventListener('click', () => {
     overlay.classList.add('hidden'); overlay.innerHTML = '';
-    workoutState = null; localStorage.removeItem(WS_KEY);
-    clearInterval(timerInterval); router.navigate('');
+    const rutinaId = workoutState.rutinaId;
+    const modifiedCircuitos = workoutState.circuitos;
+    const hasChanges = detectRoutineModifications(rutinaId, modifiedCircuitos);
+    const discard = () => {
+      workoutState = null; localStorage.removeItem(WS_KEY);
+      clearInterval(timerInterval); router.navigate('');
+    };
+    if (hasChanges) {
+      showSaveRoutineChangesModal(container, rutinaId, modifiedCircuitos, 'Descartar todo', discard);
+    } else {
+      discard();
+    }
   });
 }
 
@@ -1170,12 +1274,25 @@ function finishWorkout(container) {
     sum + c.ejercicios.reduce((s2, e) => s2 + e.seriesData.filter(s => s.done).length, 0), 0);
   const circuitsDone = sesion.circuitos.filter(c => c.completed).length;
 
+  const rutinaId = workoutState.rutinaId;
+  const modifiedCircuitos = workoutState.circuitos;
+  const hasChanges = detectRoutineModifications(rutinaId, modifiedCircuitos);
+
   workoutState = null;
   localStorage.removeItem(WS_KEY);
 
   finishedSummary = { minutes, totalSeriesDone, circuitsDone, totalCircuits: sesion.circuitos.length, sesionId: sesion.id };
-  renderSummary(container);
-  showToast('Entrenamiento guardado ✓');
+
+  const showSummary = () => {
+    renderSummary(container);
+    showToast('Entrenamiento guardado ✓');
+  };
+
+  if (hasChanges) {
+    showSaveRoutineChangesModal(container, rutinaId, modifiedCircuitos, 'Solo guardar sesión', showSummary);
+  } else {
+    showSummary();
+  }
 }
 
 function renderSummary(container) {
