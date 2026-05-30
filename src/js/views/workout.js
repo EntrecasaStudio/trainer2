@@ -1233,16 +1233,7 @@ function showExitDialog(container) {
     overlay.classList.add('hidden'); overlay.innerHTML = ''; startTimer(container);
   });
   overlay.querySelector('#btn-pausar').addEventListener('click', () => {
-    overlay.classList.add('hidden'); overlay.innerHTML = '';
-    const rutinaId = workoutState.rutinaId;
-    const modifiedCircuitos = workoutState.circuitos;
-    const hasChanges = detectRoutineModifications(rutinaId, modifiedCircuitos);
-    const pause = () => { persistWorkout(); router.navigate(''); };
-    if (hasChanges) {
-      showSaveRoutineChangesModal(container, rutinaId, modifiedCircuitos, 'Solo pausar', pause);
-    } else {
-      pause();
-    }
+    overlay.classList.add('hidden'); overlay.innerHTML = ''; persistWorkout(); router.navigate('');
   });
   overlay.querySelector('#btn-finalizar-guardar').addEventListener('click', () => {
     overlay.classList.add('hidden'); overlay.innerHTML = ''; finishWorkout(container);
