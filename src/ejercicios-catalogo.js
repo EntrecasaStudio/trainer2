@@ -93,6 +93,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Acostado boca arriba, brazos extendidos al techo y rodillas a 90°. Simultáneamente bajá el brazo derecho al suelo y extendé la pierna izquierda sin tocar el piso. Volvé y alternás. Lumbar pegada al suelo en todo momento.'
   },
   {
+    nombre: 'Dragonfly',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Recto abdominal, Oblicuos, Flexores de cadera',
+    tags: 'dragon flag, bruce lee',
+    descripcion: 'Acostado en un banco, agarrate del borde detrás de la cabeza. Con el cuerpo rígido como una tabla, bajá las piernas extendidas hacia el banco controlando con los abdominales. Subí de vuelta sin flexionar la cadera. Ejercicio avanzado de core que requiere gran fuerza abdominal y control.'
+  },
+  {
     nombre: 'Pallof press',
     grupo: 'Core', tipo: 'maquina', usaPeso: true,
     musculos: 'Oblicuos, Transverso abdominal, Recto abdominal',
