@@ -1,7 +1,7 @@
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio } from '../../ejercicios-catalogo.js';
 import { store } from '../../store.js';
 import { router } from '../../router.js';
-import { getMuscleSvgCropped, getMuscleSvg } from '../../utils/muscle-illustrations.js';
+import { getMuscleSvgCropped, getMuscleSvg, musculosToGrupoSvg } from '../../utils/muscle-illustrations.js';
 import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { getGrupoColor } from '../../utils/format.js';
 
@@ -270,7 +270,7 @@ function showDetailModal(data, allowEdit, onChange) {
         </div>
 
         <div class="ejercicio-muscle-section">
-          <div class="ejercicio-muscle-svg">${getMuscleSvg(data.grupo, 100)}</div>
+          <div class="ejercicio-muscle-svg">${getMuscleSvg(musculosToGrupoSvg(data.grupo, data.musculos), 100)}</div>
           <div class="ejercicio-muscle-text">
             <span class="ejercicio-muscle-grupo" style="color:${getGrupoColor(data.grupo)};">${data.grupo}</span>
             ${data.musculos ? `<span class="ejercicio-muscle-detail">${data.musculos}</span>` : ''}
@@ -306,10 +306,15 @@ function openEditModal(data, onChange) {
   overlay.innerHTML = `
     <div class="modal-sheet">
       <div class="modal-header">
-        <h2 class="modal-title">Editar ejercicio</h2>
+        <h2 class="modal-title">${data.nombre}</h2>
         <button class="modal-close">&times;</button>
       </div>
       <div style="display:flex;flex-direction:column;gap:var(--space-md);">
+        <div class="edit-field">
+          <label class="edit-label">Nombre</label>
+          <input type="text" class="edit-input" id="edit-nombre" value="${data.nombre}" autocomplete="off">
+        </div>
+
         <label style="font-size:var(--text-sm);color:var(--color-text-muted);">Descripción</label>
         <textarea id="edit-desc" rows="5" style="background:var(--color-surface-alt);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-sm);color:var(--color-text);font-family:var(--font-main);font-size:var(--text-sm);resize:vertical;">${data.descripcion || ''}</textarea>
 
@@ -353,18 +358,57 @@ function openEditModal(data, onChange) {
   });
 
   overlay.querySelector('#btn-save-ejercicio').addEventListener('click', () => {
+    const newName = overlay.querySelector('#edit-nombre').value.trim();
     const desc = overlay.querySelector('#edit-desc').value.trim();
     const usaPesoVal = overlay.querySelector('#edit-usa-peso').checked;
-    // Single atomic write for all custom fields
+    const oldName = data.nombre;
+    const renamed = newName && newName !== oldName;
+
+    if (renamed) {
+      const rutinas = store.getAll(store.KEYS.rutinas);
+      rutinas.forEach(r => {
+        (r.circuitos || []).forEach(c => {
+          (c.ejercicios || []).forEach(e => {
+            if (e.nombre === oldName) e.nombre = newName;
+          });
+        });
+      });
+      store.set(store.KEYS.rutinas, rutinas);
+
+      const sesiones = store.getAll(store.KEYS.sesiones);
+      sesiones.forEach(s => {
+        (s.circuitos || []).forEach(c => {
+          (c.ejercicios || []).forEach(e => {
+            if (e.nombre === oldName) e.nombre = newName;
+          });
+        });
+      });
+      store.set(store.KEYS.sesiones, sesiones);
+
+      const prog = store.getObj(store.KEYS.progresion);
+      for (const key of Object.keys(prog)) {
+        if (key.startsWith(oldName + '::')) {
+          const newKey = newName + '::' + key.slice(oldName.length + 2);
+          prog[newKey] = prog[key];
+          delete prog[key];
+        }
+      }
+      store.set(store.KEYS.progresion, prog);
+    }
+
     const custom = store.getObj('gym_ejercicios_custom');
-    if (!custom[data.nombre]) custom[data.nombre] = {};
-    Object.assign(custom[data.nombre], { descripcion: desc, tipo: selectedTipo, usaPeso: usaPesoVal });
+    const effectiveName = renamed ? newName : oldName;
+    if (renamed && custom[oldName]) {
+      custom[effectiveName] = custom[oldName];
+      delete custom[oldName];
+    }
+    if (!custom[effectiveName]) custom[effectiveName] = {};
+    Object.assign(custom[effectiveName], { descripcion: desc, tipo: selectedTipo, usaPeso: usaPesoVal });
     store.set('gym_ejercicios_custom', custom);
+
     overlay.classList.add('hidden');
     overlay.innerHTML = '';
-    // Notify caller (e.g. workout) of changes
     if (onChange) onChange();
-    // Force full re-render of ejercicios view
     const vc = document.getElementById('view-container');
     if (vc && document.getElementById('ejercicios-list')) {
       render(vc);
