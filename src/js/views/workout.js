@@ -723,8 +723,12 @@ function bindExerciseEvents(container, scope) {
   scope.querySelectorAll('.info-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
-      openEjercicioInfo(btn.dataset.nombre, () => {
-        // Re-check usaPeso for all exercises after edit
+      openEjercicioInfo(btn.dataset.nombre, ({ renamed, oldName, newName } = {}) => {
+        if (renamed) {
+          workoutState.circuitos.forEach(c => {
+            c.ejercicios.forEach(ej => { if (ej.nombre === oldName) ej.nombre = newName; });
+          });
+        }
         workoutState.circuitos.forEach(c => {
           c.ejercicios.forEach(ej => { ej.usaPeso = inferUsaPeso(ej.nombre); });
         });

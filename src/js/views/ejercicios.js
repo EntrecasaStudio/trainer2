@@ -408,7 +408,7 @@ function openEditModal(data, onChange) {
 
     overlay.classList.add('hidden');
     overlay.innerHTML = '';
-    if (onChange) onChange();
+    if (onChange) onChange({ renamed, oldName, newName: effectiveName });
     const vc = document.getElementById('view-container');
     if (vc && document.getElementById('ejercicios-list')) {
       render(vc);
