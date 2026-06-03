@@ -761,19 +761,21 @@ function bindExerciseEvents(container, scope) {
 
   // Stepper direct input (exclude chaleco peso which has its own handler)
   scope.querySelectorAll('.stepper-input:not(.chaleco-peso-field)').forEach(input => {
-    input.addEventListener('change', () => {
+    let debounceTimer;
+    const save = () => {
+      clearTimeout(debounceTimer);
       const { field, ci, ei, si } = input.dataset;
       const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
       const val = parseFloat(input.value) || 0;
       if (field === 'reps') {
         series.reps = Math.max(0, Math.round(val));
-        input.value = series.reps;
       } else {
         series.peso = Math.max(0, parseFloat(val.toFixed(2)));
-        input.value = series.peso;
       }
       persistWorkout();
-    });
+    };
+    input.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(save, 600); });
+    input.addEventListener('change', () => save());
     input.addEventListener('focus', () => { input.select(); });
   });
 
@@ -793,15 +795,18 @@ function bindExerciseEvents(container, scope) {
     });
   });
 
-  // Chaleco peso input
+  // Chaleco peso input — no refreshExercises to avoid destroying the input on iPad
   scope.querySelectorAll('.chaleco-peso-field').forEach(input => {
-    input.addEventListener('change', () => {
+    let debounceTimer;
+    const save = () => {
+      clearTimeout(debounceTimer);
       const { ci, ei } = input.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
       ejercicio.chalecoPeso = Math.max(0, parseFloat(input.value) || 0);
       persistWorkout();
-      refreshExercises(container);
-    });
+    };
+    input.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(save, 600); });
+    input.addEventListener('change', () => save());
     input.addEventListener('focus', () => { input.select(); });
   });
 

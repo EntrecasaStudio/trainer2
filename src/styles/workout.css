@@ -325,6 +325,12 @@
   color: #4ade80;
   opacity: 1;
 }
+.chaleco-peso-field {
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-base);
+}
 
 /* ── Miniband per-series selector (Sm/Lg + 1/2/3) ─────────────────────────── */
 .banda-selector {
