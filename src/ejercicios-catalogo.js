@@ -302,9 +302,10 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Arnold press',
-    grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Deltoides lateral, Deltoides posterior',
-    descripcion: 'Sentado con mancuernas al nivel del mentón y palmas hacia vos. Al empujar hacia arriba, rotá las muñecas hasta que las palmas miren hacia afuera al final. Bajá invirtiendo la rotación. Trabaja las tres cabezas del deltoides en un solo movimiento.'
+    tags: 'arnold press con kettlebell, press arnold',
+    descripcion: 'Con mancuernas o kettlebell al nivel del mentón, palmas hacia vos. Al empujar hacia arriba, rotá las muñecas hasta que las palmas miren hacia afuera al final. Bajá invirtiendo la rotación. Trabaja las tres cabezas del deltoides en un solo movimiento.'
   },
   {
     nombre: 'Encogimientos con mancuernas',
@@ -884,12 +885,6 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Deltoides lateral, Tríceps',
     descripcion: 'De pie, kettlebell en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
-  },
-  {
-    nombre: 'Arnold press con kettlebell',
-    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
-    musculos: 'Deltoides anterior, Deltoides lateral, Deltoides posterior',
-    descripcion: 'Sentado o de pie con kettlebell. Empezá con la pesa frente al pecho, palmas hacia vos. Rotá las muñecas mientras empujás hacia arriba hasta extensión. Trabaja las tres cabezas del deltoides.'
   },
   {
     nombre: 'Remo',
