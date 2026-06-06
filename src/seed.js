@@ -88,7 +88,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Dominadas abiertas'), ej('Remo en maquina')]),
       circuito(3, 'ESPALDA ALT', [ej('Remo con mancuerna'), ej('Jalón al pecho')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
-      circuito(5, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(5, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Saltos al cajón', 3, 10), ej('Mountain climbers', 3, 15), ej('Burpees', 3, 8)]),
     ]),
     // Pull B — semana 1
@@ -106,7 +106,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Dominadas abiertas'), ej('Jalón al pecho')]),
       circuito(3, 'ESPALDA ALT', [ej('Remo en maquina'), ej('Remo con mancuerna')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Vuelos laterales')]),
-      circuito(5, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(5, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
     // Pull D — semana 2
@@ -115,7 +115,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Remo en maquina'), ej('Remo alto en polea')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Dominadas abiertas')]),
       circuito(4, 'BRAZOS', [ej('Biceps en banco'), ej('Biceps alto en polea')]),
-      circuito(5, 'BRAZOS ALT', [ej('Bíceps curl martillo'), ej('Bíceps curl con barra')]),
+      circuito(5, 'BRAZOS ALT', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Estocada con salto', 3, 10), ej('Jumping jacks', 3, 20), ej('Abs complex', 3, 1)]),
     ]),
     // Pull E — semana 1
@@ -124,7 +124,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Dominadas abiertas'), ej('Remo en maquina')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo con mancuerna')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
-      circuito(5, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(5, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
     // ── NEW ROUTINES ──────────────────────────────────────────────────────────
@@ -151,7 +151,7 @@ function createLeanRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Prensa de piernas'), ej('Gemelos en máquina'), ej('Plancha lateral', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Remo con mancuerna'), ej('Remo con mancuerna')]),
       circuito(3, 'ESPALDA ALT', [ej('Dominadas abiertas'), ej('Remo alto en polea')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl concentrado'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'BRAZOS ALT', [ej('Biceps alto en polea'), ej('Biceps en banco')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -237,7 +237,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Zancadas con mancuernas'), ej('Sentadilla sumo'), ej('Dead bug', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Remo en maquina separado'), ej('Dominada en maquina ascensor')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl con mancuerna'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -246,7 +246,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto con barra'), ej('Pallof press', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Dominada en maquina ascensor'), ej('Jalón al pecho')]),
       circuito(3, 'ESPALDA ALT', [ej('Remo en maquina separado'), ej('Face pulls')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl con mancuerna'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'GLÚTEOS', [ej('Gluteos patada en polea'), ej('Aductores en maquina')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.69';
+const SEED_VERSION = '2.70';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
