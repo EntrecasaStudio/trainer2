@@ -1593,7 +1593,7 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-22', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
-    // RÍO sábados — opuesto al viernes CASA (letraMin C desde mayo)
+    // Sábados (Lun=Press, Mié=Pull, Vie=Press → Sáb=Pull siempre)
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-11', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
@@ -1604,9 +1604,9 @@ function ensureCalendarOverrides() {
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-06', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-13', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-13', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-20', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-27', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-27', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-11', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
@@ -1617,9 +1617,9 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-06', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-13', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-13', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-20', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-27', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-27', foco: 'pull' },
   ];
 
   const rutinaById = new Map(rutinas.map(r => [r.id, r]));
