@@ -78,7 +78,7 @@ function createLeanRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Peso muerto con barra'), ej('Sentadilla con barra'), ej('Complex', 2, '30s')]),
       circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Vuelos laterales')]),
       circuito(3, 'HOMBROS ALT', [ej('Empuje de hombros con barra en banco'), ej('Face pulls')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'BRAZOS ALT', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.70';
+const SEED_VERSION = '2.71';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
