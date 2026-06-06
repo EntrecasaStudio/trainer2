@@ -611,7 +611,7 @@ function createCasaRoutines() {
       circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Floor press', 2, '10'), ej('Flexiones con chaleco', 2, '12')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Vuelos laterales en equilibrio con kettlebell', 2, '10'), ej('Banda triceps pushdown', 2, '15')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Plancha estrella con peso', 2, '6'), ej('Dead bug', 2, '12'), ej('Bíceps curl en TRX', 2, '10')]),
-      circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Estocada con salto', 3, '8'), ej('Mountain climbers', 3, '20')]),
+      circuito(5, 'HIIT', [ej('Tuck jumps', 3, '8'), ej('Estocada con salto', 3, '8'), ej('Mountain climbers', 3, '20')]),
     ]),
     rutinaCasa('#C07', 'Casa Press D — Lean', 'Lean', 'press', 2, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna', 2, '10'), ej('Sentadilla sumo', 2, '12'), ej('Remo alto en TRX', 2, '12')]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.71';
+const SEED_VERSION = '2.72';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {

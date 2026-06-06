@@ -1,15 +1,691 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><title>Rutinas CASA - Comparativa</title>
-<style>body{font-family:Arial,sans-serif;max-width:1200px;margin:0 auto;padding:20px;color:#333;}
-h1{color:#1a1a1a;border-bottom:3px solid #1a73e8;padding-bottom:8px;}
-table{margin-bottom:16px;} td,th{font-size:11px;}
-.legend{background:#f5f5f5;padding:8px 12px;border-radius:6px;margin-bottom:16px;font-size:12px;}
-</style></head><body>
-<h1>Rutinas CASA — Tabla Comparativa</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rutinas CASA — Comparativa Completa</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "ff-basic-gothic-pro", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #1A1A1A; color: #F5F0E8; padding: 20px; line-height: 1.5;
+  }
+  h1 { font-size: 1.95rem; margin-bottom: 4px; color: #FFCD00; }
+  h2 { font-size: 1.4rem; margin: 36px 0 14px; color: #FFCD00; border-bottom: 2px solid #3A3A3A; padding-bottom: 8px; }
+  h3 { font-size: 1.1rem; margin: 24px 0 10px; color: #F5F0E8; }
+  .subtitle { color: #ABABAB; font-size: 0.85rem; margin-bottom: 28px; }
+  a { color: #FFCD00; }
+
+  /* --- Nav --- */
+  .nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 28px; }
+  .nav a {
+    background: #242424; color: #F5F0E8; border: 1px solid #3A3A3A; border-radius: 6px;
+    padding: 6px 14px; text-decoration: none; font-size: 0.85rem; font-weight: 600;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .nav a:hover { background: #3A3A3A; border-color: #FFCD00; }
+  .nav a.lean { border-left: 3px solid #FFCD00; }
+  .nav a.nat { border-left: 3px solid #A78BFA; }
+
+  /* --- Legend --- */
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin: 14px 0 18px; font-size: 0.8rem; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+
+  /* --- Tables --- */
+  .table-wrap { overflow-x: auto; margin-bottom: 32px; -webkit-overflow-scrolling: touch; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.8rem; min-width: 820px; }
+  th, td { padding: 7px 10px; border: 1px solid #3A3A3A; text-align: left; vertical-align: top; }
+  th {
+    background: #242424; color: #FFCD00; font-weight: 700;
+    position: sticky; top: 0; z-index: 2; white-space: nowrap; font-size: 0.82rem;
+  }
+  th:first-child { min-width: 140px; }
+  td { white-space: nowrap; }
+  tr:nth-child(even) td { background: #1E1E1E; }
+  tr:nth-child(odd) td { background: #1A1A1A; }
+
+  .section-header td {
+    background: #2A2520 !important; font-weight: 700; color: #FFCD00;
+    font-size: 0.85rem; border-bottom: 2px solid #FFCD00; letter-spacing: 0.02em;
+  }
+
+  /* --- Frequency colors --- */
+  .freq-1 { color: #F5F0E8; }
+  .freq-2 { color: #64D2FF; }
+  .freq-3 { color: #E6A817; }
+  .freq-4, .freq-5, .freq-6 { color: #FF9F0A; font-weight: 700; }
+  .bg-4, .bg-5, .bg-6 { background: rgba(255,159,10,0.12) !important; }
+
+  /* within-routine repeat */
+  .repeat-flag { color: #FF453A; font-weight: 700; font-size: 0.72rem; margin-left: 4px; vertical-align: super; }
+  .similar-flag { color: #A78BFA; font-weight: 700; font-size: 0.72rem; margin-left: 4px; vertical-align: super; }
+
+  /* --- Bar chart --- */
+  .freq-table { max-width: 750px; }
+  .freq-table td:first-child { font-weight: 500; min-width: 260px; }
+  .freq-table td:nth-child(2) { width: 100%; }
+  .freq-table td:last-child { text-align: center; font-weight: 700; width: 50px; white-space: nowrap; }
+  .bar-cell { padding: 4px 8px !important; }
+  .bar { height: 16px; border-radius: 3px; display: inline-block; vertical-align: middle; }
+  .bar-2 { background: #64D2FF; }
+  .bar-3 { background: #E6A817; }
+  .bar-4 { background: #FF9F0A; }
+  .bar-5 { background: #FF6B35; }
+  .bar-6 { background: #FF453A; }
+
+  /* --- Summary cards --- */
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0 28px; }
+  .summary-card {
+    background: #242424; border: 1px solid #3A3A3A; border-radius: 8px;
+    padding: 16px; text-align: center;
+  }
+  .summary-card .num { font-size: 1.8rem; font-weight: 800; color: #FFCD00; }
+  .summary-card .label { font-size: 0.78rem; color: #ABABAB; margin-top: 4px; }
+
+  /* --- Issue tables --- */
+  .issue-table { min-width: 600px; }
+  .issue-table th { background: #2A1A1A; color: #FF453A; }
+  .issue-table.similar th { background: #1A1A2A; color: #A78BFA; }
+  .issue-table td:first-child { font-weight: 700; white-space: nowrap; }
+  .sug { background: #242424; border: 1px solid #3A3A3A; border-radius: 8px; padding: 14px 18px; margin: 8px 0; font-size: 0.85rem; line-height: 1.6; }
+  .sug strong { color: #FFCD00; }
+  .sug .tag-fix { color: #FF453A; font-weight: 700; }
+  .sug .tag-warn { color: #E6A817; font-weight: 700; }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    body { padding: 10px; }
+    h1 { font-size: 1.4rem; }
+    table { font-size: 0.72rem; min-width: 700px; }
+    th, td { padding: 5px 6px; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    th { background: #f0f0f0; color: #333; }
+    td { background: #fff !important; color: #000; }
+    .section-header td { background: #eee !important; color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Rutinas CASA — Comparativa Completa</h1>
+<p class="subtitle">24 rutinas (4 grupos x 6 variantes A–F) · 5 circuitos cada una · 3 ejercicios por circuito · Generado: 2026-06-06</p>
+
+<nav class="nav">
+  <a href="#lean-press" class="lean">Lean Press</a>
+  <a href="#lean-pull" class="lean">Lean Pull</a>
+  <a href="#nat-press" class="nat">Nat Press</a>
+  <a href="#nat-pull" class="nat">Nat Pull</a>
+  <a href="#summary">Resumen Final</a>
+</nav>
+
 <div class="legend">
-<b>Leyenda:</b> 
-<b style="color:#e65100;background:#fff3e0;padding:1px 4px;border-radius:2px;">Naranja fuerte</b> = 4+ veces &nbsp;|&nbsp;
-<b style="color:#e67e22;">Naranja</b> = 3 veces &nbsp;|&nbsp;
-<span style="color:#2196f3;">Azul</span> = 2 veces &nbsp;|&nbsp;
-Negro = unico
+  <div class="legend-item"><span class="legend-dot" style="background:#64D2FF"></span> 2 apariciones</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#E6A817"></span> 3 apariciones</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#FF9F0A"></span> 4+ apariciones</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#FF453A"></span> <span class="repeat-flag" style="margin-left:0">REP</span> Repetido en la misma rutina</div>
+  <div class="legend-item"><span class="legend-dot" style="background:#A78BFA"></span> <span class="similar-flag" style="margin-left:0">SIM</span> Similar en la misma rutina</div>
 </div>
-<h2 style="color:#1a73e8;border-bottom:2px solid #1a73e8;padding-bottom:4px;">LEAN — PRESS</h2><table style="border-collapse:collapse;width:100%;font-size:11px;margin-bottom:8px;"><tr style="background:#1a73e8;color:white;"><th style="border:1px solid #ccc;padding:4px 6px;text-align:left;width:120px;">Circuito</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">A</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">B</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">C</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">D</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">E</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">F</th></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PIERNAS·ESPALDA</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sentadilla goblet</span><br>Zancadas con chaleco de peso<br>TRX row</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sentadilla sumo</span><br>Remo<br><span style="color:#2196f3;">Sentadilla búlgara</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Sentadilla con salto</b><br>Zancadas con kettlebell<br>TRX power pull</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Peso muerto a una pierna</span><br><span style="color:#2196f3;">Sentadilla sumo</span><br>Remo alto en TRX</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sentadilla goblet</span><br>Step up<br>TRX face pull</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Peso muerto a una pierna</span><br><span style="color:#2196f3;">Sentadilla búlgara</span><br>Banda pull-apart</td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PECHO</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Floor press</b><br><span style="color:#2196f3;">Flexiones con chaleco</span><br><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">TRX chest press</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Flexiones explosivas</span><br><span style="color:#2196f3;">TRX archer press</span><br><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">TRX chest press</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Flexiones diamante</span><br><b style="color:#e67e22;">Floor press</b><br><span style="color:#2196f3;">Flexiones con chaleco</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">TRX chest press</b><br><span style="color:#2196f3;">Flexiones inclinadas</span><br><span style="color:#2196f3;">Flexiones explosivas</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Flexiones diamante</span><br><span style="color:#2196f3;">TRX archer press</span><br><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">TRX chest press</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Flexiones inclinadas</span><br><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">TRX chest press</b><br><b style="color:#e67e22;">Floor press</b></td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">HOMBROS·TRÍCEPS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Press militar</span><br><span style="color:#2196f3;">Fondos en banco con chaleco</span><br>Vuelos laterales</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Arnold press con kettlebell</span><br>Extensión de tríceps con kettlebell<br><span style="color:#2196f3;">Elevaciones de hombro adelante</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Fondos en banco<br><span style="color:#2196f3;">Vuelos laterales en equilibrio con kettlebell</span><br>Banda triceps pushdown</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Tríceps alto en TRX</span><br><span style="color:#2196f3;">Arnold press con kettlebell</span><br><span style="color:#2196f3;">Extensión de tríceps con banda</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Press militar</span><br><span style="color:#2196f3;">Fondos en banco con chaleco</span><br><span style="color:#2196f3;">Vuelos laterales en equilibrio con kettlebell</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Extensión de tríceps con banda</span><br><span style="color:#2196f3;">Elevaciones de hombro adelante</span><br><span style="color:#2196f3;">Tríceps alto en TRX</span></td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">CORE·BÍCEPS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Ab wheel</span><br>Plancha con chaleco<br><span style="color:#2196f3;">Bíceps curl</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Abs complex</span><br><span style="color:#2196f3;">Plancha con elevación alternada</span><br><span style="color:#2196f3;">Bíceps curl martillo</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plancha estrella con peso<br>Dead bug<br>Bíceps curl en TRX</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plancha lateral con chaleco<br><span style="color:#2196f3;">Abs complex</span><br>Bíceps curl en equilibrio con kettlebell</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Ab wheel</span><br>Caminata a plancha<br><span style="color:#2196f3;">Bíceps curl</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Hollow body<br><span style="color:#2196f3;">Plancha con elevación alternada</span><br><span style="color:#2196f3;">Bíceps curl martillo</span></td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">HIIT</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Mountain climbers</span><br><span style="color:#2196f3;">Burpees</span><br><span style="color:#2196f3;">Jumping jacks</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Bear crawl</b><br><span style="color:#2196f3;">Tuck jumps</span><br><b style="color:#e67e22;">Saltos laterales</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Sentadilla con salto</b><br><span style="color:#2196f3;">Estocada con salto</span><br><span style="color:#2196f3;">Mountain climbers</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Bear crawl</b><br><span style="color:#2196f3;">Burpees</span><br><b style="color:#e67e22;">Saltos laterales</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Tuck jumps</span><br><span style="color:#2196f3;">Estocada con salto</span><br><span style="color:#2196f3;">Jumping jacks</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Saltos laterales</b><br><b style="color:#e67e22;">Sentadilla con salto</b><br><b style="color:#e67e22;">Bear crawl</b></td></tr></table><details><summary style="cursor:pointer;font-weight:bold;color:#555;margin:4px 0;">Frecuencia (LEAN — PRESS)</summary><table style="border-collapse:collapse;font-size:11px;margin:4px 0 16px 0;"><tr style="background:#e8eaf6;"><th style="border:1px solid #ccc;padding:3px 8px;">Ejercicio</th><th style="border:1px solid #ccc;padding:3px 8px;">x</th><th style="border:1px solid #ccc;padding:3px 8px;">Barra</th></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX chest press</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">5</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e65100;">█████</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Floor press</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bear crawl</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Saltos laterales</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla goblet</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Flexiones con chaleco</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Press militar</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Fondos en banco con chaleco</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Ab wheel</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bíceps curl</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Mountain climbers</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Burpees</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Jumping jacks</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla sumo</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla búlgara</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Flexiones explosivas</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX archer press</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Arnold press con kettlebell</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Elevaciones de hombro adelante</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Abs complex</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Plancha con elevación alternada</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bíceps curl martillo</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Tuck jumps</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Flexiones diamante</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Vuelos laterales en equilibrio con kettlebell</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Estocada con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Peso muerto a una pierna</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Flexiones inclinadas</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Tríceps alto en TRX</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Extensión de tríceps con banda</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr></table></details><h2 style="color:#1a73e8;border-bottom:2px solid #1a73e8;padding-bottom:4px;">LEAN — PULL</h2><table style="border-collapse:collapse;width:100%;font-size:11px;margin-bottom:8px;"><tr style="background:#1a73e8;color:white;"><th style="border:1px solid #ccc;padding:4px 6px;text-align:left;width:120px;">Circuito</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">A</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">B</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">C</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">D</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">E</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">F</th></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PIERNAS·CORE</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Empuje de cadera</b><br>Calf raises<br>Plancha con chaleco</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Sentadilla goblet<br>Plancha lateral con chaleco<br>Squat to press con kettlebell</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Zancadas con chaleco de peso<br>Hollow body<br>Sentadilla búlgara con TRX</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Sentadilla búlgara<br><b style="color:#e67e22;">Empuje de cadera</b><br>Plancha toque de hombro</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Empuje de cadera</b><br>Peso muerto a una pierna<br>Copenhague</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Step up<br>Sentadilla sumo<br><span style="color:#2196f3;">Abs complex</span></td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">ESPALDA</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Dominadas australianas</b><br><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">Remo alto en TRX</b><br><b style="color:#e67e22;">TRX face pull</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">TRX row</b><br><span style="color:#2196f3;">TRX power pull</span><br>Banda pull-apart</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">Remo alto en TRX</b><br><b style="color:#e67e22;">Dominadas australianas</b><br><b style="color:#e67e22;">TRX face pull</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">TRX row</b><br><span style="color:#2196f3;">Remo</span><br><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">Remo alto en TRX</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Dominadas australianas</b><br><b style="color:#e65100;background:#fff3e0;padding:1px 3px;border-radius:2px;">Remo alto en TRX</b><br><b style="color:#e67e22;">TRX face pull</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">TRX row</b><br><span style="color:#2196f3;">TRX power pull</span><br><span style="color:#2196f3;">Remo</span></td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">BÍCEPS·CORE</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Bíceps curl en TRX</b><br>Dead bug<br><span style="color:#2196f3;">Bíceps curl</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Bíceps curl martillo</span><br>Pallof press<br><span style="color:#2196f3;">Bíceps curl concentrado</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Bíceps curl en equilibrio con kettlebell</b><br><span style="color:#2196f3;">Abs complex</span><br><b style="color:#e67e22;">Bíceps curl en TRX</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Bíceps curl</span><br><span style="color:#2196f3;">Bird-dog</span><br><span style="color:#2196f3;">Bíceps curl martillo</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Bíceps curl en TRX</b><br>Plancha estrella con peso<br><b style="color:#e67e22;">Bíceps curl en equilibrio con kettlebell</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Bíceps curl en equilibrio con kettlebell</b><br><span style="color:#2196f3;">Bird-dog</span><br><span style="color:#2196f3;">Bíceps curl concentrado</span></td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PECHO·TRÍCEPS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Fondos en banco</span><br><span style="color:#2196f3;">Flexiones</span><br><span style="color:#2196f3;">Extensión de tríceps con banda</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Tríceps alto en TRX</span><br>Flexiones inclinadas<br>Banda triceps pushdown</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Fondos en banco con chaleco</span><br>Flexiones diamante<br><span style="color:#2196f3;">Extensión de tríceps con kettlebell</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Fondos en banco</span><br><span style="color:#2196f3;">TRX chest press</span><br><span style="color:#2196f3;">Extensión de tríceps con banda</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Fondos en banco con chaleco</span><br><span style="color:#2196f3;">Flexiones</span><br><span style="color:#2196f3;">Extensión de tríceps con kettlebell</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Flexiones explosivas<br><span style="color:#2196f3;">Tríceps alto en TRX</span><br><span style="color:#2196f3;">TRX chest press</span></td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">HIIT</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sentadilla con salto</span><br><span style="color:#2196f3;">Bear crawl</span><br><span style="color:#2196f3;">Saltos laterales</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Burpees</span><br><b style="color:#e67e22;">Jumping jacks</b><br><span style="color:#2196f3;">Estocada con salto</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Mountain climbers</span><br><span style="color:#2196f3;">Tuck jumps</span><br><b style="color:#e67e22;">Jumping jacks</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sentadilla con salto</span><br><span style="color:#2196f3;">Burpees</span><br><span style="color:#2196f3;">Saltos laterales</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Mountain climbers</span><br><span style="color:#2196f3;">Bear crawl</span><br><b style="color:#e67e22;">Jumping jacks</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Caminata a plancha<br><span style="color:#2196f3;">Tuck jumps</span><br><span style="color:#2196f3;">Estocada con salto</span></td></tr></table><details><summary style="cursor:pointer;font-weight:bold;color:#555;margin:4px 0;">Frecuencia (LEAN — PULL)</summary><table style="border-collapse:collapse;font-size:11px;margin:4px 0 16px 0;"><tr style="background:#e8eaf6;"><th style="border:1px solid #ccc;padding:3px 8px;">Ejercicio</th><th style="border:1px solid #ccc;padding:3px 8px;">x</th><th style="border:1px solid #ccc;padding:3px 8px;">Barra</th></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Remo alto en TRX</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">4</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e65100;">████</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Empuje de cadera</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Dominadas australianas</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX face pull</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bíceps curl en TRX</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX row</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Jumping jacks</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bíceps curl en equilibrio con kettlebell</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bíceps curl</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Fondos en banco</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Flexiones</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Extensión de tríceps con banda</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bear crawl</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Saltos laterales</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX power pull</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bíceps curl martillo</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bíceps curl concentrado</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Tríceps alto en TRX</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Burpees</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Estocada con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Abs complex</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Fondos en banco con chaleco</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Extensión de tríceps con kettlebell</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Mountain climbers</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Tuck jumps</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Remo</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bird-dog</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX chest press</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr></table></details><h2 style="color:#1a73e8;border-bottom:2px solid #1a73e8;padding-bottom:4px;">NAT — PRESS</h2><table style="border-collapse:collapse;width:100%;font-size:11px;margin-bottom:8px;"><tr style="background:#1a73e8;color:white;"><th style="border:1px solid #ccc;padding:4px 6px;text-align:left;width:120px;">Circuito</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">A</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">B</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">C</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">D</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">E</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">F</th></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PIERNAS·GLUTEOS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sumo squat to calf raise</span><br><span style="color:#2196f3;">Hip thrust a una pierna</span><br>Sentadilla goblet</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Elevated side leg lifts<br><span style="color:#2196f3;">Deficit reverse lunge</span><br>Step up</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plie squat<br><span style="color:#2196f3;">Loop band abduccion parada</span><br>Sentadilla sumo</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Sentadilla bulgara<br>Abduccion con pausa<br>Zancadas con kettlebell</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Hip thrust a una pierna</span><br><span style="color:#2196f3;">Sumo squat to calf raise</span><br>Split squat pulses</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Elevated side reaches<br>Plie dips<br><span style="color:#2196f3;">Deficit reverse lunge</span></td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PECHO·HOMBROS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Floor press</span><br><b style="color:#e67e22;">Press militar</b><br><span style="color:#2196f3;">Flexiones inclinadas</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">TRX chest press</span><br><span style="color:#2196f3;">Arnold press con kettlebell</span><br><span style="color:#2196f3;">Flexiones</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Banda press de pecho</span><br>Vuelos lat. en equilibrio KB<br><span style="color:#2196f3;">Floor press</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Flexiones inclinadas</span><br><b style="color:#e67e22;">Press militar</b><br>TRX archer press</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Flexiones diamante<br><span style="color:#2196f3;">Arnold press con kettlebell</span><br><span style="color:#2196f3;">TRX chest press</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Banda press de pecho</span><br><b style="color:#e67e22;">Vuelos laterales</b><br><span style="color:#2196f3;">Flexiones</span></td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">HOMBROS·TRICEPS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Fondos en banco</b><br><b style="color:#e67e22;">Vuelos laterales</b><br><b style="color:#e67e22;">Ext. triceps con banda</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Ext. triceps con kettlebell</b><br><b style="color:#e67e22;">Elevaciones hombro adelante</b><br><b style="color:#e67e22;">Banda triceps pushdown</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Fondos en banco</b><br><b style="color:#e67e22;">Press militar</b><br><b style="color:#e67e22;">Ext. triceps con banda</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Ext. triceps con kettlebell</b><br><b style="color:#e67e22;">Elevaciones hombro adelante</b><br><b style="color:#e67e22;">Banda triceps pushdown</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Fondos en banco</b><br><b style="color:#e67e22;">Vuelos laterales</b><br><b style="color:#e67e22;">Ext. triceps con banda</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Ext. triceps con kettlebell</b><br><b style="color:#e67e22;">Elevaciones hombro adelante</b><br><b style="color:#e67e22;">Banda triceps pushdown</b></td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">CORE·PIERNAS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Ab wheel</span><br><span style="color:#2196f3;">Plancha con chaleco</span><br>Empuje de cadera en piso con peso</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Abs complex</span><br><span style="color:#2196f3;">Dead bug</span><br>Standing weighted hip abduction</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plancha con elevacion alternada<br>Hollow body<br>Puente de gluteos una pierna</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plancha estrella con peso<br>Bird-dog<br><span style="color:#2196f3;">Loop band abduccion parada</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Ab wheel</span><br><span style="color:#2196f3;">Plancha con chaleco</span><br>Extension de cadera en 4 puntos</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Abs complex</span><br><span style="color:#2196f3;">Dead bug</span><br>Banda lateral walk</td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">HIIT</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Jumping jacks</b><br><b style="color:#e67e22;">Mountain climbers</b><br><b style="color:#e67e22;">Burpees</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Estocada con salto</b><br><b style="color:#e67e22;">Saltos laterales</b><br><b style="color:#e67e22;">Sentadilla con salto</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Mountain climbers</b><br><b style="color:#e67e22;">Burpees</b><br><b style="color:#e67e22;">Jumping jacks</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Sentadilla con salto</b><br><b style="color:#e67e22;">Saltos laterales</b><br><b style="color:#e67e22;">Estocada con salto</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Jumping jacks</b><br><b style="color:#e67e22;">Mountain climbers</b><br><b style="color:#e67e22;">Burpees</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Estocada con salto</b><br><b style="color:#e67e22;">Sentadilla con salto</b><br><b style="color:#e67e22;">Saltos laterales</b></td></tr></table><details><summary style="cursor:pointer;font-weight:bold;color:#555;margin:4px 0;">Frecuencia (NAT — PRESS)</summary><table style="border-collapse:collapse;font-size:11px;margin:4px 0 16px 0;"><tr style="background:#e8eaf6;"><th style="border:1px solid #ccc;padding:3px 8px;">Ejercicio</th><th style="border:1px solid #ccc;padding:3px 8px;">x</th><th style="border:1px solid #ccc;padding:3px 8px;">Barra</th></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Press militar</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Fondos en banco</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Vuelos laterales</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Ext. triceps con banda</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Jumping jacks</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Mountain climbers</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Burpees</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Ext. triceps con kettlebell</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Elevaciones hombro adelante</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Banda triceps pushdown</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Estocada con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Saltos laterales</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sumo squat to calf raise</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Hip thrust a una pierna</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Floor press</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Flexiones inclinadas</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Ab wheel</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Plancha con chaleco</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Deficit reverse lunge</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX chest press</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Arnold press con kettlebell</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Flexiones</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Abs complex</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Dead bug</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Loop band abduccion parada</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Banda press de pecho</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr></table></details><h2 style="color:#1a73e8;border-bottom:2px solid #1a73e8;padding-bottom:4px;">NAT — PULL</h2><table style="border-collapse:collapse;width:100%;font-size:11px;margin-bottom:8px;"><tr style="background:#1a73e8;color:white;"><th style="border:1px solid #ccc;padding:4px 6px;text-align:left;width:120px;">Circuito</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">A</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">B</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">C</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">D</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">E</th><th style="border:1px solid #ccc;padding:4px 6px;text-align:center;">F</th></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PIERNAS·GLUTEOS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plie dips<br><span style="color:#2196f3;">Elevated side reaches</span><br>Sentadilla bulgara con TRX</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sumo squat to RDL</span><br><span style="color:#2196f3;">Calf raises</span><br>Sentadilla bulgara</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Split squat pulses<br>Standing weighted hip abduction<br><span style="color:#2196f3;">Step up</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sumo squat to RDL</span><br>Abduccion con pausa<br>Hip thrust a una pierna</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Step up</span><br><span style="color:#2196f3;">Elevated side reaches</span><br>Loop band abduccion parada</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plie squat<br><span style="color:#2196f3;">Calf raises</span><br>Deficit reverse lunge</td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">PIERNAS·CORE</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Peso muerto a una pierna</span><br>Empuje de cadera<br><span style="color:#2196f3;">Plancha con chaleco</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Puente de gluteos una pierna</span><br>Sentadilla goblet<br>Abs complex</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Zancadas con chaleco de peso<br>Elevated side leg lifts<br>Dead bug</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Empuje de cadera en piso con peso<br><span style="color:#2196f3;">Sentadilla sumo</span><br>Plancha con elevacion alternada</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Peso muerto a una pierna</span><br>Extension de cadera en 4 puntos<br><span style="color:#2196f3;">Plancha con chaleco</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Puente de gluteos una pierna</span><br><span style="color:#2196f3;">Sentadilla sumo</span><br>Bird-dog</td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">ESPALDA·BICEPS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">TRX row</span><br>Biceps curl<br><b style="color:#e67e22;">TRX face pull</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Remo</span><br><span style="color:#2196f3;">Biceps curl martillo</span><br><b style="color:#e67e22;">TRX face pull</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Dominadas australianas</span><br><span style="color:#2196f3;">Biceps curl con banda</span><br><span style="color:#2196f3;">TRX power pull</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><b style="color:#e67e22;">Remo alto en TRX</b><br>Biceps curl en TRX<br><b style="color:#e67e22;">TRX face pull</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">TRX row</span><br>Biceps curl concentrado<br><span style="color:#2196f3;">Dominadas australianas</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">TRX power pull</span><br><span style="color:#2196f3;">Biceps curl martillo</span><br><span style="color:#2196f3;">Remo</span></td></tr><tr style="background:#ffffff;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">CORE·TRICEPS</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plancha estrella con peso<br><span style="color:#2196f3;">Banda pull-apart</span><br><span style="color:#2196f3;">Triceps alto en TRX</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Pallof press<br>Fondos en banco<br><b style="color:#e67e22;">Remo alto en TRX</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Ab wheel<br>Ext. triceps con banda<br>Biceps curl en equilibrio con KB</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Hollow body<br>Fondos en banco con chaleco<br><b style="color:#e67e22;">Remo alto en TRX</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Plancha toque de hombro<br><span style="color:#2196f3;">Triceps alto en TRX</span><br><span style="color:#2196f3;">Banda pull-apart</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;">Copenhague<br>Ext. triceps con kettlebell<br><span style="color:#2196f3;">Biceps curl con banda</span></td></tr><tr style="background:#f8f9fa;"><td style="border:1px solid #ddd;padding:4px 6px;font-weight:bold;font-size:10px;color:#555;vertical-align:top;">HIIT</td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Tuck jumps</span><br><b style="color:#e67e22;">Bear crawl</b><br><b style="color:#e67e22;">Saltos laterales</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Sentadilla con salto</span><br><span style="color:#2196f3;">Mountain climbers</span><br><span style="color:#2196f3;">Jumping jacks</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Burpees</span><br><span style="color:#2196f3;">Estocada con salto</span><br><b style="color:#e67e22;">Bear crawl</b></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Tuck jumps</span><br><b style="color:#e67e22;">Saltos laterales</b><br><span style="color:#2196f3;">Mountain climbers</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Burpees</span><br><span style="color:#2196f3;">Sentadilla con salto</span><br><span style="color:#2196f3;">Jumping jacks</span></td><td style="border:1px solid #ddd;padding:4px 6px;vertical-align:top;line-height:1.6;"><span style="color:#2196f3;">Estocada con salto</span><br><b style="color:#e67e22;">Bear crawl</b><br><b style="color:#e67e22;">Saltos laterales</b></td></tr></table><details><summary style="cursor:pointer;font-weight:bold;color:#555;margin:4px 0;">Frecuencia (NAT — PULL)</summary><table style="border-collapse:collapse;font-size:11px;margin:4px 0 16px 0;"><tr style="background:#e8eaf6;"><th style="border:1px solid #ccc;padding:3px 8px;">Ejercicio</th><th style="border:1px solid #ccc;padding:3px 8px;">x</th><th style="border:1px solid #ccc;padding:3px 8px;">Barra</th></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX face pull</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Bear crawl</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Saltos laterales</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Remo alto en TRX</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">3</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#e67e22;">███</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Elevated side reaches</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Peso muerto a una pierna</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Plancha con chaleco</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX row</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Banda pull-apart</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Triceps alto en TRX</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Tuck jumps</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sumo squat to RDL</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Calf raises</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Puente de gluteos una pierna</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Remo</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Biceps curl martillo</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Mountain climbers</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Jumping jacks</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Step up</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Dominadas australianas</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Biceps curl con banda</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">TRX power pull</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Burpees</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Estocada con salto</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr><tr><td style="border:1px solid #ddd;padding:2px 6px;">Sentadilla sumo</td><td style="border:1px solid #ddd;padding:2px 6px;text-align:center;">2</td><td style="border:1px solid #ddd;padding:2px 6px;"><span style="color:#2196f3;">██</span></td></tr></table></details><h2 style="color:#2e7d32;border-bottom:2px solid #2e7d32;padding-bottom:4px;">Ejercicios con nombres similares (posibles duplicados)</h2><table style="border-collapse:collapse;width:100%;font-size:11px;"><tr style="background:#2e7d32;color:white;"><th style="border:1px solid #ccc;padding:4px 8px;">Ejercicio 1</th><th style="border:1px solid #ccc;padding:4px 8px;">Ejercicio 2</th><th style="border:1px solid #ccc;padding:4px 8px;">Relacion</th></tr><tr style="background:#e8f5e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Empuje de cadera</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Empuje de cadera en piso con peso</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Mismo movimiento; "en piso con peso" = con kettlebell</td></tr><tr style="background:#f1f8e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Puente de gluteos una pierna</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Hip thrust a una pierna</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Mismo patron unilateral, piso vs banco</td></tr><tr style="background:#e8f5e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sentadilla sumo</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Plie squat</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Mismo movimiento con diferente nombre</td></tr><tr style="background:#f1f8e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sentadilla sumo</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sumo squat to calf raise</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Sentadilla sumo + elevacion de talon</td></tr><tr style="background:#e8f5e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sentadilla sumo</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sumo squat to RDL</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Sentadilla sumo + peso muerto</td></tr><tr style="background:#f1f8e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Zancadas con chaleco de peso</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Zancadas con kettlebell</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Mismo movimiento, diferente carga</td></tr><tr style="background:#e8f5e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Fondos en banco</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Fondos en banco con chaleco</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Misma base + chaleco de peso</td></tr><tr style="background:#f1f8e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Remo</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Remo alto en TRX</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Ambos son remo pero angulo distinto</td></tr><tr style="background:#e8f5e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">TRX row</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Remo alto en TRX</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Mismo equipo, variacion de agarre</td></tr><tr style="background:#f1f8e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Biceps curl</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Biceps curl martillo</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Mismo movimiento, diferente agarre</td></tr><tr style="background:#e8f5e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Biceps curl en TRX</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Biceps curl en equilibrio con KB</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Ambos curl con componente de estabilidad</td></tr><tr style="background:#f1f8e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sentadilla bulgara</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sentadilla bulgara con TRX</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Misma base, TRX para asistencia</td></tr><tr style="background:#e8f5e9;"><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Split squat pulses</td><td style="border:1px solid #ddd;padding:3px 8px;font-weight:bold;">Sentadilla bulgara</td><td style="border:1px solid #ddd;padding:3px 8px;font-size:10px;">Patron similar de zancada estatica</td></tr></table></body></html>
+
+<div id="app"></div>
+
+<script>
+// ──────────────── DATA ────────────────
+const groups = {
+  'LEAN PRESS': {
+    id: 'lean-press', cls: 'lean',
+    routines: {
+      A: {
+        'C1 PIERNAS·ESPALDA': ['Sentadilla goblet','Zancadas con chaleco de peso','TRX row'],
+        'C2 PECHO': ['Floor press','Flexiones con chaleco','TRX chest press'],
+        'C3 HOMBROS·TRÍCEPS': ['Press militar','Fondos en banco con chaleco','Vuelos laterales'],
+        'C4 CORE·BÍCEPS': ['Ab wheel','Plancha con chaleco','Bíceps curl'],
+        'C5 HIIT': ['Mountain climbers','Burpees','Jumping jacks']
+      },
+      B: {
+        'C1 PIERNAS·ESPALDA': ['Sentadilla sumo','Remo','Sentadilla búlgara'],
+        'C2 PECHO': ['Flexiones explosivas','TRX archer press','TRX chest press'],
+        'C3 HOMBROS·TRÍCEPS': ['Arnold press','Extensión de tríceps con kettlebell','Elevaciones de hombro adelante'],
+        'C4 CORE·BÍCEPS': ['Abs complex','Plancha con elevación alternada','Bíceps curl martillo'],
+        'C5 HIIT': ['Bear crawl','Tuck jumps','Saltos laterales']
+      },
+      C: {
+        'C1 PIERNAS·ESPALDA': ['Sentadilla con salto','Zancadas con kettlebell','TRX power pull'],
+        'C2 PECHO': ['Flexiones diamante','Floor press','Flexiones con chaleco'],
+        'C3 HOMBROS·TRÍCEPS': ['Fondos en banco','Vuelos laterales en equilibrio con kettlebell','Banda triceps pushdown'],
+        'C4 CORE·BÍCEPS': ['Plancha estrella con peso','Dead bug','Bíceps curl en TRX'],
+        'C5 HIIT': ['Tuck jumps','Estocada con salto','Mountain climbers']
+      },
+      D: {
+        'C1 PIERNAS·ESPALDA': ['Peso muerto a una pierna','Sentadilla sumo','Remo alto en TRX'],
+        'C2 PECHO': ['TRX chest press','Flexiones inclinadas','Flexiones explosivas'],
+        'C3 HOMBROS·TRÍCEPS': ['Tríceps alto en TRX','Arnold press','Extensión de tríceps con banda'],
+        'C4 CORE·BÍCEPS': ['Plancha lateral con chaleco','Abs complex','Bíceps curl en equilibrio con kettlebell'],
+        'C5 HIIT': ['Bear crawl','Burpees','Saltos laterales']
+      },
+      E: {
+        'C1 PIERNAS·ESPALDA': ['Sentadilla goblet','Step up','TRX face pull'],
+        'C2 PECHO': ['Flexiones diamante','TRX archer press','TRX chest press'],
+        'C3 HOMBROS·TRÍCEPS': ['Press militar','Fondos en banco con chaleco','Vuelos laterales en equilibrio con kettlebell'],
+        'C4 CORE·BÍCEPS': ['Ab wheel','Caminata a plancha','Bíceps curl'],
+        'C5 HIIT': ['Tuck jumps','Estocada con salto','Jumping jacks']
+      },
+      F: {
+        'C1 PIERNAS·ESPALDA': ['Peso muerto a una pierna','Sentadilla búlgara','Banda pull-apart'],
+        'C2 PECHO': ['Flexiones inclinadas','TRX chest press','Floor press'],
+        'C3 HOMBROS·TRÍCEPS': ['Extensión de tríceps con banda','Elevaciones de hombro adelante','Tríceps alto en TRX'],
+        'C4 CORE·BÍCEPS': ['Hollow body','Plancha con elevación alternada','Bíceps curl martillo'],
+        'C5 HIIT': ['Saltos laterales','Sentadilla con salto','Bear crawl']
+      }
+    }
+  },
+  'LEAN PULL': {
+    id: 'lean-pull', cls: 'lean',
+    routines: {
+      A: {
+        'C1 PIERNAS·CORE': ['Empuje de cadera','Calf raises','Plancha con chaleco'],
+        'C2 ESPALDA': ['Dominadas australianas','Remo alto en TRX','TRX face pull'],
+        'C3 BÍCEPS·CORE': ['Bíceps curl en TRX','Dead bug','Bíceps curl'],
+        'C4 PECHO·TRÍCEPS': ['Fondos en banco','Flexiones','Extensión de tríceps con banda'],
+        'C5 HIIT': ['Sentadilla con salto','Bear crawl','Saltos laterales']
+      },
+      B: {
+        'C1 PIERNAS·CORE': ['Sentadilla goblet','Plancha lateral con chaleco','Squat to press con kettlebell'],
+        'C2 ESPALDA': ['TRX row','TRX power pull','Banda pull-apart'],
+        'C3 BÍCEPS·CORE': ['Bíceps curl martillo','Pallof press','Bíceps curl concentrado'],
+        'C4 PECHO·TRÍCEPS': ['Tríceps alto en TRX','Flexiones inclinadas','Banda triceps pushdown'],
+        'C5 HIIT': ['Burpees','Jumping jacks','Estocada con salto']
+      },
+      C: {
+        'C1 PIERNAS·CORE': ['Zancadas con chaleco de peso','Hollow body','Sentadilla búlgara con TRX'],
+        'C2 ESPALDA': ['Remo alto en TRX','Dominadas australianas','TRX face pull'],
+        'C3 BÍCEPS·CORE': ['Bíceps curl en equilibrio con kettlebell','Abs complex','Bíceps curl en TRX'],
+        'C4 PECHO·TRÍCEPS': ['Fondos en banco con chaleco','Flexiones diamante','Extensión de tríceps con kettlebell'],
+        'C5 HIIT': ['Mountain climbers','Tuck jumps','Jumping jacks']
+      },
+      D: {
+        'C1 PIERNAS·CORE': ['Sentadilla búlgara','Empuje de cadera','Plancha toque de hombro'],
+        'C2 ESPALDA': ['TRX row','Remo','Remo alto en TRX'],
+        'C3 BÍCEPS·CORE': ['Bíceps curl','Bird-dog','Bíceps curl martillo'],
+        'C4 PECHO·TRÍCEPS': ['Fondos en banco','TRX chest press','Extensión de tríceps con banda'],
+        'C5 HIIT': ['Sentadilla con salto','Burpees','Saltos laterales']
+      },
+      E: {
+        'C1 PIERNAS·CORE': ['Empuje de cadera','Peso muerto a una pierna','Copenhague'],
+        'C2 ESPALDA': ['Dominadas australianas','Remo alto en TRX','TRX face pull'],
+        'C3 BÍCEPS·CORE': ['Bíceps curl en TRX','Plancha estrella con peso','Bíceps curl en equilibrio con kettlebell'],
+        'C4 PECHO·TRÍCEPS': ['Fondos en banco con chaleco','Flexiones','Extensión de tríceps con kettlebell'],
+        'C5 HIIT': ['Mountain climbers','Bear crawl','Jumping jacks']
+      },
+      F: {
+        'C1 PIERNAS·CORE': ['Step up','Sentadilla sumo','Abs complex'],
+        'C2 ESPALDA': ['TRX row','TRX power pull','Remo'],
+        'C3 BÍCEPS·CORE': ['Bíceps curl en equilibrio con kettlebell','Bird-dog','Bíceps curl concentrado'],
+        'C4 PECHO·TRÍCEPS': ['Flexiones explosivas','Tríceps alto en TRX','TRX chest press'],
+        'C5 HIIT': ['Caminata a plancha','Tuck jumps','Estocada con salto']
+      }
+    }
+  },
+  'NAT PRESS': {
+    id: 'nat-press', cls: 'nat',
+    routines: {
+      A: {
+        'C1 PIERNAS·GLÚTEOS': ['Sumo squat to calf raise','Hip thrust a una pierna','Sentadilla goblet'],
+        'C2 PECHO·HOMBROS': ['Floor press','Press militar','Flexiones inclinadas'],
+        'C3 HOMBROS·TRÍCEPS': ['Fondos en banco','Vuelos laterales','Extensión de tríceps con banda'],
+        'C4 CORE·PIERNAS': ['Ab wheel','Plancha con chaleco','Empuje de cadera en piso con peso'],
+        'C5 HIIT': ['Jumping jacks','Mountain climbers','Burpees']
+      },
+      B: {
+        'C1 PIERNAS·GLÚTEOS': ['Elevated side leg lifts','Déficit reverse lunge','Step up'],
+        'C2 PECHO·HOMBROS': ['TRX chest press','Arnold press','Flexiones'],
+        'C3 HOMBROS·TRÍCEPS': ['Extensión de tríceps con kettlebell','Elevaciones de hombro adelante','Banda triceps pushdown'],
+        'C4 CORE·PIERNAS': ['Abs complex','Dead bug','Standing weighted hip abduction'],
+        'C5 HIIT': ['Estocada con salto','Saltos laterales','Sentadilla con salto']
+      },
+      C: {
+        'C1 PIERNAS·GLÚTEOS': ['Plié squat','Loop band abducción parada','Sentadilla sumo'],
+        'C2 PECHO·HOMBROS': ['Banda press de pecho','Vuelos laterales en equilibrio con kettlebell','Floor press'],
+        'C3 HOMBROS·TRÍCEPS': ['Fondos en banco','Press militar','Extensión de tríceps con banda'],
+        'C4 CORE·PIERNAS': ['Plancha con elevación alternada','Hollow body','Puente de glúteos una pierna'],
+        'C5 HIIT': ['Mountain climbers','Burpees','Jumping jacks']
+      },
+      D: {
+        'C1 PIERNAS·GLÚTEOS': ['Sentadilla búlgara','Abducción con pausa','Zancadas con kettlebell'],
+        'C2 PECHO·HOMBROS': ['Flexiones inclinadas','Press militar','TRX archer press'],
+        'C3 HOMBROS·TRÍCEPS': ['Extensión de tríceps con kettlebell','Elevaciones de hombro adelante','Banda triceps pushdown'],
+        'C4 CORE·PIERNAS': ['Plancha estrella con peso','Bird-dog','Loop band abducción parada'],
+        'C5 HIIT': ['Sentadilla con salto','Saltos laterales','Estocada con salto']
+      },
+      E: {
+        'C1 PIERNAS·GLÚTEOS': ['Hip thrust a una pierna','Sumo squat to calf raise','Split squat pulses'],
+        'C2 PECHO·HOMBROS': ['Flexiones diamante','Arnold press','TRX chest press'],
+        'C3 HOMBROS·TRÍCEPS': ['Fondos en banco','Vuelos laterales','Extensión de tríceps con banda'],
+        'C4 CORE·PIERNAS': ['Ab wheel','Plancha con chaleco','Extensión de cadera en 4 puntos'],
+        'C5 HIIT': ['Jumping jacks','Mountain climbers','Burpees']
+      },
+      F: {
+        'C1 PIERNAS·GLÚTEOS': ['Elevated side reaches','Plié dips','Déficit reverse lunge'],
+        'C2 PECHO·HOMBROS': ['Banda press de pecho','Vuelos laterales','Flexiones'],
+        'C3 HOMBROS·TRÍCEPS': ['Extensión de tríceps con kettlebell','Elevaciones de hombro adelante','Banda triceps pushdown'],
+        'C4 CORE·PIERNAS': ['Abs complex','Dead bug','Banda lateral walk'],
+        'C5 HIIT': ['Estocada con salto','Sentadilla con salto','Saltos laterales']
+      }
+    }
+  },
+  'NAT PULL': {
+    id: 'nat-pull', cls: 'nat',
+    routines: {
+      A: {
+        'C1 PIERNAS·GLÚTEOS': ['Plié dips','Elevated side reaches','Sentadilla búlgara con TRX'],
+        'C2 PIERNAS·CORE': ['Peso muerto a una pierna','Empuje de cadera','Plancha con chaleco'],
+        'C3 ESPALDA·BÍCEPS': ['TRX row','Bíceps curl','TRX face pull'],
+        'C4 CORE·TRÍCEPS': ['Plancha estrella con peso','Banda pull-apart','Tríceps alto en TRX'],
+        'C5 HIIT': ['Tuck jumps','Bear crawl','Saltos laterales']
+      },
+      B: {
+        'C1 PIERNAS·GLÚTEOS': ['Sumo squat to RDL','Calf raises','Sentadilla búlgara'],
+        'C2 PIERNAS·CORE': ['Puente de glúteos una pierna','Sentadilla goblet','Abs complex'],
+        'C3 ESPALDA·BÍCEPS': ['Remo','Bíceps curl martillo','TRX face pull'],
+        'C4 CORE·TRÍCEPS': ['Pallof press','Fondos en banco','Remo alto en TRX'],
+        'C5 HIIT': ['Sentadilla con salto','Mountain climbers','Jumping jacks']
+      },
+      C: {
+        'C1 PIERNAS·GLÚTEOS': ['Split squat pulses','Standing weighted hip abduction','Step up'],
+        'C2 PIERNAS·CORE': ['Zancadas con chaleco de peso','Elevated side leg lifts','Dead bug'],
+        'C3 ESPALDA·BÍCEPS': ['Dominadas australianas','Bíceps curl con banda','TRX power pull'],
+        'C4 CORE·TRÍCEPS': ['Ab wheel','Extensión de tríceps con banda','Bíceps curl en equilibrio con kettlebell'],
+        'C5 HIIT': ['Burpees','Estocada con salto','Bear crawl']
+      },
+      D: {
+        'C1 PIERNAS·GLÚTEOS': ['Sumo squat to RDL','Abducción con pausa','Hip thrust a una pierna'],
+        'C2 PIERNAS·CORE': ['Empuje de cadera en piso con peso','Sentadilla sumo','Plancha con elevación alternada'],
+        'C3 ESPALDA·BÍCEPS': ['Remo alto en TRX','Bíceps curl en TRX','TRX face pull'],
+        'C4 CORE·TRÍCEPS': ['Hollow body','Fondos en banco con chaleco','Remo alto en TRX'],
+        'C5 HIIT': ['Tuck jumps','Saltos laterales','Mountain climbers']
+      },
+      E: {
+        'C1 PIERNAS·GLÚTEOS': ['Step up','Elevated side reaches','Loop band abducción parada'],
+        'C2 PIERNAS·CORE': ['Peso muerto a una pierna','Extensión de cadera en 4 puntos','Plancha con chaleco'],
+        'C3 ESPALDA·BÍCEPS': ['TRX row','Bíceps curl concentrado','Dominadas australianas'],
+        'C4 CORE·TRÍCEPS': ['Plancha toque de hombro','Tríceps alto en TRX','Banda pull-apart'],
+        'C5 HIIT': ['Burpees','Sentadilla con salto','Jumping jacks']
+      },
+      F: {
+        'C1 PIERNAS·GLÚTEOS': ['Plié squat','Calf raises','Déficit reverse lunge'],
+        'C2 PIERNAS·CORE': ['Puente de glúteos una pierna','Sentadilla sumo','Bird-dog'],
+        'C3 ESPALDA·BÍCEPS': ['TRX power pull','Bíceps curl martillo','Remo'],
+        'C4 CORE·TRÍCEPS': ['Copenhague','Extensión de tríceps con kettlebell','Bíceps curl con banda'],
+        'C5 HIIT': ['Estocada con salto','Bear crawl','Saltos laterales']
+      }
+    }
+  }
+};
+
+// ──────────────── SIMILAR PAIRS ────────────────
+const SIMILAR_PAIRS = [
+  ['Empuje de cadera','Empuje de cadera en piso con peso'],
+  ['Puente de glúteos una pierna','Hip thrust a una pierna'],
+  ['Sentadilla sumo','Plié squat'],
+  ['Sentadilla sumo','Sumo squat to calf raise'],
+  ['Sentadilla sumo','Sumo squat to RDL'],
+  ['Zancadas con chaleco de peso','Zancadas con kettlebell'],
+  ['Fondos en banco','Fondos en banco con chaleco'],
+  ['Remo','Remo alto en TRX'],
+  ['TRX row','Remo alto en TRX'],
+  ['Bíceps curl','Bíceps curl martillo'],
+  ['Bíceps curl en TRX','Bíceps curl en equilibrio con kettlebell'],
+  ['Flexiones con chaleco','Flexiones inclinadas'],
+  ['Sentadilla búlgara','Sentadilla búlgara con TRX'],
+  ['Split squat pulses','Sentadilla búlgara'],
+];
+
+// ──────────────── ANALYSIS ────────────────
+
+function getAllExercisesInRoutine(routine) {
+  const result = [];
+  for (const [circuit, exs] of Object.entries(routine)) {
+    for (const ex of exs) {
+      result.push({ exercise: ex, circuit: circuit });
+    }
+  }
+  return result;
+}
+
+function getFrequencyMap(routinesObj) {
+  const freq = {};
+  for (const [letter, routine] of Object.entries(routinesObj)) {
+    for (const [circuit, exs] of Object.entries(routine)) {
+      for (const ex of exs) {
+        freq[ex] = (freq[ex] || 0) + 1;
+      }
+    }
+  }
+  return freq;
+}
+
+function findWithinRoutineRepeats(routine) {
+  const seen = {};
+  const repeats = [];
+  for (const [circuit, exs] of Object.entries(routine)) {
+    for (const ex of exs) {
+      if (seen[ex]) {
+        repeats.push({ exercise: ex, circuits: [seen[ex], circuit] });
+      } else {
+        seen[ex] = circuit;
+      }
+    }
+  }
+  return repeats;
+}
+
+function findWithinRoutineSimilars(routine) {
+  const allExs = getAllExercisesInRoutine(routine);
+  const results = [];
+  for (const pair of SIMILAR_PAIRS) {
+    const foundItems = [];
+    for (const item of allExs) {
+      if (item.exercise === pair[0] || item.exercise === pair[1]) {
+        foundItems.push(item);
+      }
+    }
+    // Need at least two entries, and at least one of each side of the pair
+    // OR exact duplicates matched by the pair (same exercise name appears twice)
+    const uniqueExNames = [...new Set(foundItems.map(f => f.exercise))];
+    if (foundItems.length >= 2 && uniqueExNames.length >= 2) {
+      results.push({
+        exercises: foundItems.map(f => f.exercise),
+        circuits: foundItems.map(f => f.circuit),
+        pair: pair
+      });
+    }
+  }
+  const seen = new Set();
+  return results.filter(r => {
+    const key = r.pair.join('|');
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+// Also detect same-circuit similar pairs (e.g. Bíceps curl + Bíceps curl martillo in same C3)
+function findSameCircuitSimilars(routine) {
+  const results = [];
+  for (const [circuit, exs] of Object.entries(routine)) {
+    for (const pair of SIMILAR_PAIRS) {
+      const has0 = exs.includes(pair[0]);
+      const has1 = exs.includes(pair[1]);
+      if (has0 && has1) {
+        results.push({
+          exercises: [pair[0], pair[1]],
+          circuit: circuit,
+          pair: pair,
+          sameCircuit: true
+        });
+      }
+    }
+  }
+  return results;
+}
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// ──────────────── RENDER ────────────────
+
+function renderComparisonTable(groupName, groupData) {
+  const routinesObj = groupData.routines;
+  const letters = Object.keys(routinesObj);
+  const freq = getFrequencyMap(routinesObj);
+  const circuitKeys = Object.keys(routinesObj[letters[0]]);
+
+  const repeatSets = {};
+  const similarSets = {};
+  for (const letter of letters) {
+    const reps = findWithinRoutineRepeats(routinesObj[letter]);
+    repeatSets[letter] = new Set(reps.map(r => r.exercise));
+
+    const sims = findWithinRoutineSimilars(routinesObj[letter]);
+    const scSims = findSameCircuitSimilars(routinesObj[letter]);
+    const simExs = new Set();
+    for (const s of sims) {
+      for (const ex of s.exercises) simExs.add(ex);
+    }
+    for (const s of scSims) {
+      for (const ex of s.exercises) simExs.add(ex);
+    }
+    similarSets[letter] = simExs;
+  }
+
+  let html = '<h2 id="' + groupData.id + '">' + escapeHtml(groupName) + '</h2>';
+  html += '<div class="table-wrap"><table>';
+  html += '<thead><tr><th>Circuito</th>';
+  for (const l of letters) html += '<th>Rutina ' + l + '</th>';
+  html += '</tr></thead><tbody>';
+
+  for (const ck of circuitKeys) {
+    html += '<tr class="section-header"><td colspan="' + (letters.length + 1) + '">' + escapeHtml(ck) + '</td></tr>';
+    for (let i = 0; i < 3; i++) {
+      html += '<tr>';
+      html += '<td style="color:#ABABAB;font-size:0.75rem">Ej. ' + (i+1) + '</td>';
+      for (const letter of letters) {
+        const ex = routinesObj[letter][ck][i];
+        const f = freq[ex];
+        const fClass = f >= 4 ? 'freq-4' : f === 3 ? 'freq-3' : f === 2 ? 'freq-2' : 'freq-1';
+        const bgClass = f >= 4 ? 'bg-4' : '';
+        let flags = '';
+        if (repeatSets[letter].has(ex)) flags += '<span class="repeat-flag">REP</span>';
+        if (similarSets[letter].has(ex)) flags += '<span class="similar-flag">SIM</span>';
+        html += '<td class="' + fClass + ' ' + bgClass + '">' + escapeHtml(ex) + flags + '</td>';
+      }
+      html += '</tr>';
+    }
+  }
+
+  html += '</tbody></table></div>';
+
+  // Frequency bar chart
+  const sorted = Object.entries(freq).filter(function(e){ return e[1] >= 2; }).sort(function(a,b){ return b[1] - a[1]; });
+  if (sorted.length > 0) {
+    html += '<h3>Frecuencia de ejercicios (2+ apariciones) — ' + escapeHtml(groupName) + '</h3>';
+    html += '<div class="table-wrap"><table class="freq-table"><thead><tr><th>Ejercicio</th><th>Barra</th><th>#</th></tr></thead><tbody>';
+    for (const entry of sorted) {
+      const ex = entry[0], count = entry[1];
+      const pct = (count / 6 * 100).toFixed(0);
+      const barClass = count >= 6 ? 'bar-6' : count >= 5 ? 'bar-5' : count >= 4 ? 'bar-4' : count >= 3 ? 'bar-3' : 'bar-2';
+      html += '<tr><td>' + escapeHtml(ex) + '</td><td class="bar-cell"><span class="bar ' + barClass + '" style="width:' + pct + '%"></span></td><td>' + count + '</td></tr>';
+    }
+    html += '</tbody></table></div>';
+  }
+
+  return html;
+}
+
+function getPairReason(pair) {
+  if (pair.includes('Bíceps curl') && pair.includes('Bíceps curl martillo'))
+    return 'mismo movimiento, diferente agarre';
+  if (pair.includes('Empuje de cadera') && pair.includes('Empuje de cadera en piso con peso'))
+    return 'mismo movimiento, uno con peso adicional';
+  if (pair.includes('Puente de glúteos una pierna') && pair.includes('Hip thrust a una pierna'))
+    return 'mismo patrón unilateral de cadera';
+  if ((pair.includes('Sentadilla sumo') && pair.includes('Plié squat')) ||
+      (pair.includes('Sentadilla sumo') && pair.includes('Sumo squat to calf raise')) ||
+      (pair.includes('Sentadilla sumo') && pair.includes('Sumo squat to RDL')))
+    return 'patrones similares de sentadilla sumo';
+  if (pair.includes('Sumo squat to RDL') || pair.includes('Sumo squat to calf raise'))
+    return 'patrones similares de sentadilla sumo';
+  if (pair.includes('Fondos en banco') && pair.includes('Fondos en banco con chaleco'))
+    return 'mismo ejercicio, uno con chaleco';
+  if ((pair.includes('Remo') && pair.includes('Remo alto en TRX')) ||
+      (pair.includes('TRX row') && pair.includes('Remo alto en TRX')))
+    return 'variaciones de remo';
+  if (pair.includes('Flexiones con chaleco') && pair.includes('Flexiones inclinadas'))
+    return 'misma base, diferente intensificación';
+  if (pair.includes('Sentadilla búlgara') && pair.includes('Sentadilla búlgara con TRX'))
+    return 'mismo ejercicio, TRX como asistencia';
+  if (pair.includes('Split squat pulses') && pair.includes('Sentadilla búlgara'))
+    return 'patrón similar de zancada estática';
+  if (pair.includes('Zancadas con chaleco de peso') && pair.includes('Zancadas con kettlebell'))
+    return 'mismo movimiento, diferente carga';
+  if (pair.includes('Bíceps curl en TRX') && pair.includes('Bíceps curl en equilibrio con kettlebell'))
+    return 'ambos con componente de estabilidad';
+  return 'patrones similares';
+}
+
+function renderSummary() {
+  let html = '<h2 id="summary">Resumen Final</h2>';
+
+  const allRepeats = [];
+  const allSimilars = [];
+  const allSameCircuitSimilars = [];
+
+  for (const [groupName, groupData] of Object.entries(groups)) {
+    const routinesObj = groupData.routines;
+    for (const [letter, routine] of Object.entries(routinesObj)) {
+      const reps = findWithinRoutineRepeats(routine);
+      for (const r of reps) {
+        allRepeats.push({ group: groupName, letter: letter, exercise: r.exercise, circuits: r.circuits });
+      }
+      const sims = findWithinRoutineSimilars(routine);
+      for (const s of sims) {
+        allSimilars.push({ group: groupName, letter: letter, exercises: s.exercises, circuits: s.circuits, pair: s.pair });
+      }
+      const scSims = findSameCircuitSimilars(routine);
+      for (const s of scSims) {
+        // Check if already covered in cross-circuit similars
+        const key = s.pair.join('|');
+        const already = allSimilars.some(function(x) {
+          return x.group === groupName && x.letter === letter && x.pair.join('|') === key;
+        });
+        if (!already) {
+          allSameCircuitSimilars.push({ group: groupName, letter: letter, exercises: s.exercises, circuit: s.circuit, pair: s.pair });
+        }
+      }
+    }
+  }
+
+  // Summary cards
+  let totalRoutines = 0;
+  const totalExercises = new Set();
+  for (const g of Object.values(groups)) {
+    totalRoutines += Object.keys(g.routines).length;
+    for (const r of Object.values(g.routines)) {
+      for (const exs of Object.values(r)) {
+        for (const ex of exs) totalExercises.add(ex);
+      }
+    }
+  }
+
+  html += '<div class="summary-grid">';
+  html += '<div class="summary-card"><div class="num">' + totalRoutines + '</div><div class="label">Rutinas totales</div></div>';
+  html += '<div class="summary-card"><div class="num">' + totalExercises.size + '</div><div class="label">Ejercicios distintos</div></div>';
+  html += '<div class="summary-card"><div class="num">' + (totalRoutines * 15) + '</div><div class="label">Slots totales</div></div>';
+  html += '<div class="summary-card"><div class="num" style="color:#FF453A">' + allRepeats.length + '</div><div class="label">Repeticiones exactas</div></div>';
+  html += '<div class="summary-card"><div class="num" style="color:#A78BFA">' + (allSimilars.length + allSameCircuitSimilars.length) + '</div><div class="label">Pares similares detectados</div></div>';
+  html += '</div>';
+
+  // ── Exact repeats table ──
+  html += '<h3>Ejercicios repetidos dentro de la misma rutina</h3>';
+  if (allRepeats.length === 0) {
+    html += '<p style="color:#ABABAB;margin:8px 0">No se encontraron ejercicios exactamente repetidos.</p>';
+  } else {
+    html += '<div class="table-wrap"><table class="issue-table"><thead><tr><th>Rutina</th><th>Ejercicio</th><th>Circuitos</th></tr></thead><tbody>';
+    for (const r of allRepeats) {
+      html += '<tr><td>' + escapeHtml(r.group) + ' ' + r.letter + '</td><td>' + escapeHtml(r.exercise) + '</td><td>' + r.circuits.map(function(c){return escapeHtml(c);}).join(' + ') + '</td></tr>';
+    }
+    html += '</tbody></table></div>';
+  }
+
+  // ── Similar pairs table (cross-circuit) ──
+  html += '<h3>Ejercicios similares en la misma rutina (circuitos diferentes)</h3>';
+  if (allSimilars.length === 0) {
+    html += '<p style="color:#ABABAB;margin:8px 0">No se encontraron pares similares entre circuitos.</p>';
+  } else {
+    html += '<div class="table-wrap"><table class="issue-table similar"><thead><tr><th>Rutina</th><th>Par similar</th><th>Circuitos</th><th>Motivo</th></tr></thead><tbody>';
+    for (const s of allSimilars) {
+      const uniqueExs = [];
+      const seen = {};
+      for (const e of s.exercises) { if (!seen[e]) { uniqueExs.push(e); seen[e] = true; } }
+      const reason = getPairReason(s.pair);
+      html += '<tr><td>' + escapeHtml(s.group) + ' ' + s.letter + '</td><td>' + uniqueExs.map(function(e){return escapeHtml(e);}).join(' &asymp; ') + '</td><td>' + s.circuits.map(function(c){return escapeHtml(c);}).join(' + ') + '</td><td style="color:#ABABAB;font-style:italic">' + reason + '</td></tr>';
+    }
+    html += '</tbody></table></div>';
+  }
+
+  // ── Same-circuit similar pairs ──
+  if (allSameCircuitSimilars.length > 0) {
+    html += '<h3>Ejercicios similares en el mismo circuito</h3>';
+    html += '<div class="table-wrap"><table class="issue-table similar"><thead><tr><th>Rutina</th><th>Par similar</th><th>Circuito</th><th>Motivo</th></tr></thead><tbody>';
+    for (const s of allSameCircuitSimilars) {
+      const reason = getPairReason(s.pair);
+      html += '<tr><td>' + escapeHtml(s.group) + ' ' + s.letter + '</td><td>' + s.exercises.map(function(e){return escapeHtml(e);}).join(' &asymp; ') + '</td><td>' + escapeHtml(s.circuit) + '</td><td style="color:#ABABAB;font-style:italic">' + reason + '</td></tr>';
+    }
+    html += '</tbody></table></div>';
+  }
+
+  // ── Posibles mejoras ──
+  html += '<h3>Posibles mejoras</h3>';
+
+  const suggestions = [];
+
+  for (const r of allRepeats) {
+    suggestions.push({
+      type: 'fix',
+      text: '<strong>' + escapeHtml(r.group) + ' ' + r.letter + ':</strong> ' + escapeHtml(r.exercise) + ' aparece en ' + r.circuits.map(function(c){return escapeHtml(c);}).join(' y ') + ' — sustituir una de las dos apariciones por un ejercicio alternativo.'
+    });
+  }
+
+  for (const s of allSimilars) {
+    const uniqueExs = [];
+    const seen = {};
+    for (const e of s.exercises) { if (!seen[e]) { uniqueExs.push(e); seen[e] = true; } }
+    const reason = getPairReason(s.pair);
+    const circuitLabel = s.circuits.map(function(c){return escapeHtml(c);}).join(' y ');
+    suggestions.push({
+      type: 'warn',
+      text: '<strong>' + escapeHtml(s.group) + ' ' + s.letter + ':</strong> ' + uniqueExs.map(function(e){return escapeHtml(e);}).join(' &asymp; ') + ' en ' + circuitLabel + ' — ' + reason + '.'
+    });
+  }
+
+  for (const s of allSameCircuitSimilars) {
+    const reason = getPairReason(s.pair);
+    suggestions.push({
+      type: 'warn',
+      text: '<strong>' + escapeHtml(s.group) + ' ' + s.letter + ':</strong> ' + s.exercises.map(function(e){return escapeHtml(e);}).join(' &asymp; ') + ' en mismo circuito (' + escapeHtml(s.circuit) + ') — ' + reason + '.'
+    });
+  }
+
+  if (suggestions.length === 0) {
+    html += '<p style="color:#ABABAB;margin:8px 0">No se encontraron mejoras sugeridas.</p>';
+  } else {
+    for (const sug of suggestions) {
+      const tagClass = sug.type === 'fix' ? 'tag-fix' : 'tag-warn';
+      const tagLabel = sug.type === 'fix' ? 'DUPLICADO' : 'SIMILAR';
+      html += '<div class="sug"><span class="' + tagClass + '">[' + tagLabel + ']</span> ' + sug.text + '</div>';
+    }
+  }
+
+  return html;
+}
+
+// ──────────────── MAIN RENDER ────────────────
+function render() {
+  let html = '';
+  for (const [groupName, groupData] of Object.entries(groups)) {
+    html += renderComparisonTable(groupName, groupData);
+  }
+  html += renderSummary();
+  document.getElementById('app').innerHTML = html;
+}
+
+render();
+</script>
+
+</body>
+</html>
