@@ -78,7 +78,7 @@ function createLeanRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Peso muerto con barra'), ej('Sentadilla con barra'), ej('Complex', 2, '30s')]),
       circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Vuelos laterales')]),
       circuito(3, 'HOMBROS ALT', [ej('Empuje de hombros con barra en banco'), ej('Face pulls')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'BRAZOS ALT', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -88,7 +88,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Dominadas abiertas'), ej('Remo en maquina')]),
       circuito(3, 'ESPALDA ALT', [ej('Remo con mancuerna'), ej('Jalón al pecho')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
-      circuito(5, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(5, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Saltos al cajón', 3, 10), ej('Mountain climbers', 3, 15), ej('Burpees', 3, 8)]),
     ]),
     // Pull B — semana 1
@@ -106,7 +106,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Dominadas abiertas'), ej('Jalón al pecho')]),
       circuito(3, 'ESPALDA ALT', [ej('Remo en maquina'), ej('Remo con mancuerna')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Vuelos laterales')]),
-      circuito(5, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(5, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
     // Pull D — semana 2
@@ -115,7 +115,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Remo en maquina'), ej('Remo alto en polea')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Dominadas abiertas')]),
       circuito(4, 'BRAZOS', [ej('Biceps en banco'), ej('Biceps alto en polea')]),
-      circuito(5, 'BRAZOS ALT', [ej('Bíceps curl martillo'), ej('Bíceps curl con barra')]),
+      circuito(5, 'BRAZOS ALT', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Estocada con salto', 3, 10), ej('Jumping jacks', 3, 20), ej('Abs complex', 3, 1)]),
     ]),
     // Pull E — semana 1
@@ -124,7 +124,7 @@ function createLeanRoutines() {
       circuito(2, 'ESPALDA', [ej('Dominadas abiertas'), ej('Remo en maquina')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo con mancuerna')]),
       circuito(4, 'HOMBROS', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
-      circuito(5, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Bíceps curl martillo')]),
+      circuito(5, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
     // ── NEW ROUTINES ──────────────────────────────────────────────────────────
@@ -151,7 +151,7 @@ function createLeanRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Prensa de piernas'), ej('Gemelos en máquina'), ej('Plancha lateral', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Remo con mancuerna'), ej('Remo con mancuerna')]),
       circuito(3, 'ESPALDA ALT', [ej('Dominadas abiertas'), ej('Remo alto en polea')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl concentrado'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'BRAZOS ALT', [ej('Biceps alto en polea'), ej('Biceps en banco')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -237,7 +237,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Zancadas con mancuernas'), ej('Sentadilla sumo'), ej('Dead bug', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Remo en maquina separado'), ej('Dominada en maquina ascensor')]),
       circuito(3, 'ESPALDA ALT', [ej('Jalón al pecho'), ej('Remo alto en polea')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl con mancuerna'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'GLÚTEOS', [ej('Aductores en maquina'), ej('Empuje de cadera en cajon')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -246,7 +246,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto con barra'), ej('Pallof press', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('Dominada en maquina ascensor'), ej('Jalón al pecho')]),
       circuito(3, 'ESPALDA ALT', [ej('Remo en maquina separado'), ej('Face pulls')]),
-      circuito(4, 'BRAZOS', [ej('Bíceps curl con mancuerna'), ej('Bíceps curl martillo')]),
+      circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'GLÚTEOS', [ej('Gluteos patada en polea'), ej('Aductores en maquina')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -611,7 +611,7 @@ function createCasaRoutines() {
       circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Floor press', 2, '10'), ej('Flexiones con chaleco', 2, '12')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Vuelos laterales en equilibrio con kettlebell', 2, '10'), ej('Banda triceps pushdown', 2, '15')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Plancha estrella con peso', 2, '6'), ej('Dead bug', 2, '12'), ej('Bíceps curl en TRX', 2, '10')]),
-      circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Estocada con salto', 3, '8'), ej('Mountain climbers', 3, '20')]),
+      circuito(5, 'HIIT', [ej('Tuck jumps', 3, '8'), ej('Estocada con salto', 3, '8'), ej('Mountain climbers', 3, '20')]),
     ]),
     rutinaCasa('#C07', 'Casa Press D — Lean', 'Lean', 'press', 2, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna', 2, '10'), ej('Sentadilla sumo', 2, '12'), ej('Remo alto en TRX', 2, '12')]),
@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.69';
+const SEED_VERSION = '2.73';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1475,10 +1475,6 @@ function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesion
     if (r && r.foco === foco) doneIds.add(s.rutinaId);
   }
 
-  // Prioritize routines never done in sessions
-  const neverDone = sorted.filter(r => !doneIds.has(r.id));
-  if (neverDone.length > 0 && neverDone.length < sorted.length) return neverDone[0];
-
   // Collect prior uses (strictly before `date`) for rotation
   const uses = [];
   const userOv = (overrides && overrides[usuario]) || {};
@@ -1538,17 +1534,15 @@ function ensureCalendarOverrides() {
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-04', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-06', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-08', foco: 'press' },
-    // From May 11: CASA Lu/Mi/Vi + Sáb pull
+    // From May 11: CASA Lu/Mi/Vi, press first, alternating
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-11', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-13', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-15', foco: 'press' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-18', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-20', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-22', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-23', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-25', foco: 'press' },
-    // From May 28: Lun=Press, Mié=Pull, Vie=Press, Sáb=Pull
+    // From May 28: Lun=Press, Mié=Pull, Vie=Press, Sáb=Pull (CASA)
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-27', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-29', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
@@ -1577,17 +1571,15 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-04', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-06', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-08', foco: 'press' },
-    // From May 11: CASA Lu/Mi/Vi + Sáb pull
+    // From May 11: CASA Lu/Mi/Vi, press first, alternating
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-11', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-13', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-15', foco: 'press' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-18', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-20', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-22', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-23', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-25', foco: 'press' },
-    // From May 28: Lun=Press, Mié=Pull, Vie=Press, Sáb=Pull
+    // From May 28: Lun=Press, Mié=Pull, Vie=Press, Sáb=Pull (CASA)
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-27', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-29', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
@@ -1607,17 +1599,23 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-27', foco: 'pull' },
-    // Sábados RIO (abril-mayo, fechas pasadas)
+    // RÍO sábados — opuesto al viernes CASA (letraMin C desde mayo)
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-11', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-02', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    // From May 16: Sat = always pull (CASA)
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-23', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-11', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-02', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    // From May 16: Sat = always pull (CASA)
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-23', foco: 'pull' },
   ];
 
   const rutinaById = new Map(rutinas.map(r => [r.id, r]));
@@ -1810,10 +1808,6 @@ export async function seedV2() {
   if (casaLeanPull1) overrides.Lean['2026-04-15'] = { rutinaId: casaLeanPull1.id, tipo: 'pull', lugar: 'CASA' };
 
   store.set(store.KEYS.overrides, overrides);
-
-  // Re-run schedule overrides on fresh calendar (assignCalendar sets all
-  // Saturdays as RIO; repairOverrides applies per-date CASA/RIO switches)
-  repairOverrides();
 
   // Set version AFTER everything succeeds
   store.setVersion(SEED_VERSION);

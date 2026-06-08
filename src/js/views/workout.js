@@ -527,7 +527,9 @@ function bindEvents(container) {
   container.querySelectorAll('.circuit-tab[data-idx]').forEach(tab => {
     tab.addEventListener('click', (e) => {
       if (e.target.closest('.circuit-tab-remove')) return;
-      activeCircuitIdx = parseInt(tab.dataset.idx);
+      const newIdx = parseInt(tab.dataset.idx);
+      container.style.setProperty('--slide-from', newIdx > activeCircuitIdx ? '30px' : '-30px');
+      activeCircuitIdx = newIdx;
       renderWorkout(container);
     });
   });
@@ -594,10 +596,18 @@ function bindEvents(container) {
   });
 
   container.querySelector('#btn-prev-circuit')?.addEventListener('click', () => {
-    if (activeCircuitIdx > 0) { activeCircuitIdx--; renderWorkout(container); }
+    if (activeCircuitIdx > 0) {
+      activeCircuitIdx--;
+      container.style.setProperty('--slide-from', '-30px');
+      renderWorkout(container);
+    }
   });
   container.querySelector('#btn-next-circuit')?.addEventListener('click', () => {
-    if (activeCircuitIdx < workoutState.circuitos.length - 1) { activeCircuitIdx++; renderWorkout(container); }
+    if (activeCircuitIdx < workoutState.circuitos.length - 1) {
+      activeCircuitIdx++;
+      container.style.setProperty('--slide-from', '30px');
+      renderWorkout(container);
+    }
   });
   container.querySelector('#btn-finish-workout')?.addEventListener('click', () => finishWorkout(container));
 
