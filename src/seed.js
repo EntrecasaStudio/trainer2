@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.72';
+const SEED_VERSION = '2.73';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1475,10 +1475,6 @@ function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesion
     if (r && r.foco === foco) doneIds.add(s.rutinaId);
   }
 
-  // Prioritize routines never done in sessions
-  const neverDone = sorted.filter(r => !doneIds.has(r.id));
-  if (neverDone.length > 0 && neverDone.length < sorted.length) return neverDone[0];
-
   // Collect prior uses (strictly before `date`) for rotation
   const uses = [];
   const userOv = (overrides && overrides[usuario]) || {};
@@ -1546,21 +1542,26 @@ function ensureCalendarOverrides() {
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-20', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-22', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-25', foco: 'press' },
-    // From May 28: fixed Lun=Press, Mié=Pull, Vie=Press
+    // From May 28: Lun=Press, Mié=Pull, Vie=Press, Sáb=Pull (CASA)
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-27', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-29', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-01', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-03', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-05', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-06', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-08', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-10', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-12', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-13', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-15', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-17', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-19', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-20', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-22', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-27', foco: 'pull' },
     // CASA — Nat (mismos días Lun/Mié/Vie)
     { usuario: 'Nat', lugar: 'CASA', date: '2026-04-22', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-04-24', foco: 'press' },
@@ -1578,48 +1579,43 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-20', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-22', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-25', foco: 'press' },
-    // From May 28: fixed Lun=Press, Mié=Pull, Vie=Press
+    // From May 28: Lun=Press, Mié=Pull, Vie=Press, Sáb=Pull (CASA)
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-27', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-29', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-01', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-03', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-05', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-06', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-08', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-10', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-12', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-13', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-15', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-17', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-19', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-20', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-22', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-27', foco: 'pull' },
     // RÍO sábados — opuesto al viernes CASA (letraMin C desde mayo)
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-11', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-02', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    // From May 16: Sat = always pull (RIO or CASA)
+    // From May 16: Sat = always pull (CASA)
     { usuario: 'Lean', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
-    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-06', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-13', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-20', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Lean', lugar: 'RIO', date: '2026-06-27', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-05-23', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-11', foco: 'pull' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-04-25', foco: 'pull', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-02', foco: 'press', letraMin: 'C', letraMax: 'F' },
     { usuario: 'Nat', lugar: 'RIO', date: '2026-05-09', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    // From May 16: Sat = always pull (RIO or CASA)
+    // From May 16: Sat = always pull (CASA)
     { usuario: 'Nat', lugar: 'CASA', date: '2026-05-16', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-23', foco: 'press' },
-    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-30', foco: 'pull' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-06', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-13', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-20', foco: 'pull', letraMin: 'C', letraMax: 'F' },
-    { usuario: 'Nat', lugar: 'RIO', date: '2026-06-27', foco: 'pull', letraMin: 'C', letraMax: 'F' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-05-23', foco: 'pull' },
   ];
 
   const rutinaById = new Map(rutinas.map(r => [r.id, r]));
