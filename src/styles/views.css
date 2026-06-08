@@ -1007,6 +1007,39 @@
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
+.progreso-muscle-expandable {
+  cursor: pointer;
+}
+.progreso-muscle-chevron {
+  display: inline-block;
+  font-size: 12px;
+  transition: transform 200ms ease;
+  color: var(--color-text-muted);
+}
+.progreso-muscle-chevron.open {
+  transform: rotate(90deg);
+}
+.progreso-muscle-sub {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 200ms ease;
+}
+.progreso-muscle-sub-inner {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.progreso-muscle-sub.open {
+  grid-template-rows: 1fr;
+}
+.progreso-muscle-sub.open .progreso-muscle-sub-inner {
+  padding-top: 4px;
+}
+.progreso-muscle-sub-row {
+  padding-left: 16px;
+  opacity: 0.85;
+}
 
 /* History columns */
 .progreso-history {

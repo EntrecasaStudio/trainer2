@@ -141,20 +141,42 @@ export function mountProgreso(container) {
           <div class="progreso-muscle-title">Distribución muscular · últimas 4 semanas</div>
           <div class="progreso-muscle-ring">${buildRingSVG(muscleData)}</div>
           <div class="progreso-muscle-bars">
-            ${muscleData.map(m => `
-              <div class="progreso-muscle-row">
+            ${muscleData.map(m => {
+              const isBrazos = m.grupo === 'Brazos' && muscleData.brazosDetail?.length > 0;
+              return `
+              <div class="progreso-muscle-row${isBrazos ? ' progreso-muscle-expandable' : ''}"${isBrazos ? ' data-expand="brazos"' : ''}>
                 <div class="progreso-muscle-dot" style="background:${m.color};"></div>
-                <div class="progreso-muscle-name">${m.grupo}</div>
+                <div class="progreso-muscle-name">${m.grupo}${isBrazos ? ' <span class="progreso-muscle-chevron">›</span>' : ''}</div>
                 <div class="progreso-muscle-bar-wrap">
                   <div class="progreso-muscle-bar" style="width:${m.pct}%;background:${m.color};"></div>
                 </div>
                 <div class="progreso-muscle-pct">${m.pct}%</div>
-              </div>
-            `).join('')}
+              </div>${isBrazos ? `
+              <div class="progreso-muscle-sub" id="brazos-detail">
+                <div class="progreso-muscle-sub-inner">
+                ${muscleData.brazosDetail.map(d => `
+                  <div class="progreso-muscle-row progreso-muscle-sub-row">
+                    <div class="progreso-muscle-dot" style="background:${m.color};opacity:${d.sub === 'Bíceps' ? '0.7' : '1'};"></div>
+                    <div class="progreso-muscle-name">${d.sub}</div>
+                    <div class="progreso-muscle-bar-wrap">
+                      <div class="progreso-muscle-bar" style="width:${d.pct}%;background:${m.color};opacity:${d.sub === 'Bíceps' ? '0.7' : '1'};"></div>
+                    </div>
+                    <div class="progreso-muscle-pct">${d.pct}%</div>
+                  </div>`).join('')}
+                </div>
+              </div>` : ''}`;
+            }).join('')}
           </div>
         </div>` : ''}
       </div>
     `;
+
+    el.querySelector('[data-expand="brazos"]')?.addEventListener('click', () => {
+      const detail = document.getElementById('brazos-detail');
+      if (!detail) return;
+      const open = detail.classList.toggle('open');
+      el.querySelector('.progreso-muscle-chevron')?.classList.toggle('open', open);
+    });
   }
 
   function buildMuscleDistribution(sesiones) {
@@ -172,6 +194,7 @@ export function mountProgreso(container) {
       ['sumo squat', 'Glúteos'],
     ];
     const counts = {}; // grupo → series count
+    const armSub = { 'Bíceps': 0, 'Tríceps': 0 };
     for (const s of sesiones) {
       for (const c of (s.circuitos || [])) {
         for (const e of (c.ejercicios || [])) {
@@ -181,6 +204,11 @@ export function mountProgreso(container) {
           const grupo = cat?.grupo || inferGrupoFromCircuit(c.nombre);
           if (!grupo || grupo === 'HIIT') continue;
           counts[grupo] = (counts[grupo] || 0) + doneSeries;
+          if (grupo === 'Brazos' && cat?.musculos) {
+            const m = cat.musculos.toLowerCase();
+            if (m.includes('bíceps') || m.includes('biceps') || m.includes('braquial')) armSub['Bíceps'] += doneSeries;
+            if (m.includes('tríceps') || m.includes('triceps')) armSub['Tríceps'] += doneSeries;
+          }
           const nombre = (e.nombre || '').toLowerCase();
           for (const [pattern, secGrupo] of SECONDARY_GRUPO) {
             if (nombre.includes(pattern)) {
@@ -203,7 +231,13 @@ export function mountProgreso(container) {
       Hombros: tv('--color-tag-hombros'), HIIT: tv('--color-tag-hiit'),
     };
 
-    return Object.entries(counts)
+    const armTotal = armSub['Bíceps'] + armSub['Tríceps'];
+    const brazosDetail = armTotal > 0 ? [
+      { sub: 'Bíceps', count: armSub['Bíceps'], pct: Math.round((armSub['Bíceps'] / armTotal) * 100) },
+      { sub: 'Tríceps', count: armSub['Tríceps'], pct: Math.round((armSub['Tríceps'] / armTotal) * 100) },
+    ] : [];
+
+    const result = Object.entries(counts)
       .map(([grupo, count]) => ({
         grupo,
         count,
@@ -211,6 +245,8 @@ export function mountProgreso(container) {
         color: COLORS[grupo] || '#94a3b8',
       }))
       .sort((a, b) => b.count - a.count);
+    result.brazosDetail = brazosDetail;
+    return result;
   }
 
   function inferGrupoFromCircuit(nombre) {
