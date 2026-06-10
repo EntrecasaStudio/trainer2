@@ -933,10 +933,10 @@ export const EJERCICIOS_CATALOGO = [
   // HIIT con chaleco
   // Equilibrio + kettlebell
   {
-    nombre: 'Bíceps curl en equilibrio con kettlebell',
+    nombre: 'Bíceps curl en equilibrio',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Glúteos',
-    descripcion: 'De pie sobre una pierna, kettlebell en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series.'
+    descripcion: 'De pie sobre una pierna, peso en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series.'
   },
   {
     nombre: 'Vuelos laterales en equilibrio con kettlebell',

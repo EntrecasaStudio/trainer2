@@ -386,14 +386,11 @@ function openEditModal(data, onChange) {
       store.set(store.KEYS.sesiones, sesiones);
 
       const prog = store.getObj(store.KEYS.progresion);
-      for (const key of Object.keys(prog)) {
-        if (key.startsWith(oldName + '::')) {
-          const newKey = newName + '::' + key.slice(oldName.length + 2);
-          prog[newKey] = prog[key];
-          delete prog[key];
-        }
+      if (prog[oldName]) {
+        prog[newName] = { ...(prog[newName] || {}), ...prog[oldName] };
+        delete prog[oldName];
+        store.set(store.KEYS.progresion, prog);
       }
-      store.set(store.KEYS.progresion, prog);
     }
 
     const custom = store.getObj('gym_ejercicios_custom');
