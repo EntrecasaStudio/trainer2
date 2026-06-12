@@ -134,6 +134,7 @@ function updateAvatarButton() {
     syncing: 'var(--color-warning)',
     pending: 'var(--color-warning)',
     offline: 'var(--color-danger)',
+    error: '#f43f5e',
   }[status] || 'var(--color-danger)';
 
   if (user) {
@@ -161,9 +162,12 @@ function toggleAvatarDropdown() {
   if (existing) { existing.remove(); return; }
 
   const user = getCurrentUser();
+  const status = getSyncStatus();
+  const dotColor = { synced: '#22c55e', syncing: 'var(--color-warning)', pending: 'var(--color-warning)', offline: 'var(--color-danger)', error: '#f43f5e' }[status] || 'var(--color-danger)';
 
   let content;
   if (user) {
+    const syncLabel = { synced: 'Sincronizado', syncing: 'Sincronizando…', pending: 'Pendiente', offline: 'Sin conexión', error: 'Error de sync' }[status] || '';
     content = `
       <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-md);">
         ${user.photoURL ? `<img src="${user.photoURL}" referrerpolicy="no-referrer" style="width:36px;height:36px;border-radius:50%;">` : ''}
@@ -171,6 +175,17 @@ function toggleAvatarDropdown() {
           <div style="font-size:var(--text-sm);font-weight:var(--fw-medium);">${user.displayName || ''}</div>
           <div style="font-size:var(--text-xs);color:var(--color-text-muted);">${user.email || ''}</div>
         </div>
+      </div>
+      <div style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-sm);display:flex;align-items:center;gap:6px;">
+        <span style="width:6px;height:6px;border-radius:50%;background:${dotColor};display:inline-block;"></span> ${syncLabel}
+      </div>
+      <div style="display:flex;gap:var(--space-xs);margin-bottom:var(--space-sm);">
+        <button class="btn btn-secondary" data-action="force-upload" style="flex:1;font-size:var(--text-xs);">
+          <i class="ph ph-cloud-arrow-up" style="font-size:14px;"></i> Subir
+        </button>
+        <button class="btn btn-secondary" data-action="force-download" style="flex:1;font-size:var(--text-xs);">
+          <i class="ph ph-cloud-arrow-down" style="font-size:14px;"></i> Bajar
+        </button>
       </div>
       <button class="btn btn-secondary" data-action="logout" style="width:100%;font-size:var(--text-sm);">
         <i class="ph ph-sign-out" style="font-size:16px;"></i> Cerrar sesión
@@ -219,6 +234,24 @@ function toggleAvatarDropdown() {
       } catch (e) {
         console.warn('[Auth] Login failed:', e.message);
       }
+    } else if (action === 'force-upload') {
+      btn.disabled = true;
+      btn.textContent = 'Subiendo…';
+      await uploadAllData();
+      wrap.remove();
+      updateAvatarButton();
+      const { showToast } = await import('./js/components/toast.js');
+      showToast('Datos subidos ✓');
+    } else if (action === 'force-download') {
+      btn.disabled = true;
+      btn.textContent = 'Bajando…';
+      const ok = await downloadAllData();
+      if (ok) await seedV2();
+      wrap.remove();
+      updateAvatarButton();
+      router._handleRoute();
+      const { showToast } = await import('./js/components/toast.js');
+      showToast(ok ? 'Datos descargados ✓' : 'No se pudo descargar');
     }
   });
 }

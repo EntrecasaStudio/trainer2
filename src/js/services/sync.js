@@ -84,6 +84,9 @@ function getDocRef() {
   return { db, uid: user.uid };
 }
 
+const _retryCount = {};
+const MAX_RETRIES = 3;
+
 async function uploadKey(key) {
   const ref = getDocRef();
   if (!ref) return;
@@ -95,10 +98,24 @@ async function uploadKey(key) {
     const raw = localStorage.getItem(key);
     const data = raw ? JSON.parse(raw) : null;
     await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
+    _dirtyKeys.delete(key);
+    _retryCount[key] = 0;
   } catch (err) {
     console.warn('[sync] upload error:', key, err.message);
-  } finally {
-    _dirtyKeys.delete(key);
+    const attempt = (_retryCount[key] || 0) + 1;
+    _retryCount[key] = attempt;
+    if (attempt <= MAX_RETRIES && navigator.onLine) {
+      const delay = Math.min(2000 * Math.pow(2, attempt - 1), 16000);
+      console.log(`[sync] retry ${attempt}/${MAX_RETRIES} for ${key} in ${delay}ms`);
+      setTimeout(() => {
+        _setSyncStatus('syncing');
+        uploadKey(key).then(() => {
+          if (_dirtyKeys.size === 0) _setSyncStatus('synced');
+        });
+      }, delay);
+    } else {
+      _setSyncStatus('error');
+    }
   }
 }
 
