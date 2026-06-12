@@ -744,6 +744,12 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con la kettlebell en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
   },
   {
+    nombre: 'Peso muerto dividido',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Isquiotibiales, Glúteos, Erector espinal',
+    descripcion: 'De pie con un pie adelante y el otro atrás (stance dividido), ambos apoyados en el piso. Bajá el peso con bisagra de cadera manteniendo espalda neutra. Más estable que a una pierna, permite cargar más peso. Trabaja cadena posterior con énfasis en el lado de la pierna adelantada.'
+  },
+  {
     nombre: 'Squat to press con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Deltoides anterior',
