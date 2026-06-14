@@ -1347,6 +1347,11 @@ function applyExerciseRenames() {
     ['Curl de bíceps suave', 'Bíceps curl suave'],
     ['Glute bridge', 'Empuje de cadera en piso con peso'],
     ['Arnold press con kettlebell', 'Arnold press'],
+    ['Encogimientos con mancuernas', 'Elevaciones de hombro hacia arriba'],
+    ['Banda face pull', 'Face pull con banda'],
+    ['Patada de glúteo con tobillera 4k', 'Patada de glúteo con tobillera'],
+    ['Step-up en banco', 'Step up'],
+    ['Banda dislocates', 'Rotación de hombros con banda'],
   ]);
 
   const rutinas = store.getAll(store.KEYS.rutinas);

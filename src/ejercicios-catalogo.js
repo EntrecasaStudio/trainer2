@@ -299,6 +299,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Elevaciones de hombro hacia arriba',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Trapecio, Deltoides lateral',
+    tags: 'encogimientos con mancuernas, shrugs',
     descripcion: 'Con mancuernas o barra, elevá los hombros hacia las orejas (encogimiento) sin doblar los codos. Mantené un segundo arriba y bajá lento. Trabaja trapecios superiores. Útil para equilibrar la musculatura del cuello y parte alta de la espalda.'
   },
   {
@@ -307,12 +308,6 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Deltoides anterior, Deltoides lateral, Deltoides posterior',
     tags: 'arnold press con kettlebell, press arnold',
     descripcion: 'Con mancuernas o kettlebell al nivel del mentón, palmas hacia vos. Al empujar hacia arriba, rotá las muñecas hasta que las palmas miren hacia afuera al final. Bajá invirtiendo la rotación. Trabaja las tres cabezas del deltoides en un solo movimiento.'
-  },
-  {
-    nombre: 'Encogimientos con mancuernas',
-    grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
-    musculos: 'Trapecio, Deltoides lateral',
-    descripcion: 'De pie con mancuernas pesadas a los lados, elevá los hombros hacia las orejas sin doblar los codos. Mantené arriba 1-2 segundos y bajá controlado. Trabaja trapecios superiores. Podés inclinar levemente el torso para mayor activación del trapecio medio.'
   },
   // ── BRAZOS ──────────────────────────────────────────────────────────────────
   {
@@ -604,18 +599,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Con una mini-band en tobillos o rodillas, caminá lateralmente con pasos cortos manteniendo tensión constante. Rodillas semiflexionadas, torso erguido. Activa glúteo medio, abductores y estabilizadores de cadera.'
   },
   {
-    nombre: 'Banda dislocates',
-    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
-    musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
-    descripcion: 'Con una banda elástica ancha tomada con ambas manos y brazos rectos, pasala por encima de la cabeza hacia atrás y volvé al frente. Abre los hombros, mejora movilidad del manguito rotador y corrige postura.'
-  },
-  {
-    nombre: 'Banda face pull',
-    grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
-    musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
-    descripcion: 'Con una banda anclada a la altura de la cara, tirá hacia la cara abriendo los codos y rotando externamente los hombros. Activa deltoides posterior, trapecio y rotadores externos. Calentamiento clave para empuje y tracción.'
-  },
-  {
     nombre: 'Rotación de hombros',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides anterior, Deltoides posterior, Infraespinoso',
@@ -668,13 +651,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Patada de glúteo con tobillera',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales',
+    tags: 'patada de glúteo con tobillera 4k',
     descripcion: 'En cuatro puntos o apoyada en banco, con tobillera con peso, extendé una pierna hacia atrás y arriba. Apretá glúteos arriba y bajá controlado. Aislamiento de glúteo mayor con resistencia adicional.'
-  },
-  {
-    nombre: 'Step-up en banco',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
-    musculos: 'Cuádriceps, Glúteos',
-    descripcion: 'Subí a un banco con una pierna empujando con el talón, extendé completamente la cadera arriba y bajá controlado con la misma pierna. Trabaja cuádriceps y glúteos de forma unilateral. Se puede agregar carga con KB o chaleco.'
   },
   {
     nombre: 'Ab wheel',
@@ -777,6 +755,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Step up',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos',
+    tags: 'step-up en banco, step-up',
     descripcion: 'Frente a un banco o cajón, subí con una pierna y extendé la cadera arriba. Bajá controlado con la misma pierna. Se puede agregar peso con kettlebell o chaleco. Trabaja cuádriceps, glúteos y equilibrio.'
   },
   {
@@ -845,12 +824,6 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Cuádriceps, Glúteos, Abductores',
     descripcion: 'Con banda de resistencia en las rodillas, alterná sentadilla cerrada y abierta. La banda agrega resistencia a la abducción, activando más el glúteo medio durante todo el movimiento.'
   },
-  {
-    nombre: 'Patada de glúteo con tobillera 4k',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
-    musculos: 'Glúteos, Isquiotibiales',
-    descripcion: 'En cuatro puntos con tobillera de 4 kg en el tobillo. Elevá la pierna hacia atrás y arriba manteniendo la rodilla a 90°, apretá el glúteo arriba. Bajá controlado sin apoyar. Aislamiento de glúteo mayor.'
-  },
   // Chaleco de peso — Tren superior
   {
     nombre: 'Flexiones con chaleco',
@@ -906,6 +879,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Rotación de hombros con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
+    tags: 'banda dislocates, dislocates',
     descripcion: 'Sostenés la banda con ambas manos al frente. Llevala por encima de la cabeza y atrás hasta la zona lumbar, y volvé. Mantené los brazos rectos. Movilidad y calentamiento del manguito rotador.'
   },
   // Core con carga
@@ -1041,6 +1015,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Face pull con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
+    tags: 'banda face pull',
     descripcion: 'Ancla una banda elástica a la altura de los ojos. Tirá la banda hacia tu cara abriendo los codos y rotando externamente los hombros. Trabaja postura, deltoides posterior y manguito rotador. Excelente para compensar horas sentada y mejorar postura.'
   },
 ];
