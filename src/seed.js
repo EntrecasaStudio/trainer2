@@ -1654,7 +1654,7 @@ function ensureCalendarOverrides() {
       return r && r.lugar === lugar && r.foco === foco;
     });
     if (doneAlready) continue;
-    if (date < todayISO && curValid) continue;
+    if (curValid) continue;
 
     const r = pickNextRutina({
       usuario, foco, lugar, date,

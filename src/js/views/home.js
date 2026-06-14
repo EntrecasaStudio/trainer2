@@ -383,6 +383,7 @@ function renderCircuits(circuitos) {
 }
 
 function openAssignSheet() {
+  const snapshotDate = new Date(selectedDate.getTime());
   const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY', 'RECOVERY'];
   const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾', RECOVERY: 'Recovery' };
   const LUGAR_LABELS = { SPORT_FITNESS: 'Sport Fitness', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾 Uruguay', RECOVERY: 'Recovery' };
@@ -433,7 +434,7 @@ function openAssignSheet() {
         body.querySelectorAll('.assign-pick').forEach(item => {
           item.addEventListener('click', () => {
             const newId = item.dataset.id;
-            const dateStr = formatDateISO(selectedDate);
+            const dateStr = formatDateISO(snapshotDate);
             const overrides = store.getObj(store.KEYS.overrides);
             if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
             const allRutinas = store.getAll(store.KEYS.rutinas);
@@ -457,6 +458,7 @@ function openAssignSheet() {
 
       // Lugar filter chips — single tap toggles, double tap solo-selects
       let lastChipTap = { lugar: null, time: 0 };
+      let chipDebounce = null;
       body.querySelectorAll('.lugar-chip').forEach(chip => {
         chip.addEventListener('click', () => {
           const lugar = chip.dataset.lugar;
@@ -466,6 +468,7 @@ function openAssignSheet() {
 
           if (isDoubleTap) {
             activeLugares = [lugar];
+            clearTimeout(chipDebounce);
           } else if (activeLugares.includes(lugar)) {
             activeLugares = activeLugares.filter(l => l !== lugar);
             if (activeLugares.length === 0) activeLugares = [lugar];
@@ -475,7 +478,8 @@ function openAssignSheet() {
           body.querySelectorAll('.lugar-chip').forEach(c => {
             c.classList.toggle('active', activeLugares.includes(c.dataset.lugar));
           });
-          refreshList();
+          clearTimeout(chipDebounce);
+          chipDebounce = setTimeout(() => refreshList(), isDoubleTap ? 0 : 250);
         });
       });
 
@@ -491,6 +495,7 @@ function openAssignSheet() {
 }
 
 function openEditSheet(currentRutina) {
+  const snapshotDate = new Date(selectedDate.getTime());
   const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY', 'RECOVERY'];
   const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾', RECOVERY: 'Recovery' };
 
@@ -580,7 +585,7 @@ function openEditSheet(currentRutina) {
           btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const newId = btn.dataset.id;
-            const dateStr = formatDateISO(selectedDate);
+            const dateStr = formatDateISO(snapshotDate);
             const overrides = store.getObj(store.KEYS.overrides);
             if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
             const allRutinas = store.getAll(store.KEYS.rutinas);
@@ -604,6 +609,7 @@ function openEditSheet(currentRutina) {
 
       // Lugar filter chips — single tap toggles, double tap solo-selects
       let lastChipTap = { lugar: null, time: 0 };
+      let chipDebounce = null;
       body.querySelectorAll('.lugar-chip').forEach(chip => {
         chip.addEventListener('click', () => {
           const lugar = chip.dataset.lugar;
@@ -613,6 +619,7 @@ function openEditSheet(currentRutina) {
 
           if (isDoubleTap) {
             activeLugares = [lugar];
+            clearTimeout(chipDebounce);
           } else if (activeLugares.includes(lugar)) {
             activeLugares = activeLugares.filter(l => l !== lugar);
             if (activeLugares.length === 0) activeLugares = [lugar];
@@ -622,7 +629,8 @@ function openEditSheet(currentRutina) {
           body.querySelectorAll('.lugar-chip').forEach(c => {
             c.classList.toggle('active', activeLugares.includes(c.dataset.lugar));
           });
-          refreshList();
+          clearTimeout(chipDebounce);
+          chipDebounce = setTimeout(() => refreshList(), isDoubleTap ? 0 : 250);
         });
       });
 
@@ -634,7 +642,7 @@ function openEditSheet(currentRutina) {
 
       // Dejar libre
       body.querySelector('#btn-dejar-libre').addEventListener('click', () => {
-        const dateStr = formatDateISO(selectedDate);
+        const dateStr = formatDateISO(snapshotDate);
         const overrides = store.getObj(store.KEYS.overrides);
         if (overrides[activeUsuario]?.[dateStr]) {
           delete overrides[activeUsuario][dateStr];
