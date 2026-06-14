@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.74';
+const SEED_VERSION = '2.73';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1848,6 +1848,15 @@ export async function seedV2() {
   // Lean 2026-04-15 (Wed, week 3 pull) → CASA Pull Lean (indoor day)
   const casaLeanPull1 = casaRoutines.find(r => r.usuario === 'Lean' && r.foco === 'pull' && r.semana_ciclo === 1);
   if (casaLeanPull1) overrides.Lean['2026-04-15'] = { rutinaId: casaLeanPull1.id, tipo: 'pull', lugar: 'CASA' };
+
+  // Preserve manual overrides from the user (assigned via UI)
+  const oldOverrides = store.getObj(store.KEYS.overrides);
+  for (const usuario of Object.keys(oldOverrides)) {
+    if (!overrides[usuario]) overrides[usuario] = {};
+    for (const [date, ov] of Object.entries(oldOverrides[usuario] || {})) {
+      if (ov?.manual) overrides[usuario][date] = ov;
+    }
+  }
 
   store.set(store.KEYS.overrides, overrides);
 
