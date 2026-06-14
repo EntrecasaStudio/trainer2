@@ -396,8 +396,10 @@ export async function startRealtimeSync(onUpdate) {
 
     if (changed) repairStaleReferences();
 
+    if (changed && onUpdate) {
+      onUpdate();
+    }
     _suppressSync = false;
-    if (changed && onUpdate) onUpdate();
   }, (err) => {
     console.warn('[sync] realtime error:', err.message);
   });
@@ -509,8 +511,13 @@ async function resyncOnResume() {
   if (!navigator.onLine) return;
   try {
     const changed = await downloadAllData();
-    if (changed && _onResumeCallback) _onResumeCallback();
+    if (changed && _onResumeCallback) {
+      _suppressSync = true;
+      _onResumeCallback();
+      _suppressSync = false;
+    }
   } catch (e) {
+    _suppressSync = false;
     console.warn('[sync] resync on resume failed:', e.message);
   }
 }
