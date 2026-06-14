@@ -982,19 +982,65 @@ function updateProgressBar(container) {
 }
 
 // ── Exercise picker modal (for edit mode replace) ───────────────────────────
+function getSimilarExercises(nombre) {
+  const current = EJERCICIOS_CATALOGO.find(e => e.nombre === nombre);
+  if (!current) return [];
+  const currentMuscles = new Set((current.musculos || '').split(',').map(m => m.trim().toLowerCase()).filter(Boolean));
+
+  return EJERCICIOS_CATALOGO
+    .filter(e => e.nombre !== nombre)
+    .map(e => {
+      let score = 0;
+      if (e.grupo === current.grupo) score += 3;
+      const eMuscles = (e.musculos || '').split(',').map(m => m.trim().toLowerCase()).filter(Boolean);
+      const shared = eMuscles.filter(m => currentMuscles.has(m)).length;
+      score += shared * 2;
+      if (e.tipo === current.tipo) score += 1;
+      return { ...e, score };
+    })
+    .filter(e => e.score >= 3)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 8);
+}
+
 function showExercisePicker(container, ci, ei) {
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.remove('hidden');
 
   let searchQuery = '';
+  const oldName = ei !== null ? workoutState.circuitos[ci].ejercicios[ei]?.nombre : null;
+  const similar = oldName ? getSimilarExercises(oldName) : [];
 
   function renderPicker() {
     const results = searchQuery ? searchEjercicios(searchQuery, 'todos') : EJERCICIOS_CATALOGO;
+
+    let similarFiltered = [];
+    if (similar.length > 0 && searchQuery) {
+      const q = searchQuery.toLowerCase();
+      similarFiltered = similar.filter(e => e.nombre.toLowerCase().includes(q));
+    } else {
+      similarFiltered = similar;
+    }
+
+    const similarNames = new Set(similarFiltered.map(e => e.nombre));
+    const rest = results.filter(e => !similarNames.has(e.nombre) && e.nombre !== oldName);
     const grouped = {};
-    results.forEach(e => {
+    rest.forEach(e => {
       if (!grouped[e.grupo]) grouped[e.grupo] = [];
       grouped[e.grupo].push(e);
     });
+
+    const similarHTML = similarFiltered.length > 0 ? `
+      <div style="font-size:var(--text-xs);color:var(--color-warning);font-weight:var(--fw-semibold);letter-spacing:0.5px;padding:var(--space-sm) var(--space-xs);display:flex;align-items:center;gap:4px;">
+        <i class="ph-light ph-lightning" style="font-size:14px;"></i> Similares
+      </div>
+      ${similarFiltered.map(e => `
+        <div class="ejercicio-picker-item" data-nombre="${e.nombre}" style="padding:var(--space-sm) var(--space-md);background:var(--color-surface-alt);border-radius:var(--radius-sm);cursor:pointer;border-left:3px solid var(--color-warning);">
+          <span style="font-size:var(--text-sm);">${e.nombre}</span>
+          <span style="font-size:var(--text-xs);color:var(--color-text-muted);margin-left:var(--space-xs);">${e.musculos || ''}</span>
+        </div>
+      `).join('')}
+    ` : '';
 
     overlay.innerHTML = `
       <div class="modal-sheet" style="max-height:85vh;">
@@ -1006,6 +1052,7 @@ function showExercisePicker(container, ci, ei) {
           <input type="text" class="search-input" placeholder="Buscar ejercicio..." value="${searchQuery}" style="width:100%;box-sizing:border-box;">
         </div>
         <div style="max-height:60vh;overflow-y:auto;display:flex;flex-direction:column;gap:2px;">
+          ${similarHTML}
           ${Object.entries(grouped).map(([grupo, ejs]) => `
             <div style="font-size:var(--text-xs);color:var(--color-accent);font-weight:var(--fw-semibold);letter-spacing:0.5px;padding:var(--space-sm) var(--space-xs);">${grupo}</div>
             ${ejs.map(e => `
