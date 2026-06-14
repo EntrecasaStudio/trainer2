@@ -299,11 +299,11 @@ async function start() {
         await uploadAllData();
         startRealtimeSync(() => {
           seedV2();
-          router._handleRoute();
+          if (router.getCurrentRoute() !== 'workout') router._handleRoute();
         });
         setOnResumeCallback(() => {
           seedV2();
-          router._handleRoute();
+          if (router.getCurrentRoute() !== 'workout') router._handleRoute();
         });
       } catch (e) {
         console.warn('[Sync] Error:', e.message);
