@@ -13,16 +13,22 @@ let _searchQuery = '';
 let _searchVisible = false;
 let _viewMonth = null;
 let _viewYear = null;
+let _lastMountTime = 0;
 
 export function mountHome(container) {
   activeUsuario = store.getActiveUser();
   document.body.setAttribute('data-usuario', activeUsuario);
-  selectedDate = new Date();
-  selectedDate.setHours(0, 0, 0, 0);
-  _viewMonth = selectedDate.getMonth();
-  _viewYear = selectedDate.getFullYear();
-  _searchQuery = '';
-  _searchVisible = false;
+  const now = Date.now();
+  const isRemount = (now - _lastMountTime) < 5000;
+  _lastMountTime = now;
+  if (!isRemount) {
+    selectedDate = new Date();
+    selectedDate.setHours(0, 0, 0, 0);
+    _viewMonth = selectedDate.getMonth();
+    _viewYear = selectedDate.getFullYear();
+    _searchQuery = '';
+    _searchVisible = false;
+  }
   render(container);
 }
 
@@ -441,6 +447,7 @@ function openAssignSheet() {
             const picked = allRutinas.find(r => r.id === newId);
             const ov = { rutinaId: newId };
             if (picked) { ov.lugar = picked.lugar; ov.tipo = picked.foco; }
+            ov.manual = true;
             overrides[activeUsuario][dateStr] = ov;
             store.set(store.KEYS.overrides, overrides);
             closeModal();
@@ -592,6 +599,7 @@ function openEditSheet(currentRutina) {
             const picked = allRutinas.find(r => r.id === newId);
             const ov = { rutinaId: newId };
             if (picked) { ov.lugar = picked.lugar; ov.tipo = picked.foco; }
+            ov.manual = true;
             overrides[activeUsuario][dateStr] = ov;
             store.set(store.KEYS.overrides, overrides);
             closeModal();
@@ -644,10 +652,9 @@ function openEditSheet(currentRutina) {
       body.querySelector('#btn-dejar-libre').addEventListener('click', () => {
         const dateStr = formatDateISO(snapshotDate);
         const overrides = store.getObj(store.KEYS.overrides);
-        if (overrides[activeUsuario]?.[dateStr]) {
-          delete overrides[activeUsuario][dateStr];
-          store.set(store.KEYS.overrides, overrides);
-        }
+        if (!overrides[activeUsuario]) overrides[activeUsuario] = {};
+        overrides[activeUsuario][dateStr] = { rest: true, manual: true };
+        store.set(store.KEYS.overrides, overrides);
         closeModal();
         renderRoutineCard();
         renderCalendar();

@@ -1049,7 +1049,7 @@ export function verifySeedV2() {
   return true;
 }
 
-const SEED_VERSION = '2.73';
+const SEED_VERSION = '2.74';
 
 // One-time dedup: clean duplicates from previous buggy seed runs
 function deduplicateRutinas() {
@@ -1464,8 +1464,8 @@ function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesion
   if (candidates.length === 0) return null;
   if (candidates.length === 1) return candidates[0];
 
-  // Stable ordering by numero (e.g. #C01, #C02, #C03)
-  const sorted = [...candidates].sort((a, b) => (a.numero || '').localeCompare(b.numero || ''));
+  const extractLetter = r => (r.nombre || '').match(/ ([A-Z]) — /)?.[1] || '';
+  const sorted = [...candidates].sort((a, b) => extractLetter(a).localeCompare(extractLetter(b)) || (a.numero || '').localeCompare(b.numero || ''));
 
   // IDs that have completed sessions
   const doneIds = new Set();
@@ -1563,6 +1563,26 @@ function ensureCalendarOverrides() {
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
     { usuario: 'Lean', lugar: 'CASA', date: '2026-06-27', foco: 'pull' },
+    // July — Lean (Mon=Press, Wed=Pull, Fri=Press, Sat=Pull, all CASA)
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-06-29', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-01', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-03', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-04', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-06', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-08', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-10', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-11', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-13', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-15', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-17', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-18', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-20', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-22', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-24', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-25', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-27', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-29', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-07-31', foco: 'press' },
     // CASA — Nat (mismos días Lun/Mié/Vie)
     { usuario: 'Nat', lugar: 'CASA', date: '2026-04-22', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-04-24', foco: 'press' },
@@ -1600,6 +1620,26 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-24', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-26', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-06-27', foco: 'pull' },
+    // July — Nat (Mon=Press, Wed=Pull, Fri=Press, Sat=Pull, all CASA)
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-06-29', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-01', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-03', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-04', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-06', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-08', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-10', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-11', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-13', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-15', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-17', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-18', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-20', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-22', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-24', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-25', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-27', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-29', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-07-31', foco: 'press' },
     // RÍO sábados — opuesto al viernes CASA (letraMin C desde mayo)
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-11', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
@@ -1654,7 +1694,8 @@ function ensureCalendarOverrides() {
       return r && r.lugar === lugar && r.foco === foco;
     });
     if (doneAlready) continue;
-    if (curValid) continue;
+    if (cur?.manual && curValid) continue;
+    if (date < todayISO && curValid) continue;
 
     const r = pickNextRutina({
       usuario, foco, lugar, date,
