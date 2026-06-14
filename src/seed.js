@@ -1308,44 +1308,81 @@ function renameExercise(oldName, newName) {
 }
 
 function applyExerciseRenames() {
-  renameExercise('Hollow body con plato rucking', 'Abs complex');
-  renameExercise('Hollow body con peso', 'Abs complex');
-  renameExercise('Muscle-up negativo en barra', 'TRX power pull');
-  renameExercise('Empuje de cadera con plato rucking', 'Empuje de cadera');
-  renameExercise('Bíceps curl en TRX con chaleco', 'Bíceps curl en TRX');
-  renameExercise('Sumo con barra', 'Sentadilla sumo');
-  renameExercise('Sumo con rusas', 'Sentadilla sumo');
-  renameExercise('Sentadilla sumo con kettlebell', 'Sentadilla sumo');
-  renameExercise('Sentadilla búlgara con kettlebell', 'Sentadilla búlgara');
-  renameExercise('Vuelos laterales con banda', 'Vuelos laterales');
-  renameExercise('Dominadas australianas con chaleco', 'Dominadas australianas');
-  renameExercise('Bear crawl con chaleco', 'Bear crawl');
-  renameExercise('Burpees con chaleco', 'Burpees');
-  renameExercise('Sentadilla con salto con chaleco', 'Sentadilla con salto');
-  renameExercise('Mountain climbers con chaleco', 'Mountain climbers');
-  renameExercise('Sentadilla goblet con kettlebell', 'Sentadilla goblet');
-  renameExercise('Peso muerto a una pierna con kettlebell', 'Peso muerto a una pierna');
-  renameExercise('Remo con kettlebell', 'Remo');
-  renameExercise('Curl de bíceps con kettlebell', 'Bíceps curl');
-  renameExercise('Curl martillo con kettlebell', 'Bíceps curl martillo');
-  renameExercise('Jumping jacks con chaleco', 'Jumping jacks');
-  renameExercise('Floor press con kettlebell', 'Floor press');
-  renameExercise('Press militar con kettlebell', 'Press militar');
-  renameExercise('Curl de bíceps', 'Bíceps curl');
-  renameExercise('Curl de bíceps con barra', 'Bíceps curl con barra');
-  renameExercise('Curl de bíceps con mancuerna', 'Bíceps curl con mancuerna');
-  renameExercise('Curl martillo', 'Bíceps curl martillo');
-  renameExercise('Banda curl biceps', 'Bíceps curl con banda');
-  renameExercise('Curl concentrado', 'Bíceps curl concentrado');
-  renameExercise('Curl de bíceps en equilibrio con kettlebell', 'Bíceps curl en equilibrio');
-  renameExercise('Bíceps curl en equilibrio con kettlebell', 'Bíceps curl en equilibrio');
-  renameExercise('Zancadas con mancuernas', 'Zancadas');
-  renameExercise('Zancadas con chaleco de peso', 'Zancadas');
-  renameExercise('Zancadas con kettlebell', 'Zancadas');
-  renameExercise('Curl de bíceps en TRX', 'Bíceps curl en TRX');
-  renameExercise('Curl de bíceps suave', 'Bíceps curl suave');
-  renameExercise('Glute bridge', 'Empuje de cadera en piso con peso');
-  renameExercise('Arnold press con kettlebell', 'Arnold press');
+  const RENAME_MAP = new Map([
+    ['Hollow body con plato rucking', 'Abs complex'],
+    ['Hollow body con peso', 'Abs complex'],
+    ['Muscle-up negativo en barra', 'TRX power pull'],
+    ['Empuje de cadera con plato rucking', 'Empuje de cadera'],
+    ['Bíceps curl en TRX con chaleco', 'Bíceps curl en TRX'],
+    ['Sumo con barra', 'Sentadilla sumo'],
+    ['Sumo con rusas', 'Sentadilla sumo'],
+    ['Sentadilla sumo con kettlebell', 'Sentadilla sumo'],
+    ['Sentadilla búlgara con kettlebell', 'Sentadilla búlgara'],
+    ['Vuelos laterales con banda', 'Vuelos laterales'],
+    ['Dominadas australianas con chaleco', 'Dominadas australianas'],
+    ['Bear crawl con chaleco', 'Bear crawl'],
+    ['Burpees con chaleco', 'Burpees'],
+    ['Sentadilla con salto con chaleco', 'Sentadilla con salto'],
+    ['Mountain climbers con chaleco', 'Mountain climbers'],
+    ['Sentadilla goblet con kettlebell', 'Sentadilla goblet'],
+    ['Peso muerto a una pierna con kettlebell', 'Peso muerto a una pierna'],
+    ['Remo con kettlebell', 'Remo'],
+    ['Curl de bíceps con kettlebell', 'Bíceps curl'],
+    ['Curl martillo con kettlebell', 'Bíceps curl martillo'],
+    ['Jumping jacks con chaleco', 'Jumping jacks'],
+    ['Floor press con kettlebell', 'Floor press'],
+    ['Press militar con kettlebell', 'Press militar'],
+    ['Curl de bíceps', 'Bíceps curl'],
+    ['Curl de bíceps con barra', 'Bíceps curl con barra'],
+    ['Curl de bíceps con mancuerna', 'Bíceps curl con mancuerna'],
+    ['Curl martillo', 'Bíceps curl martillo'],
+    ['Banda curl biceps', 'Bíceps curl con banda'],
+    ['Curl concentrado', 'Bíceps curl concentrado'],
+    ['Curl de bíceps en equilibrio con kettlebell', 'Bíceps curl en equilibrio'],
+    ['Bíceps curl en equilibrio con kettlebell', 'Bíceps curl en equilibrio'],
+    ['Zancadas con mancuernas', 'Zancadas'],
+    ['Zancadas con chaleco de peso', 'Zancadas'],
+    ['Zancadas con kettlebell', 'Zancadas'],
+    ['Curl de bíceps en TRX', 'Bíceps curl en TRX'],
+    ['Curl de bíceps suave', 'Bíceps curl suave'],
+    ['Glute bridge', 'Empuje de cadera en piso con peso'],
+    ['Arnold press con kettlebell', 'Arnold press'],
+  ]);
+
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  let rutinasChanged = false;
+  for (const r of rutinas || []) {
+    for (const c of (r.circuitos || [])) {
+      for (const e of (c.ejercicios || [])) {
+        const newName = RENAME_MAP.get(e.nombre);
+        if (newName) { e.nombre = newName; rutinasChanged = true; }
+      }
+    }
+  }
+  if (rutinasChanged) store.set(store.KEYS.rutinas, rutinas);
+
+  const sesiones = store.getAll(store.KEYS.sesiones);
+  let sesionesChanged = false;
+  for (const s of sesiones || []) {
+    for (const c of (s.circuitos || [])) {
+      for (const e of (c.ejercicios || [])) {
+        const newName = RENAME_MAP.get(e.nombre);
+        if (newName) { e.nombre = newName; sesionesChanged = true; }
+      }
+    }
+  }
+  if (sesionesChanged) store.set(store.KEYS.sesiones, sesiones);
+
+  const prog = store.getObj(store.KEYS.progresion);
+  let progChanged = false;
+  for (const [oldName, newName] of RENAME_MAP) {
+    if (prog[oldName]) {
+      prog[newName] = { ...(prog[newName] || {}), ...prog[oldName] };
+      delete prog[oldName];
+      progChanged = true;
+    }
+  }
+  if (progChanged) store.set(store.KEYS.progresion, prog);
 }
 
 function replaceVerticalDominadasInRio() {
@@ -1728,8 +1765,8 @@ export async function seedV2() {
   ensureCasaRoutinesExist();
 
   const version = store.getVersion();
-  if (version === SEED_VERSION) {
-    console.log(`[Seed] Already at v${SEED_VERSION}`);
+  if (parseFloat(version || '0') >= parseFloat(SEED_VERSION)) {
+    console.log(`[Seed] Already at v${version}`);
     ensureCalendarOverrides();
     return;
   }
