@@ -25,10 +25,10 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Con la barra en el piso y pies a ancho de caderas, agachate con la espalda recta, tomá la barra. Empujá el suelo con los pies y extendé las caderas hasta estar parado. La barra sube pegada a las piernas durante todo el movimiento.'
   },
   {
-    nombre: 'Zancadas con mancuernas',
-    grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
+    nombre: 'Zancadas',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'De pie con una mancuerna en cada mano, dá un paso hacia adelante y bajá la rodilla trasera hacia el piso sin apoyarla. Volvé al centro y alterná las piernas. Mantené el torso recto y la rodilla delantera a 90°.'
+    descripcion: 'De pie, dá un paso largo al frente y bajá la rodilla trasera casi al piso sin apoyarla. Empujá para volver y alterná las piernas. Se puede hacer con mancuernas, kettlebell, chaleco de peso o sin carga.'
   },
   {
     nombre: 'Sentadilla sumo',
@@ -724,18 +724,6 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
     tags: 'goblet squat',
     descripcion: 'Sostené la kettlebell contra el pecho con ambas manos. Pies al ancho de hombros, bajá a sentadilla profunda manteniendo codos entre las rodillas y torso erguido. Empujá talones para subir.'
-  },
-  {
-    nombre: 'Zancadas con chaleco de peso',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Zancadas alternadas con chaleco de peso puesto. Dá un paso largo al frente, bajá la rodilla trasera casi al piso y volvé. El chaleco añade carga distribuida al torso manteniendo las manos libres.'
-  },
-  {
-    nombre: 'Zancadas con kettlebell',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
-    musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Zancadas alternadas sosteniendo la kettlebell al pecho (posición goblet). Paso largo al frente, rodilla trasera casi al piso, empujá para volver. Trabaja cuádriceps, glúteos y estabilidad.'
   },
   {
     nombre: 'Peso muerto rumano con kettlebell',

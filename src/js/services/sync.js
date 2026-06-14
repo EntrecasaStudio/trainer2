@@ -508,9 +508,8 @@ async function resyncOnResume() {
   if (!getCurrentUser()) return;
   if (!navigator.onLine) return;
   try {
-    await downloadAllData();
-    if (_syncCallback) await startRealtimeSync(_syncCallback);
-    if (_onResumeCallback) _onResumeCallback();
+    const changed = await downloadAllData();
+    if (changed && _onResumeCallback) _onResumeCallback();
   } catch (e) {
     console.warn('[sync] resync on resume failed:', e.message);
   }

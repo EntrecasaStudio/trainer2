@@ -46,9 +46,10 @@ async function bootApp() {
   // iOS PWA: force repaint + SW update check when returning from background
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'visible') {
-      document.body.style.display = 'none';
-      document.body.offsetHeight;
-      document.body.style.display = '';
+      requestAnimationFrame(() => {
+        document.body.style.opacity = '0.99';
+        requestAnimationFrame(() => { document.body.style.opacity = ''; });
+      });
       if ('serviceWorker' in navigator) {
         navigator.serviceWorker.getRegistration().then(reg => {
           if (reg) reg.update().catch(() => {});
