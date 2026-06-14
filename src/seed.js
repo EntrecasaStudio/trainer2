@@ -1352,6 +1352,9 @@ function applyExerciseRenames() {
     ['Patada de glúteo con tobillera 4k', 'Patada de glúteo con tobillera'],
     ['Step-up en banco', 'Step up'],
     ['Banda dislocates', 'Rotación de hombros con banda'],
+    ['Puente de glúteos', 'Empuje de cadera'],
+    ['Plancha isométrica', 'Plancha en codos'],
+    ['Extensión de tríceps con kettlebell', 'Extensión de triceps sobre cabeza'],
   ]);
 
   const rutinas = store.getAll(store.KEYS.rutinas);

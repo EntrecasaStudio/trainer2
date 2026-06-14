@@ -78,6 +78,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plancha en codos',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
+    tags: 'plancha isométrica, plank',
     descripcion: 'Igual que la plancha estándar pero apoyado en los antebrazos en lugar de las palmas. Mayor activación del core al reducir el brazo de palanca. Codos directamente debajo de los hombros, espalda plana.'
   },
   {
@@ -350,7 +351,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Extensión de triceps sobre cabeza',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Tríceps',
-    descripcion: 'Sentado o de pie, sostén una mancuerna o barra por detrás de la cabeza con los codos apuntando al techo. Extendé los codos hasta arriba y bajá controlado. Trabaja principalmente la cabeza larga del tríceps. Mantené los codos cerca de las orejas sin abrirlos.'
+    tags: 'extensión de tríceps con kettlebell, overhead triceps extension',
+    descripcion: 'Sentado o de pie, sostén una mancuerna, barra o kettlebell por detrás de la cabeza con los codos apuntando al techo. Extendé los codos hasta arriba y bajá controlado. Trabaja principalmente la cabeza larga del tríceps. Mantené los codos cerca de las orejas sin abrirlos.'
   },
   {
     nombre: 'Banda triceps pushdown',
@@ -870,12 +872,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Banda anclada arriba o pisada por detrás. Extendé los codos empujando las manos hacia abajo o arriba según el anclaje. Mantené los brazos pegados a la cabeza o al torso. Aislamiento de tríceps.'
   },
   {
-    nombre: 'Extensión de tríceps con kettlebell',
-    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
-    musculos: 'Tríceps',
-    descripcion: 'De pie o sentado, sostené la kettlebell por los cuernos detrás de la cabeza con los codos apuntando al techo. Extendé los codos hacia arriba y bajá controlado. Trabaja la cabeza larga del tríceps con buen rango de movimiento.'
-  },
-  {
     nombre: 'Rotación de hombros con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
@@ -938,24 +934,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con pies al ancho de caderas. Bajá como si fueras a sentarte en una silla, flexionando rodillas y caderas. Mantené el pecho erguido y la espalda recta. Respiración normal, sin aguantar aire. Ideal para recuperación sin carga.'
   },
   {
-    nombre: 'Puente de glúteos',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
-    musculos: 'Glúteos, Isquiotibiales',
-    tags: 'glute bridge, empuje de cadera',
-    descripcion: 'Acostada boca arriba, rodillas dobladas y pies apoyados al ancho de caderas. Elevá la cadera contrayendo los glúteos hasta formar una línea recta entre hombros, caderas y rodillas. Bajá controlado. Respiración continua, sin apnea. Base de activación de glúteo y cadena posterior.'
-  },
-  {
     nombre: 'Puente de glúteos una pierna',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales',
     tags: 'single leg glute bridge, empuje de cadera una pierna',
     descripcion: 'Igual que el puente clásico pero con una pierna extendida en el aire. Apoyás solo un pie, la otra pierna queda estirada hacia arriba. Subí la cadera contrayendo el glúteo de apoyo. Mayor demanda unilateral y control de pelvis. Sin aguantar aire.'
-  },
-  {
-    nombre: 'Plancha isométrica',
-    grupo: 'Core', tipo: 'funcional', usaPeso: false,
-    musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
-    descripcion: 'Apoyada en antebrazos y puntas de pies. Cuerpo recto como tabla, caderas alineadas con hombros. Mantené la posición respirando normal, sin Valsalva. Activa core profundo sin generar presión intra-abdominal. Ideal post-cirugía.'
   },
   {
     nombre: 'Extensión de cadera en 4 puntos',
