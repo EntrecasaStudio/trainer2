@@ -121,7 +121,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plancha lateral',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Oblicuos, Transverso abdominal, Glúteos',
-    descripcion: 'Apoyado sobre un antebrazo y el pie lateral, mantenés el cuerpo recto como tabla con la cadera elevada. Activá oblicuos y glúteo medio para no dejar caer la cadera. Aguantá el tiempo indicado por lado. Ideal para estabilidad lateral del tronco.'
+    tags: 'side plank, recovery',
+    descripcion: 'Apoyá el antebrazo y el lado del pie inferior. Levantá la cadera formando una línea recta del tobillo al hombro. Activá oblicuos y glúteo medio para no dejar caer la cadera. Aguantá el tiempo indicado por lado. Respiración continua, sin generar presión abdominal alta.'
   },
   {
     nombre: 'Crunch en polea',
@@ -506,9 +507,10 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Abs complex',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Oblicuos, Transverso abdominal',
-    descripcion: 'Secuencia combinada de ejercicios abdominales sin pausa: crunches + bicicleta + elevación de piernas + plancha. Cada ejercicio por 10-15 reps antes de pasar al siguiente. Trabaja recto abdominal, oblicuos y core profundo.'
+    tags: 'HIIT, circuito',
+    descripcion: 'Circuito abdominal sin pausa. Variante A: Hollow body (10s) + Dead bug (6 reps) + Elevación de piernas (8 reps). Variante B: crunches + bicicleta + elevación de piernas + plancha (10-15 reps c/u). Trabaja core anterior, oblicuos y estabilización.'
   },
   // ── FUNCIONAL / RÍO ────────────────────────────────────────────────────────
   {
@@ -629,7 +631,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Cat-cow',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Erector espinal, Recto abdominal, Transverso abdominal',
-    descripcion: 'En cuatro puntos, alterná entre arquear la espalda hacia arriba (gato) y hundirla hacia abajo (vaca), coordinando con la respiración. Moviliza toda la columna vertebral, alivia tensión y prepara la espalda para el entrenamiento.'
+    tags: 'movilidad, recovery, calentamiento',
+    descripcion: 'En 4 apoyos. En la fase "cat" redondeá toda la columna hacia arriba llevando el mentón al pecho. En la fase "cow" dejá caer el abdomen y mirá al frente. Cuello relajado, coordinando con la respiración. Moviliza toda la columna, alivia tensión y prepara la espalda.'
   },
   {
     nombre: 'Hip 90/90 mobility',
@@ -684,12 +687,6 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Hip flexors',
     descripcion: 'Acostado boca arriba, levantá hombros y piernas del suelo con los brazos extendidos junto a las orejas. Mantené la zona lumbar pegada al piso. Posición de tensión total del core anterior. Mantené el tiempo indicado.'
-  },
-  {
-    nombre: 'Abs complex',
-    grupo: 'Core', tipo: 'funcional', usaPeso: false,
-    musculos: 'Recto abdominal, Transverso abdominal, Hip flexors',
-    descripcion: 'Circuito sin pausa: Hollow body (10s) + Dead bug (6 reps) + Elevación de piernas (8 reps). Eso es una serie. Trabaja core anterior, estabilización anti-extensión y flexores de cadera.'
   },
   {
     nombre: 'L-sit en paralelas',
@@ -1003,18 +1000,6 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Gemelos, Pantorrillas',
     descripcion: 'De pie en el suelo o en el borde de un escalón con las puntas de los pies apoyadas. Subí elevando los talones lo más alto posible y bajá lentamente estirando. Si estás en escalón, ganás más rango. Trabaja gemelos y sóleo.'
-  },
-  {
-    nombre: 'Plancha lateral',
-    grupo: 'Core', tipo: 'funcional', usaPeso: false,
-    musculos: 'Oblicuos, Transverso abdominal, Glúteos',
-    descripcion: 'Apoyá el antebrazo y el lado del pie inferior. Levantá la cadera formando una línea recta del tobillo al hombro. Mantené la posición respirando continuo. Trabaja oblicuos y estabilizadores laterales sin generar presión abdominal alta.'
-  },
-  {
-    nombre: 'Cat-cow',
-    grupo: 'Core', tipo: 'funcional', usaPeso: false,
-    musculos: 'Erector espinal, Recto abdominal, Transverso abdominal',
-    descripcion: 'En 4 apoyos. En la fase "cat" redondeá toda la columna hacia arriba llevando el mentón al pecho. En la fase "cow" dejá caer el abdomen y mirá al frente. Cuello relajado, sin tensión. Movilidad de toda la columna vertebral, ideal para calentar y despertar el core.'
   },
   {
     nombre: 'Bird-dog',
