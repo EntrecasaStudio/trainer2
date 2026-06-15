@@ -13,6 +13,7 @@ let _searchQuery = '';
 let _searchVisible = false;
 let _viewMonth = null;
 let _viewYear = null;
+let _homeExpanded = false;
 let _lastMountTime = 0;
 
 export function mountHome(container) {
@@ -28,6 +29,7 @@ export function mountHome(container) {
     _viewYear = selectedDate.getFullYear();
     _searchQuery = '';
     _searchVisible = false;
+    _homeExpanded = false;
   }
   render(container);
 }
@@ -251,7 +253,7 @@ function renderRoutineCard() {
   }
 
   const badge = getLugarBadge(rutina.lugar);
-  const isExpanded = container._homeExpanded || false;
+  const isExpanded = _homeExpanded;
   const dateStr = formatDateISO(selectedDate);
   const sesiones = store.getAll(store.KEYS.sesiones);
   const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
@@ -295,7 +297,7 @@ function renderRoutineCard() {
 
   // Expand/collapse
   document.getElementById('routine-card-top')?.addEventListener('click', () => {
-    container._homeExpanded = !container._homeExpanded;
+    _homeExpanded = !_homeExpanded;
     const wrap = container.querySelector('.rutina-expand-wrap');
     wrap.classList.toggle('open');
   });
