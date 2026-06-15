@@ -1233,7 +1233,7 @@ function showSaveRoutineChangesModal(container, rutinaId, circuitos, skipLabel, 
   const close = () => { overlay.classList.add('hidden'); overlay.innerHTML = ''; };
 
   overlay.querySelector('#btn-update-rutina').addEventListener('click', () => {
-    store.update(store.KEYS.rutinas, rutina.id, { circuitos: cleanCircuitos });
+    store.update(store.KEYS.rutinas, rutina.id, { circuitos: cleanCircuitos, userModified: true });
     close();
     showToast(`Rutina ${rutina.numero} actualizada`);
     onDone();

@@ -1838,7 +1838,7 @@ export async function seedV2() {
     console.log(`[Seed] Remapped ${idRemap.size} old rutina IDs to stable IDs`);
   }
 
-  // Protect only the routine with an active (started) workout
+  // Protect routines with an active (started) workout
   const _protectedIds = new Set();
   try {
     const wsRaw = localStorage.getItem('gym_active_workout');
@@ -1855,6 +1855,21 @@ export async function seedV2() {
         allNew[ni] = oldDef;
         console.log(`[Seed] Protected in-use routine: ${oldDef.nombre}`);
       }
+    }
+  }
+
+  // Preserve user-modified routines: keep their circuitos over template defaults
+  for (const old of existing) {
+    if (!old.userModified) continue;
+    const key = `${old.nombre}|${old.usuario}`;
+    const ni = allNew.findIndex(r => `${r.nombre}|${r.usuario}` === key);
+    if (ni !== -1) {
+      allNew[ni].circuitos = old.circuitos;
+      allNew[ni].userModified = true;
+      console.log(`[Seed] Preserved user-modified routine: ${old.nombre}`);
+    } else {
+      allNew.push({ ...old });
+      console.log(`[Seed] Kept user-modified routine (no template match): ${old.nombre}`);
     }
   }
 

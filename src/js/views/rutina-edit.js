@@ -430,6 +430,7 @@ function showSaveModal(container) {
   // Save in same routine
   overlay.querySelector('#btn-save-same').addEventListener('click', () => {
     _rutina.updatedAt = new Date().toISOString();
+    _rutina.userModified = true;
     store.update(store.KEYS.rutinas, _rutina.id, _rutina);
     close();
     showToast('Rutina guardada');
