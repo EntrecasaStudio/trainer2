@@ -298,6 +298,29 @@ export function mountWorkout(container, params) {
   renderWorkout(container);
 }
 
+function prefillExercise(e) {
+  const usuario = workoutState.usuario;
+  const lugar = workoutState.lugar;
+  if (e.usaPeso) {
+    const prog = store.getProgresion(e.nombre, usuario, lugar);
+    if (prog) {
+      e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
+    } else {
+      const kbDefault = defaultKettlebellWeight(e.nombre, usuario);
+      if (kbDefault != null) e.seriesData.forEach(s => { s.peso = kbDefault; });
+    }
+  }
+  if (bandaAplica(e.nombre)) {
+    const last = lastBandaValues(e.nombre, usuario) || { size: 'sm', nivel: 1 };
+    e.seriesData.forEach(s => {
+      if (s.bandaSize == null) s.bandaSize = last.size;
+      if (s.bandaNivel == null) s.bandaNivel = last.nivel;
+    });
+  }
+  const lastReps = lastRepsValue(e.nombre, usuario, lugar);
+  if (lastReps != null) e.seriesData.forEach(s => { s.reps = lastReps; });
+}
+
 function parseRepsDefault(reps) {
   if (!reps) return 8;
   if (typeof reps === 'number') return reps;
@@ -1094,6 +1117,7 @@ function showExercisePicker(container, ci, ei) {
             usaPeso: inferUsaPeso(nombre),
             seriesData: Array.from({ length: 3 }, () => ({ reps: 10, peso: 0, done: false })),
           };
+          prefillExercise(newEj);
           circ.ejercicios.push(newEj);
           overlay.classList.add('hidden');
           overlay.innerHTML = '';
@@ -1108,7 +1132,7 @@ function showExercisePicker(container, ci, ei) {
           // REPLACE existing exercise
           const oldE = circ.ejercicios[ei];
           const backup = { ...oldE };
-          circ.ejercicios[ei] = {
+          const newE = {
             id: crypto.randomUUID(),
             nombre,
             tipo: 'fuerza',
@@ -1121,6 +1145,8 @@ function showExercisePicker(container, ci, ei) {
               done: false,
             })),
           };
+          prefillExercise(newE);
+          circ.ejercicios[ei] = newE;
           overlay.classList.add('hidden');
           overlay.innerHTML = '';
           persistWorkout();
