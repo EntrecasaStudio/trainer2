@@ -652,7 +652,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C06', 'Casa Pull C — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'PIERNAS·CORE', [ej('Zancadas', 2, '10'), ej('Hollow body', 2, '25s'), ej('Sentadilla búlgara con TRX', 2, '10')]),
-      circuito(2, 'ESPALDA', [ej('Remo alto en TRX', 2, '12'), ej('Dominadas australianas', 2, '12'), ej('TRX face pull', 2, '15')]),
+      circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('Dominadas australianas', 2, '12'), ej('Banda pull-apart', 2, '20')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl en equilibrio', 2, '10'), ej('Abs complex', 2, '30s'), ej('Bíceps curl en TRX', 2, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Fondos en banco con chaleco', 2, '12'), ej('Flexiones diamante', 2, '10'), ej('Extensión de tríceps con kettlebell', 2, '10')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Tuck jumps', 3, '8'), ej('Jumping jacks', 3, '30')]),
@@ -666,7 +666,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C09', 'Casa Pull E — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'PIERNAS·CORE', [ej('Empuje de cadera', 2, '15'), ej('Peso muerto a una pierna', 2, '10'), ej('Copenhague', 2, '8')]),
-      circuito(2, 'ESPALDA', [ej('Dominadas australianas', 2, '12'), ej('Remo alto en TRX', 2, '12'), ej('TRX face pull', 2, '12')]),
+      circuito(2, 'ESPALDA', [ej('Dominadas australianas', 2, '12'), ej('Remo alto en TRX', 2, '12'), ej('TRX power pull', 2, '8')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl en TRX', 2, '10'), ej('Plancha estrella con peso', 2, '6'), ej('Bíceps curl en equilibrio', 2, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Fondos en banco con chaleco', 2, '12'), ej('Flexiones', 2, '12'), ej('Extensión de tríceps con kettlebell', 2, '10')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 3, '20'), ej('Bear crawl', 3, '8m'), ej('Jumping jacks', 3, '30')]),
