@@ -638,7 +638,7 @@ function createCasaRoutines() {
     // ── LEAN PULL ──────────────────────────────────────────
     rutinaCasa('#C04', 'Casa Pull A — Lean', 'Lean', 'pull', 1, [
       circuito(1, 'PIERNAS·CORE', [ej('Empuje de cadera', 2, '15'), ej('Calf raises', 2, '15'), ej('Plancha con chaleco', 2, '30s')]),
-      circuito(2, 'ESPALDA', [ej('Dominadas australianas', 2, '12'), ej('Remo alto en TRX', 2, '12'), ej('TRX face pull', 2, '12')]),
+      circuito(2, 'ESPALDA', [ej('Dominadas australianas', 2, '12'), ej('Remo', 2, '10'), ej('TRX face pull', 2, '12')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl en TRX', 2, '10'), ej('Dead bug', 2, '12'), ej('Bíceps curl', 2, '12')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Flexiones', 2, '12'), ej('Extensión de tríceps con banda', 2, '15')]),
       circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Bear crawl', 3, '8m'), ej('Saltos laterales', 3, '20')]),
