@@ -436,7 +436,7 @@ export function clearSyncState() {
 // ── Debounced sync trigger ──────────────
 
 // Critical keys sync immediately (no debounce) to avoid data loss
-const IMMEDIATE_SYNC = new Set(['gym_sesiones', 'gym_ejercicio_progresion']);
+const IMMEDIATE_SYNC = new Set(['gym_sesiones', 'gym_ejercicio_progresion', 'gym_rutinas']);
 
 export function queueSync(key) {
   if (_suppressSync) return;
