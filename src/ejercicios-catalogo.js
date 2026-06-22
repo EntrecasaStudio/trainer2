@@ -687,6 +687,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Plancha con las manos apoyadas en barras paralelas. La elevación aumenta el rango y la inestabilidad. Mantené el cuerpo recto activando core y glúteos. Trabaja estabilidad de hombros y core profundo.'
   },
   {
+    nombre: 'Plancha commando',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Transverso abdominal, Deltoides anterior, Tríceps',
+    descripcion: 'Desde plancha en codos, subí a plancha en manos un brazo a la vez, y bajá alternando el brazo que inicia. Mantené la cadera estable sin rotar. Trabaja core antirotación, tríceps y estabilidad de hombros.',
+    tags: 'plancha comando, commando plank, up down plank'
+  },
+  {
     nombre: 'Bear crawl',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides anterior, Cuádriceps, Recto abdominal',
