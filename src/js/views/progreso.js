@@ -74,32 +74,21 @@ export function mountProgreso(container) {
 
     const today = new Date();
     const monday = getMonday(today);
-    const mondayStr = formatDateISO(monday);
+    const dayOfWeek = (today.getDay() + 6) % 7;
+    const daysElapsed = dayOfWeek + 1;
 
-    // This week
-    const thisWeek = sesiones.filter(s => s.fecha >= mondayStr);
-    const totalMin = Math.round(thisWeek.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
-
-    // Last week for comparison
-    const lastMonday = new Date(monday);
-    lastMonday.setDate(lastMonday.getDate() - 7);
-    const lastMondayStr = formatDateISO(lastMonday);
-    const lastWeek = sesiones.filter(s => s.fecha >= lastMondayStr && s.fecha < mondayStr);
-    const lastWeekSessions = lastWeek.length;
-    const lastWeekMin = Math.round(lastWeek.reduce((sum, s) => sum + (s.duracion || 0), 0) / 60);
-
-    // Streak
+    const freq = calcFrequencyTrend(sesiones, monday, daysElapsed);
+    const volTrend = calcVolumePerSessionTrend(sesiones);
     const streak = calcStreak(sesiones);
+    const consistency = calcConsistency(sesiones, monday, 12, 3, daysElapsed);
 
-    const sessionsDiff = thisWeek.length - lastWeekSessions;
-    const minDiff = totalMin - lastWeekMin;
+    const weeklyVolumes = calcWeeklyVolumes(sesiones, monday, 12);
+    const completedWeeks = weeklyVolumes.filter(w => !w.isCurrent && w.vol > 0);
+    const avgVol = completedWeeks.length > 0
+      ? completedWeeks.reduce((s, w) => s + w.vol, 0) / completedWeeks.length
+      : 0;
 
-    // Volume trend — last 8 weeks as bars + month comparison
-    const weeklyVolumes = calcWeeklyVolumes(sesiones, monday, 8);
-    const thisMonthVol = weeklyVolumes.slice(-4).reduce((s, w) => s + w.vol, 0);
-    const lastMonthVol = weeklyVolumes.slice(0, 4).reduce((s, w) => s + w.vol, 0);
-    const volPctChange = lastMonthVol > 0 ? Math.round(((thisMonthVol - lastMonthVol) / lastMonthVol) * 100) : 0;
-    const volBarsHTML = buildVolumeBars(weeklyVolumes);
+    const highlightsHTML = buildHighlights(sesiones, streak);
 
     // Muscle group distribution (last 4 weeks)
     const fourWeeksAgo = new Date(monday);
@@ -110,31 +99,43 @@ export function mountProgreso(container) {
 
     el.innerHTML = `
       <div class="progreso-dashboard">
-        <div class="progreso-stat-grid">
-          <div class="progreso-stat-card">
-            <div class="progreso-stat-value">${thisWeek.length}</div>
-            <div class="progreso-stat-label">Sesiones</div>
-            ${sessionsDiff !== 0 ? `<div class="progreso-stat-diff ${sessionsDiff > 0 ? 'up' : 'down'}">${sessionsDiff > 0 ? '+' : ''}${sessionsDiff} vs sem. ant.</div>` : ''}
+        <div class="progreso-trend-cards">
+          <div class="progreso-trend-card">
+            <div class="progreso-trend-header">
+              <span class="progreso-trend-arrow ${freq.arrow === '↑' ? 'up' : freq.arrow === '↓' ? 'down' : ''}">${freq.arrow}</span>
+              <span class="progreso-trend-title">Frecuencia</span>
+            </div>
+            <div class="progreso-trend-value">${freq.avg.toFixed(1)} <span class="progreso-trend-unit">ses/sem</span></div>
+            <div class="progreso-trend-detail">promedio 90 días${freq.baseline != null ? ` · hist. ${freq.baseline.toFixed(1)}` : ''}</div>
+            <div class="progreso-trend-mini">${buildMiniBarsSVG(freq.weeklyData)}</div>
+            <div class="progreso-trend-secondary">~${freq.minPerSess} min/ses</div>
           </div>
-          <div class="progreso-stat-card">
-            <div class="progreso-stat-value">${totalMin}</div>
-            <div class="progreso-stat-label">Minutos</div>
-            ${minDiff !== 0 ? `<div class="progreso-stat-diff ${minDiff > 0 ? 'up' : 'down'}">${minDiff > 0 ? '+' : ''}${minDiff} min</div>` : ''}
+          <div class="progreso-trend-card">
+            <div class="progreso-trend-header">
+              <span class="progreso-trend-arrow ${volTrend.arrow === '↑' ? 'up' : volTrend.arrow === '↓' ? 'down' : ''}">${volTrend.arrow}</span>
+              <span class="progreso-trend-title">Volumen por sesión</span>
+            </div>
+            <div class="progreso-trend-value">${formatVol(volTrend.avg)}</div>
+            <div class="progreso-trend-detail">promedio 90 días${volTrend.pctChange !== 0 ? ` · ${volTrend.pctChange > 0 ? '+' : ''}${volTrend.pctChange}% vs histórico` : ''}</div>
           </div>
-          <div class="progreso-stat-card">
-            <div class="progreso-stat-value">${formatVol(thisMonthVol)}</div>
-            <div class="progreso-stat-label">Volumen</div>
-            ${volPctChange !== 0 ? `<div class="progreso-stat-diff ${volPctChange > 0 ? 'up' : 'down'}">${volPctChange > 0 ? '+' : ''}${volPctChange}% vs mes ant.</div>` : ''}
-          </div>
-          <div class="progreso-stat-card">
-            <div class="progreso-stat-value">${streak}</div>
-            <div class="progreso-stat-label">Racha sem.</div>
+          <div class="progreso-trend-card">
+            <div class="progreso-trend-header">
+              <span class="progreso-trend-title">Racha y constancia</span>
+            </div>
+            <div class="progreso-trend-value">${streak} <span class="progreso-trend-unit">sem</span></div>
+            <div class="progreso-trend-detail">${consistency.met}/${consistency.total} semanas con 3+ sesiones</div>
+            <div class="progreso-trend-dots">${buildDotStripSVG(consistency.weeks, 3)}</div>
           </div>
         </div>
+        ${highlightsHTML ? `
+        <div class="progreso-highlights">
+          <div class="progreso-section-title">Destacados</div>
+          ${highlightsHTML}
+        </div>` : ''}
         ${weeklyVolumes.some(w => w.vol > 0) ? `
         <div class="progreso-vol-trend">
-          <div class="progreso-vol-title">Tendencia de volumen · 8 semanas</div>
-          ${volBarsHTML}
+          <div class="progreso-vol-title">Tendencia de volumen · 12 semanas</div>
+          ${buildVolumeBars(weeklyVolumes, avgVol)}
         </div>` : ''}
         ${muscleData.length > 0 ? `
         <div class="progreso-muscle-chart">
@@ -176,6 +177,16 @@ export function mountProgreso(container) {
       if (!detail) return;
       const open = detail.classList.toggle('open');
       el.querySelector('.progreso-muscle-chevron')?.classList.toggle('open', open);
+    });
+
+    el.querySelectorAll('.progreso-vol-bar').forEach(bar => {
+      bar.addEventListener('click', () => {
+        const tip = bar.querySelector('.progreso-vol-tooltip');
+        if (!tip) return;
+        el.querySelectorAll('.progreso-vol-tooltip.visible').forEach(t => t.classList.remove('visible'));
+        tip.classList.add('visible');
+        setTimeout(() => tip.classList.remove('visible'), 2000);
+      });
     });
   }
 
@@ -426,6 +437,210 @@ export function mountProgreso(container) {
     return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${points}" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   }
 
+  function calcFrequencyTrend(sesiones, currentMonday, daysElapsed) {
+    const today = new Date();
+    const d90 = new Date(today);
+    d90.setDate(d90.getDate() - 90);
+    const d90Str = formatDateISO(d90);
+    const recent90 = sesiones.filter(s => s.fecha >= d90Str);
+    const sessPerWeek90 = recent90.length / (90 / 7);
+
+    const older = sesiones.filter(s => s.fecha < d90Str);
+    let baseline = null;
+    let arrow = '→';
+
+    if (older.length > 0) {
+      const sorted = [...older].sort((a, b) => a.fecha.localeCompare(b.fecha));
+      const oldestD = new Date(sorted[0].fecha + 'T00:00:00');
+      const histDays = Math.max(7, (d90 - oldestD) / (1000 * 60 * 60 * 24));
+      baseline = older.length / (histDays / 7);
+      const diff = sessPerWeek90 - baseline;
+      arrow = diff > 0.3 ? '↑' : diff < -0.3 ? '↓' : '→';
+    }
+
+    const totalMin = recent90.reduce((s, sess) => s + (sess.duracion || 0), 0);
+    const minPerSess = recent90.length > 0 ? Math.round(totalMin / recent90.length / 60) : 0;
+
+    const weeklyData = [];
+    for (let i = 11; i >= 0; i--) {
+      const mon = new Date(currentMonday);
+      mon.setDate(mon.getDate() - i * 7);
+      const monStr = formatDateISO(mon);
+      const sun = new Date(mon);
+      sun.setDate(sun.getDate() + 7);
+      const sunStr = formatDateISO(sun);
+      const count = sesiones.filter(s => s.fecha >= monStr && s.fecha < sunStr).length;
+      const isCurrent = i === 0;
+      const projected = isCurrent ? Math.round(count * 7 / daysElapsed * 10) / 10 : count;
+      weeklyData.push({ count: isCurrent ? projected : count, isProjected: isCurrent });
+    }
+
+    return { avg: sessPerWeek90, baseline, arrow, minPerSess, weeklyData };
+  }
+
+  function calcVolumePerSessionTrend(sesiones) {
+    const today = new Date();
+    const d90 = new Date(today);
+    d90.setDate(d90.getDate() - 90);
+    const d90Str = formatDateISO(d90);
+
+    const recent = sesiones.filter(s => s.fecha >= d90Str);
+    const older = sesiones.filter(s => s.fecha < d90Str);
+
+    const recentVol = recent.reduce((s, sess) => s + calcSessionVolume(sess), 0);
+    const avgRecent = recent.length > 0 ? recentVol / recent.length : 0;
+
+    let pctChange = 0;
+    let arrow = '→';
+
+    if (older.length > 0) {
+      const olderVol = older.reduce((s, sess) => s + calcSessionVolume(sess), 0);
+      const baseline = olderVol / older.length;
+      if (baseline > 0) {
+        pctChange = Math.round(((avgRecent - baseline) / baseline) * 100);
+        arrow = pctChange > 5 ? '↑' : pctChange < -5 ? '↓' : '→';
+      }
+    }
+
+    return { avg: avgRecent, pctChange, arrow };
+  }
+
+  function calcConsistency(sesiones, currentMonday, numWeeks, threshold, daysElapsed) {
+    const weeks = [];
+    let met = 0;
+
+    for (let i = numWeeks - 1; i >= 0; i--) {
+      const mon = new Date(currentMonday);
+      mon.setDate(mon.getDate() - i * 7);
+      const monStr = formatDateISO(mon);
+      const sun = new Date(mon);
+      sun.setDate(sun.getDate() + 7);
+      const sunStr = formatDateISO(sun);
+      const count = sesiones.filter(s => s.fecha >= monStr && s.fecha < sunStr).length;
+      const isCurrent = i === 0;
+      const effective = isCurrent ? Math.round(count * 7 / daysElapsed) : count;
+      if (effective >= threshold) met++;
+      weeks.push({ count: effective, isProjected: isCurrent });
+    }
+
+    return { met, total: numWeeks, weeks };
+  }
+
+  function detectPRs(sesiones) {
+    const history = buildExerciseHistory(sesiones);
+    const prs = [];
+    const twoWeeksAgo = new Date();
+    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+    const cutoff = formatDateISO(twoWeeksAgo);
+
+    for (const [key, entries] of Object.entries(history)) {
+      if (entries.length < 2) continue;
+      const [ejercicio] = key.split('__');
+      const last = entries[entries.length - 1];
+      if (last.fecha < cutoff) continue;
+      const prevMax = Math.max(...entries.slice(0, -1).map(e => e.peso));
+      if (last.peso > prevMax && prevMax > 0) {
+        prs.push({ ejercicio, peso: last.peso, fecha: last.fecha });
+      }
+    }
+
+    return prs.sort((a, b) => b.fecha.localeCompare(a.fecha));
+  }
+
+  function findMostImproved(sesiones, days) {
+    const history = buildExerciseHistory(sesiones);
+    const cutoff = new Date();
+    cutoff.setDate(cutoff.getDate() - days);
+    const cutoffStr = formatDateISO(cutoff);
+    let best = null;
+
+    for (const [key, entries] of Object.entries(history)) {
+      if (entries.length < 2) continue;
+      const [ejercicio] = key.split('__');
+      const recent = entries.filter(e => e.fecha >= cutoffStr);
+      const older = entries.filter(e => e.fecha < cutoffStr);
+      if (recent.length === 0 || older.length === 0) continue;
+
+      const recentMax = Math.max(...recent.map(e => e.peso));
+      const olderMax = Math.max(...older.map(e => e.peso));
+      if (olderMax <= 0) continue;
+
+      const diff = recentMax - olderMax;
+      if (diff > 0 && (!best || diff > best.diff)) {
+        best = { ejercicio, diff };
+      }
+    }
+
+    return best;
+  }
+
+  function buildMiniBarsSVG(weeklyData) {
+    const barW = 6, gap = 2, h = 24;
+    const totalW = weeklyData.length * (barW + gap) - gap;
+    const maxCount = Math.max(...weeklyData.map(d => d.count), 1);
+
+    const bars = weeklyData.map((d, i) => {
+      const x = i * (barW + gap);
+      const barH = Math.max(2, Math.round((d.count / maxCount) * (h - 4)));
+      const y = h - barH;
+      const opacity = d.isProjected ? 0.35 : 1;
+      return `<rect x="${x}" y="${y}" width="${barW}" height="${barH}" rx="1.5" fill="var(--color-accent)" opacity="${opacity}"/>`;
+    }).join('');
+
+    return `<svg width="${totalW}" height="${h}" viewBox="0 0 ${totalW} ${h}">${bars}</svg>`;
+  }
+
+  function buildDotStripSVG(weeks, threshold) {
+    const r = 4, gap = 4, d = r * 2;
+    const totalW = weeks.length * (d + gap) - gap;
+    const h = d + 2;
+
+    const dots = weeks.map((w, i) => {
+      const cx = i * (d + gap) + r;
+      const cy = r + 1;
+      const op = w.isProjected ? ' opacity="0.35"' : '';
+      if (w.count >= threshold) {
+        return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="var(--color-accent)"${op}/>`;
+      } else if (w.count > 0) {
+        return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--color-accent)" stroke-width="1.5"${op}/><circle cx="${cx}" cy="${cy}" r="2" fill="var(--color-accent)"${op}/>`;
+      }
+      return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--color-border)" stroke-width="1"/>`;
+    }).join('');
+
+    return `<svg width="${totalW}" height="${h}" viewBox="0 0 ${totalW} ${h}">${dots}</svg>`;
+  }
+
+  function buildHighlights(sesiones, streak) {
+    const items = [];
+
+    const prs = detectPRs(sesiones);
+    if (prs.length > 0) {
+      const pr = prs[0];
+      items.push(`<div class="progreso-highlight-item"><i class="ph ph-trophy progreso-highlight-icon"></i><div><strong>Nuevo PR</strong> · ${pr.ejercicio} · ${pr.peso}kg</div></div>`);
+    }
+
+    const improved = findMostImproved(sesiones, 30);
+    if (improved && !prs.find(p => p.ejercicio === improved.ejercicio)) {
+      items.push(`<div class="progreso-highlight-item"><i class="ph ph-trend-up progreso-highlight-icon"></i><div><strong>Más progreso 30d</strong> · ${improved.ejercicio} · +${improved.diff}kg</div></div>`);
+    }
+
+    const totalVol = sesiones.reduce((s, sess) => s + calcSessionVolume(sess), 0);
+    const milestones = [1000000, 500000, 100000, 50000];
+    for (const m of milestones) {
+      if (totalVol >= m) {
+        items.push(`<div class="progreso-highlight-item"><i class="ph ph-barbell progreso-highlight-icon"></i><div><strong>${formatVol(m)} totales</strong> movidos</div></div>`);
+        break;
+      }
+    }
+
+    if (streak > 0 && (streak % 25 === 0 || streak % 10 === 0)) {
+      items.push(`<div class="progreso-highlight-item"><i class="ph ph-fire progreso-highlight-icon"></i><div><strong>${streak} semanas</strong> de racha</div></div>`);
+    }
+
+    if (items.length === 0) return '';
+    return items.slice(0, 2).join('');
+  }
+
   function calcStreak(sesiones) {
     // Count consecutive weeks with at least 1 session
     const weekSet = new Set();
@@ -484,16 +699,20 @@ export function mountProgreso(container) {
     return weeks;
   }
 
-  function buildVolumeBars(weeks) {
+  function buildVolumeBars(weeks, avgVol) {
     const maxVol = Math.max(...weeks.map(w => w.vol), 1);
+    const avgH = avgVol > 0 ? Math.round((avgVol / maxVol) * 64) : 0;
     return `
       <div class="progreso-vol-bars">
+        ${avgH > 0 ? `<div class="progreso-vol-avg" style="bottom:${avgH + 16}px;"></div>` : ''}
         ${weeks.map(w => {
-          const h = Math.max(4, Math.round((w.vol / maxVol) * 64));
+          const h = w.vol > 0 ? Math.max(4, Math.round((w.vol / maxVol) * 64)) : 0;
           const cls = w.isCurrent ? 'current' : '';
           return `
             <div class="progreso-vol-bar-col">
-              <div class="progreso-vol-bar ${cls}" style="height:${h}px;"></div>
+              <div class="progreso-vol-bar ${cls}" style="height:${h}px;">
+                <div class="progreso-vol-tooltip">${formatVol(w.vol)}</div>
+              </div>
               <div class="progreso-vol-bar-label">${w.label}</div>
             </div>`;
         }).join('')}
