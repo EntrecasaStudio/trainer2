@@ -898,6 +898,13 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Oblicuos, Transverso abdominal, Glúteos',
     descripcion: 'Apoyado en un antebrazo de costado con chaleco de peso. Cadera elevada, cuerpo recto. Mantené la posición sin dejar caer la cadera. Trabaja oblicuos y estabilizadores laterales del core.'
   },
+  {
+    nombre: 'Plancha lateral dinámica',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Oblicuos, Transverso abdominal, Flexores de cadera',
+    descripcion: 'En plancha lateral sobre el antebrazo, bajá la cadera hasta tocar el piso y volvé a subir. Arriba, flexioná la rodilla superior y llevá el codo hacia ella haciendo un crunch lateral. Volvé a la posición de plancha y repetí. Se puede hacer con chaleco para mayor intensidad. Trabaja oblicuos, core lateral y estabilidad de cadera.',
+    tags: 'side plank hip dip, knee crunch, plancha lateral dinamica, chaleco'
+  },
   // HIIT con chaleco
   // Equilibrio + kettlebell
   {
