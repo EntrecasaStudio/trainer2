@@ -833,24 +833,11 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Cuádriceps, Glúteos, Abductores',
     descripcion: 'Con banda de resistencia en las rodillas, alterná sentadilla cerrada y abierta. La banda agrega resistencia a la abducción, activando más el glúteo medio durante todo el movimiento.'
   },
-  // Chaleco de peso — Tren superior
-  {
-    nombre: 'Flexiones con chaleco',
-    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
-    musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Flexiones estándar con chaleco de peso. Cuerpo recto, manos al ancho de hombros, bajá el pecho al suelo y empujá. El chaleco agrega resistencia significativa al empuje corporal.'
-  },
   {
     nombre: 'Floor press',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
     musculos: 'Pectoral mayor, Tríceps, Deltoides anterior',
     descripcion: 'Acostado en el suelo boca arriba, un brazo a la vez. Kettlebell en una mano, codo apoyado en el piso. Empujá hacia arriba extendiendo el brazo y bajá controlado hasta que el codo toque el suelo. Trabaja pectoral, tríceps y estabilizadores de hombro con rango limitado que protege la articulación.'
-  },
-  {
-    nombre: 'Fondos en banco con chaleco',
-    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
-    musculos: 'Tríceps, Deltoides anterior, Pectoral mayor',
-    descripcion: 'Manos en el borde de un banco, piernas extendidas. Bajá flexionando los codos hasta 90° y empujá para subir. El chaleco de peso intensifica el trabajo de tríceps y deltoides anterior.'
   },
   // Kettlebell — Tren superior
   {
@@ -885,19 +872,6 @@ export const EJERCICIOS_CATALOGO = [
     tags: 'banda dislocates, dislocates',
     descripcion: 'Sostenés la banda con ambas manos al frente. Llevala por encima de la cabeza y atrás hasta la zona lumbar, y volvé. Mantené los brazos rectos. Movilidad y calentamiento del manguito rotador.'
   },
-  // Core con carga
-  {
-    nombre: 'Plancha con chaleco',
-    grupo: 'Core', tipo: 'funcional', usaPeso: false,
-    musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
-    descripcion: 'Plancha estándar en antebrazos con chaleco de peso. Cuerpo recto de cabeza a talones, apretá abdomen y glúteos. El chaleco aumenta la demanda de estabilización del core.'
-  },
-  {
-    nombre: 'Plancha lateral con chaleco',
-    grupo: 'Core', tipo: 'funcional', usaPeso: false,
-    musculos: 'Oblicuos, Transverso abdominal, Glúteos',
-    descripcion: 'Apoyado en un antebrazo de costado con chaleco de peso. Cadera elevada, cuerpo recto. Mantené la posición sin dejar caer la cadera. Trabaja oblicuos y estabilizadores laterales del core.'
-  },
   {
     nombre: 'Plancha lateral dinámica',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
@@ -905,7 +879,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'En plancha lateral sobre el antebrazo, bajá la cadera hasta tocar el piso y volvé a subir. Arriba, flexioná la rodilla superior y llevá el codo hacia ella haciendo un crunch lateral. Volvé a la posición de plancha y repetí. Se puede hacer con chaleco para mayor intensidad. Trabaja oblicuos, core lateral y estabilidad de cadera.',
     tags: 'side plank hip dip, knee crunch, plancha lateral dinamica, chaleco'
   },
-  // HIIT con chaleco
   // Equilibrio + kettlebell
   {
     nombre: 'Bíceps curl en equilibrio',
