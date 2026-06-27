@@ -56,7 +56,16 @@ function render(container) {
         <span style="opacity:0.7;"> · Lean ${leanCount} · Nat ${natCount}</span>
       </div>
 
-      <button class="btn btn-secondary" id="btn-force-sync" style="width:100%;margin-top:var(--space-md);">
+      <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-md);">
+        <button class="btn btn-secondary" id="btn-copy-rutinas" style="flex:1;">
+          <i class="ph ph-copy" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar rutinas
+        </button>
+        <button class="btn btn-secondary" id="btn-copy-sesiones" style="flex:1;">
+          <i class="ph ph-clipboard-text" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar sesiones
+        </button>
+      </div>
+
+      <button class="btn btn-secondary" id="btn-force-sync" style="width:100%;margin-top:var(--space-sm);">
         <i class="ph ph-arrows-clockwise" style="font-size:16px;margin-right:var(--space-xs);"></i> Forzar sincronización
       </button>
 
@@ -68,6 +77,20 @@ function render(container) {
         <i class="ph ph-sign-out" style="font-size:16px;margin-right:var(--space-xs);"></i> Cerrar sesión
       </button>
     `;
+
+    container.querySelector('#btn-copy-rutinas')?.addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      const text = window.exportRutinas ? window.exportRutinas() : 'exportRutinas no disponible';
+      btn.innerHTML = '<i class="ph ph-check" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiado';
+      setTimeout(() => { btn.innerHTML = '<i class="ph ph-copy" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar rutinas'; }, 1500);
+    });
+
+    container.querySelector('#btn-copy-sesiones')?.addEventListener('click', async (e) => {
+      const btn = e.currentTarget;
+      const text = window.exportSesiones ? window.exportSesiones(12) : 'exportSesiones no disponible';
+      btn.innerHTML = '<i class="ph ph-check" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiado';
+      setTimeout(() => { btn.innerHTML = '<i class="ph ph-clipboard-text" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar sesiones'; }, 1500);
+    });
 
     container.querySelector('#btn-reset-app').addEventListener('click', () => resetApp());
 
