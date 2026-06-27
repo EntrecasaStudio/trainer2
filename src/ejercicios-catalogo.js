@@ -267,12 +267,6 @@ export const EJERCICIOS_CATALOGO = [
   },
   // ── HOMBROS ─────────────────────────────────────────────────────────────────
   {
-    nombre: 'Press militar con mancuernas',
-    grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
-    musculos: 'Deltoides anterior, Deltoides lateral, Tríceps',
-    descripcion: 'Sentado o de pie, con mancuernas a la altura de los hombros y codos a 90°. Empujá hacia arriba hasta extender los brazos sin bloquear los codos. Bajá controlado. Trabaja el deltoides anterior y lateral, y de manera secundaria tríceps y trapecios.'
-  },
-  {
     nombre: 'Vuelos laterales',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides lateral, Trapecio',

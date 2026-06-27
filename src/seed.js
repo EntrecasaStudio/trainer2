@@ -42,7 +42,7 @@ function createLeanRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Plancha', 2, '30s')]),
       circuito(2, 'PECHO', [ej('Press Hammer'), ej('Fondos de pecho suspendido en maquina')]),
       circuito(3, 'PECHO ALT', [ej('Press inclinado con mancuernas'), ej('Pecho con polea doble')]),
-      circuito(4, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Vuelos laterales')]),
+      circuito(4, 'HOMBROS', [ej('Press militar'), ej('Vuelos laterales')]),
       circuito(5, 'BRAZOS', [ej('Bíceps curl con barra'), ej('Triceps con polea')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -58,7 +58,7 @@ function createLeanRoutines() {
     // Press C — semana 2 — Hammer (guiada) en pecho secundario
     rutina('#003', 'Press C — Hombros + Pecho', 'Lean', 'press', 2, [
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Pallof press', 2, '30s')]),
-      circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Empuje de hombros con barra en banco')]),
+      circuito(2, 'HOMBROS', [ej('Press militar'), ej('Empuje de hombros con barra en banco')]),
       circuito(3, 'HOMBROS ALT', [ej('Vuelos laterales'), ej('Face pulls')]),
       circuito(4, 'PECHO', [ej('Press Hammer'), ej('Press inclinado con mancuernas')]),
       circuito(5, 'BRAZOS', [ej('Triceps con polea'), ej('Bíceps curl con barra')]),
@@ -76,7 +76,7 @@ function createLeanRoutines() {
     // Press E — semana 1
     rutina('#005', 'Press E — Hombros + Brazos', 'Lean', 'press', 1, [
       circuito(1, 'PIERNAS · CORE', [ej('Peso muerto con barra'), ej('Sentadilla con barra'), ej('Complex', 2, '30s')]),
-      circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Vuelos laterales')]),
+      circuito(2, 'HOMBROS', [ej('Press militar'), ej('Vuelos laterales')]),
       circuito(3, 'HOMBROS ALT', [ej('Empuje de hombros con barra en banco'), ej('Face pulls')]),
       circuito(4, 'BRAZOS', [ej('Bíceps curl en TRX'), ej('Tríceps alto en TRX')]),
       circuito(5, 'BRAZOS ALT', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
@@ -183,7 +183,7 @@ function createNatRoutines() {
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Plancha en codos', 2, '30s')]),
       circuito(2, 'PECHO', [ej('Press Hammer'), ej('Fondos de pecho suspendido en maquina')]),
       circuito(3, 'PECHO ALT', [ej('Press inclinado con mancuernas'), ej('Pecho con polea doble')]),
-      circuito(4, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Face pulls')]),
+      circuito(4, 'HOMBROS', [ej('Press militar'), ej('Face pulls')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
       circuito(6, 'HIIT', [ej('Pasadas de velocidad', 5, 1)]),
     ]),
@@ -199,7 +199,7 @@ function createNatRoutines() {
     // Press C
     rutina('#013', 'Press C — Hombros + Glúteos', 'Nat', 'press', 2, [
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Espinales con disco', 2, '30s')]),
-      circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Face pulls')]),
+      circuito(2, 'HOMBROS', [ej('Press militar'), ej('Face pulls')]),
       circuito(3, 'HOMBROS ALT', [ej('Vuelos laterales'), ej('Elevaciones de hombro adelante')]),
       circuito(4, 'BRAZOS', [ej('Triceps con polea'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Empuje de cadera en cajon'), ej('Gluteos patada en polea')]),
@@ -217,7 +217,7 @@ function createNatRoutines() {
     // Press E
     rutina('#015', 'Press E — Hombros + Glúteos', 'Nat', 'press', 1, [
       circuito(1, 'PIERNAS · CORE', [ej('Sentadilla con barra'), ej('Peso muerto rumano'), ej('Pallof press', 2, '30s')]),
-      circuito(2, 'HOMBROS', [ej('Press militar con mancuernas'), ej('Empuje de hombros con barra en banco')]),
+      circuito(2, 'HOMBROS', [ej('Press militar'), ej('Empuje de hombros con barra en banco')]),
       circuito(3, 'HOMBROS ALT', [ej('Face pulls'), ej('Elevaciones de hombro adelante')]),
       circuito(4, 'BRAZOS', [ej('Bíceps curl con mancuerna'), ej('Extensión de triceps sobre cabeza')]),
       circuito(5, 'GLÚTEOS', [ej('Gluteos patada en polea'), ej('Aductores en maquina')]),
@@ -1359,6 +1359,7 @@ function applyExerciseRenames() {
     ['Fondos en banco con chaleco', 'Fondos en banco'],
     ['Plancha con chaleco', 'Plancha'],
     ['Plancha lateral con chaleco', 'Plancha lateral'],
+    ['Press militar con mancuernas', 'Press militar'],
   ]);
 
   const rutinas = store.getAll(store.KEYS.rutinas);
