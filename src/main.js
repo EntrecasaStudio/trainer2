@@ -278,9 +278,55 @@ async function start() {
   // Always boot the app (offline-first)
   await seedV2();
 
-  // Store ref for avatar menu
+  // Store ref for avatar menu + debug helpers
   const { store } = await import('./store.js');
   window._storeRef = { store };
+
+  window.exportRutinas = (usuario) => {
+    const user = usuario || store.getActiveUser();
+    const rutinas = store.getAll(store.KEYS.rutinas).filter(r => r.usuario === user);
+    const lines = [];
+    rutinas.forEach(r => {
+      const mod = r.userModified ? ' [MODIFICADA]' : '';
+      lines.push(`\n## ${r.nombre} (${r.lugar})${mod}`);
+      (r.circuitos || []).forEach((c, ci) => {
+        lines.push(`  C${ci + 1}: ${c.nombre || ''}`);
+        (c.ejercicios || []).forEach(e => {
+          lines.push(`    - ${e.nombre} (${e.series || 2}x${e.reps || '?'})`);
+        });
+      });
+    });
+    const text = `# Rutinas de ${user}\n${lines.join('\n')}`;
+    navigator.clipboard?.writeText(text).then(() => console.log('Copiado al clipboard'));
+    console.log(text);
+    return text;
+  };
+
+  window.exportSesiones = (n) => {
+    const count = n || 12;
+    const user = store.getActiveUser();
+    const sesiones = store.getAll(store.KEYS.sesiones)
+      .filter(s => s.usuario === user)
+      .sort((a, b) => (b.fecha || '').localeCompare(a.fecha || ''));
+    const recent = sesiones.slice(0, count);
+    const lines = [];
+    recent.forEach(s => {
+      lines.push(`\n## ${s.fecha} — ${s.rutinaNombre} (${s.lugar})`);
+      (s.circuitos || []).forEach((c, ci) => {
+        lines.push(`  C${ci + 1}:`);
+        (c.ejercicios || []).forEach(e => {
+          const done = (e.seriesData || []).filter(x => x.done).length;
+          const total = (e.seriesData || []).length;
+          const peso = e.seriesData?.[0]?.peso || 0;
+          lines.push(`    - ${e.nombre} ${done}/${total} ${peso ? peso + 'kg' : ''}`);
+        });
+      });
+    });
+    const text = `# Últimas ${count} sesiones de ${user}\n${lines.join('\n')}`;
+    navigator.clipboard?.writeText(text).then(() => console.log('Copiado al clipboard'));
+    console.log(text);
+    return text;
+  };
 
   document.getElementById('app')?.classList.remove('hidden');
 
