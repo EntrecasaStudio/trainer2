@@ -763,7 +763,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Pistol squat',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Core',
     tags: 'sentadilla pistola, single leg squat, pistol squat asistido',
     descripcion: 'De pie sobre una pierna, bajá a sentadilla profunda con la otra pierna extendida al frente sin tocar el piso. Subí controlado sin impulso. Requiere fuerza de cuádriceps, equilibrio, movilidad de tobillo y flexibilidad de cadera. Se puede asistir con TRX o banco para la progresión.'
