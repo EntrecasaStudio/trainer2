@@ -914,6 +914,13 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Tríceps, Deltoides anterior',
     descripcion: 'De espaldas al anclaje del TRX, brazos extendidos sobre la cabeza sosteniendo las correas. Flexioná los codos bajando la cabeza entre las manos, manteniendo los brazos pegados a las orejas. Extendé para volver. Similar a un french press con peso corporal. Cuanto más inclinado, más difícil.'
   },
+  {
+    nombre: 'Tríceps alto en TRX a un brazo',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Tríceps, Deltoides anterior, Core',
+    tags: 'single arm trx triceps, triceps unilateral',
+    descripcion: 'Igual que el tríceps alto en TRX pero con un solo brazo. De espaldas al anclaje, una mano en la correa, la otra libre. Flexioná el codo bajando controlado y extendé para volver. Demanda anti-rotación del core y mayor fuerza por brazo. Hacé todas las reps de un lado antes de cambiar.'
+  },
   // ── RECOVERY (post-cirugía, sin Valsalva, cargas livianas) ─────────────────
   {
     nombre: 'Sentadilla corporal',
