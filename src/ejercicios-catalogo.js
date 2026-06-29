@@ -762,11 +762,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Frente a un banco o cajón, subí con una pierna y extendé la cadera arriba. Bajá controlado con la misma pierna. Se puede agregar peso con kettlebell o chaleco. Trabaja cuádriceps, glúteos y equilibrio.'
   },
   {
-    nombre: 'Pistol squat asistido',
+    nombre: 'Pistol squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Core',
-    tags: 'pistol squat, sentadilla pistola, box pistol squat',
-    descripcion: 'Parado frente a un banco, bajá en una pierna hasta sentarte en el banco con la otra pierna extendida al frente. Subí con la misma pierna sin impulso. Trabaja cuádriceps, glúteos, equilibrio y movilidad de tobillo. El banco regula la profundidad y facilita la progresión.'
+    tags: 'sentadilla pistola, single leg squat, pistol squat asistido',
+    descripcion: 'De pie sobre una pierna, bajá a sentadilla profunda con la otra pierna extendida al frente sin tocar el piso. Subí controlado sin impulso. Requiere fuerza de cuádriceps, equilibrio, movilidad de tobillo y flexibilidad de cadera. Se puede asistir con TRX o banco para la progresión.'
   },
   {
     nombre: 'Plié squat',
