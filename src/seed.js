@@ -1766,6 +1766,61 @@ function ensureCalendarOverrides() {
   if (changed) store.set(store.KEYS.overrides, overrides);
 }
 
+function migrateCompoundExercises() {
+  const FLAG = 'migration_compound_exercises_v1';
+  if (localStorage.getItem(FLAG)) return;
+
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  if (!rutinas?.length) return;
+
+  // Each entry: [routineName, circuitIdx(0-based), exerciseIdx(0-based), oldName, newName, newSeries, newReps]
+  const PATCHES = [
+    // ── LEAN ──
+    ['Casa Press B — Lean', 0, 0, 'Sentadilla sumo', 'Pistol squat', 2, '8'],
+    ['Casa Press B — Lean', 3, 0, 'Abs complex', 'Toe touch con descenso de piernas', 2, '12'],
+    ['Casa Press D — Lean', 3, 0, 'Plancha estrella con peso', 'Crunch oblicuo a una pierna', 2, '12'],
+    ['Casa Press E — Lean', 2, 2, 'Vuelos laterales en equilibrio', 'Zancada cruzada con vuelo lateral', 2, '10'],
+    ['Casa Press F — Lean', 3, 1, 'Plancha con elevación alternada', 'Plancha con arrastre', 2, '10'],
+    ['Casa Pull A — Lean', 0, 2, 'Plancha', 'Renegade row', 2, '10'],
+    ['Casa Pull A — Lean', 3, 2, 'French press', 'French press en puente de glúteos', 2, '12'],
+    ['Casa Pull B — Lean', 0, 2, 'Squat to press con kettlebell', 'Sentadilla sumo', 2, '12'],
+    ['Casa Pull B — Lean', 3, 0, 'Tríceps alto en TRX', 'Tríceps alto en TRX a un brazo', 2, '8'],
+    ['Casa Pull C — Lean', 3, 1, 'Elevaciones de hombro adelante', 'Peso muerto sumo con elevación frontal', 2, '10'],
+    ['Casa Pull D — Lean', 0, 1, 'Empuje de cadera', 'Sentadilla sumo', 2, '12'],
+    ['Casa Pull D — Lean', 0, 2, 'Plancha toque de hombro', 'Flexión con toque de hombro', 2, '10'],
+    ['Casa Pull F — Lean', 3, 1, 'Tríceps alto en TRX', 'Tríceps alto en TRX a un brazo', 2, '8'],
+    // ── NAT ──
+    ['Casa Press B — Nat', 2, 1, 'Elevaciones de hombro adelante', 'Peso muerto sumo con elevación frontal', 2, '10'],
+    ['Casa Press B — Nat', 3, 0, 'Abs complex', 'Toe touch con descenso de piernas', 2, '12'],
+    ['Casa Press D — Nat', 2, 1, 'Elevaciones de hombro adelante', 'Zancada cruzada con vuelo lateral', 2, '10'],
+    ['Casa Press F — Nat', 3, 0, 'Abs complex', 'Crunch oblicuo a una pierna', 2, '12'],
+    ['Casa Pull A — Nat', 1, 2, 'Plancha', 'Renegade row', 2, '10'],
+    ['Casa Pull D — Nat', 1, 2, 'Plancha con elevación alternada', 'Plancha con arrastre', 2, '10'],
+    ['Casa Pull E — Nat', 3, 0, 'Plancha toque de hombro', 'Flexión con toque de hombro', 2, '10'],
+    ['Casa Pull E — Nat', 3, 1, 'Tríceps alto en TRX', 'Tríceps alto en TRX a un brazo', 2, '8'],
+    ['Casa Pull F — Nat', 3, 1, 'Extensión de triceps sobre cabeza', 'French press en puente de glúteos', 2, '12'],
+  ];
+
+  let changed = false;
+  for (const [rName, ci, ei, oldName, newName, series, reps] of PATCHES) {
+    const r = rutinas.find(rt => rt.nombre === rName);
+    if (!r?.circuitos?.[ci]?.ejercicios?.[ei]) continue;
+    const ej = r.circuitos[ci].ejercicios[ei];
+    if (ej.nombre !== oldName) continue;
+    ej.nombre = newName;
+    ej.series = series;
+    ej.reps = reps;
+    changed = true;
+    console.log(`[Migration] ${rName} C${ci + 1}.${ei + 1}: ${oldName} → ${newName}`);
+  }
+
+  if (changed) {
+    store.set(store.KEYS.rutinas, rutinas);
+    console.log('[Migration] Compound exercises applied');
+  }
+  localStorage.setItem(FLAG, '1');
+}
+
 export async function seedV2() {
   // Always run migrations (idempotent, fast)
   deduplicateRutinas();
@@ -1778,6 +1833,7 @@ export async function seedV2() {
   replaceVerticalDominadasInRio();
   replaceBoxExercisesInRio();
   ensureCasaRoutinesExist();
+  migrateCompoundExercises();
 
   const version = store.getVersion();
   if (parseFloat(version || '0') >= parseFloat(SEED_VERSION)) {
