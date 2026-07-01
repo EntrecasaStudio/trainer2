@@ -253,7 +253,7 @@ function showDetailModal(data, allowEdit, onChange) {
           <h2 class="modal-title" style="margin-top:2px;">${data.nombre}</h2>
         </div>
         <div style="display:flex;gap:var(--space-sm);align-items:center;">
-          <a class="btn-icon" id="btn-youtube-ejercicio" href="https://www.youtube.com/results?search_query=${encodeURIComponent(data.nombre)}" target="_blank" rel="noopener noreferrer" title="Buscar en YouTube" style="text-decoration:none;color:inherit;"><i class="ph ph-youtube-logo" style="font-size:20px;color:var(--color-text-muted);"></i></a>
+          <a class="btn-icon" id="btn-youtube-ejercicio" href="https://www.youtube.com/results?search_query=${encodeURIComponent((data.tags ? data.tags.split(',')[0].trim() : data.nombre) + ' exercise')}" target="_blank" rel="noopener noreferrer" title="Buscar en YouTube" style="text-decoration:none;color:inherit;"><i class="ph ph-youtube-logo" style="font-size:20px;color:var(--color-text-muted);"></i></a>
           ${allowEdit ? `<button class="btn-icon" id="btn-edit-ejercicio" title="Editar"><i class="ph ph-pencil-simple" style="font-size:20px;color:var(--color-text-muted);"></i></button>` : ''}
           <button class="modal-close">&times;</button>
         </div>
