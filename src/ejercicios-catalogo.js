@@ -921,6 +921,63 @@ export const EJERCICIOS_CATALOGO = [
     tags: 'single arm trx triceps, triceps unilateral',
     descripcion: 'Igual que el tríceps alto en TRX pero con un solo brazo. De espaldas al anclaje, una mano en la correa, la otra libre. Flexioná el codo bajando controlado y extendé para volver. Demanda anti-rotación del core y mayor fuerza por brazo. Hacé todas las reps de un lado antes de cambiar.'
   },
+  // ── COMPOUND / COMBO ─────────────────────────────────────────────────────────
+  {
+    nombre: 'Renegade row',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
+    musculos: 'Dorsal ancho, Romboides, Core, Deltoides anterior',
+    tags: 'renegade row, plank row, remo en plancha',
+    descripcion: 'En posición de plancha con una kettlebell o mancuerna en cada mano. Remá con un brazo llevando el codo atrás y arriba, manteniendo la cadera quieta sin rotar. Bajá controlado y repetí con el otro brazo. Trabaja espalda y core anti-rotación simultáneamente. (Renegade Row)'
+  },
+  {
+    nombre: 'Plancha con arrastre',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Core, Oblicuos, Transverso abdominal, Deltoides anterior',
+    tags: 'DB plank drag-through, plank drag, plank pull-through',
+    descripcion: 'En posición de plancha con una kettlebell al costado. Con la mano contraria, arrastrá el peso por debajo del cuerpo hacia el otro lado. Mantené las caderas estables sin rotar. Alterná lados. Anti-rotación extrema con carga. (DB Plank Drag-Through)'
+  },
+  {
+    nombre: 'Peso muerto sumo con elevación frontal',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Aductores, Isquiotibiales, Deltoides anterior',
+    tags: 'sumo deadlift to front raise, sumo deadlift front raise',
+    descripcion: 'Con kettlebell o mancuerna, hacé un peso muerto sumo. Al subir, elevá el peso al frente hasta la altura de los hombros con brazos extendidos. Bajá controlado y repetí. Combina cadena posterior + hombros en un solo movimiento. (Sumo Deadlift to Front Raises)'
+  },
+  {
+    nombre: 'French press en puente de glúteos',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
+    musculos: 'Tríceps, Glúteos, Isquiotibiales',
+    tags: 'skull crushers to glute bridge, DB skull crushers glute bridge',
+    descripcion: 'Acostado boca arriba en posición de puente de glúteos (cadera elevada), hacé french press con mancuerna o kettlebell. Mantené la cadera arriba todo el set. Trabaja tríceps + glúteos e isquiotibiales de forma isométrica. (DB Skull Crushers to Glute Bridge)'
+  },
+  {
+    nombre: 'Toe touch con descenso de piernas',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Recto abdominal, Oblicuos, Flexores de cadera',
+    tags: 'DB toe touch leg lower, toe touch + leg lower',
+    descripcion: 'Acostado boca arriba, piernas extendidas verticales. Subí el torso tocando las puntas de los pies (toe touch). Bajá el torso y luego descendé las piernas controladamente hacia el piso sin apoyarlas. Volvé a subir las piernas y repetí. Core anterior dinámico completo. (DB Toe Touch + Leg Lower)'
+  },
+  {
+    nombre: 'Zancada cruzada con vuelo lateral',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteo medio, Aductores, Cuádriceps, Deltoides lateral',
+    tags: 'curtsy lunge to lateral raise, curtsy lunge lateral raise',
+    descripcion: 'Con mancuerna o kettlebell, dá un paso cruzando la pierna por detrás (curtsy lunge) bajando la rodilla. Al subir, elevá los brazos lateralmente hasta la altura de los hombros. Hacé todas las reps de un lado antes de cambiar. Trabaja glúteo medio, aductores y deltoides lateral. (Curtsy Lunge to Lateral Raise)'
+  },
+  {
+    nombre: 'Flexión con toque de hombro',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    musculos: 'Pectoral mayor, Tríceps, Deltoides anterior, Core',
+    tags: 'push-up to shoulder tap, pushup shoulder tap',
+    descripcion: 'Hacé una flexión completa. Arriba, tocá el hombro contrario con una mano manteniendo la cadera estable. Repetí la flexión y tocá el otro hombro. Cada rep = 1 flexión + 1 toque. Combina pecho/tríceps con anti-rotación de core. (Push-up to Shoulder Tap)'
+  },
+  {
+    nombre: 'Crunch oblicuo a una pierna',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Oblicuos, Recto abdominal, Flexores de cadera',
+    tags: 'single leg oblique crunch, oblique crunch single leg',
+    descripcion: 'Acostado boca arriba, una pierna extendida en el aire y la otra flexionada. Subí el torso rotando el codo hacia la rodilla contraria. Mantené la pierna extendida sin bajarla. Hacé todas las reps de un lado antes de cambiar. Trabajo de oblicuos con demanda extra de flexores de cadera. (Single Leg Oblique Crunch)'
+  },
   // ── RECOVERY (post-cirugía, sin Valsalva, cargas livianas) ─────────────────
   {
     nombre: 'Sentadilla corporal',
