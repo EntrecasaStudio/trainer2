@@ -660,7 +660,7 @@ function createCasaRoutines() {
     rutinaCasa('#C08', 'Casa Pull D — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'PIERNAS·CORE', [ej('Sentadilla búlgara', 2, '10'), ej('Sentadilla sumo', 2, '12'), ej('Flexión con toque de hombro', 2, '10')]),
       circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('Remo', 2, '10'), ej('Remo alto en TRX', 2, '12')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl', 2, '12'), ej('Bird-dog', 2, '10'), ej('Bíceps curl martillo', 2, '12')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl', 2, '12'), ej('Bird-dog', 2, '10'), ej('Bíceps curl con banda', 2, '12')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('TRX chest press', 2, '12'), ej('Extensión de tríceps con banda', 2, '15')]),
       circuito(5, 'HIIT', [ej('Sentadilla con salto', 3, '10'), ej('Burpees', 3, '8'), ej('Saltos laterales', 3, '20')]),
     ]),
@@ -1786,6 +1786,7 @@ function migrateCompoundExercises() {
     ['Casa Pull D — Lean', 0, 1, 'Empuje de cadera', 'Sentadilla sumo', 2, '12'],
     ['Casa Pull D — Lean', 0, 2, 'Plancha toque de hombro', 'Flexión con toque de hombro', 2, '10'],
     ['Casa Pull F — Lean', 3, 1, 'Tríceps alto en TRX', 'Tríceps alto en TRX a un brazo', 2, '8'],
+    ['Casa Pull D — Lean', 2, 2, 'Bíceps curl martillo', 'Bíceps curl con banda', 2, '12'],
     // ── NAT ──
     ['Casa Press B — Nat', 2, 1, 'Elevaciones de hombro adelante', 'Peso muerto sumo con elevación frontal', 2, '10'],
     ['Casa Press B — Nat', 3, 0, 'Abs complex', 'Toe touch con descenso de piernas', 2, '12'],
