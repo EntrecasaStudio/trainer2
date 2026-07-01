@@ -282,10 +282,12 @@ async function start() {
   const { store } = await import('./store.js');
   window._storeRef = { store };
 
-  window.exportRutinas = (usuario) => {
+  window.exportRutinas = (usuario, lugar) => {
     const user = usuario || store.getActiveUser();
-    const rutinas = store.getAll(store.KEYS.rutinas).filter(r => r.usuario === user);
+    let rutinas = store.getAll(store.KEYS.rutinas).filter(r => r.usuario === user);
+    if (lugar) rutinas = rutinas.filter(r => r.lugar === lugar);
     const lines = [];
+    const suffix = lugar ? ` (${lugar})` : '';
     rutinas.forEach(r => {
       const mod = r.userModified ? ' [MODIFICADA]' : '';
       lines.push(`\n## ${r.nombre} (${r.lugar})${mod}`);
@@ -296,7 +298,7 @@ async function start() {
         });
       });
     });
-    const text = `# Rutinas de ${user}\n${lines.join('\n')}`;
+    const text = `# Rutinas de ${user}${suffix}\n${lines.join('\n')}`;
     navigator.clipboard?.writeText(text).then(() => console.log('Copiado al clipboard'));
     console.log(text);
     return text;

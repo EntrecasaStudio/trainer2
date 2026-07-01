@@ -57,9 +57,18 @@ function render(container) {
       </div>
 
       <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-md);">
-        <button class="btn btn-secondary" id="btn-copy-rutinas" style="flex:1;">
-          <i class="ph ph-copy" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar rutinas
-        </button>
+        <div style="flex:1;display:flex;gap:4px;">
+          <button class="btn btn-secondary" id="btn-copy-rutinas" style="flex:1;border-top-right-radius:0;border-bottom-right-radius:0;">
+            <i class="ph ph-copy" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar rutinas
+          </button>
+          <select id="sel-lugar-rutinas" class="btn btn-secondary" style="width:auto;padding:0 var(--space-xs);border-top-left-radius:0;border-bottom-left-radius:0;appearance:auto;">
+            <option value="">Todas</option>
+            <option value="CASA" selected>Casa</option>
+            <option value="SPORT_FITNESS">Gym</option>
+            <option value="URUGUAY">UY</option>
+            <option value="RECOVERY">Recovery</option>
+          </select>
+        </div>
         <button class="btn btn-secondary" id="btn-copy-sesiones" style="flex:1;">
           <i class="ph ph-clipboard-text" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar sesiones
         </button>
@@ -80,7 +89,8 @@ function render(container) {
 
     container.querySelector('#btn-copy-rutinas')?.addEventListener('click', async (e) => {
       const btn = e.currentTarget;
-      const text = window.exportRutinas ? window.exportRutinas() : 'exportRutinas no disponible';
+      const lugar = container.querySelector('#sel-lugar-rutinas')?.value || null;
+      const text = window.exportRutinas ? window.exportRutinas(null, lugar || undefined) : 'exportRutinas no disponible';
       btn.innerHTML = '<i class="ph ph-check" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiado';
       setTimeout(() => { btn.innerHTML = '<i class="ph ph-copy" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar rutinas'; }, 1500);
     });
