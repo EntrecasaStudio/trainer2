@@ -1767,9 +1767,6 @@ function ensureCalendarOverrides() {
 }
 
 function migrateCompoundExercises() {
-  const FLAG = 'migration_compound_exercises_v1';
-  if (localStorage.getItem(FLAG)) return;
-
   const rutinas = store.getAll(store.KEYS.rutinas);
   if (!rutinas?.length) return;
 
@@ -1818,7 +1815,6 @@ function migrateCompoundExercises() {
     store.set(store.KEYS.rutinas, rutinas);
     console.log('[Migration] Compound exercises applied');
   }
-  localStorage.setItem(FLAG, '1');
 }
 
 export async function seedV2() {
