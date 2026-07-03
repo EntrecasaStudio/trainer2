@@ -520,7 +520,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Flexiones inclinadas',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Flexiones con los pies elevados en un banco. El ángulo de declive traslada el trabajo al pectoral superior y deltoides anterior. Mantené el core firme y bajá el pecho controlado entre las manos.'
+    descripcion: 'Flexiones con las manos elevadas en un banco o superficie. El ángulo inclinado traslada el trabajo al pectoral inferior y es más fácil que la flexión standard. Mantené el core firme y bajá el pecho controlado hacia el borde del banco.'
   },
   {
     nombre: 'Dips en paralelas',
