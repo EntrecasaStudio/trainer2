@@ -517,10 +517,18 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Flexión donde al subir empujás con fuerza suficiente para que las manos se despeguen del suelo. Aterrizá suave y repetí. Trabaja potencia de pectoral y tríceps. Podés aplaudir arriba para mayor dificultad.'
   },
   {
+    nombre: 'Flexiones declinadas',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    musculos: 'Pectoral mayor (superior), Deltoides anterior, Tríceps',
+    descripcion: 'Flexiones con los pies elevados en un banco. El ángulo de declive traslada el trabajo al pectoral superior y deltoides anterior, y es más difícil que la flexión standard. Mantené el core firme y bajá el pecho controlado entre las manos.',
+    tags: 'Decline push-up, Decline pushup'
+  },
+  {
     nombre: 'Flexiones inclinadas',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
-    musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Flexiones con las manos elevadas en un banco o superficie. El ángulo inclinado traslada el trabajo al pectoral inferior y es más fácil que la flexión standard. Mantené el core firme y bajá el pecho controlado hacia el borde del banco.'
+    musculos: 'Pectoral mayor (inferior), Tríceps',
+    descripcion: 'Flexiones con las manos elevadas en un banco o superficie. El ángulo inclinado traslada el trabajo al pectoral inferior y es más fácil que la flexión standard. Mantené el core firme y bajá el pecho controlado hacia el borde del banco.',
+    tags: 'Incline push-up, Incline pushup'
   },
   {
     nombre: 'Dips en paralelas',
