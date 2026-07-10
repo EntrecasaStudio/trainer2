@@ -673,6 +673,7 @@ function renderCalendar() {
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
+  const todayStr = formatDateISO(today);
 
   // Get first day of month and pad to Monday
   const firstDay = new Date(_viewYear, _viewMonth, 1);
@@ -718,6 +719,7 @@ function renderCalendar() {
           const ov = overrides[activeUsuario]?.[dateStr];
           const hasWorkout = ov && !ov.rest && rutinaIds.has(ov.rutinaId);
           const isCompleted = sesiones.some(s => s.fecha === dateStr && s.usuario === activeUsuario);
+          const isMissed = hasWorkout && !isCompleted && dateStr < todayStr;
 
           const classes = [
             'cal-day',
@@ -726,6 +728,7 @@ function renderCalendar() {
             isOtherMonth ? 'other-month' : '',
             hasWorkout ? 'has-workout' : '',
             isCompleted ? 'completed' : '',
+            isMissed ? 'missed' : '',
           ].filter(Boolean).join(' ');
 
           return `<span class="${classes}" data-date="${dateStr}">${day.getDate()}</span>`;

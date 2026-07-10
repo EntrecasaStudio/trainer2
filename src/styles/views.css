@@ -306,6 +306,7 @@
 .cal-day.today.has-workout::after { background: var(--color-bg); }
 .cal-day.completed::after { background: #4ade80; }
 .cal-day.today.completed::after { background: #4ade80; outline: 1px solid #000; outline-offset: 0.5px; }
+.cal-day.missed::after { background: var(--color-danger); }
 
 /* Next workout */
 .next-workout {
