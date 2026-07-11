@@ -1,6 +1,7 @@
 import { getCurrentUser, loginWithGoogle, logout } from '../services/firebase.js';
 import { getSyncStatus, downloadAllData, uploadAllData } from '../services/sync.js';
 import { store } from '../../store.js';
+import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES } from '../../ejercicios-catalogo.js';
 
 export function mountUsuario(container) {
   render(container);
@@ -74,6 +75,10 @@ function render(container) {
         </button>
       </div>
 
+      <button class="btn btn-secondary" id="btn-catalogo" style="width:100%;margin-top:var(--space-sm);">
+        <i class="ph ph-barbell" style="font-size:16px;margin-right:var(--space-xs);"></i> Ver catálogo de ejercicios
+      </button>
+
       <button class="btn btn-secondary" id="btn-force-sync" style="width:100%;margin-top:var(--space-sm);">
         <i class="ph ph-arrows-clockwise" style="font-size:16px;margin-right:var(--space-xs);"></i> Forzar sincronización
       </button>
@@ -101,6 +106,8 @@ function render(container) {
       btn.innerHTML = '<i class="ph ph-check" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiado';
       setTimeout(() => { btn.innerHTML = '<i class="ph ph-clipboard-text" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar sesiones'; }, 1500);
     });
+
+    container.querySelector('#btn-catalogo')?.addEventListener('click', () => openCatalogo());
 
     container.querySelector('#btn-reset-app').addEventListener('click', () => resetApp());
 
@@ -142,11 +149,16 @@ function render(container) {
         <i class="ph ph-google-logo" style="font-size:16px;margin-right:var(--space-xs);"></i> Conectar con Google
       </button>
 
+      <button class="btn btn-secondary" id="btn-catalogo" style="width:100%;margin-top:var(--space-sm);">
+        <i class="ph ph-barbell" style="font-size:16px;margin-right:var(--space-xs);"></i> Ver catálogo de ejercicios
+      </button>
+
       <button class="btn btn-secondary" id="btn-reset-app" style="width:100%;margin-top:var(--space-sm);color:var(--color-danger);">
         <i class="ph ph-trash" style="font-size:16px;margin-right:var(--space-xs);"></i> Resetear app
       </button>
     `;
 
+    container.querySelector('#btn-catalogo')?.addEventListener('click', () => openCatalogo());
     container.querySelector('#btn-reset-app').addEventListener('click', () => resetApp());
 
     container.querySelector('#btn-login').addEventListener('click', async () => {
@@ -158,6 +170,50 @@ function render(container) {
       }
     });
   }
+}
+
+function openCatalogo() {
+  const grouped = {};
+  for (const g of GRUPOS_MUSCULARES) grouped[g] = [];
+  for (const e of EJERCICIOS_CATALOGO) {
+    const g = grouped[e.grupo] ? e.grupo : 'Otros';
+    if (!grouped[g]) grouped[g] = [];
+    grouped[g].push(e);
+  }
+
+  let sections = '';
+  for (const [grupo, ejercicios] of Object.entries(grouped)) {
+    if (!ejercicios.length) continue;
+    const rows = ejercicios.map(e => `
+      <div style="padding:12px 0;border-bottom:1px solid #333;">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;">
+          <strong style="font-size:15px;">${e.nombre}</strong>
+          <span style="font-size:11px;color:#999;white-space:nowrap;margin-left:8px;">${e.tipo === 'funcional' ? 'Funcional' : 'Máquina'}${e.usaPeso ? ' · Peso' : ''}</span>
+        </div>
+        <div style="font-size:12px;color:#FFCD00;margin-top:2px;">${e.musculos || ''}</div>
+        <div style="font-size:13px;color:#ccc;margin-top:4px;line-height:1.4;">${e.descripcion || ''}</div>
+      </div>`).join('');
+    sections += `
+      <div style="margin-bottom:24px;">
+        <h2 style="font-size:18px;color:#FFCD00;border-bottom:2px solid #FFCD00;padding-bottom:6px;margin-bottom:8px;">${grupo} (${ejercicios.length})</h2>
+        ${rows}
+      </div>`;
+  }
+
+  const html = `<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Catálogo de Ejercicios</title>
+<style>*{margin:0;padding:0;box-sizing:border-box}body{background:#1A1A1A;color:#F5F5F5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;padding:16px;max-width:600px;margin:0 auto}
+h1{font-size:22px;margin-bottom:4px}
+.count{font-size:13px;color:#999;margin-bottom:20px}</style></head>
+<body>
+<h1>Catálogo de Ejercicios</h1>
+<div class="count">${EJERCICIOS_CATALOGO.length} ejercicios</div>
+${sections}
+</body></html>`;
+
+  const blob = new Blob([html], { type: 'text/html' });
+  const url = URL.createObjectURL(blob);
+  window.open(url, '_blank');
 }
 
 async function resetApp() {
