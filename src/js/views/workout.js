@@ -22,6 +22,7 @@ const NO_CHALECO_PATTERNS = [
   '90/90', 'mobility',
   'dead bug',
   'floor press',
+  'french press',
   'banda',
 ];
 const CHALECO_OVERRIDE = ['bíceps curl en trx', 'remo alto en trx'];
