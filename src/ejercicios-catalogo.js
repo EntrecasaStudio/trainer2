@@ -1099,8 +1099,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Toe touch con descenso de piernas',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Oblicuos, Flexores de cadera',
-    tags: 'DB toe touch leg lower, toe touch + leg lower',
-    descripcion: 'Acostado boca arriba, piernas extendidas verticales. Subí el torso tocando las puntas de los pies (toe touch). Bajá el torso y luego descendé las piernas controladamente hacia el piso sin apoyarlas. Volvé a subir las piernas y repetí. Core anterior dinámico completo. (DB Toe Touch + Leg Lower)'
+    tags: 'Toe touch leg lower, Toe touch + leg lower',
+    descripcion: 'Acostado boca arriba, piernas extendidas verticales. Subí el torso tocando las puntas de los pies (toe touch). Bajá el torso y luego descendé las piernas controladamente hacia el piso sin apoyarlas. Volvé a subir las piernas y repetí. Core anterior dinámico completo. (Toe Touch + Leg Lower)'
   },
   {
     nombre: 'Zancada cruzada con vuelo lateral',
