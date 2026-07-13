@@ -10,49 +10,57 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sentadilla con barra',
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Parado con la barra apoyada en los trapecios, pies al ancho de hombros. Flexioná las rodillas y bajá las caderas hasta paralelo al suelo. Mantené el torso erguido, rodillas alineadas con los pies y talones apoyados. Empujá hacia arriba para volver.'
+    tags: 'Barbell squat, Back squat',
+    descripcion: 'Parado con la barra apoyada en los trapecios, pies al ancho de hombros. Flexioná las rodillas y bajá las caderas hasta paralelo al suelo. Mantené el torso erguido, rodillas alineadas con los pies y talones apoyados. Empujá hacia arriba para volver. (Barbell Squat)'
   },
   {
     nombre: 'Peso muerto rumano',
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
-    descripcion: 'De pie con la barra al frente, manos al ancho de hombros. Inclinando el torso hacia adelante manteniendo las piernas casi rectas (ligera flexión), bajá la barra por las piernas hasta sentir estiramiento en femorales. Volvé con la cadera, no la espalda.'
+    tags: 'Romanian deadlift, RDL',
+    descripcion: 'De pie con la barra al frente, manos al ancho de hombros. Inclinando el torso hacia adelante manteniendo las piernas casi rectas (ligera flexión), bajá la barra por las piernas hasta sentir estiramiento en femorales. Volvé con la cadera, no la espalda. (Romanian Deadlift)'
   },
   {
     nombre: 'Peso muerto con barra',
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal, Cuádriceps',
-    descripcion: 'Con la barra en el piso y pies a ancho de caderas, agachate con la espalda recta, tomá la barra. Empujá el suelo con los pies y extendé las caderas hasta estar parado. La barra sube pegada a las piernas durante todo el movimiento.'
+    tags: 'Barbell deadlift, Conventional deadlift',
+    descripcion: 'Con la barra en el piso y pies a ancho de caderas, agachate con la espalda recta, tomá la barra. Empujá el suelo con los pies y extendé las caderas hasta estar parado. La barra sube pegada a las piernas durante todo el movimiento. (Barbell Deadlift)'
   },
   {
     nombre: 'Zancadas',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'De pie, dá un paso largo al frente y bajá la rodilla trasera casi al piso sin apoyarla. Empujá para volver y alterná las piernas. Se puede hacer con mancuernas, kettlebell, chaleco de peso o sin carga.'
+    tags: 'Lunges, Walking lunges',
+    descripcion: 'De pie, dá un paso largo al frente y bajá la rodilla trasera casi al piso sin apoyarla. Empujá para volver y alterná las piernas. Se puede hacer con mancuernas, kettlebell, chaleco de peso o sin carga. (Lunges)'
   },
   {
     nombre: 'Sentadilla sumo',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Aductores, Cuádriceps',
-    descripcion: 'Con pies muy separados y puntas hacia afuera, bajá las caderas lentamente hasta paralelo o más. Rodillas siguen la dirección de los pies. Ideal para activar glúteos y aductores. Se puede hacer con peso corporal, mancuerna, barra o kettlebells.'
+    tags: 'Sumo squat',
+    descripcion: 'Con pies muy separados y puntas hacia afuera, bajá las caderas lentamente hasta paralelo o más. Rodillas siguen la dirección de los pies. Ideal para activar glúteos y aductores. Se puede hacer con peso corporal, mancuerna, barra o kettlebells. (Sumo Squat)'
   },
   {
     nombre: 'Prensa de piernas',
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Sentado en la máquina de prensa con los pies al ancho de hombros en la plataforma. Bajá la plataforma flexionando las rodillas hasta 90° y empujá hacia arriba sin bloquear los codos de las piernas. Trabaja cuádriceps, glúteos y femorales con menor carga en la espalda baja.'
+    tags: 'Leg press',
+    descripcion: 'Sentado en la máquina de prensa con los pies al ancho de hombros en la plataforma. Bajá la plataforma flexionando las rodillas hasta 90° y empujá hacia arriba sin bloquear los codos de las piernas. Trabaja cuádriceps, glúteos y femorales con menor carga en la espalda baja. (Leg Press)'
   },
   {
     nombre: 'Extensión de cuádriceps',
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     musculos: 'Cuádriceps',
-    descripcion: 'Sentado en la máquina con el rodillo apoyado en los tobillos y las rodillas alineadas con el eje de rotación. Extendé las piernas hasta arriba y bajá controlado. Aislamiento puro de cuádriceps. Evitá hiperextender la rodilla al final del movimiento.'
+    tags: 'Leg extension',
+    descripcion: 'Sentado en la máquina con el rodillo apoyado en los tobillos y las rodillas alineadas con el eje de rotación. Extendé las piernas hasta arriba y bajá controlado. Aislamiento puro de cuádriceps. Evitá hiperextender la rodilla al final del movimiento. (Leg Extension)'
   },
   {
     nombre: 'Curl femoral',
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos',
-    descripcion: 'Acostado boca abajo en la máquina con el rodillo detrás de los tobillos. Flexioná las rodillas llevando los talones hacia los glúteos y bajá controlado. Aislamiento de isquiotibiales. Mantené las caderas pegadas al banco durante todo el recorrido.'
+    tags: 'Leg curl, Hamstring curl',
+    descripcion: 'Acostado boca abajo en la máquina con el rodillo detrás de los tobillos. Flexioná las rodillas llevando los talones hacia los glúteos y bajá controlado. Aislamiento de isquiotibiales. Mantené las caderas pegadas al banco durante todo el recorrido. (Leg Curl)'
   },
   {
     nombre: 'Sentadilla búlgara',
@@ -65,14 +73,16 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Gemelos en máquina',
     grupo: 'Piernas', tipo: 'maquina', usaPeso: true,
     musculos: 'Gemelos, Pantorrillas',
-    descripcion: 'De pie en la máquina de gemelos con los hombros bajo las almohadillas y las puntas de los pies en el borde. Subí elevando los talones lo más alto posible y bajá lentamente estirando bien. Trabaja gastrocnemio y sóleo. Mantené las rodillas levemente flexionadas.'
+    tags: 'Calf raise machine, Seated calf raise',
+    descripcion: 'De pie en la máquina de gemelos con los hombros bajo las almohadillas y las puntas de los pies en el borde. Subí elevando los talones lo más alto posible y bajá lentamente estirando bien. Trabaja gastrocnemio y sóleo. Mantené las rodillas levemente flexionadas. (Calf Raise Machine)'
   },
   // ── CORE ────────────────────────────────────────────────────────────────────
   {
     nombre: 'Plancha',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
-    descripcion: 'Apoyado en manos y pies (o antebrazos y pies), mantenés el cuerpo como una tabla recta. El core debe estar activado, sin dejar que la cadera suba o baje. Respirá continuamente. Es el ejercicio base de estabilidad de tronco.'
+    tags: 'Plank, Front plank',
+    descripcion: 'Apoyado en manos y pies (o antebrazos y pies), mantenés el cuerpo como una tabla recta. El core debe estar activado, sin dejar que la cadera suba o baje. Respirá continuamente. Es el ejercicio base de estabilidad de tronco. (Plank)'
   },
   {
     nombre: 'Plancha en codos',
@@ -85,13 +95,15 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plancha oscilante en codos',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Deltoides anterior',
-    descripcion: 'Plancha apoyada en antebrazos. Sin mover los codos, desplazá el cuerpo hacia adelante (los hombros pasan la línea de los codos) y luego hacia atrás, como una sierra. 30 oscilaciones en total: 10 con las dos piernas apoyadas, 10 con la pierna derecha elevada y 10 con la pierna izquierda elevada. Mantené cadera y espalda alineadas, core y glúteos activos en todo el recorrido.'
+    tags: 'Body saw, Plank body saw',
+    descripcion: 'Plancha apoyada en antebrazos. Sin mover los codos, desplazá el cuerpo hacia adelante (los hombros pasan la línea de los codos) y luego hacia atrás, como una sierra. 30 oscilaciones en total: 10 con las dos piernas apoyadas, 10 con la pierna derecha elevada y 10 con la pierna izquierda elevada. Mantené cadera y espalda alineadas, core y glúteos activos en todo el recorrido. (Body Saw)'
   },
   {
     nombre: 'Dead bug',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
-    descripcion: 'Acostado boca arriba, brazos extendidos al techo y rodillas a 90°. Simultáneamente bajá el brazo derecho al suelo y extendé la pierna izquierda sin tocar el piso. Volvé y alternás. Lumbar pegada al suelo en todo momento.'
+    tags: 'Dead bug',
+    descripcion: 'Acostado boca arriba, brazos extendidos al techo y rodillas a 90°. Simultáneamente bajá el brazo derecho al suelo y extendé la pierna izquierda sin tocar el piso. Volvé y alternás. Lumbar pegada al suelo en todo momento. (Dead Bug)'
   },
   {
     nombre: 'Dragonfly',
@@ -104,19 +116,22 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Pallof press',
     grupo: 'Core', tipo: 'maquina', usaPeso: true,
     musculos: 'Oblicuos, Transverso abdominal, Recto abdominal',
-    descripcion: 'De pie de lado a la polea (o banda), sujetá el cable a la altura del pecho con ambas manos. Extendé los brazos al frente resistiendo la rotación, luego volvé. El objetivo es evitar que el torso gire. Trabajás la anti-rotación del core.'
+    tags: 'Pallof press, Anti-rotation press',
+    descripcion: 'De pie de lado a la polea (o banda), sujetá el cable a la altura del pecho con ambas manos. Extendé los brazos al frente resistiendo la rotación, luego volvé. El objetivo es evitar que el torso gire. Trabajás la anti-rotación del core. (Pallof Press)'
   },
   {
     nombre: 'Espinales con disco',
     grupo: 'Core', tipo: 'maquina', usaPeso: true,
     musculos: 'Erector espinal, Glúteos',
-    descripcion: 'Acostado boca abajo con un disco sostenido contra el pecho o detrás de la cabeza. Elevá el torso contrayendo la espalda baja y bajá de forma controlada. Evitá hiperextender la columna al subir. Trabaja erectores espinales.'
+    tags: 'Weighted back extension, Superman with plate',
+    descripcion: 'Acostado boca abajo con un disco sostenido contra el pecho o detrás de la cabeza. Elevá el torso contrayendo la espalda baja y bajá de forma controlada. Evitá hiperextender la columna al subir. Trabaja erectores espinales. (Weighted Back Extension)'
   },
   {
     nombre: 'Complex',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Oblicuos, Transverso abdominal',
-    descripcion: 'Secuencia encadenada de movimientos sin pausa: generalmente incluye plancha, mountain climbers y burpee. La combinación varía según la programación. Trabaja coordinación, resistencia y estabilidad de todo el tronco.'
+    tags: 'Ab complex',
+    descripcion: 'Secuencia encadenada de movimientos sin pausa: generalmente incluye plancha, mountain climbers y burpee. La combinación varía según la programación. Trabaja coordinación, resistencia y estabilidad de todo el tronco. (Ab Complex)'
   },
   {
     nombre: 'Plancha lateral',
@@ -129,166 +144,193 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Crunch en polea',
     grupo: 'Core', tipo: 'maquina', usaPeso: true,
     musculos: 'Recto abdominal, Oblicuos',
-    descripcion: 'Arrodillado frente a la polea alta con la cuerda detrás de la cabeza, flexioná el torso hacia abajo contrayendo los abdominales. Volvé controlado sin soltar la tensión. El peso extra permite progresión de fuerza en los abdominales.'
+    tags: 'Cable crunch, Kneeling cable crunch',
+    descripcion: 'Arrodillado frente a la polea alta con la cuerda detrás de la cabeza, flexioná el torso hacia abajo contrayendo los abdominales. Volvé controlado sin soltar la tensión. El peso extra permite progresión de fuerza en los abdominales. (Cable Crunch)'
   },
   // ── PECHO ───────────────────────────────────────────────────────────────────
   {
     nombre: 'Press de pecho',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Sentado en la máquina de press de pecho, agarra las manijas al ancho de hombros o más. Empujá hacia adelante extendiendo los codos completamente y volvé lento. Pies apoyados, espalda pegada al respaldo. Trabaja pectoral mayor y anterior del deltoides.'
+    tags: 'Chest press machine, Seated chest press',
+    descripcion: 'Sentado en la máquina de press de pecho, agarra las manijas al ancho de hombros o más. Empujá hacia adelante extendiendo los codos completamente y volvé lento. Pies apoyados, espalda pegada al respaldo. Trabaja pectoral mayor y anterior del deltoides. (Chest Press Machine)'
   },
   {
     nombre: 'Press Hammer',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Sentado en la máquina Hammer Strength con agarre neutro o prono, empujá las palancas hacia adelante extendiendo los codos. Cada brazo trabaja de forma independiente, lo que permite corregir asimetrías. Movimiento guiado que permite cargar más peso con seguridad. Trabaja pectoral mayor, deltoides anterior y tríceps.'
+    tags: 'Hammer strength chest press',
+    descripcion: 'Sentado en la máquina Hammer Strength con agarre neutro o prono, empujá las palancas hacia adelante extendiendo los codos. Cada brazo trabaja de forma independiente, lo que permite corregir asimetrías. Movimiento guiado que permite cargar más peso con seguridad. Trabaja pectoral mayor, deltoides anterior y tríceps. (Hammer Strength Chest Press)'
   },
   {
     nombre: 'Press de banca con barra',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Acostado en banco plano, desenganchá la barra con agarre al ancho de hombros o más. Bajá la barra controlada hasta el pecho medio y empujá hacia arriba. Requiere estabilización de hombros y core. Trabaja pectoral mayor, deltoides anterior y tríceps con máxima demanda de estabilidad.'
+    tags: 'Barbell bench press, Bench press',
+    descripcion: 'Acostado en banco plano, desenganchá la barra con agarre al ancho de hombros o más. Bajá la barra controlada hasta el pecho medio y empujá hacia arriba. Requiere estabilización de hombros y core. Trabaja pectoral mayor, deltoides anterior y tríceps con máxima demanda de estabilidad. (Barbell Bench Press)'
   },
   {
     nombre: 'Press inclinado en máquina',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Pectoral menor, Deltoides anterior',
-    descripcion: 'Sentado en la máquina de press inclinado, empujá las palancas hacia arriba y adelante siguiendo la trayectoria guiada. El ángulo inclinado focaliza la porción clavicular del pectoral. Movimiento guiado que permite concentrarse en la contracción sin preocuparse por la estabilización.'
+    tags: 'Incline chest press machine',
+    descripcion: 'Sentado en la máquina de press inclinado, empujá las palancas hacia arriba y adelante siguiendo la trayectoria guiada. El ángulo inclinado focaliza la porción clavicular del pectoral. Movimiento guiado que permite concentrarse en la contracción sin preocuparse por la estabilización. (Incline Chest Press Machine)'
   },
   {
     nombre: 'Fondos de pecho suspendido en maquina',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Tríceps, Deltoides anterior',
-    descripcion: 'En la máquina de fondos asistida, sujetá las asas y bajá el cuerpo flexionando los codos hacia atrás y afuera (ligera inclinación del torso hacia adelante). Subí extendiendo. Cuanto más te inclinás, más trabajás el pecho versus los tríceps.'
+    tags: 'Assisted chest dips machine',
+    descripcion: 'En la máquina de fondos asistida, sujetá las asas y bajá el cuerpo flexionando los codos hacia atrás y afuera (ligera inclinación del torso hacia adelante). Subí extendiendo. Cuanto más te inclinás, más trabajás el pecho versus los tríceps. (Assisted Chest Dips Machine)'
   },
   {
     nombre: 'Press inclinado con mancuernas',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Pectoral menor, Deltoides anterior',
-    descripcion: 'Recostado en banco a 30-45°, una mancuerna en cada mano al ancho de hombros. Bajá controlado hasta pecho y empujá hacia arriba. El ángulo inclinado focaliza la porción clavicular del pectoral. Mantené los codos a ~45° del torso.'
+    tags: 'Incline dumbbell press',
+    descripcion: 'Recostado en banco a 30-45°, una mancuerna en cada mano al ancho de hombros. Bajá controlado hasta pecho y empujá hacia arriba. El ángulo inclinado focaliza la porción clavicular del pectoral. Mantené los codos a ~45° del torso. (Incline Dumbbell Press)'
   },
   {
     nombre: 'Pecho con polea doble',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Deltoides anterior',
-    descripcion: 'De pie entre dos poleas altas, tomá un cable en cada mano. Con los brazos ligeramente flexionados, unilos frente al pecho en un arco amplio (como si abrazaras). Volvé controlado resistiendo la apertura. Trabaja el pectoral en contracción completa.'
+    tags: 'Cable chest fly, Double cable fly',
+    descripcion: 'De pie entre dos poleas altas, tomá un cable en cada mano. Con los brazos ligeramente flexionados, unilos frente al pecho en un arco amplio (como si abrazaras). Volvé controlado resistiendo la apertura. Trabaja el pectoral en contracción completa. (Cable Chest Fly)'
   },
   {
     nombre: 'TRX chest press',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Con las correas del TRX, cuerpo inclinado hacia adelante. Bajá flexionando los codos como una flexión, empujá para volver. Más inclinación = más difícil. Trabaja pectoral y estabilidad.'
+    tags: 'TRX chest press, TRX push-up',
+    descripcion: 'Con las correas del TRX, cuerpo inclinado hacia adelante. Bajá flexionando los codos como una flexión, empujá para volver. Más inclinación = más difícil. Trabaja pectoral y estabilidad. (TRX Chest Press)'
   },
   {
     nombre: 'TRX chest press narrow',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Tríceps, Pectoral mayor, Deltoides anterior',
-    descripcion: 'Igual que TRX chest press pero con manos juntas (agarre cerrado). Al bajar los codos van pegados al cuerpo. Enfatiza tríceps y pectoral interno. Más inclinación = más difícil.'
+    tags: 'TRX narrow chest press, TRX close grip push-up',
+    descripcion: 'Igual que TRX chest press pero con manos juntas (agarre cerrado). Al bajar los codos van pegados al cuerpo. Enfatiza tríceps y pectoral interno. Más inclinación = más difícil. (TRX Narrow Chest Press)'
   },
   {
     nombre: 'TRX archer press',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Desde posición de TRX chest press, bajá llevando el peso hacia un brazo mientras el otro se extiende al costado como un arquero. Empujá con el brazo cargado para volver. Alterná lados. Trabaja pectoral unilateral con mayor intensidad.'
+    tags: 'TRX archer push-up, TRX archer press',
+    descripcion: 'Desde posición de TRX chest press, bajá llevando el peso hacia un brazo mientras el otro se extiende al costado como un arquero. Empujá con el brazo cargado para volver. Alterná lados. Trabaja pectoral unilateral con mayor intensidad. (TRX Archer Push-Up)'
   },
   {
     nombre: 'Banda press de pecho',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Con una banda de resistencia pasada por la espalda y sujetada en cada mano, empujá hacia adelante extendiendo los brazos. Resistencia progresiva: aumenta al final del movimiento. Ideal como complemento liviano de alto volumen.'
+    tags: 'Banded chest press, Resistance band press',
+    descripcion: 'Con una banda de resistencia pasada por la espalda y sujetada en cada mano, empujá hacia adelante extendiendo los brazos. Resistencia progresiva: aumenta al final del movimiento. Ideal como complemento liviano de alto volumen. (Banded Chest Press)'
   },
   {
     nombre: 'Flexiones diamante',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Tríceps, Pectoral mayor, Deltoides anterior',
-    descripcion: 'Flexión estándar pero con las manos juntas formando un triángulo (diamante) debajo del pecho. Esta posición cierra los codos junto al cuerpo, transfiriendo el trabajo del pecho a los tríceps. Ideal para activar la cabeza larga del tríceps.'
+    tags: 'Diamond push-up, Close grip push-up',
+    descripcion: 'Flexión estándar pero con las manos juntas formando un triángulo (diamante) debajo del pecho. Esta posición cierra los codos junto al cuerpo, transfiriendo el trabajo del pecho a los tríceps. Ideal para activar la cabeza larga del tríceps. (Diamond Push-Up)'
   },
   {
     nombre: 'Aperturas con mancuernas',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Deltoides anterior',
-    descripcion: 'Acostado en banco plano con una mancuerna en cada mano, brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados hasta sentir estiramiento en el pecho. Volvé cerrando el arco. Trabaja la porción esternal del pectoral en rango completo.'
+    tags: 'Dumbbell fly, Chest fly',
+    descripcion: 'Acostado en banco plano con una mancuerna en cada mano, brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados hasta sentir estiramiento en el pecho. Volvé cerrando el arco. Trabaja la porción esternal del pectoral en rango completo. (Dumbbell Fly)'
   },
   {
     nombre: 'Pullover con mancuerna',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Dorsal ancho, Tríceps',
-    descripcion: 'Acostado en banco, sostén una mancuerna con ambas manos sobre el pecho. Bajá la mancuerna por detrás de la cabeza con los brazos casi extendidos hasta sentir el estiramiento. Volvé contrayendo pecho y dorsal. Trabaja pectoral, serrato y dorsal ancho.'
+    tags: 'Dumbbell pullover',
+    descripcion: 'Acostado en banco, sostén una mancuerna con ambas manos sobre el pecho. Bajá la mancuerna por detrás de la cabeza con los brazos casi extendidos hasta sentir el estiramiento. Volvé contrayendo pecho y dorsal. Trabaja pectoral, serrato y dorsal ancho. (Dumbbell Pullover)'
   },
   // ── ESPALDA ─────────────────────────────────────────────────────────────────
   {
     nombre: 'Dominadas abiertas',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    descripcion: 'Colgado de la barra con agarre prono y manos más separadas que los hombros. Empujá los codos hacia abajo y atrás hasta que el mentón supere la barra. Bajá controlado. Activa principalmente el dorsal ancho y da amplitud a la espalda.'
+    tags: 'Wide grip pull-up',
+    descripcion: 'Colgado de la barra con agarre prono y manos más separadas que los hombros. Empujá los codos hacia abajo y atrás hasta que el mentón supere la barra. Bajá controlado. Activa principalmente el dorsal ancho y da amplitud a la espalda. (Wide Grip Pull-Up)'
   },
   {
     nombre: 'Dominada en maquina ascensor',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    descripcion: 'En la máquina asistida de dominadas, arrodillate sobre la plataforma y agarrá la barra. El contrapeso te ayuda a subir según el peso seleccionado. Misma técnica que la dominada libre: empuja codos abajo, pecho al frente. Ideal para progresar hacia dominadas sin asistencia.'
+    tags: 'Assisted pull-up machine',
+    descripcion: 'En la máquina asistida de dominadas, arrodillate sobre la plataforma y agarrá la barra. El contrapeso te ayuda a subir según el peso seleccionado. Misma técnica que la dominada libre: empuja codos abajo, pecho al frente. Ideal para progresar hacia dominadas sin asistencia. (Assisted Pull-Up Machine)'
   },
   {
     nombre: 'Remo en maquina',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Romboides, Trapecio, Bíceps',
-    descripcion: 'Sentado frente a la máquina de remo, pecho apoyado en el pad (si lo tiene). Tirá las manijas hacia el abdomen bajo llevando los codos hacia atrás. Al final de la contracción, apretá los omóplatos. Trabaja romboides, trapecio medio e inferior, y bíceps.'
+    tags: 'Seated row machine, Machine row',
+    descripcion: 'Sentado frente a la máquina de remo, pecho apoyado en el pad (si lo tiene). Tirá las manijas hacia el abdomen bajo llevando los codos hacia atrás. Al final de la contracción, apretá los omóplatos. Trabaja romboides, trapecio medio e inferior, y bíceps. (Seated Row Machine)'
   },
   {
     nombre: 'Remo en maquina separado',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Trapecio, Deltoides posterior, Romboides',
-    descripcion: 'Similar al remo en máquina pero con agarre más amplio y codos hacia afuera en lugar de pegados al cuerpo. Focaliza más el trapecio medio y deltoides posterior. Las palmas pueden mirar hacia abajo (prono) para mayor activación de la parte media de la espalda.'
+    tags: 'Wide grip machine row',
+    descripcion: 'Similar al remo en máquina pero con agarre más amplio y codos hacia afuera en lugar de pegados al cuerpo. Focaliza más el trapecio medio y deltoides posterior. Las palmas pueden mirar hacia abajo (prono) para mayor activación de la parte media de la espalda. (Wide Grip Machine Row)'
   },
   {
     nombre: 'Remo alto en polea',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Deltoides posterior, Trapecio, Infraespinoso',
-    descripcion: 'De pie frente a la polea alta, tirá el cable hacia la cara/cuello con codos hacia afuera (a la altura de los hombros). Activa el manguito rotador, deltoides posterior y trapecio. También llamado face pull o high row. Crucial para salud del hombro.'
+    tags: 'Cable high row, Face pull cable',
+    descripcion: 'De pie frente a la polea alta, tirá el cable hacia la cara/cuello con codos hacia afuera (a la altura de los hombros). Activa el manguito rotador, deltoides posterior y trapecio. También llamado face pull o high row. Crucial para salud del hombro. (Cable High Row)'
   },
   {
     nombre: 'Jalón al pecho',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    descripcion: 'Sentado en la máquina de jalón, agarrá la barra con agarre prono más ancho que los hombros. Tirá la barra hacia el pecho superior inclinando ligeramente el torso hacia atrás. Sentí que los codos van hacia abajo y atrás. Trabaja el dorsal ancho en su porción superior.'
+    tags: 'Lat pulldown',
+    descripcion: 'Sentado en la máquina de jalón, agarrá la barra con agarre prono más ancho que los hombros. Tirá la barra hacia el pecho superior inclinando ligeramente el torso hacia atrás. Sentí que los codos van hacia abajo y atrás. Trabaja el dorsal ancho en su porción superior. (Lat Pulldown)'
   },
   {
     nombre: 'Remo con mancuerna',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    descripcion: 'Con una rodilla y mano apoyadas en el banco, el otro brazo sostiene la mancuerna. Tirá la mancuerna hacia la cadera llevando el codo atrás y arriba. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps de forma unilateral, permitiendo corregir asimetrías.'
+    tags: 'Dumbbell row, Single arm row',
+    descripcion: 'Con una rodilla y mano apoyadas en el banco, el otro brazo sostiene la mancuerna. Tirá la mancuerna hacia la cadera llevando el codo atrás y arriba. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps de forma unilateral, permitiendo corregir asimetrías. (Dumbbell Row)'
   },
   {
     nombre: 'Pulldown agarre cerrado',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Dorsal ancho, Bíceps, Braquial',
-    descripcion: 'Sentado en la máquina de jalón con agarre en V cerrado (palmas enfrentadas). Tirá hacia el pecho manteniendo los codos pegados al cuerpo. Trabaja la porción inferior del dorsal ancho con mayor participación del bíceps y braquial.'
+    tags: 'Close grip lat pulldown',
+    descripcion: 'Sentado en la máquina de jalón con agarre en V cerrado (palmas enfrentadas). Tirá hacia el pecho manteniendo los codos pegados al cuerpo. Trabaja la porción inferior del dorsal ancho con mayor participación del bíceps y braquial. (Close Grip Lat Pulldown)'
   },
   // ── HOMBROS ─────────────────────────────────────────────────────────────────
   {
     nombre: 'Vuelos laterales',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides lateral, Trapecio',
-    descripcion: 'De pie con mancuernas, kettlebells o bandas a los costados, levantá los brazos lateralmente hasta la altura de los hombros con leve flexión en los codos. Bajá lento. Trabaja exclusivamente el deltoides lateral.'
+    tags: 'Lateral raise, Side raise',
+    descripcion: 'De pie con mancuernas, kettlebells o bandas a los costados, levantá los brazos lateralmente hasta la altura de los hombros con leve flexión en los codos. Bajá lento. Trabaja exclusivamente el deltoides lateral. (Lateral Raise)'
   },
   {
     nombre: 'Empuje de hombros con barra en banco',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Deltoides anterior, Tríceps, Trapecio',
-    descripcion: 'Sentado en banco con respaldo, barra apoyada en el pecho. Empujá hacia arriba hasta extensión y bajá controlado. Similar al press militar pero la barra permite mayor carga. Trabaja deltoides anterior con participación de tríceps y trapecios.'
+    tags: 'Seated barbell shoulder press',
+    descripcion: 'Sentado en banco con respaldo, barra apoyada en el pecho. Empujá hacia arriba hasta extensión y bajá controlado. Similar al press militar pero la barra permite mayor carga. Trabaja deltoides anterior con participación de tríceps y trapecios. (Seated Barbell Shoulder Press)'
   },
   {
     nombre: 'Face pulls',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
-    descripcion: 'De pie frente a polea alta con cuerda, tirá hacia la cara abriendo los codos hacia afuera y hacia arriba. Al final las manos quedan a los lados de la cabeza, como si mostraras los bíceps. Trabaja deltoides posterior, manguito rotador y retractores de escápula.'
+    tags: 'Face pull, Cable face pull',
+    descripcion: 'De pie frente a polea alta con cuerda, tirá hacia la cara abriendo los codos hacia afuera y hacia arriba. Al final las manos quedan a los lados de la cabeza, como si mostraras los bíceps. Trabaja deltoides posterior, manguito rotador y retractores de escápula. (Face Pull)'
   },
   {
     nombre: 'Elevaciones de hombro adelante',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Deltoides anterior, Pectoral mayor',
-    descripcion: 'De pie con mancuernas frente al cuerpo, levantá los brazos hacia adelante hasta la altura de los hombros (o polea baja). Bajá controlado. Trabaja el deltoides anterior. Puede hacerse alternado o simultáneo, con palmas hacia abajo o hacia dentro.'
+    tags: 'Front raise, Front delt raise',
+    descripcion: 'De pie con mancuernas frente al cuerpo, levantá los brazos hacia adelante hasta la altura de los hombros (o polea baja). Bajá controlado. Trabaja el deltoides anterior. Puede hacerse alternado o simultáneo, con palmas hacia abajo o hacia dentro. (Front Raise)'
   },
   {
     nombre: 'Elevaciones de hombro hacia arriba',
@@ -309,37 +351,43 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Bíceps curl con barra',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
-    descripcion: 'De pie con la barra en agarre supino, codos pegados al cuerpo. Flexioná los codos subiendo la barra hacia el pecho sin mover los hombros. Bajá lento controlando la extensión. Trabaja cabeza larga y corta del bíceps braquial.'
+    tags: 'Barbell bicep curl',
+    descripcion: 'De pie con la barra en agarre supino, codos pegados al cuerpo. Flexioná los codos subiendo la barra hacia el pecho sin mover los hombros. Bajá lento controlando la extensión. Trabaja cabeza larga y corta del bíceps braquial. (Barbell Bicep Curl)'
   },
   {
     nombre: 'Bíceps curl con mancuerna',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
-    descripcion: 'De pie o sentado, una mancuerna en cada mano en agarre supino. Flexioná alternando o simultáneamente manteniendo los codos fijos al costado. Permite rotar la muñeca al subir para mayor contracción del bíceps. Bajá controlado.'
+    tags: 'Dumbbell bicep curl',
+    descripcion: 'De pie o sentado, una mancuerna en cada mano en agarre supino. Flexioná alternando o simultáneamente manteniendo los codos fijos al costado. Permite rotar la muñeca al subir para mayor contracción del bíceps. Bajá controlado. (Dumbbell Bicep Curl)'
   },
   {
     nombre: 'Bíceps curl martillo',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Braquial, Bíceps, Antebrazo',
-    descripcion: 'Agarre neutro (palmas enfrentadas). Con mancuerna o kettlebell, flexioná el codo sin rotar la muñeca. Trabaja braquial, braquiorradial y la parte externa del bíceps.'
+    tags: 'Hammer curl',
+    descripcion: 'Agarre neutro (palmas enfrentadas). Con mancuerna o kettlebell, flexioná el codo sin rotar la muñeca. Trabaja braquial, braquiorradial y la parte externa del bíceps. (Hammer Curl)'
   },
   {
     nombre: 'Biceps en banco',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial',
-    descripcion: 'Sentado en banco inclinado (~45°), brazos colgando atrás del cuerpo con mancuernas. Flexioná los codos subiendo las mancuernas. La posición inclinada estira la cabeza larga del bíceps al inicio, aumentando el rango de activación. Excelente para peak de bíceps.'
+    tags: 'Preacher curl, Incline bench curl',
+    descripcion: 'Sentado en banco inclinado (~45°), brazos colgando atrás del cuerpo con mancuernas. Flexioná los codos subiendo las mancuernas. La posición inclinada estira la cabeza larga del bíceps al inicio, aumentando el rango de activación. Excelente para peak de bíceps. (Preacher Curl)'
   },
   {
     nombre: 'Biceps alto en polea',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial',
-    descripcion: 'De pie frente a una polea alta (o a los costados con poleas), con el brazo elevado a la altura del hombro, flexioná el codo llevando la mano hacia la oreja. Trabaja el bíceps en posición acortada (ángulo de 90° del hombro). Alta activación de la cabeza corta.'
+    tags: 'High cable curl, Overhead cable curl',
+    descripcion: 'De pie frente a una polea alta (o a los costados con poleas), con el brazo elevado a la altura del hombro, flexioná el codo llevando la mano hacia la oreja. Trabaja el bíceps en posición acortada (ángulo de 90° del hombro). Alta activación de la cabeza corta. (High Cable Curl)'
   },
   {
     nombre: 'Triceps con polea',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Tríceps, Antebrazo',
-    descripcion: 'De pie frente a la polea alta con barra recta o cuerda, codos pegados al cuerpo. Extendé los codos empujando hacia abajo hasta extensión completa y volvé lento. Codos fijos al cuerpo en todo momento. Trabaja los tres vientres del tríceps con especial énfasis en el lateral.'
+    tags: 'Tricep pushdown, Cable tricep pushdown',
+    descripcion: 'De pie frente a la polea alta con barra recta o cuerda, codos pegados al cuerpo. Extendé los codos empujando hacia abajo hasta extensión completa y volvé lento. Codos fijos al cuerpo en todo momento. Trabaja los tres vientres del tríceps con especial énfasis en el lateral. (Tricep Pushdown)'
   },
   {
     nombre: 'Extensión de triceps sobre cabeza',
@@ -352,31 +400,36 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Banda triceps pushdown',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     musculos: 'Tríceps, Antebrazo',
-    descripcion: 'Con una banda de resistencia anclada arriba, empujá hacia abajo extendiendo los codos completamente. Similar al triceps en polea pero con banda. Resistencia progresiva. Útil como finalizador de alto volumen para mantener tensión en todo el rango.'
+    tags: 'Banded tricep pushdown, Band pushdown',
+    descripcion: 'Con una banda de resistencia anclada arriba, empujá hacia abajo extendiendo los codos completamente. Similar al triceps en polea pero con banda. Resistencia progresiva. Útil como finalizador de alto volumen para mantener tensión en todo el rango. (Banded Tricep Pushdown)'
   },
   {
     nombre: 'French press',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Tríceps, Antebrazo',
-    descripcion: 'Acostado en banco plano con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento.'
+    tags: 'Skull crusher, Lying tricep extension',
+    descripcion: 'Acostado en banco plano con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento. (Skull Crusher)'
   },
   {
     nombre: 'Bíceps curl con banda',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     musculos: 'Bíceps, Braquial, Antebrazo',
-    descripcion: 'Parado sobre la banda con agarre supino en cada extremo, flexioná los codos subiendo los puños hacia los hombros. La resistencia aumenta al final del movimiento. Permite trabajar sin mancuernas y en cualquier entorno. Alto volumen con bajo impacto articular.'
+    tags: 'Banded bicep curl, Resistance band curl',
+    descripcion: 'Parado sobre la banda con agarre supino en cada extremo, flexioná los codos subiendo los puños hacia los hombros. La resistencia aumenta al final del movimiento. Permite trabajar sin mancuernas y en cualquier entorno. Alto volumen con bajo impacto articular. (Banded Bicep Curl)'
   },
   {
     nombre: 'Bíceps curl concentrado',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial',
-    descripcion: 'Sentado con el codo apoyado en la cara interna del muslo, una mancuerna en la mano. Flexioná el brazo subiendo la mancuerna hacia el hombro y bajá controlado. El apoyo en el muslo elimina impulso y aísla completamente el bíceps. Ideal para contracción pico.'
+    tags: 'Concentration curl',
+    descripcion: 'Sentado con el codo apoyado en la cara interna del muslo, una mancuerna en la mano. Flexioná el brazo subiendo la mancuerna hacia el hombro y bajá controlado. El apoyo en el muslo elimina impulso y aísla completamente el bíceps. Ideal para contracción pico. (Concentration Curl)'
   },
   {
     nombre: 'Fondos en banco',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     musculos: 'Tríceps, Deltoides anterior, Pectoral mayor',
-    descripcion: 'Con las manos apoyadas en un banco detrás y los pies en el suelo, bajá el cuerpo flexionando los codos hasta 90° y subí empujando. Codos apuntan hacia atrás, no hacia afuera. Trabaja tríceps, deltoides anterior y pectorales. Se puede agregar peso en las piernas.'
+    tags: 'Bench dips, Tricep dips on bench',
+    descripcion: 'Con las manos apoyadas en un banco detrás y los pies en el suelo, bajá el cuerpo flexionando los codos hasta 90° y subí empujando. Codos apuntan hacia atrás, no hacia afuera. Trabaja tríceps, deltoides anterior y pectorales. Se puede agregar peso en las piernas. (Bench Dips)'
   },
   // ── GLÚTEOS ─────────────────────────────────────────────────────────────────
   {
@@ -397,92 +450,107 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Gluteos patada en polea',
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales',
-    descripcion: 'Parada frente a la polea baja con el tobillo enganchado al cable, empujá la pierna hacia atrás y arriba extendiendo la cadera. Mantené el torso levemente inclinado y la pelvis estable. Bajá controlado. Trabaja glúteo mayor en aislamiento.'
+    tags: 'Cable kickback, Cable glute kickback',
+    descripcion: 'Parada frente a la polea baja con el tobillo enganchado al cable, empujá la pierna hacia atrás y arriba extendiendo la cadera. Mantené el torso levemente inclinado y la pelvis estable. Bajá controlado. Trabaja glúteo mayor en aislamiento. (Cable Kickback)'
   },
   {
     nombre: 'Aductores en maquina',
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     musculos: 'Aductores',
-    descripcion: 'Sentada en la máquina de aductores con los pads en la cara interna de los muslos, cerrá las piernas contra la resistencia. Bajá lento resistiendo la apertura. Trabaja aductores (grácil, pectíneo, aductor largo/corto). Complementa el trabajo de glúteos y caderas.'
+    tags: 'Adductor machine, Hip adduction',
+    descripcion: 'Sentada en la máquina de aductores con los pads en la cara interna de los muslos, cerrá las piernas contra la resistencia. Bajá lento resistiendo la apertura. Trabaja aductores (grácil, pectíneo, aductor largo/corto). Complementa el trabajo de glúteos y caderas. (Adductor Machine)'
   },
   {
     nombre: 'Abductores en maquina',
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     musculos: 'Abductores, Glúteos',
-    descripcion: 'Sentada en la máquina con los pads en la cara externa de los muslos, abrí las piernas contra la resistencia. Volvé controlado. Trabaja glúteo medio y menor, claves para la estabilidad de cadera y la forma del glúteo lateral.'
+    tags: 'Abductor machine, Hip abduction',
+    descripcion: 'Sentada en la máquina con los pads en la cara externa de los muslos, abrí las piernas contra la resistencia. Volvé controlado. Trabaja glúteo medio y menor, claves para la estabilidad de cadera y la forma del glúteo lateral. (Abductor Machine)'
   },
   {
     nombre: 'Peso muerto sumo',
     grupo: 'Glúteos', tipo: 'maquina', usaPeso: true,
     musculos: 'Glúteos, Aductores, Isquiotibiales',
-    descripcion: 'Con pies muy separados y puntas afuera, agarrá la barra entre las piernas con brazos rectos. Levantá extendiendo las caderas, mantené la espalda recta. Activa glúteos y aductores más que el peso muerto convencional. Excelente para fortalecer la cadena posterior.'
+    tags: 'Sumo deadlift',
+    descripcion: 'Con pies muy separados y puntas afuera, agarrá la barra entre las piernas con brazos rectos. Levantá extendiendo las caderas, mantené la espalda recta. Activa glúteos y aductores más que el peso muerto convencional. Excelente para fortalecer la cadena posterior. (Sumo Deadlift)'
   },
   // ── HIIT / FUNCIONAL ────────────────────────────────────────────────────────
   {
     nombre: 'Plancha estrella con peso',
     grupo: 'Core', tipo: 'funcional', usaPeso: true,
     musculos: 'Oblicuos, Glúteos, Deltoides lateral',
-    descripcion: 'En plancha lateral, elevá la pierna superior abierta en posición de estrella. Con el brazo libre sosteniendo una mancuerna, subí y bajá el peso con el brazo extendido desde la cadera hasta arriba. Trabaja oblicuos, glúteo medio, deltoides y estabilidad de todo el cuerpo. Mantené la cadera elevada y el core firme durante todo el movimiento.'
+    tags: 'Weighted side plank star, Side plank with raise',
+    descripcion: 'En plancha lateral, elevá la pierna superior abierta en posición de estrella. Con el brazo libre sosteniendo una mancuerna, subí y bajá el peso con el brazo extendido desde la cadera hasta arriba. Trabaja oblicuos, glúteo medio, deltoides y estabilidad de todo el cuerpo. Mantené la cadera elevada y el core firme durante todo el movimiento. (Weighted Side Plank Star)'
   },
   {
     nombre: 'Copenhague',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Aductores, Oblicuos, Glúteos',
-    descripcion: 'En posición de plancha lateral, apoyá la pierna de arriba sobre un banco o cajón con la cara interna del pie. La pierna de abajo queda suspendida. Subí y bajá la cadera manteniendo el cuerpo alineado. Trabaja aductores, core y estabilidad de cadera. Excelente para prevención de lesiones de ingle.'
+    tags: 'Copenhagen plank, Copenhagen adductor',
+    descripcion: 'En posición de plancha lateral, apoyá la pierna de arriba sobre un banco o cajón con la cara interna del pie. La pierna de abajo queda suspendida. Subí y bajá la cadera manteniendo el cuerpo alineado. Trabaja aductores, core y estabilidad de cadera. Excelente para prevención de lesiones de ingle. (Copenhagen Plank)'
   },
   {
     nombre: 'Pasadas de velocidad',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Isquiotibiales, Glúteos, Gemelos',
-    descripcion: 'Carreras de máxima intensidad en distancias cortas (40-60m). Salir explosivamente, mantener la velocidad y desacelerar al final. Descansar caminando de vuelta. Trabaja potencia de piernas, sistema cardiovascular y resistencia anaeróbica.'
+    tags: 'Sprint, Speed run',
+    descripcion: 'Carreras de máxima intensidad en distancias cortas (40-60m). Salir explosivamente, mantener la velocidad y desacelerar al final. Descansar caminando de vuelta. Trabaja potencia de piernas, sistema cardiovascular y resistencia anaeróbica. (Sprint)'
   },
   {
     nombre: 'Burpees',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Pectoral mayor, Deltoides anterior',
-    descripcion: 'Desde parado, agacharse y apoyar las manos en el piso, saltar los pies hacia atrás a posición de plancha, hacer una flexión, saltar los pies hacia adelante y saltar verticalmente con los brazos arriba. Trabaja todo el cuerpo: pecho, piernas, core y cardio.'
+    tags: 'Burpees',
+    descripcion: 'Desde parado, agacharse y apoyar las manos en el piso, saltar los pies hacia atrás a posición de plancha, hacer una flexión, saltar los pies hacia adelante y saltar verticalmente con los brazos arriba. Trabaja todo el cuerpo: pecho, piernas, core y cardio. (Burpees)'
   },
   {
     nombre: 'Saltos al cajón',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Gemelos',
-    descripcion: 'Parado frente a un cajón pliométrico, flexionar rodillas y saltar explosivamente aterrizando con ambos pies arriba del cajón. Pararse completamente y bajar con control. Trabaja potencia de piernas, glúteos y coordinación.'
+    tags: 'Box jump',
+    descripcion: 'Parado frente a un cajón pliométrico, flexionar rodillas y saltar explosivamente aterrizando con ambos pies arriba del cajón. Pararse completamente y bajar con control. Trabaja potencia de piernas, glúteos y coordinación. (Box Jump)'
   },
   {
     nombre: 'Saltos laterales',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Abductores, Cuádriceps, Gemelos',
-    descripcion: 'De pie con los pies juntos, saltar lateralmente de un lado a otro sobre una línea o valla baja. Aterrizar suave con las rodillas semiflexionadas. Trabaja agilidad, estabilidad de tobillos y potencia lateral.'
+    tags: 'Lateral jumps, Side to side jumps',
+    descripcion: 'De pie con los pies juntos, saltar lateralmente de un lado a otro sobre una línea o valla baja. Aterrizar suave con las rodillas semiflexionadas. Trabaja agilidad, estabilidad de tobillos y potencia lateral. (Lateral Jumps)'
   },
   {
     nombre: 'Sentadilla con salto',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Gemelos',
-    descripcion: 'Realizar una sentadilla profunda y al subir explotar en un salto vertical con los brazos arriba. Aterrizar suave y volver directo a la sentadilla. Trabaja cuádriceps, glúteos y potencia explosiva.'
+    tags: 'Jump squat, Squat jump',
+    descripcion: 'Realizar una sentadilla profunda y al subir explotar en un salto vertical con los brazos arriba. Aterrizar suave y volver directo a la sentadilla. Trabaja cuádriceps, glúteos y potencia explosiva. (Jump Squat)'
   },
   {
     nombre: 'Tuck jumps',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Recto abdominal',
-    descripcion: 'Desde parado, saltá verticalmente llevando las rodillas al pecho en el aire. Aterrizá suave con rodillas semiflexionadas y repetí. Trabaja potencia explosiva de piernas, cuádriceps, core y sistema cardiovascular.'
+    tags: 'Tuck jumps, Tuck jump',
+    descripcion: 'Desde parado, saltá verticalmente llevando las rodillas al pecho en el aire. Aterrizá suave con rodillas semiflexionadas y repetí. Trabaja potencia explosiva de piernas, cuádriceps, core y sistema cardiovascular. (Tuck Jumps)'
   },
   {
     nombre: 'Estocada con salto',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Desde posición de zancada, saltar y alternar las piernas en el aire, aterrizando en zancada con la pierna contraria adelante. Mantener el torso erguido. Trabaja cuádriceps, glúteos, coordinación y potencia.'
+    tags: 'Jump lunge, Split jump',
+    descripcion: 'Desde posición de zancada, saltar y alternar las piernas en el aire, aterrizando en zancada con la pierna contraria adelante. Mantener el torso erguido. Trabaja cuádriceps, glúteos, coordinación y potencia. (Jump Lunge)'
   },
   {
     nombre: 'Estocada-estocada-sentadilla con salto',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Gemelos',
-    descripcion: 'Combo explosivo: estocada con salto pierna izquierda, estocada con salto pierna derecha, sentadilla con salto con ambas piernas. Repetir la secuencia sin pausa. Trabaja potencia, coordinación y cardio.'
+    tags: 'Lunge lunge squat jump',
+    descripcion: 'Combo explosivo: estocada con salto pierna izquierda, estocada con salto pierna derecha, sentadilla con salto con ambas piernas. Repetir la secuencia sin pausa. Trabaja potencia, coordinación y cardio. (Lunge Lunge Squat Jump)'
   },
   {
     nombre: 'Jumping jacks',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Deltoides lateral, Gemelos',
-    descripcion: 'De pie con los pies juntos y brazos al costado, saltar abriendo las piernas al ancho de hombros mientras subís los brazos por arriba de la cabeza. Volver a la posición inicial saltando. Ejercicio cardiovascular completo.'
+    tags: 'Jumping jacks',
+    descripcion: 'De pie con los pies juntos y brazos al costado, saltar abriendo las piernas al ancho de hombros mientras subís los brazos por arriba de la cabeza. Volver a la posición inicial saltando. Ejercicio cardiovascular completo. (Jumping Jacks)'
   },
   {
     nombre: 'Caminata a plancha',
@@ -502,7 +570,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Mountain climbers',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Deltoides anterior, Cuádriceps',
-    descripcion: 'En posición de plancha alta, llevar una rodilla al pecho alternando piernas rápidamente como si corrieras en el lugar. Mantener la cadera baja y el core activado. Trabaja abdominales, hombros y cardio.'
+    tags: 'Mountain climbers',
+    descripcion: 'En posición de plancha alta, llevar una rodilla al pecho alternando piernas rápidamente como si corrieras en el lugar. Mantener la cadera baja y el core activado. Trabaja abdominales, hombros y cardio. (Mountain Climbers)'
   },
   {
     nombre: 'Abs complex',
@@ -516,13 +585,15 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Flexiones',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
-    descripcion: 'Cuerpo recto como tabla, manos al ancho de hombros. Bajá el pecho al suelo flexionando los codos a ~45° del torso y empujá hasta extensión. Trabaja pectoral, deltoides anterior y tríceps. Ejercicio base de empuje con peso corporal.'
+    tags: 'Push-up, Push-ups',
+    descripcion: 'Cuerpo recto como tabla, manos al ancho de hombros. Bajá el pecho al suelo flexionando los codos a ~45° del torso y empujá hasta extensión. Trabaja pectoral, deltoides anterior y tríceps. Ejercicio base de empuje con peso corporal. (Push-Up)'
   },
   {
     nombre: 'Flexiones explosivas',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Tríceps, Deltoides anterior',
-    descripcion: 'Flexión donde al subir empujás con fuerza suficiente para que las manos se despeguen del suelo. Aterrizá suave y repetí. Trabaja potencia de pectoral y tríceps. Podés aplaudir arriba para mayor dificultad.'
+    tags: 'Explosive push-up, Plyometric push-up',
+    descripcion: 'Flexión donde al subir empujás con fuerza suficiente para que las manos se despeguen del suelo. Aterrizá suave y repetí. Trabaja potencia de pectoral y tríceps. Podés aplaudir arriba para mayor dificultad. (Explosive Push-Up)'
   },
   {
     nombre: 'Flexiones declinadas',
@@ -542,85 +613,99 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Dips en paralelas',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Tríceps, Deltoides anterior',
-    descripcion: 'Apoyado en barras paralelas, bajá el cuerpo flexionando los codos con el torso inclinado hacia adelante. Subí empujando. La inclinación enfatiza el pectoral; más erguido trabaja más tríceps. Codos a ~45° del cuerpo.'
+    tags: 'Parallel bar dips, Chest dips',
+    descripcion: 'Apoyado en barras paralelas, bajá el cuerpo flexionando los codos con el torso inclinado hacia adelante. Subí empujando. La inclinación enfatiza el pectoral; más erguido trabaja más tríceps. Codos a ~45° del cuerpo. (Parallel Bar Dips)'
   },
   {
     nombre: 'Dominadas',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Dorsal ancho, Romboides, Trapecio, Bíceps',
-    descripcion: 'Colgado de la barra con agarre prono al ancho de hombros, empujá los codos hacia abajo hasta que el mentón supere la barra. Bajá controlado a extensión completa. Trabaja dorsal ancho, romboides, trapecio y bíceps.'
+    tags: 'Pull-up, Pull-ups',
+    descripcion: 'Colgado de la barra con agarre prono al ancho de hombros, empujá los codos hacia abajo hasta que el mentón supere la barra. Bajá controlado a extensión completa. Trabaja dorsal ancho, romboides, trapecio y bíceps. (Pull-Up)'
   },
   {
     nombre: 'Dominadas australianas',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    descripcion: 'Remo invertido bajo una barra baja con los pies en el suelo y el cuerpo recto. Tirá el pecho hacia la barra apretando omóplatos. Ajustá el ángulo del cuerpo para mayor o menor dificultad. Trabaja dorsales, romboides y bíceps.'
+    tags: 'Australian pull-up, Inverted row',
+    descripcion: 'Remo invertido bajo una barra baja con los pies en el suelo y el cuerpo recto. Tirá el pecho hacia la barra apretando omóplatos. Ajustá el ángulo del cuerpo para mayor o menor dificultad. Trabaja dorsales, romboides y bíceps. (Australian Pull-Up)'
   },
   {
     nombre: 'Dominadas cerradas',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Dorsal ancho, Bíceps, Braquial',
-    descripcion: 'Dominada con agarre supino o neutro cerrado, manos al ancho de hombros o menos. Mayor participación de bíceps y braquial que el agarre abierto. Subí hasta que el mentón supere la barra y bajá controlado.'
+    tags: 'Close grip pull-up, Chin-up',
+    descripcion: 'Dominada con agarre supino o neutro cerrado, manos al ancho de hombros o menos. Mayor participación de bíceps y braquial que el agarre abierto. Subí hasta que el mentón supere la barra y bajá controlado. (Close Grip Pull-Up)'
   },
   {
     nombre: 'Dominadas grip neutro',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Dorsal ancho, Bíceps, Romboides',
-    descripcion: 'Dominada con palmas enfrentadas (agarre neutro). Posición más natural para el hombro que permite mayor rango de movimiento. Trabaja dorsales y bíceps de forma equilibrada con menor estrés articular.'
+    tags: 'Neutral grip pull-up',
+    descripcion: 'Dominada con palmas enfrentadas (agarre neutro). Posición más natural para el hombro que permite mayor rango de movimiento. Trabaja dorsales y bíceps de forma equilibrada con menor estrés articular. (Neutral Grip Pull-Up)'
   },
   {
     nombre: 'TRX row',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    descripcion: 'Colgado de las correas del TRX con el cuerpo inclinado, tirá el pecho hacia las manos llevando los codos atrás. Apretá omóplatos al final. Cuanto más horizontal el cuerpo, más difícil. Trabaja dorsales, romboides y bíceps.'
+    tags: 'TRX row, TRX inverted row',
+    descripcion: 'Colgado de las correas del TRX con el cuerpo inclinado, tirá el pecho hacia las manos llevando los codos atrás. Apretá omóplatos al final. Cuanto más horizontal el cuerpo, más difícil. Trabaja dorsales, romboides y bíceps. (TRX Row)'
   },
   {
     nombre: 'TRX power pull',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Dorsal ancho, Romboides, Oblicuos',
-    descripcion: 'Colgado del TRX con una mano, cuerpo inclinado. Tirá con un brazo mientras rotás el torso y extendés el brazo libre hacia el techo. Volvé controlado. Trabaja dorsales, romboides, oblicuos y estabilizadores con componente rotacional.'
+    tags: 'TRX power pull',
+    descripcion: 'Colgado del TRX con una mano, cuerpo inclinado. Tirá con un brazo mientras rotás el torso y extendés el brazo libre hacia el techo. Volvé controlado. Trabaja dorsales, romboides, oblicuos y estabilizadores con componente rotacional. (TRX Power Pull)'
   },
   {
     nombre: 'Remo alto en TRX',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Trapecio, Infraespinoso',
-    descripcion: 'Remo en TRX con codos altos a la altura de los hombros, tirando hacia la cara. Similar a un face pull pero con peso corporal. Enfatiza deltoides posterior, trapecio medio y rotadores externos del hombro.'
+    tags: 'TRX high row',
+    descripcion: 'Remo en TRX con codos altos a la altura de los hombros, tirando hacia la cara. Similar a un face pull pero con peso corporal. Enfatiza deltoides posterior, trapecio medio y rotadores externos del hombro. (TRX High Row)'
   },
   {
     nombre: 'TRX face pull',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
-    descripcion: 'Con las correas del TRX, tirá hacia la cara abriendo los codos y rotando externamente los hombros al final. Las manos quedan a los lados de la cabeza. Trabaja deltoides posterior, manguito rotador y retractores de escápula.'
+    tags: 'TRX face pull',
+    descripcion: 'Con las correas del TRX, tirá hacia la cara abriendo los codos y rotando externamente los hombros al final. Las manos quedan a los lados de la cabeza. Trabaja deltoides posterior, manguito rotador y retractores de escápula. (TRX Face Pull)'
   },
   {
     nombre: 'Muscle-up negativo en barra',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Dorsal ancho, Pectoral mayor, Tríceps, Bíceps',
-    descripcion: 'Empezá arriba de la barra (saltando o con impulso) y bajá lo más lento posible: primero la fase de dip y luego la fase de dominada. Trabaja la fuerza excéntrica necesaria para progresar hacia el muscle-up completo.'
+    tags: 'Negative muscle-up, Muscle-up negative',
+    descripcion: 'Empezá arriba de la barra (saltando o con impulso) y bajá lo más lento posible: primero la fase de dip y luego la fase de dominada. Trabaja la fuerza excéntrica necesaria para progresar hacia el muscle-up completo. (Negative Muscle-Up)'
   },
   {
     nombre: 'Banda pull-apart',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
     musculos: 'Romboides, Trapecio, Deltoides posterior',
-    descripcion: 'Con banda tomada frente al pecho con ambas manos, separá las manos estirando la banda hasta que toque el pecho. Apretá omóplatos al final. Trabaja romboides, trapecio medio y deltoides posterior.'
+    tags: 'Band pull-apart, Resistance band pull-apart',
+    descripcion: 'Con banda tomada frente al pecho con ambas manos, separá las manos estirando la banda hasta que toque el pecho. Apretá omóplatos al final. Trabaja romboides, trapecio medio y deltoides posterior. (Band Pull-Apart)'
   },
   {
     nombre: 'Banda lateral walk',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Abductores',
-    descripcion: 'Con una mini-band en tobillos o rodillas, caminá lateralmente con pasos cortos manteniendo tensión constante. Rodillas semiflexionadas, torso erguido. Activa glúteo medio, abductores y estabilizadores de cadera.'
+    tags: 'Banded lateral walk, Monster walk',
+    descripcion: 'Con una mini-band en tobillos o rodillas, caminá lateralmente con pasos cortos manteniendo tensión constante. Rodillas semiflexionadas, torso erguido. Activa glúteo medio, abductores y estabilizadores de cadera. (Banded Lateral Walk)'
   },
   {
     nombre: 'Rotación de hombros',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides anterior, Deltoides posterior, Infraespinoso',
-    descripcion: 'Círculos amplios con los brazos, progresando de pequeños a grandes, hacia adelante y atrás. Calienta la articulación del hombro activando deltoides, manguito rotador y trapecios. Esencial antes de ejercicios de tren superior.'
+    tags: 'Shoulder rotation, Arm circles',
+    descripcion: 'Círculos amplios con los brazos, progresando de pequeños a grandes, hacia adelante y atrás. Calienta la articulación del hombro activando deltoides, manguito rotador y trapecios. Esencial antes de ejercicios de tren superior. (Shoulder Rotation)'
   },
   {
     nombre: 'Rotación torácica',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Oblicuos, Erector espinal, Transverso abdominal',
-    descripcion: 'En cuatro puntos o sentado, con una mano detrás de la cabeza, rotá el torso abriendo el codo hacia el techo. Volvé controlado. Mejora la movilidad torácica sin compensar con la lumbar. Ideal antes de empuje y tracción.'
+    tags: 'Thoracic rotation, T-spine rotation',
+    descripcion: 'En cuatro puntos o sentado, con una mano detrás de la cabeza, rotá el torso abriendo el codo hacia el techo. Volvé controlado. Mejora la movilidad torácica sin compensar con la lumbar. Ideal antes de empuje y tracción. (Thoracic Rotation)'
   },
   {
     nombre: 'Cat-cow',
@@ -633,31 +718,36 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Hip 90/90 mobility',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Aductores, Hip flexors',
-    descripcion: 'Sentado en el suelo con ambas piernas a 90°, rotá las caderas alternando la posición de las piernas de un lado al otro. Mejora la rotación interna y externa de cadera, clave para sentadillas y zancadas.'
+    tags: 'Hip 90/90 mobility, 90/90 hip stretch',
+    descripcion: 'Sentado en el suelo con ambas piernas a 90°, rotá las caderas alternando la posición de las piernas de un lado al otro. Mejora la rotación interna y externa de cadera, clave para sentadillas y zancadas. (Hip 90/90 Mobility)'
   },
   {
     nombre: 'Movilidad de cadera',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Aductores, Hip flexors',
-    descripcion: 'Serie de movimientos para abrir las caderas: círculos, 90/90, estocadas profundas, apertura de mariposa. Mejora el rango de movimiento de cadera y previene lesiones en ejercicios de tren inferior.'
+    tags: 'Hip mobility, Hip circles',
+    descripcion: 'Serie de movimientos para abrir las caderas: círculos, 90/90, estocadas profundas, apertura de mariposa. Mejora el rango de movimiento de cadera y previene lesiones en ejercicios de tren inferior. (Hip Mobility)'
   },
   {
     nombre: 'Movilidad de hombros',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides anterior, Deltoides posterior, Infraespinoso',
-    descripcion: 'Secuencia de rotaciones, dislocaciones y círculos de hombro para preparar la articulación. Incluye rotación interna/externa, flexión y extensión activa. Previene lesiones del manguito rotador.'
+    tags: 'Shoulder mobility, Shoulder dislocates',
+    descripcion: 'Secuencia de rotaciones, dislocaciones y círculos de hombro para preparar la articulación. Incluye rotación interna/externa, flexión y extensión activa. Previene lesiones del manguito rotador. (Shoulder Mobility)'
   },
   {
     nombre: 'Activación glúteo con loop band',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Abductores',
-    descripcion: 'Con una mini-band en las rodillas, hacé puentes de glúteo, clamshells o abducción lateral. Activa glúteo medio y mayor antes del entrenamiento de piernas. Mejora la conexión mente-músculo y protege la espalda baja.'
+    tags: 'Banded glute activation, Glute band warmup',
+    descripcion: 'Con una mini-band en las rodillas, hacé puentes de glúteo, clamshells o abducción lateral. Activa glúteo medio y mayor antes del entrenamiento de piernas. Mejora la conexión mente-músculo y protege la espalda baja. (Banded Glute Activation)'
   },
   {
     nombre: 'Loop band abducción parada',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Abductores',
-    descripcion: 'De pie con mini-band en los tobillos, levantá una pierna lateralmente contra la resistencia manteniendo el torso erguido. Activa glúteo medio y estabilizadores de cadera en posición funcional.'
+    tags: 'Standing banded hip abduction',
+    descripcion: 'De pie con mini-band en los tobillos, levantá una pierna lateralmente contra la resistencia manteniendo el torso erguido. Activa glúteo medio y estabilizadores de cadera en posición funcional. (Standing Banded Hip Abduction)'
   },
   {
     nombre: 'Patada de glúteo con tobillera',
@@ -670,31 +760,36 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Ab wheel',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Oblicuos, Transverso abdominal',
-    descripcion: 'Arrodillado con la rueda abdominal, rodá hacia adelante extendiendo el cuerpo lo más posible manteniendo el core firme y la espalda sin arquear. Volvé contrayendo abdominales. Trabaja recto abdominal, oblicuos y serrato con intensidad alta.'
+    tags: 'Ab wheel rollout, Ab roller',
+    descripcion: 'Arrodillado con la rueda abdominal, rodá hacia adelante extendiendo el cuerpo lo más posible manteniendo el core firme y la espalda sin arquear. Volvé contrayendo abdominales. Trabaja recto abdominal, oblicuos y serrato con intensidad alta. (Ab Wheel Rollout)'
   },
   {
     nombre: 'Hollow body',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Hip flexors',
-    descripcion: 'Acostado boca arriba, levantá hombros y piernas del suelo con los brazos extendidos junto a las orejas. Mantené la zona lumbar pegada al piso. Posición de tensión total del core anterior. Mantené el tiempo indicado.'
+    tags: 'Hollow body hold, Hollow hold',
+    descripcion: 'Acostado boca arriba, levantá hombros y piernas del suelo con los brazos extendidos junto a las orejas. Mantené la zona lumbar pegada al piso. Posición de tensión total del core anterior. Mantené el tiempo indicado. (Hollow Body Hold)'
   },
   {
     nombre: 'L-sit en paralelas',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Hip flexors, Tríceps',
-    descripcion: 'Apoyado en barras paralelas con los brazos extendidos, elevá las piernas rectas hasta paralelas al suelo formando una L. Mantené la posición. Trabaja abdominales, flexores de cadera y tríceps isométrico.'
+    tags: 'L-sit on parallettes, L-sit',
+    descripcion: 'Apoyado en barras paralelas con los brazos extendidos, elevá las piernas rectas hasta paralelas al suelo formando una L. Mantené la posición. Trabaja abdominales, flexores de cadera y tríceps isométrico. (L-Sit on Parallettes)'
   },
   {
     nombre: 'Plancha con elevación alternada',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Transverso abdominal, Oblicuos, Glúteos',
-    descripcion: 'Desde posición de plancha, levantá brazo y pierna opuestos alternando (bird-dog en plancha). Mantené 2s cada lado sin rotar la cadera. Trabaja anti-rotación del core y coordinación neuromuscular.'
+    tags: 'Plank with alternating limb raise, Bird-dog plank',
+    descripcion: 'Desde posición de plancha, levantá brazo y pierna opuestos alternando (bird-dog en plancha). Mantené 2s cada lado sin rotar la cadera. Trabaja anti-rotación del core y coordinación neuromuscular. (Plank with Alternating Limb Raise)'
   },
   {
     nombre: 'Plancha en paralelas',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Deltoides anterior',
-    descripcion: 'Plancha con las manos apoyadas en barras paralelas. La elevación aumenta el rango y la inestabilidad. Mantené el cuerpo recto activando core y glúteos. Trabaja estabilidad de hombros y core profundo.'
+    tags: 'Plank on parallettes',
+    descripcion: 'Plancha con las manos apoyadas en barras paralelas. La elevación aumenta el rango y la inestabilidad. Mantené el cuerpo recto activando core y glúteos. Trabaja estabilidad de hombros y core profundo. (Plank on Parallettes)'
   },
   {
     nombre: 'Plancha commando',
@@ -707,7 +802,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Bear crawl',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides anterior, Cuádriceps, Recto abdominal',
-    descripcion: 'En cuatro puntos con las rodillas apenas despegadas del suelo, avanzá moviendo mano y pie opuestos simultáneamente. Mantené la espalda plana y la cadera baja. Trabaja core, hombros, cuádriceps y coordinación.'
+    tags: 'Bear crawl',
+    descripcion: 'En cuatro puntos con las rodillas apenas despegadas del suelo, avanzá moviendo mano y pie opuestos simultáneamente. Mantené la espalda plana y la cadera baja. Trabaja core, hombros, cuádriceps y coordinación. (Bear Crawl)'
   },
 
   // ── CASA — VARIANTES CON EQUIPAMIENTO ──────────────────────────────────────
@@ -723,13 +819,15 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Peso muerto rumano con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
-    descripcion: 'De pie con la kettlebell en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos.'
+    tags: 'Kettlebell Romanian deadlift, KB RDL',
+    descripcion: 'De pie con la kettlebell en ambas manos. Incliná el torso hacia adelante con las piernas casi rectas hasta sentir estiramiento en femorales. Volvé con la cadera. Trabaja isquiotibiales y glúteos. (Kettlebell Romanian Deadlift)'
   },
   {
     nombre: 'Peso muerto dividido',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
-    descripcion: 'De pie con un pie adelante y el otro atrás (stance dividido), ambos apoyados en el piso. Bajá el peso con bisagra de cadera manteniendo espalda neutra. Más estable que a una pierna, permite cargar más peso. Trabaja cadena posterior con énfasis en el lado de la pierna adelantada.'
+    tags: 'Split stance deadlift, Staggered deadlift',
+    descripcion: 'De pie con un pie adelante y el otro atrás (stance dividido), ambos apoyados en el piso. Bajá el peso con bisagra de cadera manteniendo espalda neutra. Más estable que a una pierna, permite cargar más peso. Trabaja cadena posterior con énfasis en el lado de la pierna adelantada. (Split Stance Deadlift)'
   },
   {
     nombre: 'Squat to press con kettlebell',
@@ -742,13 +840,15 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Squat to press a una mano con kettlebell',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Deltoides anterior',
-    descripcion: 'Kettlebell en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core.'
+    tags: 'Single arm kettlebell thruster',
+    descripcion: 'Kettlebell en una mano a la altura del hombro (rack). Bajá a sentadilla profunda y al subir empujá la kettlebell en press sobre la cabeza con un brazo. Bajá al hombro y repetí. Alterná manos entre series. Genera inestabilidad que activa más el core. (Single Arm Kettlebell Thruster)'
   },
   {
     nombre: 'Peso muerto a una pierna',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
-    descripcion: 'De pie sobre una pierna, kettlebell en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio.'
+    tags: 'Single leg deadlift, Single leg RDL',
+    descripcion: 'De pie sobre una pierna, kettlebell en la mano contraria. Incliná el torso hacia adelante levantando la pierna libre estirada hacia atrás hasta quedar en T. Volvé controlado. Trabaja femorales, glúteos y equilibrio. (Single Leg Deadlift)'
   },
   {
     nombre: 'Empuje de cadera',
@@ -768,7 +868,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Abducción con pausa',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Abductores',
-    descripcion: 'De costado o parada, elevá la pierna hacia afuera y mantené 2-3 segundos en el punto más alto. Bajá controlado. La pausa aumenta la tensión en glúteo medio y menor.'
+    tags: 'Hip abduction with pause',
+    descripcion: 'De costado o parada, elevá la pierna hacia afuera y mantené 2-3 segundos en el punto más alto. Bajá controlado. La pausa aumenta la tensión en glúteo medio y menor. (Hip Abduction with Pause)'
   },
   {
     nombre: 'Step up',
@@ -788,99 +889,115 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plié squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Aductores, Cuádriceps, Glúteos',
-    descripcion: 'Piernas bien abiertas, puntas de pie hacia afuera. Bajá la cadera manteniendo la espalda recta y rodillas en dirección de los pies. Subí apretando glúteos e interno de muslo. Trabaja aductores, cuádriceps y glúteos.'
+    tags: 'Plié squat',
+    descripcion: 'Piernas bien abiertas, puntas de pie hacia afuera. Bajá la cadera manteniendo la espalda recta y rodillas en dirección de los pies. Subí apretando glúteos e interno de muslo. Trabaja aductores, cuádriceps y glúteos. (Plié Squat)'
   },
   {
     nombre: 'Plié dips',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Aductores, Cuádriceps, Glúteos',
-    descripcion: 'En posición de plié squat baja, hacé pulsos cortos bajando y subiendo unos centímetros. Mantené la tensión constante en aductores y glúteos durante todo el movimiento.'
+    tags: 'Plié squat pulses',
+    descripcion: 'En posición de plié squat baja, hacé pulsos cortos bajando y subiendo unos centímetros. Mantené la tensión constante en aductores y glúteos durante todo el movimiento. (Plié Squat Pulses)'
   },
   {
     nombre: 'Elevated side leg lifts',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Abductores',
-    descripcion: 'De costado con la cadera elevada (apoyada en banco o step), elevá la pierna superior hacia arriba. Bajá controlado sin apoyar. Trabaja glúteo medio y abductores con mayor rango de movimiento.'
+    tags: 'Elevated side leg lifts, Side lying leg raise',
+    descripcion: 'De costado con la cadera elevada (apoyada en banco o step), elevá la pierna superior hacia arriba. Bajá controlado sin apoyar. Trabaja glúteo medio y abductores con mayor rango de movimiento. (Elevated Side Leg Lifts)'
   },
   {
     nombre: 'Elevated side reaches',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Oblicuos, Transverso abdominal, Glúteos',
-    descripcion: 'De costado con la cadera elevada, extendé el brazo superior hacia el piso y volvé a la posición inicial. Trabaja oblicuos, core lateral y estabilizadores de cadera.'
+    tags: 'Elevated side reaches',
+    descripcion: 'De costado con la cadera elevada, extendé el brazo superior hacia el piso y volvé a la posición inicial. Trabaja oblicuos, core lateral y estabilizadores de cadera. (Elevated Side Reaches)'
   },
   {
     nombre: 'Narrow to wide squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Aductores, Glúteos',
-    descripcion: 'Alterná entre una sentadilla con pies juntos y una sentadilla abierta (sumo) en cada repetición. Saltá o caminá los pies para cambiar de posición. Trabaja cuádriceps, aductores y glúteos.'
+    tags: 'Narrow to wide squat',
+    descripcion: 'Alterná entre una sentadilla con pies juntos y una sentadilla abierta (sumo) en cada repetición. Saltá o caminá los pies para cambiar de posición. Trabaja cuádriceps, aductores y glúteos. (Narrow to Wide Squat)'
   },
   {
     nombre: 'Split squat pulses',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos',
-    descripcion: 'En posición de zancada estática, hacé pulsos cortos bajando y subiendo sin volver arriba del todo. La tensión continua intensifica el trabajo en cuádriceps y glúteos.'
+    tags: 'Split squat pulses',
+    descripcion: 'En posición de zancada estática, hacé pulsos cortos bajando y subiendo sin volver arriba del todo. La tensión continua intensifica el trabajo en cuádriceps y glúteos. (Split Squat Pulses)'
   },
   {
     nombre: 'Sumo squat to calf raise',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Aductores, Glúteos, Cuádriceps, Pantorrillas',
-    descripcion: 'Sentadilla sumo y al subir elevá los talones en punta de pie. Bajá los talones y repetí. Trabaja aductores, glúteos, cuádriceps y pantorrillas en un solo movimiento.'
+    tags: 'Sumo squat to calf raise',
+    descripcion: 'Sentadilla sumo y al subir elevá los talones en punta de pie. Bajá los talones y repetí. Trabaja aductores, glúteos, cuádriceps y pantorrillas en un solo movimiento. (Sumo Squat to Calf Raise)'
   },
   {
     nombre: 'Déficit reverse lunge',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Cuádriceps, Isquiotibiales',
-    descripcion: 'Parada sobre un step o disco, dá un paso largo hacia atrás bajando la rodilla por debajo del nivel de la plataforma. Mayor rango de movimiento que la zancada normal. Trabaja glúteos y cuádriceps.'
+    tags: 'Deficit reverse lunge',
+    descripcion: 'Parada sobre un step o disco, dá un paso largo hacia atrás bajando la rodilla por debajo del nivel de la plataforma. Mayor rango de movimiento que la zancada normal. Trabaja glúteos y cuádriceps. (Deficit Reverse Lunge)'
   },
   {
     nombre: 'Standing weighted hip abduction',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Abductores',
-    descripcion: 'De pie con tobillera o banda, elevá la pierna lateralmente manteniéndola recta. Controlá la bajada sin apoyar. Trabaja glúteo medio y estabilizadores de cadera.'
+    tags: 'Standing weighted hip abduction',
+    descripcion: 'De pie con tobillera o banda, elevá la pierna lateralmente manteniéndola recta. Controlá la bajada sin apoyar. Trabaja glúteo medio y estabilizadores de cadera. (Standing Weighted Hip Abduction)'
   },
   {
     nombre: 'Sumo squat to RDL',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Aductores, Isquiotibiales',
-    descripcion: 'Sentadilla sumo seguida de un peso muerto rumano al subir: cerrá piernas y bajá el torso con piernas casi rectas. Volvé a posición sumo y repetí. Trabaja glúteos, aductores y femorales.'
+    tags: 'Sumo squat to RDL',
+    descripcion: 'Sentadilla sumo seguida de un peso muerto rumano al subir: cerrá piernas y bajá el torso con piernas casi rectas. Volvé a posición sumo y repetí. Trabaja glúteos, aductores y femorales. (Sumo Squat to RDL)'
   },
   {
     nombre: 'Banded narrow to wide squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Abductores',
-    descripcion: 'Con banda de resistencia en las rodillas, alterná sentadilla cerrada y abierta. La banda agrega resistencia a la abducción, activando más el glúteo medio durante todo el movimiento.'
+    tags: 'Banded narrow to wide squat',
+    descripcion: 'Con banda de resistencia en las rodillas, alterná sentadilla cerrada y abierta. La banda agrega resistencia a la abducción, activando más el glúteo medio durante todo el movimiento. (Banded Narrow to Wide Squat)'
   },
   {
     nombre: 'Floor press',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
     musculos: 'Pectoral mayor, Tríceps, Deltoides anterior',
-    descripcion: 'Acostado en el suelo boca arriba, un brazo a la vez. Kettlebell en una mano, codo apoyado en el piso. Empujá hacia arriba extendiendo el brazo y bajá controlado hasta que el codo toque el suelo. Trabaja pectoral, tríceps y estabilizadores de hombro con rango limitado que protege la articulación.'
+    tags: 'Floor press, Dumbbell floor press',
+    descripcion: 'Acostado en el suelo boca arriba, un brazo a la vez. Kettlebell en una mano, codo apoyado en el piso. Empujá hacia arriba extendiendo el brazo y bajá controlado hasta que el codo toque el suelo. Trabaja pectoral, tríceps y estabilizadores de hombro con rango limitado que protege la articulación. (Floor Press)'
   },
   // Kettlebell — Tren superior
   {
     nombre: 'Press militar',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Deltoides lateral, Tríceps',
-    descripcion: 'De pie, kettlebell en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps.'
+    tags: 'Overhead press, Military press',
+    descripcion: 'De pie, kettlebell en posición de rack (contra el hombro). Empujá hacia arriba hasta extensión completa del brazo. Bajá controlado al hombro. Alterná o hacé bilateral. Trabaja deltoides y tríceps. (Overhead Press)'
   },
   {
     nombre: 'Remo',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps.'
+    tags: 'Bent over row, Barbell row',
+    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps. (Bent Over Row)'
   },
   {
     nombre: 'Bíceps curl',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
-    descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial.'
+    tags: 'Bicep curl',
+    descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial. (Bicep Curl)'
   },
   // Bandas
   {
     nombre: 'Extensión de tríceps con banda',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     musculos: 'Tríceps',
-    descripcion: 'Banda anclada arriba o pisada por detrás. Extendé los codos empujando las manos hacia abajo o arriba según el anclaje. Mantené los brazos pegados a la cabeza o al torso. Aislamiento de tríceps.'
+    tags: 'Banded overhead tricep extension',
+    descripcion: 'Banda anclada arriba o pisada por detrás. Extendé los codos empujando las manos hacia abajo o arriba según el anclaje. Mantené los brazos pegados a la cabeza o al torso. Aislamiento de tríceps. (Banded Overhead Tricep Extension)'
   },
   {
     nombre: 'Rotación de hombros con banda',
@@ -901,34 +1018,39 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Bíceps curl en equilibrio',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Glúteos',
-    descripcion: 'De pie sobre una pierna, peso en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series.'
+    tags: 'Single leg balance bicep curl',
+    descripcion: 'De pie sobre una pierna, peso en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series. (Single Leg Balance Bicep Curl)'
   },
   {
     nombre: 'Vuelos laterales en equilibrio con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides lateral, Trapecio, Glúteos',
-    descripcion: 'Parado sobre una pierna, kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar.'
+    tags: 'Single leg kettlebell lateral raise',
+    descripcion: 'Parado sobre una pierna, kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar. (Single Leg Kettlebell Lateral Raise)'
   },
   // TRX — Piernas
   {
     nombre: 'Sentadilla búlgara con TRX',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Pie trasero en el estribo del TRX. Bajá la rodilla trasera hacia el piso manteniendo el torso recto. Empujá para subir. El TRX permite mayor rango de movimiento y desafía la estabilidad. Trabaja cuádriceps, glúteos y equilibrio unilateral.'
+    tags: 'TRX Bulgarian split squat',
+    descripcion: 'Pie trasero en el estribo del TRX. Bajá la rodilla trasera hacia el piso manteniendo el torso recto. Empujá para subir. El TRX permite mayor rango de movimiento y desafía la estabilidad. Trabaja cuádriceps, glúteos y equilibrio unilateral. (TRX Bulgarian Split Squat)'
   },
   // TRX — Bíceps
   {
     nombre: 'Bíceps curl en TRX',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial',
-    descripcion: 'De frente al anclaje del TRX, agarrá las correas con agarre supino y el cuerpo inclinado hacia atrás. Flexioná los codos llevando las manos a la frente, manteniendo los codos altos y fijos. Extendé controlado. Cuanto más horizontal el cuerpo, más difícil. Trabaja bíceps y braquial con peso corporal.'
+    tags: 'TRX bicep curl',
+    descripcion: 'De frente al anclaje del TRX, agarrá las correas con agarre supino y el cuerpo inclinado hacia atrás. Flexioná los codos llevando las manos a la frente, manteniendo los codos altos y fijos. Extendé controlado. Cuanto más horizontal el cuerpo, más difícil. Trabaja bíceps y braquial con peso corporal. (TRX Bicep Curl)'
   },
   // TRX — Tríceps
   {
     nombre: 'Tríceps alto en TRX',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     musculos: 'Tríceps, Deltoides anterior',
-    descripcion: 'De espaldas al anclaje del TRX, brazos extendidos sobre la cabeza sosteniendo las correas. Flexioná los codos bajando la cabeza entre las manos, manteniendo los brazos pegados a las orejas. Extendé para volver. Similar a un french press con peso corporal. Cuanto más inclinado, más difícil.'
+    tags: 'TRX tricep extension, TRX skull crusher',
+    descripcion: 'De espaldas al anclaje del TRX, brazos extendidos sobre la cabeza sosteniendo las correas. Flexioná los codos bajando la cabeza entre las manos, manteniendo los brazos pegados a las orejas. Extendé para volver. Similar a un french press con peso corporal. Cuanto más inclinado, más difícil. (TRX Tricep Extension)'
   },
   {
     nombre: 'Tríceps alto en TRX a un brazo',
@@ -999,7 +1121,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sentadilla corporal',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'De pie con pies al ancho de caderas. Bajá como si fueras a sentarte en una silla, flexionando rodillas y caderas. Mantené el pecho erguido y la espalda recta. Respiración normal, sin aguantar aire. Ideal para recuperación sin carga.'
+    tags: 'Bodyweight squat, Air squat',
+    descripcion: 'De pie con pies al ancho de caderas. Bajá como si fueras a sentarte en una silla, flexionando rodillas y caderas. Mantené el pecho erguido y la espalda recta. Respiración normal, sin aguantar aire. Ideal para recuperación sin carga. (Bodyweight Squat)'
   },
   {
     nombre: 'Puente de glúteos una pierna',
@@ -1012,55 +1135,64 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Extensión de cadera en 4 puntos',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales, Erector espinal',
-    descripcion: 'En posición de 4 apoyos (manos y rodillas). Extendé una pierna hacia atrás hasta alinear con el torso, apretando el glúteo al final. Bajá controlado. Core activado todo el tiempo, sin arquear la columna. Trabajá glúteo mayor y estabilidad lumbopélvica.'
+    tags: 'Quadruped hip extension, Donkey kick',
+    descripcion: 'En posición de 4 apoyos (manos y rodillas). Extendé una pierna hacia atrás hasta alinear con el torso, apretando el glúteo al final. Bajá controlado. Core activado todo el tiempo, sin arquear la columna. Trabajá glúteo mayor y estabilidad lumbopélvica. (Quadruped Hip Extension)'
   },
   {
     nombre: 'Estocadas estáticas',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
-    descripcion: 'Dá un paso al frente y quedate en esa posición. Bajá la rodilla trasera hacia el suelo sin apoyarla y subí. Hacé todas las reps de un lado antes de cambiar. Sin saltos, movimiento controlado. Trabajá cuádriceps, glúteos y estabilidad unilateral.'
+    tags: 'Static lunges, Split squat',
+    descripcion: 'Dá un paso al frente y quedate en esa posición. Bajá la rodilla trasera hacia el suelo sin apoyarla y subí. Hacé todas las reps de un lado antes de cambiar. Sin saltos, movimiento controlado. Trabajá cuádriceps, glúteos y estabilidad unilateral. (Static Lunges)'
   },
   {
     nombre: 'Calf raises',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Gemelos, Pantorrillas',
-    descripcion: 'De pie en el suelo o en el borde de un escalón con las puntas de los pies apoyadas. Subí elevando los talones lo más alto posible y bajá lentamente estirando. Si estás en escalón, ganás más rango. Trabaja gemelos y sóleo.'
+    tags: 'Calf raises, Standing calf raise',
+    descripcion: 'De pie en el suelo o en el borde de un escalón con las puntas de los pies apoyadas. Subí elevando los talones lo más alto posible y bajá lentamente estirando. Si estás en escalón, ganás más rango. Trabaja gemelos y sóleo. (Calf Raises)'
   },
   {
     nombre: 'Bird-dog',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Transverso abdominal, Erector espinal, Glúteos',
-    descripcion: 'En 4 apoyos, extendé simultáneamente brazo derecho y pierna izquierda hasta alinear con el torso. Mantené 1-2 segundos y volvé. Alterná. Sin rotación de cadera ni hombros. Control total, core activado. Estabilidad antirotacional y coordinación cruzada.'
+    tags: 'Bird-dog, Quadruped arm leg raise',
+    descripcion: 'En 4 apoyos, extendé simultáneamente brazo derecho y pierna izquierda hasta alinear con el torso. Mantené 1-2 segundos y volvé. Alterná. Sin rotación de cadera ni hombros. Control total, core activado. Estabilidad antirotacional y coordinación cruzada. (Bird-Dog)'
   },
   {
     nombre: 'Hip hinge corporal',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
-    descripcion: 'De pie, pies al ancho de caderas. Empujá la cadera hacia atrás manteniendo la espalda recta y rodillas levemente flexionadas. El torso se inclina por la bisagra de cadera, no por la columna. Activa isquiotibiales y glúteos. Patrón base del peso muerto sin carga.'
+    tags: 'Bodyweight hip hinge, Good morning',
+    descripcion: 'De pie, pies al ancho de caderas. Empujá la cadera hacia atrás manteniendo la espalda recta y rodillas levemente flexionadas. El torso se inclina por la bisagra de cadera, no por la columna. Activa isquiotibiales y glúteos. Patrón base del peso muerto sin carga. (Bodyweight Hip Hinge)'
   },
   {
     nombre: 'Yoga suave',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Erector espinal, Transverso abdominal, Hip flexors',
-    descripcion: 'Secuencia de posturas suaves sin inversiones ni presión abdominal intensa: postura del niño, gato-vaca, paloma, torsión suave sentada, savasana. Respiración profunda y consciente. Ideal para días de recuperación y movilidad.'
+    tags: 'Gentle yoga, Restorative yoga',
+    descripcion: 'Secuencia de posturas suaves sin inversiones ni presión abdominal intensa: postura del niño, gato-vaca, paloma, torsión suave sentada, savasana. Respiración profunda y consciente. Ideal para días de recuperación y movilidad. (Gentle Yoga)'
   },
   {
     nombre: 'Plancha toque de hombro',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Transverso abdominal, Oblicuos, Deltoides anterior',
-    descripcion: 'En plancha sobre manos (no antebrazos), pies un poco más separados que hombros. Tocá el hombro contrario con una mano alternando lados sin que la cadera rote. Core antirotacional en acción. Respiración continua, sin contener aire.'
+    tags: 'Plank shoulder tap, Shoulder tap plank',
+    descripcion: 'En plancha sobre manos (no antebrazos), pies un poco más separados que hombros. Tocá el hombro contrario con una mano alternando lados sin que la cadera rote. Core antirotacional en acción. Respiración continua, sin contener aire. (Plank Shoulder Tap)'
   },
   {
     nombre: 'Press militar suave con kettlebell',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Deltoides lateral, Tríceps',
-    descripcion: 'Press militar con kettlebell liviana, sentada o de pie. Sin apnea, sin aguantar aire. Ideal con el 40-50% de tu peso habitual. Empujá controlado hacia arriba y bajá al rack del hombro. Estímulo de deltoides sin generar presión intracraneal.'
+    tags: 'Light kettlebell overhead press',
+    descripcion: 'Press militar con kettlebell liviana, sentada o de pie. Sin apnea, sin aguantar aire. Ideal con el 40-50% de tu peso habitual. Empujá controlado hacia arriba y bajá al rack del hombro. Estímulo de deltoides sin generar presión intracraneal. (Light Kettlebell Overhead Press)'
   },
   {
     nombre: 'Bíceps curl suave',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
-    descripcion: 'De pie o sentada, kettlebell liviana en cada mano o bilateral. Flexioná el codo con control total en la bajada. Respiración continua. Cargas del 40-50% de lo habitual para mantener estímulo sin fatiga excesiva.'
+    tags: 'Light bicep curl, Recovery bicep curl',
+    descripcion: 'De pie o sentada, kettlebell liviana en cada mano o bilateral. Flexioná el codo con control total en la bajada. Respiración continua. Cargas del 40-50% de lo habitual para mantener estímulo sin fatiga excesiva. (Light Bicep Curl)'
   },
   {
     nombre: 'Face pull con banda',
