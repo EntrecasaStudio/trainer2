@@ -329,8 +329,15 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Elevaciones de hombro adelante',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Deltoides anterior, Pectoral mayor',
-    tags: 'Front raise, Front delt raise',
-    descripcion: 'De pie con mancuernas frente al cuerpo, levantá los brazos hacia adelante hasta la altura de los hombros (o polea baja). Bajá controlado. Trabaja el deltoides anterior. Puede hacerse alternado o simultáneo, con palmas hacia abajo o hacia dentro. (Front Raise)'
+    tags: 'Front raise, Dumbbell front raise',
+    descripcion: 'De pie con mancuernas frente al cuerpo, levantá los brazos hacia adelante hasta la altura de los hombros. Bajá controlado. Cada brazo trabaja independiente, corrigiendo desbalances. Puede hacerse alternado o simultáneo. (Dumbbell Front Raise)'
+  },
+  {
+    nombre: 'Elevaciones de hombro adelante con disco',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides anterior, Pectoral mayor, Core',
+    tags: 'Plate front raise, Front raise with plate',
+    descripcion: 'De pie sosteniendo un disco con ambas manos, levantá los brazos hacia adelante hasta la altura de los hombros. Bajá controlado. Las dos manos juntas permiten más carga y activan más el core por la posición centralizada del peso. (Plate Front Raise)'
   },
   {
     nombre: 'Elevaciones de hombro hacia arriba',
