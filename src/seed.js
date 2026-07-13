@@ -1363,6 +1363,7 @@ function applyExerciseRenames() {
     ['Press militar con mancuernas', 'Press militar'],
     ['Pistol squat asistido', 'Pistol squat'],
     ['Flexiones inclinadas', 'Flexiones declinadas'],
+    ['Toe touch con mancuerna', 'Toe touch con disco'],
   ]);
 
   const rutinas = store.getAll(store.KEYS.rutinas);

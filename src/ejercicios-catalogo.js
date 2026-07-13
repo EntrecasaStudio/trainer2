@@ -1103,11 +1103,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Acostado boca arriba, piernas extendidas verticales. Subí el torso tocando las puntas de los pies (toe touch). Bajá el torso y luego descendé las piernas controladamente hacia el piso sin apoyarlas. Volvé a subir las piernas y repetí. Core anterior dinámico completo. (Toe Touch + Leg Lower)'
   },
   {
-    nombre: 'Toe touch con mancuerna',
+    nombre: 'Toe touch con disco',
     grupo: 'Core', tipo: 'funcional', usaPeso: true,
     musculos: 'Recto abdominal, Oblicuos, Flexores de cadera',
-    tags: 'Dumbbell toe touch, DB toe touch leg lower',
-    descripcion: 'Igual que el toe touch con descenso de piernas pero sosteniendo una mancuerna con ambas manos. Al subir el torso, extendé la mancuerna hacia las puntas de los pies. La carga extra aumenta la demanda del recto abdominal en la fase de crunch. (Dumbbell Toe Touch + Leg Lower)'
+    tags: 'Weighted toe touch, Plate toe touch leg lower',
+    descripcion: 'Igual que el toe touch con descenso de piernas pero sosteniendo un disco con ambas manos. Al subir el torso, extendé el disco hacia las puntas de los pies. La carga extra aumenta la demanda del recto abdominal en la fase de crunch. (Weighted Toe Touch + Leg Lower)'
   },
   {
     nombre: 'Zancada cruzada con vuelo lateral',
