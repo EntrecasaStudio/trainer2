@@ -23,6 +23,7 @@ const NO_CHALECO_PATTERNS = [
   'dead bug',
   'floor press',
   'french press',
+  'toe touch',
   'banda',
 ];
 const CHALECO_OVERRIDE = ['bíceps curl en trx', 'remo alto en trx'];
