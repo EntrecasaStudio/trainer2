@@ -22,6 +22,12 @@ CASA rotation order: Press A → Pull A → Press B → Pull B → Press C → P
 - Always bump SW cache version (`sw.js` line 1) after any code change.
 - Feature branch: `claude/river-workout-alternative-exercise-D5N4v` — merge to main for each push.
 
+## Exercise Catalog
+
+- Every exercise MUST have a `tags` field with the English name (e.g., `tags: "Farmer's walk, Farmer carry"`).
+- The English name is used for YouTube video search — the `tags` first entry is what gets searched.
+- Include the English name in parentheses at the end of the `descripcion` too (e.g., `"... (Farmer's Walk)"`).
+
 ## Code Conventions
 
 - No build step — plain ES modules served as static files.

@@ -488,7 +488,15 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Caminata a plancha',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Deltoides anterior, Isquiotibiales',
-    descripcion: 'De pie, flexionar la cadera y caminar con las manos hacia adelante hasta llegar a posición de plancha. Mantener 2 segundos y caminar con las manos de vuelta hasta pararse. Trabaja core, hombros, flexibilidad de isquiotibiales.'
+    tags: 'Inchworm, Inchworm exercise',
+    descripcion: 'De pie, flexionar la cadera y caminar con las manos hacia adelante hasta llegar a posición de plancha. Mantener 2 segundos y caminar con las manos de vuelta hasta pararse. Trabaja core, hombros, flexibilidad de isquiotibiales. (Inchworm)'
+  },
+  {
+    nombre: 'Caminata de granjero',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Trapecio, Antebrazo, Core, Deltoides',
+    tags: "Farmer's walk, Farmer carry",
+    descripcion: "Agarrá una kettlebell o mancuerna pesada en cada mano y caminá con pasos controlados manteniendo el torso erguido, hombros atrás y core activado. Trabaja agarre, trapecio, estabilidad de core y resistencia general. Se puede hacer también con un solo peso (suitcase carry) para mayor demanda anti-lateral del core. (Farmer's Walk)"
   },
   {
     nombre: 'Mountain climbers',
