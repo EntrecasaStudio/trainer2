@@ -13,7 +13,7 @@ CASA rotation order: Press A → Pull A → Press B → Pull B → Press C → P
 
 **When suggesting or placing exercises, check the FULL rotation sequence (both Press AND Pull), not just same-type routines.** Adjacent routines in the rotation alternate Press/Pull, so a Press D exercise repeats the next day if it also appears in Pull D.
 
-- Before placing an exercise, verify it does not appear in the 2 routines before AND 2 routines after in the rotation (regardless of Press/Pull type).
+- Before placing an exercise, verify it does not appear in the 2 routines before AND 2 routines after in the rotation (regardless of Press/Pull type). Check ALL circuits of each adjacent routine, not just the same circuit number — an exercise in Press B C1 conflicts with Pull B C2 if it's the same exercise.
 - Also check exercises with similar mechanics (e.g., "Extensión de tríceps con banda" ≈ "Banda triceps pushdown" — both are band pushdown movements).
 
 ## Deployment
