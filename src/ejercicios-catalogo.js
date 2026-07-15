@@ -127,6 +127,20 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Acostado boca abajo con un disco sostenido contra el pecho o detrás de la cabeza. Elevá el torso contrayendo la espalda baja y bajá de forma controlada. Evitá hiperextender la columna al subir. Trabaja erectores espinales. (Weighted Back Extension)'
   },
   {
+    nombre: 'Rotación con disco',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Oblicuos, Transverso abdominal, Recto abdominal',
+    tags: 'Standing plate twist, Standing Russian twist',
+    descripcion: 'De pie con un disco sostenido con ambas manos y los brazos extendidos al frente. Rotá el torso de un lado al otro llevando el disco en arco amplio. Mantené las caderas lo más quietas posible para que la rotación venga de la zona torácica. Trabaja oblicuos y core rotacional. (Standing Plate Twist)'
+  },
+  {
+    nombre: 'Oscilaciones laterales con disco',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Oblicuos, Transverso abdominal, Deltoides anterior',
+    tags: 'Plate lateral shift, Standing plate pendulum',
+    descripcion: 'De pie sosteniendo un disco con ambas manos y los brazos extendidos al frente a la altura de los hombros. Hacé movimientos cortos laterales de izquierda a derecha sin rotar el torso. El core trabaja anti-lateralmente para estabilizar el peso. (Plate Lateral Shift)'
+  },
+  {
     nombre: 'Complex',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Oblicuos, Transverso abdominal',
