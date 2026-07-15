@@ -135,7 +135,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Oscilaciones laterales con disco',
-    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Oblicuos, Transverso abdominal, Deltoides anterior',
     tags: 'Plate lateral shift, Standing plate pendulum',
     descripcion: 'De pie sosteniendo un disco con ambas manos y los brazos extendidos al frente a la altura de los hombros. Hacé movimientos cortos laterales de izquierda a derecha sin rotar el torso. El core trabaja anti-lateralmente para estabilizar el peso. (Plate Lateral Shift)'
