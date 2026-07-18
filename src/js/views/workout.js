@@ -86,6 +86,36 @@ function lastChalecoPeso(nombre, usuario) {
   return null;
 }
 
+// Pick the peso from the most recent session where this exercise was done
+// (prefers same lugar, falls back to any lugar).
+function lastPesoValue(nombre, usuario, lugar) {
+  try {
+    const sesiones = store.getAll(store.KEYS.sesiones) || [];
+    const sorted = [...sesiones].sort((a, b) =>
+      (b.fecha || '').localeCompare(a.fecha || '') ||
+      (b.startTime || '').localeCompare(a.startTime || '')
+    );
+    const findIn = (matchLugar) => {
+      for (const s of sorted) {
+        if (s.usuario !== usuario) continue;
+        if (matchLugar && s.lugar !== lugar) continue;
+        for (const c of (s.circuitos || [])) {
+          for (const e of (c.ejercicios || [])) {
+            if (e.nombre !== nombre) continue;
+            const series = e.seriesData || [];
+            const withPeso = series.find(x => x.peso > 0);
+            if (withPeso) return withPeso.peso;
+          }
+        }
+      }
+      return null;
+    };
+    return findIn(true) ?? findIn(false);
+  } catch {
+    return null;
+  }
+}
+
 // Pick the reps from the most recent session where this exercise was done
 // (prefers same lugar, falls back to any lugar). Only counts series marked done.
 function lastRepsValue(nombre, usuario, lugar) {
@@ -261,22 +291,21 @@ export function mountWorkout(container, params) {
     c.ejercicios.forEach(e => {
       if (e.usaPeso) {
         const prog = store.getProgresion(e.nombre, usuario, lugar);
+        const sessionPeso = lastPesoValue(e.nombre, usuario, lugar);
+        const prefillPeso = sessionPeso ?? prog?.lastWeight ?? defaultKettlebellWeight(e.nombre, usuario) ?? 0;
+        if (prefillPeso > 0) {
+          e.seriesData.forEach(s => { s.peso = prefillPeso; });
+        }
+        e._lastWeight = prefillPeso || undefined;
         if (prog) {
-          e.seriesData.forEach(s => { s.peso = prog.lastWeight || 0; });
-          e._lastWeight = prog.lastWeight;
           const count = prog.consecutiveComplete ?? (prog.completedAllReps ? 1 : 0);
           const cat = EJERCICIOS_CATALOGO.find(c => c.nombre === e.nombre);
           const smartInc = cat?.tipo === 'maquina' ? 2.5 : 1;
           if (count >= 2) {
-            e._suggestion = prog.lastWeight + smartInc;
+            e._suggestion = (prog.lastWeight || prefillPeso) + smartInc;
             e._sugInc = smartInc;
           } else if (count === 1) {
             e._progressCount = 1;
-          }
-        } else {
-          const kbDefault = defaultKettlebellWeight(e.nombre, usuario);
-          if (kbDefault != null) {
-            e.seriesData.forEach(s => { s.peso = kbDefault; });
           }
         }
       }
