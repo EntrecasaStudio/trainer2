@@ -1969,6 +1969,17 @@ export async function seedV2() {
     }
   }
 
+  // Preserve etiquetas/notas from all existing routines (even non-modified)
+  for (const old of existing) {
+    if (!old.etiquetas && !old.notas) continue;
+    const key = `${old.nombre}|${old.usuario}`;
+    const ni = allNew.findIndex(r => `${r.nombre}|${r.usuario}` === key);
+    if (ni !== -1) {
+      if (old.etiquetas) allNew[ni].etiquetas = old.etiquetas;
+      if (old.notas) allNew[ni].notas = old.notas;
+    }
+  }
+
   // Preserve user-modified routines: keep their circuitos over template defaults
   for (const old of existing) {
     if (!old.userModified) continue;
@@ -1977,6 +1988,8 @@ export async function seedV2() {
     if (ni !== -1) {
       allNew[ni].circuitos = old.circuitos;
       allNew[ni].userModified = true;
+      if (old.etiquetas) allNew[ni].etiquetas = old.etiquetas;
+      if (old.notas) allNew[ni].notas = old.notas;
       console.log(`[Seed] Preserved user-modified routine: ${old.nombre}`);
     } else {
       allNew.push({ ...old });

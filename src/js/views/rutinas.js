@@ -23,12 +23,21 @@ const DAYS = [
   { iso: 7, short: 'Dom', full: 'Domingo' },
 ];
 
+const ETIQUETA_PRESETS = [
+  { key: 'rapida',   label: 'Rápida',   icon: 'ph-lightning', color: '#22c55e' },
+  { key: 'larga',    label: 'Larga',    icon: 'ph-hourglass', color: '#8b5cf6' },
+  { key: 'intensa',  label: 'Intensa',  icon: 'ph-flame',     color: '#ef4444' },
+  { key: 'suave',    label: 'Suave',    icon: 'ph-leaf',      color: '#06b6d4' },
+  { key: 'favorita', label: 'Favorita', icon: 'ph-star',      color: '#f59e0b' },
+];
+
 let lastTapTime = {};
 let expandedRutinas = new Set();
 let _container = null;
 let _currentUser = '';
 let _activeLugares = [];
 let _searchQuery = '';
+let _activeTag = '';
 
 export function mountRutinas(container) {
   _container = container;
@@ -36,6 +45,7 @@ export function mountRutinas(container) {
   document.body.setAttribute('data-usuario', _currentUser);
   _activeLugares = store.getFilterLugar();
   _searchQuery = '';
+  _activeTag = '';
 
   container.innerHTML = `
     <div class="rutinas-header">
@@ -63,6 +73,7 @@ export function mountRutinas(container) {
         <i class="ph ph-barbell" style="font-size:16px;"></i> Ejercicios
       </button>
     </div>
+    <div class="etiqueta-filters" id="etiqueta-filters"></div>
     <div id="rutinas-list"></div>
   `;
 
@@ -126,6 +137,7 @@ export function mountRutinas(container) {
   });
 
   renderFilters();
+  renderTagFilters();
   renderList();
 }
 
@@ -171,13 +183,36 @@ function renderFilters() {
   });
 }
 
+function renderTagFilters() {
+  const el = document.getElementById('etiqueta-filters');
+  if (!el) return;
+  const rutinas = store.getAll(store.KEYS.rutinas)
+    .filter(r => r.usuario === _currentUser && _activeLugares.includes(r.lugar));
+  const usedTags = new Set();
+  rutinas.forEach(r => (r.etiquetas || []).forEach(t => usedTags.add(t)));
+  if (usedTags.size === 0) { el.innerHTML = ''; return; }
+  el.innerHTML = ETIQUETA_PRESETS
+    .filter(t => usedTags.has(t.key))
+    .map(t => `<button class="etiqueta-filter-chip ${_activeTag === t.key ? 'active' : ''}" data-tag="${t.key}" style="--tag-color:${t.color}">
+      <i class="ph ${t.icon}" style="font-size:12px;"></i> ${t.label}
+    </button>`).join('');
+  el.querySelectorAll('.etiqueta-filter-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      _activeTag = _activeTag === btn.dataset.tag ? '' : btn.dataset.tag;
+      renderTagFilters();
+      renderList();
+    });
+  });
+}
+
 function renderList() {
   const listEl = document.getElementById('rutinas-list');
   if (!listEl) return;
   const q = _searchQuery.toLowerCase();
   const rutinas = store.getAll(store.KEYS.rutinas)
     .filter(r => r.usuario === _currentUser && _activeLugares.includes(r.lugar))
-    .filter(r => !q || r.nombre.toLowerCase().includes(q) || (r.numero || '').toLowerCase().includes(q));
+    .filter(r => !q || r.nombre.toLowerCase().includes(q) || (r.numero || '').toLowerCase().includes(q))
+    .filter(r => !_activeTag || (r.etiquetas || []).includes(_activeTag));
 
   if (rutinas.length === 0) {
     listEl.innerHTML = `
@@ -204,6 +239,10 @@ function renderList() {
               ${r.foco ? `<span>${r.foco}</span><span>·</span>` : ''}
               <span>${r.circuitos.length} circuitos</span>
             </div>
+            ${(r.etiquetas || []).length > 0 ? `<div class="rutina-tags-row">${r.etiquetas.map(key => {
+              const t = ETIQUETA_PRESETS.find(p => p.key === key);
+              return t ? `<span class="rutina-tag-pill" style="--tag-color:${t.color}"><i class="ph ${t.icon}" style="font-size:10px;"></i> ${t.label}</span>` : '';
+            }).join('')}</div>` : ''}
           </div>
         </div>
         <div class="rutina-expand-wrap ${isExpanded ? 'open' : ''}">
@@ -255,10 +294,55 @@ function renderList() {
       e.stopPropagation();
       deleteRutina(id);
     });
+
+    item.querySelectorAll('.etiqueta-toggle').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const tag = btn.dataset.tag;
+        const rutina = store.findById(store.KEYS.rutinas, id);
+        if (!rutina) return;
+        const tags = rutina.etiquetas || [];
+        if (tags.includes(tag)) {
+          rutina.etiquetas = tags.filter(t => t !== tag);
+        } else {
+          rutina.etiquetas = [...tags, tag];
+        }
+        store.update(store.KEYS.rutinas, id, { etiquetas: rutina.etiquetas });
+        btn.classList.toggle('active');
+        renderTagFilters();
+        const tagsRow = item.querySelector('.rutina-tags-row');
+        const metaParent = item.querySelector('.rutina-list-meta')?.parentElement;
+        if (metaParent) {
+          if (tagsRow) tagsRow.remove();
+          if (rutina.etiquetas.length > 0) {
+            const div = document.createElement('div');
+            div.className = 'rutina-tags-row';
+            div.innerHTML = rutina.etiquetas.map(key => {
+              const t = ETIQUETA_PRESETS.find(p => p.key === key);
+              return t ? `<span class="rutina-tag-pill" style="--tag-color:${t.color}"><i class="ph ${t.icon}" style="font-size:10px;"></i> ${t.label}</span>` : '';
+            }).join('');
+            metaParent.appendChild(div);
+          }
+        }
+      });
+    });
+
+    const notasInput = item.querySelector('.rutina-notas-input');
+    if (notasInput) {
+      let notasTimer;
+      const saveNotas = () => {
+        clearTimeout(notasTimer);
+        store.update(store.KEYS.rutinas, id, { notas: notasInput.value });
+      };
+      notasInput.addEventListener('input', () => { clearTimeout(notasTimer); notasTimer = setTimeout(saveNotas, 600); });
+      notasInput.addEventListener('change', saveNotas);
+      notasInput.addEventListener('click', (e) => e.stopPropagation());
+    }
   });
 }
 
 function renderExpanded(rutina) {
+  const tags = rutina.etiquetas || [];
   return `
     <div class="rutina-circuits-detail">
       <div class="rutina-actions">
@@ -274,6 +358,14 @@ function renderExpanded(rutina) {
         <button class="btn btn-primary btn-action-start" style="margin-left:auto;">
           <i class="ph ph-barbell" style="font-size:18px;"></i> Entrenar
         </button>
+      </div>
+      <div class="rutina-etiquetas-row">
+        ${ETIQUETA_PRESETS.map(t => `<button class="etiqueta-toggle ${tags.includes(t.key) ? 'active' : ''}" data-tag="${t.key}" style="--tag-color:${t.color}">
+          <i class="ph ${t.icon}" style="font-size:12px;"></i> ${t.label}
+        </button>`).join('')}
+      </div>
+      <div class="rutina-notas-row">
+        <input type="text" class="rutina-notas-input" placeholder="Notas..." value="${(rutina.notas || '').replace(/"/g, '&quot;')}" data-id="${rutina.id}">
       </div>
       ${rutina.circuitos.map((c, i) => {
         const circName = c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : (typeof c.grupoMuscular === 'string' ? c.grupoMuscular : 'Circuito'));

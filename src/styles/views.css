@@ -460,6 +460,99 @@
   color: var(--color-text-muted);
 }
 
+/* Etiqueta tag pills on cards */
+.rutina-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: var(--space-xs);
+}
+.rutina-tag-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: var(--fw-semibold);
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--tag-color) 15%, transparent);
+  color: var(--tag-color);
+}
+
+/* Etiqueta filter chips */
+.etiqueta-filters {
+  display: flex;
+  gap: 6px;
+  padding: 0 var(--space-lg);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.etiqueta-filters:empty { display: none; }
+.etiqueta-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--tag-color) 40%, transparent);
+  background: transparent;
+  color: var(--tag-color);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+.etiqueta-filter-chip.active {
+  background: var(--tag-color);
+  color: #fff;
+  border-color: var(--tag-color);
+}
+
+/* Etiqueta toggles inside expanded card */
+.rutina-etiquetas-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: var(--space-sm);
+}
+.etiqueta-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--tag-color) 30%, transparent);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.etiqueta-toggle.active {
+  background: color-mix(in srgb, var(--tag-color) 15%, transparent);
+  color: var(--tag-color);
+  border-color: var(--tag-color);
+}
+
+/* Notas input */
+.rutina-notas-row {
+  margin-bottom: var(--space-sm);
+}
+.rutina-notas-input {
+  width: 100%;
+  font-size: var(--text-xs);
+  padding: 6px 10px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s;
+}
+.rutina-notas-input:focus {
+  border-color: var(--color-primary);
+}
+
 /* Expanded rutina detail */
 .rutina-circuits-detail {
   margin-top: var(--space-md);
