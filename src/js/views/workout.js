@@ -293,6 +293,15 @@ export function mountWorkout(container, params) {
       if (lastReps != null) {
         e.seriesData.forEach(s => { s.reps = lastReps; });
       }
+      // Pre-fill chaleco from last session if it was used
+      const cat2 = EJERCICIOS_CATALOGO.find(c => c.nombre === e.nombre);
+      if (cat2?.tipo === 'funcional' && chalecoApplies(e.nombre)) {
+        const lastCP = lastChalecoPeso(e.nombre, usuario);
+        if (lastCP) {
+          e.chaleco = true;
+          e.chalecoPeso = lastCP;
+        }
+      }
     });
   });
 
