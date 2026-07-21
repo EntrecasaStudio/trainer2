@@ -21,6 +21,7 @@ const NO_CHALECO_PATTERNS = [
   'abs complex',
   '90/90', 'mobility',
   'dead bug',
+  'crunch',
   'floor press',
   'french press',
   'toe touch',
