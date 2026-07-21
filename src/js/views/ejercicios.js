@@ -49,7 +49,9 @@ function saveCustomEjercicio(nombre, data) {
 function getEjercicioData(nombre) {
   const custom = getCustomEjercicios();
   const base = findEjercicio(nombre) || { nombre, grupo: 'Otros', tipo: 'funcional', usaPeso: false, descripcion: '' };
-  return { ...base, ...(custom[nombre] || {}) };
+  const merged = { ...base, ...(custom[nombre] || {}) };
+  if (!merged.descripcion && base.descripcion) merged.descripcion = base.descripcion;
+  return merged;
 }
 
 export function mountEjercicios(container) {
@@ -400,7 +402,9 @@ function openEditModal(data, onChange) {
       delete custom[oldName];
     }
     if (!custom[effectiveName]) custom[effectiveName] = {};
-    Object.assign(custom[effectiveName], { descripcion: desc, tipo: selectedTipo, usaPeso: usaPesoVal });
+    const catBase = findEjercicio(effectiveName);
+    Object.assign(custom[effectiveName], { tipo: selectedTipo, usaPeso: usaPesoVal });
+    if (desc || !catBase?.descripcion) custom[effectiveName].descripcion = desc;
     store.set('gym_ejercicios_custom', custom);
 
     overlay.classList.add('hidden');
