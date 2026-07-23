@@ -34,6 +34,7 @@ const _timers = {};
 const DEBOUNCE_MS = 2000;
 let _unsubscribe = null;
 let _suppressSync = false;
+export function setSuppressSync(val) { _suppressSync = val; }
 const _dirtyKeys = new Set();
 
 // ── Sync status ──────────────────────────
@@ -97,6 +98,11 @@ async function uploadKey(key) {
     const { doc, setDoc } = await fs();
     const raw = localStorage.getItem(key);
     const data = raw ? JSON.parse(raw) : null;
+    if (MERGEABLE_KEYS.has(key) && (!Array.isArray(data) || data.length === 0)) {
+      console.log(`[sync] skip upload ${key}: empty/null would overwrite remote`);
+      _dirtyKeys.delete(key);
+      return;
+    }
     await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
     _dirtyKeys.delete(key);
     _retryCount[key] = 0;
@@ -132,6 +138,10 @@ export async function uploadAllData() {
     try {
       const raw = localStorage.getItem(key);
       const data = raw ? JSON.parse(raw) : null;
+      if (MERGEABLE_KEYS.has(key) && (!Array.isArray(data) || data.length === 0)) {
+        console.log(`[sync] skip upload ${key}: empty/null would overwrite remote`);
+        continue;
+      }
       const size = raw ? raw.length : 0;
       await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
       console.log(`[sync] uploaded ${key}: ${Array.isArray(data) ? data.length + ' items' : 'obj'} (~${Math.round(size / 1024)}KB)`);
@@ -287,18 +297,20 @@ function repairStaleReferences() {
 
 // ── Download ────────────────────────────
 
-async function flushPendingSyncs() {
+async function flushPendingSyncs(excludeMergeable) {
   const keys = [..._dirtyKeys];
   if (keys.length === 0) return;
+  const toFlush = excludeMergeable ? keys.filter(k => !MERGEABLE_KEYS.has(k)) : keys;
+  if (toFlush.length === 0) return;
   for (const key of Object.keys(_timers)) {
     clearTimeout(_timers[key]);
     delete _timers[key];
   }
-  await Promise.all(keys.map(key => uploadKey(key)));
+  await Promise.all(toFlush.map(key => uploadKey(key)));
 }
 
 export async function downloadAllData() {
-  await flushPendingSyncs();
+  await flushPendingSyncs(true);
 
   const ref = getDocRef();
   if (!ref) return false;
@@ -316,7 +328,7 @@ export async function downloadAllData() {
 
     for (const [key, field] of Object.entries(SYNC_KEYS)) {
       try {
-        if (_dirtyKeys.has(key)) continue;
+        if (_dirtyKeys.has(key) && !MERGEABLE_KEYS.has(key)) continue;
         if (data[field] === undefined || data[field] === null) {
           console.log(`[sync] skip ${key}: no remote data`);
           continue;

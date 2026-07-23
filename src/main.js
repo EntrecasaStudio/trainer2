@@ -10,7 +10,7 @@ import { mountRutinaEdit } from './js/views/rutina-edit.js';
 import { mountUsuario } from './js/views/usuario.js';
 import { seedV2 } from './seed.js';
 import { initFirebase, loginWithGoogle, logout, onAuth, getCurrentUser } from './js/services/firebase.js';
-import { uploadAllData, downloadAllData, startRealtimeSync, stopRealtimeSync, clearSyncState, getSyncStatus, onSyncStatusChange, setOnResumeCallback } from './js/services/sync.js';
+import { uploadAllData, downloadAllData, startRealtimeSync, stopRealtimeSync, clearSyncState, getSyncStatus, onSyncStatusChange, setOnResumeCallback, setSuppressSync } from './js/services/sync.js';
 
 let _appBooted = false;
 
@@ -343,14 +343,19 @@ async function start() {
     if (user) {
       try {
         await downloadAllData();
+        setSuppressSync(true);
         await seedV2();
-        await uploadAllData();
+        setSuppressSync(false);
         startRealtimeSync(() => {
+          setSuppressSync(true);
           seedV2();
+          setSuppressSync(false);
           if (router.getCurrentRoute() !== 'workout') router._handleRoute();
         });
         setOnResumeCallback(() => {
+          setSuppressSync(true);
           seedV2();
+          setSuppressSync(false);
           if (router.getCurrentRoute() !== 'workout') router._handleRoute();
         });
       } catch (e) {
