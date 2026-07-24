@@ -326,6 +326,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con mancuernas, kettlebells o bandas a los costados, levantá los brazos lateralmente hasta la altura de los hombros con leve flexión en los codos. Bajá lento. Trabaja exclusivamente el deltoides lateral. (Lateral Raise)'
   },
   {
+    nombre: 'Vuelo lateral inclinado',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides lateral, Trapecio',
+    tags: 'Leaning lateral raise, Incline lateral raise',
+    descripcion: 'Agarrate de una columna o soporte con un brazo, incliná el cuerpo en diagonal alejándote del punto de apoyo. Con el brazo libre y una mancuerna, levantá lateralmente hasta la altura del hombro. El ángulo inclinado aumenta el rango de movimiento y mantiene tensión constante en el deltoides lateral, especialmente en la parte baja del recorrido. (Leaning Lateral Raise)'
+  },
+  {
     nombre: 'Empuje de hombros con barra en banco',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Deltoides anterior, Tríceps, Trapecio',
