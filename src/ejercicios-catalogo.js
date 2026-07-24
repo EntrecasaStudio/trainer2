@@ -1050,11 +1050,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie sobre una pierna, peso en la mano del mismo lado o contrario. Flexioná el codo subiendo la pesa al hombro sin perder el equilibrio. Trabajás bíceps, core y estabilizadores de tobillo y cadera simultáneamente. Alterná la pierna de apoyo entre series. (Single Leg Balance Bicep Curl)'
   },
   {
-    nombre: 'Vuelos laterales en equilibrio con kettlebell',
+    nombre: 'Vuelos laterales en equilibrio',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides lateral, Trapecio, Glúteos',
-    tags: 'Single leg kettlebell lateral raise',
-    descripcion: 'Parado sobre una pierna, kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar. (Single Leg Kettlebell Lateral Raise)'
+    tags: 'Single leg lateral raise, Single leg side raise',
+    descripcion: 'Parado sobre una pierna con mancuerna o kettlebell en una mano. Elevá el brazo lateralmente hasta la altura del hombro con el codo levemente flexionado. Bajá controlado. Trabaja deltoides lateral, core y estabilidad de cadera y tobillo. Hacé todas las reps de un lado antes de cambiar. (Single Leg Lateral Raise)'
   },
   // TRX — Piernas
   {
