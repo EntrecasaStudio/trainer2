@@ -609,7 +609,7 @@ function createCasaRoutines() {
     rutinaCasa('#C03', 'Casa Press C — Lean', 'Lean', 'press', 1, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla con salto', 2, '8'), ej('Zancadas', 2, '10'), ej('TRX power pull', 2, '8')]),
       circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Floor press', 2, '10'), ej('TRX archer press', 2, '12')]),
-      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Vuelos laterales en equilibrio', 2, '10'), ej('Tríceps alto en TRX', 2, '15')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Vuelo lateral inclinado', 2, '10'), ej('Tríceps alto en TRX', 2, '15')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Plancha estrella con peso', 2, '6'), ej('Dead bug', 2, '12'), ej('Bíceps curl en TRX', 2, '10')]),
       circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '10'), ej('Bear crawl', 4, '8m')]),
     ]),
@@ -696,7 +696,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C03', 'Casa Press C — Nat', 'Nat', 'press', 1, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Plié squat', 2, '15'), ej('Loop band abducción parada', 2, '15'), ej('Sentadilla sumo', 2, '12')]),
-      circuito(2, 'PECHO·HOMBROS', [ej('Banda press de pecho', 2, '15'), ej('Vuelos laterales en equilibrio', 2, '10'), ej('Floor press', 2, '10')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('Banda press de pecho', 2, '15'), ej('Vuelo lateral inclinado', 2, '10'), ej('Floor press', 2, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Press militar', 2, '10'), ej('Extensión de tríceps con banda', 2, '15')]),
       circuito(4, 'CORE·PIERNAS', [ej('Plancha estrella con peso', 2, '8'), ej('Hollow body', 2, '25s'), ej('Puente de glúteos una pierna', 2, '12')]),
       circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '8'), ej('Bear crawl', 4, '8m')]),
@@ -717,7 +717,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C10', 'Casa Press F — Nat', 'Nat', 'press', 1, [
       circuito(1, 'PIERNAS·GLÚTEOS', [ej('Elevated side reaches', 2, '12'), ej('Plié dips', 2, '12'), ej('Déficit reverse lunge', 2, '10')]),
-      circuito(2, 'PECHO·HOMBROS', [ej('TRX chest press', 2, '15'), ej('Vuelos laterales', 2, '12'), ej('Flexiones', 2, '10')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('TRX chest press', 2, '15'), ej('Vuelo lateral inclinado', 2, '12'), ej('Flexiones', 2, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Extensión de triceps sobre cabeza', 2, '10'), ej('Elevaciones de hombro adelante', 2, '12'), ej('Banda triceps pushdown', 2, '15')]),
       circuito(4, 'CORE·PIERNAS', [ej('Crunch oblicuo a una pierna', 2, '12'), ej('Dead bug', 2, '10'), ej('Empuje de cadera en piso con peso', 2, '15')]),
       circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '8'), ej('Bear crawl', 4, '8m')]),
@@ -1869,6 +1869,31 @@ function migrateCompoundExercises() {
   }
 }
 
+function migrateVueloLateralToInclinado() {
+  const SWAPS = [
+    ['Casa Press C — Lean', 2, 1, 'Vuelos laterales en equilibrio', 'Vuelo lateral inclinado', 2, '10'],
+    ['Casa Press C — Nat', 1, 1, 'Vuelos laterales en equilibrio', 'Vuelo lateral inclinado', 2, '10'],
+    ['Casa Press F — Nat', 1, 1, 'Vuelos laterales', 'Vuelo lateral inclinado', 2, '12'],
+  ];
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  if (!rutinas?.length) return;
+  let changed = false;
+  for (const [rName, ci, ei, oldName, newName, series, reps] of SWAPS) {
+    const r = rutinas.find(rt => rt.nombre === rName);
+    if (!r) continue;
+    const ej = r.circuitos?.[ci]?.ejercicios?.[ei];
+    if (!ej || ej.nombre !== oldName) continue;
+    ej.nombre = newName;
+    ej.series = series;
+    ej.reps = reps;
+    changed = true;
+  }
+  if (changed) {
+    store.set(store.KEYS.rutinas, rutinas);
+    console.log('[Migration] Vuelo lateral → inclinado in select routines');
+  }
+}
+
 function migrateCasaHiitTo4Series() {
   const rutinas = store.getAll(store.KEYS.rutinas);
   if (!rutinas?.length) return;
@@ -1904,6 +1929,7 @@ export async function seedV2() {
   ensureCasaRoutinesExist();
   migrateCompoundExercises();
   migrateCasaHiitTo4Series();
+  migrateVueloLateralToInclinado();
 
   const version = store.getVersion();
   if (parseFloat(version || '0') >= parseFloat(SEED_VERSION)) {
