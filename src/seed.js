@@ -674,7 +674,7 @@ function createCasaRoutines() {
     rutinaCasa('#C12', 'Casa Pull F — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'PIERNAS·CORE', [ej('Step up', 2, '12'), ej('Sentadilla sumo', 2, '12'), ej('Abs complex', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('TRX power pull', 2, '8'), ej('Remo', 2, '10')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl martillo', 2, '10'), ej('Bird-dog', 2, '10'), ej('Bíceps curl concentrado', 2, '10')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl martillo', 2, '10'), ej('Bird-dog', 2, '10'), ej('Oscilaciones laterales con disco', 2, '12')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones', 2, '8'), ej('Tríceps alto en TRX a un brazo', 2, '8'), ej('TRX chest press', 2, '12')]),
       circuito(5, 'HIIT', [ej('Caminata a plancha', 4, '8'), ej('Tuck jumps', 4, '8'), ej('Estocada con salto', 4, '8')]),
     ]),
@@ -765,6 +765,112 @@ function createCasaRoutines() {
       circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX power pull', 2, '10'), ej('Bíceps curl martillo', 2, '10'), ej('Remo', 2, '10')]),
       circuito(4, 'CORE·TRÍCEPS', [ej('Peso muerto a una pierna', 2, '8'), ej('French press en puente de glúteos', 2, '12'), ej('Bíceps curl en equilibrio', 2, '12')]),
       circuito(5, 'HIIT', [ej('Caminata a plancha', 4, '8'), ej('Tuck jumps', 4, '8'), ej('Estocada con salto', 4, '8')]),
+    ]),
+
+    // ── LEAN PRESS G-J ────────────────────────────────────────
+    rutinaCasa('#C13', 'Casa Press G — Lean', 'Lean', 'press', 2, [
+      circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna con remo', 2, '10'), ej('Sentadilla goblet', 2, '12'), ej('Renegade row', 2, '10')]),
+      circuito(2, 'PECHO', [ej('Flexiones explosivas', 2, '8'), ej('Aperturas con mancuernas', 2, '10'), ej('Banda press de pecho', 2, '15')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Zancada reversa con press a un brazo', 2, '8'), ej('Arnold press', 2, '10'), ej('Vuelos laterales', 2, '12')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Pallof press', 2, '10'), ej('Dead bug', 2, '12'), ej('Bíceps curl martillo', 2, '10')]),
+      circuito(5, 'HIIT', [ej('Mountain climbers', 4, '20'), ej('Burpees', 4, '8'), ej('Jumping jacks', 4, '30')]),
+    ]),
+    rutinaCasa('#C15', 'Casa Press H — Lean', 'Lean', 'press', 1, [
+      circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla con remo en TRX', 2, '12'), ej('Step up', 2, '12'), ej('TRX face pull', 2, '15')]),
+      circuito(2, 'PECHO', [ej('TRX chest press', 2, '12'), ej('Flexiones declinadas', 2, '12'), ej('Floor press', 2, '10')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Clean con press a un brazo', 2, '8'), ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de triceps sobre cabeza', 2, '10')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Plancha con arrastre', 2, '10'), ej('Crunch oblicuo a una pierna', 2, '12'), ej('Bíceps curl', 2, '10')]),
+      circuito(5, 'HIIT', [ej('Caminata a plancha', 4, '8'), ej('Tuck jumps', 4, '8'), ej('Estocada con salto', 4, '8')]),
+    ]),
+    rutinaCasa('#C17', 'Casa Press I — Lean', 'Lean', 'press', 2, [
+      circuito(1, 'PIERNAS·ESPALDA', [ej('Swing a sentadilla goblet', 2, '10'), ej('Sentadilla búlgara', 2, '10'), ej('Remo alto en TRX', 2, '12')]),
+      circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Aperturas con mancuernas', 2, '10'), ej('Banda press de pecho', 2, '15')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Thruster con kettlebell', 2, '8'), ej('Vuelos laterales', 2, '12'), ej('Fondos en banco', 2, '12')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Plancha estrella con peso', 2, '6'), ej('Oscilaciones laterales con disco', 2, '12'), ej('Bíceps curl en TRX', 2, '10')]),
+      circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '10'), ej('Bear crawl', 4, '8m')]),
+    ]),
+    rutinaCasa('#C19', 'Casa Press J — Lean', 'Lean', 'press', 1, [
+      circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna con remo', 2, '10'), ej('Pistol squat', 2, '8'), ej('Remo', 2, '12')]),
+      circuito(2, 'PECHO', [ej('Hollow body con press de pecho', 2, '8'), ej('Flexiones explosivas', 2, '8'), ej('TRX archer press', 2, '10')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Arnold press', 2, '10'), ej('Vuelo lateral inclinado', 2, '10'), ej('Extensión de tríceps con banda', 2, '15')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Toe touch con disco', 2, '10'), ej('Bird-dog', 2, '10'), ej('Bíceps curl con banda', 2, '10')]),
+      circuito(5, 'HIIT', [ej('Step-up rápidos alternados', 4, '20'), ej('Patinadores', 4, '20'), ej('Rodillas altas', 4, '30')]),
+    ]),
+
+    // ── LEAN PULL G-J ─────────────────────────────────────────
+    rutinaCasa('#C14', 'Casa Pull G — Lean', 'Lean', 'pull', 1, [
+      circuito(1, 'PIERNAS·CORE', [ej('Zancada con rotación', 2, '10'), ej('Sentadilla búlgara', 2, '10'), ej('Copenhague', 2, '15')]),
+      circuito(2, 'ESPALDA', [ej('Peso muerto rumano con remo', 2, '10'), ej('Dominadas australianas', 2, '12'), ej('Banda pull-apart', 2, '20')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl en TRX', 2, '10'), ej('Plancha commando', 2, '10'), ej('Bíceps curl en equilibrio', 2, '10')]),
+      circuito(4, 'PECHO·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Flexiones diamante', 2, '10'), ej('French press', 2, '10')]),
+      circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '10'), ej('Bear crawl', 4, '8m')]),
+    ]),
+    rutinaCasa('#C16', 'Casa Pull H — Lean', 'Lean', 'pull', 2, [
+      circuito(1, 'PIERNAS·CORE', [ej('Sentadilla con press Pallof', 2, '10'), ej('Peso muerto a una pierna', 2, '10'), ej('Elevación de talones a una pierna', 2, '15')]),
+      circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('TRX power pull', 2, '8'), ej('Remo', 2, '10')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Zancada reversa con curl martillo', 2, '10'), ej('Bird-dog', 2, '10'), ej('Bíceps curl concentrado', 2, '10')]),
+      circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones', 2, '12'), ej('TRX archer press', 2, '10'), ej('Banda triceps pushdown', 2, '15')]),
+      circuito(5, 'HIIT', [ej('Burpees', 4, '8'), ej('Jumping jacks', 4, '30'), ej('Mountain climbers', 4, '20')]),
+    ]),
+    rutinaCasa('#C18', 'Casa Pull I — Lean', 'Lean', 'pull', 1, [
+      circuito(1, 'PIERNAS·CORE', [ej('Levantamiento turco', 2, '5'), ej('Step up', 2, '12'), ej('Copenhague', 2, '15')]),
+      circuito(2, 'ESPALDA', [ej('Dominadas australianas', 2, '12'), ej('TRX face pull', 2, '15'), ej('Banda pull-apart', 2, '20')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Caminata de maleta', 2, '20m'), ej('Pallof press', 2, '10'), ej('Bíceps curl martillo', 2, '10')]),
+      circuito(4, 'PECHO·TRÍCEPS', [ej('TRX chest press', 2, '12'), ej('Flexiones declinadas', 2, '12'), ej('French press en puente de glúteos', 2, '12')]),
+      circuito(5, 'HIIT', [ej('Tuck jumps', 4, '8'), ej('Caminata a plancha', 4, '8'), ej('Estocada con salto', 4, '8')]),
+    ]),
+    rutinaCasa('#C20', 'Casa Pull J — Lean', 'Lean', 'pull', 2, [
+      circuito(1, 'PIERNAS·CORE', [ej('Zancada reversa con chop diagonal', 2, '10'), ej('Sentadilla sumo', 2, '12'), ej('Elevación de talones a una pierna', 2, '15')]),
+      circuito(2, 'ESPALDA', [ej('Arranque con mancuerna', 2, '8'), ej('TRX power pull', 2, '8'), ej('Remo alto en TRX', 2, '12')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl', 2, '10'), ej('Crunch oblicuo a una pierna', 2, '12'), ej('Plancha commando', 2, '10')]),
+      circuito(4, 'PECHO·TRÍCEPS', [ej('Aperturas con mancuernas', 2, '10'), ej('Banda press de pecho', 2, '15'), ej('Tríceps alto en TRX', 2, '12')]),
+      circuito(5, 'HIIT', [ej('Lateral step overs', 4, '20'), ej('Escaladores cruzados', 4, '20'), ej('Plancha con saltos', 4, '20')]),
+    ]),
+
+    // ── NAT PRESS H-J ─────────────────────────────────────────
+    rutinaCasa('#C13', 'Casa Press H — Nat', 'Nat', 'press', 2, [
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Sentadilla goblet con press', 2, '10'), ej('Calf raises', 2, '15'), ej('Hip thrust a una pierna', 2, '10')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('Floor press', 2, '10'), ej('Press militar', 2, '10'), ej('Flexiones declinadas', 2, '10')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Zancada reversa con press a un brazo', 2, '8'), ej('Vuelos laterales', 2, '12'), ej('Fondos en banco', 2, '12')]),
+      circuito(4, 'CORE·PIERNAS', [ej('Plancha lateral', 2, '25s'), ej('Bird-dog', 2, '10'), ej('Loop band abducción parada', 2, '15')]),
+      circuito(5, 'HIIT', [ej('Burpees', 4, '6'), ej('Sentadilla con salto', 4, '8'), ej('Bear crawl', 4, '8m')]),
+    ]),
+    rutinaCasa('#C15', 'Casa Press I — Nat', 'Nat', 'press', 1, [
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Step-up con rodilla al pecho', 2, '10'), ej('Sentadilla búlgara', 2, '10'), ej('Abducción con pausa', 2, '10')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('Thruster con kettlebell', 2, '8'), ej('Banda press de pecho', 2, '15'), ej('Vuelo lateral inclinado', 2, '10')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Extensión de triceps sobre cabeza', 2, '10'), ej('Elevaciones de hombro adelante', 2, '12'), ej('Banda triceps pushdown', 2, '15')]),
+      circuito(4, 'CORE·PIERNAS', [ej('Plancha estrella con peso', 2, '6'), ej('Dead bug', 2, '12'), ej('Standing weighted hip abduction', 2, '15')]),
+      circuito(5, 'HIIT', [ej('Tuck jumps', 4, '8'), ej('Mountain climbers', 4, '15'), ej('Saltos laterales', 4, '20')]),
+    ]),
+    rutinaCasa('#C17', 'Casa Press J — Nat', 'Nat', 'press', 2, [
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Zancada con rotación', 2, '10'), ej('Sentadilla sumo', 2, '12'), ej('Patada de glúteo con tobillera', 2, '12')]),
+      circuito(2, 'PECHO·HOMBROS', [ej('Sentadilla goblet con press', 2, '10'), ej('TRX archer press', 2, '10'), ej('Flexiones', 2, '10')]),
+      circuito(3, 'HOMBROS·TRÍCEPS', [ej('Zancada cruzada con vuelo lateral', 2, '10'), ej('French press', 2, '10'), ej('Extensión de tríceps con banda', 2, '15')]),
+      circuito(4, 'CORE·PIERNAS', [ej('Caminata con brazo arriba', 2, '20m'), ej('Plancha lateral', 2, '25s'), ej('Copenhague', 2, '15')]),
+      circuito(5, 'HIIT', [ej('Tuck jumps', 4, '8'), ej('Estocada con salto', 4, '8'), ej('Caminata a plancha', 4, '8')]),
+    ]),
+
+    // ── NAT PULL H-J ──────────────────────────────────────────
+    rutinaCasa('#C14', 'Casa Pull H — Nat', 'Nat', 'pull', 1, [
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Peso muerto a una pierna con remo', 2, '10'), ej('Elevated side reaches', 2, '12'), ej('Plié dips', 2, '12')]),
+      circuito(2, 'PIERNAS·CORE', [ej('Sentadilla con press Pallof', 2, '10'), ej('Puente de glúteos una pierna', 2, '12'), ej('Empuje de cadera en piso con peso', 2, '15')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX row', 2, '15'), ej('Bíceps curl martillo', 2, '10'), ej('Dominadas australianas', 2, '12')]),
+      circuito(4, 'CORE·TRÍCEPS', [ej('Pallof press', 2, '10'), ej('French press en puente de glúteos', 2, '12'), ej('Banda pull-apart', 2, '20')]),
+      circuito(5, 'HIIT', [ej('Jumping jacks', 4, '25'), ej('Estocada con salto', 4, '8'), ej('Caminata a plancha', 4, '8')]),
+    ]),
+    rutinaCasa('#C16', 'Casa Pull I — Nat', 'Nat', 'pull', 2, [
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Zancada reversa con curl martillo', 2, '10'), ej('Sumo squat to RDL', 2, '10'), ej('Calf raises', 2, '15')]),
+      circuito(2, 'PIERNAS·CORE', [ej('Peso muerto rumano con remo', 2, '10'), ej('Hip thrust a una pierna', 2, '10'), ej('Hollow body', 2, '25s')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('TRX power pull', 2, '10'), ej('Bíceps curl con banda', 2, '12'), ej('Remo', 2, '10')]),
+      circuito(4, 'CORE·TRÍCEPS', [ej('Plancha con arrastre', 2, '10'), ej('Tríceps alto en TRX a un brazo', 2, '8'), ej('Ab wheel', 2, '8')]),
+      circuito(5, 'HIIT', [ej('Burpees', 4, '6'), ej('Sentadilla con salto', 4, '8'), ej('Bear crawl', 4, '8m')]),
+    ]),
+    rutinaCasa('#C18', 'Casa Pull J — Nat', 'Nat', 'pull', 1, [
+      circuito(1, 'PIERNAS·GLÚTEOS', [ej('Zancada reversa con chop diagonal', 2, '10'), ej('Plié squat', 2, '15'), ej('Split squat pulses', 2, '12')]),
+      circuito(2, 'PIERNAS·CORE', [ej('Puente de glúteos una pierna', 2, '12'), ej('Abducción con pausa', 2, '10'), ej('Dead bug', 2, '10')]),
+      circuito(3, 'ESPALDA·BÍCEPS', [ej('Dominadas australianas', 2, '15'), ej('Bíceps curl martillo', 2, '10'), ej('Remo alto en TRX', 2, '12')]),
+      circuito(4, 'CORE·TRÍCEPS', [ej('Caminata de maleta', 2, '20m'), ej('Extensión de triceps sobre cabeza', 2, '10'), ej('Espinales con disco', 2, '10')]),
+      circuito(5, 'HIIT', [ej('Step-up rápidos alternados', 4, '20'), ej('Lateral step overs', 4, '20'), ej('Saltos laterales', 4, '20')]),
     ]),
   ];
 }
@@ -1697,6 +1803,78 @@ function ensureCalendarOverrides() {
     { usuario: 'Nat', lugar: 'CASA', date: '2026-07-27', foco: 'press' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-07-29', foco: 'pull' },
     { usuario: 'Nat', lugar: 'CASA', date: '2026-07-31', foco: 'press' },
+    // August-September — Lean (Mon=Press, Wed=Pull, Fri=Press, Sat=Pull, all CASA)
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-01', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-03', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-05', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-07', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-08', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-10', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-12', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-14', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-15', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-17', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-19', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-21', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-22', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-24', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-26', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-28', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-29', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-08-31', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-02', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-04', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-05', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-07', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-09', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-11', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-12', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-14', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-16', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-18', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-19', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-21', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-23', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-25', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-26', foco: 'pull' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-28', foco: 'press' },
+    { usuario: 'Lean', lugar: 'CASA', date: '2026-09-30', foco: 'pull' },
+    // August-September — Nat (Mon=Press, Wed=Pull, Fri=Press, Sat=Pull, all CASA)
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-01', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-03', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-05', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-07', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-08', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-10', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-12', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-14', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-15', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-17', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-19', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-21', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-22', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-24', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-26', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-28', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-29', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-08-31', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-02', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-04', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-05', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-07', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-09', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-11', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-12', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-14', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-16', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-18', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-19', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-21', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-23', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-25', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-26', foco: 'pull' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-28', foco: 'press' },
+    { usuario: 'Nat', lugar: 'CASA', date: '2026-09-30', foco: 'pull' },
     // RÍO sábados — opuesto al viernes CASA (letraMin C desde mayo)
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-11', foco: 'press' },
     { usuario: 'Lean', lugar: 'RIO', date: '2026-04-18', foco: 'press', letraMin: 'C', letraMax: 'F' },
@@ -1894,6 +2072,33 @@ function migrateVueloLateralToInclinado() {
   }
 }
 
+function migratePullFC3Lean() {
+  const rutinas = store.getAll(store.KEYS.rutinas);
+  if (!rutinas?.length) return;
+  const r = rutinas.find(rt => rt.nombre === 'Casa Pull F — Lean');
+  if (!r?.circuitos?.[2]?.ejercicios) return;
+  const c3 = r.circuitos[2];
+  let changed = false;
+  for (const ej of c3.ejercicios) {
+    if (ej.nombre === 'Bíceps curl con banda') {
+      ej.nombre = 'Bíceps curl martillo';
+      ej.series = 2;
+      ej.reps = '10';
+      changed = true;
+    }
+    if (ej.nombre === 'Bíceps curl concentrado') {
+      ej.nombre = 'Oscilaciones laterales con disco';
+      ej.series = 2;
+      ej.reps = '12';
+      changed = true;
+    }
+  }
+  if (changed) {
+    store.set(store.KEYS.rutinas, rutinas);
+    console.log('[Migration] Pull F C3 Lean: fixed bíceps exercises');
+  }
+}
+
 function migrateCasaHiitTo4Series() {
   const rutinas = store.getAll(store.KEYS.rutinas);
   if (!rutinas?.length) return;
@@ -1930,6 +2135,7 @@ export async function seedV2() {
   migrateCompoundExercises();
   migrateCasaHiitTo4Series();
   migrateVueloLateralToInclinado();
+  migratePullFC3Lean();
 
   const version = store.getVersion();
   if (parseFloat(version || '0') >= parseFloat(SEED_VERSION)) {

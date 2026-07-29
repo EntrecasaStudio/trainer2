@@ -1236,6 +1236,185 @@ export const EJERCICIOS_CATALOGO = [
     tags: 'banda face pull',
     descripcion: 'Ancla una banda elástica a la altura de los ojos. Tirá la banda hacia tu cara abriendo los codos y rotando externamente los hombros. Trabaja postura, deltoides posterior y manguito rotador. Excelente para compensar horas sentada y mejorar postura.'
   },
+  // ── COMBO / BEN BRUNO STYLE ───────────────────────────────────────────────
+  {
+    nombre: 'Sentadilla goblet con press',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Deltoides anterior, Tríceps',
+    tags: 'Goblet squat to press, Squat to press',
+    descripcion: 'Con kettlebell en posición goblet, bajá a sentadilla profunda. Al subir, empujá la kettlebell sobre la cabeza en press. Bajá la pesa al pecho y repetí. Combina tren inferior con empuje de hombros en un solo movimiento fluido. (Goblet Squat to Press)'
+  },
+  {
+    nombre: 'Zancada reversa con press a un brazo',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Deltoides anterior, Core',
+    tags: 'Reverse lunge to single arm press',
+    descripcion: 'Con kettlebell o mancuerna en una mano en posición de rack, dá un paso atrás a zancada reversa. Al subir, empujá el peso sobre la cabeza. Trabajás piernas, hombros y core anti-lateral en un solo movimiento. Hacé todas las reps de un lado antes de cambiar. (Reverse Lunge to Single Arm Press)'
+  },
+  {
+    nombre: 'Peso muerto a una pierna con remo',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Isquiotibiales, Glúteos, Dorsal ancho, Romboides',
+    tags: 'Single leg deadlift to row',
+    descripcion: 'Peso muerto a una pierna con kettlebell o mancuerna. En la posición baja (torso paralelo al piso), hacé un remo tirando el codo hacia atrás. Bajá el peso, volvé a parado y repetí. Combina cadena posterior con tracción de espalda. (Single Leg Deadlift to Row)'
+  },
+  {
+    nombre: 'Peso muerto rumano con remo',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Isquiotibiales, Glúteos, Dorsal ancho, Romboides',
+    tags: 'Romanian deadlift to row, RDL to row',
+    descripcion: 'Peso muerto rumano bilateral con dos kettlebells o mancuernas. En la posición baja, hacé un remo con ambos brazos tirando los codos hacia atrás. Bajá los pesos, volvé a parado y repetí. Cadena posterior + espalda en un combo eficiente. (Romanian Deadlift to Row)'
+  },
+  {
+    nombre: 'Zancada reversa con curl martillo',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Bíceps, Braquial',
+    tags: 'Reverse lunge to hammer curl',
+    descripcion: 'Con mancuernas en agarre neutro, dá un paso atrás a zancada reversa. Al subir, hacé un curl martillo bilateral. Combina piernas con bíceps/braquial sin pausa entre movimientos. (Reverse Lunge to Hammer Curl)'
+  },
+  {
+    nombre: 'Sentadilla con remo en TRX',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Dorsal ancho, Romboides',
+    tags: 'TRX squat to row',
+    descripcion: 'Sujetando las correas del TRX, inclinado hacia atrás, bajá a sentadilla. Al subir, tirá las correas en remo llevando los codos atrás. Combina sentadilla con tracción de espalda usando peso corporal. (TRX Squat to Row)'
+  },
+  {
+    nombre: 'Sentadilla con press Pallof',
+    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Oblicuos, Transverso abdominal',
+    tags: 'Squat to Pallof press',
+    descripcion: 'Con banda anclada al costado, sujetá con ambas manos a la altura del pecho. Bajá a sentadilla y al subir extendé los brazos al frente resistiendo la rotación. Combina sentadilla con anti-rotación de core. (Squat to Pallof Press)'
+  },
+  {
+    nombre: 'Step-up con rodilla al pecho',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Flexores de cadera, Core',
+    tags: 'Step-up to knee drive',
+    descripcion: 'Subí al step o banco con una pierna y al pararte llevá la rodilla contraria al pecho con explosividad. Bajá controlado y repetí. Se puede hacer con chaleco o mancuernas. Trabaja cuádriceps, glúteos, equilibrio y core. (Step-Up to Knee Drive)'
+  },
+  {
+    nombre: 'Zancada con rotación',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Oblicuos, Core',
+    tags: 'Lunge with rotation, Lunge twist',
+    descripcion: 'Con disco o kettlebell al frente del pecho, dá un paso al frente a zancada. En la posición baja, rotá el torso hacia el lado de la pierna adelantada. Volvé al centro, subí y alterná. Combina piernas con movilidad torácica y core rotacional. (Lunge with Rotation)'
+  },
+  {
+    nombre: 'Zancada reversa con chop diagonal',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Oblicuos, Deltoides anterior',
+    tags: 'Reverse lunge to chop, Lunge chop',
+    descripcion: 'Con disco o kettlebell, dá un paso atrás a zancada reversa mientras bajás el peso en diagonal hacia la cadera de la pierna atrasada. Al subir, levantá el peso en diagonal cruzando el cuerpo hacia arriba. Combina piernas, core rotacional y hombros. (Reverse Lunge to Diagonal Chop)'
+  },
+  {
+    nombre: 'Clean con press a un brazo',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides anterior, Trapecio, Cuádriceps, Glúteos',
+    tags: 'Single arm clean and press, KB clean and press',
+    descripcion: 'Con kettlebell entre las piernas, hacé un swing parcial y limpiá la pesa al hombro (clean). Desde ahí, empujá en press sobre la cabeza. Bajá al hombro, luego al piso y repetí. Movimiento explosivo de cuerpo completo. (Single Arm Clean and Press)'
+  },
+  {
+    nombre: 'Swing a sentadilla goblet',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Isquiotibiales, Cuádriceps, Core',
+    tags: 'Swing to goblet squat',
+    descripcion: 'Hacé un swing con kettlebell y al subir atrapá la pesa en posición goblet al pecho. Inmediatamente bajá a sentadilla goblet profunda. Subí, soltá a swing y repetí. Combina potencia explosiva con fuerza de piernas. (Swing to Goblet Squat)'
+  },
+  {
+    nombre: 'Thruster con kettlebell',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Deltoides anterior, Tríceps',
+    tags: 'Kettlebell thruster, KB thruster',
+    descripcion: 'Con kettlebell en posición de rack al hombro, bajá a sentadilla profunda. Al subir explosivamente, usá el impulso para empujar la kettlebell sobre la cabeza en press. Bajá al hombro y repetí. Movimiento compuesto de cuerpo completo. (Kettlebell Thruster)'
+  },
+  {
+    nombre: 'Hollow body con press de pecho',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Recto abdominal, Pectoral mayor, Tríceps',
+    tags: 'Hollow body chest press, Hollow body floor press',
+    descripcion: 'En posición de hollow body (hombros y piernas elevados del piso), hacé press de pecho con mancuernas o kettlebells. Mantené la posición de hollow durante todas las reps. Combina core anterior isométrico con empuje de pecho. (Hollow Body Chest Press)'
+  },
+  {
+    nombre: 'Levantamiento turco',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Core, Deltoides anterior, Glúteos, Cuádriceps',
+    tags: 'Turkish get-up, TGU',
+    descripcion: 'Acostado boca arriba con kettlebell en una mano extendida al techo. Levantate paso a paso: codo, mano, puente, rodilla, parado, manteniendo el peso arriba todo el tiempo. Bajá invirtiendo los pasos. Trabaja estabilidad, movilidad y fuerza de todo el cuerpo. (Turkish Get-Up)'
+  },
+  // ── CARRIES ────────────────────────────────────────────────────────────────
+  {
+    nombre: 'Caminata de maleta',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Oblicuos, Trapecio, Antebrazo, Core',
+    tags: 'Suitcase carry, Single arm farmer carry',
+    descripcion: 'Agarrá una kettlebell o mancuerna pesada en una sola mano y caminá con pasos controlados manteniendo el torso erguido sin inclinarte hacia el peso. Trabaja oblicuos anti-laterales, agarre y estabilidad de core. Alterná de mano entre sets. (Suitcase Carry)'
+  },
+  {
+    nombre: 'Caminata con brazo arriba',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides anterior, Trapecio, Core, Oblicuos',
+    tags: 'Overhead carry, Waiter carry',
+    descripcion: 'Sosteniendo una kettlebell o mancuerna con un brazo completamente extendido sobre la cabeza, caminá con pasos controlados. Mantené el bíceps junto a la oreja y el core activado. Trabaja estabilidad de hombro, core anti-lateral y control postural. (Overhead Carry)'
+  },
+  // ── HIIT ADICIONAL ─────────────────────────────────────────────────────────
+  {
+    nombre: 'Step-up rápidos alternados',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Gemelos',
+    tags: 'Quick step-ups, Alternating fast step-ups',
+    descripcion: 'Frente a un step o banco bajo, subí y bajá alternando piernas a máxima velocidad manteniendo el torso erguido. Movimiento rápido y explosivo. Trabaja cuádriceps, glúteos y sistema cardiovascular. (Quick Alternating Step-Ups)'
+  },
+  {
+    nombre: 'Lateral step overs',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Abductores, Cuádriceps, Glúteos',
+    tags: 'Lateral step overs, Side step overs',
+    descripcion: 'De costado a un step o banco bajo, subí lateralmente pasando al otro lado y repetí en dirección contraria. Movimiento continuo y rápido. Trabaja abductores, agilidad lateral y coordinación. (Lateral Step Overs)'
+  },
+  {
+    nombre: 'Patinadores',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteos, Abductores, Cuádriceps',
+    tags: 'Skaters, Skater jumps',
+    descripcion: 'Saltá lateralmente de una pierna a la otra como un patinador de velocidad, llevando la pierna libre cruzada detrás. Tocá el piso con la mano contraria si podés. Trabaja glúteo medio, potencia lateral y equilibrio dinámico. (Skater Jumps)'
+  },
+  {
+    nombre: 'Rodillas altas',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Flexores de cadera, Core',
+    tags: 'High knees, Running in place',
+    descripcion: 'Corré en el lugar llevando las rodillas al pecho lo más alto posible con cada paso. Brazos acompañan el movimiento. Ritmo rápido y explosivo. Trabaja cuádriceps, flexores de cadera y sistema cardiovascular. (High Knees)'
+  },
+  {
+    nombre: 'Escaladores cruzados',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Recto abdominal, Oblicuos, Deltoides anterior',
+    tags: 'Cross-body mountain climbers, Cross mountain climbers',
+    descripcion: 'En posición de plancha alta, llevá la rodilla hacia el codo contrario alternando piernas a ritmo rápido. La rotación cruzada activa más los oblicuos que los mountain climbers tradicionales. (Cross-Body Mountain Climbers)'
+  },
+  {
+    nombre: 'Plancha con saltos',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Recto abdominal, Deltoides anterior, Cuádriceps',
+    tags: 'Plank jacks, Plank jumping jacks',
+    descripcion: 'En posición de plancha alta, saltá abriendo y cerrando las piernas como jumping jacks manteniendo las manos fijas. Core activado, cadera estable. Combina trabajo de core con cardio intenso. (Plank Jacks)'
+  },
+  // ── PIERNAS ADICIONAL ──────────────────────────────────────────────────────
+  {
+    nombre: 'Elevación de talones a una pierna',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Gemelos, Pantorrillas',
+    tags: 'Single leg calf raise',
+    descripcion: 'De pie sobre una pierna (la otra flexionada), elevá el talón lo más alto posible y bajá controlado. Mayor demanda de fuerza y equilibrio que la versión bilateral. Trabaja gemelos y sóleo unilateralmente. (Single Leg Calf Raise)'
+  },
+  {
+    nombre: 'Arranque con mancuerna',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides anterior, Trapecio, Cuádriceps, Glúteos, Core',
+    tags: 'Dumbbell snatch, Single arm snatch',
+    descripcion: 'Con mancuerna o kettlebell entre las piernas, hacé un tirón explosivo desde el piso hasta sobre la cabeza en un solo movimiento fluido. Usá la extensión de cadera para generar impulso. Movimiento olímpico simplificado que trabaja potencia de cuerpo completo. (Dumbbell Snatch)'
+  },
 ];
 
 // Helper: get all exercises for a given group
