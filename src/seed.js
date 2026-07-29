@@ -674,7 +674,7 @@ function createCasaRoutines() {
     rutinaCasa('#C12', 'Casa Pull F — Lean', 'Lean', 'pull', 2, [
       circuito(1, 'PIERNAS·CORE', [ej('Step up', 2, '12'), ej('Sentadilla sumo', 2, '12'), ej('Abs complex', 2, '30s')]),
       circuito(2, 'ESPALDA', [ej('TRX row', 2, '12'), ej('TRX power pull', 2, '8'), ej('Remo', 2, '10')]),
-      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl martillo', 2, '10'), ej('Bird-dog', 2, '10'), ej('Oscilaciones laterales con disco', 2, '12')]),
+      circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl con banda', 2, '10'), ej('Bird-dog', 2, '10'), ej('Bíceps curl concentrado', 2, '10')]),
       circuito(4, 'PECHO·TRÍCEPS', [ej('Flexiones', 2, '8'), ej('Tríceps alto en TRX a un brazo', 2, '8'), ej('TRX chest press', 2, '12')]),
       circuito(5, 'HIIT', [ej('Caminata a plancha', 4, '8'), ej('Tuck jumps', 4, '8'), ej('Estocada con salto', 4, '8')]),
     ]),
@@ -2072,32 +2072,6 @@ function migrateVueloLateralToInclinado() {
   }
 }
 
-function migratePullFC3Lean() {
-  const rutinas = store.getAll(store.KEYS.rutinas);
-  if (!rutinas?.length) return;
-  const r = rutinas.find(rt => rt.nombre === 'Casa Pull F — Lean');
-  if (!r?.circuitos?.[2]?.ejercicios) return;
-  const c3 = r.circuitos[2];
-  let changed = false;
-  for (const ej of c3.ejercicios) {
-    if (ej.nombre === 'Bíceps curl con banda') {
-      ej.nombre = 'Bíceps curl martillo';
-      ej.series = 2;
-      ej.reps = '10';
-      changed = true;
-    }
-    if (ej.nombre === 'Bíceps curl concentrado') {
-      ej.nombre = 'Oscilaciones laterales con disco';
-      ej.series = 2;
-      ej.reps = '12';
-      changed = true;
-    }
-  }
-  if (changed) {
-    store.set(store.KEYS.rutinas, rutinas);
-    console.log('[Migration] Pull F C3 Lean: fixed bíceps exercises');
-  }
-}
 
 function migrateCasaHiitTo4Series() {
   const rutinas = store.getAll(store.KEYS.rutinas);
@@ -2135,7 +2109,6 @@ export async function seedV2() {
   migrateCompoundExercises();
   migrateCasaHiitTo4Series();
   migrateVueloLateralToInclinado();
-  migratePullFC3Lean();
 
   const version = store.getVersion();
   if (parseFloat(version || '0') >= parseFloat(SEED_VERSION)) {
