@@ -412,7 +412,7 @@ function showSaveModal(container) {
       </div>
       <div class="modal-body" style="display:flex;flex-direction:column;gap:var(--space-sm);">
         <button class="btn btn-primary btn-lg" id="btn-save-same" style="width:100%;">
-          Guardar en ${_rutina.numero}
+          Guardar en ${_rutina.nombre || _rutina.numero}
         </button>
         <button class="btn btn-secondary btn-lg" id="btn-save-new" style="width:100%;">
           Guardar como nueva (${nextNum})
