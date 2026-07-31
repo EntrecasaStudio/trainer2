@@ -790,7 +790,7 @@ function createCasaRoutines() {
       circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '10'), ej('Bear crawl', 4, '8m')]),
     ]),
     rutinaCasa('#C19', 'Casa Press J — Lean', 'Lean', 'press', 1, [
-      circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna con remo', 2, '10'), ej('Pistol squat', 2, '8'), ej('Remo', 2, '12')]),
+      circuito(1, 'PIERNAS·ESPALDA', [ej('Remo', 2, '12'), ej('Pistol squat', 2, '8'), ej('Peso muerto a una pierna con remo', 2, '10')]),
       circuito(2, 'PECHO', [ej('Hollow body con press de pecho', 2, '8'), ej('Flexiones explosivas', 2, '8'), ej('TRX archer press', 2, '10')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Arnold press', 2, '10'), ej('Vuelo lateral inclinado', 2, '10'), ej('Extensión de tríceps con banda', 2, '15')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Toe touch con disco', 2, '10'), ej('Bird-dog', 2, '10'), ej('Bíceps curl con banda', 2, '10')]),
