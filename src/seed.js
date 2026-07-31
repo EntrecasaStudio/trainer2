@@ -770,7 +770,7 @@ function createCasaRoutines() {
     // ── LEAN PRESS G-J ────────────────────────────────────────
     rutinaCasa('#C13', 'Casa Press G — Lean', 'Lean', 'press', 2, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla goblet', 2, '12'), ej('Renegade row', 2, '10'), ej('Zancada reversa con remo', 2, '10')]),
-      circuito(2, 'PECHO', [ej('Flexiones explosivas', 2, '8'), ej('Cruce de pecho con banda', 2, '12'), ej('Banda press de pecho', 2, '15')]),
+      circuito(2, 'PECHO', [ej('Flexiones explosivas', 2, '8'), ej('Banda press de pecho a un brazo', 2, '12'), ej('Banda press de pecho', 2, '15')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Zancada reversa con press a un brazo', 2, '8'), ej('Arnold press', 2, '10'), ej('Vuelos laterales', 2, '12')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Pallof press', 2, '10'), ej('Dead bug', 2, '12'), ej('Bíceps curl martillo', 2, '10')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 4, '20'), ej('Burpees', 4, '8'), ej('Jumping jacks', 4, '30')]),
@@ -784,7 +784,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C17', 'Casa Press I — Lean', 'Lean', 'press', 2, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Swing a sentadilla goblet', 2, '10'), ej('Sentadilla búlgara', 2, '10'), ej('Remo alto en TRX', 2, '12')]),
-      circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Cruce de pecho con banda', 2, '12'), ej('Banda press de pecho', 2, '15')]),
+      circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Banda press de pecho a un brazo', 2, '12'), ej('Banda press de pecho', 2, '15')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Thruster con kettlebell', 2, '8'), ej('Vuelos laterales', 2, '12'), ej('Fondos en banco', 2, '12')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Plancha estrella con peso', 2, '6'), ej('Oscilaciones laterales con disco', 2, '12'), ej('Bíceps curl en TRX', 2, '10')]),
       circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '10'), ej('Bear crawl', 4, '8m')]),
@@ -823,7 +823,7 @@ function createCasaRoutines() {
       circuito(1, 'PIERNAS·CORE', [ej('Zancada reversa con chop diagonal', 2, '10'), ej('Sentadilla sumo', 2, '12'), ej('Elevación de talones a una pierna', 2, '15')]),
       circuito(2, 'ESPALDA', [ej('Arranque con mancuerna', 2, '8'), ej('TRX power pull', 2, '8'), ej('Remo alto en TRX', 2, '12')]),
       circuito(3, 'BÍCEPS·CORE', [ej('Bíceps curl', 2, '10'), ej('Crunch oblicuo a una pierna', 2, '12'), ej('Plancha commando', 2, '10')]),
-      circuito(4, 'PECHO·TRÍCEPS', [ej('Cruce de pecho con banda', 2, '12'), ej('Banda press de pecho', 2, '15'), ej('Tríceps alto en TRX', 2, '12')]),
+      circuito(4, 'PECHO·TRÍCEPS', [ej('Banda press de pecho a un brazo', 2, '12'), ej('Banda press de pecho', 2, '15'), ej('Tríceps alto en TRX', 2, '12')]),
       circuito(5, 'HIIT', [ej('Lateral step overs', 4, '20'), ej('Escaladores cruzados', 4, '20'), ej('Plancha con saltos', 4, '20')]),
     ]),
 
@@ -1443,6 +1443,7 @@ function applyExerciseRenames() {
     ['Curl de bíceps con mancuerna', 'Bíceps curl con mancuerna'],
     ['Curl martillo', 'Bíceps curl martillo'],
     ['Banda curl biceps', 'Bíceps curl con banda'],
+    ['Cruce de pecho con banda', 'Banda press de pecho a un brazo'],
     ['Curl concentrado', 'Bíceps curl concentrado'],
     ['Curl de bíceps en equilibrio con kettlebell', 'Bíceps curl en equilibrio'],
     ['Bíceps curl en equilibrio con kettlebell', 'Bíceps curl en equilibrio'],

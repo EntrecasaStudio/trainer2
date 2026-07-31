@@ -254,11 +254,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Acostado en banco plano con una mancuerna en cada mano, brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados hasta sentir estiramiento en el pecho. Volvé cerrando el arco. Trabaja la porción esternal del pectoral en rango completo. (Dumbbell Fly)'
   },
   {
-    nombre: 'Cruce de pecho con banda',
+    nombre: 'Banda press de pecho a un brazo',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Core',
-    tags: 'Standing band crossover, Band chest fly, Resistance band crossover',
-    descripcion: 'De pie, banda anclada a la espalda a altura de pecho. Con un brazo a la vez o ambos, cruzá la banda al frente en arco amplio juntando las manos. Controlá la vuelta. De pie se activa el core, la curva de fuerza coincide con la contracción máxima del pectoral y se elimina el riesgo de hombro de las aperturas en banco. (Standing Band Crossover)'
+    tags: 'Single arm band chest press, Standing band crossover, Band chest fly',
+    descripcion: 'De pie, banda anclada a la espalda a altura de pecho. Con un brazo a la vez, empujá y cruzá la banda al frente en arco amplio. Controlá la vuelta. La posición de pie activa el core anti-rotación, la curva de fuerza coincide con la contracción máxima del pectoral y se elimina el riesgo de hombro de las aperturas en banco. (Single Arm Band Chest Press)'
   },
   {
     nombre: 'Pullover con mancuerna',
