@@ -261,6 +261,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie, banda anclada a la espalda a altura de pecho. Con un brazo a la vez, empujá y cruzá la banda al frente en arco amplio. Controlá la vuelta. La posición de pie activa el core anti-rotación, la curva de fuerza coincide con la contracción máxima del pectoral y se elimina el riesgo de hombro de las aperturas en banco. (Single Arm Band Chest Press)'
   },
   {
+    nombre: 'Banda fly de pecho a un brazo',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    musculos: 'Pectoral mayor, Deltoides anterior, Core',
+    tags: 'Single arm standing band fly, Standing cable fly, Band chest fly',
+    descripcion: 'De pie, banda anclada atrás a altura del hombro. Con el brazo extendido (codo levemente flexionado pero fijo), llevá la mano desde abierto al costado hasta el frente del pecho en arco amplio. Controlá la vuelta. A diferencia del press, el brazo no se flexiona — el movimiento es un arco como abrazar. De pie se elimina el riesgo de hombro del fly en banco y la tensión máxima coincide con la contracción del pec. (Standing Single Arm Band Fly)'
+  },
+  {
     nombre: 'Pullover con mancuerna',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
     musculos: 'Pectoral mayor, Dorsal ancho, Tríceps',
