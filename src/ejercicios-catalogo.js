@@ -1273,6 +1273,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Peso muerto rumano bilateral con dos kettlebells o mancuernas. En la posición baja, hacé un remo con ambos brazos tirando los codos hacia atrás. Bajá los pesos, volvé a parado y repetí. Cadena posterior + espalda en un combo eficiente. (Romanian Deadlift to Row)'
   },
   {
+    nombre: 'Zancada reversa con remo',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Cuádriceps, Glúteos, Dorsal ancho, Romboides',
+    tags: 'Reverse lunge to row, Lunge to row',
+    descripcion: 'Con mancuerna o kettlebell en una mano, dá un paso atrás a zancada reversa. En la posición baja, incliná el torso levemente y hacé un remo tirando el codo hacia atrás. Subí a posición parada y repetí. Combina piernas con tracción de espalda en un patrón unilateral. (Reverse Lunge to Row)'
+  },
+  {
     nombre: 'Zancada reversa con curl martillo',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Bíceps, Braquial',

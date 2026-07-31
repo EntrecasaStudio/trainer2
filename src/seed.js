@@ -769,7 +769,7 @@ function createCasaRoutines() {
 
     // ── LEAN PRESS G-J ────────────────────────────────────────
     rutinaCasa('#C13', 'Casa Press G — Lean', 'Lean', 'press', 2, [
-      circuito(1, 'PIERNAS·ESPALDA', [ej('Peso muerto a una pierna con remo', 2, '10'), ej('Sentadilla goblet', 2, '12'), ej('Renegade row', 2, '10')]),
+      circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla goblet', 2, '12'), ej('Renegade row', 2, '10'), ej('Zancada reversa con remo', 2, '10')]),
       circuito(2, 'PECHO', [ej('Flexiones explosivas', 2, '8'), ej('Cruce de pecho con banda', 2, '12'), ej('Banda press de pecho', 2, '15')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Zancada reversa con press a un brazo', 2, '8'), ej('Arnold press', 2, '10'), ej('Vuelos laterales', 2, '12')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Pallof press', 2, '10'), ej('Dead bug', 2, '12'), ej('Bíceps curl martillo', 2, '10')]),
