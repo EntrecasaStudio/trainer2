@@ -1174,13 +1174,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con pies al ancho de caderas. Bajá como si fueras a sentarte en una silla, flexionando rodillas y caderas. Mantené el pecho erguido y la espalda recta. Respiración normal, sin aguantar aire. Ideal para recuperación sin carga. (Bodyweight Squat)'
   },
   {
-    nombre: 'Puente de glúteos una pierna',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
-    musculos: 'Glúteos, Isquiotibiales',
-    tags: 'single leg glute bridge, empuje de cadera una pierna',
-    descripcion: 'Igual que el puente clásico pero con una pierna extendida en el aire. Apoyás solo un pie, la otra pierna queda estirada hacia arriba. Subí la cadera contrayendo el glúteo de apoyo. Mayor demanda unilateral y control de pelvis. Sin aguantar aire.'
-  },
-  {
     nombre: 'Extensión de cadera en 4 puntos',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales, Erector espinal',
