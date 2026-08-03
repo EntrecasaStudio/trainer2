@@ -777,7 +777,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C15', 'Casa Press H — Lean', 'Lean', 'press', 1, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla con remo en TRX', 2, '12'), ej('Step up', 2, '12'), ej('TRX face pull', 2, '15')]),
-      circuito(2, 'PECHO', [ej('TRX chest press', 2, '12'), ej('Flexiones declinadas', 2, '12'), ej('Floor press', 2, '10')]),
+      circuito(2, 'PECHO', [ej('Floor press', 2, '10'), ej('Flexiones declinadas', 2, '12'), ej('TRX chest press', 2, '12')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Clean con press a un brazo', 2, '8'), ej('Elevaciones de hombro adelante', 2, '12'), ej('Extensión de triceps sobre cabeza', 2, '10')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Plancha con arrastre', 2, '10'), ej('Crunch oblicuo a una pierna', 2, '12'), ej('Bíceps curl', 2, '10')]),
       circuito(5, 'HIIT', [ej('Caminata a plancha', 4, '8'), ej('Tuck jumps', 4, '8'), ej('Estocada con salto', 4, '8')]),
@@ -1975,6 +1975,8 @@ function migrateCompoundExercises() {
     ['Casa Pull D — Lean', 2, 0, 'Bíceps curl', 'Bíceps curl en equilibrio', 2, '12'],
     ['Casa Pull D — Lean', 2, 2, 'Bíceps curl martillo', 'Bíceps curl con banda', 2, '12'],
     ['Casa Press F — Lean', 3, 2, 'Bíceps curl martillo', 'Bíceps curl con banda', 2, '10'],
+    ['Casa Press H — Lean', 1, 0, 'TRX chest press', 'Floor press', 2, '10'],
+    ['Casa Press H — Lean', 1, 2, 'Floor press', 'TRX chest press', 2, '12'],
     ['Casa Pull D — Lean', 3, 2, 'Extensión de tríceps con banda', 'Extensión de triceps sobre cabeza', 2, '10'],
     // HIIT redistribution — Lean
     ['Casa Press C — Lean', 4, 0, 'Tuck jumps', 'Saltos laterales', 3, '20'],
