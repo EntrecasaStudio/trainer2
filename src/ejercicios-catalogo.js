@@ -233,6 +233,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Desde posición de TRX chest press, bajá llevando el peso hacia un brazo mientras el otro se extiende al costado como un arquero. Empujá con el brazo cargado para volver. Alterná lados. Trabaja pectoral unilateral con mayor intensidad. (TRX Archer Push-Up)'
   },
   {
+    nombre: 'TRX pec press',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    musculos: 'Pectoral mayor (porción inferior), Tríceps, Deltoides anterior',
+    tags: 'TRX pec press, TRX foot cradle chest press',
+    descripcion: 'Agarrá los estribos de pies del TRX en vez de las agarraderas, con las palmas enfrentadas. Inclinado hacia adelante, bajá flexionando los codos pegados al cuerpo. Empujá para volver. El agarre en estribos cambia el ángulo y enfatiza la parte baja e interna del pecho. (TRX Pec Press)'
+  },
+  {
     nombre: 'Banda press de pecho',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
