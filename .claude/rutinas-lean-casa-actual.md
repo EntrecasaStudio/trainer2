@@ -19,7 +19,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 
 ## Casa Press C — Lean [MODIFICADA]
   C1 PIERNAS·ESPALDA: Sentadilla con salto (2x8), Estocadas estáticas (2x10), Renegade row (2x8)
-  C2 PECHO: Flexiones diamante (2x10), Aperturas con mancuernas (2x10), TRX archer press (2x12)
+  C2 PECHO: Flexiones diamante (2x10), Banda press de pecho a un brazo (2x12), TRX archer press (2x12)
   C3 HOMBROS·TRÍCEPS: Fondos en banco (2x12), Vuelo lateral inclinado (2x10), Tríceps alto en TRX (2x15)
   C4 CORE·BÍCEPS: Plancha estrella con peso (2x6), Dead bug (2x12), Bíceps curl en TRX (2x10)
   C5 HIIT: Saltos laterales (4x20), Sentadilla con salto (4x10), Bear crawl (4x8m)
@@ -49,7 +49,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C1 PIERNAS·ESPALDA: Sentadilla goblet (2x12), Renegade row (2x10), Zancada reversa con remo (2x10)
   C2 PECHO: Flexiones explosivas (2x8), Banda fly de pecho a un brazo (2x12), TRX archer press (2x15)
   C3 HOMBROS·TRÍCEPS: Arnold press (2x8), Extensión de tríceps con banda (2x10), Vuelo lateral inclinado (2x12)
-  C4 CORE·BÍCEPS: Pallof press (2x10), Dead bug (2x12), Bíceps curl martillo (2x10)
+  C4 CORE·BÍCEPS: Pallof press (2x10), Crunch oblicuo a una pierna (2x12), Bíceps curl con banda (2x10)
   C5 HIIT: Mountain climbers (4x20), Burpees (4x8), Jumping jacks (4x30)
 
 ## Casa Press H — Lean

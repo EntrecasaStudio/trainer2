@@ -608,7 +608,7 @@ function createCasaRoutines() {
     ]),
     rutinaCasa('#C03', 'Casa Press C — Lean', 'Lean', 'press', 1, [
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla con salto', 2, '8'), ej('Estocadas estáticas', 2, '10'), ej('Renegade row', 2, '8')]),
-      circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Aperturas con mancuernas', 2, '10'), ej('TRX archer press', 2, '12')]),
+      circuito(2, 'PECHO', [ej('Flexiones diamante', 2, '10'), ej('Banda press de pecho a un brazo', 2, '12'), ej('TRX archer press', 2, '12')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Fondos en banco', 2, '12'), ej('Vuelo lateral inclinado', 2, '10'), ej('Tríceps alto en TRX', 2, '15')]),
       circuito(4, 'CORE·BÍCEPS', [ej('Plancha estrella con peso', 2, '6'), ej('Dead bug', 2, '12'), ej('Bíceps curl en TRX', 2, '10')]),
       circuito(5, 'HIIT', [ej('Saltos laterales', 4, '20'), ej('Sentadilla con salto', 4, '10'), ej('Bear crawl', 4, '8m')]),
@@ -772,7 +772,7 @@ function createCasaRoutines() {
       circuito(1, 'PIERNAS·ESPALDA', [ej('Sentadilla goblet', 2, '12'), ej('Renegade row', 2, '10'), ej('Zancada reversa con remo', 2, '10')]),
       circuito(2, 'PECHO', [ej('Flexiones explosivas', 2, '8'), ej('Banda fly de pecho a un brazo', 2, '12'), ej('TRX archer press', 2, '15')]),
       circuito(3, 'HOMBROS·TRÍCEPS', [ej('Arnold press', 2, '8'), ej('Extensión de tríceps con banda', 2, '10'), ej('Vuelo lateral inclinado', 2, '12')]),
-      circuito(4, 'CORE·BÍCEPS', [ej('Pallof press', 2, '10'), ej('Dead bug', 2, '12'), ej('Bíceps curl martillo', 2, '10')]),
+      circuito(4, 'CORE·BÍCEPS', [ej('Pallof press', 2, '10'), ej('Crunch oblicuo a una pierna', 2, '12'), ej('Bíceps curl con banda', 2, '10')]),
       circuito(5, 'HIIT', [ej('Mountain climbers', 4, '20'), ej('Burpees', 4, '8'), ej('Jumping jacks', 4, '30')]),
     ]),
     rutinaCasa('#C15', 'Casa Press H — Lean', 'Lean', 'press', 1, [
@@ -2032,6 +2032,10 @@ function migrateCompoundExercises() {
     ['Casa Pull F — Nat', 4, 0, 'Estocada con salto', 'Caminata a plancha', 3, '8'],
     ['Casa Pull F — Nat', 4, 1, 'Bear crawl', 'Tuck jumps', 3, '8'],
     ['Casa Pull F — Nat', 4, 2, 'Saltos laterales', 'Estocada con salto', 3, '8'],
+    ['Casa Press C — Lean', 1, 1, 'Aperturas con mancuernas', 'Banda press de pecho a un brazo', 2, '12'],
+    ['Casa Press G — Lean', 3, 1, 'Dead bug', 'Crunch oblicuo a una pierna', 2, '12'],
+    ['Casa Press G — Lean', 3, 2, 'Bíceps curl martillo', 'Bíceps curl con banda', 2, '10'],
+    ['Casa Pull H — Lean', 3, 1, 'TRX archer press', 'TRX pec press', 2, '10'],
   ];
 
   let changed = false;
