@@ -1108,6 +1108,13 @@ export const EJERCICIOS_CATALOGO = [
     tags: 'single arm trx triceps, triceps unilateral',
     descripcion: 'Igual que el tríceps alto en TRX pero con un solo brazo. De espaldas al anclaje, una mano en la correa, la otra libre. Flexioná el codo bajando controlado y extendé para volver. Demanda anti-rotación del core y mayor fuerza por brazo. Hacé todas las reps de un lado antes de cambiar.'
   },
+  {
+    nombre: 'Patada de tríceps con mancuerna',
+    grupo: 'Brazos', tipo: 'fuerza', usaPeso: true,
+    musculos: 'Tríceps (cabeza lateral y medial), Deltoides posterior (estabilizador)',
+    tags: 'Dumbbell tricep kickback, Tricep kickback',
+    descripcion: 'Inclinado con el torso paralelo al piso, apoyá una mano y rodilla en el banco. Con la otra mano agarrá la mancuerna, brazo pegado al costado y codo a 90°. Extendé el codo llevando la mancuerna hacia atrás hasta que el brazo quede recto. Apretá un segundo arriba y bajá controlado. Mantené el brazo superior quieto — solo se mueve el antebrazo. (Dumbbell Tricep Kickback)'
+  },
   // ── COMPOUND / COMBO ─────────────────────────────────────────────────────────
   {
     nombre: 'Renegade row',
