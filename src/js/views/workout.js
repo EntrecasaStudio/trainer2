@@ -27,7 +27,7 @@ const NO_CHALECO_PATTERNS = [
   'toe touch',
   'banda',
 ];
-const CHALECO_OVERRIDE = ['bíceps curl en trx', 'remo alto en trx', 'sentadilla con remo en trx'];
+const CHALECO_OVERRIDE = ['bíceps curl en trx', 'remo alto en trx', 'sentadilla con remo en trx', 'swing a sentadilla goblet'];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
   if (CHALECO_OVERRIDE.some(p => n.includes(p))) return true;
