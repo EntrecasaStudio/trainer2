@@ -1464,10 +1464,15 @@ export function findEjercicio(nombre) {
 }
 
 // Helper: search exercises
+// Normaliza texto para búsqueda: minúsculas y sin acentos ("pájaro" → "pajaro")
+export function normalizarTexto(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
 export function searchEjercicios(query, tipoFilter = 'todos') {
-  const q = (query || '').toLowerCase();
+  const q = normalizarTexto(query);
   return EJERCICIOS_CATALOGO.filter(e => {
-    const matchQuery = !q || e.nombre.toLowerCase().includes(q) || e.grupo.toLowerCase().includes(q) || (e.tags && e.tags.toLowerCase().includes(q));
+    const matchQuery = !q || normalizarTexto(e.nombre).includes(q) || normalizarTexto(e.grupo).includes(q) || (e.tags && normalizarTexto(e.tags).includes(q));
     const matchTipo = tipoFilter === 'todos' || e.tipo === tipoFilter;
     return matchQuery && matchTipo;
   });
