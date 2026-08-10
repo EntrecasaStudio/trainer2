@@ -354,6 +354,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Agarrate de una columna o soporte con un brazo, incliná el cuerpo en diagonal alejándote del punto de apoyo. Con el brazo libre y una mancuerna, levantá lateralmente hasta la altura del hombro. El ángulo inclinado aumenta el rango de movimiento y mantiene tensión constante en el deltoides lateral, especialmente en la parte baja del recorrido. (Leaning Lateral Raise)'
   },
   {
+    nombre: 'Pájaros con mancuerna',
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
+    musculos: 'Deltoides posterior, Romboides, Trapecio medio',
+    tags: 'Bent-over reverse fly, Rear delt fly',
+    descripcion: 'Inclinado hacia adelante con el torso casi paralelo al piso, la espalda recta y una mancuerna en cada mano con las palmas enfrentadas. Con leve flexión en los codos, abrí los brazos lateralmente llevando las mancuernas hacia afuera y arriba, apretando los omóplatos. Bajá controlado. Trabaja el deltoides posterior y equilibra todo el trabajo de empuje. (Bent-over Reverse Fly)'
+  },
+  {
     nombre: 'Empuje de hombros con barra en banco',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Deltoides anterior, Tríceps, Trapecio',
