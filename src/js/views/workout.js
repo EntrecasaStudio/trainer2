@@ -11,6 +11,7 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../
 // movements) or isn't advisable (axial load on spinal mobility drills).
 const NO_CHALECO_PATTERNS = [
   'press militar', 'arnold press', 'vuelos laterales', 'vuelo lateral inclinado',
+  'pájaros', 'pajaros',
   'bíceps curl',
   'extensión de tríceps', 'extension de triceps',
   'hollow body',
