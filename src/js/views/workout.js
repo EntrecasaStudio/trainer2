@@ -10,7 +10,7 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../
 // Patterns where the chaleco doesn't add real load (handheld weight isolated
 // movements) or isn't advisable (axial load on spinal mobility drills).
 const NO_CHALECO_PATTERNS = [
-  'press militar', 'arnold press', 'vuelos laterales',
+  'press militar', 'arnold press', 'vuelos laterales', 'vuelo lateral inclinado',
   'bíceps curl',
   'extensión de tríceps', 'extension de triceps',
   'hollow body',
