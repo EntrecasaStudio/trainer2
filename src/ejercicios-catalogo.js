@@ -275,11 +275,11 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie, banda anclada atrás a altura del hombro. Con el brazo extendido (codo levemente flexionado pero fijo), llevá la mano desde abierto al costado hasta el frente del pecho en arco amplio. Controlá la vuelta. A diferencia del press, el brazo no se flexiona — el movimiento es un arco como abrazar. De pie se elimina el riesgo de hombro del fly en banco y la tensión máxima coincide con la contracción del pec. (Standing Single Arm Band Fly)'
   },
   {
-    nombre: 'Banda cruce alto de pecho',
+    nombre: 'Banda cruce alto de pecho a un brazo',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor (porción inferior/esternal), Deltoides anterior, Core',
-    tags: 'High to low cable crossover, High to low band fly, Decline band crossover',
-    descripcion: 'Banda anclada arriba (por encima de la cabeza). De pie, con el brazo extendido (codo levemente flexionado pero fijo), tirá la mano en diagonal desde arriba y afuera hacia abajo y adelante, cruzando hacia la cadera del lado opuesto. Controlá la vuelta. El ángulo de arriba hacia abajo enfatiza la parte baja/esternal del pecho. De pie activa el core anti-rotación. Hacé todas las reps de un lado antes de cambiar. (High to Low Cable Crossover)'
+    tags: 'Single arm high to low cable crossover, High to low band fly, Decline band crossover',
+    descripcion: 'Con un solo anclaje alto (banda por encima de la cabeza), a un brazo por vez. De pie, con el brazo extendido (codo levemente flexionado pero fijo), tirá la mano en diagonal desde arriba y afuera hacia abajo y adelante, cruzando hacia la cadera del lado opuesto. Controlá la vuelta. El ángulo de arriba hacia abajo enfatiza la parte baja/esternal del pecho. De pie activa el core anti-rotación. Hacé todas las reps de un lado antes de cambiar. (Single Arm High to Low Cable Crossover)'
   },
   {
     nombre: 'Pullover con mancuerna',
