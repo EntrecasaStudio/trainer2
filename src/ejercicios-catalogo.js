@@ -1447,7 +1447,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Arranque con mancuerna',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Trapecio, Cuádriceps, Glúteos, Core',
-    tags: 'Dumbbell snatch, Single arm snatch',
+    tags: 'Dumbbell kettlebell snatch, Single arm snatch, Dumbbell snatch',
     descripcion: 'Con mancuerna o kettlebell entre las piernas, hacé un tirón explosivo desde el piso hasta sobre la cabeza en un solo movimiento fluido. Usá la extensión de cadera para generar impulso. Movimiento olímpico simplificado que trabaja potencia de cuerpo completo. (Dumbbell Snatch)'
   },
 ];
