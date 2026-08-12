@@ -1339,8 +1339,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Zancada reversa con chop diagonal',
     grupo: 'Core', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Oblicuos, Deltoides anterior',
-    tags: 'Reverse lunge to chop, Lunge chop',
-    descripcion: 'Con disco o kettlebell, dá un paso atrás a zancada reversa mientras bajás el peso en diagonal hacia la cadera de la pierna atrasada. Al subir, levantá el peso en diagonal cruzando el cuerpo hacia arriba. Combina piernas, core rotacional y hombros. (Reverse Lunge to Diagonal Chop)'
+    tags: 'Reverse lunge woodchopper, Lunge to woodchop, Reverse lunge diagonal chop',
+    descripcion: 'Con disco o kettlebell, dá un paso atrás a zancada reversa mientras bajás el peso en diagonal hacia la cadera de la pierna atrasada. Al subir, levantá el peso en diagonal cruzando el cuerpo hacia arriba. Combina piernas, core rotacional y hombros. (Reverse Lunge Woodchopper)'
   },
   {
     nombre: 'Clean con press a un brazo',
