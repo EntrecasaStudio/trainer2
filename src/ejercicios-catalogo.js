@@ -325,13 +325,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Sentado en la máquina de jalón, agarrá la barra con agarre prono más ancho que los hombros. Tirá la barra hacia el pecho superior inclinando ligeramente el torso hacia atrás. Sentí que los codos van hacia abajo y atrás. Trabaja el dorsal ancho en su porción superior. (Lat Pulldown)'
   },
   {
-    nombre: 'Remo con mancuerna',
-    grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
-    musculos: 'Dorsal ancho, Romboides, Bíceps',
-    tags: 'Dumbbell row, Single arm row',
-    descripcion: 'Con una rodilla y mano apoyadas en el banco, el otro brazo sostiene la mancuerna. Tirá la mancuerna hacia la cadera llevando el codo atrás y arriba. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps de forma unilateral, permitiendo corregir asimetrías. (Dumbbell Row)'
-  },
-  {
     nombre: 'Pulldown agarre cerrado',
     grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
     musculos: 'Dorsal ancho, Bíceps, Braquial',
@@ -1037,8 +1030,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Remo',
     grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
-    tags: 'Bent over row, Barbell row',
-    descripcion: 'Inclinado con una mano apoyada, la otra sostiene la kettlebell. Tirá la pesa hacia la cadera apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps. (Bent Over Row)'
+    tags: 'Bent over row, Single arm dumbbell row, Dumbbell row',
+    descripcion: 'Inclinado con una mano y rodilla apoyadas en el banco (o una mano en la pierna), la otra sostiene la mancuerna o kettlebell. Tirá la pesa hacia la cadera llevando el codo atrás y arriba, apretando el omóplato. Bajá controlado. Trabaja dorsal ancho, romboides y bíceps de forma unilateral, permitiendo corregir asimetrías. (Bent Over Row)'
   },
   {
     nombre: 'Bíceps curl',

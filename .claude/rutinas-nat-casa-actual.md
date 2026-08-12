@@ -90,7 +90,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 ## Casa Pull G — Nat [MODIFICADA]
   C1 PIERNAS·GLÚTEOS: Sumo squat to RDL (2x10), Abducción con pausa (2x10), Zancadas (2x10)
   C2 PIERNAS·CORE: Sentadilla búlgara (2x15), Espinales con disco (2x12), Plancha con arrastre (2x8)
-  C3 ESPALDA·BÍCEPS: Remo con mancuerna (2x12), Bíceps curl en TRX (2x10), TRX face pull (2x15)
+  C3 ESPALDA·BÍCEPS: Remo (2x12), Bíceps curl en TRX (2x10), TRX face pull (2x15)
   C4 CORE·TRÍCEPS: Hollow body (2x25s), Tríceps alto en TRX (2x12), Remo alto en TRX (2x12)
   C5 HIIT: Tuck jumps (4x8), Saltos laterales (4x20), Mountain climbers (4x15)
 
