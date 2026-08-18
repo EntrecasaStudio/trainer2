@@ -1669,6 +1669,37 @@ function pickNextRutina({ usuario, foco, lugar, date, rutinas, overrides, sesion
   return sorted[(idx + 1) % sorted.length];
 }
 
+// Pairs Pull to the most recent Press letter (rotation: Press A → Pull A →
+// Press B → Pull B). Returns the Pull rutina whose letter matches the last
+// Press assigned/completed strictly before `date`. Null if none found (caller
+// falls back to independent rotation).
+function pickPairedPull({ usuario, lugar, date, rutinas, overrides, sesiones }) {
+  const rutinaById = new Map((rutinas || []).map(r => [r.id, r]));
+  const extractLetter = r => (r.nombre || '').match(/ ([A-Z]) — /)?.[1] || '';
+  const pressUses = [];
+  const userOv = (overrides && overrides[usuario]) || {};
+  for (const [d, ov] of Object.entries(userOv)) {
+    if (!d || d >= date) continue;
+    if (ov.lugar !== lugar || ov.tipo !== 'press' || !ov.rutinaId) continue;
+    pressUses.push({ date: d, rutinaId: ov.rutinaId });
+  }
+  for (const s of (sesiones || [])) {
+    if (s.usuario !== usuario) continue;
+    if ((s.lugar || 'SPORT_FITNESS') !== lugar) continue;
+    const sd = s.fecha || '';
+    if (!sd || sd >= date) continue;
+    const r = rutinaById.get(s.rutinaId);
+    if (r && r.foco === 'press') pressUses.push({ date: sd, rutinaId: s.rutinaId });
+  }
+  if (pressUses.length === 0) return null;
+  pressUses.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+  const letter = extractLetter(rutinaById.get(pressUses[0].rutinaId));
+  if (!letter) return null;
+  return (rutinas || []).find(r =>
+    r.usuario === usuario && r.lugar === lugar && r.foco === 'pull' && extractLetter(r) === letter
+  ) || null;
+}
+
 function ensureCasaRoutinesExist() {
   const rutinas = store.getAll(store.KEYS.rutinas);
   const existingNames = new Set(rutinas.filter(r => r.lugar === 'CASA').map(r => r.nombre));
@@ -1973,11 +2004,19 @@ function ensureCalendarOverrides() {
     if (cur?.manual && curValid) continue;
     if (date < todayISO && curValid) continue;
 
-    const r = pickNextRutina({
-      usuario, foco, lugar, date,
-      rutinas, overrides, sesiones,
-      letraMin, letraMax,
-    });
+    // CASA Pull pairs with the concurrent Press letter (Press A → Pull A →
+    // Press B → Pull B). Falls back to independent rotation if no Press found.
+    let r = null;
+    if (lugar === 'CASA' && foco === 'pull') {
+      r = pickPairedPull({ usuario, lugar, date, rutinas, overrides, sesiones });
+    }
+    if (!r) {
+      r = pickNextRutina({
+        usuario, foco, lugar, date,
+        rutinas, overrides, sesiones,
+        letraMin, letraMax,
+      });
+    }
     if (!r) continue;
     if (cur?.rutinaId === r.id && cur.lugar === lugar) continue;
     overrides[usuario][date] = { rutinaId: r.id, tipo: foco, lugar };
