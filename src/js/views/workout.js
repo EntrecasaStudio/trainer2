@@ -268,6 +268,8 @@ export function mountWorkout(container, params) {
     usuario,
     fecha: fecha || formatDateISO(new Date()),
     startTime: new Date().toISOString(),
+    accumSeconds: 0,          // banked active seconds from previous segments
+    segmentStart: Date.now(), // ms when current active segment began; null = paused
     circuitos: rutina.circuitos.map(c => ({
       id: c.id,
       nombre: c.nombre || (Array.isArray(c.grupoMuscular) ? c.grupoMuscular.join(' · ') : (typeof c.grupoMuscular === 'string' ? c.grupoMuscular : 'Circuito')),
@@ -1210,13 +1212,41 @@ function showExercisePicker(container, ci, ei) {
 }
 
 // ── Timer ────────────────────────────────────────────────────────────────────
+// Elapsed = banked seconds (accumSeconds) + the currently running segment.
+// When paused, segmentStart is null and the clock is frozen at accumSeconds.
 function getElapsedSeconds() {
-  if (!workoutState?.startTime) return 0;
+  if (!workoutState) return 0;
+  if (workoutState.accumSeconds !== undefined || workoutState.segmentStart !== undefined) {
+    const accum = workoutState.accumSeconds || 0;
+    if (!workoutState.segmentStart) return accum; // paused
+    return accum + Math.floor((Date.now() - workoutState.segmentStart) / 1000);
+  }
+  // Legacy fallback: wall clock from startTime (pre-pause-tracking sessions)
+  if (!workoutState.startTime) return 0;
   return Math.floor((Date.now() - new Date(workoutState.startTime).getTime()) / 1000);
+}
+
+// Freeze the clock: bank the running segment into accumSeconds, stop counting.
+function pauseTimer() {
+  if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+  if (!workoutState) return;
+  if (workoutState.segmentStart) {
+    workoutState.accumSeconds = getElapsedSeconds();
+    workoutState.segmentStart = null;
+  }
+  elapsedSeconds = workoutState.accumSeconds || 0;
+}
+
+// Resume the clock: start a fresh segment (no-op if already running).
+function resumeTimer() {
+  if (!workoutState) return;
+  if (workoutState.accumSeconds === undefined) workoutState.accumSeconds = elapsedSeconds || 0;
+  if (!workoutState.segmentStart) workoutState.segmentStart = Date.now();
 }
 
 function startTimer(container) {
   if (timerInterval) clearInterval(timerInterval);
+  resumeTimer();
   // Immediately sync display
   elapsedSeconds = getElapsedSeconds();
   const el = document.getElementById('workout-timer');
@@ -1351,7 +1381,7 @@ function showSaveRoutineChangesModal(container, rutinaId, circuitos, skipLabel, 
 
 // ── Exit dialog ──────────────────────────────────────────────────────────────
 function showExitDialog(container) {
-  clearInterval(timerInterval);
+  pauseTimer();
   const overlay = document.getElementById('modal-overlay');
   overlay.classList.remove('hidden');
   overlay.innerHTML = `
@@ -1394,6 +1424,7 @@ function showExitDialog(container) {
 
 // ── Finish workout ───────────────────────────────────────────────────────────
 function finishWorkout(container) {
+  elapsedSeconds = getElapsedSeconds();
   clearInterval(timerInterval);
 
   const usuario = workoutState.usuario;
