@@ -942,6 +942,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie sobre una pierna, bajá a sentadilla profunda con la otra pierna extendida al frente sin tocar el piso. Subí controlado sin impulso. Requiere fuerza de cuádriceps, equilibrio, movilidad de tobillo y flexibilidad de cadera. Se puede asistir con TRX o banco para la progresión.'
   },
   {
+    nombre: 'Pistol squat asistido con TRX',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Core',
+    tags: 'TRX assisted pistol squat, Assisted pistol squat, TRX single leg squat',
+    descripcion: 'De frente al anclaje, sostené las correas del TRX con ambas manos. Parado sobre una pierna, con la otra extendida al frente, bajá a sentadilla profunda usando las correas para equilibrio y asistencia. Tirá suave de las correas para ayudarte a subir. La asistencia regula la dificultad: cuanto menos te ayudás, más difícil. Ideal como progresión hacia el pistol completo. Hacé todas las reps de un lado antes de cambiar. (TRX Assisted Pistol Squat)'
+  },
+  {
     nombre: 'Plié squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Aductores, Cuádriceps, Glúteos',
