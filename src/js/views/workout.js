@@ -18,6 +18,7 @@ const NO_CHALECO_PATTERNS = [
   'remo',
   'swing',
   'arranque',
+  'clean',
   'hip thrust',
   'rotación torácica', 'rotacion toracica',
   'rotación de hombros', 'rotacion de hombros', 'movilidad de hombros',
