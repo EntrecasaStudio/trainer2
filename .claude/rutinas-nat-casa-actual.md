@@ -1,6 +1,7 @@
 # Rutinas de Nat (CASA) — Estado actual en la app
 
-Registradas el 2026-08-08. Incluyen modificaciones manuales del usuario.
+Registradas el 2026-09-07. Incluyen modificaciones manuales del usuario.
+Nat entrena con MAYOR foco en piernas y glúteos comparado con Lean.
 Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la app).
 
 ## Casa Press A — Nat [MODIFICADA]
@@ -20,7 +21,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 ## Casa Press C — Nat [MODIFICADA]
   C1 PIERNAS·GLÚTEOS: Plié squat (2x15), Patada de glúteo con tobillera (2x15), Peso muerto dividido (2x12)
   C2 PECHO·HOMBROS: Banda press de pecho (2x15), Vuelo lateral inclinado (2x10), Floor press (2x10)
-  C3 HOMBROS·TRÍCEPS: Fondos en banco (2x12), Press militar (2x10), Extensión de tríceps con banda (2x15)
+  C3 HOMBROS·TRÍCEPS: Fondos en banco (2x12), Press militar (2x10), Pistol squat (2x15)
   C4 CORE·PIERNAS: Plancha estrella con peso (2x8), Hollow body (2x25s), Hip thrust a una pierna (2x12)
   C5 HIIT: Saltos laterales (4x20), Sentadilla con salto (4x8), Bear crawl (4x8m)
 
@@ -44,6 +45,34 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C3 HOMBROS·TRÍCEPS: Extensión de triceps sobre cabeza (2x10), Elevaciones de hombro adelante (2x12), Banda triceps pushdown (2x15)
   C4 CORE·PIERNAS: Crunch oblicuo a una pierna (2x12), Dead bug (2x10), Empuje de cadera en piso con peso (2x15)
   C5 HIIT: Saltos laterales (4x20), Sentadilla con salto (4x8), Bear crawl (4x8m)
+
+## Casa Press G — Nat [MODIFICADA]
+  C1 PIERNAS·GLÚTEOS: Elevated side leg lifts (2x12), Déficit reverse lunge (2x10), Step up (2x12)
+  C2 PECHO·HOMBROS: TRX chest press (2x12), Arnold press (2x10), Patada de glúteo con tobillera (2x10)
+  C3 HOMBROS·TRÍCEPS: Extensión de triceps sobre cabeza (2x10), Elevaciones de hombro adelante (2x12), Banda triceps pushdown (2x15)
+  C4 CORE·PIERNAS: Plancha commando (2x25s), Toe touch con descenso de piernas (2x10), Standing weighted hip abduction (2x15)
+  C5 HIIT: Estocada con salto (4x8), Saltos laterales (4x20), Jumping jacks (4x8)
+
+## Casa Press H — Nat
+  C1 PIERNAS·GLÚTEOS: Sentadilla goblet con press (2x10), Calf raises (2x15), Hip thrust a una pierna (2x10)
+  C2 PECHO·HOMBROS: Floor press (2x10), Press militar (2x10), Flexiones declinadas (2x10)
+  C3 HOMBROS·TRÍCEPS: Zancada reversa con press a un brazo (2x8), Vuelos laterales (2x12), Fondos en banco (2x12)
+  C4 CORE·PIERNAS: Plancha lateral (2x25s), Bird-dog (2x10), Loop band abducción parada (2x15)
+  C5 HIIT: Burpees (4x6), Sentadilla con salto (4x8), Bear crawl (4x8m)
+
+## Casa Press I — Nat
+  C1 PIERNAS·GLÚTEOS: Step-up con rodilla al pecho (2x10), Sentadilla búlgara (2x10), Abducción con pausa (2x10)
+  C2 PECHO·HOMBROS: Thruster con kettlebell (2x8), Banda press de pecho (2x15), Vuelo lateral inclinado (2x10)
+  C3 HOMBROS·TRÍCEPS: Extensión de triceps sobre cabeza (2x10), Elevaciones de hombro adelante (2x12), Banda triceps pushdown (2x15)
+  C4 CORE·PIERNAS: Plancha estrella con peso (2x6), Dead bug (2x12), Standing weighted hip abduction (2x15)
+  C5 HIIT: Tuck jumps (4x8), Mountain climbers (4x15), Saltos laterales (4x20)
+
+## Casa Press J — Nat
+  C1 PIERNAS·GLÚTEOS: Zancada con rotación (2x10), Sentadilla sumo (2x12), Patada de glúteo con tobillera (2x12)
+  C2 PECHO·HOMBROS: Sentadilla goblet con press (2x10), TRX archer press (2x10), Flexiones (2x10)
+  C3 HOMBROS·TRÍCEPS: Zancada cruzada con vuelo lateral (2x10), French press (2x10), Extensión de tríceps con banda (2x15)
+  C4 CORE·PIERNAS: Caminata con brazo arriba (2x20m), Plancha lateral (2x25s), Copenhague (2x15)
+  C5 HIIT: Tuck jumps (4x8), Estocada con salto (4x8), Caminata a plancha (4x8)
 
 ## Casa Pull A — Nat [MODIFICADA]
   C1 PIERNAS·GLÚTEOS: Plié dips (2x12), Elevated side reaches (2x12), Sentadilla búlgara con TRX (2x10)
@@ -82,7 +111,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 
 ## Casa Pull F — Nat [MODIFICADA]
   C1 PIERNAS·GLÚTEOS: Copenhague (2x15), Sentadilla sumo (2x15), Sentadilla búlgara (2x10)
-  C2 PIERNAS·CORE: Hip thrust a una pierna (2x12), Standing weighted hip abduction (2x12), Bird-dog (2x10)
+  C2 PIERNAS·CORE: Hip thrust a una pierna (2x12), Loop band abducción parada (2x12), Bird-dog (2x10)
   C3 ESPALDA·BÍCEPS: TRX power pull (2x10), Bíceps curl martillo (2x10), Remo (2x10)
   C4 CORE·TRÍCEPS: Peso muerto a una pierna (2x8), French press en puente de glúteos (2x12), Bíceps curl en equilibrio (2x12)
   C5 HIIT: Caminata a plancha (4x8), Tuck jumps (4x8), Estocada con salto (4x8)
@@ -93,34 +122,6 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C3 ESPALDA·BÍCEPS: Remo (2x12), Bíceps curl en TRX (2x10), TRX face pull (2x15)
   C4 CORE·TRÍCEPS: Hollow body (2x25s), Tríceps alto en TRX (2x12), Remo alto en TRX (2x12)
   C5 HIIT: Tuck jumps (4x8), Saltos laterales (4x20), Mountain climbers (4x15)
-
-## Casa Press G — Nat [MODIFICADA]
-  C1 PIERNAS·GLÚTEOS: Elevated side leg lifts (2x12), Déficit reverse lunge (2x10), Step up (2x12)
-  C2 PECHO·HOMBROS: TRX chest press (2x12), Arnold press (2x10), Patada de glúteo con tobillera (2x10)
-  C3 HOMBROS·TRÍCEPS: Extensión de triceps sobre cabeza (2x10), Elevaciones de hombro adelante (2x12), Banda triceps pushdown (2x15)
-  C4 CORE·PIERNAS: Plancha commando (2x25s), Toe touch con descenso de piernas (2x10), Standing weighted hip abduction (2x15)
-  C5 HIIT: Estocada con salto (4x8), Saltos laterales (4x20), Jumping jacks (4x8)
-
-## Casa Press H — Nat
-  C1 PIERNAS·GLÚTEOS: Sentadilla goblet con press (2x10), Calf raises (2x15), Hip thrust a una pierna (2x10)
-  C2 PECHO·HOMBROS: Floor press (2x10), Press militar (2x10), Flexiones declinadas (2x10)
-  C3 HOMBROS·TRÍCEPS: Zancada reversa con press a un brazo (2x8), Vuelos laterales (2x12), Fondos en banco (2x12)
-  C4 CORE·PIERNAS: Plancha lateral (2x25s), Bird-dog (2x10), Loop band abducción parada (2x15)
-  C5 HIIT: Burpees (4x6), Sentadilla con salto (4x8), Bear crawl (4x8m)
-
-## Casa Press I — Nat
-  C1 PIERNAS·GLÚTEOS: Step-up con rodilla al pecho (2x10), Sentadilla búlgara (2x10), Abducción con pausa (2x10)
-  C2 PECHO·HOMBROS: Thruster con kettlebell (2x8), Banda press de pecho (2x15), Vuelo lateral inclinado (2x10)
-  C3 HOMBROS·TRÍCEPS: Extensión de triceps sobre cabeza (2x10), Elevaciones de hombro adelante (2x12), Banda triceps pushdown (2x15)
-  C4 CORE·PIERNAS: Plancha estrella con peso (2x6), Dead bug (2x12), Standing weighted hip abduction (2x15)
-  C5 HIIT: Tuck jumps (4x8), Mountain climbers (4x15), Saltos laterales (4x20)
-
-## Casa Press J — Nat
-  C1 PIERNAS·GLÚTEOS: Zancada con rotación (2x10), Sentadilla sumo (2x12), Patada de glúteo con tobillera (2x12)
-  C2 PECHO·HOMBROS: Sentadilla goblet con press (2x10), TRX archer press (2x10), Flexiones (2x10)
-  C3 HOMBROS·TRÍCEPS: Zancada cruzada con vuelo lateral (2x10), French press (2x10), Extensión de tríceps con banda (2x15)
-  C4 CORE·PIERNAS: Caminata con brazo arriba (2x20m), Plancha lateral (2x25s), Copenhague (2x15)
-  C5 HIIT: Tuck jumps (4x8), Estocada con salto (4x8), Caminata a plancha (4x8)
 
 ## Casa Pull H — Nat
   C1 PIERNAS·GLÚTEOS: Peso muerto a una pierna con remo (2x10), Elevated side reaches (2x12), Plié dips (2x12)
