@@ -2114,6 +2114,28 @@ function migrateCompoundExercises() {
     ['Casa Press G — Lean', 3, 1, 'Dead bug', 'Crunch oblicuo a una pierna', 2, '12'],
     ['Casa Press G — Lean', 3, 2, 'Bíceps curl martillo', 'Bíceps curl con banda', 2, '10'],
     ['Casa Pull H — Lean', 3, 1, 'TRX archer press', 'TRX pec press', 2, '10'],
+    // ── NAT distribution & consistency fixes (2026-09, expert-reviewed) ──
+    // Press E C2: era 100% piernas (mal etiquetado PECHO·HOMBROS) + conflictos con Pull E
+    ['Casa Press E — Nat', 1, 0, 'Patada de glúteo con tobillera', 'Floor press', 2, '10'],
+    ['Casa Press E — Nat', 1, 1, 'Peso muerto a una pierna', 'Squat to press a una mano con kettlebell', 2, '10'],
+    ['Casa Press E — Nat', 1, 2, 'Step up', 'Patada de glúteo con tobillera', 2, '12'],
+    // Press C C3: Pistol squat (pierna) + Press militar/Fondos chocaban con Press D
+    ['Casa Press C — Nat', 2, 0, 'Fondos en banco', 'Vuelos laterales', 2, '12'],
+    ['Casa Press C — Nat', 2, 1, 'Press militar', 'Elevaciones de hombro adelante', 2, '12'],
+    ['Casa Press C — Nat', 2, 2, 'Pistol squat', 'Tríceps alto en TRX', 2, '15'],
+    // Press E C4: tenía hombro (Elevaciones) y sin pierna + Dead bug chocaba con Press F
+    ['Casa Press E — Nat', 3, 0, 'Elevaciones de hombro adelante', 'Zancada con rotación', 2, '10'],
+    ['Casa Press E — Nat', 3, 2, 'Dead bug', 'Pallof press', 2, '10'],
+    // Press I C3: idéntico a Press F C3 + Banda pushdown ≈ Ext con banda de Press J
+    ['Casa Press I — Nat', 2, 2, 'Banda triceps pushdown', 'Patada de tríceps con mancuerna', 2, '12'],
+    // Press D C2: rompe cadena Banda press de pecho C→D→E
+    ['Casa Press D — Nat', 1, 2, 'Banda press de pecho', 'TRX chest press', 2, '12'],
+    // Hip thrust a una pierna sobre-agrupado (Press H/Pull H/Pull I/Pull J): espaciar los 2 del medio
+    ['Casa Pull H — Nat', 1, 1, 'Hip thrust a una pierna', 'Copenhague', 2, '15'],
+    ['Casa Pull I — Nat', 1, 1, 'Hip thrust a una pierna', 'Sentadilla goblet', 2, '12'],
+    // Combos integrales sin usar (pierna+espalda) en días de Pull
+    ['Casa Pull D — Nat', 0, 0, 'Sentadilla corporal', 'Sentadilla con remo en TRX', 2, '10'],
+    ['Casa Pull B — Nat', 0, 2, 'Sentadilla búlgara', 'Zancada reversa con remo', 2, '10'],
   ];
 
   let changed = false;
