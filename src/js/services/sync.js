@@ -88,6 +88,32 @@ function getDocRef() {
 const _retryCount = {};
 const MAX_RETRIES = 3;
 
+// Upload a mergeable array (sesiones/rutinas) as the UNION of local + remote.
+// setDoc({merge:true}) replaces the whole array field, so a plain upload of a
+// partial local set would clobber items another device added. Reading remote,
+// merging by id, and writing the union prevents cross-device data loss and
+// converges the uploading device's own localStorage to the union too.
+async function uploadMergeableUnion(key, field, localData) {
+  const ref = getDocRef();
+  if (!ref) return null;
+  const { doc, getDoc, setDoc } = await fs();
+  let remoteArr = [];
+  try {
+    const snap = await getDoc(doc(ref.db, 'users', ref.uid));
+    if (snap.exists() && Array.isArray(snap.data()[field])) remoteArr = snap.data()[field];
+  } catch {}
+  const merged = mergeArraysById(localData, remoteArr, key);
+  await setDoc(doc(ref.db, 'users', ref.uid), { [field]: merged, lastUpdated: Date.now() }, { merge: true });
+  // Converge local to the union so this device immediately shows both sets.
+  try {
+    const prev = _suppressSync;
+    _suppressSync = true;
+    localStorage.setItem(key, JSON.stringify(merged));
+    _suppressSync = prev;
+  } catch {}
+  return merged;
+}
+
 async function uploadKey(key) {
   const ref = getDocRef();
   if (!ref) return;
@@ -95,15 +121,19 @@ async function uploadKey(key) {
   if (!field) return;
 
   try {
-    const { doc, setDoc } = await fs();
     const raw = localStorage.getItem(key);
     const data = raw ? JSON.parse(raw) : null;
-    if (MERGEABLE_KEYS.has(key) && (!Array.isArray(data) || data.length === 0)) {
-      console.log(`[sync] skip upload ${key}: empty/null would overwrite remote`);
-      _dirtyKeys.delete(key);
-      return;
+    if (MERGEABLE_KEYS.has(key)) {
+      if (!Array.isArray(data) || data.length === 0) {
+        console.log(`[sync] skip upload ${key}: empty/null would overwrite remote`);
+        _dirtyKeys.delete(key);
+        return;
+      }
+      await uploadMergeableUnion(key, field, data);
+    } else {
+      const { doc, setDoc } = await fs();
+      await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
     }
-    await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
     _dirtyKeys.delete(key);
     _retryCount[key] = 0;
   } catch (err) {
@@ -138,13 +168,17 @@ export async function uploadAllData() {
     try {
       const raw = localStorage.getItem(key);
       const data = raw ? JSON.parse(raw) : null;
-      if (MERGEABLE_KEYS.has(key) && (!Array.isArray(data) || data.length === 0)) {
-        console.log(`[sync] skip upload ${key}: empty/null would overwrite remote`);
-        continue;
+      if (MERGEABLE_KEYS.has(key)) {
+        if (!Array.isArray(data) || data.length === 0) {
+          console.log(`[sync] skip upload ${key}: empty/null would overwrite remote`);
+          continue;
+        }
+        const merged = await uploadMergeableUnion(key, field, data);
+        console.log(`[sync] uploaded (union) ${key}: ${Array.isArray(merged) ? merged.length + ' items' : 'obj'}`);
+      } else {
+        await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
+        console.log(`[sync] uploaded ${key}: obj`);
       }
-      const size = raw ? raw.length : 0;
-      await setDoc(doc(ref.db, 'users', ref.uid), { [field]: data, lastUpdated: Date.now() }, { merge: true });
-      console.log(`[sync] uploaded ${key}: ${Array.isArray(data) ? data.length + ' items' : 'obj'} (~${Math.round(size / 1024)}KB)`);
     } catch (err) {
       console.warn(`[sync] upload error for ${key}:`, err.message);
     }
