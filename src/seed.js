@@ -2136,6 +2136,19 @@ function migrateCompoundExercises() {
     // Combos integrales sin usar (pierna+espalda) en días de Pull
     ['Casa Pull D — Nat', 0, 0, 'Sentadilla corporal', 'Sentadilla con remo en TRX', 2, '10'],
     ['Casa Pull B — Nat', 0, 2, 'Sentadilla búlgara', 'Zancada reversa con remo', 2, '10'],
+    // ── NAT loop-band glute distribution (2026-09, expert-reviewed) ──
+    // Short mini-band: replace the 4 awkward standing abductions with
+    // position-varied short-band variants (bridge/seated/side-lying/quadruped)
+    ['Casa Press D — Nat', 3, 2, 'Loop band abducción parada', 'Puente de glúteo con banda en rodillas', 2, '15'],
+    ['Casa Pull E — Nat', 0, 2, 'Loop band abducción parada', 'Abducción sentada con banda', 2, '15'],
+    ['Casa Pull F — Nat', 1, 1, 'Loop band abducción parada', 'Clamshell con banda', 2, '15'],
+    ['Casa Press H — Nat', 3, 2, 'Loop band abducción parada', 'Perro orinando con banda', 2, '15'],
+    // De-stack Press I (C1 ya tiene Abducción con pausa): C4 → compuesto
+    ['Casa Press I — Nat', 3, 2, 'Standing weighted hip abduction', 'Sumo squat pulse con banda', 2, '15'],
+    // Sumar los loop-band sin usar como finishers HIIT de bajo impacto
+    ['Casa Press F — Nat', 4, 0, 'Saltos laterales', 'Banda lateral walk', 4, '15'],
+    ['Casa Pull I — Nat', 4, 2, 'Bear crawl', 'Monster walk con banda', 4, '12'],
+    ['Casa Pull B — Nat', 4, 0, 'Burpees', 'Activación glúteo con loop band', 4, '15'],
   ];
 
   let changed = false;
