@@ -2,7 +2,7 @@ import { router } from './router.js';
 import { renderNav, updateNavActive } from './js/components/nav.js';
 import { mountHome } from './js/views/home.js';
 import { mountRutinas } from './js/views/rutinas.js';
-import { mountWorkout } from './js/views/workout.js';
+import { mountWorkout, hasActiveWorkout } from './js/views/workout.js';
 import { mountEjercicios } from './js/views/ejercicios.js';
 import { mountHistorial } from './js/views/historial.js';
 import { mountProgreso } from './js/views/progreso.js';
@@ -60,13 +60,25 @@ async function bootApp() {
 
   if ('serviceWorker' in navigator) {
     let refreshing = false;
-    // Reload page when new SW takes control (deploy detected)
+    let pendingReload = false;
+    const safeToReload = () => {
+      try { return !(hasActiveWorkout && hasActiveWorkout()); } catch { return true; }
+    };
+    // Reload page when new SW takes control (deploy detected) — but NEVER
+    // interrupt an in-progress workout (that would reset it). Defer instead.
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (!refreshing) {
+      if (refreshing) return;
+      if (!safeToReload()) { pendingReload = true; return; }
+      refreshing = true;
+      window.location.reload();
+    });
+    // Apply a deferred update once the workout is finished.
+    setInterval(() => {
+      if (pendingReload && !refreshing && safeToReload()) {
         refreshing = true;
         window.location.reload();
       }
-    });
+    }, 5000);
     navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
       .then(reg => {
         // Force update check on every page load
