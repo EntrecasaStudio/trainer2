@@ -806,6 +806,48 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con mini-band en los tobillos, levantá una pierna lateralmente contra la resistencia manteniendo el torso erguido. Activa glúteo medio y estabilizadores de cadera en posición funcional. (Standing Banded Hip Abduction)'
   },
   {
+    nombre: 'Puente de glúteo con banda en rodillas',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo mayor, Glúteo medio',
+    tags: 'Banded glute bridge, Banded hip bridge with abduction',
+    descripcion: 'Boca arriba, pies apoyados, mini-band arriba de las rodillas. Subí la cadera apretando el glúteo y al mismo tiempo empujá las rodillas hacia afuera contra la banda (sin dejar que se cierren). Pausa 1-2s arriba y bajá controlado. La tensión de la banda suma glúteo medio y entrena a las rodillas a no colapsar. (Banded Glute Bridge)'
+  },
+  {
+    nombre: 'Clamshell con banda',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo medio, Rotadores externos de cadera',
+    tags: 'Banded clamshell, Clamshell',
+    descripcion: 'Acostada de costado, caderas apiladas, rodillas flexionadas ~45° y mini-band arriba de las rodillas, talones juntos. Abrí la rodilla de arriba rotando desde la cadera sin que la pelvis se vaya hacia atrás. Pausa arriba y bajá controlado. Aislamiento de glúteo medio y rotadores externos, ideal con banda corta (poco recorrido). (Banded Clamshell)'
+  },
+  {
+    nombre: 'Perro orinando con banda',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo medio, Glúteo menor',
+    tags: 'Banded fire hydrant, Fire hydrant',
+    descripcion: 'En cuatro apoyos, mini-band arriba de las rodillas y core firme. Levantá una rodilla hacia el costado manteniendo los 90° de flexión, sin rotar el torso ni hundir la lumbar. Bajá controlado. Trabaja glúteo medio/menor en abducción con rotación, sin carga en la columna. (Banded Fire Hydrant)'
+  },
+  {
+    nombre: 'Abducción sentada con banda',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo medio',
+    tags: 'Seated banded hip abduction, Seated band knee press-out',
+    descripcion: 'Sentada en el banco o una silla, rodillas a 90° y mini-band arriba de las rodillas. Presioná las rodillas hacia afuera contra la banda y volvé controlada, sin despegar los pies ni inclinar el torso. Ideal con banda corta: aísla el glúteo medio sin demanda de equilibrio ni carga lumbar. Reemplaza la abducción de pie cuando la banda queda muy tensa. (Seated Banded Hip Abduction)'
+  },
+  {
+    nombre: 'Sumo squat pulse con banda',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo medio, Glúteo mayor, Cuádriceps',
+    tags: 'Banded sumo squat pulse, Banded squat pulse',
+    descripcion: 'Sentadilla sumo a profundidad media con mini-band arriba de las rodillas. Desde ahí hacé pulsos cortos manteniendo tensión constante en la banda, sin dejar que las rodillas colapsen hacia adentro. Trabaja el glúteo medio como estabilizador anti-valgo bajo patrón de sentadilla. Sirve como finalizador metabólico. (Banded Sumo Squat Pulse)'
+  },
+  {
+    nombre: 'Monster walk con banda',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo mayor, Glúteo medio, Flexores de cadera',
+    tags: 'Banded monster walk, Forward backward monster walk',
+    descripcion: 'Mini-band arriba de las rodillas o en los tobillos, en posición de media sentadilla. Caminá hacia adelante con pasos largos en diagonal (8-10 pasos) y después hacia atrás, sin perder la flexión de rodilla ni erguir el torso. Suma trabajo de glúteo en el plano sagital, distinto a la caminata lateral. (Banded Monster Walk)'
+  },
+  {
     nombre: 'Patada de glúteo con tobillera',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales',
