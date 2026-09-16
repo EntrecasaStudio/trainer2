@@ -109,8 +109,11 @@ function lastPesoValue(nombre, usuario, lugar) {
           for (const e of (c.ejercicios || [])) {
             if (e.nombre !== nombre) continue;
             const series = e.seriesData || [];
-            const withPeso = series.find(x => x.peso > 0);
-            if (withPeso) return withPeso.peso;
+            // Most recent session where the exercise was actually performed —
+            // return that weight INCLUDING 0 (bodyweight), so a peso-0 session
+            // is remembered instead of sticking to an old non-zero value.
+            const doneSerie = series.find(x => x.done);
+            if (doneSerie) return doneSerie.peso || 0;
           }
         }
       }
