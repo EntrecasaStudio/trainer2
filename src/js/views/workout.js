@@ -463,13 +463,14 @@ function renderExerciseCard(e, ci, ei) {
   const canRemove = editMode && circ.ejercicios.length > 1;
 
   const chalecoExtra = e.chaleco ? (e.chalecoPeso || 0) : 0;
+  const chalecoIcon = `<i class="ph ph-shield-plus" style="font-size:13px;vertical-align:-1px;"></i>`;
   const summaryParts = [`${totalSeries} series`];
   if (e.seriesData[0]) summaryParts.push(`${e.seriesData[0].reps} rep`);
   if (e.usaPeso && e.seriesData[0]) {
     const effective = (e.seriesData[0].peso || 0) + chalecoExtra;
-    summaryParts.push(`${effective} kg${chalecoExtra ? ` (+${chalecoExtra} chaleco)` : ''}`);
+    summaryParts.push(`${effective} kg${chalecoExtra ? ` (+${chalecoExtra}${chalecoIcon})` : ''}`);
   } else if (chalecoExtra) {
-    summaryParts.push(`${chalecoExtra} kg chaleco`);
+    summaryParts.push(`${chalecoExtra} kg ${chalecoIcon}`);
   }
   if (doneCount > 0) summaryParts.push(`${doneCount}/${totalSeries} ✓`);
   const summaryText = summaryParts.join(' · ');
