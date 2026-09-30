@@ -74,17 +74,24 @@ function lastBandaValues(nombre, usuario) {
   return null;
 }
 
-// Pick the most recent chaleco peso for this exercise/user from past sesiones
+// Chaleco state from the MOST RECENT session that included this exercise.
+// Returns 0 when the vest was off there, so turning it off is remembered —
+// previously it kept scanning back for a session where the vest was ON, which
+// made the vest reappear forever once it had been used a single time.
+// Sorted by date: sesiones merge across devices, so array order isn't chronological.
 function lastChalecoPeso(nombre, usuario) {
   try {
     const sesiones = store.getAll(store.KEYS.sesiones) || [];
-    for (let i = sesiones.length - 1; i >= 0; i--) {
-      const s = sesiones[i];
+    const sorted = [...sesiones].sort((a, b) =>
+      (b.fecha || '').localeCompare(a.fecha || '') ||
+      (b.startTime || '').localeCompare(a.startTime || '')
+    );
+    for (const s of sorted) {
       if (s.usuario !== usuario) continue;
       for (const c of (s.circuitos || [])) {
         for (const e of (c.ejercicios || [])) {
           if (e.nombre !== nombre) continue;
-          if (e.chaleco && e.chalecoPeso > 0) return e.chalecoPeso;
+          return e.chaleco ? (e.chalecoPeso || 0) : 0;
         }
       }
     }
