@@ -231,6 +231,10 @@ document.addEventListener('visibilitychange', () => {
 
 export function hasActiveWorkout() { return workoutState !== null; }
 
+// Force-save the in-progress workout (used before an intentional reload, e.g.
+// applying an app update — iOS often doesn't fire beforeunload reliably).
+export function saveActiveWorkout() { persistWorkout(); }
+
 export function resumeWorkout(container) {
   if (workoutState) renderWorkout(container);
 }
@@ -1399,6 +1403,7 @@ function showExitDialog(container) {
       <div style="display:flex;flex-direction:column;gap:var(--space-sm);">
         <button class="btn btn-primary btn-lg" id="btn-volver">Volver al entrenamiento</button>
         <button class="btn btn-secondary btn-lg" id="btn-pausar"><i class="ph ph-pause"></i> Pausar y navegar</button>
+        ${window.__swUpdatePending ? `<button class="btn btn-secondary btn-lg" id="btn-actualizar-app"><i class="ph ph-download-simple"></i> Actualizar app (guarda el progreso)</button>` : ''}
         <button class="btn btn-secondary btn-lg" id="btn-finalizar-guardar"><i class="ph ph-check"></i> Finalizar y guardar</button>
         <button class="btn btn-lg" id="btn-descartar" style="color:var(--color-danger);">Descartar</button>
       </div>
@@ -1407,6 +1412,12 @@ function showExitDialog(container) {
 
   overlay.querySelector('#btn-volver').addEventListener('click', () => {
     overlay.classList.add('hidden'); overlay.innerHTML = ''; startTimer(container);
+  });
+  overlay.querySelector('#btn-actualizar-app')?.addEventListener('click', () => {
+    // Save first: the hash route (#workout/<rutinaId>) restores the workout
+    // automatically after the reload, so progress and timer are preserved.
+    persistWorkout();
+    window.location.reload();
   });
   overlay.querySelector('#btn-pausar').addEventListener('click', () => {
     overlay.classList.add('hidden'); overlay.innerHTML = ''; persistWorkout(); router.navigate('');

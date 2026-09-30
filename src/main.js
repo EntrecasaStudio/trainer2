@@ -2,7 +2,7 @@ import { router } from './router.js';
 import { renderNav, updateNavActive } from './js/components/nav.js';
 import { mountHome } from './js/views/home.js';
 import { mountRutinas } from './js/views/rutinas.js';
-import { mountWorkout, hasActiveWorkout } from './js/views/workout.js';
+import { mountWorkout, hasActiveWorkout, saveActiveWorkout } from './js/views/workout.js';
 import { mountEjercicios } from './js/views/ejercicios.js';
 import { mountHistorial } from './js/views/historial.js';
 import { mountProgreso } from './js/views/progreso.js';
@@ -66,9 +66,24 @@ async function bootApp() {
     };
     // Reload page when new SW takes control (deploy detected) — but NEVER
     // interrupt an in-progress workout (that would reset it). Defer instead.
+    const applyUpdateNow = () => {
+      try { saveActiveWorkout(); } catch {}
+      refreshing = true;
+      window.location.reload();
+    };
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (refreshing) return;
-      if (!safeToReload()) { pendingReload = true; return; }
+      if (!safeToReload()) {
+        pendingReload = true;
+        // Let the user opt in mid-workout: the workout is saved and the hash
+        // route restores it right after the reload, so nothing is lost.
+        window.__swUpdatePending = true;
+        import('./js/components/toast.js')
+          .then(({ showToastAction }) => showToastAction(
+            'Nueva versión disponible', 'Actualizar', applyUpdateNow, 8000))
+          .catch(() => {});
+        return;
+      }
       refreshing = true;
       window.location.reload();
     });
