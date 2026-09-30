@@ -188,7 +188,11 @@ let editMode = false;
 const WS_KEY = 'gym_active_workout';
 
 function persistWorkout() {
-  if (!workoutState) { localStorage.removeItem(WS_KEY); return; }
+  // Never clear a persisted workout just because it isn't loaded in memory yet
+  // (right after a reload workoutState is null; a visibilitychange/beforeunload
+  // in that window used to wipe the saved workout). finishWorkout() and the
+  // discard path remove WS_KEY explicitly — those are the only ways it clears.
+  if (!workoutState) return;
   localStorage.setItem(WS_KEY, JSON.stringify({
     workoutState, elapsedSeconds, activeCircuitIdx, incremento,
     savedAt: Date.now(),
