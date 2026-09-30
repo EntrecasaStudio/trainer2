@@ -1399,6 +1399,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Con kettlebell entre las piernas, hacé un swing parcial y limpiá la pesa al hombro (clean). Desde ahí, empujá en press sobre la cabeza. Bajá al hombro, luego al piso y repetí. Movimiento explosivo de cuerpo completo. (Single Arm Clean and Press)'
   },
   {
+    nombre: 'Swing con kettlebell',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteos, Isquiotibiales, Erector espinal, Core',
+    tags: 'Kettlebell swing, Russian kettlebell swing',
+    descripcion: 'Pies al ancho de hombros, kettlebell en el piso un poco adelante. Hacé una bisagra de cadera (cadera hacia atrás, espalda neutra, pecho alto) y llevá la pesa entre las piernas. Extendé la cadera de forma explosiva para proyectarla hasta la altura del pecho, con los brazos relajados. No es una sentadilla ni un movimiento de brazos: el impulso sale de la cadera. Apretá glúteo arriba y dejá que la pesa vuelva sola entre las piernas. (Kettlebell Swing)'
+  },
+  {
     nombre: 'Swing a sentadilla goblet',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales, Cuádriceps, Core',
