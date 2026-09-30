@@ -471,7 +471,9 @@ function renderExerciseCard(e, ci, ei) {
   const canRemove = editMode && circ.ejercicios.length > 1;
 
   const chalecoExtra = e.chaleco ? (e.chalecoPeso || 0) : 0;
-  const chalecoIcon = `<i class="ph ph-shield-plus" style="font-size:13px;vertical-align:-1px;"></i>`;
+  // Green = active, matching .chaleco-toggle-btn.active / .check-all-btn.all-done.
+  // Only the icon is tinted: the text already breaks out the vest as "(+8 🛡)".
+  const chalecoIcon = `<i class="ph ph-shield-plus" style="font-size:13px;vertical-align:-1px;color:#4ade80;"></i>`;
   const summaryParts = [`${totalSeries} series`];
   if (e.seriesData[0]) summaryParts.push(`${e.seriesData[0].reps} rep`);
   if (e.usaPeso && e.seriesData[0]) {
