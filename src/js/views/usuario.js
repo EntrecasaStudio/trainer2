@@ -55,6 +55,7 @@ function render(container) {
       <div style="margin-top:var(--space-md);padding:var(--space-md);background:var(--color-surface-alt);border-radius:var(--radius-md);font-size:var(--text-sm);color:var(--color-text-muted);">
         Sesiones locales: <strong style="color:var(--color-text);">${sesionesCount}</strong>
         <span style="opacity:0.7;"> · Lean ${leanCount} · Nat ${natCount}</span>
+        <div style="margin-top:6px;opacity:0.7;">Versión: <span id="app-version">…</span></div>
       </div>
 
       <div style="display:flex;gap:var(--space-sm);margin-top:var(--space-md);">
@@ -106,6 +107,8 @@ function render(container) {
       btn.innerHTML = '<i class="ph ph-check" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiado';
       setTimeout(() => { btn.innerHTML = '<i class="ph ph-clipboard-text" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar sesiones'; }, 1500);
     });
+
+    showAppVersion(container);
 
     container.querySelector('#btn-catalogo')?.addEventListener('click', () => openCatalogo());
 
@@ -170,6 +173,24 @@ function render(container) {
       }
     });
   }
+}
+
+// Ask the active service worker which build is actually serving this page.
+// Without this there's no way to tell whether a device picked up a deploy.
+function showAppVersion(container) {
+  const el = container.querySelector('#app-version');
+  if (!el) return;
+  const sw = navigator.serviceWorker?.controller;
+  if (!sw) { el.textContent = 'sin service worker'; return; }
+  try {
+    const ch = new MessageChannel();
+    const timer = setTimeout(() => { el.textContent = '—'; }, 1500);
+    ch.port1.onmessage = (e) => {
+      clearTimeout(timer);
+      el.textContent = String(e.data || '—').replace('trainer2-', '');
+    };
+    sw.postMessage({ type: 'GET_VERSION' }, [ch.port2]);
+  } catch { el.textContent = '—'; }
 }
 
 function openCatalogo() {

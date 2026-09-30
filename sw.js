@@ -1,4 +1,4 @@
-const CACHE = 'trainer2-v2-412';
+const CACHE = 'trainer2-v2-413';
 const PRECACHE = [
   './',
   './index.html',
@@ -62,6 +62,10 @@ self.addEventListener('fetch', (e) => {
 
 self.addEventListener('message', (e) => {
   if (e.data?.type === 'SKIP_WAITING') self.skipWaiting();
+  // Lets the app show which build is actually running (update diagnostics).
+  if (e.data?.type === 'GET_VERSION' && e.ports && e.ports[0]) {
+    e.ports[0].postMessage(CACHE);
+  }
 });
 
 self.addEventListener('activate', (e) => {

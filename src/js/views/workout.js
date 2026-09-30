@@ -1426,7 +1426,10 @@ function showExitDialog(container) {
     // Save first: the hash route (#workout/<rutinaId>) restores the workout
     // automatically after the reload, so progress and timer are preserved.
     persistWorkout();
-    window.location.reload();
+    // The pending service worker is held (never activated mid-workout), so a
+    // plain reload would just re-serve the old version — activate it properly.
+    if (typeof window.__applyAppUpdate === 'function') window.__applyAppUpdate();
+    else window.location.reload();
   });
   overlay.querySelector('#btn-pausar').addEventListener('click', () => {
     overlay.classList.add('hidden'); overlay.innerHTML = ''; persistWorkout(); router.navigate('');

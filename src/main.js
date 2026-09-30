@@ -60,60 +60,67 @@ async function bootApp() {
 
   if ('serviceWorker' in navigator) {
     let refreshing = false;
-    let pendingReload = false;
-    const safeToReload = () => {
+    let waitingSW = null;
+    const safeToUpdate = () => {
       try { return !(hasActiveWorkout && hasActiveWorkout()); } catch { return true; }
     };
-    // Reload page when new SW takes control (deploy detected) — but NEVER
-    // interrupt an in-progress workout (that would reset it). Defer instead.
+
+    // A new SW is NEVER activated during a workout. Activating it swaps the
+    // cache and takes control of the running page (controllerchange), which is
+    // what used to reset a live session. We hold it until the workout ends.
+    const activateUpdate = () => {
+      if (!waitingSW) { refreshing = true; window.location.reload(); return; }
+      const sw = waitingSW;
+      waitingSW = null;
+      sw.postMessage({ type: 'SKIP_WAITING' }); // → controllerchange → reload
+    };
+
+    // Used by the toast and by the workout's pause dialog.
     const applyUpdateNow = () => {
       try { saveActiveWorkout(); } catch {}
-      refreshing = true;
-      window.location.reload();
+      activateUpdate();
     };
+    window.__applyAppUpdate = applyUpdateNow;
+
+    const onUpdateReady = (sw) => {
+      waitingSW = sw;
+      if (safeToUpdate()) { activateUpdate(); return; }
+      // Mid-workout: hold the update and let the user opt in.
+      window.__swUpdatePending = true;
+      import('./js/components/toast.js')
+        .then(({ showToastAction }) => showToastAction(
+          'Nueva versión disponible', 'Actualizar', applyUpdateNow, 8000))
+        .catch(() => {});
+    };
+
+    // We only ever activate deliberately, so taking control always means reload.
     navigator.serviceWorker.addEventListener('controllerchange', () => {
       if (refreshing) return;
-      if (!safeToReload()) {
-        pendingReload = true;
-        // Let the user opt in mid-workout: the workout is saved and the hash
-        // route restores it right after the reload, so nothing is lost.
-        window.__swUpdatePending = true;
-        import('./js/components/toast.js')
-          .then(({ showToastAction }) => showToastAction(
-            'Nueva versión disponible', 'Actualizar', applyUpdateNow, 8000))
-          .catch(() => {});
-        return;
-      }
       refreshing = true;
       window.location.reload();
     });
-    // Apply a deferred update once the workout is finished.
+
+    // Apply a held update once the workout is over.
     setInterval(() => {
-      if (pendingReload && !refreshing && safeToReload()) {
-        refreshing = true;
-        window.location.reload();
-      }
+      if (waitingSW && !refreshing && safeToUpdate()) activateUpdate();
     }, 5000);
+
     navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
       .then(reg => {
-        // Force update check on every page load
         reg.update().catch(() => {});
-        // If a waiting SW exists, activate it immediately
-        if (reg.waiting) {
-          reg.waiting.postMessage({ type: 'SKIP_WAITING' });
-        }
+        if (reg.waiting) onUpdateReady(reg.waiting);
         reg.addEventListener('updatefound', () => {
           const newSW = reg.installing;
-          if (newSW) {
-            newSW.addEventListener('statechange', () => {
-              if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-                newSW.postMessage({ type: 'SKIP_WAITING' });
-              }
-            });
-          }
+          if (!newSW) return;
+          newSW.addEventListener('statechange', () => {
+            if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+              onUpdateReady(newSW);
+            }
+          });
         });
-        // Also check periodically (every 60s)
-        setInterval(() => reg.update().catch(() => {}), 60000);
+        // Check periodically, but not while training — an update found mid
+        // workout is held anyway, and skipping the check avoids the churn.
+        setInterval(() => { if (safeToUpdate()) reg.update().catch(() => {}); }, 60000);
       })
       .catch(e => console.warn('[SW] Registration failed', e));
   }
