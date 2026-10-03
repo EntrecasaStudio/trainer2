@@ -1478,6 +1478,20 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Corré en el lugar llevando las rodillas al pecho lo más alto posible con cada paso. Brazos acompañan el movimiento. Ritmo rápido y explosivo. Trabaja cuádriceps, flexores de cadera y sistema cardiovascular. (High Knees)'
   },
   {
+    nombre: 'Talones a la cola',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Isquiotibiales, Gemelos, Flexores de cadera, Core',
+    tags: 'Butt kicks, Heel kicks',
+    descripcion: 'En el lugar, llevá los talones hacia los glúteos alternando las piernas a ritmo rápido. Mantené el torso erguido y las rodillas apuntando al piso (no hacia adelante). Los brazos acompañan como al correr. Siempre hay un pie en el piso, así que no hay salto ni aterrizaje con las dos piernas. Trabaja isquiotibiales y sistema cardiovascular. (Butt Kicks)'
+  },
+  {
+    nombre: 'Boxeo de sombra',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Deltoides, Core, Oblicuos, Gemelos',
+    tags: 'Shadow boxing, Boxing drills',
+    descripcion: 'De pie en guardia, pies al ancho de hombros y rodillas levemente flexionadas. Tirá directos y cruzados a ritmo sostenido, rotando la cadera y el pie trasero con cada golpe, mentón bajo y codos recogidos al volver. Sin peso o con mancuernas livianas de 1-3 kg (no más: frenar un golpe con peso castiga codo y hombro). Cero impacto y silencioso. Trabaja hombros, core rotacional y sistema cardiovascular. (Shadow Boxing)'
+  },
+  {
     nombre: 'Escaladores cruzados',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Oblicuos, Deltoides anterior',
