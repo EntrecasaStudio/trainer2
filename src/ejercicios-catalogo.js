@@ -88,7 +88,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plancha en codos',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Recto abdominal, Transverso abdominal, Oblicuos',
-    tags: 'plancha isométrica, plank',
+    tags: 'Forearm plank, Plank on elbows, Plancha isométrica',
     descripcion: 'Igual que la plancha estándar pero apoyado en los antebrazos en lugar de las palmas. Mayor activación del core al reducir el brazo de palanca. Codos directamente debajo de los hombros, espalda plana.'
   },
   {
@@ -392,14 +392,14 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Elevaciones de hombro hacia arriba',
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Trapecio, Deltoides lateral',
-    tags: 'encogimientos con mancuernas, shrugs',
+    tags: 'Dumbbell shrugs, Shoulder shrugs',
     descripcion: 'Con mancuernas o barra, elevá los hombros hacia las orejas (encogimiento) sin doblar los codos. Mantené un segundo arriba y bajá lento. Trabaja trapecios superiores. Útil para equilibrar la musculatura del cuello y parte alta de la espalda.'
   },
   {
     nombre: 'Arnold press',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Deltoides lateral, Deltoides posterior',
-    tags: 'arnold press con kettlebell, press arnold',
+    tags: 'Arnold press, Kettlebell Arnold press',
     descripcion: 'Con mancuernas o kettlebell al nivel del mentón, palmas hacia vos. Al empujar hacia arriba, rotá las muñecas hasta que las palmas miren hacia afuera al final. Bajá invirtiendo la rotación. Trabaja las tres cabezas del deltoides en un solo movimiento.'
   },
   // ── BRAZOS ──────────────────────────────────────────────────────────────────
@@ -449,7 +449,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Extensión de triceps sobre cabeza',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Tríceps',
-    tags: 'extensión de tríceps con kettlebell, overhead triceps extension',
+    tags: 'Overhead triceps extension, Kettlebell overhead triceps extension',
     descripcion: 'Sentado o de pie, sostén una mancuerna, barra o kettlebell por detrás de la cabeza con los codos apuntando al techo. Extendé los codos hasta arriba y bajá controlado. Trabaja principalmente la cabeza larga del tríceps. Mantené los codos cerca de las orejas sin abrirlos.'
   },
   {
@@ -767,7 +767,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Cat-cow',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Erector espinal, Recto abdominal, Transverso abdominal',
-    tags: 'movilidad, recovery, calentamiento',
+    tags: 'Cat cow stretch, Cat camel',
     descripcion: 'En 4 apoyos. En la fase "cat" redondeá toda la columna hacia arriba llevando el mentón al pecho. En la fase "cow" dejá caer el abdomen y mirá al frente. Cuello relajado, coordinando con la respiración. Moviliza toda la columna, alivia tensión y prepara la espalda.'
   },
   {
@@ -851,7 +851,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Patada de glúteo con tobillera',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales',
-    tags: 'patada de glúteo con tobillera 4k',
+    tags: 'Glute kickback, Ankle weight glute kickback, Donkey kick',
     descripcion: 'En cuatro puntos o apoyada en banco, con tobillera con peso, extendé una pierna hacia atrás y arriba. Apretá glúteos arriba y bajá controlado. Aislamiento de glúteo mayor con resistencia adicional.'
   },
   {
@@ -893,8 +893,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Plancha commando',
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     musculos: 'Transverso abdominal, Deltoides anterior, Tríceps',
-    descripcion: 'Desde plancha en codos, subí a plancha en manos un brazo a la vez, y bajá alternando el brazo que inicia. Mantené la cadera estable sin rotar. Trabaja core antirotación, tríceps y estabilidad de hombros.',
-    tags: 'plancha comando, commando plank, up down plank'
+    tags: 'Commando plank, Up down plank, Plank up downs',
+    descripcion: 'Desde plancha en codos, subí a plancha en manos un brazo a la vez, y bajá alternando el brazo que inicia. Mantené la cadera estable sin rotar — el error típico es balancear la cadera de lado a lado para ayudarse a subir. Trabaja core antirotación, tríceps y estabilidad de hombros. (Commando Plank)'
   },
   {
     nombre: 'Bear crawl',
@@ -959,7 +959,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Hip thrust a una pierna',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
     musculos: 'Glúteos, Isquiotibiales',
-    tags: 'empuje de cadera una pierna, single leg glute bridge',
+    tags: 'Single leg hip thrust, Single leg glute bridge',
     descripcion: 'Espalda apoyada en banco, una pierna extendida en el aire. Empujá la cadera hacia arriba con la pierna de apoyo apretando el glúteo. Bajá controlado. Trabaja glúteo mayor unilateral con énfasis en estabilidad.'
   },
   {
@@ -973,14 +973,14 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Step up',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos',
-    tags: 'step-up en banco, step-up',
+    tags: 'Step-up, Bench step-up',
     descripcion: 'Frente a un banco o cajón, subí con una pierna y extendé la cadera arriba. Bajá controlado con la misma pierna. Se puede agregar peso con kettlebell o chaleco. Trabaja cuádriceps, glúteos y equilibrio.'
   },
   {
     nombre: 'Pistol squat',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Core',
-    tags: 'sentadilla pistola, single leg squat, pistol squat asistido',
+    tags: 'Pistol squat, Single leg squat, Assisted pistol squat',
     descripcion: 'De pie sobre una pierna, bajá a sentadilla profunda con la otra pierna extendida al frente sin tocar el piso. Subí controlado sin impulso. Requiere fuerza de cuádriceps, equilibrio, movilidad de tobillo y flexibilidad de cadera. Se puede asistir con TRX o banco para la progresión.'
   },
   {
@@ -1108,7 +1108,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Rotación de hombros con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
-    tags: 'banda dislocates, dislocates',
+    tags: 'Band shoulder dislocates, Band dislocates',
     descripcion: 'Sostenés la banda con ambas manos al frente. Llevala por encima de la cabeza y atrás hasta la zona lumbar, y volvé. Mantené los brazos rectos. Movilidad y calentamiento del manguito rotador.'
   },
   {
@@ -1310,7 +1310,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Face pull con banda',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: false,
     musculos: 'Deltoides posterior, Infraespinoso, Trapecio',
-    tags: 'banda face pull',
+    tags: 'Band face pull, Resistance band face pull',
     descripcion: 'Ancla una banda elástica a la altura de los ojos. Tirá la banda hacia tu cara abriendo los codos y rotando externamente los hombros. Trabaja postura, deltoides posterior y manguito rotador. Excelente para compensar horas sentada y mejorar postura.'
   },
   // ── COMBO / BEN BRUNO STYLE ───────────────────────────────────────────────
@@ -1504,6 +1504,69 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Recto abdominal, Deltoides anterior, Cuádriceps',
     tags: 'Plank jacks, Plank jumping jacks',
     descripcion: 'En posición de plancha alta, saltá abriendo y cerrando las piernas como jumping jacks manteniendo las manos fijas. Core activado, cadera estable. Combina trabajo de core con cardio intenso. (Plank Jacks)'
+  },
+  {
+    nombre: 'Sit-through',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Oblicuos, Tríceps, Deltoides, Recto abdominal',
+    tags: 'Sit through exercise, Sit-through, Ground flow sit through',
+    descripcion: 'Desde cuadrupedia con las rodillas apenas despegadas del piso, pasá una pierna por debajo del cuerpo mientras rotás el tronco y levantás la mano contraria. Volvé a la posición y alterná. El error típico es dejar caer la cadera (lumbar en extensión) o cargar todo el peso sobre la muñeca extendida. Cero impacto y silencioso. Trabaja rotación en el piso, oblicuos y coordinación bajo fatiga. (Sit Through)'
+  },
+  {
+    nombre: 'Sentadilla cosaca',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Aductores, Glúteo mayor, Cuádriceps, Isquiotibiales',
+    tags: 'Cossack squat, Cossack squat exercise',
+    descripcion: 'Piernas bien abiertas. Bajá sobre una pierna flexionándola mientras la otra queda extendida con el pie apoyado en el talón o la punta. Pecho alto, subí y alterná. El error típico es que la rodilla se vaya hacia adentro o que se levante el talón de la pierna flexionada. Bajo fatiga limitá la profundidad a lo que la rodilla tolere sin dolor. Cero impacto. Trabaja plano frontal, aductores y movilidad de cadera. (Cossack Squat)'
+  },
+  {
+    nombre: 'Estocada reversa con rodilla arriba',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteo mayor, Glúteo medio, Flexores de cadera',
+    tags: 'Reverse lunge to knee drive, Reverse lunge knee drive',
+    descripcion: 'Dá un paso atrás hasta una estocada, empujá el piso y llevá la rodilla de atrás hacia el pecho estirándote sobre la pierna de apoyo. Alterná, o completá todas las reps de una pierna antes de cambiar. El error típico es dejar caer el torso adelante o colapsar la rodilla de apoyo hacia adentro. Siempre hay un pie en el piso, así que el impacto es bajo y silencioso. Trabaja pierna unilateral, equilibrio y desaceleración. (Reverse Lunge to Knee Drive)'
+  },
+  {
+    nombre: 'Peso muerto a una pierna con rodilla arriba',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteo mayor, Isquiotibiales, Core, Cuádriceps',
+    tags: 'Single leg RDL to knee drive, Single leg deadlift to knee drive',
+    descripcion: 'Kettlebell o mancuerna en la mano contraria a la pierna de apoyo. Hacé la bisagra a una pierna y volvé explosivo, subiendo la rodilla libre hasta la altura de la cadera en el mismo movimiento. El pie de apoyo nunca despega. El error típico es redondear la lumbar para bajar más: cortá donde la espalda sigue neutra. Trabaja cadena posterior, potencia de cadera y equilibrio sin impacto. (Single Leg RDL to Knee Drive)'
+  },
+  {
+    nombre: 'Marcha en puente de glúteos con banda',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo mayor, Glúteo medio, Isquiotibiales, Core',
+    tags: 'Glute bridge march, Banded glute bridge march',
+    descripcion: 'Boca arriba con mini-band arriba de las rodillas, subí la cadera a puente y desde ahí alterná levantando un pie y después el otro, sin que la pelvis rote ni caiga. El error típico es compensar con la lumbar para mantener la cadera alta. Cero impacto y silencioso. Costo cardiovascular moderado: sirve para sumar volumen de glúteo o como recuperación activa dentro del circuito. Trabaja glúteo en isometría con estabilidad pélvica. (Glute Bridge March)'
+  },
+  {
+    nombre: 'Patada de glúteo a perro orinando con banda',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Glúteo mayor, Glúteo medio, Core',
+    tags: 'Banded donkey kick to fire hydrant, Donkey kick fire hydrant combo',
+    descripcion: 'En cuadrupedia con mini-band arriba de las rodillas, hacé una patada hacia atrás extendiendo la cadera y, sin apoyar la rodilla, abrí la pierna hacia el costado manteniendo los 90°. Esa es una repetición. Mantené el ritmo en una pierna hasta terminar y recién cambiá. No rotes el torso ni hundas la lumbar. Cero impacto y silencioso. Combo de extensión y abducción de cadera con tensión constante. (Banded Donkey Kick to Fire Hydrant)'
+  },
+  {
+    nombre: 'Leñador con banda',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Oblicuos, Serrato anterior, Glúteos, Dorsal ancho',
+    tags: 'Band woodchop, Banded wood chop, Resistance band woodchopper',
+    descripcion: 'Banda larga anclada alta. Desde media sentadilla, tirá en diagonal hacia la cadera opuesta pivotando el pie de atrás y rotando desde la cadera y el tronco, con los brazos casi rectos. El error típico es girar sólo con los brazos o sobre-rotar la lumbar. Cero impacto. Trabaja rotación dinámica y anti-rotación de core. (Band Woodchop)'
+  },
+  {
+    nombre: 'Burpee sin salto',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    musculos: 'Cuádriceps, Glúteos, Deltoides anterior, Core',
+    tags: 'Step-back burpee, Burpee no jump, Walkout burpee',
+    descripcion: 'Versión del burpee sin salto ni flexión: agachate, apoyá las manos, llevá un pie atrás y después el otro hasta plancha, volvé con un pie y después el otro, y parate. Pierde algo de intensidad pero mantiene la técnica cuando ya estás fatigado — en el burpee clásico la cadera cae al entrar a plancha y el salto final aterriza con las dos piernas. Bajo impacto y silencioso. Trabaja cuerpo completo y cardio. (Step-Back Burpee)'
+  },
+  {
+    nombre: 'High pull con kettlebell',
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: true,
+    musculos: 'Glúteo mayor, Isquiotibiales, Deltoides posterior, Trapecio',
+    tags: 'Kettlebell high pull, KB high pull',
+    descripcion: 'Bisagra explosiva con agarre de un brazo: empujá la cadera adelante y dejá que el codo suba por encima de la mano hasta la altura del hombro, NO más arriba. El error típico es tirar con el brazo y el trapecio en vez de con la cadera, o pasar el codo por encima del hombro (riesgo de pinzamiento, el problema del remo alto angosto). Usá una carga que dejes de mover con la cadera antes de que la lumbar flexione. Trabaja potencia de cadera con tracción. (Kettlebell High Pull)'
   },
   // ── PIERNAS ADICIONAL ──────────────────────────────────────────────────────
   {
