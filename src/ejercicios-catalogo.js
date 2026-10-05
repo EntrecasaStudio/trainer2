@@ -973,8 +973,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Step up',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos',
-    tags: 'Step-up, Bench step-up',
-    descripcion: 'Frente a un banco o cajón, subí con una pierna y extendé la cadera arriba. Bajá controlado con la misma pierna. Se puede agregar peso con kettlebell o chaleco. Trabaja cuádriceps, glúteos y equilibrio.'
+    tags: 'Dumbbell step up, Weighted step up, Box step up',
+    descripcion: 'Frente a un banco o cajón, subí con una pierna y extendé la cadera arriba. Bajá controlado con la misma pierna. Se puede agregar peso con kettlebell, mancuernas o chaleco. Trabaja cuádriceps, glúteos y equilibrio. (Dumbbell Step-Up)'
   },
   {
     nombre: 'Pistol squat',
@@ -1453,15 +1453,15 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Step-up rápidos alternados',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteos, Gemelos',
-    tags: 'Quick step-ups, Alternating fast step-ups',
-    descripcion: 'Frente a un step o banco bajo, subí y bajá alternando piernas a máxima velocidad manteniendo el torso erguido. Movimiento rápido y explosivo. Trabaja cuádriceps, glúteos y sistema cardiovascular. (Quick Alternating Step-Ups)'
+    tags: 'Fast step ups, Alternating step ups, Box step up cardio',
+    descripcion: 'Frente a un step o banco bajo, subí y bajá alternando piernas a máxima velocidad manteniendo el torso erguido. Movimiento rápido y explosivo, a ritmo de cardio y no de fuerza. Trabaja cuádriceps, glúteos y sistema cardiovascular. (Fast Step-Ups)'
   },
   {
     nombre: 'Lateral step overs',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Abductores, Cuádriceps, Glúteos',
-    tags: 'Lateral step overs, Side step overs',
-    descripcion: 'De costado a un step o banco bajo, subí lateralmente pasando al otro lado y repetí en dirección contraria. Movimiento continuo y rápido. Trabaja abductores, agilidad lateral y coordinación. (Lateral Step Overs)'
+    tags: 'Lateral box step over, Lateral step up and over',
+    descripcion: 'De costado a un step o banco bajo, subí lateralmente pasando al otro lado y repetí en dirección contraria. Pasás los dos pies al otro lado, no subís y bajás del mismo lado. Movimiento continuo y rápido. Trabaja abductores, agilidad lateral y coordinación. (Lateral Box Step Over)'
   },
   {
     nombre: 'Patinadores',
@@ -1509,7 +1509,7 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Sit-through',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Oblicuos, Tríceps, Deltoides, Recto abdominal',
-    tags: 'Sit through exercise, Sit-through, Ground flow sit through',
+    tags: 'Sit through, Sit through drill, Ground flow sit through',
     descripcion: 'Desde cuadrupedia con las rodillas apenas despegadas del piso, pasá una pierna por debajo del cuerpo mientras rotás el tronco y levantás la mano contraria. Volvé a la posición y alterná. El error típico es dejar caer la cadera (lumbar en extensión) o cargar todo el peso sobre la muñeca extendida. Cero impacto y silencioso. Trabaja rotación en el piso, oblicuos y coordinación bajo fatiga. (Sit Through)'
   },
   {
