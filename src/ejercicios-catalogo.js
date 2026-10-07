@@ -1389,7 +1389,7 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Core', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Oblicuos, Deltoides anterior',
     tags: 'Reverse lunge woodchopper, Lunge to woodchop, Reverse lunge diagonal chop',
-    descripcion: 'Con disco o kettlebell, dá un paso atrás a zancada reversa mientras bajás el peso en diagonal hacia la cadera de la pierna atrasada. Al subir, levantá el peso en diagonal cruzando el cuerpo hacia arriba. Combina piernas, core rotacional y hombros. (Reverse Lunge Woodchopper)'
+    descripcion: 'Con disco o kettlebell, dá un paso atrás a zancada reversa mientras bajás el peso en diagonal hacia la cadera de la pierna que queda ADELANTE, la de apoyo. Al subir, cuando adelantás la pierna que estaba atrás, llevá el peso en diagonal cruzando el cuerpo hasta arriba del lado de esa pierna. Ejemplo: retrocedés con la derecha, el peso baja hacia la cadera izquierda, y sube por encima del hombro derecho cuando la derecha vuelve adelante. Rotá desde la cadera y el tronco, no sólo con los brazos. Combina piernas, core rotacional y hombros. (Reverse Lunge Woodchopper)'
   },
   {
     nombre: 'Clean con press a un brazo',
