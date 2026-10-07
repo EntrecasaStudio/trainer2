@@ -264,8 +264,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Banda press de pecho a un brazo',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor, Deltoides anterior, Core',
-    tags: 'Single arm band chest press, Standing band crossover, Band chest fly',
-    descripcion: 'De pie, banda anclada a la espalda a altura de pecho. Con un brazo a la vez, empujá y cruzá la banda al frente en arco amplio. Controlá la vuelta. La posición de pie activa el core anti-rotación, la curva de fuerza coincide con la contracción máxima del pectoral y se elimina el riesgo de hombro de las aperturas en banco. (Single Arm Band Chest Press)'
+    tags: 'Single arm band chest press, One arm resistance band chest press, Standing band press',
+    descripcion: 'De pie con la banda anclada atrás a la altura del pecho, un brazo por vez. Posición de paso para estar firme, la mano a la altura del pecho y el codo flexionado a unos 45° del torso (no abierto a 90°). Empujá al frente extendiendo el codo hasta que el brazo quede recto adelante del pecho, con un leve cierre hacia la línea media. Volvé controlado hasta que la mano esté de nuevo al costado del pecho. A diferencia del fly, acá el codo SÍ se flexiona y extiende: es un empuje, no un arco. De pie el core trabaja anti-rotación porque la banda tira hacia atrás y hacia el lado del anclaje, y la resistencia de la banda aumenta al final, donde el pectoral tiene su contracción máxima. Hacé todas las reps de un lado antes de cambiar. (Single Arm Band Chest Press)'
   },
   {
     nombre: 'Banda fly de pecho a un brazo',
