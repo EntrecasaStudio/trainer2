@@ -260,6 +260,13 @@
   -webkit-tap-highlight-color: transparent;
 }
 .check-all-btn:active { transform: scale(0.85); }
+/* Parcial: algunas series hechas, no todas. Queda en líneas (icono sin
+   relleno) y en verde tenue, para distinguirlo del gris de "nada hecho"
+   sin confundirlo con el verde pleno de "completo". */
+.check-all-btn.partial {
+  color: #4ade80;
+  opacity: 0.4;
+}
 .check-all-btn.all-done {
   color: #4ade80;
   opacity: 1;
