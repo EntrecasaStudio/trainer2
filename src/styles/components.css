@@ -177,8 +177,9 @@
 
 .nav-item.active { color: var(--color-accent); }
 
-/* Active pill indicator behind icon (M3 style) */
-.nav-item.active .nav-ph-icon {
+/* Active pill indicator behind icon (M3 style).
+   Excluye el botón central: ese es un círculo y sólo cambia de relleno. */
+.nav-item.active:not(.nav-primary) .nav-ph-icon {
   background: color-mix(in srgb, var(--color-accent) 12%, transparent);
   border-radius: 14px;
   padding: 0 12px;
@@ -207,7 +208,7 @@
   transition: transform 0.15s ease-out, box-shadow 0.25s, background 0.25s, color 0.25s;
 }
 
-/* Override the pill style for primary */
+/* Activo: mantiene la forma circular y sólo se rellena de amarillo */
 .nav-primary.active .nav-ph-icon {
   background: var(--color-accent);
   color: var(--color-bg);
