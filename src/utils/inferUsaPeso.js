@@ -1,3 +1,5 @@
+import { findEjercicio } from '../ejercicios-catalogo.js';
+
 const USA_PESO = ['press','remo','curl','extensión','extension','barra',
   'mancuerna','kettlebell','rusa','disco','polea','maquina','máquina','sentadilla',
   'peso muerto','hip thrust','jalón','jalon','dominada','vuelo',
@@ -31,6 +33,16 @@ export function inferUsaPeso(nombre) {
   // Check user override first
   const custom = getCustomObj();
   if (custom[nombre]?.usaPeso !== undefined) return custom[nombre].usaPeso;
+
+  // The catalog is hand-curated, so trust it when it marks an exercise as
+  // loaded. The keyword lists below only see the name, and plenty of loaded
+  // exercises carry no equipment word at all ("Zancadas", "Pistol squat",
+  // "Levantamiento turco"), which left them with no weight field on an
+  // account that had never ticked the checkbox by hand.
+  // Only `true` short-circuits: a catalog `false` still falls through to the
+  // keywords, so nothing that shows a weight field today loses it.
+  if (findEjercicio(nombre)?.usaPeso === true) return true;
+
   const n = (nombre || '').toLowerCase();
   // Bodyweight overrides win when combined with weight keywords (e.g. "Banda curl biceps")
   if (BODYWEIGHT_OVERRIDE.some(k => n.includes(k))) return false;

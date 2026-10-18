@@ -100,3 +100,42 @@ describe('inferUsaPeso', () => {
     expect(inferUsaPeso(undefined)).toBe(false);
   });
 });
+
+describe('inferUsaPeso — el catálogo manda sobre las palabras clave', () => {
+  // Una cuenta nueva no tiene ninguna preferencia guardada en
+  // gym_ejercicios_custom, así que ve el resultado crudo de la inferencia.
+  // Estos nombres no contienen ninguna palabra de equipamiento, así que las
+  // listas de palabras clave los daban como "sin peso" y el campo de peso
+  // desaparecía.
+  const CON_PESO_EN_CATALOGO = [
+    'Zancadas',
+    'Pistol squat',
+    'Step up',
+    'Levantamiento turco',
+    'Caminata de granjero',
+    'Caminata de maleta',
+    'Renegade row',
+    'Plié squat',
+    'Déficit reverse lunge',
+    'Split squat pulses',
+  ];
+
+  for (const nombre of CON_PESO_EN_CATALOGO) {
+    it(`${nombre} usa peso porque el catálogo lo dice`, () => {
+      expect(inferUsaPeso(nombre)).toBe(true);
+    });
+  }
+
+  it('un nombre que no está en el catálogo sigue usando las palabras clave', () => {
+    expect(inferUsaPeso('Press inventado con mancuerna')).toBe(true);
+    expect(inferUsaPeso('Burpee inventado')).toBe(false);
+  });
+
+  it('ningún ejercicio marcado usaPeso en el catálogo pierde el campo de peso', async () => {
+    const { EJERCICIOS_CATALOGO } = await import('../src/ejercicios-catalogo.js');
+    const perdidos = EJERCICIOS_CATALOGO
+      .filter(e => e.usaPeso && !inferUsaPeso(e.nombre))
+      .map(e => e.nombre);
+    expect(perdidos).toEqual([]);
+  });
+});
