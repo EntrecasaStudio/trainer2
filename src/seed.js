@@ -1,5 +1,7 @@
 import { store } from './store.js';
 import { formatDateISO, getCycleWeek, getFocusForDay, getISODayOfWeek, getRioFocusForSaturday } from './utils/calendar.js';
+import { findEjercicio } from './ejercicios-catalogo.js';
+import { keywordUsaPeso } from './utils/inferUsaPeso.js';
 
 const BACKUP_URL_REMOTE = 'https://raw.githubusercontent.com/EntrecasaStudio/trainer2/main/data/backup-v1.json';
 const BACKUP_URL_LOCAL = './data/backup-v1.json';
@@ -2026,6 +2028,36 @@ function ensureCalendarOverrides() {
   if (changed) store.set(store.KEYS.overrides, overrides);
 }
 
+// Saving the exercise edit form used to stamp a usaPeso override on every
+// save, even when the user had only touched the description. The checkbox it
+// stamped reflected the old name-only guess, so exercises the catalog marks as
+// loaded (Zancadas, Pistol squat, Step up…) got a permanent `false` frozen in —
+// and an override beats the catalog, so the weight field never came back.
+// Removes only overrides that match that old guess AND contradict the catalog;
+// anything a user deliberately set to something else is left alone.
+function clearPhantomUsaPesoOverrides() {
+  try {
+    const custom = store.getObj('gym_ejercicios_custom');
+    if (!custom || typeof custom !== 'object') return;
+    let limpiados = 0;
+    for (const [nombre, entry] of Object.entries(custom)) {
+      if (!entry || typeof entry.usaPeso !== 'boolean') continue;
+      const cat = findEjercicio(nombre);
+      if (!cat || typeof cat.usaPeso !== 'boolean') continue;
+      if (entry.usaPeso === cat.usaPeso) continue;
+      if (entry.usaPeso !== keywordUsaPeso(nombre)) continue;
+      delete entry.usaPeso;
+      limpiados++;
+    }
+    if (limpiados > 0) {
+      store.set('gym_ejercicios_custom', custom);
+      console.log(`[Migración] ${limpiados} preferencia(s) de peso fantasma eliminadas`);
+    }
+  } catch (e) {
+    console.warn('[Migración] clearPhantomUsaPesoOverrides falló:', e.message);
+  }
+}
+
 function migrateCompoundExercises() {
   const rutinas = store.getAll(store.KEYS.rutinas);
   if (!rutinas?.length) return;
@@ -2232,6 +2264,7 @@ export async function seedV2() {
   migrateCompoundExercises();
   migrateCasaHiitTo4Series();
   migrateVueloLateralToInclinado();
+  clearPhantomUsaPesoOverrides();
 
   const version = store.getVersion();
   if (parseFloat(version || '0') >= parseFloat(SEED_VERSION)) {

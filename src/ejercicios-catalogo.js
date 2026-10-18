@@ -135,7 +135,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Oscilaciones laterales con disco',
-    grupo: 'Core', tipo: 'funcional', usaPeso: false,
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
     musculos: 'Oblicuos, Transverso abdominal, Deltoides anterior',
     tags: 'Plate lateral shift, Standing plate pendulum',
     descripcion: 'De pie sosteniendo un disco con ambas manos y los brazos extendidos al frente a la altura de los hombros. Hacé movimientos cortos laterales de izquierda a derecha sin rotar el torso. El core trabaja anti-lateralmente para estabilizar el peso. (Plate Lateral Shift)'
@@ -482,7 +482,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Fondos en banco',
-    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Tríceps, Deltoides anterior, Pectoral mayor',
     tags: 'Bench dips, Tricep dips on bench',
     descripcion: 'Con las manos apoyadas en un banco detrás y los pies en el suelo, bajá el cuerpo flexionando los codos hasta 90° y subí empujando. Codos apuntan hacia atrás, no hacia afuera. Trabaja tríceps, deltoides anterior y pectorales. Se puede agregar peso en las piernas. (Bench Dips)'
@@ -674,28 +674,28 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Dominadas',
-    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Trapecio, Bíceps',
     tags: 'Pull-up, Pull-ups',
     descripcion: 'Colgado de la barra con agarre prono al ancho de hombros, empujá los codos hacia abajo hasta que el mentón supere la barra. Bajá controlado a extensión completa. Trabaja dorsal ancho, romboides, trapecio y bíceps. (Pull-Up)'
   },
   {
     nombre: 'Dominadas australianas',
-    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
     musculos: 'Dorsal ancho, Romboides, Bíceps',
     tags: 'Australian pull-up, Inverted row',
     descripcion: 'Remo invertido bajo una barra baja con los pies en el suelo y el cuerpo recto. Tirá el pecho hacia la barra apretando omóplatos. Ajustá el ángulo del cuerpo para mayor o menor dificultad. Trabaja dorsales, romboides y bíceps. (Australian Pull-Up)'
   },
   {
     nombre: 'Dominadas cerradas',
-    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
     musculos: 'Dorsal ancho, Bíceps, Braquial',
     tags: 'Close grip pull-up, Chin-up',
     descripcion: 'Dominada con agarre supino o neutro cerrado, manos al ancho de hombros o menos. Mayor participación de bíceps y braquial que el agarre abierto. Subí hasta que el mentón supere la barra y bajá controlado. (Close Grip Pull-Up)'
   },
   {
     nombre: 'Dominadas grip neutro',
-    grupo: 'Espalda', tipo: 'funcional', usaPeso: false,
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
     musculos: 'Dorsal ancho, Bíceps, Romboides',
     tags: 'Neutral grip pull-up',
     descripcion: 'Dominada con palmas enfrentadas (agarre neutro). Posición más natural para el hombro que permite mayor rango de movimiento. Trabaja dorsales y bíceps de forma equilibrada con menor estrés articular. (Neutral Grip Pull-Up)'
@@ -950,14 +950,14 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Empuje de cadera',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales',
     tags: 'hip thrust, glute bridge, puente de gluteos',
     descripcion: 'Espalda apoyada en un banco o el piso, peso sobre la cadera. Empujá la cadera hacia arriba apretando glúteos en el tope. Bajá controlado. Excelente activador de glúteo mayor.'
   },
   {
     nombre: 'Hip thrust a una pierna',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales',
     tags: 'Single leg hip thrust, Single leg glute bridge',
     descripcion: 'Espalda apoyada en banco, una pierna extendida en el aire. Empujá la cadera hacia arriba con la pierna de apoyo apretando el glúteo. Bajá controlado. Trabaja glúteo mayor unilateral con énfasis en estabilidad.'
@@ -1245,7 +1245,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Extensión de cadera en 4 puntos',
-    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
     musculos: 'Glúteos, Isquiotibiales, Erector espinal',
     tags: 'Quadruped hip extension, Donkey kick',
     descripcion: 'En posición de 4 apoyos (manos y rodillas). Extendé una pierna hacia atrás hasta alinear con el torso, apretando el glúteo al final. Bajá controlado. Core activado todo el tiempo, sin arquear la columna. Trabajá glúteo mayor y estabilidad lumbopélvica. (Quadruped Hip Extension)'
@@ -1514,7 +1514,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Sentadilla cosaca',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
+    grupo: 'HIIT', tipo: 'funcional', usaPeso: true,
     musculos: 'Aductores, Glúteo mayor, Cuádriceps, Isquiotibiales',
     tags: 'Cossack squat, Cossack squat exercise',
     descripcion: 'Piernas bien abiertas. Bajá sobre una pierna flexionándola mientras la otra queda extendida con el pie apoyado en el talón o la punta. Pecho alto, subí y alterná. El error típico es que la rodilla se vaya hacia adentro o que se levante el talón de la pierna flexionada. Bajo fatiga limitá la profundidad a lo que la rodilla tolere sin dolor. Cero impacto. Trabaja plano frontal, aductores y movilidad de cadera. (Cossack Squat)'
@@ -1571,7 +1571,7 @@ export const EJERCICIOS_CATALOGO = [
   // ── PIERNAS ADICIONAL ──────────────────────────────────────────────────────
   {
     nombre: 'Elevación de talones a una pierna',
-    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Gemelos, Pantorrillas',
     tags: 'Single leg calf raise',
     descripcion: 'De pie sobre una pierna (la otra flexionada), elevá el talón lo más alto posible y bajá controlado. Mayor demanda de fuerza y equilibrio que la versión bilateral. Trabaja gemelos y sóleo unilateralmente. (Single Leg Calf Raise)'

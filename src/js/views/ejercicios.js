@@ -2,7 +2,7 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios, findEjercicio
 import { store } from '../../store.js';
 import { router } from '../../router.js';
 import { getMuscleSvgCropped, getMuscleSvg, musculosToGrupoSvg } from '../../utils/muscle-illustrations.js';
-import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
+import { inferUsaPeso, usaPesoBase } from '../../utils/inferUsaPeso.js';
 import { getGrupoColor } from '../../utils/format.js';
 
 // El primer tag es el nombre en inglés y es lo que se busca en YouTube.
@@ -413,7 +413,16 @@ function openEditModal(data, onChange) {
     }
     if (!custom[effectiveName]) custom[effectiveName] = {};
     const catBase = findEjercicio(effectiveName);
-    Object.assign(custom[effectiveName], { tipo: selectedTipo, usaPeso: usaPesoVal });
+    Object.assign(custom[effectiveName], { tipo: selectedTipo });
+    // Only store usaPeso when the user actually moved it away from the
+    // catalog value. Stamping it on every save created overrides nobody asked
+    // for, and an override wins over the catalog forever — so saving an
+    // unrelated edit used to freeze a wrong value in place, across devices.
+    if (usaPesoVal === usaPesoBase(effectiveName)) {
+      delete custom[effectiveName].usaPeso;
+    } else {
+      custom[effectiveName].usaPeso = usaPesoVal;
+    }
     if (desc || !catBase?.descripcion) custom[effectiveName].descripcion = desc;
     store.set('gym_ejercicios_custom', custom);
 
