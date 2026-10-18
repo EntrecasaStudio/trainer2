@@ -375,23 +375,31 @@ async function start() {
   // Auth listener — sync when logged in
   onAuth(async (user) => {
     if (user) {
+      // Reseeding has to run with uploads suppressed, but the flag MUST come
+      // back down even if seedV2() fails: queueSync() drops every change while
+      // it is up, so a stuck flag silently stops this device from syncing.
+      const reseedThenRender = async () => {
+        setSuppressSync(true);
+        try {
+          await seedV2();
+        } catch (err) {
+          console.warn('[Sync] reseed failed:', err.message);
+        } finally {
+          setSuppressSync(false);
+        }
+        if (router.getCurrentRoute() !== 'workout') router._handleRoute();
+      };
+
       try {
         await downloadAllData();
         setSuppressSync(true);
-        await seedV2();
-        setSuppressSync(false);
-        startRealtimeSync(() => {
-          setSuppressSync(true);
-          seedV2();
+        try {
+          await seedV2();
+        } finally {
           setSuppressSync(false);
-          if (router.getCurrentRoute() !== 'workout') router._handleRoute();
-        });
-        setOnResumeCallback(() => {
-          setSuppressSync(true);
-          seedV2();
-          setSuppressSync(false);
-          if (router.getCurrentRoute() !== 'workout') router._handleRoute();
-        });
+        }
+        startRealtimeSync(() => { reseedThenRender(); });
+        setOnResumeCallback(() => { reseedThenRender(); });
       } catch (e) {
         console.warn('[Sync] Error:', e.message);
       }
