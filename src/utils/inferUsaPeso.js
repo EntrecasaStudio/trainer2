@@ -33,16 +33,29 @@ export function inferUsaPeso(nombre) {
   // Check user override first
   const custom = getCustomObj();
   if (custom[nombre]?.usaPeso !== undefined) return custom[nombre].usaPeso;
+  return usaPesoBase(nombre);
+}
 
-  // The catalog is hand-curated, so trust it when it marks an exercise as
-  // loaded. The keyword lists below only see the name, and plenty of loaded
-  // exercises carry no equipment word at all ("Zancadas", "Pistol squat",
-  // "Levantamiento turco"), which left them with no weight field on an
-  // account that had never ticked the checkbox by hand.
-  // Only `true` short-circuits: a catalog `false` still falls through to the
-  // keywords, so nothing that shows a weight field today loses it.
-  if (findEjercicio(nombre)?.usaPeso === true) return true;
+// Same answer, ignoring any saved user override. The edit form uses it to tell
+// an actual user choice apart from a value that simply matches the catalog, so
+// it only stores an override when the user really changed something.
+export function usaPesoBase(nombre) {
+  // The catalog is hand-curated and is the source of truth for every exercise
+  // in it, in both directions. The keyword lists below only see the NAME, so
+  // they miss loaded exercises with no equipment word ("Zancadas", "Pistol
+  // squat") and invent weight for bodyweight ones that merely contain
+  // "sentadilla" ("Sentadilla con salto", "Sentadilla corporal").
+  const delCatalogo = findEjercicio(nombre);
+  if (delCatalogo && typeof delCatalogo.usaPeso === 'boolean') return delCatalogo.usaPeso;
 
+  // Only names that are not in the catalog at all (user-created exercises)
+  // fall back to guessing from the name.
+  return keywordUsaPeso(nombre);
+}
+
+// The old name-only guess, kept exported so the migration can recognise an
+// override that is just a stamp of this guess rather than a real choice.
+export function keywordUsaPeso(nombre) {
   const n = (nombre || '').toLowerCase();
   // Bodyweight overrides win when combined with weight keywords (e.g. "Banda curl biceps")
   if (BODYWEIGHT_OVERRIDE.some(k => n.includes(k))) return false;
