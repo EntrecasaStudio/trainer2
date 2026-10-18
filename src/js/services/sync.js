@@ -105,12 +105,15 @@ async function uploadMergeableUnion(key, field, localData) {
   const merged = mergeArraysById(localData, remoteArr, key);
   await setDoc(doc(ref.db, 'users', ref.uid), { [field]: merged, lastUpdated: Date.now() }, { merge: true });
   // Converge local to the union so this device immediately shows both sets.
+  // The write can throw on quota; restore the flag in finally or the empty
+  // catch would leave it up and this device would stop uploading for good.
+  const prev = _suppressSync;
   try {
-    const prev = _suppressSync;
     _suppressSync = true;
     localStorage.setItem(key, JSON.stringify(merged));
+  } catch {} finally {
     _suppressSync = prev;
-  } catch {}
+  }
   return merged;
 }
 
@@ -416,36 +419,45 @@ export async function startRealtimeSync(onUpdate) {
     const data = snap.data();
     _suppressSync = true;
 
-    let changed = false;
-    for (const [key, field] of Object.entries(SYNC_KEYS)) {
-      if (data[field] === undefined || data[field] === null) continue;
-      if (_dirtyKeys.has(key)) continue;
+    // try/finally: onUpdate() renders the app and can throw. Without this the
+    // flag stays up and queueSync() silently drops every later change, so the
+    // device stops uploading until a full reload.
+    try {
+      let changed = false;
+      for (const [key, field] of Object.entries(SYNC_KEYS)) {
+        if (data[field] === undefined || data[field] === null) continue;
+        // A pending local upload wins for whole-value keys, but mergeable
+        // arrays are unioned by id, so remote items are safe to take even
+        // while dirty — matching what downloadAllData() does.
+        if (_dirtyKeys.has(key) && !MERGEABLE_KEYS.has(key)) continue;
 
-      if (MERGEABLE_KEYS.has(key) && Array.isArray(data[field])) {
-        const localRaw = localStorage.getItem(key);
-        const localArr = localRaw ? JSON.parse(localRaw) : [];
-        const merged = mergeArraysById(localArr, data[field], key);
-        const mergedJSON = JSON.stringify(merged);
-        if (mergedJSON !== localRaw) {
-          localStorage.setItem(key, mergedJSON);
-          changed = true;
-        }
-      } else {
-        const remoteJSON = JSON.stringify(data[field]);
-        const localJSON = localStorage.getItem(key);
-        if (remoteJSON !== localJSON) {
-          localStorage.setItem(key, remoteJSON);
-          changed = true;
+        if (MERGEABLE_KEYS.has(key) && Array.isArray(data[field])) {
+          const localRaw = localStorage.getItem(key);
+          const localArr = localRaw ? JSON.parse(localRaw) : [];
+          const merged = mergeArraysById(localArr, data[field], key);
+          const mergedJSON = JSON.stringify(merged);
+          if (mergedJSON !== localRaw) {
+            localStorage.setItem(key, mergedJSON);
+            changed = true;
+          }
+        } else {
+          const remoteJSON = JSON.stringify(data[field]);
+          const localJSON = localStorage.getItem(key);
+          if (remoteJSON !== localJSON) {
+            localStorage.setItem(key, remoteJSON);
+            changed = true;
+          }
         }
       }
-    }
 
-    if (changed) repairStaleReferences();
+      if (changed) repairStaleReferences();
 
-    if (changed && onUpdate) {
-      onUpdate();
+      if (changed && onUpdate) {
+        onUpdate();
+      }
+    } finally {
+      _suppressSync = false;
     }
-    _suppressSync = false;
   }, (err) => {
     console.warn('[sync] realtime error:', err.message);
   });
@@ -556,11 +568,29 @@ async function resyncOnResume() {
   if (!getCurrentUser()) return;
   if (!navigator.onLine) return;
   try {
+    // iOS suspends the app in the background and kills the Firestore socket,
+    // so the onSnapshot listener can come back deaf. Re-subscribing on resume
+    // is what keeps two devices actually live rather than only correct after
+    // a manual sync.
+    if (_syncCallback) startRealtimeSync(_syncCallback);
+
     const changed = await downloadAllData();
     if (changed && _onResumeCallback) {
       _suppressSync = true;
-      _onResumeCallback();
-      _suppressSync = false;
+      try {
+        _onResumeCallback();
+      } finally {
+        _suppressSync = false;
+      }
+    }
+
+    // Uploads that exhausted MAX_RETRIES stay in _dirtyKeys forever and are
+    // never retried on their own. Resume is the natural moment to flush them:
+    // the connection is usually back by now.
+    if (_dirtyKeys.size > 0) {
+      for (const key of _dirtyKeys) _retryCount[key] = 0;
+      await _flushOfflineQueue();
+      _setSyncStatus(_dirtyKeys.size > 0 ? 'pending' : 'synced');
     }
   } catch (e) {
     _suppressSync = false;
