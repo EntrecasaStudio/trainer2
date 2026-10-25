@@ -924,8 +924,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Peso muerto dividido',
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
-    tags: 'Split stance deadlift, Staggered deadlift',
-    descripcion: 'De pie con un pie adelante y el otro atrás (stance dividido), ambos apoyados en el piso. Bajá el peso con bisagra de cadera manteniendo espalda neutra. Más estable que a una pierna, permite cargar más peso. Trabaja cadena posterior con énfasis en el lado de la pierna adelantada. (Split Stance Deadlift)'
+    tags: 'Kickstand RDL, B-stance deadlift, Staggered stance RDL, Split stance deadlift',
+    descripcion: 'Un pie adelante con la planta completa apoyada y el otro medio paso atrás, apoyado sólo con la punta, al costado del talón de adelante (como el apoyo de una moto). El pie de atrás sólo da equilibrio: lleva más o menos un 20-30% del peso, el resto va sobre la pierna adelantada. Bajá con bisagra de cadera llevando la cola bien atrás, espalda neutra, y la rodilla de atrás se flexiona sola al bajar. Volvé empujando el piso con la pierna de adelante. Es la versión del peso muerto a una pierna SIN la exigencia de equilibrio: te deja cargar bastante más peso y concentrarte en el glúteo e isquiotibial de la pierna de adelante. Hacé todas las reps de un lado antes de cambiar. (Kickstand RDL)'
   },
   {
     nombre: 'Squat to press con kettlebell',
