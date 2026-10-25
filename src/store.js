@@ -83,8 +83,14 @@ export const store = {
   },
 
   // Filter lugar
+  // Default to where training actually happens. The old default was
+  // ['SPORT_FITNESS','RIO','URUGUAY'] — left over from the gym era — and it
+  // did not include CASA at all, so any device without a saved filter (a
+  // fresh install, a reset, a new phone) hid every house routine and showed
+  // the gym ones instead. This value is not synced, so it fell back to that
+  // default on each such device.
   getFilterLugar() {
-    return this.get(KEYS.filterLugar) || ['SPORT_FITNESS', 'RIO', 'URUGUAY'];
+    return this.get(KEYS.filterLugar) || ['CASA', 'RIO'];
   },
 
   setFilterLugar(places) {
