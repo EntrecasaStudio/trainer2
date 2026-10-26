@@ -411,13 +411,6 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'De pie con la barra en agarre supino, codos pegados al cuerpo. Flexioná los codos subiendo la barra hacia el pecho sin mover los hombros. Bajá lento controlando la extensión. Trabaja cabeza larga y corta del bíceps braquial. (Barbell Bicep Curl)'
   },
   {
-    nombre: 'Bíceps curl con mancuerna',
-    grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
-    musculos: 'Bíceps, Braquial, Antebrazo',
-    tags: 'Dumbbell bicep curl',
-    descripcion: 'De pie o sentado, una mancuerna en cada mano en agarre supino. Flexioná alternando o simultáneamente manteniendo los codos fijos al costado. Permite rotar la muñeca al subir para mayor contracción del bíceps. Bajá controlado. (Dumbbell Bicep Curl)'
-  },
-  {
     nombre: 'Bíceps curl martillo',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Braquial, Bíceps, Antebrazo',
@@ -1100,8 +1093,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Bíceps curl',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial, Antebrazo',
-    tags: 'Bicep curl',
-    descripcion: 'De pie con kettlebell. Flexioná el codo llevando la pesa al hombro sin mover el brazo superior. Bajá controlado. Podés hacer bilateral o alternado. Trabaja bíceps braquial. (Bicep Curl)'
+    tags: 'Dumbbell bicep curl, Bicep curl',
+    descripcion: 'De pie o sentado, con mancuerna o kettlebell en agarre supino. Flexioná el codo llevando el peso al hombro sin mover el brazo superior ni balancear el torso. Con mancuerna podés rotar la muñeca al subir para cerrar más la contracción. Bajá controlado. Bilateral o alternado. Trabaja bíceps braquial. (Dumbbell Bicep Curl)'
   },
   // Bandas
   {
