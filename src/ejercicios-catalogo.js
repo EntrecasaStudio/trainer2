@@ -470,8 +470,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'Curl bayesiano',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
     musculos: 'Bíceps (cabeza larga), Braquial, Antebrazo',
-    tags: 'Bayesian curl, Bayesian cable curl, Behind the body curl',
-    descripcion: 'De espaldas al anclaje, con la banda larga fijada detrás tuyo a la altura de la cadera o el pecho. Agarrá la banda con una mano y dejá el brazo colgando POR DETRÁS del torso: esa posición de hombro en extensión es todo el punto, porque es la única que estira la cabeza larga del bíceps desde el inicio. Hacé el curl llevando la mano al hombro sin adelantar el codo ni inclinar el torso — si el codo se va hacia adelante se convierte en un curl común y perdés el estiramiento, que es lo que se busca. Bajá en 3 segundos hasta extender del todo. La banda da su máxima tensión justo en el estiramiento, donde el resto de los curls tiene la mínima. Los videos suelen mostrarlo en polea: el movimiento es el mismo, la banda reemplaza al cable. Hacé todas las reps de un brazo antes de cambiar. (Bayesian Curl)'
+    tags: 'Resistance band bayesian curl, Banded bayesian curl, Bayesian cable curl',
+    descripcion: 'De espaldas al anclaje, con la banda larga fijada detrás tuyo a la altura de la cadera o el pecho. Agarrá la banda con una mano y dejá el brazo colgando POR DETRÁS del torso: esa posición de hombro en extensión es todo el punto, porque es la única que estira la cabeza larga del bíceps desde el inicio. Hacé el curl llevando la mano al hombro sin adelantar el codo ni inclinar el torso — si el codo se va hacia adelante se convierte en un curl común y perdés el estiramiento, que es lo que se busca. Bajá en 3 segundos hasta extender del todo. La banda da su máxima tensión justo en el estiramiento, donde el resto de los curls tiene la mínima. OJO CON EL VIDEO: la versión con banda no está filmada en ningún lado. Lo que vas a encontrar es el bayesiano en polea — miralo por la POSICIÓN del brazo y del codo, que es idéntica, e ignorá la máquina. Hacé todas las reps de un brazo antes de cambiar. (Banded Bayesian Curl)'
   },
   {
     nombre: 'Bíceps curl concentrado',
