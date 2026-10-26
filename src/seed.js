@@ -2271,6 +2271,10 @@ function migrateCompoundExercises() {
     ['Casa Press F — Lean', 3, 2, 'Bíceps curl martillo', 'Bíceps curl con banda', 2, '10'],
     ['Casa Press H — Lean', 1, 0, 'TRX chest press', 'Floor press', 2, '10'],
     ['Casa Press H — Lean', 1, 2, 'Floor press', 'TRX chest press', 2, '12'],
+    // Press H C3: versión con disco (agarre neutro, menos pinzamiento, suma core).
+    // Press F ya lo cambió el usuario a mano; están a distancia 4 y ningún
+    // vecino de Press H tiene front raise, así que no hay choque.
+    ['Casa Press H — Lean', 2, 1, 'Elevaciones de hombro adelante', 'Elevaciones de hombro adelante con disco', 2, '12'],
     ['Casa Pull D — Lean', 3, 2, 'Extensión de tríceps con banda', 'Extensión de triceps sobre cabeza', 2, '10'],
     // HIIT redistribution — Lean
     ['Casa Press C — Lean', 4, 0, 'Tuck jumps', 'Saltos laterales', 3, '20'],
