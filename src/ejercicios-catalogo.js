@@ -474,6 +474,13 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Parado sobre la banda con agarre supino en cada extremo, flexioná los codos subiendo los puños hacia los hombros. La resistencia aumenta al final del movimiento. Permite trabajar sin mancuernas y en cualquier entorno. Alto volumen con bajo impacto articular. (Banded Bicep Curl)'
   },
   {
+    nombre: 'Curl bayesiano',
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
+    musculos: 'Bíceps (cabeza larga), Braquial, Antebrazo',
+    tags: 'Bayesian curl, Bayesian cable curl, Behind the body curl',
+    descripcion: 'De espaldas al anclaje, con la banda larga fijada detrás tuyo a la altura de la cadera o el pecho. Agarrá la banda con una mano y dejá el brazo colgando POR DETRÁS del torso: esa posición de hombro en extensión es todo el punto, porque es la única que estira la cabeza larga del bíceps desde el inicio. Hacé el curl llevando la mano al hombro sin adelantar el codo ni inclinar el torso — si el codo se va hacia adelante se convierte en un curl común y perdés el estiramiento, que es lo que se busca. Bajá en 3 segundos hasta extender del todo. La banda da su máxima tensión justo en el estiramiento, donde el resto de los curls tiene la mínima. Los videos suelen mostrarlo en polea: el movimiento es el mismo, la banda reemplaza al cable. Hacé todas las reps de un brazo antes de cambiar. (Bayesian Curl)'
+  },
+  {
     nombre: 'Bíceps curl concentrado',
     grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
     musculos: 'Bíceps, Braquial',
