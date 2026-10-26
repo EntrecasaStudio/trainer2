@@ -393,7 +393,7 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
     musculos: 'Trapecio, Deltoides lateral',
     tags: 'Dumbbell shrugs, Shoulder shrugs',
-    descripcion: 'Con mancuernas o barra, elevá los hombros hacia las orejas (encogimiento) sin doblar los codos. Mantené un segundo arriba y bajá lento. Trabaja trapecios superiores. Útil para equilibrar la musculatura del cuello y parte alta de la espalda.'
+    descripcion: 'Encogimiento de hombros, NO es una elevación de deltoides: con mancuernas o barra a los costados, elevá los hombros hacia las orejas sin doblar los codos. Mantené un segundo arriba y bajá lento. Trabaja trapecios superiores. Útil para equilibrar la musculatura del cuello y parte alta de la espalda. (Dumbbell Shrugs)'
   },
   {
     nombre: 'Arnold press',
