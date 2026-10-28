@@ -7,20 +7,31 @@
 - Seed only applies on first load or reset — existing routines with `userModified` are NOT affected by seed changes. Use migrations (in the "always run" section of `seedV2()`) to patch live routines.
 - Single account: both Lean and Nat share `entrecasaestudio@gmail.com`. Routines are distinguished by name suffix ("— Lean" / "— Nat").
 
-## Reference Files — read this before counting anything
+## Routine Analysis — always start from the user's saved data
 
-`.claude/rutinas-lean-casa-actual.md` and `.claude/rutinas-nat-casa-actual.md` hold the live routines, hand edits included. **They do not update themselves.** Every migration added to `PATCHES` keeps changing the real data while these files stay as they were, so any count taken straight off them drifts further from the truth with each patch. This has already produced two wrong analyses — circuits read as holding an exercise a migration had replaced months earlier.
+**Every analysis must be based on the latest version saved by the account logged in as `entrecasaestudio@gmail.com`, never on the seed and never on a reference file taken on trust.** The seed is not the live data: the user edits routines from the app, those edits carry `userModified: true`, and some routines exist only in the live data (Nat's Press G and Pull G are in no version of `seed.js`). Counting off the wrong source has already produced two wrong analyses.
 
-**After adding any migration or rename, run:**
+That data cannot be read from here — Firestore rejects unauthenticated reads (403), as it should. So it has to come out of the app:
+
+**1. Bring in the live state.** Usuario tab → "Copiar rutinas", with the place selector on Casa, once per user. Paste each into a file, then:
+
+```
+python3 .claude/actualizar-referencia.py --importar lean.txt
+python3 .claude/actualizar-referencia.py --importar nat.txt
+```
+
+This converts the app's export format into the reference files. It is the only way to capture edits made from the app.
+
+**2. Replay what the seed does to that data.**
 
 ```
 python3 .claude/actualizar-referencia.py            # applies and rewrites
 python3 .claude/actualizar-referencia.py --dry-run  # shows what it would do
 ```
 
-It replays `RENAME_MAP` and then `PATCHES` over the files, in the same order `seedV2()` does, and is idempotent — a patch only fires when the old name still matches.
+`.claude/rutinas-lean-casa-actual.md` and `.claude/rutinas-nat-casa-actual.md` do not update themselves, and every migration added to `PATCHES` keeps changing the real data while they stay as they were. This replays `RENAME_MAP` and then `PATCHES` over them in the order `seedV2()` uses, and is idempotent — a patch only fires while the old name still matches.
 
-What it cannot do is invent the live state: when the user edits a routine from the app, that still has to be pasted in by hand. Nat's Press G and Pull G, for instance, exist only in the live data and not in the seed.
+**Run step 2 after adding any migration or rename. Run step 1 whenever the analysis matters** — before proposing routine changes, counting how often an exercise appears, or checking the adjacency rule. The export is one tap; a stale count is worth less than nothing.
 
 ## Exercise Distribution — Adjacency Rule
 
