@@ -2277,6 +2277,24 @@ function migrateCompoundExercises() {
     // Press F ya lo cambió el usuario a mano; están a distancia 4 y ningún
     // vecino de Press H tiene front raise, así que no hay choque.
     ['Casa Press H — Lean', 2, 1, 'Elevaciones de hombro adelante', 'Elevaciones de hombro adelante con disco', 2, '12'],
+    // ── Nat: adelgazar el patrón sumo / piernas abiertas ──
+    // Estaba en 13 de 20 rutinas bajo 7 nombres, con una racha de 10 días
+    // consecutivos (Pull H → Press C, cerrando el ciclo). Baja a 5, dejando
+    // sólo las variantes que suman algo: to-calf-raise, to-RDL y una sumo
+    // simple. Entra flexión de rodilla de isquios, que no existía en ninguna
+    // de sus 20 rutinas: el hip thrust y el peso muerto trabajan el
+    // isquiotibial desde la cadera, nada lo hacía desde la rodilla.
+    ['Casa Pull A — Nat', 0, 0, 'Plié dips', 'Curl de isquios con TRX', 2, '12'],
+    ['Casa Pull H — Nat', 0, 2, 'Plié dips', 'Sentadilla cosaca', 2, '8'],
+    ['Casa Press C — Nat', 0, 0, 'Plié squat', 'Pistol squat asistido con TRX', 2, '6'],
+    ['Casa Pull J — Nat', 0, 1, 'Plié squat', 'Swing con kettlebell', 2, '15'],
+    ['Casa Pull F — Nat', 0, 1, 'Sentadilla sumo', 'Curl de isquios deslizante', 2, '10'],
+    ['Casa Press J — Nat', 0, 1, 'Sentadilla sumo', 'Sentadilla cosaca', 2, '8'],
+    ['Casa Press I — Nat', 3, 2, 'Sumo squat pulse con banda', 'Curl de isquios con TRX a una pierna', 2, '8'],
+    ['Casa Press B — Nat', 2, 1, 'Peso muerto sumo con elevación frontal', 'Clean con press a un brazo', 2, '8'],
+    // Pull I C2 ya abre con Peso muerto rumano con remo: dejar el to-RDL acá
+    // duplicaba la bisagra el mismo día.
+    ['Casa Pull I — Nat', 0, 1, 'Sumo squat to RDL', 'Sentadilla sumo', 2, '12'],
     ['Casa Pull D — Lean', 3, 2, 'Extensión de tríceps con banda', 'Extensión de triceps sobre cabeza', 2, '10'],
     // HIIT redistribution — Lean
     ['Casa Press C — Lean', 4, 0, 'Tuck jumps', 'Saltos laterales', 3, '20'],
