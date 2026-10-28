@@ -30,6 +30,16 @@ USO
 ---
     python3 .claude/actualizar-referencia.py            # aplica y reescribe
     python3 .claude/actualizar-referencia.py --dry-run  # sólo muestra qué haría
+
+    # Traer el estado real desde la app (lo que manda sobre todo lo demás):
+    # en la pestaña Usuario, botón "Copiar rutinas", pegar en un archivo, y
+    python3 .claude/actualizar-referencia.py --importar lean.txt
+    python3 .claude/actualizar-referencia.py --importar nat.txt
+
+El modo --importar convierte el formato del exportador de la app al de estos
+archivos y reemplaza las rutinas CASA del usuario que corresponda. Es la única
+forma de capturar las ediciones hechas desde la app, así que conviene correrlo
+antes de cualquier análisis.
 """
 import io
 import os
@@ -104,7 +114,81 @@ def serializar(parsed):
     return '\n'.join(partes)
 
 
+# El exportador de la app (window.exportRutinas en src/main.js) escribe:
+#   ## Casa Press A — Nat (CASA) [MODIFICADA]
+#     C1: PIERNAS·GLÚTEOS
+#       - Sumo squat to calf raise (2x12)
+# Estos archivos usan una línea por circuito, así que hay que convertirlo.
+EXP_CAB = re.compile(r'^##\s+(.+?)\s+\(([A-Z_]+)\)(\s*\[MODIFICADA\])?\s*$')
+EXP_CIRC = re.compile(r'^\s+C(\d):\s*(.*)$')
+EXP_EJ = re.compile(r'^\s+-\s+(.+?)\s*\((\d+)x([^)]+)\)\s*$')
+
+
+def importar(ruta_export):
+    """Lee el formato del exportador y devuelve {rutina: (modificada, [circuitos])}."""
+    rutinas, actual, circ = {}, None, None
+    for linea in io.open(ruta_export, encoding='utf-8').read().split('\n'):
+        m = EXP_CAB.match(linea)
+        if m:
+            nombre, lugar, mod = m.group(1).strip(), m.group(2), bool(m.group(3))
+            actual = (nombre, lugar)
+            rutinas[actual] = (mod, [])
+            circ = None
+            continue
+        if actual is None:
+            continue
+        m = EXP_CIRC.match(linea)
+        if m:
+            circ = [m.group(1), m.group(2).strip(), []]
+            rutinas[actual][1].append(circ)
+            continue
+        m = EXP_EJ.match(linea)
+        if m and circ is not None:
+            circ[2].append([m.group(1).strip(), m.group(2), m.group(3)])
+    return rutinas
+
+
+def aplicar_import(ruta_ref, ruta_export):
+    importadas = importar(ruta_export)
+    casa = {k: v for k, v in importadas.items() if k[1] == 'CASA'}
+    if not casa:
+        sys.exit(f'{ruta_export}: no encontré ninguna rutina CASA. '
+                 '¿Exportaste con el selector de lugar en "Casa"?')
+
+    texto = io.open(ruta_ref, encoding='utf-8').read()
+    cabecera = texto.split('\n## ')[0].rstrip('\n')
+
+    bloques = []
+    for (nombre, _), (mod, circuitos) in casa.items():
+        bloques.append(f"## {nombre}{' [MODIFICADA]' if mod else ''}")
+        for num, grupos, ejs in circuitos:
+            cuerpo = ', '.join(f'{n} ({s}x{r})' for n, s, r in ejs)
+            bloques.append(f'  C{num} {grupos}: {cuerpo}')
+        bloques.append('')
+
+    io.open(ruta_ref, 'w', encoding='utf-8').write(cabecera + '\n\n' + '\n'.join(bloques).rstrip('\n') + '\n')
+    print(f'{os.path.relpath(ruta_ref, RAIZ)}: {len(casa)} rutinas CASA importadas desde '
+          f'{os.path.basename(ruta_export)}')
+    total = sum(len(e) for _, cs in casa.values() for _, _, e in cs)
+    print(f'  {total} ejercicios en {sum(len(cs) for _, cs in casa.values())} circuitos')
+
+
 def main():
+    if '--importar' in sys.argv:
+        i = sys.argv.index('--importar')
+        if i + 1 >= len(sys.argv):
+            sys.exit('--importar necesita la ruta del archivo exportado')
+        ruta_export = sys.argv[i + 1]
+        importadas = importar(ruta_export)
+        usuarios = {n.rsplit('— ', 1)[-1] for n, _ in importadas}
+        destino = next((r for r, q in REFS if q in usuarios), None)
+        if destino is None:
+            sys.exit(f'No pude deducir el usuario del export (vi: {usuarios or "nada"}). '
+                     'Los nombres tienen que terminar en "— Lean" o "— Nat".')
+        aplicar_import(destino, ruta_export)
+        print('\nAhora corré el script sin --importar para aplicar renombrados y parches.')
+        return
+
     dry = '--dry-run' in sys.argv
     renames, patches = leer_seed()
     print(f'seed.js: {len(renames)} renombrados, {len(patches)} parches\n')
