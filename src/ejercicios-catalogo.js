@@ -1520,6 +1520,27 @@ export const EJERCICIOS_CATALOGO = [
     descripcion: 'Piernas bien abiertas. Bajá sobre una pierna flexionándola mientras la otra queda extendida con el pie apoyado en el talón o la punta. Pecho alto, subí y alterná. El error típico es que la rodilla se vaya hacia adentro o que se levante el talón de la pierna flexionada. Bajo fatiga limitá la profundidad a lo que la rodilla tolere sin dolor. Cero impacto. Trabaja plano frontal, aductores y movilidad de cadera. (Cossack Squat)'
   },
   {
+    nombre: 'Curl de isquios con TRX',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Isquiotibiales, Glúteos, Core',
+    tags: 'TRX hamstring curl, Suspension hamstring curl',
+    descripcion: 'Acostado boca arriba con los talones en los estribos del TRX y las piernas estiradas. Subí la cadera hasta alinear hombros, cadera y rodillas, y desde ahí flexioná las rodillas llevando los talones hacia los glúteos. Volvé estirando con control sin dejar caer la cadera. A diferencia del peso muerto y del hip thrust, que trabajan el isquiotibial desde la cadera, acá lo trabaja desde la RODILLA, que es su otra función. El error típico es que la cadera se hunda al estirar las piernas: si pasa, cortá la serie. (TRX Hamstring Curl)'
+  },
+  {
+    nombre: 'Curl de isquios con TRX a una pierna',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Isquiotibiales, Glúteos, Core',
+    tags: 'Single leg TRX hamstring curl, One leg hamstring curl',
+    descripcion: 'Igual que el curl de isquios con TRX pero con un solo talón en el estribo; la otra pierna queda flexionada en el aire, sin apoyarse. Duplica la carga sobre el isquiotibial de trabajo y suma demanda anti-rotación, porque la pelvis tiende a caer del lado libre. Hacé todas las reps de un lado antes de cambiar. Progresión directa de la versión bilateral: pasá a esta recién cuando mantengas la cadera alta y pareja en las dos series. (Single Leg TRX Hamstring Curl)'
+  },
+  {
+    nombre: 'Curl de isquios deslizante',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: false,
+    musculos: 'Isquiotibiales, Glúteos, Core',
+    tags: 'Towel hamstring curl, Hamstring slider curl, Sliding leg curl',
+    descripcion: 'Acostado boca arriba con los talones apoyados sobre una toalla o un disco, en piso liso. Subí la cadera y desde ahí deslizá los talones hacia los glúteos flexionando las rodillas; volvé estirando LENTO, resistiendo el deslizamiento, que es donde está el estímulo. La cadera no toca el piso hasta terminar la serie. Misma función que la versión en TRX — flexión de rodilla — pero sin necesitar las correas. El error típico es apurar la fase de estirada y dejar que las piernas se vayan solas. (Towel Hamstring Curl)'
+  },
+  {
     nombre: 'Estocada reversa con rodilla arriba',
     grupo: 'HIIT', tipo: 'funcional', usaPeso: false,
     musculos: 'Cuádriceps, Glúteo mayor, Glúteo medio, Flexores de cadera',
