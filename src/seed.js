@@ -2310,6 +2310,17 @@ function migrateCompoundExercises() {
     // Se conserva el unilateral de Pull H; además Pull I ya tenía Remo en C3,
     // así que el remo del rumano le era redundante dentro de su propia rutina.
     ['Casa Pull I — Nat', 1, 0, 'Peso muerto rumano con remo', 'Leñador con banda', 2, '12'],
+    // Hip thrust a una pierna chocaba entre Pull B C2 y Press C C4 (d1). Sale
+    // el de Press C, donde era el 3er ejercicio de un circuito de core y se
+    // hacía ya fatigada; en Pull B abre el circuito, fresca. Entra un carry:
+    // Nat tenía UNO solo en 20 rutinas, y es el plano frontal con carga que
+    // le falta. La pantorrilla no entra acá: Pull B C1 tiene Calf raises a d1.
+    ['Casa Press C — Nat', 3, 2, 'Hip thrust a una pierna', 'Caminata de maleta', 2, '20m'],
+    // Remo chocaba entre Pull F C3 y Pull G C3 (d2). Sale el de Pull F y no el
+    // de Pull G: con el Pullover ya en Pull D C3, ponerlo en Pull G dejaba ese
+    // circuito IDÉNTICO al de Pull D. Acá además suma el único patrón de
+    // tracción vertical que tiene, que es el que le falta.
+    ['Casa Pull F — Nat', 2, 2, 'Remo', 'Pullover con mancuerna', 2, '12'],
     ['Casa Pull D — Lean', 3, 2, 'Extensión de tríceps con banda', 'Extensión de triceps sobre cabeza', 2, '10'],
     // HIIT redistribution — Lean
     ['Casa Press C — Lean', 4, 0, 'Tuck jumps', 'Saltos laterales', 3, '20'],
