@@ -2295,6 +2295,21 @@ function migrateCompoundExercises() {
     // Pull I C2 ya abre con Peso muerto rumano con remo: dejar el to-RDL acá
     // duplicaba la bisagra el mismo día.
     ['Casa Pull I — Nat', 0, 1, 'Sumo squat to RDL', 'Sentadilla sumo', 2, '12'],
+    // ── Nat: equipo de gimnasio en rutinas de casa + choque de bisagra ──
+    // Pull D C3 se llama ESPALDA·BÍCEPS y tenía un ejercicio de glúteo que
+    // además necesita polea. El pullover es tracción de dorsal por encima de
+    // la cabeza: cubre el plano vertical, que no existía en sus 20 rutinas
+    // (todo su trabajo de espalda era remo horizontal).
+    ['Casa Pull D — Nat', 2, 0, 'Gluteos patada en polea', 'Pullover con mancuerna', 2, '12'],
+    // Pull E C2: el hip thrust en cajón necesita cajón, y el peso muerto a una
+    // pierna chocaba con Press E C2 a distancia 1. No se reemplaza por otro
+    // puente porque los 4 vecinos ya están saturados de extensión de cadera.
+    ['Casa Pull E — Nat', 1, 0, 'Peso muerto a una pierna', 'Swing a sentadilla goblet', 2, '12'],
+    ['Casa Pull E — Nat', 1, 1, 'Empuje de cadera en cajon', 'Sentadilla cosaca', 2, '8'],
+    // Pull H C1 y Pull I C2 tenían el mismo combo bisagra+remo a distancia 2.
+    // Se conserva el unilateral de Pull H; además Pull I ya tenía Remo en C3,
+    // así que el remo del rumano le era redundante dentro de su propia rutina.
+    ['Casa Pull I — Nat', 1, 0, 'Peso muerto rumano con remo', 'Leñador con banda', 2, '12'],
     ['Casa Pull D — Lean', 3, 2, 'Extensión de tríceps con banda', 'Extensión de triceps sobre cabeza', 2, '10'],
     // HIIT redistribution — Lean
     ['Casa Press C — Lean', 4, 0, 'Tuck jumps', 'Saltos laterales', 3, '20'],
