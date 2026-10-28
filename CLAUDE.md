@@ -7,6 +7,21 @@
 - Seed only applies on first load or reset — existing routines with `userModified` are NOT affected by seed changes. Use migrations (in the "always run" section of `seedV2()`) to patch live routines.
 - Single account: both Lean and Nat share `entrecasaestudio@gmail.com`. Routines are distinguished by name suffix ("— Lean" / "— Nat").
 
+## Reference Files — read this before counting anything
+
+`.claude/rutinas-lean-casa-actual.md` and `.claude/rutinas-nat-casa-actual.md` hold the live routines, hand edits included. **They do not update themselves.** Every migration added to `PATCHES` keeps changing the real data while these files stay as they were, so any count taken straight off them drifts further from the truth with each patch. This has already produced two wrong analyses — circuits read as holding an exercise a migration had replaced months earlier.
+
+**After adding any migration or rename, run:**
+
+```
+python3 .claude/actualizar-referencia.py            # applies and rewrites
+python3 .claude/actualizar-referencia.py --dry-run  # shows what it would do
+```
+
+It replays `RENAME_MAP` and then `PATCHES` over the files, in the same order `seedV2()` does, and is idempotent — a patch only fires when the old name still matches.
+
+What it cannot do is invent the live state: when the user edits a routine from the app, that still has to be pasted in by hand. Nat's Press G and Pull G, for instance, exist only in the live data and not in the seed.
+
 ## Exercise Distribution — Adjacency Rule
 
 CASA rotation order: Press A → Pull A → Press B → Pull B → Press C → Pull C → Press D → Pull D → Press E → Pull E → Press F → Pull F

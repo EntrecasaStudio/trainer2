@@ -55,7 +55,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 ## Casa Press H — Lean
   C1 PIERNAS·ESPALDA: Sentadilla con remo en TRX (2x12), Step up (2x12), TRX face pull (2x15)
   C2 PECHO: Floor press (2x10), Flexiones declinadas (2x12), TRX chest press (2x12)
-  C3 HOMBROS·TRÍCEPS: Clean con press a un brazo (2x8), Elevaciones de hombro adelante (2x12), Extensión de triceps sobre cabeza (2x10)
+  C3 HOMBROS·TRÍCEPS: Clean con press a un brazo (2x8), Elevaciones de hombro adelante con disco (2x12), Extensión de triceps sobre cabeza (2x10)
   C4 CORE·BÍCEPS: Plancha con arrastre (2x10), Crunch oblicuo a una pierna (2x12), Bíceps curl (2x10)
   C5 HIIT: Caminata a plancha (4x8), Tuck jumps (4x8), Estocada con salto (4x8)
 
