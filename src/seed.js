@@ -2221,6 +2221,39 @@ function ensureCalendarOverrides() {
 // and an override beats the catalog, so the weight field never came back.
 // Removes only overrides that match that old guess AND contradict the catalog;
 // anything a user deliberately set to something else is left alone.
+// El Curl bayesiano entró en Press F C4 reemplazando al Hollow body y heredó
+// sus reps: 2x25s, en segundos, como si fuera un isométrico. Son 2x12 por brazo.
+//
+// No va en PATCHES porque ahí la guarda es el nombre viejo, y acá el nombre no
+// cambia: el parche coincidiría en cada arranque y volvería a fijar las reps
+// para siempre, pisando cualquier cambio manual posterior. Con una bandera
+// corre una sola vez y después nunca más.
+function fixCurlBayesianoReps() {
+  const FLAG = 'gym_mig_curl_bayesiano_reps';
+  try {
+    if (localStorage.getItem(FLAG)) return;
+    const rutinas = store.getAll(store.KEYS.rutinas);
+    if (!rutinas?.length) return;
+    let changed = false;
+    for (const r of rutinas) {
+      for (const c of (r.circuitos || [])) {
+        for (const e of (c.ejercicios || [])) {
+          if (e.nombre !== 'Curl bayesiano') continue;
+          if (!/s$/.test(String(e.reps))) continue; // ya está en reps, no en segundos
+          e.series = 2;
+          e.reps = '12';
+          changed = true;
+          console.log(`[Migración] ${r.nombre}: Curl bayesiano -> 2x12 por brazo`);
+        }
+      }
+    }
+    if (changed) store.set(store.KEYS.rutinas, rutinas);
+    localStorage.setItem(FLAG, '1');
+  } catch (e) {
+    console.warn('[Migración] fixCurlBayesianoReps falló:', e.message);
+  }
+}
+
 function clearPhantomUsaPesoOverrides() {
   try {
     const custom = store.getObj('gym_ejercicios_custom');
@@ -2499,6 +2532,7 @@ export async function seedV2() {
   migrateCasaHiitTo4Series();
   migrateVueloLateralToInclinado();
   clearPhantomUsaPesoOverrides();
+  fixCurlBayesianoReps();
 
   const version = store.getVersion();
   if (parseFloat(version || '0') >= parseFloat(SEED_VERSION)) {
