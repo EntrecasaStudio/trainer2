@@ -42,7 +42,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C1 PIERNAS·ESPALDA: Peso muerto dividido (2x10), TRX row (2x20), Sentadilla búlgara (2x10)
   C2 PECHO: Flexiones declinadas (2x12), TRX chest press (2x12), Floor press (2x10)
   C3 HOMBROS·TRÍCEPS: Thruster con kettlebell (2x15), Elevaciones de hombro adelante con disco (2x12), Tríceps alto en TRX (2x12)
-  C4 CORE·BÍCEPS: Curl bayesiano (2x25s), Plancha con arrastre (2x10), Caminata de maleta (2x10)
+  C4 CORE·BÍCEPS: Curl bayesiano (2x12), Plancha con arrastre (2x10), Caminata de maleta (2x10)
   C5 HIIT: Saltos laterales (4x20), Sentadilla con salto (4x10), Bear crawl (4x8m)
 
 ## Casa Pull A — Lean [MODIFICADA]
