@@ -1,6 +1,7 @@
 import { store } from '../../store.js';
 import { router } from '../../router.js';
 import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
+import { parseDecimal } from '../../utils/format.js';
 import { formatTimer } from '../../utils/format.js';
 import { formatDateISO } from '../../utils/calendar.js';
 import { showToast, showToastAction } from '../components/toast.js';
@@ -546,7 +547,7 @@ function renderExerciseCard(e, ci, ei) {
           </button>
           ${e.chaleco ? `
           <div class="chaleco-peso-input" style="display:flex;align-items:center;gap:4px;margin-left:var(--space-sm);">
-            <input type="number" class="stepper-input chaleco-peso-field" data-ci="${ci}" data-ei="${ei}" value="${e.chalecoPeso || 0}" inputmode="decimal" style="width:60px;text-align:center;">
+            <input type="text" class="stepper-input chaleco-peso-field" data-ci="${ci}" data-ei="${ei}" value="${e.chalecoPeso || 0}" inputmode="decimal" style="width:60px;text-align:center;">
             <span style="font-size:var(--text-xs);color:var(--color-text-muted);">kg</span>
           </div>` : ''}
         </div>` : '';
@@ -581,7 +582,7 @@ function renderExerciseCard(e, ci, ei) {
               <div class="vuelta-group">
                 <div class="stepper stepper-sm">
                   <button class="stepper-btn" data-action="dec" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">−</button>
-                  <input type="number" class="stepper-input" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}" value="${s.peso}" inputmode="decimal">
+                  <input type="text" class="stepper-input" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}" value="${s.peso}" inputmode="decimal">
                   <button class="stepper-btn" data-action="inc" data-field="peso" data-ci="${ci}" data-ei="${ei}" data-si="${si}">+</button>
                 </div>
               </div>` : ''}
@@ -874,7 +875,7 @@ function bindExerciseEvents(container, scope) {
       clearTimeout(debounceTimer);
       const { field, ci, ei, si } = input.dataset;
       const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
-      const val = parseFloat(input.value) || 0;
+      const val = parseDecimal(input.value);
       if (field === 'reps') {
         series.reps = Math.max(0, Math.round(val));
       } else {
@@ -910,7 +911,7 @@ function bindExerciseEvents(container, scope) {
       clearTimeout(debounceTimer);
       const { ci, ei } = input.dataset;
       const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
-      ejercicio.chalecoPeso = Math.max(0, parseFloat(input.value) || 0);
+      ejercicio.chalecoPeso = Math.max(0, parseDecimal(input.value));
       persistWorkout();
     };
     input.addEventListener('input', () => { clearTimeout(debounceTimer); debounceTimer = setTimeout(save, 600); });

@@ -79,3 +79,14 @@ export function formatSetsReps(ej) {
   if (!reps) return `${numSeries}s`;
   return `${numSeries}×${reps}`;
 }
+
+// Los campos de peso usan type="text" y no type="number" a propósito. Con
+// type="number" iOS en español muestra el teclado decimal con COMA, pero el
+// estándar HTML sólo admite el punto, así que Safari descarta la coma y el
+// decimal no se puede escribir. Peor: parseFloat('2,5') devuelve 2, o sea que
+// si la coma llegara a pasar se guardaría un valor equivocado sin avisar.
+// Con type="text" + inputmode="decimal" sale el mismo teclado y acepta las dos.
+export function parseDecimal(valor) {
+  const n = parseFloat(String(valor ?? '').replace(',', '.'));
+  return Number.isFinite(n) ? n : 0;
+}

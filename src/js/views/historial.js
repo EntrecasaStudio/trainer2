@@ -1,5 +1,5 @@
 import { store } from '../../store.js';
-import { formatDateLong, formatDuration, getLugarBadge, formatSetsReps, getCircuitColor } from '../../utils/format.js';
+import { formatDateLong, formatDuration, getLugarBadge, formatSetsReps, getCircuitColor, parseDecimal } from '../../utils/format.js';
 import { formatDateISO } from '../../utils/calendar.js';
 import { openModal, closeModal } from '../components/modal.js';
 import { showToast, showToastAction } from '../components/toast.js';
@@ -329,7 +329,7 @@ function openSeriesEditor(sesion, circuitNombre, ejNombre) {
   const seriesHTML = seriesData.map((s, i) => `
     <div class="hist-series-row" style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-sm);">
       <span style="font-size:var(--text-sm);color:var(--color-text-muted);min-width:24px;">S${i + 1}</span>
-      <input type="number" class="edit-input hist-peso" data-idx="${i}" value="${s.peso || ''}" placeholder="kg" inputmode="decimal"
+      <input type="text" class="edit-input hist-peso" data-idx="${i}" value="${s.peso || ''}" placeholder="kg" inputmode="decimal"
         style="width:70px;text-align:center;">
       <span style="font-size:var(--text-xs);color:var(--color-text-muted);">kg</span>
       <input type="number" class="edit-input hist-reps" data-idx="${i}" value="${s.reps || ''}" placeholder="reps" inputmode="numeric"
@@ -373,7 +373,7 @@ function openSeriesEditor(sesion, circuitNombre, ejNombre) {
         // Gather updated values
         body.querySelectorAll('.hist-series-row').forEach(row => {
           const idx = parseInt(row.querySelector('.hist-peso').dataset.idx, 10);
-          const peso = parseFloat(row.querySelector('.hist-peso').value) || 0;
+          const peso = parseDecimal(row.querySelector('.hist-peso').value);
           const reps = parseInt(row.querySelector('.hist-reps').value, 10) || 0;
           const done = row.querySelector('.hist-done').checked;
           seriesData[idx] = { ...seriesData[idx], peso, reps, done };
