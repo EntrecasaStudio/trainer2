@@ -12,7 +12,13 @@ import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../
 const NO_CHALECO_PATTERNS = [
   'press militar', 'arnold press', 'vuelos laterales', 'vuelo lateral inclinado',
   'pájaros', 'pajaros',
-  'bíceps curl',
+  // Aislamiento con la carga en las manos: el chaleco cuelga del torso y no lo
+  // levanta el músculo que trabaja, así que suma peso a la columna sin sumar
+  // estímulo. Cubre las elevaciones de hombro adelante, con disco y los
+  // encogimientos.
+  'elevaciones de hombro',
+  'patada de tríceps', 'patada de triceps',
+  'bíceps curl', 'curl bayesiano',
   'extensión de tríceps', 'extension de triceps',
   'hollow body',
   'remo',
