@@ -1354,7 +1354,7 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     musculos: 'Cuádriceps, Glúteos, Bíceps, Braquial',
     tags: 'Reverse lunge to hammer curl',
-    descripcion: 'Con mancuernas en agarre neutro, dá un paso atrás a zancada reversa. Al subir, hacé un curl martillo bilateral. Combina piernas con bíceps/braquial sin pausa entre movimientos. (Reverse Lunge to Hammer Curl)'
+    descripcion: 'Con mancuernas en agarre neutro, dá un paso atrás a zancada reversa. Al subir, hacé un curl martillo bilateral. Combina piernas con bíceps/braquial sin pausa entre movimientos. Cargá el peso de UNA mancuerna, no la suma: la pierna sostiene las dos, pero cada bíceps levanta una sola y es el curl el que te limita, así que es el peso a progresar. (Reverse Lunge to Hammer Curl)'
   },
   {
     nombre: 'Sentadilla con remo en TRX',
