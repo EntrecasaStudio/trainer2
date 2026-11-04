@@ -236,8 +236,8 @@ export const EJERCICIOS_CATALOGO = [
     nombre: 'TRX pec press',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
     musculos: 'Pectoral mayor (porción inferior), Tríceps, Deltoides anterior',
-    tags: 'TRX pec press, TRX foot cradle chest press',
-    descripcion: 'Agarrá los estribos de pies del TRX en vez de las agarraderas, con las palmas enfrentadas. Inclinado hacia adelante, bajá flexionando los codos pegados al cuerpo. Empujá para volver. El agarre en estribos cambia el ángulo y enfatiza la parte baja e interna del pecho. (TRX Pec Press)'
+    tags: 'TRX chest press neutral grip, TRX pec press, TRX foot cradle chest press',
+    descripcion: 'Agarrá los estribos de pies del TRX en vez de las agarraderas, con las palmas enfrentadas. Inclinado hacia adelante, bajá flexionando los codos pegados al cuerpo — el agarre neutro es lo que los mantiene cerca, en vez de abrirse a 90° como en el press común. Empujá para volver. El agarre en estribos cambia el ángulo y enfatiza la parte baja e interna del pecho. OJO CON EL VIDEO: esta variante no está filmada en ningún lado. Lo que vas a encontrar es el TRX chest press común — miralo por la inclinación del cuerpo y la posición, que son iguales, y cambiá vos el agarre a palmas enfrentadas con los codos pegados. (TRX Chest Press, Neutral Grip)'
   },
   {
     nombre: 'Banda press de pecho',
