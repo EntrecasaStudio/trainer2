@@ -24,6 +24,17 @@ const NO_CHALECO_PATTERNS = [
   // planchas o los espinales, donde el torso con el chaleco ES lo que se
   // sostiene o se eleva, y ahí sí suma.
   'pullover', 'aperturas', 'press de banca',
+  // 'extensión de tríceps' no alcanzaba: el ejercicio se llama "Extensión de
+  // triceps sobre cabeza", con acento en extensión pero no en triceps, y
+  // ninguna de las dos variantes que había coincidía.
+  'extensión de triceps',
+  // Resistencia que da la banda o el peso en la pierna: el chaleco va al
+  // torso y no cambia el torque del ejercicio.
+  'pallof', 'abducción', 'abduccion', 'hip abduction',
+  // De pie rotando un disco: la resistencia es el disco.
+  'rotación con disco', 'rotacion con disco', 'oscilaciones laterales',
+  // Movilidad y recuperación: carga axial donde justamente no se busca.
+  'movilidad', 'cat-cow', 'cat cow', 'yoga',
   // Los puentes de glúteo van con 'hip thrust', que ya estaba: mismo patrón.
   'empuje de cadera',
   'bíceps curl', 'curl bayesiano',
@@ -46,7 +57,10 @@ const NO_CHALECO_PATTERNS = [
   'toe touch',
   'banda',
 ];
-const CHALECO_OVERRIDE = ['bíceps curl en trx', 'remo alto en trx', 'sentadilla con remo en trx', 'swing a sentadilla goblet'];
+// Excepciones al patrón 'banda': en estos la banda es un accesorio y lo que
+// se sostiene arriba es la cadera con el torso, así que el chaleco sí carga.
+const CHALECO_OVERRIDE = ['bíceps curl en trx', 'remo alto en trx', 'sentadilla con remo en trx', 'swing a sentadilla goblet',
+  'marcha en puente de glúteos', 'puente de glúteo con banda'];
 function chalecoApplies(nombre) {
   const n = (nombre || '').toLowerCase();
   if (CHALECO_OVERRIDE.some(p => n.includes(p))) return true;
