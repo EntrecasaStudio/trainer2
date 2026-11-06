@@ -255,10 +255,10 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Aperturas con mancuernas',
-    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
     musculos: 'Pectoral mayor, Deltoides anterior',
-    tags: 'Dumbbell fly, Chest fly',
-    descripcion: 'Acostado en banco plano con una mancuerna en cada mano, brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados hasta sentir estiramiento en el pecho. Volvé cerrando el arco. Trabaja la porción esternal del pectoral en rango completo. (Dumbbell Fly)'
+    tags: 'Dumbbell floor fly, Dumbbell fly, Chest fly',
+    descripcion: 'Acostado en banco plano o EN EL PISO, con una mancuerna en cada mano y los brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados y fijos, hasta sentir estiramiento en el pecho. Volvé cerrando el arco. En el piso los codos tocan el suelo y ahí frena el recorrido: perdés parte del estiramiento, que es lo que más estimula, pero te sacás de encima el punto donde el ejercicio castiga la cápsula anterior del hombro. Para alguien sin banco es el mejor canje. Apoyá los CODOS, no las mancuernas, hacé una pausa corta abajo y no rebotes. (Dumbbell Floor Fly)'
   },
   {
     nombre: 'Banda press de pecho a un brazo',
