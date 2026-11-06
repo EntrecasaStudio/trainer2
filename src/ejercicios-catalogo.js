@@ -114,14 +114,14 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Pallof press',
-    grupo: 'Core', tipo: 'maquina', usaPeso: true,
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
     musculos: 'Oblicuos, Transverso abdominal, Recto abdominal',
     tags: 'Pallof press, Anti-rotation press',
     descripcion: 'De pie de lado a la polea (o banda), sujetá el cable a la altura del pecho con ambas manos. Extendé los brazos al frente resistiendo la rotación, luego volvé. El objetivo es evitar que el torso gire. Trabajás la anti-rotación del core. (Pallof Press)'
   },
   {
     nombre: 'Espinales con disco',
-    grupo: 'Core', tipo: 'maquina', usaPeso: true,
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
     musculos: 'Erector espinal, Glúteos',
     tags: 'Weighted back extension, Superman with plate',
     descripcion: 'Acostado boca abajo con un disco sostenido contra el pecho o detrás de la cabeza. Elevá el torso contrayendo la espalda baja y bajá de forma controlada. Evitá hiperextender la columna al subir. Trabaja erectores espinales. (Weighted Back Extension)'
@@ -283,10 +283,10 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Pullover con mancuerna',
-    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
     musculos: 'Pectoral mayor, Dorsal ancho, Tríceps',
-    tags: 'Dumbbell pullover',
-    descripcion: 'Acostado en banco, sostén una mancuerna con ambas manos sobre el pecho. Bajá la mancuerna por detrás de la cabeza con los brazos casi extendidos hasta sentir el estiramiento. Volvé contrayendo pecho y dorsal. Trabaja pectoral, serrato y dorsal ancho. (Dumbbell Pullover)'
+    tags: 'Dumbbell floor pullover, Dumbbell pullover',
+    descripcion: 'Acostado en banco o EN EL PISO, sostené una mancuerna con ambas manos sobre el pecho. Bajá la mancuerna por detrás de la cabeza con los brazos casi extendidos hasta sentir el estiramiento, y volvé contrayendo pecho y dorsal. En el piso los brazos frenan al tocar el suelo, más o menos en línea con el torso: el recorrido queda bastante más corto que en banco, y acá eso cuesta más que en una apertura, porque el estiramiento profundo ES el pullover. A cambio te frena la hiperextensión lumbar, que es el error típico. Mantené las costillas abajo y cortá cuando la lumbar quiera despegarse del piso, no cuando llegues al suelo. (Dumbbell Floor Pullover)'
   },
   // ── ESPALDA ─────────────────────────────────────────────────────────────────
   {
@@ -376,7 +376,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Elevaciones de hombro adelante',
-    grupo: 'Hombros', tipo: 'maquina', usaPeso: true,
+    grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
     musculos: 'Deltoides anterior, Pectoral mayor',
     tags: 'Front raise, Dumbbell front raise',
     descripcion: 'De pie con mancuernas frente al cuerpo, levantá los brazos hacia adelante hasta la altura de los hombros. Bajá controlado. Cada brazo trabaja independiente, corrigiendo desbalances. Puede hacerse alternado o simultáneo. (Dumbbell Front Raise)'
@@ -412,7 +412,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Bíceps curl martillo',
-    grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Braquial, Bíceps, Antebrazo',
     tags: 'Hammer curl',
     descripcion: 'Agarre neutro (palmas enfrentadas). Con mancuerna o kettlebell, flexioná el codo sin rotar la muñeca. Trabaja braquial, braquiorradial y la parte externa del bíceps. (Hammer Curl)'
@@ -440,7 +440,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Extensión de triceps sobre cabeza',
-    grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Tríceps',
     tags: 'Overhead triceps extension, Kettlebell overhead triceps extension',
     descripcion: 'Sentado o de pie, sostén una mancuerna, barra o kettlebell por detrás de la cabeza con los codos apuntando al techo. Extendé los codos hasta arriba y bajá controlado. Trabaja principalmente la cabeza larga del tríceps. Mantené los codos cerca de las orejas sin abrirlos.'
@@ -454,7 +454,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'French press',
-    grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Tríceps, Antebrazo',
     tags: 'Skull crusher, Lying tricep extension',
     descripcion: 'Acostado en banco plano con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento. (Skull Crusher)'
@@ -475,7 +475,7 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Bíceps curl concentrado',
-    grupo: 'Brazos', tipo: 'maquina', usaPeso: true,
+    grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Bíceps, Braquial',
     tags: 'Concentration curl',
     descripcion: 'Sentado con el codo apoyado en la cara interna del muslo, una mancuerna en la mano. Flexioná el brazo subiendo la mancuerna hacia el hombro y bajá controlado. El apoyo en el muslo elimina impulso y aísla completamente el bíceps. Ideal para contracción pico. (Concentration Curl)'
