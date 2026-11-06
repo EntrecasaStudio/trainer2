@@ -103,7 +103,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 
 ## Casa Press I — Lean [MODIFICADA]
   C1 PIERNAS·ESPALDA: Swing a sentadilla goblet (2x10), Sentadilla búlgara (2x10), Remo alto en TRX (2x12)
-  C2 PECHO: Aperturas con mancuernas (2x15), Flexiones diamante (2x10), Pullover con mancuerna (2x12)
+  C2 PECHO: Aperturas con mancuernas en piso (2x15), Flexiones diamante (2x10), Pullover con mancuerna en piso (2x12)
   C3 HOMBROS·TRÍCEPS: Thruster con kettlebell (2x8), Vuelos laterales (2x12), Fondos en banco (2x12)
   C4 CORE·BÍCEPS: Plancha estrella con peso (2x6), Oscilaciones laterales con disco (2x12), Bíceps curl en TRX (2x10)
   C5 HIIT: Saltos laterales (4x20), Sentadilla con salto (4x10), Bear crawl (4x8m)
