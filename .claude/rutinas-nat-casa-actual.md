@@ -98,7 +98,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 ## Casa Pull D — Nat [MODIFICADA]
   C1 PIERNAS·GLÚTEOS: Sentadilla con remo en TRX (2x10), Abducción con pausa (2x10), Copenhague (2x10)
   C2 PIERNAS·CORE: Empuje de cadera en piso con peso (2x15), Peso muerto rumano con remo (2x12), Plancha con arrastre (2x10)
-  C3 ESPALDA·BÍCEPS: Pullover con mancuerna (2x12), Bíceps curl en TRX (2x10), TRX face pull (2x15)
+  C3 ESPALDA·BÍCEPS: Pullover con mancuerna en piso (2x12), Bíceps curl en TRX (2x10), TRX face pull (2x15)
   C4 CORE·TRÍCEPS: Hollow body (2x25s), Fondos en banco (2x12), Tríceps alto en TRX (2x12)
   C5 HIIT: Sentadilla con salto (4x8), Bear crawl (4x8m), Saltos laterales (4x20)
 

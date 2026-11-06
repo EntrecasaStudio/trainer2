@@ -255,10 +255,17 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Aperturas con mancuernas',
+    grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
+    musculos: 'Pectoral mayor, Deltoides anterior',
+    tags: 'Dumbbell fly, Flat bench dumbbell fly',
+    descripcion: 'Acostado en banco plano con una mancuerna en cada mano, brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados y fijos, hasta sentir estiramiento en el pecho. Volvé cerrando el arco. El banco deja que los brazos bajen por debajo de la línea del torso: rango completo, y también el punto donde más se exige la cápsula anterior del hombro, así que no busques el fondo a cualquier precio. Sin banco, usá la versión en piso, que es otro ejercicio. (Dumbbell Fly)'
+  },
+  {
+    nombre: 'Aperturas con mancuernas en piso',
     grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
     musculos: 'Pectoral mayor, Deltoides anterior',
-    tags: 'Dumbbell floor fly, Dumbbell fly, Chest fly',
-    descripcion: 'Acostado en banco plano o EN EL PISO, con una mancuerna en cada mano y los brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados y fijos, hasta sentir estiramiento en el pecho. Volvé cerrando el arco. En el piso los codos tocan el suelo y ahí frena el recorrido: perdés parte del estiramiento, que es lo que más estimula, pero te sacás de encima el punto donde el ejercicio castiga la cápsula anterior del hombro. Para alguien sin banco es el mejor canje. Apoyá los CODOS, no las mancuernas, hacé una pausa corta abajo y no rebotes. (Dumbbell Floor Fly)'
+    tags: 'Dumbbell floor fly, Floor fly',
+    descripcion: 'Acostado en el piso con una mancuerna en cada mano y los brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados y fijos hasta que los CODOS toquen el suelo — apoyá los codos, no las mancuernas. Pausa corta abajo, sin rebote, y volvé cerrando el arco. El piso corta el recorrido antes del estiramiento profundo: perdés parte del estímulo, pero te sacás de encima el punto donde la versión en banco castiga la cápsula anterior del hombro. Para entrenar en casa es el mejor canje. (Dumbbell Floor Fly)'
   },
   {
     nombre: 'Banda press de pecho a un brazo',
@@ -283,10 +290,17 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Pullover con mancuerna',
-    grupo: 'Pecho', tipo: 'funcional', usaPeso: true,
-    musculos: 'Pectoral mayor, Dorsal ancho, Tríceps',
-    tags: 'Dumbbell floor pullover, Dumbbell pullover',
-    descripcion: 'Acostado en banco o EN EL PISO, sostené una mancuerna con ambas manos sobre el pecho. Bajá la mancuerna por detrás de la cabeza con los brazos casi extendidos hasta sentir el estiramiento, y volvé contrayendo pecho y dorsal. En el piso los brazos frenan al tocar el suelo, más o menos en línea con el torso: el recorrido queda bastante más corto que en banco, y acá eso cuesta más que en una apertura, porque el estiramiento profundo ES el pullover. A cambio te frena la hiperextensión lumbar, que es el error típico. Mantené las costillas abajo y cortá cuando la lumbar quiera despegarse del piso, no cuando llegues al suelo. (Dumbbell Floor Pullover)'
+    grupo: 'Espalda', tipo: 'maquina', usaPeso: true,
+    musculos: 'Dorsal ancho, Pectoral mayor, Tríceps',
+    tags: 'Dumbbell pullover, Bench dumbbell pullover',
+    descripcion: 'Acostado en banco, sostené una mancuerna con ambas manos sobre el pecho. Bajá la mancuerna por detrás de la cabeza con los brazos casi extendidos hasta sentir el estiramiento, y volvé contrayendo pecho y dorsal. El banco deja que los brazos caigan bien por debajo de la línea del torso, que es de donde sale el estiramiento profundo del dorsal. Mantené las costillas abajo: el error típico es arquear la lumbar para ganar recorrido. Sin banco, usá la versión en piso, que es otro ejercicio. (Dumbbell Pullover)'
+  },
+  {
+    nombre: 'Pullover con mancuerna en piso',
+    grupo: 'Espalda', tipo: 'funcional', usaPeso: true,
+    musculos: 'Dorsal ancho, Pectoral mayor, Tríceps',
+    tags: 'Dumbbell floor pullover, Floor pullover',
+    descripcion: 'Acostado en el piso, sostené una mancuerna con ambas manos sobre el pecho. Bajá por detrás de la cabeza con los brazos casi extendidos y volvé contrayendo dorsal y pecho. Los brazos frenan al tocar el suelo, más o menos en línea con el torso, así que el recorrido es bastante más corto que en banco — y acá eso cuesta más que en una apertura, porque el estiramiento profundo ES el pullover. A cambio el piso te frena la hiperextensión lumbar, que es el error típico. Cortá cuando la lumbar quiera despegarse del piso, no cuando los brazos lleguen al suelo. (Dumbbell Floor Pullover)'
   },
   // ── ESPALDA ─────────────────────────────────────────────────────────────────
   {
@@ -457,7 +471,7 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
     musculos: 'Tríceps, Antebrazo',
     tags: 'Skull crusher, Lying tricep extension',
-    descripcion: 'Acostado en banco plano con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento. (Skull Crusher)'
+    descripcion: 'Acostado en banco plano o en el piso, con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento. (Skull Crusher)'
   },
   {
     nombre: 'Bíceps curl con banda',

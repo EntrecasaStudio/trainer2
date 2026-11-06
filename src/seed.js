@@ -2353,7 +2353,13 @@ function migrateCompoundExercises() {
     // de Pull G: con el Pullover ya en Pull D C3, ponerlo en Pull G dejaba ese
     // circuito IDÉNTICO al de Pull D. Acá además suma el único patrón de
     // tracción vertical que tiene, que es el que le falta.
-    ['Casa Pull F — Nat', 2, 2, 'Remo', 'Pullover con mancuerna', 2, '12'],
+    ['Casa Pull F — Nat', 2, 2, 'Remo', 'Pullover con mancuerna en piso', 2, '12'],
+    // Aperturas y pullover quedaron separados en versión de banco y de piso:
+    // el piso corta el recorrido, así que son ejercicios distintos y su
+    // historial de peso no es comparable. Las rutinas de casa van a la de piso.
+    ['Casa Press I — Lean', 1, 0, 'Aperturas con mancuernas', 'Aperturas con mancuernas en piso', 2, '15'],
+    ['Casa Press I — Lean', 1, 2, 'Pullover con mancuerna', 'Pullover con mancuerna en piso', 2, '12'],
+    ['Casa Pull D — Nat', 2, 0, 'Pullover con mancuerna', 'Pullover con mancuerna en piso', 2, '12'],
     ['Casa Pull D — Lean', 3, 2, 'Extensión de tríceps con banda', 'Extensión de triceps sobre cabeza', 2, '10'],
     // HIIT redistribution — Lean
     ['Casa Press C — Lean', 4, 0, 'Tuck jumps', 'Saltos laterales', 3, '20'],
