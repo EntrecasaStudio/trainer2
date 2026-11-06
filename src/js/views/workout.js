@@ -19,6 +19,13 @@ const NO_CHALECO_PATTERNS = [
   // encogimientos.
   'elevaciones de hombro',
   'patada de tríceps', 'patada de triceps',
+  // Acostado con la carga en las manos: el chaleco sólo te aprieta contra el
+  // piso o el banco, no lo levanta el músculo que trabaja. Distinto de las
+  // planchas o los espinales, donde el torso con el chaleco ES lo que se
+  // sostiene o se eleva, y ahí sí suma.
+  'pullover', 'aperturas', 'press de banca',
+  // Los puentes de glúteo van con 'hip thrust', que ya estaba: mismo patrón.
+  'empuje de cadera',
   'bíceps curl', 'curl bayesiano',
   'extensión de tríceps', 'extension de triceps',
   'hollow body',
