@@ -112,7 +112,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 ## Casa Pull F — Nat [MODIFICADA]
   C1 PIERNAS·GLÚTEOS: Copenhague (2x15), Curl de isquios deslizante (2x10), Sentadilla búlgara (2x10)
   C2 PIERNAS·CORE: Hip thrust a una pierna (2x12), Clamshell con banda (2x15), Bird-dog (2x10)
-  C3 ESPALDA·BÍCEPS: TRX power pull (2x10), Bíceps curl martillo (2x10), Pullover con mancuerna (2x12)
+  C3 ESPALDA·BÍCEPS: TRX power pull (2x10), Bíceps curl martillo (2x10), Pullover con mancuerna en piso (2x12)
   C4 CORE·TRÍCEPS: Peso muerto a una pierna (2x8), French press en puente de glúteos (2x12), Bíceps curl en equilibrio (2x12)
   C5 HIIT: Caminata a plancha (4x8), Tuck jumps (4x8), Estocada con salto (4x8)
 

@@ -2360,6 +2360,7 @@ function migrateCompoundExercises() {
     ['Casa Press I — Lean', 1, 0, 'Aperturas con mancuernas', 'Aperturas con mancuernas en piso', 2, '15'],
     ['Casa Press I — Lean', 1, 2, 'Pullover con mancuerna', 'Pullover con mancuerna en piso', 2, '12'],
     ['Casa Pull D — Nat', 2, 0, 'Pullover con mancuerna', 'Pullover con mancuerna en piso', 2, '12'],
+    ['Casa Pull F — Nat', 2, 2, 'Pullover con mancuerna', 'Pullover con mancuerna en piso', 2, '12'],
     ['Casa Pull D — Lean', 3, 2, 'Extensión de tríceps con banda', 'Extensión de triceps sobre cabeza', 2, '10'],
     // HIIT redistribution — Lean
     ['Casa Press C — Lean', 4, 0, 'Tuck jumps', 'Saltos laterales', 3, '20'],
