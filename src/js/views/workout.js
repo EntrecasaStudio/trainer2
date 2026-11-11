@@ -495,6 +495,16 @@ function renderWorkout(container) {
   bindEvents(container);
 }
 
+// El botón de "todas" avanza de a una serie y, estando completo, las borra.
+// El texto describe lo que hará el PRÓXIMO toque, no el estado actual: el
+// estado ya lo dice el contador. Lo usan el render y la actualización en sitio,
+// así que vive acá para que no se desincronicen.
+function checkAllLabels(nombre, hechas, total) {
+  return hechas >= total
+    ? { aria: `Borrar las ${total} series marcadas de ${nombre}`, title: 'Borrar todas' }
+    : { aria: `Marcar la serie ${hechas + 1} de ${total} de ${nombre}`, title: `Marcar la serie ${hechas + 1}` };
+}
+
 // ── Exercise card (v1-style: collapsed summary+check, expanded steppers) ────
 function renderExerciseCard(e, ci, ei) {
   const key = `${ci}-${ei}`;
@@ -550,8 +560,8 @@ function renderExerciseCard(e, ci, ei) {
             <span>${summaryText}</span>
             <button class="check-all-btn ${allDone ? 'all-done' : (doneCount > 0 ? 'partial' : '')}"
                     data-ci="${ci}" data-ei="${ei}"
-                    aria-label="${allDone ? 'Desmarcar' : 'Marcar'} las ${totalSeries} series de ${e.nombre}"
-                    title="${allDone ? 'Desmarcar todas' : 'Marcar todas'}">
+                    aria-label="${checkAllLabels(e.nombre, doneCount, totalSeries).aria}"
+                    title="${checkAllLabels(e.nombre, doneCount, totalSeries).title}">
               <i class="${allDone ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:22px;"></i>
               <span class="check-all-count">${doneCount}/${totalSeries}</span>
             </button>
@@ -841,16 +851,31 @@ function bindExerciseEvents(container, scope) {
     });
   });
 
-  // Check-all button (collapsed)
+  // Check general del colapsado: avanza de a una serie y, al estar completo,
+  // borra todas. 0/2 → 1/2 → 2/2 → 0/2.
+  //
+  // Es el formato el que lo pide. Estas rutinas son circuitos, y un circuito se
+  // recorre por rondas: una serie de cada ejercicio, descanso, ronda 2. Al
+  // terminar la ronda 1 todos los ejercicios quedan a mitad de camino, y hasta
+  // ahora eso NO se podía registrar sin desplegar la card, porque el botón sólo
+  // marcaba todo o nada.
+  //
+  // Marca siempre la primera serie sin hacer. Que el contador sea ordinal
+  // ("cuántas") y los checks del desplegado posicionales ("la serie 2") no entra
+  // en conflicto: cuando se saltea una serie es la última, porque el orden es
+  // secuencial. Hacer la 1 y la 3 sin la 2 no pasa entrenando.
   scope.querySelectorAll('.check-all-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const { ci, ei } = btn.dataset;
-      const ejercicio = workoutState.circuitos[ci].ejercicios[ei];
-      const allDone = ejercicio.seriesData.every(s => s.done);
-      ejercicio.seriesData.forEach(s => { s.done = !allDone; });
-      checkCircuitCompletion(ci);
+      const series = workoutState.circuitos[ci].ejercicios[ei].seriesData;
+      if (series.length && series.every(s => s.done)) {
+        series.forEach(s => { s.done = false; });
+      } else {
+        const siguiente = series.find(s => !s.done);
+        if (siguiente) siguiente.done = true;
+      }
       persistWorkout();
-      refreshExercises(container);
+      syncDoneUI(container, ci, ei);
     });
   });
 
@@ -973,9 +998,8 @@ function bindExerciseEvents(container, scope) {
       const { ci, ei, si } = btn.dataset;
       const series = workoutState.circuitos[ci].ejercicios[ei].seriesData[si];
       series.done = !series.done;
-      checkCircuitCompletion(ci);
       persistWorkout();
-      refreshExercises(container);
+      syncDoneUI(container, ci, ei);
     });
   });
 
@@ -1061,6 +1085,73 @@ function toggleExpand(key, container) {
     summaryWrap.classList.toggle('show', !isNowExpanded);
     bodyWrap.classList.toggle('show', isNowExpanded);
     card?.classList.toggle('expanded', isNowExpanded);
+  }
+}
+
+// Actualiza en el sitio todo lo que cambia al marcar o desmarcar series, sin
+// volver a generar HTML.
+//
+// `refreshExercises()` hace `innerHTML = ...`, que destruye y recrea todas las
+// cards. Eso vuelve a disparar la cascada de entrada (`cardFadeIn`, 250 ms con
+// delay escalonado por card): medido, justo después del refresh las cards
+// quedan en `opacity: 0` y vuelven a aparecer. O sea que cada toque hacía
+// parpadear la lista entera, y dejaba al botón recién tocado reemplazado por
+// otro nodo debajo del dedo. Con el check general cíclico eso pasaría hasta
+// cuatro veces seguidas y los toques rápidos se perderían.
+//
+// Sólo se toca lo que depende de `done`. Todo lo demás (reps, peso, bandas)
+// sigue yendo por `refreshExercises`, porque cambia el layout de la card.
+function syncDoneUI(container, ci, ei) {
+  const e = workoutState.circuitos[ci]?.ejercicios[ei];
+  const card = container.querySelector(`.exercise-card[data-ci="${ci}"][data-ei="${ei}"]`);
+  if (!e || !card) return;
+
+  const total = e.seriesData.length;
+  const hechas = e.seriesData.filter(s => s.done).length;
+  const allDone = total > 0 && hechas === total;
+
+  // Filas del desplegado
+  card.querySelectorAll('.vuelta-row').forEach((row, si) => {
+    const s = e.seriesData[si];
+    if (!s) return;
+    row.classList.toggle('vuelta-done', !!s.done);
+    const icono = row.querySelector('.vuelta-check i');
+    if (icono) icono.className = `${s.done ? 'ph-fill' : 'ph'} ph-check-circle`;
+  });
+
+  // Chip del colapsado
+  const btn = card.querySelector('.check-all-btn');
+  if (btn) {
+    btn.classList.toggle('all-done', allDone);
+    btn.classList.toggle('partial', !allDone && hechas > 0);
+    const icono = btn.querySelector('i');
+    if (icono) icono.className = `${allDone ? 'ph-fill' : 'ph'} ph-check-circle`;
+    const cnt = btn.querySelector('.check-all-count');
+    if (cnt) cnt.textContent = `${hechas}/${total}`;
+    const { aria, title } = checkAllLabels(e.nombre, hechas, total);
+    btn.setAttribute('aria-label', aria);
+    btn.title = title;
+  }
+  card.classList.toggle('all-done', allDone);
+
+  // Circuito: tabs, barra y el check al lado del nombre. Ese último vive fuera
+  // de #exercises-container, así que `refreshExercises` nunca lo actualizaba y
+  // sólo aparecía al volver a entrar al circuito.
+  checkCircuitCompletion(ci);
+  updateCircuitTabs(container);
+  updateProgressBar(container);
+  const label = container.querySelector('.workout-circuit-label');
+  if (label && ci === activeCircuitIdx) {
+    const completo = workoutState.circuitos[ci].completed;
+    let marca = label.querySelector('.circuit-done-check');
+    if (completo && !marca) {
+      marca = document.createElement('span');
+      marca.className = 'circuit-done-check';
+      marca.innerHTML = SVG_CHECK;
+      label.querySelector('.circuit-label-text')?.after(marca);
+    } else if (!completo && marca) {
+      marca.remove();
+    }
   }
 }
 
