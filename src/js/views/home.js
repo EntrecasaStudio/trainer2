@@ -1,4 +1,5 @@
 import { store } from '../../store.js';
+import { getLugares } from '../../lugares.js';
 import { router } from '../../router.js';
 import { getGreeting, formatDateLong, getLugarBadge, getCircuitColor, formatSetsReps } from '../../utils/format.js';
 import { formatDateISO, getNextTrainingDay, isTrainingDay, WEEKDAY_LABELS, MONTH_NAMES, getISODayOfWeek, getCycleWeek, getFocusForDay } from '../../utils/calendar.js';
@@ -263,7 +264,7 @@ function renderRoutineCard() {
       <div class="home-day-card-body" id="routine-card-top">
         <div style="flex:1;min-width:0;">
           <div class="routine-card-header">
-            <span class="badge ${badge.cls}">${badge.text} ${rutina.numero}</span>
+            <span class="badge ${badge.cls}" style="${badge.style}">${badge.text} ${rutina.numero}</span>
           </div>
           <div class="routine-name">${rutina.nombre}</div>
           <div class="home-day-card-status">
@@ -392,9 +393,12 @@ function renderCircuits(circuitos) {
 
 function openAssignSheet() {
   const snapshotDate = new Date(selectedDate.getTime());
-  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY', 'RECOVERY'];
-  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾', RECOVERY: 'Recovery' };
-  const LUGAR_LABELS = { SPORT_FITNESS: 'Sport Fitness', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾 Uruguay', RECOVERY: 'Recovery' };
+  // Los lugares salen del registro, no de una lista fija: así aparecen acá los
+  // que el usuario crea desde la app.
+  const LUGARES = getLugares();
+  const LUGAR_ORDER = LUGARES.map(l => l.id);
+  const LUGAR_CHIPS = Object.fromEntries(LUGARES.map(l => [l.id, l.corto]));
+  const LUGAR_LABELS = Object.fromEntries(LUGARES.map(l => [l.id, l.nombre]));
 
   let activeLugares = [...LUGAR_ORDER];
   let query = '';
@@ -505,8 +509,9 @@ function openAssignSheet() {
 
 function openEditSheet(currentRutina) {
   const snapshotDate = new Date(selectedDate.getTime());
-  const LUGAR_ORDER = ['SPORT_FITNESS', 'RIO', 'CASA', 'URUGUAY', 'RECOVERY'];
-  const LUGAR_CHIPS = { SPORT_FITNESS: 'Sport', RIO: 'Río', CASA: 'Casa', URUGUAY: '🇺🇾', RECOVERY: 'Recovery' };
+  const LUGARES = getLugares();
+  const LUGAR_ORDER = LUGARES.map(l => l.id);
+  const LUGAR_CHIPS = Object.fromEntries(LUGARES.map(l => [l.id, l.corto]));
 
   let activeLugares = [currentRutina.lugar];
   let query = '';
@@ -530,7 +535,7 @@ function openEditSheet(currentRutina) {
         <div class="swap-item ${isCurrent ? 'swap-item--current' : ''}" data-id="${r.id}">
           <div class="swap-item-top" data-action="expand" data-id="${r.id}">
             <div style="flex:1;min-width:0;">
-              <span class="badge ${badge.cls}" style="font-size:var(--text-xs);">${badge.text} ${r.numero}</span>
+              <span class="badge ${badge.cls}" style="${badge.style}font-size:var(--text-xs);">${badge.text} ${r.numero}</span>
               <div style="font-weight:var(--fw-bold);margin-top:2px;">${r.nombre}</div>
               <div style="font-size:var(--text-sm);color:var(--color-text-muted);">${r.foco || ''} · ${r.circuitos.length} circuitos</div>
             </div>

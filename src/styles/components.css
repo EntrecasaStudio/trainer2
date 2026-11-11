@@ -462,11 +462,14 @@
   letter-spacing: 0.5px;
 }
 
-.badge-sport { background: rgba(255,205,0,0.15); color: var(--color-accent); }
-.badge-rio { background: rgba(10,132,255,0.12); color: var(--color-tag-piernas); }
-.badge-casa { background: rgba(48,209,88,0.12); color: #30D158; }
-.badge-uy { background: rgba(167,139,250,0.15); color: var(--color-nat); }
-.badge-recovery { background: rgba(255,107,139,0.12); color: #FF6B8B; }
+/* Una sola regla para todos los lugares. El color llega como --badge-color
+   desde el registro del lugar (ver lugares.js), así que un lugar creado desde
+   la app tiene su badge sin agregar CSS. Antes había una clase por lugar, que
+   era uno de los seis sitios donde estaba duplicada la lista. */
+.badge-lugar {
+  background: color-mix(in srgb, var(--badge-color, var(--color-text-muted)) 14%, transparent);
+  color: var(--badge-color, var(--color-text-muted));
+}
 
 /* Tags (muscle group pills) */
 .tag {

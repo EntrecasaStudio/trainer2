@@ -1,16 +1,12 @@
 import { store } from '../../store.js';
+import { getLugares } from '../../lugares.js';
 import { router } from '../../router.js';
 import { showToast } from '../components/toast.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES, searchEjercicios } from '../../ejercicios-catalogo.js';
 import { openEjercicioInfo } from './ejercicios.js';
 
-const LUGAR_OPTIONS = [
-  { key: 'SPORT_FITNESS', label: 'Sport' },
-  { key: 'RIO', label: 'Río' },
-  { key: 'CASA', label: 'Casa' },
-  { key: 'URUGUAY', label: '🇺🇾' },
-  { key: 'RECOVERY', label: 'Recovery' },
-];
+// Los lugares salen del registro (lugares.js), no de una lista fija acá.
+const lugarOptions = () => getLugares().map(l => ({ key: l.id, label: l.corto }));
 
 let _rutina = null;
 let _original = null;
@@ -50,7 +46,7 @@ function render(container) {
       <div class="edit-field">
         <label class="edit-label">Lugar</label>
         <div class="edit-lugar-chips" id="edit-lugar-chips">
-          ${LUGAR_OPTIONS.map(l => `
+          ${lugarOptions().map(l => `
             <button class="lugar-chip ${_rutina.lugar === l.key ? 'active' : ''}" data-lugar="${l.key}">${l.label}</button>
           `).join('')}
         </div>

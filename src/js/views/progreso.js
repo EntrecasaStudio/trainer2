@@ -343,7 +343,7 @@ export function mountProgreso(container) {
       <div class="progreso-exercise">
         <div style="display:flex;align-items:center;gap:var(--space-sm);margin-bottom:var(--space-xs);">
           <div class="progreso-exercise-name" style="flex:1;">${e.ejercicio}</div>
-          <span class="badge ${badge.cls}" style="font-size:9px;padding:1px 6px;">${badge.text}</span>
+          <span class="badge ${badge.cls}" style="${badge.style}font-size:9px;padding:1px 6px;">${badge.text}</span>
         </div>
         <div style="display:flex;align-items:baseline;gap:var(--space-sm);">
           <span class="progreso-weight">${e.lastWeight}</span>

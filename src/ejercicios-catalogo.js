@@ -413,7 +413,7 @@ export const EJERCICIOS_CATALOGO = [
   {
     nombre: 'Vuelo lateral inclinado',
     grupo: 'Hombros', tipo: 'funcional', usaPeso: true,
-    equipo: [['banco_regulable'], ['mancuernas']],
+    equipo: [['mancuernas']],
     musculos: 'Deltoides lateral, Trapecio',
     tags: 'Leaning lateral raise, Incline lateral raise',
     descripcion: 'Agarrate de una columna o soporte con un brazo, incliná el cuerpo en diagonal alejándote del punto de apoyo. Con el brazo libre y una mancuerna, levantá lateralmente hasta la altura del hombro. El ángulo inclinado aumenta el rango de movimiento y mantiene tensión constante en el deltoides lateral, especialmente en la parte baja del recorrido. (Leaning Lateral Raise)'
@@ -534,7 +534,7 @@ export const EJERCICIOS_CATALOGO = [
   {
     nombre: 'French press',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: true,
-    equipo: [['banco_plano'], ['mancuernas', 'barra_z']],
+    equipo: [['mancuernas', 'barra_z', 'barra']],
     musculos: 'Tríceps, Antebrazo',
     tags: 'Skull crusher, Lying tricep extension',
     descripcion: 'Acostado en banco plano o en el piso, con barra o mancuernas, brazos extendidos vertical. Flexioná los codos bajando el peso hacia la frente o detrás de la cabeza, manteniendo los codos fijos apuntando al techo. Extendé volviendo a la posición inicial. Trabaja la cabeza larga del tríceps con máximo estiramiento. (Skull Crusher)'
@@ -550,7 +550,7 @@ export const EJERCICIOS_CATALOGO = [
   {
     nombre: 'Curl bayesiano',
     grupo: 'Brazos', tipo: 'funcional', usaPeso: false,
-    equipo: [['polea']],
+    equipo: [['bandas', 'polea']],
     musculos: 'Bíceps (cabeza larga), Braquial, Antebrazo',
     tags: 'Resistance band bayesian curl, Banded bayesian curl, Bayesian cable curl',
     descripcion: 'De espaldas al anclaje, con la banda larga fijada detrás tuyo a la altura de la cadera o el pecho. Agarrá la banda con una mano y dejá el brazo colgando POR DETRÁS del torso: esa posición de hombro en extensión es todo el punto, porque es la única que estira la cabeza larga del bíceps desde el inicio. Hacé el curl llevando la mano al hombro sin adelantar el codo ni inclinar el torso — si el codo se va hacia adelante se convierte en un curl común y perdés el estiramiento, que es lo que se busca. Bajá en 3 segundos hasta extender del todo. La banda da su máxima tensión justo en el estiramiento, donde el resto de los curls tiene la mínima. OJO CON EL VIDEO: la versión con banda no está filmada en ningún lado. Lo que vas a encontrar es el bayesiano en polea — miralo por la POSICIÓN del brazo y del codo, que es idéntica, e ignorá la máquina. Hacé todas las reps de un brazo antes de cambiar. (Banded Bayesian Curl)'
