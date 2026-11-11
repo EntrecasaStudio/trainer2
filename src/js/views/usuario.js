@@ -1,6 +1,7 @@
 import { getCurrentUser, loginWithGoogle, logout } from '../services/firebase.js';
 import { getSyncStatus, downloadAllData, uploadAllData } from '../services/sync.js';
 import { store } from '../../store.js';
+import { getLugares } from '../../lugares.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES } from '../../ejercicios-catalogo.js';
 
 export function mountUsuario(container) {
@@ -65,10 +66,8 @@ function render(container) {
           </button>
           <select id="sel-lugar-rutinas" class="btn btn-secondary" style="width:auto;padding:0 var(--space-xs);border-top-left-radius:0;border-bottom-left-radius:0;appearance:auto;">
             <option value="">Todas</option>
-            <option value="CASA" selected>Casa</option>
-            <option value="SPORT_FITNESS">Gym</option>
-            <option value="URUGUAY">UY</option>
-            <option value="RECOVERY">Recovery</option>
+            ${getLugares().map(l => `
+            <option value="${l.id}"${l.id === 'CASA' ? ' selected' : ''}>${l.corto}</option>`).join('')}
           </select>
         </div>
         <button class="btn btn-secondary" id="btn-copy-sesiones" style="flex:1;">

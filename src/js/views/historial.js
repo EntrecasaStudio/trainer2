@@ -1,4 +1,5 @@
 import { store } from '../../store.js';
+import { getLugares } from '../../lugares.js';
 import { formatDateLong, formatDuration, getLugarBadge, formatSetsReps, getCircuitColor, parseDecimal } from '../../utils/format.js';
 import { formatDateISO } from '../../utils/calendar.js';
 import { openModal, closeModal } from '../components/modal.js';
@@ -76,11 +77,8 @@ function renderFilters() {
   el.innerHTML = `
     <div style="display:flex;gap:var(--space-xs);flex-wrap:wrap;">
       <button class="hist-filter-chip ${!_filterLugar ? 'active' : ''}" data-lugar="">Todas</button>
-      <button class="hist-filter-chip ${_filterLugar === 'SPORT_FITNESS' ? 'active' : ''}" data-lugar="SPORT_FITNESS">Gym</button>
-      <button class="hist-filter-chip ${_filterLugar === 'RIO' ? 'active' : ''}" data-lugar="RIO">Río</button>
-      <button class="hist-filter-chip ${_filterLugar === 'CASA' ? 'active' : ''}" data-lugar="CASA">Casa</button>
-      <button class="hist-filter-chip ${_filterLugar === 'URUGUAY' ? 'active' : ''}" data-lugar="URUGUAY">Uruguay</button>
-      <button class="hist-filter-chip ${_filterLugar === 'RECOVERY' ? 'active' : ''}" data-lugar="RECOVERY">Recovery</button>
+      ${getLugares().map(l => `
+      <button class="hist-filter-chip ${_filterLugar === l.id ? 'active' : ''}" data-lugar="${l.id}">${l.corto}</button>`).join('')}
     </div>
   `;
 
@@ -175,7 +173,7 @@ function renderList() {
             <div class="historial-item" data-id="${s.id}" style="cursor:pointer;">
               <div style="display:flex;align-items:center;gap:var(--space-sm);">
                 <div class="historial-date" style="flex:1;">${formatDateLong(new Date(s.fecha + 'T00:00:00'))}</div>
-                <span class="badge ${badge.cls}" style="font-size:9px;padding:1px 6px;">${badge.text}</span>
+                <span class="badge ${badge.cls}" style="${badge.style}font-size:9px;padding:1px 6px;">${badge.text}</span>
               </div>
               <div class="historial-name">${s.rutinaNombre || 'Sesión'}</div>
               <div class="historial-stats">

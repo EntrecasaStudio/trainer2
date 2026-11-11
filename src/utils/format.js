@@ -1,4 +1,5 @@
 import { WEEKDAY_FULL, MONTH_NAMES } from './calendar.js';
+import { getLugar } from '../lugares.js';
 
 export function getGreeting() {
   const h = new Date().getHours();
@@ -30,15 +31,18 @@ export function formatDuration(seconds) {
   return rm ? `${h}h ${rm}m` : `${h}h`;
 }
 
+// El color ya no viene de una clase fija por lugar sino del registro, así que
+// un lugar creado desde la app tiene su badge sin tocar el CSS. `style` se pone
+// en el mismo elemento que `cls`; .badge-lugar lee --badge-color de ahí.
 export function getLugarBadge(lugar) {
-  switch (lugar) {
-    case 'SPORT_FITNESS': return { text: 'SPORT', cls: 'badge-sport' };
-    case 'RIO': return { text: 'RÍO', cls: 'badge-rio' };
-    case 'CASA': return { text: 'CASA', cls: 'badge-casa' };
-    case 'URUGUAY': return { text: '🇺🇾', cls: 'badge-uy' };
-    case 'RECOVERY': return { text: 'REC', cls: 'badge-recovery' };
-    default: return { text: lugar, cls: '' };
-  }
+  const l = getLugar(lugar);
+  if (!l) return { text: '', cls: '', style: '', color: 'var(--color-text-muted)' };
+  return {
+    text: l.badge,
+    cls: 'badge-lugar',
+    style: `--badge-color:${l.color};`,
+    color: l.color,
+  };
 }
 
 export function getCircuitColor(nombre) {

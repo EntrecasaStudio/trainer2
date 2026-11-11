@@ -11,6 +11,7 @@ const KEYS = {
   version: 'gym_version',
   filterLugar: 'gym_filter_lugar',
   activeUser: 'gym_active_user',
+  lugares: 'gym_lugares',
 };
 
 export const store = {

@@ -1,17 +1,13 @@
 import { store } from '../../store.js';
+import { getLugares } from '../../lugares.js';
 import { getLugarBadge, getCircuitColor, formatSetsReps } from '../../utils/format.js';
 import { router } from '../../router.js';
 import { showToast, showToastAction } from '../components/toast.js';
 import { closeModal } from '../components/modal.js';
 import { WEEKDAY_FULL, formatDateISO } from '../../utils/calendar.js';
 
-const LUGAR_LABELS = {
-  SPORT_FITNESS: 'Sport',
-  RIO: 'Río',
-  CASA: 'Casa',
-  URUGUAY: '🇺🇾',
-  RECOVERY: 'Recovery',
-};
+// Los lugares salen del registro (lugares.js), no de una lista fija acá.
+const lugarLabels = () => Object.fromEntries(getLugares().map(l => [l.id, l.corto]));
 
 const DAYS = [
   { iso: 1, short: 'Lun', full: 'Lunes' },
@@ -154,7 +150,7 @@ function getNextNumero() {
 
 function renderFilters() {
   const filtersEl = document.getElementById('lugar-filters');
-  filtersEl.innerHTML = Object.entries(LUGAR_LABELS).map(([key, label]) => `
+  filtersEl.innerHTML = Object.entries(lugarLabels()).map(([key, label]) => `
     <button class="lugar-chip ${_activeLugares.includes(key) ? 'active' : ''}" data-lugar="${key}">${label}</button>
   `).join('');
 
@@ -232,7 +228,7 @@ function renderList() {
         <div class="rutina-list-top">
           <div style="flex:1;min-width:0;">
             <div class="rutina-list-header">
-              <span class="badge ${badge.cls}">${badge.text} ${r.numero}</span>
+              <span class="badge ${badge.cls}" style="${badge.style}">${badge.text} ${r.numero}</span>
             </div>
             <div class="rutina-list-name">${r.nombre}</div>
             <div class="rutina-list-meta">
@@ -462,7 +458,7 @@ function showDayPicker(rutina) {
           <div style="margin-top:var(--space-md);padding-top:var(--space-md);border-top:1px solid var(--color-border);">
             <p style="font-size:var(--text-xs);color:var(--color-text-muted);margin-bottom:var(--space-sm);">Asignada en:</p>
             <div style="display:flex;flex-wrap:wrap;gap:var(--space-xs);">
-              ${assignedDates.slice(0, 8).map(d => `<span class="badge badge-sport">${d}</span>`).join('')}
+              ${assignedDates.slice(0, 8).map(d => `<span class="badge badge-lugar" style="--badge-color:var(--color-accent);">${d}</span>`).join('')}
               ${assignedDates.length > 8 ? `<span style="font-size:var(--text-xs);color:var(--color-text-muted);">+${assignedDates.length - 8} más</span>` : ''}
             </div>
           </div>
