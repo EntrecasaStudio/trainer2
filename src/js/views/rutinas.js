@@ -1,5 +1,6 @@
 import { store } from '../../store.js';
 import { getLugares } from '../../lugares.js';
+import { openLugaresSheet } from './lugar-wizard.js';
 import { getLugarBadge, getCircuitColor, formatSetsReps } from '../../utils/format.js';
 import { router } from '../../router.js';
 import { showToast, showToastAction } from '../components/toast.js';
@@ -65,6 +66,9 @@ export function mountRutinas(container) {
     </div>
     <div class="rutinas-filters-row">
       <div class="rutinas-filters" id="lugar-filters"></div>
+      <button class="btn btn-secondary btn-sm" data-action="open-lugares" style="flex-shrink:0;gap:4px;" title="Lugares">
+        <i class="ph ph-map-pin" style="font-size:16px;"></i> Lugares
+      </button>
       <button class="btn btn-secondary btn-sm" data-action="open-ejercicios" style="flex-shrink:0;gap:4px;">
         <i class="ph ph-barbell" style="font-size:16px;"></i> Ejercicios
       </button>
@@ -94,6 +98,12 @@ export function mountRutinas(container) {
   });
 
   // Open ejercicios
+  container.querySelector('[data-action="open-lugares"]').addEventListener('click', () => {
+    // Al cerrarse vuelve a pintar los filtros y la lista, para que el lugar
+    // recién creado aparezca sin recargar.
+    openLugaresSheet({ alTerminar: () => { renderFilters(); renderList(); } });
+  });
+
   container.querySelector('[data-action="open-ejercicios"]').addEventListener('click', () => {
     router.navigate('ejercicios');
   });
