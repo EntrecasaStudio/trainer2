@@ -199,7 +199,18 @@
   margin-bottom: var(--space-sm);
 }
 .exercise-card.expanded { border-color: var(--color-border); }
-.exercise-card.all-done { opacity: 0.6; border-color: rgba(34,197,94,0.3); }
+/* Completado: la card se tiñe de verde, NO se atenúa. Atenuar la card entera
+   (como hacía el `opacity: .6` que estaba acá) deja al contador "2/2" —la señal
+   que más importa— como el elemento más débil de la pantalla. Además nunca se
+   aplicaba: la cascada de entrada (`animation: cardFadeIn ... both`, más abajo)
+   termina en `opacity: 1` y una animación le gana a una declaración normal.
+   Lo que se apaga es sólo el texto, que ya cumplió su función. */
+.exercise-card.all-done {
+  border-color: rgba(74,222,128,0.45);
+  background: color-mix(in srgb, #4ade80 5%, var(--color-surface));
+}
+.exercise-card.all-done .exercise-card-name,
+.exercise-card.all-done .exercise-summary > span { opacity: 0.55; }
 
 .exercise-card-header {
   display: flex;
@@ -246,30 +257,52 @@
   padding: var(--space-xs) 0 0;
   font-variant-numeric: tabular-nums;
 }
+/* El texto cede el ancho que necesite el botón y se recorta si no entra. */
+.exercise-summary > span {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
+/* Marcar/desmarcar TODAS las series del ejercicio. Es una acción de otra escala
+   que el check de una serie, así que no puede verse igual: ocupa el sector
+   derecho, lleva fondo propio (se lee como control, no como adorno) y muestra
+   el contador. El número es la única señal que no depende del color: con sol en
+   la pantalla, o con daltonismo rojo-verde, "1/2" se sigue leyendo. */
 .check-all-btn {
-  width: 44px; height: 44px;
+  min-width: 86px; height: 44px;
+  padding: 0 12px;
+  gap: 7px;
   border: none;
-  background: transparent;
+  border-radius: 12px;
+  background: rgba(148,163,184,0.12);
   color: var(--color-text-muted);
-  opacity: 0.35;
   cursor: pointer;
   flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  transition: all 0.15s;
+  transition: background 0.15s, color 0.15s, transform 0.15s;
   -webkit-tap-highlight-color: transparent;
 }
-.check-all-btn:active { transform: scale(0.85); }
-/* Parcial: algunas series hechas, no todas. Queda en líneas (icono sin
-   relleno) y en verde tenue, para distinguirlo del gris de "nada hecho"
-   sin confundirlo con el verde pleno de "completo". */
+.check-all-count {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.check-all-btn:active { transform: scale(0.93); }
+/* Parcial: algunas series hechas, no todas. Verde pero con fondo tenue; el
+   contador desambigua cuánto falta. */
 .check-all-btn.partial {
   color: #4ade80;
-  opacity: 0.4;
+  background: rgba(74,222,128,0.14);
 }
+/* Completo: mismo verde, fondo más sólido, e icono relleno (lo pone el markup).
+   Tres señales redundantes a la vez: número, fondo y relleno. */
 .check-all-btn.all-done {
   color: #4ade80;
-  opacity: 1;
+  background: rgba(74,222,128,0.22);
 }
 
 /* ── Animated collapse wrapper ──────────────────────────────────────────── */
