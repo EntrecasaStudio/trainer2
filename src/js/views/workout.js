@@ -517,7 +517,8 @@ function renderExerciseCard(e, ci, ei) {
   } else if (chalecoExtra) {
     summaryParts.push(`${chalecoExtra} kg ${chalecoIcon}`);
   }
-  if (doneCount > 0) summaryParts.push(`${doneCount}/${totalSeries} ✓`);
+  // El progreso NO va acá: lo dice el contador del botón "hacer todo", donde se
+  // lee de un vistazo. Repetirlo en esta línea le robaba lugar a series/reps/kg.
   const summaryText = summaryParts.join(' · ');
 
   return `
@@ -547,8 +548,12 @@ function renderExerciseCard(e, ci, ei) {
         <div class="exercise-collapse-inner">
           <div class="exercise-summary">
             <span>${summaryText}</span>
-            <button class="check-all-btn ${allDone ? 'all-done' : (doneCount > 0 ? 'partial' : '')}" data-ci="${ci}" data-ei="${ei}">
-              <i class="${allDone ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:24px;"></i>
+            <button class="check-all-btn ${allDone ? 'all-done' : (doneCount > 0 ? 'partial' : '')}"
+                    data-ci="${ci}" data-ei="${ei}"
+                    aria-label="${allDone ? 'Desmarcar' : 'Marcar'} las ${totalSeries} series de ${e.nombre}"
+                    title="${allDone ? 'Desmarcar todas' : 'Marcar todas'}">
+              <i class="${allDone ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:22px;"></i>
+              <span class="check-all-count">${doneCount}/${totalSeries}</span>
             </button>
           </div>
         </div>
