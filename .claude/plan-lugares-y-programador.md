@@ -217,9 +217,15 @@ expertos antes de fijar los números.
   nombre genérico** (*Remo*, *Bíceps curl*, *Floor press*, *Press militar*) y no
   dicen el implemento. Van como "cualquier cosa que se sostenga con la mano".
 
-**Siguiente**: `src/lugares.js` + reemplazo de las seis duplicaciones + wizard.
+- `src/lugares.js` — lugares como dato. Los cinco de siempre como `builtin`, los
+  nuevos en `gym_lugares`, sincronizados con merge por ítem y borrado blando.
+  Eran **ocho** duplicaciones, no seis: faltaban los chips de `historial.js` y
+  el selector de "Copiar rutinas" de `usuario.js`, que además **no tenía RÍO**.
+- `src/js/views/lugar-wizard.js` — la hoja de lugares y el wizard de 6 pasos,
+  con el paso de cobertura que dice qué grupo queda sin cubrir y con qué ítem
+  se arregla.
 
-**Después**: el programador.
+**Siguiente**: el programador de ciclos (Parte 2).
 
 ---
 
