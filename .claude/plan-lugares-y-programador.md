@@ -58,7 +58,7 @@ Está en `src/equipamiento.js`, derivada de recorrer los 227 ejercicios propios:
    pueda saltar. En un departamento eso manda más que tener o no una mancuerna,
    y ninguna taxonomía ajena lo contempla.
 
-5 categorías, 27 ítems:
+5 categorías, 28 ítems:
 
 - **Peso libre** — mancuernas, barra y discos, barra Z, kettlebells, discos sueltos, balón medicinal
 - **Máquinas** — poleas, máquinas de fuerza, multipower, cardio
@@ -207,7 +207,7 @@ expertos antes de fijar los números.
 
 **Hecho** (commit de esta tanda):
 
-- `src/equipamiento.js` — 5 categorías, 27 ítems, 6 presets, `estaDisponible()`,
+- `src/equipamiento.js` — 5 categorías, 28 ítems, 6 presets, `estaDisponible()`,
   `equipoFaltante()`, `describirEquipo()`.
 - Campo `equipo` en los **227 ejercicios** del catálogo. Cambio puramente
   aditivo: 227 inserciones, 0 borrados. Validado: 0 sin campo, 0 con forma
