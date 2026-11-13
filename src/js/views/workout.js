@@ -495,11 +495,29 @@ function renderWorkout(container) {
   bindEvents(container);
 }
 
-// El botón de "todas" avanza de a una serie y, estando completo, las borra.
+// En HIIT el botón marca TODO de una, como antes del ciclo. El ciclo sirve para
+// un circuito de fuerza, que se recorre por rondas con 45-90 s de descanso entre
+// una y otra: ahí hay tiempo de registrar la ronda. En HIIT el descanso es de
+// 10-30 segundos o ninguno, así que no se marca sobre la marcha sino todo junto
+// al final, y cuatro toques para eso es puro estorbo.
+//
+// Se detecta por el NOMBRE del circuito, no por la cantidad de series. Hay
+// circuitos mixtos —"CORE+CARDIO" en Río tiene Ab wheel 3x, Hollow body 3x y
+// Pasadas de velocidad 4x— donde sí hay descanso y el ciclo es lo que
+// corresponde. Es además la misma prueba que ya usa getCircuitColor().
+function esCircuitoHiit(circ) {
+  return /hiit/i.test(circ?.nombre || '');
+}
+
 // El texto describe lo que hará el PRÓXIMO toque, no el estado actual: el
 // estado ya lo dice el contador. Lo usan el render y la actualización en sitio,
 // así que vive acá para que no se desincronicen.
-function checkAllLabels(nombre, hechas, total) {
+function checkAllLabels(nombre, hechas, total, hiit) {
+  if (hiit) {
+    return hechas >= total
+      ? { aria: `Desmarcar las ${total} series de ${nombre}`, title: 'Desmarcar todas' }
+      : { aria: `Marcar las ${total} series de ${nombre}`, title: `Marcar las ${total} series` };
+  }
   return hechas >= total
     ? { aria: `Borrar las ${total} series marcadas de ${nombre}`, title: 'Borrar todas' }
     : { aria: `Marcar la serie ${hechas + 1} de ${total} de ${nombre}`, title: `Marcar la serie ${hechas + 1}` };
@@ -560,8 +578,8 @@ function renderExerciseCard(e, ci, ei) {
             <span>${summaryText}</span>
             <button class="check-all-btn ${allDone ? 'all-done' : (doneCount > 0 ? 'partial' : '')}"
                     data-ci="${ci}" data-ei="${ei}"
-                    aria-label="${checkAllLabels(e.nombre, doneCount, totalSeries).aria}"
-                    title="${checkAllLabels(e.nombre, doneCount, totalSeries).title}">
+                    aria-label="${checkAllLabels(e.nombre, doneCount, totalSeries, esCircuitoHiit(circ)).aria}"
+                    title="${checkAllLabels(e.nombre, doneCount, totalSeries, esCircuitoHiit(circ)).title}">
               <i class="${allDone ? 'ph-fill' : 'ph'} ph-check-circle" style="font-size:22px;"></i>
               <span class="check-all-count">${doneCount}/${totalSeries}</span>
             </button>
@@ -868,7 +886,11 @@ function bindExerciseEvents(container, scope) {
     btn.addEventListener('click', () => {
       const { ci, ei } = btn.dataset;
       const series = workoutState.circuitos[ci].ejercicios[ei].seriesData;
-      if (series.length && series.every(s => s.done)) {
+      const todasHechas = series.length > 0 && series.every(s => s.done);
+      if (esCircuitoHiit(workoutState.circuitos[ci])) {
+        // HIIT: todo o nada, como antes del ciclo.
+        series.forEach(s => { s.done = !todasHechas; });
+      } else if (todasHechas) {
         series.forEach(s => { s.done = false; });
       } else {
         const siguiente = series.find(s => !s.done);
@@ -1128,7 +1150,7 @@ function syncDoneUI(container, ci, ei) {
     if (icono) icono.className = `${allDone ? 'ph-fill' : 'ph'} ph-check-circle`;
     const cnt = btn.querySelector('.check-all-count');
     if (cnt) cnt.textContent = `${hechas}/${total}`;
-    const { aria, title } = checkAllLabels(e.nombre, hechas, total);
+    const { aria, title } = checkAllLabels(e.nombre, hechas, total, esCircuitoHiit(workoutState.circuitos[ci]));
     btn.setAttribute('aria-label', aria);
     btn.title = title;
   }
