@@ -495,6 +495,18 @@ function renderWorkout(container) {
   bindEvents(container);
 }
 
+// El long-press no se ve. Se avisa una sola vez, la primera vez que alguien
+// deja un ejercicio a medias desde el chip, que es justo el momento en que la
+// pista es útil. Después nunca más.
+const PISTA_KEY = 'gym_pista_mantener_apretado';
+function pistaMantenerApretado() {
+  try {
+    if (localStorage.getItem(PISTA_KEY)) return;
+    localStorage.setItem(PISTA_KEY, '1');
+    showToast('Mantené apretado para marcar todas');
+  } catch { /* sin localStorage no hay pista, y no pasa nada */ }
+}
+
 // En HIIT el botón marca TODO de una, como antes del ciclo. El ciclo sirve para
 // un circuito de fuerza, que se recorre por rondas con 45-90 s de descanso entre
 // una y otra: ahí hay tiempo de registrar la ronda. En HIIT el descanso es de
@@ -882,19 +894,61 @@ function bindExerciseEvents(container, scope) {
   // ("cuántas") y los checks del desplegado posicionales ("la serie 2") no entra
   // en conflicto: cuando se saltea una serie es la última, porque el orden es
   // secuencial. Hacer la 1 y la 3 sin la 2 no pasa entrenando.
+  // Y MANTENERLO APRETADO marca todas de una. Las dos cosas que se piden del
+  // botón chocan en el primer toque —con 2 series, ese toque o marca una o
+  // marca todas— así que hace falta un segundo canal de entrada. Partir el chip
+  // en dos zonas no daba: a 86px quedan de 43, por debajo del mínimo de 44, y
+  // ensancharlo a 112 recorta el texto del resumen en pantallas de 360.
+  //
+  // El gesto es invisible por naturaleza, así que el chip se llena mientras se
+  // mantiene: si alguna vez se aprieta de más, se ve arrancar el relleno y el
+  // gesto queda aprendido. Soltar antes no hace nada y cuenta como toque.
   scope.querySelectorAll('.check-all-btn').forEach(btn => {
+    const { ci, ei } = btn.dataset;
+    let timer = null;
+    let yaMarco = false;   // el long-press completó: hay que comerse el click
+
+    const series = () => workoutState.circuitos[ci].ejercicios[ei].seriesData;
+
+    const cancelar = () => {
+      clearTimeout(timer); timer = null;
+      btn.classList.remove('cargando');
+    };
+
+    const marcarTodas = () => {
+      yaMarco = true;
+      btn.classList.remove('cargando');
+      btn.classList.add('completado-de-una');
+      setTimeout(() => btn.classList.remove('completado-de-una'), 300);
+      series().forEach(s => { s.done = true; });
+      persistWorkout();
+      syncDoneUI(container, ci, ei);
+    };
+
+    btn.addEventListener('pointerdown', (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      yaMarco = false;
+      if (series().every(s => s.done)) return;   // ya está completo, nada que mantener
+      btn.classList.add('cargando');
+      timer = setTimeout(marcarTodas, 450);
+    });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev =>
+      btn.addEventListener(ev, cancelar));
+
     btn.addEventListener('click', () => {
-      const { ci, ei } = btn.dataset;
-      const series = workoutState.circuitos[ci].ejercicios[ei].seriesData;
-      const todasHechas = series.length > 0 && series.every(s => s.done);
+      if (yaMarco) { yaMarco = false; return; }   // el gesto ya hizo lo suyo
+      cancelar();
+      const s = series();
+      const todasHechas = s.length > 0 && s.every(x => x.done);
       if (esCircuitoHiit(workoutState.circuitos[ci])) {
         // HIIT: todo o nada, como antes del ciclo.
-        series.forEach(s => { s.done = !todasHechas; });
+        s.forEach(x => { x.done = !todasHechas; });
       } else if (todasHechas) {
-        series.forEach(s => { s.done = false; });
+        s.forEach(x => { x.done = false; });
       } else {
-        const siguiente = series.find(s => !s.done);
+        const siguiente = s.find(x => !x.done);
         if (siguiente) siguiente.done = true;
+        pistaMantenerApretado();
       }
       persistWorkout();
       syncDoneUI(container, ci, ei);
