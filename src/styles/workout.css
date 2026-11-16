@@ -292,6 +292,44 @@
   line-height: 1;
 }
 .check-all-btn:active { transform: scale(0.93); }
+
+/* Mantener apretado marca todas. El relleno avanza durante el gesto, que es lo
+   que lo vuelve descubrible: si alguna vez se aprieta de más, se ve arrancar y
+   el gesto queda aprendido. En iOS hay que bloquear el callout y la selección,
+   porque mantener apretado sobre texto abre el menú de copiar. */
+.check-all-btn {
+  position: relative;
+  overflow: hidden;
+  -webkit-touch-callout: none;
+  user-select: none; -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.check-all-btn > * { position: relative; z-index: 1; }
+.check-all-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  transform: scaleX(0); transform-origin: left;
+  /* Verde de "completo", no currentColor: desde 0/N el color del botón es gris
+     y el relleno quedaría gris sobre gris, que es justo cuando más se usa el
+     gesto. Además así el relleno anticipa el estado al que va a llegar. */
+  background: #4ade80; opacity: 0.3;
+  pointer-events: none;
+}
+.check-all-btn.cargando::before {
+  transform: scaleX(1);
+  transition: transform 450ms linear;   /* igual que el timer del gesto */
+}
+/* Pulso al completar, para que el gesto se sienta reconocido. */
+@keyframes checkAllPulso {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+.check-all-btn.completado-de-una { animation: checkAllPulso 300ms ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .check-all-btn.cargando::before { transition: none; }
+  .check-all-btn.completado-de-una { animation: none; }
+}
 /* Parcial: algunas series hechas, no todas. Verde pero con fondo tenue; el
    contador desambigua cuánto falta. */
 .check-all-btn.partial {
