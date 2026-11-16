@@ -12,6 +12,7 @@ const KEYS = {
   filterLugar: 'gym_filter_lugar',
   activeUser: 'gym_active_user',
   lugares: 'gym_lugares',
+  cambios: 'gym_cambios_rutina',
 };
 
 export const store = {

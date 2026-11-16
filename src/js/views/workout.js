@@ -1,4 +1,5 @@
 import { store } from '../../store.js';
+import { registrarCambios } from '../../cambios.js';
 import { router } from '../../router.js';
 import { inferUsaPeso } from '../../utils/inferUsaPeso.js';
 import { parseDecimal } from '../../utils/format.js';
@@ -1556,6 +1557,7 @@ function showSaveRoutineChangesModal(container, rutinaId, circuitos, skipLabel, 
   const close = () => { overlay.classList.add('hidden'); overlay.innerHTML = ''; };
 
   overlay.querySelector('#btn-update-rutina').addEventListener('click', () => {
+    registrarCambios(rutina, { ...rutina, circuitos: cleanCircuitos });
     store.update(store.KEYS.rutinas, rutina.id, { circuitos: cleanCircuitos, userModified: true });
     close();
     showToast(`Rutina ${rutina.numero} actualizada`);
