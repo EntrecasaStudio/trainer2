@@ -1,4 +1,5 @@
 import { store } from '../../store.js';
+import { registrarCambios } from '../../cambios.js';
 import { getLugares } from '../../lugares.js';
 import { router } from '../../router.js';
 import { showToast } from '../components/toast.js';
@@ -427,6 +428,9 @@ function showSaveModal(container) {
   overlay.querySelector('#btn-save-same').addEventListener('click', () => {
     _rutina.updatedAt = new Date().toISOString();
     _rutina.userModified = true;
+    // Se compara contra la versión que estaba al abrir el editor. Si sólo
+    // cambiaron reps o series no escribe nada.
+    registrarCambios(_original, _rutina);
     store.update(store.KEYS.rutinas, _rutina.id, _rutina);
     close();
     showToast('Rutina guardada');

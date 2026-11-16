@@ -26,12 +26,13 @@ const SYNC_KEYS = {
   gym_ejercicios_custom: 'ejerciciosCustom',
   gym_theme: 'theme',
   gym_lugares: 'lugares',
+  gym_cambios_rutina: 'cambiosRutina',
 };
 
 // Keys that are arrays of items with `id` field — use item-level merge.
 // gym_lugares entra acá a propósito: si se crea un lugar en el iPad y otro en
 // el iPhone, se quieren los dos. Un reemplazo del array entero perdería uno.
-const MERGEABLE_KEYS = new Set(['gym_rutinas', 'gym_sesiones', 'gym_lugares']);
+const MERGEABLE_KEYS = new Set(['gym_rutinas', 'gym_sesiones', 'gym_lugares', 'gym_cambios_rutina']);
 
 const _timers = {};
 const DEBOUNCE_MS = 2000;

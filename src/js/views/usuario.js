@@ -2,6 +2,7 @@ import { getCurrentUser, loginWithGoogle, logout } from '../services/firebase.js
 import { getSyncStatus, downloadAllData, uploadAllData } from '../services/sync.js';
 import { store } from '../../store.js';
 import { getLugares } from '../../lugares.js';
+import { openCambiosSheet } from './cambios-ui.js';
 import { EJERCICIOS_CATALOGO, GRUPOS_MUSCULARES } from '../../ejercicios-catalogo.js';
 
 export function mountUsuario(container) {
@@ -79,6 +80,10 @@ function render(container) {
         <i class="ph ph-barbell" style="font-size:16px;margin-right:var(--space-xs);"></i> Ver catálogo de ejercicios
       </button>
 
+      <button class="btn btn-secondary" id="btn-cambios" style="width:100%;margin-top:var(--space-sm);">
+        <i class="ph ph-clock-counter-clockwise" style="font-size:16px;margin-right:var(--space-xs);"></i> Cambios en las rutinas
+      </button>
+
       <button class="btn btn-secondary" id="btn-force-sync" style="width:100%;margin-top:var(--space-sm);">
         <i class="ph ph-arrows-clockwise" style="font-size:16px;margin-right:var(--space-xs);"></i> Forzar sincronización
       </button>
@@ -99,6 +104,8 @@ function render(container) {
       btn.innerHTML = '<i class="ph ph-check" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiado';
       setTimeout(() => { btn.innerHTML = '<i class="ph ph-copy" style="font-size:16px;margin-right:var(--space-xs);"></i> Copiar rutinas'; }, 1500);
     });
+
+    container.querySelector('#btn-cambios')?.addEventListener('click', () => openCambiosSheet());
 
     container.querySelector('#btn-copy-sesiones')?.addEventListener('click', async (e) => {
       const btn = e.currentTarget;
@@ -155,12 +162,17 @@ function render(container) {
         <i class="ph ph-barbell" style="font-size:16px;margin-right:var(--space-xs);"></i> Ver catálogo de ejercicios
       </button>
 
+      <button class="btn btn-secondary" id="btn-cambios" style="width:100%;margin-top:var(--space-sm);">
+        <i class="ph ph-clock-counter-clockwise" style="font-size:16px;margin-right:var(--space-xs);"></i> Cambios en las rutinas
+      </button>
+
       <button class="btn btn-secondary" id="btn-reset-app" style="width:100%;margin-top:var(--space-sm);color:var(--color-danger);">
         <i class="ph ph-trash" style="font-size:16px;margin-right:var(--space-xs);"></i> Resetear app
       </button>
     `;
 
     container.querySelector('#btn-catalogo')?.addEventListener('click', () => openCatalogo());
+    container.querySelector('#btn-cambios')?.addEventListener('click', () => openCambiosSheet());
     container.querySelector('#btn-reset-app').addEventListener('click', () => resetApp());
 
     container.querySelector('#btn-login').addEventListener('click', async () => {
