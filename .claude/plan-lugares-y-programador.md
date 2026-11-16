@@ -225,7 +225,38 @@ expertos antes de fijar los números.
   con el paso de cobertura que dice qué grupo queda sin cubrir y con qué ítem
   se arregla.
 
-**Siguiente**: el programador de ciclos (Parte 2).
+- `src/adyacencia.js` — la regla como código: el anillo, los cuatro vecinos y
+  las familias declaradas. Auditando lo que ya existe encontró 50 choques en
+  las rutinas de Nat y 23 en las de Lean.
+- `src/generador.js` — genera rutinas para un lugar. **Sólo rutinas.**
+- `src/planificador.js` — reparte rutinas existentes sobre el calendario, por
+  **tramos**. **No genera nada.**
+
+### Por qué generar y planificar van separados
+
+Tienen frecuencias distintas. Generar pasa cuando aparece un lugar nuevo;
+planificar pasa cada dos o tres meses y casi siempre con rutinas que ya están
+afinadas. Si van juntos, planificar obliga a regenerar, que es justo lo que no
+se quiere con las rutinas de Casa, que tienen 19 parches encima.
+
+Se tocan en un solo punto: si el planificador recibe un lugar sin rutinas
+suficientes, lo avisa y ofrece generarlas.
+
+### Tramos
+
+El lugar no se elige por día de la semana sino por tramo, porque "estas dos
+semanas estoy de viaje" no se puede decir con un mapa día→lugar:
+
+```
+Tramo 1   01 dic – 20 dic    L M V      Casa
+Tramo 2   21 dic – 04 ene    L X V S    Playa     ← el viaje
+Tramo 3   05 ene – 28 feb    L M V      Casa
+```
+
+Al volver, **la rotación de Casa sigue donde quedó**: corta en Pull D y retoma
+en Press E, no en Press A. Si no, las últimas letras no se usarían nunca.
+
+**Siguiente**: las dos interfaces.
 
 ---
 

@@ -1,6 +1,6 @@
-// Generador de ciclos: arma rutinas y les asigna fechas.
+// Generador de rutinas: arma rutinas nuevas para un lugar.
 //
-// Reemplaza las ~86 fechas por usuario escritas a mano en `ensureCalendarOverrides()`.
+// Sólo rutinas. El calendario lo arma planificador.js.
 //
 // Lo que lo distingue de llenar circuitos al azar es que NO PUEDE construir un
 // programa que viole la regla de adyacencia: cada ejercicio se consulta contra
@@ -11,7 +11,6 @@ import { EJERCICIOS_CATALOGO } from './ejercicios-catalogo.js';
 import { estaDisponible } from './equipamiento.js';
 import { getEquipoDeLugar } from './lugares.js';
 import { familiaDe, vecinos } from './adyacencia.js';
-import { formatDateISO, getISODayOfWeek } from './utils/calendar.js';
 
 // Azar reproducible: el mismo programa con la misma semilla da el mismo
 // resultado, lo que hace que la vista previa sea de fiar y que un bug se pueda
@@ -64,6 +63,22 @@ export const CONFIG_POR_DEFECTO = {
 };
 
 const LETRAS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+// Cuántas letras generar para un lugar donde vas a hacer `sesiones` sesiones.
+//
+// Para dos semanas de viaje a 3 por semana son 6 sesiones: generar 20 rutinas
+// es absurdo, y además el catálogo de ese lugar puede no dar para tantas sin
+// repetirse. Pero hay un piso: con menos de 5 rutinas en el anillo cada una es
+// vecina de todas (la regla mira ±2) y la adyacencia deja de significar algo.
+export function letrasSugeridas(sesiones, alternancia = 'press_pull') {
+  const porLetra = alternancia === 'press_pull' ? 2 : 1;
+  const rutinas = Math.max(MINIMO_ANILLO, Math.ceil(sesiones || 0));
+  return Math.max(3, Math.ceil(rutinas / porLetra));
+}
+
+// Mismo umbral que usa el planificador; se repite acá para que el generador no
+// dependa de él.
+export const MINIMO_ANILLO = 5;
 
 // ── Armado del esqueleto ───────────────────────────────────────────────────
 
@@ -179,23 +194,8 @@ function puedeColocar(nombre, i, familiasPorRutina) {
   return vecinos(i, familiasPorRutina.length).every(j => !familiasPorRutina[j].has(fam));
 }
 
-// ── Calendario ─────────────────────────────────────────────────────────────
-
-// Recorre el período y le asigna a cada día de entrenamiento la rutina que le
-// toca del anillo. Devuelve { 'YYYY-MM-DD': { rutinaIdx, lugar, foco } }.
-export function asignarFechas(rutinas, cfg, desde, hasta) {
-  const out = {};
-  const d = new Date(desde + 'T00:00:00');
-  const fin = new Date(hasta + 'T00:00:00');
-  let idx = 0;
-  while (d <= fin) {
-    const dow = getISODayOfWeek(d);
-    if (cfg.dias.includes(dow)) {
-      const r = rutinas[idx % rutinas.length];
-      out[formatDateISO(d)] = { rutinaIdx: idx % rutinas.length, lugar: r.lugar, foco: r.foco };
-      idx++;
-    }
-    d.setDate(d.getDate() + 1);
-  }
-  return out;
-}
+// El calendario NO se arma acá. Repartir rutinas sobre fechas es trabajo de
+// planificador.js, y son dos cosas con frecuencias distintas: generar pasa
+// cuando aparece un lugar nuevo, planificar pasa cada dos o tres meses y casi
+// siempre con rutinas que ya están afinadas. Si van juntos, planificar obliga
+// a regenerar.
