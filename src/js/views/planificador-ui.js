@@ -11,6 +11,7 @@ import { showToast, showToastAction } from '../components/toast.js';
 import { store } from '../../store.js';
 import { getLugares, getLugar } from '../../lugares.js';
 import { planificar, textoAviso, rutinasDeLugar, MINIMO_ROTACION } from '../../planificador.js';
+import { openGenerador } from './generador-ui.js';
 import { formatDateISO } from '../../utils/calendar.js';
 
 const DIAS = [
@@ -220,8 +221,13 @@ function bind(body) {
     P.tramos.push({ desde: nuevoDesde, hasta: formatDateISO(b), dias: [...ult.dias], lugar: null });
     render();
   });
+  // El puente al generador: se va, se vuelve, y el tramo queda como estaba.
   body.querySelectorAll('[data-generar]').forEach(b => b.addEventListener('click', () => {
-    showToast('El generador de rutinas todavía no está. Por ahora, elegí un lugar que ya tenga rutinas.');
+    const estado = JSON.parse(JSON.stringify({ paso: P.paso, usuario: P.usuario, desde: P.desde, hasta: P.hasta, tramos: P.tramos }));
+    openGenerador({
+      usuario: P.usuario, lugar: b.dataset.generar,
+      alTerminar: () => { Object.assign(P, estado); openModal('Planificar meses', '<div class="wiz"></div>', { onMount: render }); },
+    });
   }));
 
   body.querySelector('[data-plan="atras"]')?.addEventListener('click', () => {
