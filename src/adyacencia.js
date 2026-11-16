@@ -44,6 +44,7 @@ export const FAMILIAS = {
   'Empuje de cadera en piso con peso': 'hip_thrust',
   'Empuje de cadera en cajon': 'hip_thrust',
   'Hip thrust a una pierna': 'hip_thrust',
+  'Puente rana con peso': 'hip_thrust',
 
   // abducción de cadera contra banda, de pie o sentada
   'Loop band abducción parada': 'abduccion_banda',
@@ -66,6 +67,32 @@ export const FAMILIAS = {
   // curl de bíceps con agarre neutro
   'Bíceps curl martillo': 'curl_martillo',
   'Zancada reversa con curl martillo': 'curl_martillo',
+
+  // sentadilla dividida con el pie trasero o delantero descargado
+  'Sentadilla búlgara': 'split_squat',
+  'Sentadilla búlgara con TRX': 'split_squat',
+  'Sentadilla dividida con pie delantero elevado': 'split_squat',
+  'Split squat pulses': 'split_squat',
+
+  // zancada hacia atrás con déficit o deslizamiento
+  'Déficit reverse lunge': 'zancada_reversa',
+  'Zancada reversa deslizante': 'zancada_reversa',
+
+  // subida a un cajón
+  'Step up': 'step_up',
+  'Step-up con rodilla al pecho': 'step_up',
+  'Step-up alto con inclinación': 'step_up',
+  'Step-up rápidos alternados': 'step_up',
+
+  // sentadilla con el peso al pecho
+  'Sentadilla goblet': 'goblet',
+  'Sentadilla goblet con press': 'goblet',
+  'Sentadilla profunda con pausa': 'goblet',
+  'Swing a sentadilla goblet': 'goblet',
+
+  // sentadilla profunda en el plano frontal
+  'Sentadilla cosaca': 'frontal_profundo',
+  'Zancada lateral con goblet': 'frontal_profundo',
 
   // plancha con desplazamiento de los brazos
   'Plancha commando': 'plancha_dinamica',
