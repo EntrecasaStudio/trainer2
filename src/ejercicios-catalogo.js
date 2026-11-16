@@ -1742,7 +1742,10 @@ export const EJERCICIOS_CATALOGO = [
   },
   {
     nombre: 'Sentadilla cosaca',
-    grupo: 'HIIT', tipo: 'funcional', usaPeso: true,
+    // Estaba como 'HIIT', pero es una sentadilla lenta y cargada en el plano
+    // frontal, no acondicionamiento: sus músculos son aductores y glúteo mayor,
+    // y en las rutinas reales aparece siempre en circuitos de piernas.
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
     equipo: [],
     musculos: 'Aductores, Glúteo mayor, Cuádriceps, Isquiotibiales',
     tags: 'Cossack squat, Cossack squat exercise',
@@ -1844,6 +1847,68 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Deltoides anterior, Trapecio, Cuádriceps, Glúteos, Core',
     tags: 'Dumbbell kettlebell snatch, Single arm snatch, Dumbbell snatch',
     descripcion: 'Con mancuerna o kettlebell entre las piernas, hacé un tirón explosivo desde el piso hasta sobre la cabeza en un solo movimiento fluido. Usá la extensión de cadera para generar impulso. Movimiento olímpico simplificado que trabaja potencia de cuerpo completo. (Dumbbell Snatch)'
+  },
+
+  // ── GLÚTEO EN POSICIÓN ALARGADA Y EXTENSIÓN CARGADA ────────────────────────
+  // Agregados tras medir la composición del trabajo de glúteo de Nat: 48% de
+  // abducción (el doble de lo recomendado) y 0% en posición alargada. Con
+  // kettlebell de 12 kg como carga máxima, el estímulo tiene que venir del
+  // rango, el tempo y el apoyo unilateral, no del peso.
+  {
+    nombre: 'Pull-through con banda',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: false,
+    equipo: [['bandas']],
+    musculos: 'Glúteo mayor, Isquiotibiales, Erector espinal',
+    tags: 'Banded pull through, Band pull-through',
+    descripcion: 'Anclá la banda baja detrás tuyo, pasala entre las piernas y agarrala con las dos manos. Alejate hasta sentir tensión abajo. Llevá la cadera atrás con las tibias casi verticales y el torso inclinado, y volvé extendiendo la cadera hasta quedar parada, apretando el glúteo. Es el único que carga MÁS cuanto más arriba, al revés que el peso muerto: ahí está su aporte. Los brazos son sólo cables, no tiran. Los errores: flexionar las rodillas y convertirlo en sentadilla, tirar con los brazos, y terminar arqueando la zona lumbar en vez de apretar el glúteo. (Banded Pull Through)'
+  },
+  {
+    nombre: 'Sentadilla dividida con pie delantero elevado',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    equipo: [['cajon'], ['mancuernas', 'kettlebell', 'discos', 'chaleco']],
+    musculos: 'Glúteo mayor, Cuádriceps, Isquiotibiales',
+    tags: 'Front foot elevated split squat, FFE split squat',
+    descripcion: 'Pie delantero sobre un step de 5 a 10 cm, pie trasero en el piso bastante atrás. Con el torso inclinado hacia adelante desde la cadera, bajá hasta que la pierna delantera quede en flexión profunda y subí empujando con ella. La elevación aumenta el estiramiento del glúteo, y como el pie trasero está apoyado exige menos equilibrio que la búlgara: eso permite llegar a la fatiga con el glúteo y no con el equilibrio, que es clave cuando la carga es chica. Los errores: elevar demasiado el pie (más altura lleva el trabajo a la rodilla), quedarse con el torso erguido (lo vuelve de cuádriceps) y dar un paso corto. (Front Foot Elevated Split Squat)'
+  },
+  {
+    nombre: 'Zancada reversa deslizante',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    equipo: [['sliders'], ['mancuernas', 'kettlebell', 'chaleco']],
+    musculos: 'Glúteo mayor, Cuádriceps, Isquiotibiales',
+    tags: 'Slider reverse lunge, Sliding reverse lunge',
+    descripcion: 'Con un slider bajo el pie de atrás, deslizalo hacia atrás en 3 segundos mientras bajás, con el torso inclinado 20 a 30 grados desde la cadera. Subí empujando SÓLO con la pierna delantera, sin impulsarte con la de atrás. El slider hace que el pie trasero apenas controle y que la delantera cargue casi todo, en flexión profunda de cadera. Los errores: rodilla delantera que se va hacia adentro, talón delantero que se levanta (el paso es corto), torso vertical y dejar que el slider se escape rápido. Si es nueva, empezá con rango corto. (Slider Reverse Lunge)'
+  },
+  {
+    nombre: 'Step-up alto con inclinación',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    equipo: [['cajon'], ['mancuernas', 'kettlebell', 'chaleco']],
+    musculos: 'Glúteo mayor, Cuádriceps, Isquiotibiales',
+    tags: 'High step up, Deficit step up torso lean',
+    descripcion: 'Cajón o silla firme a la altura de la rodilla o un poco más. Apoyá el pie entero arriba, inclináte hacia adelante desde la cadera y subí sin empujarte con la pierna de abajo. Mantené la inclinación durante toda la subida y bajá en 3 segundos. La altura hace que la cadera arranque en flexión profunda y el glúteo empuje desde estirado, cosa que el step up común no logra. Si la pelvis rota o la lumbar se redondea, bajá la altura. La superficie tiene que ser firme: una silla que se desliza es un riesgo real. (High Step Up)'
+  },
+  {
+    nombre: 'Zancada lateral con goblet',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    equipo: [['kettlebell', 'mancuernas']],
+    musculos: 'Glúteo mayor, Aductores, Cuádriceps',
+    tags: 'Goblet lateral lunge, Side lunge',
+    descripcion: 'Con el peso sostenido contra el pecho, dá un paso largo al costado y bajá sobre esa pierna flexionándola, manteniendo la otra extendida y los dos pies apuntando al frente. El pecho alto y la cadera hacia atrás. Volvé empujando con la pierna flexionada. Carga el glúteo en flexión profunda en el plano frontal, que es un rango que ningún otro de sus ejercicios cubre con peso. Es la versión cargable de la sentadilla cosaca. (Goblet Lateral Lunge)'
+  },
+  {
+    nombre: 'Sentadilla profunda con pausa',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    equipo: [['kettlebell', 'mancuernas']],
+    musculos: 'Glúteo mayor, Cuádriceps, Aductores',
+    tags: 'Prying goblet squat, Paused deep goblet squat',
+    descripcion: 'Con el peso contra el pecho, bajá a sentadilla lo más profundo que permita la cadera y quedate 2 o 3 segundos abajo, usando los codos para abrir las rodillas hacia afuera. Sin rebote. Es casi la única forma de trabajar el glúteo en rango profundo con carga baja: a los 12 kg el rango alcanza y no hace falta más peso. Los errores: talones que se levantan (poné un disco fino abajo), y la pelvis que se mete hacia adentro con la lumbar redondeada, que es la señal para frenar el descenso justo antes. Si hay dolor pinzante en la ingle, no es el ejercicio. (Prying Goblet Squat)'
+  },
+  {
+    nombre: 'Puente rana con peso',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    equipo: [['mancuernas', 'kettlebell', 'discos', 'chaleco']],
+    musculos: 'Glúteo mayor, Rotadores externos de cadera',
+    tags: 'Frog pump, Frog hip thrust',
+    descripcion: 'Acostada boca arriba con las plantas de los pies unidas y las rodillas bien abiertas, el peso sobre la cadera. Subí la cadera apretando el glúteo y bajá controlando. Las rodillas abiertas desplazan el trabajo al glúteo mayor y a los rotadores externos, y sacan a los isquios, cosa que el puente común no hace. Funciona con poca carga y muchas repeticiones (20 a 30): esa es su ventaja. Los errores: arquear la lumbar arriba en vez de cerrar las costillas, empujar con la espalda, y dejar que las rodillas se cierren durante la serie. (Frog Pump)'
   },
 ];
 
