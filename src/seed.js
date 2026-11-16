@@ -2455,6 +2455,50 @@ function migrateCompoundExercises() {
     ['Casa Press F — Nat', 4, 0, 'Saltos laterales', 'Banda lateral walk', 4, '15'],
     ['Casa Pull I — Nat', 4, 2, 'Bear crawl', 'Monster walk con banda', 4, '12'],
     ['Casa Pull B — Nat', 4, 0, 'Burpees', 'Activación glúteo con loop band', 4, '15'],
+
+    // ── NAT · más glúteo, y sobre todo mejor repartido ──────────────────────
+    // Medición: 33 de 300 slots (11%) con glúteo principal, pero repartidos
+    // 33% extensión / 48% abducción / 18% patada / 0% posición alargada. Los
+    // dos expertos coincidieron en 16-20% de volumen, y en que lo que falta NO
+    // es abducción —tiene el doble de lo recomendado— sino rango profundo.
+    //
+    // Los primeros 13 cambian un ejercicio por su variante con énfasis de
+    // glúteo DENTRO DE LA MISMA FAMILIA, así que la adyacencia no se mueve: la
+    // búlgara y la sentadilla dividida con pie elevado ocupan el mismo lugar en
+    // el anillo. Los últimos 6 ceden slots de core y brazos, que estaban
+    // sobre-representados (16% y 13%), al pull-through, que es la única familia
+    // realmente nueva y además carga al revés que el peso muerto: máximo arriba.
+    //
+    // Las reps no se heredan. Con 12 kg de kettlebell como techo el estímulo
+    // sale del rango y el tempo, así que el puente rana va a 25 (carga baja,
+    // reps altas) y la sentadilla profunda a 10 con pausa de 2-3 s abajo.
+    //
+    // Los profundos van a partir de la letra D: meter rango profundo de golpe
+    // en alguien que venía con 0% produce agujetas de 72 h que arruinan las dos
+    // sesiones siguientes.
+    //
+    // Resultado medido: glúteo 33 → 50 (16.7%), posición alargada 0% → 22%,
+    // abducción 48% → 32%. Choques de adyacencia 50 → 46: no agrega ninguno y
+    // saca cuatro.
+    ['Casa Pull E — Nat', 0, 0, 'Step up', 'Step-up alto con inclinación', 2, '10'],
+    ['Casa Press G — Nat', 0, 2, 'Step up', 'Step-up alto con inclinación', 2, '10'],
+    ['Casa Press D — Nat', 0, 0, 'Sentadilla búlgara', 'Sentadilla dividida con pie delantero elevado', 2, '10'],
+    ['Casa Pull F — Nat', 0, 2, 'Sentadilla búlgara', 'Sentadilla dividida con pie delantero elevado', 2, '10'],
+    ['Casa Pull A — Nat', 0, 2, 'Sentadilla búlgara con TRX', 'Sentadilla dividida con pie delantero elevado', 2, '10'],
+    ['Casa Press F — Nat', 0, 2, 'Déficit reverse lunge', 'Zancada reversa deslizante', 2, '10'],
+    ['Casa Press G — Nat', 0, 1, 'Déficit reverse lunge', 'Zancada reversa deslizante', 2, '10'],
+    ['Casa Pull E — Nat', 1, 1, 'Sentadilla cosaca', 'Zancada lateral con goblet', 2, '12'],
+    ['Casa Pull H — Nat', 0, 2, 'Sentadilla cosaca', 'Zancada lateral con goblet', 2, '12'],
+    ['Casa Pull I — Nat', 1, 1, 'Sentadilla goblet', 'Sentadilla profunda con pausa', 2, '10'],
+    ['Casa Press H — Nat', 0, 0, 'Sentadilla goblet con press', 'Sentadilla profunda con pausa', 2, '10'],
+    ['Casa Press A — Nat', 3, 2, 'Empuje de cadera en piso con peso', 'Puente rana con peso', 2, '25'],
+    ['Casa Pull D — Nat', 1, 0, 'Empuje de cadera en piso con peso', 'Puente rana con peso', 2, '25'],
+    ['Casa Press A — Nat', 2, 0, 'Fondos en banco', 'Pull-through con banda', 2, '15'],
+    ['Casa Pull B — Nat', 2, 1, 'Bíceps curl martillo', 'Pull-through con banda', 2, '15'],
+    ['Casa Press D — Nat', 2, 0, 'Extensión de triceps sobre cabeza', 'Pull-through con banda', 2, '15'],
+    ['Casa Press F — Nat', 2, 0, 'Extensión de triceps sobre cabeza', 'Pull-through con banda', 2, '15'],
+    ['Casa Pull G — Nat', 1, 2, 'Plancha con arrastre', 'Pull-through con banda', 2, '15'],
+    ['Casa Press I — Nat', 2, 0, 'Extensión de triceps sobre cabeza', 'Pull-through con banda', 2, '15'],
   ];
 
   let changed = false;
