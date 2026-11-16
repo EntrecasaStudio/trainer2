@@ -100,11 +100,14 @@ function sumarDias(iso, n) {
  *   overridesActuales  el calendario que ya existe, para saber dónde retomar
  *                      y para avisar qué días se pisarían
  *   posiciones         opcional, fuerza dónde arranca cada lugar
+ *   respetarManuales   si un día fue asignado a mano desde Home (lleva
+ *                      `manual: true`), no se pisa. Default true: es el
+ *                      equivalente de `userModified` en las rutinas.
  *
  * Devuelve { overrides, conflictos, avisos, resumen }. No escribe nada: la
  * vista previa y la confirmación son del que llama.
  */
-export function planificar({ usuario, tramos = [], rutinas = [], overridesActuales = {}, posiciones = null }) {
+export function planificar({ usuario, tramos = [], rutinas = [], overridesActuales = {}, posiciones = null, respetarManuales = true }) {
   const avisos = validarTramos(tramos);
   const ordenados = [...tramos].sort((a, b) => (a.desde < b.desde ? -1 : 1));
   const primera = ordenados[0]?.desde;
@@ -115,6 +118,7 @@ export function planificar({ usuario, tramos = [], rutinas = [], overridesActual
   const anillos = {};
   const overrides = {};
   const conflictos = [];
+  const respetados = [];
   const resumen = [];
 
   for (let ti = 0; ti < ordenados.length; ti++) {
@@ -147,10 +151,18 @@ export function planificar({ usuario, tramos = [], rutinas = [], overridesActual
         pos[t.lugar] = (pos[t.lugar] + 1) % anillo.length;
 
         const previo = overridesActuales?.[fecha];
-        if (previo?.rutinaId && previo.rutinaId !== r.id) {
-          conflictos.push({ fecha, actual: previo.rutinaId, propuesto: r.id });
+
+        // Lo que el usuario eligió a mano no se pisa: una rutina asignada a
+        // dedo desde Home (`manual`) o un día de descanso (`rest`). El anillo
+        // igual avanza, así que el resto del plan no se corre por respetarlo.
+        if (respetarManuales && (previo?.manual || previo?.rest)) {
+          respetados.push({ fecha, rutinaId: previo.rutinaId, descanso: !!previo.rest });
+        } else {
+          if (previo?.rutinaId && previo.rutinaId !== r.id) {
+            conflictos.push({ fecha, actual: previo.rutinaId, propuesto: r.id });
+          }
+          overrides[fecha] = { rutinaId: r.id, tipo: r.foco || 'cross', lugar: t.lugar };
         }
-        overrides[fecha] = { rutinaId: r.id, tipo: r.foco || 'cross', lugar: t.lugar };
         dias++;
       }
       d.setDate(d.getDate() + 1);
@@ -163,7 +175,7 @@ export function planificar({ usuario, tramos = [], rutinas = [], overridesActual
     });
   }
 
-  return { overrides, conflictos, avisos, resumen };
+  return { overrides, conflictos, respetados, avisos, resumen };
 }
 
 // Texto para humanos de un aviso. Vive acá y no en la vista para que el aviso

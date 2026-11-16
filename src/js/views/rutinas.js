@@ -1,6 +1,7 @@
 import { store } from '../../store.js';
 import { getLugares } from '../../lugares.js';
 import { openLugaresSheet } from './lugar-wizard.js';
+import { openPlanificador } from './planificador-ui.js';
 import { getLugarBadge, getCircuitColor, formatSetsReps } from '../../utils/format.js';
 import { router } from '../../router.js';
 import { showToast, showToastAction } from '../components/toast.js';
@@ -66,6 +67,9 @@ export function mountRutinas(container) {
     </div>
     <div class="rutinas-filters-row">
       <div class="rutinas-filters" id="lugar-filters"></div>
+      <button class="btn btn-secondary btn-sm" data-action="open-plan" style="flex-shrink:0;gap:4px;" title="Planificar meses">
+        <i class="ph ph-calendar-plus" style="font-size:16px;"></i> Planificar
+      </button>
       <button class="btn btn-secondary btn-sm" data-action="open-lugares" style="flex-shrink:0;gap:4px;" title="Lugares">
         <i class="ph ph-map-pin" style="font-size:16px;"></i> Lugares
       </button>
@@ -98,6 +102,10 @@ export function mountRutinas(container) {
   });
 
   // Open ejercicios
+  container.querySelector('[data-action="open-plan"]').addEventListener('click', () => {
+    openPlanificador({ usuario: _currentUser, alTerminar: () => renderList() });
+  });
+
   container.querySelector('[data-action="open-lugares"]').addEventListener('click', () => {
     // Al cerrarse vuelve a pintar los filtros y la lista, para que el lugar
     // recién creado aparezca sin recargar.
