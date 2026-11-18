@@ -156,8 +156,14 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Core', tipo: 'funcional', usaPeso: true,
     equipo: [['discos']],
     musculos: 'Oblicuos, Transverso abdominal, Deltoides anterior',
-    tags: 'Plate lateral shift, Standing plate pendulum',
-    descripcion: 'De pie sosteniendo un disco con ambas manos y los brazos extendidos al frente a la altura de los hombros. Hacé movimientos cortos laterales de izquierda a derecha sin rotar el torso. El core trabaja anti-lateralmente para estabilizar el peso. (Plate Lateral Shift)'
+    // "Plate lateral shift" y "Standing plate pendulum" no son nombres de
+    // ningún ejercicio: eran inventados, y YouTube devolvía cualquier cosa.
+    // El movimiento real que describe es el BUS DRIVER, que sí tiene nombre
+    // establecido y video de sobra. La descripción se corrigió para que
+    // coincida con lo que muestra el video: el disco se gira como un volante,
+    // no se desplaza de lado.
+    tags: 'Plate bus driver, Bus driver exercise',
+    descripcion: 'De pie, pies al ancho de hombros, sosteniendo un disco con las dos manos a los lados, como un volante, con los brazos extendidos al frente a la altura del pecho. Girá el disco hacia un lado y hacia el otro, como si manejaras, llevando una mano arriba y la otra abajo. El torso NO acompaña el giro: el core trabaja resistiendo la rotación mientras los brazos la producen. Movimiento lento y controlado, sin balanceo. Los errores: dejar que los hombros roten con el disco, bajar los brazos a medida que aparece la fatiga, y arquear la lumbar. Con 5 a 10 kg alcanza. (Plate Bus Driver)'
   },
   {
     nombre: 'Complex',
@@ -738,8 +744,13 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Core', tipo: 'funcional', usaPeso: false,
     equipo: [],
     musculos: 'Recto abdominal, Oblicuos, Transverso abdominal',
-    tags: 'HIIT, circuito',
-    descripcion: 'Circuito abdominal sin pausa. Variante A: Hollow body (10s) + Dead bug (6 reps) + Elevación de piernas (8 reps). Variante B: crunches + bicicleta + elevación de piernas + plancha (10-15 reps c/u). Trabaja core anterior, oblicuos y estabilización.'
+    // La tag era 'HIIT, circuito', que no es el nombre de ningún ejercicio:
+    // buscaba "HIIT" en YouTube y devolvía cualquier video de HIIT. Al ser una
+    // secuencia armada y no un ejercicio con nombre propio, ningún video la
+    // muestra exacta; la búsqueda apunta al circuito de core más parecido.
+    // OJO: esta entrada se superpone con 'Complex', que describe casi lo mismo.
+    tags: 'Ab circuit hollow body dead bug, Core circuit no rest',
+    descripcion: 'Circuito abdominal sin pausa. Variante A: Hollow body (10s) + Dead bug (6 reps) + Elevación de piernas (8 reps). Variante B: crunches + bicicleta + elevación de piernas + plancha (10-15 reps c/u). Trabaja core anterior, oblicuos y estabilización. No es un ejercicio con nombre propio sino una secuencia, así que el video es de referencia. (Ab Circuit)'
   },
   // ── FUNCIONAL / RÍO ────────────────────────────────────────────────────────
   {
