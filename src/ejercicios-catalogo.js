@@ -156,14 +156,16 @@ export const EJERCICIOS_CATALOGO = [
     grupo: 'Core', tipo: 'funcional', usaPeso: true,
     equipo: [['discos']],
     musculos: 'Oblicuos, Transverso abdominal, Deltoides anterior',
-    // "Plate lateral shift" y "Standing plate pendulum" no son nombres de
-    // ningún ejercicio: eran inventados, y YouTube devolvía cualquier cosa.
-    // El movimiento real que describe es el BUS DRIVER, que sí tiene nombre
-    // establecido y video de sobra. La descripción se corrigió para que
-    // coincida con lo que muestra el video: el disco se gira como un volante,
-    // no se desplaza de lado.
-    tags: 'Plate bus driver, Bus driver exercise',
-    descripcion: 'De pie, pies al ancho de hombros, sosteniendo un disco con las dos manos a los lados, como un volante, con los brazos extendidos al frente a la altura del pecho. Girá el disco hacia un lado y hacia el otro, como si manejaras, llevando una mano arriba y la otra abajo. El torso NO acompaña el giro: el core trabaja resistiendo la rotación mientras los brazos la producen. Movimiento lento y controlado, sin balanceo. Los errores: dejar que los hombros roten con el disco, bajar los brazos a medida que aparece la fatiga, y arquear la lumbar. Con 5 a 10 kg alcanza. (Plate Bus Driver)'
+    // Este ejercicio NO tiene nombre establecido en inglés. Se buscó por
+    // mecánica y por nombre: lo que aparece son ejercicios de ROTACIÓN (plate
+    // twist, bus driver) o de FLEXIÓN lateral (side bends), que son otra cosa.
+    // Acá el disco se TRASLADA de lado a lado sin girar y sin que el torso se
+    // incline: es anti-flexión lateral, que se enseña como categoría y no como
+    // ejercicio con nombre propio. La búsqueda es descriptiva a propósito, y la
+    // descripción avisa que el video es aproximado.
+    // No confundir con 'Bus driver con disco', que es el que gira el disco.
+    tags: 'Standing plate anti-lateral flexion side to side, Plate side to side core',
+    descripcion: 'De pie sosteniendo un disco con las dos manos y los brazos extendidos al frente a la altura de los hombros. Llevá el disco entero hacia un lado y hacia el otro SIN girar las manos y SIN inclinar el torso: las manos mantienen la misma posición todo el recorrido. Lo que trabaja es la resistencia a la flexión lateral, porque cuanto más lejos del eje va el peso, más tiene que frenar el core. Los errores: inclinarse hacia el lado contrario para compensar, dejar que los brazos bajen con la fatiga, y girar el disco (eso ya es otro ejercicio). OJO: no tiene un nombre estándar en inglés, así que el video de YouTube es de referencia y puede no mostrarlo exacto. (Standing Plate Side-to-Side)'
   },
   {
     nombre: 'Complex',
@@ -1945,6 +1947,15 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Glúteo mayor, Aductores, Cuádriceps',
     tags: 'TRX lateral lunge, TRX side lunge',
     descripcion: 'De frente al anclaje, una manija en cada mano con los brazos casi extendidos. Dá un paso largo al costado y bajá sobre esa pierna flexionándola, con la otra extendida y los dos pies al frente. El TRX sostiene lo justo para poder bajar más profundo de lo que el equilibrio permitiría solo, que es donde el glúteo trabaja estirado. Es el reemplazo del sumo bilateral: ahí los 12 kg se reparten entre dos piernas y no alcanzan; acá una pierna carga todo el cuerpo. Los errores: colgarse del TRX en vez de apoyarse, dejar que la rodilla se vaya hacia adentro, y levantar el talón de la pierna que baja. (TRX Lateral Lunge)'
+  },
+
+  {
+    nombre: 'Bus driver con disco',
+    grupo: 'Core', tipo: 'funcional', usaPeso: true,
+    equipo: [['discos']],
+    musculos: 'Oblicuos, Transverso abdominal, Deltoides anterior',
+    tags: 'Plate bus driver, Bus driver exercise',
+    descripcion: 'De pie, pies al ancho de hombros, sosteniendo un disco con las dos manos a los lados, como un volante, con los brazos extendidos al frente a la altura del pecho. GIRÁ el disco hacia un lado y hacia el otro como si manejaras, llevando una mano arriba y la otra abajo, sin que el torso acompañe el giro. El core resiste la rotación mientras los brazos la producen. Movimiento lento, sin balanceo. Los errores: que los hombros roten con el disco, que los brazos bajen con la fatiga, y arquear la lumbar. Con 5 a 10 kg alcanza. Es DISTINTO de "Oscilaciones laterales con disco", donde el disco se traslada de lado sin girar. (Plate Bus Driver)'
   },
 ];
 

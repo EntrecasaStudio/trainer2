@@ -94,6 +94,14 @@ export const FAMILIAS = {
   'Sentadilla cosaca': 'frontal_profundo',
   'Zancada lateral con goblet': 'frontal_profundo',
 
+  // core de pie con un disco en las manos. Son estímulos distintos —uno
+  // resiste la rotación, otro la flexión lateral, otro la produce— pero se ven
+  // y se sienten tan parecidos que ponerlos en rutinas vecinas se percibe como
+  // repetir, que es lo que la regla evita.
+  'Oscilaciones laterales con disco': 'disco_de_pie',
+  'Bus driver con disco': 'disco_de_pie',
+  'Rotación con disco': 'disco_de_pie',
+
   // plancha con desplazamiento de los brazos
   'Plancha commando': 'plancha_dinamica',
   'Plancha con elevación alternada': 'plancha_dinamica',
