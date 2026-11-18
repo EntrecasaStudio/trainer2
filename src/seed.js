@@ -2499,6 +2499,49 @@ function migrateCompoundExercises() {
     ['Casa Press F — Nat', 2, 0, 'Extensión de triceps sobre cabeza', 'Pull-through con banda', 2, '15'],
     ['Casa Pull G — Nat', 1, 2, 'Plancha con arrastre', 'Pull-through con banda', 2, '15'],
     ['Casa Press I — Nat', 2, 0, 'Extensión de triceps sobre cabeza', 'Pull-through con banda', 2, '15'],
+
+    // ── NAT · piernas que se puedan cargar de verdad ────────────────────────
+    // La queja: "en el gimnasio tenía máquinas que me ayudaban a cargar más,
+    // acá siento que trabajo peor". Medido: de 102 slots de tren inferior, 40
+    // sólo admiten banda o tobillera de 4 kg y 24 no admiten carga ninguna.
+    // 63% sin carga progresiva real, y 44% bilateral, donde los 12 kg de
+    // kettlebell se reparten entre dos piernas y no cuentan.
+    //
+    // Los dos análisis coincidieron. Lo que hacía la máquina no era sólo
+    // cargar más: era que el eslabón más débil fuera el músculo objetivo. El
+    // asiento y el respaldo sacaban del medio el equilibrio y el agarre. En
+    // casa el fallo llega antes al equilibrio o al agarre y el músculo queda
+    // sin agotar. Por eso entran dos ejercicios con TRX: no sacan carga,
+    // sacan el eslabón débil.
+    //
+    // Los seis primeros son CONSOLIDACIÓN, no reemplazo. La búlgara aparecía
+    // 2 veces pero su familia 7, repartida en tres variantes: nunca se repetía
+    // EL MISMO ejercicio, que es lo que la progresión necesita. Cambiar una
+    // variante por otra de la misma familia no mueve la adyacencia.
+    //
+    // Los nueve siguientes usan slots de lo que no devolvía nada: la sentadilla
+    // sumo bilateral (el fallo llega por el agarre, no por la pierna), las
+    // patadas con tobillera de 4 kg (el rango útil de extensión de cadera es
+    // de 10 a 20 grados; lo que pasa de ahí es lumbar) y la abducción con
+    // pausa, que aparecía 5 veces sin admitir carga externa.
+    //
+    // Resultado: los seis anclas quedan en 3 a 5 apariciones, o sea que
+    // vuelven cada 1,3 a 2 semanas en vez de cada 7. Choques 46 → 42.
+    ['Casa Press E — Nat', 0, 2, 'Split squat pulses', 'Sentadilla búlgara', 2, '10'],
+    ['Casa Pull J — Nat', 0, 2, 'Split squat pulses', 'Sentadilla búlgara', 2, '10'],
+    ['Casa Pull A — Nat', 0, 2, 'Sentadilla dividida con pie delantero elevado', 'Sentadilla búlgara', 2, '10'],
+    ['Casa Press A — Nat', 0, 1, 'Step up', 'Step-up alto con inclinación', 2, '10'],
+    ['Casa Press B — Nat', 0, 2, 'Step up', 'Step-up alto con inclinación', 2, '10'],
+    ['Casa Pull A — Nat', 0, 0, 'Curl de isquios con TRX', 'Curl de isquios deslizante', 2, '10'],
+    ['Casa Press A — Nat', 0, 0, 'Sumo squat to calf raise', 'Peso muerto a una pierna con TRX', 2, '10'],
+    ['Casa Press D — Nat', 0, 1, 'Abducción con pausa', 'Curl de isquios deslizante', 2, '10'],
+    ['Casa Press A — Nat', 2, 0, 'Pull-through con banda', 'Zancada lateral con TRX', 2, '12'],
+    ['Casa Press F — Nat', 2, 0, 'Pull-through con banda', 'Peso muerto a una pierna con TRX', 2, '10'],
+    ['Casa Press E — Nat', 1, 2, 'Patada de glúteo con tobillera', 'Zancada lateral con TRX', 2, '12'],
+    ['Casa Pull C — Nat', 0, 1, 'Standing weighted hip abduction', 'Peso muerto a una pierna con TRX', 2, '10'],
+    ['Casa Press H — Nat', 3, 2, 'Perro orinando con banda', 'Zancada lateral con TRX', 2, '12'],
+    ['Casa Press I — Nat', 0, 2, 'Abducción con pausa', 'Peso muerto a una pierna con TRX', 2, '10'],
+    ['Casa Press C — Nat', 0, 1, 'Patada de glúteo con tobillera', 'Zancada lateral con TRX', 2, '12'],
   ];
 
   let changed = false;

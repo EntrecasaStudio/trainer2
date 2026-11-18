@@ -76,7 +76,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['cajon']],
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
     tags: 'bulgarian split squat',
-    descripcion: 'De pie con un pie apoyado en un banco o superficie elevada detrás. Bajá la rodilla trasera hacia el piso manteniendo el torso recto. Se puede hacer con peso corporal, mancuernas o kettlebell. Trabaja cuádriceps, glúteos y estabilidad de cadera unilateral.'
+    descripcion: 'ALTURA DEL APOYO: entre media canilla y la rodilla, nunca por encima. La referencia es la tuberosidad tibial, el bultito debajo de la rótula: 35-42 cm si medís 1,55-1,60 m, 45-50 cm si medís 1,70 o más. Una silla común de 45 cm sirve. Si el apoyo queda más alto que la rodilla, el psoas y el recto femoral de la pierna de atrás quedan muy estirados, la pelvis se va hacia adelante y la lumbar compensa arqueándose: se siente tirón en la ingle y molestia en la espalda baja. Ante la duda, más bajo. DISTANCIA: el pie de adelante a unos 60-80 cm del apoyo. Abajo, la tibia delantera queda vertical y el talón firme en el piso; si el talón se levanta estás muy cerca. El pie de atrás va con el empeine sobre la superficie y es APOYO, no motor: si empujás con él perdés la carga de la pierna de adelante. Para más glúteo, incliná el torso 30-45 grados y alargá el paso; para más cuádriceps, torso erguido y paso algo más corto. (Bulgarian Split Squat)'
   },
   {
     nombre: 'Gemelos en máquina',
@@ -1909,6 +1909,31 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Glúteo mayor, Rotadores externos de cadera',
     tags: 'Frog pump, Frog hip thrust',
     descripcion: 'Acostada boca arriba con las plantas de los pies unidas y las rodillas bien abiertas, el peso sobre la cadera. Subí la cadera apretando el glúteo y bajá controlando. Las rodillas abiertas desplazan el trabajo al glúteo mayor y a los rotadores externos, y sacan a los isquios, cosa que el puente común no hace. Funciona con poca carga y muchas repeticiones (20 a 30): esa es su ventaja. Los errores: arquear la lumbar arriba en vez de cerrar las costillas, empujar con la espalda, y dejar que las rodillas se cierren durante la serie. (Frog Pump)'
+  },
+
+  // ── TRX PARA TREN INFERIOR ──────────────────────────────────────────────
+  // El catálogo tenía 17 ejercicios con TRX y sólo 5 de pierna o glúteo. El
+  // TRX resuelve justo el problema de entrenar piernas en casa: en el
+  // gimnasio la máquina hacía que el eslabón más débil fuera el músculo
+  // objetivo, porque el asiento y el respaldo sacaban el equilibrio del
+  // medio. En casa el fallo llega antes al equilibrio o al agarre y el
+  // músculo queda sin agotar. El TRX devuelve esa función: sostiene lo justo
+  // para que la serie la corte la pierna y no el balanceo.
+  {
+    nombre: 'Peso muerto a una pierna con TRX',
+    grupo: 'Piernas', tipo: 'funcional', usaPeso: true,
+    equipo: [['trx']],
+    musculos: 'Isquiotibiales, Glúteo mayor, Erector espinal',
+    tags: 'TRX single leg deadlift, Assisted single leg RDL',
+    descripcion: 'Agarrá una manija del TRX con la mano del mismo lado de la pierna de apoyo y usala sólo para no perder el eje, sin tirar. Llevá la cadera hacia atrás bajando el torso mientras la pierna libre sube en línea con la espalda. Volvé extendiendo la cadera. El TRX no saca carga: saca el equilibrio de la ecuación, que es lo que suele cortar la serie antes de que el isquio llegue al fallo. Con la otra mano se puede sostener una kettlebell. Los errores: tirar del TRX para subir, redondear la espalda baja al final del recorrido, y rotar la cadera abriendo la pelvis. (TRX Single Leg Deadlift)'
+  },
+  {
+    nombre: 'Zancada lateral con TRX',
+    grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
+    equipo: [['trx']],
+    musculos: 'Glúteo mayor, Aductores, Cuádriceps',
+    tags: 'TRX lateral lunge, TRX side lunge',
+    descripcion: 'De frente al anclaje, una manija en cada mano con los brazos casi extendidos. Dá un paso largo al costado y bajá sobre esa pierna flexionándola, con la otra extendida y los dos pies al frente. El TRX sostiene lo justo para poder bajar más profundo de lo que el equilibrio permitiría solo, que es donde el glúteo trabaja estirado. Es el reemplazo del sumo bilateral: ahí los 12 kg se reparten entre dos piernas y no alcanzan; acá una pierna carga todo el cuerpo. Los errores: colgarse del TRX en vez de apoyarse, dejar que la rodilla se vaya hacia adentro, y levantar el talón de la pierna que baja. (TRX Lateral Lunge)'
   },
 ];
 
