@@ -5,7 +5,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 
 ## Casa Press A — Lean [MODIFICADA]
   C1 PIERNAS·ESPALDA: Sentadilla goblet (2x12), Zancadas (2x10), TRX row (2x12)
-  C2 PECHO: Floor press (2x10), Flexiones (2x12), TRX chest press (2x12)
+  C2 PECHO: Floor press (2x10), Flexiones (2x12), Banda cruce bajo a alto (2x15)
   C3 HOMBROS·TRÍCEPS: Press militar (2x10), Fondos en banco (2x12), Vuelos laterales (2x12)
   C4 CORE·BÍCEPS: Ab wheel (2x10), Plancha oscilante en codos (2x30s), Bíceps curl en equilibrio (2x10)
   C5 HIIT: Mountain climbers (4x20), Burpees (4x8), Jumping jacks (4x30)
@@ -19,7 +19,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 
 ## Casa Press C — Lean [MODIFICADA]
   C1 PIERNAS·ESPALDA: Sentadilla con salto (2x8), Estocadas estáticas (2x10), Renegade row (2x8)
-  C2 PECHO: Flexiones diamante (2x10), Banda press de pecho a un brazo (2x12), TRX archer press (2x12)
+  C2 PECHO: Banda press inclinado (2x12), Banda press de pecho a un brazo (2x12), TRX archer press (2x12)
   C3 HOMBROS·TRÍCEPS: Fondos en banco (2x12), Vuelo lateral inclinado (2x10), Tríceps alto en TRX (2x15)
   C4 CORE·BÍCEPS: Plancha estrella con peso (2x6), Dead bug (2x12), Bíceps curl en TRX (2x10)
   C5 HIIT: Saltos laterales (4x20), Sentadilla con salto (4x10), Bear crawl (4x8m)
@@ -33,7 +33,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 
 ## Casa Press E — Lean [MODIFICADA]
   C1 PIERNAS·ESPALDA: Sentadilla goblet (2x10), Step up (2x12), TRX face pull (2x15)
-  C2 PECHO: Flexiones diamante (2x10), TRX archer press (2x10), Banda press de pecho (2x12)
+  C2 PECHO: Banda cruce bajo a alto (2x15), TRX archer press (2x10), Banda press de pecho (2x12)
   C3 HOMBROS·TRÍCEPS: Press militar (2x10), French press en puente de glúteos (2x12), Zancada cruzada con vuelo lateral (2x10)
   C4 CORE·BÍCEPS: Ab wheel (2x10), Caminata a plancha (2x8), Bíceps curl (2x12)
   C5 HIIT: Tuck jumps (4x8), Mountain climbers (4x20), Caminata a plancha (4x8)
@@ -89,14 +89,14 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
 
 ## Casa Press G — Lean
   C1 PIERNAS·ESPALDA: Sentadilla goblet (2x12), Renegade row (2x10), Zancada reversa con remo (2x10)
-  C2 PECHO: Flexiones explosivas (2x8), Banda fly de pecho a un brazo (2x12), TRX archer press (2x15)
+  C2 PECHO: Flexiones explosivas (2x8), Banda fly de pecho a un brazo (2x12), Banda cruce bajo a alto (2x15)
   C3 HOMBROS·TRÍCEPS: Arnold press (2x8), Extensión de tríceps con banda (2x10), Vuelo lateral inclinado (2x12)
   C4 CORE·BÍCEPS: Pallof press (2x10), Crunch oblicuo a una pierna (2x12), Bíceps curl con banda (2x10)
   C5 HIIT: Mountain climbers (4x20), Burpees (4x8), Jumping jacks (4x30)
 
 ## Casa Press H — Lean
   C1 PIERNAS·ESPALDA: Sentadilla con remo en TRX (2x12), Step up (2x12), TRX face pull (2x15)
-  C2 PECHO: Floor press (2x10), Flexiones declinadas (2x12), TRX chest press (2x12)
+  C2 PECHO: Floor press (2x10), Flexiones declinadas (2x12), Banda press inclinado (2x12)
   C3 HOMBROS·TRÍCEPS: Clean con press a un brazo (2x8), Elevaciones de hombro adelante con disco (2x12), Extensión de triceps sobre cabeza (2x10)
   C4 CORE·BÍCEPS: Plancha con arrastre (2x10), Crunch oblicuo a una pierna (2x12), Bíceps curl (2x10)
   C5 HIIT: Caminata a plancha (4x8), Tuck jumps (4x8), Estocada con salto (4x8)
@@ -140,5 +140,5 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C1 PIERNAS·CORE: Zancada reversa con chop diagonal (2x10), Sentadilla sumo (2x12), Elevación de talones a una pierna (2x15)
   C2 ESPALDA: Arranque con mancuerna (2x8), TRX power pull (2x8), Remo alto en TRX (2x12)
   C3 BÍCEPS·CORE: Bíceps curl (2x10), Crunch oblicuo a una pierna (2x12), Plancha commando (2x10)
-  C4 PECHO·TRÍCEPS: Banda fly de pecho a un brazo (2x12), TRX chest press (2x15), Tríceps alto en TRX (2x12)
+  C4 PECHO·TRÍCEPS: Banda fly de pecho a un brazo (2x12), Banda press inclinado (2x12), Tríceps alto en TRX (2x12)
   C5 HIIT: Lateral step overs (4x20), Estocada-estocada-sentadilla con salto (4x20), Plancha con saltos (4x20)

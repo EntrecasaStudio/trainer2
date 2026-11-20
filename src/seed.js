@@ -2542,6 +2542,36 @@ function migrateCompoundExercises() {
     ['Casa Press H — Nat', 3, 2, 'Perro orinando con banda', 'Zancada lateral con TRX', 2, '12'],
     ['Casa Press I — Nat', 0, 2, 'Abducción con pausa', 'Peso muerto a una pierna con TRX', 2, '10'],
     ['Casa Press C — Nat', 0, 1, 'Patada de glúteo con tobillera', 'Zancada lateral con TRX', 2, '12'],
+
+    // ── LEAN · pecho: subir la porción superior ─────────────────────────────
+    // Medido sobre sus 43 slots de pecho: 6 de porción superior (14%), 36 de
+    // medio y 1 de inferior. Los dos análisis coincidieron en que la porción
+    // clavicular es la única que justifica programarse —un inclinado de 30
+    // grados da 10 a 30% más actividad clavicular— y en que la inferior es
+    // prescindible. El reparto sugerido era ~35% superior.
+    //
+    // El primero no es por zona sino por ORDEN: en Press C el circuito de
+    // pecho abría con flexiones diamante, que son dominantes de tríceps.
+    // Al ir primero prefatigaban el tríceps, que es el eslabón limitante de
+    // cualquier press, así que los otros dos ejercicios terminaban cortados
+    // por tríceps y no por pecho. El tríceps ya se trabaja en C3 de esa misma
+    // rutina, así que el diamante sale.
+    //
+    // Los slots salen de la familia TRX horizontal, que sumaba 14 de 43 (un
+    // tercio del pecho) toda con el mismo ángulo.
+    //
+    // Dos reglas en el armado: un solo cambio por circuito, y ningún circuito
+    // queda con más de dos ejercicios de banda. Sin la segunda, arreglar el
+    // ángulo único creaba un implemento único: tres bandas en el mismo
+    // circuito.
+    //
+    // Resultado: superior 14% → 28%. Choques 27 → 24, no agrega ninguno.
+    ['Casa Press C — Lean', 1, 0, 'Flexiones diamante', 'Banda press inclinado', 2, '12'],
+    ['Casa Press H — Lean', 1, 2, 'TRX chest press', 'Banda press inclinado', 2, '12'],
+    ['Casa Press A — Lean', 1, 2, 'TRX chest press', 'Banda cruce bajo a alto', 2, '15'],
+    ['Casa Pull J — Lean', 3, 1, 'TRX chest press', 'Banda press inclinado', 2, '12'],
+    ['Casa Press E — Lean', 1, 0, 'Flexiones diamante', 'Banda cruce bajo a alto', 2, '15'],
+    ['Casa Press G — Lean', 1, 2, 'TRX archer press', 'Banda cruce bajo a alto', 2, '15'],
   ];
 
   let changed = false;
