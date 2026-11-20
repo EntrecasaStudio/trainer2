@@ -1634,3 +1634,4 @@
 .cambios-txt.baja { color: var(--color-text-muted); }
 .cambios-motivo { font-size: var(--text-xs); color: var(--color-text-muted); font-style: italic; margin-top: 2px; }
 .cambios-agregar { font-size: var(--text-xs); margin-top: 2px; }
+.gen-anclas { margin-top: var(--space-md); }

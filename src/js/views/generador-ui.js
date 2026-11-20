@@ -138,7 +138,26 @@ function pForma() {
         <button data-campo="series" data-delta="1" ${G.series >= 5 ? 'disabled' : ''}>+</button>
       </div>
     </div>
-    <p class="wiz-ayuda">Son ${G.circuitos * G.ejerciciosPorCircuito} ejercicios por día${G.hiit ? ', contando el circuito de HIIT' : ''}.</p>`;
+    <p class="wiz-ayuda">Son ${G.circuitos * G.ejerciciosPorCircuito} ejercicios por día${G.hiit ? ', contando el circuito de HIIT' : ''}.</p>
+
+    <h3 class="wiz-titulo" style="margin-top:var(--space-lg);">Progresión</h3>
+    <p class="wiz-ayuda">Un ancla es un ejercicio que se repite espaciado en vez de aparecer una sola vez. Sin anclas, la mitad de los ejercicios sale una vez cada ${Math.round(G.letras * 2 / 3)} semanas, que no alcanza para progresar en nada.</p>
+    <div class="gen-letras">
+      <span>Ejercicios ancla</span>
+      <div class="gen-stepper">
+        <button data-campo="anclas" data-delta="-1" ${G.anclas <= 0 ? 'disabled' : ''}>−</button>
+        <strong>${G.anclas || 'ninguno'}</strong>
+        <button data-campo="anclas" data-delta="1" ${G.anclas >= 10 ? 'disabled' : ''}>+</button>
+      </div>
+    </div>
+    ${G.anclas > 0 ? `<div class="gen-letras">
+      <span>Veces que aparece cada uno</span>
+      <div class="gen-stepper">
+        <button data-campo="aparicionesPorAncla" data-delta="-1" ${G.aparicionesPorAncla <= 2 ? 'disabled' : ''}>−</button>
+        <strong>${G.aparicionesPorAncla}</strong>
+        <button data-campo="aparicionesPorAncla" data-delta="1" ${G.aparicionesPorAncla >= 6 ? 'disabled' : ''}>+</button>
+      </div>
+    </div>` : ''}`;
 }
 
 function pEnfasis() {
@@ -169,8 +188,9 @@ function pPrevia() {
     series: G.series, reps: G.reps,
     hiit: { activo: G.hiit, series: 4, reps: '20', ejercicios: G.ejerciciosPorCircuito },
     sesgo: G.sesgo, semilla: G.semilla,
+    anclas: G.anclas, aparicionesPorAncla: G.aparicionesPorAncla,
   });
-  const { rutinas, avisos } = G.resultado;
+  const { rutinas, avisos, anclas } = G.resultado;
   const paraAuditar = rutinas.map(r => ({
     nombre: `${r.foco === 'press' ? 'Press' : 'Pull'} ${r.letra}`, foco: r.foco, circuitos: r.circuitos,
   }));
@@ -180,6 +200,10 @@ function pPrevia() {
   const grupoDe = Object.fromEntries(EJERCICIOS_CATALOGO.map(e => [e.nombre, e.grupo]));
   const cuenta = {};
   slots.forEach(n => { const g = grupoDe[n] || '?'; cuenta[g] = (cuenta[g] || 0) + 1; });
+  const veces = {};
+  slots.forEach(n => { veces[n] = (veces[n] || 0) + 1; });
+  const distintos = Object.keys(veces).length;
+  const repetidos = distintos ? Math.round(Object.values(veces).filter(v => v === 1).length / distintos * 100) : null;
   const max = Math.max(...Object.values(cuenta), 1);
   const l = getLugar(G.lugar);
 
@@ -202,6 +226,17 @@ function pPrevia() {
         </div>`;
       }).join('')}
     </div>
+
+    ${anclas?.length ? `<div class="gen-anclas">
+      <div class="gen-muestra-tit">Ejercicios ancla · se repiten para que puedas progresar</div>
+      ${anclas.map(a => `<div class="gen-circ"><strong>${a}</strong> · ${veces[a] || 0} veces en el ciclo</div>`).join('')}
+    </div>` : ''}
+
+    ${repetidos !== null ? `<div class="plan-nota ${repetidos > 25 ? 'aviso' : ''}">
+      <i class="ph ph-repeat"></i> ${distintos} ejercicios distintos${repetidos > 25
+        ? `, pero ${repetidos}% aparece una sola vez en todo el ciclo: eso no da tiempo a progresar.`
+        : `, cada uno unas ${(slots.length / distintos).toFixed(1)} veces.`}
+    </div>` : ''}
 
     ${avisos.length ? `<div class="wiz-aviso"><ul>${[...new Set(avisos.map(a => a.detalle))].slice(0, 4).map(d => `<li>${d}</li>`).join('')}</ul></div>` : ''}
 
@@ -235,7 +270,9 @@ function bind(body) {
   }));
   body.querySelectorAll('[data-campo]').forEach(b => b.addEventListener('click', () => {
     const k = b.dataset.campo;
-    G[k] = Math.max(1, G[k] + +b.dataset.delta);
+    // anclas puede ser 0 ("ninguno"); el resto tiene piso 1.
+    const piso = k === 'anclas' ? 0 : 1;
+    G[k] = Math.max(piso, G[k] + +b.dataset.delta);
     render();
   }));
   body.querySelector('[data-gen="hiit"]')?.addEventListener('click', () => { G.hiit = !G.hiit; render(); });
@@ -323,6 +360,7 @@ export function openGenerador({ usuario, lugar = null, alTerminar } = {}) {
     circuitos: 5, ejerciciosPorCircuito: 3,
     hiit: true, series: 2, reps: '12',
     sesgo: {}, semilla: 1,
+    anclas: 6, aparicionesPorAncla: 4,
     resultado: null, alTerminar,
   };
   openModal('Generar rutinas', '<div class="wiz"></div>', { onMount: render });
