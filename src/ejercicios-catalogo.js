@@ -211,7 +211,7 @@ export const EJERCICIOS_CATALOGO = [
   {
     nombre: 'Press de banca con barra',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
-    equipo: [['barra']],
+    equipo: [['banco_plano'], ['barra']],
     musculos: 'Pectoral mayor, Deltoides anterior, Tríceps',
     tags: 'Barbell bench press, Bench press',
     descripcion: 'Acostado en banco plano, desenganchá la barra con agarre al ancho de hombros o más. Bajá la barra controlada hasta el pecho medio y empujá hacia arriba. Requiere estabilización de hombros y core. Trabaja pectoral mayor, deltoides anterior y tríceps con máxima demanda de estabilidad. (Barbell Bench Press)'
@@ -299,7 +299,9 @@ export const EJERCICIOS_CATALOGO = [
   {
     nombre: 'Aperturas con mancuernas',
     grupo: 'Pecho', tipo: 'maquina', usaPeso: true,
-    equipo: [['mancuernas']],
+    // Es la versión DE BANCO: existe 'Aperturas con mancuernas en piso' aparte.
+    // El banco se había perdido al mapear el equipamiento.
+    equipo: [['banco_plano'], ['mancuernas']],
     musculos: 'Pectoral mayor, Deltoides anterior',
     tags: 'Dumbbell fly, Flat bench dumbbell fly',
     descripcion: 'Acostado en banco plano con una mancuerna en cada mano, brazos extendidos arriba. Abrí los brazos lateralmente con los codos levemente flexionados y fijos, hasta sentir estiramiento en el pecho. Volvé cerrando el arco. El banco deja que los brazos bajen por debajo de la línea del torso: rango completo, y también el punto donde más se exige la cápsula anterior del hombro, así que no busques el fondo a cualquier precio. Sin banco, usá la versión en piso, que es otro ejercicio. (Dumbbell Fly)'
@@ -1121,7 +1123,9 @@ export const EJERCICIOS_CATALOGO = [
   {
     nombre: 'Hip thrust a una pierna',
     grupo: 'Glúteos', tipo: 'funcional', usaPeso: true,
-    equipo: [],
+    // "Espalda apoyada en banco": hace falta algo a esa altura. Estaba en [],
+    // o sea hacible en cualquier lado, y es uno de los ejercicios ancla.
+    equipo: [['cajon', 'banco_plano']],
     musculos: 'Glúteos, Isquiotibiales',
     tags: 'Single leg hip thrust, Single leg glute bridge',
     descripcion: 'Espalda apoyada en banco, una pierna extendida en el aire. Empujá la cadera hacia arriba con la pierna de apoyo apretando el glúteo. Bajá controlado. Trabaja glúteo mayor unilateral con énfasis en estabilidad.'
@@ -1956,6 +1960,33 @@ export const EJERCICIOS_CATALOGO = [
     musculos: 'Oblicuos, Transverso abdominal, Deltoides anterior',
     tags: 'Plate bus driver, Bus driver exercise',
     descripcion: 'De pie, pies al ancho de hombros, sosteniendo un disco con las dos manos a los lados, como un volante, con los brazos extendidos al frente a la altura del pecho. GIRÁ el disco hacia un lado y hacia el otro como si manejaras, llevando una mano arriba y la otra abajo, sin que el torso acompañe el giro. El core resiste la rotación mientras los brazos la producen. Movimiento lento, sin balanceo. Los errores: que los hombros roten con el disco, que los brazos bajen con la fatiga, y arquear la lumbar. Con 5 a 10 kg alcanza. Es DISTINTO de "Oscilaciones laterales con disco", donde el disco se traslada de lado sin girar. (Plate Bus Driver)'
+  },
+
+  // ── PECHO SUPERIOR CON BANDA ────────────────────────────────────────────
+  // Medido: de 43 slots de pecho, 6 son de porción superior (14%) y dependen
+  // de un solo ejercicio, las flexiones declinadas. Los dos análisis
+  // coincidieron en que la porción clavicular es la única que justifica
+  // programarse —un inclinado de 30 grados da 10 a 30% más actividad
+  // clavicular que el plano— y en que la inferior es prescindible.
+  //
+  // Sin banco inclinado, el ángulo se consigue por la ALTURA DEL ANCLAJE: la
+  // banda abajo y el empuje hacia arriba y adelante deja el húmero en más
+  // flexión respecto al tronco, que es la misma geometría que el inclinado.
+  {
+    nombre: 'Banda press inclinado',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    equipo: [['bandas']],
+    musculos: 'Pectoral mayor (superior), Deltoides anterior, Tríceps',
+    tags: 'Low anchor band incline press, Banded incline chest press',
+    descripcion: 'Anclá la banda BAJA, a la altura de los tobillos o el piso, y pasala por debajo de los brazos. De pie o en zancada, con las manos a la altura del pecho, empujá hacia ARRIBA y adelante en diagonal, como un press inclinado, hasta extender los brazos por encima de la línea de los hombros. El ángulo lo da el anclaje, no un banco. Los errores: empujar horizontal (eso ya es un press plano), arquear la lumbar para ayudarse, y dejar que los codos se vayan demasiado abiertos. (Band Incline Press)'
+  },
+  {
+    nombre: 'Banda cruce bajo a alto',
+    grupo: 'Pecho', tipo: 'funcional', usaPeso: false,
+    equipo: [['bandas']],
+    musculos: 'Pectoral mayor (superior), Deltoides anterior',
+    tags: 'Low to high cable fly band, Banded low to high chest fly',
+    descripcion: 'Banda anclada BAJA detrás tuyo, una manija en cada mano con los brazos abajo y abiertos, codos levemente flexionados y fijos. Llevá las manos de abajo hacia arriba y adelante hasta juntarlas a la altura de la cara, como si abrazaras hacia arriba. Es el complemento de aducción del press inclinado: trabaja la porción clavicular en acortamiento. Los errores: flexionar los codos y convertirlo en un press, terminar el recorrido a la altura del pecho en vez de arriba, y encoger los hombros. (Low to High Band Fly)'
   },
 ];
 
