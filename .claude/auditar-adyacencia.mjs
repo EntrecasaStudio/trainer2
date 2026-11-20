@@ -7,7 +7,7 @@
 // Analysis"): Usuario → "Copiar rutinas" → actualizar-referencia.py --importar
 //
 import fs from 'fs';
-import { auditarAdyacencia } from '/home/user/trainer2/src/adyacencia.js';
+import { auditarAdyacencia, repetidosEnLaMismaRutina } from '/home/user/trainer2/src/adyacencia.js';
 
 function leer(f) {
   const rutinas = [];
@@ -29,6 +29,14 @@ function leer(f) {
 for (const [quien, f] of [['LEAN','.claude/rutinas-lean-casa-actual.md'], ['NAT','.claude/rutinas-nat-casa-actual.md']]) {
   const rutinas = leer('/home/user/trainer2/' + f);
   const { orden, choques } = auditarAdyacencia(rutinas);
+  const dentro = repetidosEnLaMismaRutina(rutinas);
+  if (dentro.length) {
+    console.log(`\n   ⚠ ${dentro.length} ejercicio(s) repetido(s) DENTRO de una misma rutina:`);
+    for (const d of dentro) {
+      const corto = s => s.replace(/Casa |— (Lean|Nat)/g,'').trim();
+      console.log(`     ${corto(d.rutina)}: ${d.slots.map(x=>`${x.nombre} (C${x.ci+1} ${x.circuito})`).join('  +  ')}`);
+    }
+  }
   console.log(`\n══ ${quien}: ${rutinas.length} rutinas, ${orden.length} entran en la rotación`);
   console.log('   orden:', orden.map(n=>n.replace(/Casa |—.*/g,'').trim()).join(' → '));
   if (!choques.length) { console.log('   sin choques'); continue; }
