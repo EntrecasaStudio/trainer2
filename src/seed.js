@@ -2572,6 +2572,25 @@ function migrateCompoundExercises() {
     ['Casa Pull J — Lean', 3, 1, 'TRX chest press', 'Banda press inclinado', 2, '12'],
     ['Casa Press E — Lean', 1, 0, 'Flexiones diamante', 'Banda cruce bajo a alto', 2, '15'],
     ['Casa Press G — Lean', 1, 2, 'TRX archer press', 'Banda cruce bajo a alto', 2, '15'],
+
+    // ── LEAN · sacar los ejercicios repetidos dentro de la misma rutina ─────
+    // Dos casos, los únicos en las 20 rutinas. La auditoría de adyacencia no
+    // los veía: mira rutinas vecinas del anillo, no el interior de cada una.
+    //
+    // Press C tenía "Sentadilla con salto" en C1 (2x8) y otra vez en el HIIT
+    // (4x10): seis series del mismo salto en una sesión. Se saca la de C1,
+    // donde además estaba haciendo de ejercicio de fuerza y no lo es. Entra
+    // una bisagra de cadera, que es lo que le faltaba al circuito —ya tenía
+    // una zancada (cuádriceps unilateral) y un remo— y además Lean casi no
+    // tiene trabajo directo de glúteo. No entra un peso muerto rumano
+    // bilateral: con mancuernas livianas el estímulo es flojo.
+    //
+    // Press E tenía "Caminata a plancha" en C4 (2x8) y en el HIIT (4x8). Se
+    // cambia la del HIIT, que es donde sobran alternativas.
+    //
+    // Choques de adyacencia: 24 → 24. Repetidos dentro de rutina: 2 → 0.
+    ['Casa Press C — Lean', 0, 0, 'Sentadilla con salto', 'Empuje de cadera en cajon', 2, '12'],
+    ['Casa Press E — Lean', 4, 2, 'Caminata a plancha', 'Pasadas de velocidad', 4, '20m'],
   ];
 
   let changed = false;

@@ -18,7 +18,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C5 HIIT: Caminata a plancha (4x8m), Tuck jumps (4x8), Mountain climbers (4x20)
 
 ## Casa Press C — Lean [MODIFICADA]
-  C1 PIERNAS·ESPALDA: Sentadilla con salto (2x8), Estocadas estáticas (2x10), Renegade row (2x8)
+  C1 PIERNAS·ESPALDA: Empuje de cadera en cajon (2x12), Estocadas estáticas (2x10), Renegade row (2x8)
   C2 PECHO: Banda press inclinado (2x12), Banda press de pecho a un brazo (2x12), TRX archer press (2x12)
   C3 HOMBROS·TRÍCEPS: Fondos en banco (2x12), Vuelo lateral inclinado (2x10), Tríceps alto en TRX (2x15)
   C4 CORE·BÍCEPS: Plancha estrella con peso (2x6), Dead bug (2x12), Bíceps curl en TRX (2x10)
@@ -36,7 +36,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C2 PECHO: Banda cruce bajo a alto (2x15), TRX archer press (2x10), Banda press de pecho (2x12)
   C3 HOMBROS·TRÍCEPS: Press militar (2x10), French press en puente de glúteos (2x12), Zancada cruzada con vuelo lateral (2x10)
   C4 CORE·BÍCEPS: Ab wheel (2x10), Caminata a plancha (2x8), Bíceps curl (2x12)
-  C5 HIIT: Tuck jumps (4x8), Mountain climbers (4x20), Caminata a plancha (4x8)
+  C5 HIIT: Tuck jumps (4x8), Mountain climbers (4x20), Pasadas de velocidad (4x20m)
 
 ## Casa Press F — Lean [MODIFICADA]
   C1 PIERNAS·ESPALDA: Peso muerto dividido (2x10), TRX row (2x20), Sentadilla búlgara (2x10)
