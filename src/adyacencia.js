@@ -34,6 +34,16 @@ export const FAMILIAS = {
   'French press': 'triceps_overhead',
   'French press en puente de glúteos': 'triceps_overhead',
 
+  // peso muerto sumo: misma bisagra con base ancha, con o sin elevación
+  'Peso muerto sumo': 'peso_muerto_sumo',
+  'Peso muerto sumo con elevación frontal': 'peso_muerto_sumo',
+  'Sentadilla sumo': 'peso_muerto_sumo',
+
+  // peso muerto rumano bilateral, cambia el implemento y nada más
+  'Peso muerto rumano': 'rdl_bilateral',
+  'Peso muerto rumano con kettlebell': 'rdl_bilateral',
+  'Peso muerto rumano con remo': 'rdl_bilateral',
+
   // bisagra de cadera a una pierna
   'Peso muerto a una pierna': 'hinge_unilateral',
   'Peso muerto a una pierna con remo': 'hinge_unilateral',
