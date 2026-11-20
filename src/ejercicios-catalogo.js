@@ -1084,7 +1084,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['mancuernas', 'kettlebell', 'discos']],
     musculos: 'Isquiotibiales, Glúteos, Erector espinal',
     tags: 'Kickstand RDL, B-stance deadlift, Staggered stance RDL, Split stance deadlift',
-    descripcion: 'Un pie adelante con la planta completa apoyada y el otro medio paso atrás, apoyado sólo con la punta, al costado del talón de adelante (como el apoyo de una moto). El pie de atrás sólo da equilibrio: lleva más o menos un 20-30% del peso, el resto va sobre la pierna adelantada. Bajá con bisagra de cadera llevando la cola bien atrás, espalda neutra, y la rodilla de atrás se flexiona sola al bajar. Volvé empujando el piso con la pierna de adelante. Es la versión del peso muerto a una pierna SIN la exigencia de equilibrio: te deja cargar bastante más peso y concentrarte en el glúteo e isquiotibial de la pierna de adelante. Hacé todas las reps de un lado antes de cambiar. (Kickstand RDL)'
+    descripcion: 'Un pie adelante con la planta completa apoyada y el otro medio paso atrás, apoyado sólo con la punta, al costado del talón de adelante (como el apoyo de una moto). El pie de atrás sólo da equilibrio: lleva más o menos un 20-30% del peso, el resto va sobre la pierna adelantada. Bajá con bisagra de cadera llevando la cola bien atrás, espalda neutra, y la rodilla de atrás se flexiona sola al bajar. Volvé empujando el piso con la pierna de adelante. Es la versión del peso muerto a una pierna SIN la exigencia de equilibrio: te deja cargar bastante más peso y concentrarte en el glúteo e isquiotibial de la pierna de adelante. Hacé todas las reps de un lado antes de cambiar. Si usás dos pesos, cargá la SUMA de los dos: lo que limita es la pierna, y la pierna sostiene los dos. (Kickstand RDL)'
   },
   {
     nombre: 'Squat to press con kettlebell',
@@ -1236,7 +1236,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['mancuernas', 'kettlebell', 'discos']],
     musculos: 'Glúteos, Aductores, Isquiotibiales',
     tags: 'Sumo squat to RDL',
-    descripcion: 'Sentadilla sumo seguida de un peso muerto rumano al subir: cerrá piernas y bajá el torso con piernas casi rectas. Volvé a posición sumo y repetí. Trabaja glúteos, aductores y femorales. (Sumo Squat to RDL)'
+    descripcion: 'Sentadilla sumo seguida de un peso muerto rumano al subir: cerrá piernas y bajá el torso con piernas casi rectas. Volvé a posición sumo y repetí. Trabaja glúteos, aductores y femorales. Si usás dos pesos, cargá la SUMA de los dos: lo que limita es la pierna, y la pierna sostiene los dos. (Sumo Squat to RDL)'
   },
   {
     nombre: 'Banded narrow to wide squat',
@@ -1419,7 +1419,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['mancuernas']],
     musculos: 'Glúteo medio, Aductores, Cuádriceps, Deltoides lateral',
     tags: 'curtsy lunge to lateral raise, curtsy lunge lateral raise',
-    descripcion: 'Con mancuerna o kettlebell, dá un paso cruzando la pierna por detrás (curtsy lunge) bajando la rodilla. Al subir, elevá los brazos lateralmente hasta la altura de los hombros. Hacé todas las reps de un lado antes de cambiar. Trabaja glúteo medio, aductores y deltoides lateral. (Curtsy Lunge to Lateral Raise)'
+    descripcion: 'Con mancuerna o kettlebell, dá un paso cruzando la pierna por detrás (curtsy lunge) bajando la rodilla. Al subir, elevá los brazos lateralmente hasta la altura de los hombros. Hacé todas las reps de un lado antes de cambiar. Trabaja glúteo medio, aductores y deltoides lateral. Cargá el peso de UNA mancuerna, no la suma: la pierna sostiene las dos, pero cada brazo mueve una sola y es ese movimiento el que limita. (Curtsy Lunge to Lateral Raise)'
   },
   {
     nombre: 'Flexión con toque de hombro',
@@ -1460,7 +1460,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [],
     musculos: 'Cuádriceps, Glúteos, Isquiotibiales',
     tags: 'Static lunges, Split squat',
-    descripcion: 'Dá un paso al frente y quedate en esa posición. Bajá la rodilla trasera hacia el suelo sin apoyarla y subí. Hacé todas las reps de un lado antes de cambiar. Sin saltos, movimiento controlado. Trabajá cuádriceps, glúteos y estabilidad unilateral. (Static Lunges)'
+    descripcion: 'Dá un paso al frente y quedate en esa posición. Bajá la rodilla trasera hacia el suelo sin apoyarla y subí. Hacé todas las reps de un lado antes de cambiar. Sin saltos, movimiento controlado. Trabajá cuádriceps, glúteos y estabilidad unilateral. Si usás dos pesos, cargá la SUMA de los dos: lo que limita es la pierna, y la pierna sostiene los dos. (Static Lunges)'
   },
   {
     nombre: 'Calf raises',
@@ -1557,7 +1557,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['kettlebell', 'mancuernas']],
     musculos: 'Isquiotibiales, Glúteos, Dorsal ancho, Romboides',
     tags: 'Romanian deadlift to row, RDL to row',
-    descripcion: 'Peso muerto rumano bilateral con dos kettlebells o mancuernas. En la posición baja, hacé un remo con ambos brazos tirando los codos hacia atrás. Bajá los pesos, volvé a parado y repetí. Cadena posterior + espalda en un combo eficiente. (Romanian Deadlift to Row)'
+    descripcion: 'Peso muerto rumano bilateral con dos kettlebells o mancuernas. En la posición baja, hacé un remo con ambos brazos tirando los codos hacia atrás. Bajá los pesos, volvé a parado y repetí. Cadena posterior + espalda en un combo eficiente. Cargá el peso de UNA mancuerna, no la suma: la pierna sostiene las dos, pero cada brazo mueve una sola y es ese movimiento el que limita. (Romanian Deadlift to Row)'
   },
   {
     nombre: 'Zancada reversa con remo',
@@ -1881,7 +1881,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['cajon'], ['mancuernas', 'kettlebell', 'discos', 'chaleco']],
     musculos: 'Glúteo mayor, Cuádriceps, Isquiotibiales',
     tags: 'Front foot elevated split squat, FFE split squat',
-    descripcion: 'Pie delantero sobre un step de 5 a 10 cm, pie trasero en el piso bastante atrás. Con el torso inclinado hacia adelante desde la cadera, bajá hasta que la pierna delantera quede en flexión profunda y subí empujando con ella. La elevación aumenta el estiramiento del glúteo, y como el pie trasero está apoyado exige menos equilibrio que la búlgara: eso permite llegar a la fatiga con el glúteo y no con el equilibrio, que es clave cuando la carga es chica. Los errores: elevar demasiado el pie (más altura lleva el trabajo a la rodilla), quedarse con el torso erguido (lo vuelve de cuádriceps) y dar un paso corto. (Front Foot Elevated Split Squat)'
+    descripcion: 'Pie delantero sobre un step de 5 a 10 cm, pie trasero en el piso bastante atrás. Con el torso inclinado hacia adelante desde la cadera, bajá hasta que la pierna delantera quede en flexión profunda y subí empujando con ella. La elevación aumenta el estiramiento del glúteo, y como el pie trasero está apoyado exige menos equilibrio que la búlgara: eso permite llegar a la fatiga con el glúteo y no con el equilibrio, que es clave cuando la carga es chica. Los errores: elevar demasiado el pie (más altura lleva el trabajo a la rodilla), quedarse con el torso erguido (lo vuelve de cuádriceps) y dar un paso corto. Si usás dos pesos, cargá la SUMA de los dos: lo que limita es la pierna, y la pierna sostiene los dos. (Front Foot Elevated Split Squat)'
   },
   {
     nombre: 'Zancada reversa deslizante',
@@ -1889,7 +1889,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['sliders'], ['mancuernas', 'kettlebell', 'chaleco']],
     musculos: 'Glúteo mayor, Cuádriceps, Isquiotibiales',
     tags: 'Slider reverse lunge, Sliding reverse lunge',
-    descripcion: 'Con un slider bajo el pie de atrás, deslizalo hacia atrás en 3 segundos mientras bajás, con el torso inclinado 20 a 30 grados desde la cadera. Subí empujando SÓLO con la pierna delantera, sin impulsarte con la de atrás. El slider hace que el pie trasero apenas controle y que la delantera cargue casi todo, en flexión profunda de cadera. Los errores: rodilla delantera que se va hacia adentro, talón delantero que se levanta (el paso es corto), torso vertical y dejar que el slider se escape rápido. Si es nueva, empezá con rango corto. (Slider Reverse Lunge)'
+    descripcion: 'Con un slider bajo el pie de atrás, deslizalo hacia atrás en 3 segundos mientras bajás, con el torso inclinado 20 a 30 grados desde la cadera. Subí empujando SÓLO con la pierna delantera, sin impulsarte con la de atrás. El slider hace que el pie trasero apenas controle y que la delantera cargue casi todo, en flexión profunda de cadera. Los errores: rodilla delantera que se va hacia adentro, talón delantero que se levanta (el paso es corto), torso vertical y dejar que el slider se escape rápido. Si es nueva, empezá con rango corto. Si usás dos pesos, cargá la SUMA de los dos: lo que limita es la pierna, y la pierna sostiene los dos. (Slider Reverse Lunge)'
   },
   {
     nombre: 'Step-up alto con inclinación',
@@ -1897,7 +1897,7 @@ export const EJERCICIOS_CATALOGO = [
     equipo: [['cajon'], ['mancuernas', 'kettlebell', 'chaleco']],
     musculos: 'Glúteo mayor, Cuádriceps, Isquiotibiales',
     tags: 'High step up, Deficit step up torso lean',
-    descripcion: 'Cajón o silla firme a la altura de la rodilla o un poco más. Apoyá el pie entero arriba, inclináte hacia adelante desde la cadera y subí sin empujarte con la pierna de abajo. Mantené la inclinación durante toda la subida y bajá en 3 segundos. La altura hace que la cadera arranque en flexión profunda y el glúteo empuje desde estirado, cosa que el step up común no logra. Si la pelvis rota o la lumbar se redondea, bajá la altura. La superficie tiene que ser firme: una silla que se desliza es un riesgo real. (High Step Up)'
+    descripcion: 'Cajón o silla firme a la altura de la rodilla o un poco más. Apoyá el pie entero arriba, inclináte hacia adelante desde la cadera y subí sin empujarte con la pierna de abajo. Mantené la inclinación durante toda la subida y bajá en 3 segundos. La altura hace que la cadera arranque en flexión profunda y el glúteo empuje desde estirado, cosa que el step up común no logra. Si la pelvis rota o la lumbar se redondea, bajá la altura. La superficie tiene que ser firme: una silla que se desliza es un riesgo real. Si usás dos pesos, cargá la SUMA de los dos: lo que limita es la pierna, y la pierna sostiene los dos. (High Step Up)'
   },
   {
     nombre: 'Zancada lateral con goblet',
