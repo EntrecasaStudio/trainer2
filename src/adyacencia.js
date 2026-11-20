@@ -211,6 +211,36 @@ export function auditarAdyacencia(rutinas) {
   return { orden: orden.map(r => r.nombre), choques };
 }
 
+// Ejercicios repetidos DENTRO de una misma rutina.
+//
+// `auditarAdyacencia` no los ve: mira rutinas vecinas del anillo, no el
+// interior de cada una. Pero repetir un ejercicio el mismo día es un problema
+// aparte y más obvio —seis series del mismo salto en una sesión, repartidas
+// entre el circuito de fuerza y el de HIIT— y nada lo estaba controlando.
+//
+// Se compara por FAMILIA, no por nombre: una sentadilla con salto en C1 y un
+// salto al cajón en el HIIT es el mismo problema aunque se llamen distinto.
+export function repetidosEnLaMismaRutina(rutinas) {
+  const out = [];
+  for (const r of rutinas || []) {
+    const porFamilia = new Map();
+    for (const s of slotsDe(r)) {
+      const f = familiaDe(s.nombre);
+      if (!porFamilia.has(f)) porFamilia.set(f, []);
+      porFamilia.get(f).push(s);
+    }
+    for (const [familia, slots] of porFamilia) {
+      if (slots.length < 2) continue;
+      out.push({
+        rutina: r.nombre, familia,
+        exacto: slots.every(s => s.nombre === slots[0].nombre),
+        slots: slots.map(s => ({ nombre: s.nombre, circuito: s.circuito, ci: s.ci })),
+      });
+    }
+  }
+  return out;
+}
+
 // ¿Se puede poner `nombre` en la rutina de índice `i`? Es lo que usa el
 // generador antes de colocar cada ejercicio.
 export function puedeColocarse(nombre, i, familiasPorRutina) {
