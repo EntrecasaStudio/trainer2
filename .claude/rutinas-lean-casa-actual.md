@@ -63,7 +63,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C1 PIERNAS·CORE: Sentadilla búlgara con TRX (2x10), Hollow body (2x25s), Swing con kettlebell (2x15)
   C2 ESPALDA: TRX row (2x12), TRX face pull (2x15), Dominadas australianas (2x12)
   C3 BÍCEPS·CORE: Bíceps curl martillo (2x10), Abs complex (2x30s), Pallof press (2x10)
-  C4 PECHO·TRÍCEPS: Press militar (2x12), Peso muerto sumo con elevación frontal (2x10), French press (2x10)
+  C4 PECHO·TRÍCEPS: Press militar (2x12), TRX chest press narrow (2x12), French press (2x10)
   C5 HIIT: Mountain climbers (4x20), Tuck jumps (4x8), Caminata a plancha (4x8)
 
 ## Casa Pull D — Lean [MODIFICADA]
