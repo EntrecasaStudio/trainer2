@@ -30,15 +30,16 @@ for (const [quien, f] of [['LEAN','.claude/rutinas-lean-casa-actual.md'], ['NAT'
   const rutinas = leer('/home/user/trainer2/' + f);
   const { orden, choques } = auditarAdyacencia(rutinas);
   const dentro = repetidosEnLaMismaRutina(rutinas);
-  if (dentro.length) {
-    console.log(`\n   ⚠ ${dentro.length} ejercicio(s) repetido(s) DENTRO de una misma rutina:`);
-    for (const d of dentro) {
-      const corto = s => s.replace(/Casa |— (Lean|Nat)/g,'').trim();
-      console.log(`     ${corto(d.rutina)}: ${d.slots.map(x=>`${x.nombre} (C${x.ci+1} ${x.circuito})`).join('  +  ')}`);
-    }
-  }
+
   console.log(`\n══ ${quien}: ${rutinas.length} rutinas, ${orden.length} entran en la rotación`);
   console.log('   orden:', orden.map(n=>n.replace(/Casa |—.*/g,'').trim()).join(' → '));
+  if (dentro.length) {
+    const corto = s => s.replace(/Casa |— (Lean|Nat)/g,'').trim();
+    console.log(`   ⚠ ${dentro.length} ejercicio(s) repetido(s) DENTRO de una misma rutina:`);
+    for (const d of dentro) {
+      console.log(`      ${corto(d.rutina)}: ${d.slots.map(x=>`${x.nombre} (C${x.ci+1})`).join('  +  ')}`);
+    }
+  }
   if (!choques.length) { console.log('   sin choques'); continue; }
   const exactos = choques.filter(c=>c.exacto), familia = choques.filter(c=>!c.exacto);
   console.log(`   ${choques.length} choques: ${exactos.length} por nombre exacto, ${familia.length} por familia\n`);
