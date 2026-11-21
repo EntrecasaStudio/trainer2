@@ -121,6 +121,11 @@ export const FAMILIAS = {
   'Bus driver con disco': 'disco_de_pie',
   'Rotación con disco': 'disco_de_pie',
 
+  // elevación frontal de hombro, con o sin disco: el implemento cambia, el
+  // movimiento no. Sin declararlo, las dos podían caer en el mismo circuito.
+  'Elevaciones de hombro adelante': 'elevacion_frontal',
+  'Elevaciones de hombro adelante con disco': 'elevacion_frontal',
+
   // plancha con desplazamiento de los brazos
   'Plancha commando': 'plancha_dinamica',
   'Plancha con elevación alternada': 'plancha_dinamica',

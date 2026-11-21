@@ -2637,6 +2637,39 @@ function migrateCompoundExercises() {
     // anti-lateral son el plano que falta. No entra una abducción, que es lo
     // otro que pasaba la adyacencia: Nat ya tiene 32% de abducción.
     ['Casa Press A — Nat', 0, 2, 'Peso muerto dividido', 'Copenhague', 2, '15'],
+
+    // ── Ejercicios que no tenían nada que ver con el tema de su circuito ────
+    // Auditoría nueva: para cada circuito se compara el tema de la etiqueta
+    // (PECHO·TRÍCEPS, HOMBROS·TRÍCEPS…) contra los MÚSCULOS de cada ejercicio,
+    // no sólo contra su grupo. Mirar el grupo solo daba 57 falsos positivos:
+    // un thruster figura en Piernas pero termina en un press de hombro, y un
+    // TRX face pull figura en Hombros pero es espalda alta. Mirando músculos
+    // quedan 3 en Lean y 17 en Nat, y estos 7 son los que no aportan NADA.
+    //
+    // El de Lean: Pull C C4 se llama PECHO·TRÍCEPS y no tenía un solo
+    // ejercicio de pecho. "Peso muerto sumo con elevación frontal" es glúteos,
+    // aductores, isquios y deltoides.
+    //
+    // CINCO DE LOS DE NAT LOS INTRODUJE YO. En las tandas de glúteo y pierna
+    // usé "slots cedidos por core y brazos", pero esos slots estaban en
+    // circuitos HOMBROS·TRÍCEPS y ESPALDA·BÍCEPS: quedaron bisagras de cadera
+    // dentro de circuitos de brazos. Verifiqué adyacencia y equipamiento, y
+    // nunca el tema del circuito. Ahora existe el chequeo.
+    //
+    // Entra un PRESS vertical en casi todos, que es lo que a esos circuitos
+    // les faltaba: ya tenían una elevación y un tríceps, así que meter otra
+    // elevación habría sido repetir el movimiento con otro nombre.
+    //
+    // Costo: glúteos de Nat pasa de 47 a 42 slots (16% → 14%). Pero ese 16%
+    // contaba 5 slots mal ubicados, así que el número honesto siempre fue 14%.
+    // Reponer el volumen en circuitos de pierna queda pendiente.
+    ['Casa Pull C — Lean', 3, 1, 'Peso muerto sumo con elevación frontal', 'TRX chest press narrow', 2, '12'],
+    ['Casa Press A — Nat', 2, 0, 'Zancada lateral con TRX', 'Press militar suave con kettlebell', 2, '12'],
+    ['Casa Press C — Nat', 2, 0, 'Perro orinando con banda', 'Arranque con mancuerna', 2, '12'],
+    ['Casa Press D — Nat', 2, 0, 'Pull-through con banda', 'Press militar suave con kettlebell', 2, '12'],
+    ['Casa Press E — Nat', 1, 2, 'Zancada lateral con TRX', 'TRX chest press narrow', 2, '12'],
+    ['Casa Press F — Nat', 2, 0, 'Peso muerto a una pierna con TRX', 'Clean con press a un brazo', 2, '12'],
+    ['Casa Press I — Nat', 2, 0, 'Pull-through con banda', 'Arranque con mancuerna', 2, '12'],
   ];
 
   let changed = false;
