@@ -2620,6 +2620,23 @@ function migrateCompoundExercises() {
     ['Casa Pull C — Lean', 0, 2, 'Sentadilla búlgara con TRX', 'Swing con kettlebell', 2, '15'],
     ['Casa Pull G — Lean', 0, 0, 'Zancada con rotación', 'Sentadilla búlgara', 2, '10'],
     ['Casa Pull G — Lean', 0, 1, 'Sentadilla búlgara', 'Pull-through con banda', 2, '15'],
+
+    // ── NAT · Press A C1 tenía dos bisagras unilaterales ────────────────────
+    // Error introducido en la tanda de piernas: se puso "Peso muerto a una
+    // pierna con TRX" en la posición 1, donde ya estaba "Peso muerto
+    // dividido" en la 3. Las dos son la misma bisagra unilateral: el peso
+    // muerto dividido es una bisagra a una pierna con la de atrás sólo de
+    // apoyo, "como el apoyo de una moto".
+    //
+    // No se detectó entonces porque ni el chequeo de repetidos dentro de una
+    // misma rutina ni la familia hinge_unilateral para esos dos existían.
+    // Aparecieron los dos después, y esto es lo primero que encontraron.
+    //
+    // Entra Copenhague: el circuito ya tiene bisagra y step-up, los dos
+    // unilaterales y en el plano sagital. Los aductores y el trabajo
+    // anti-lateral son el plano que falta. No entra una abducción, que es lo
+    // otro que pasaba la adyacencia: Nat ya tiene 32% de abducción.
+    ['Casa Press A — Nat', 0, 2, 'Peso muerto dividido', 'Copenhague', 2, '15'],
   ];
 
   let changed = false;

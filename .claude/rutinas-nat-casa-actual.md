@@ -5,7 +5,7 @@ Nat entrena con MAYOR foco en piernas y glúteos comparado con Lean.
 Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la app).
 
 ## Casa Press A — Nat [MODIFICADA]
-  C1 PIERNAS·GLÚTEOS: Peso muerto a una pierna con TRX (2x10), Step-up alto con inclinación (2x10), Peso muerto dividido (2x12)
+  C1 PIERNAS·GLÚTEOS: Peso muerto a una pierna con TRX (2x10), Step-up alto con inclinación (2x10), Copenhague (2x15)
   C2 PECHO·HOMBROS: Floor press (2x10), Press militar (2x10), Flexiones declinadas (2x10)
   C3 HOMBROS·TRÍCEPS: Zancada lateral con TRX (2x12), Vuelos laterales (2x12), Déficit reverse lunge (2x15)
   C4 CORE·PIERNAS: Ab wheel (2x8), Plancha (2x25s), Puente rana con peso (2x25)
