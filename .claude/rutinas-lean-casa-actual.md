@@ -60,7 +60,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C5 HIIT: Burpees (4x8), Jumping jacks (4x30), Estocada con salto (4x8)
 
 ## Casa Pull C — Lean [MODIFICADA]
-  C1 PIERNAS·CORE: Zancadas (2x10), Hollow body (2x25s), Sentadilla búlgara con TRX (2x10)
+  C1 PIERNAS·CORE: Sentadilla búlgara con TRX (2x10), Hollow body (2x25s), Swing con kettlebell (2x15)
   C2 ESPALDA: TRX row (2x12), TRX face pull (2x15), Dominadas australianas (2x12)
   C3 BÍCEPS·CORE: Bíceps curl martillo (2x10), Abs complex (2x30s), Pallof press (2x10)
   C4 PECHO·TRÍCEPS: Press militar (2x12), Peso muerto sumo con elevación frontal (2x10), French press (2x10)
@@ -116,7 +116,7 @@ Las marcadas [MODIFICADA] difieren del seed.js (el usuario las editó desde la a
   C5 HIIT: Step-up rápidos alternados (4x20), Patinadores (4x20), Rodillas altas (4x30)
 
 ## Casa Pull G — Lean
-  C1 PIERNAS·CORE: Zancada con rotación (2x10), Sentadilla búlgara (2x10), Copenhague (2x15)
+  C1 PIERNAS·CORE: Sentadilla búlgara (2x10), Pull-through con banda (2x15), Copenhague (2x15)
   C2 ESPALDA: Peso muerto rumano con remo (2x10), Dominadas australianas (2x12), Banda pull-apart (2x20)
   C3 BÍCEPS·CORE: Bíceps curl en TRX (2x10), Plancha commando (2x10), Bíceps curl en equilibrio (2x10)
   C4 PECHO·TRÍCEPS: Fondos en banco (2x12), Flexiones diamante (2x10), French press (2x10)

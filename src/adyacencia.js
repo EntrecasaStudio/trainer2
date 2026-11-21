@@ -46,6 +46,8 @@ export const FAMILIAS = {
 
   // bisagra de cadera a una pierna
   'Peso muerto a una pierna': 'hinge_unilateral',
+  'Peso muerto a una pierna con TRX': 'hinge_unilateral',
+  'Peso muerto dividido': 'hinge_unilateral',
   'Peso muerto a una pierna con remo': 'hinge_unilateral',
   'Peso muerto a una pierna con rodilla arriba': 'hinge_unilateral',
 
@@ -84,9 +86,16 @@ export const FAMILIAS = {
   'Sentadilla dividida con pie delantero elevado': 'split_squat',
   'Split squat pulses': 'split_squat',
 
-  // zancada hacia atrás con déficit o deslizamiento
+  // zancada hacia atrás. Las "con remo", "con press", "con curl" y "con chop"
+  // son el MISMO patrón de pierna con distinto movimiento de brazo encima, y
+  // estaban sueltas: la regla dejaba pasar dos de ellas en rutinas vecinas.
   'Déficit reverse lunge': 'zancada_reversa',
   'Zancada reversa deslizante': 'zancada_reversa',
+  'Zancada reversa con remo': 'zancada_reversa',
+  'Zancada reversa con press a un brazo': 'zancada_reversa',
+  'Zancada reversa con curl martillo': 'zancada_reversa',
+  'Zancada reversa con chop diagonal': 'zancada_reversa',
+  'Estocada reversa con rodilla arriba': 'zancada_reversa',
 
   // subida a un cajón
   'Step up': 'step_up',
