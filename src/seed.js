@@ -2591,6 +2591,35 @@ function migrateCompoundExercises() {
     // Choques de adyacencia: 24 → 24. Repetidos dentro de rutina: 2 → 0.
     ['Casa Press C — Lean', 0, 0, 'Sentadilla con salto', 'Empuje de cadera en cajon', 2, '12'],
     ['Casa Press E — Lean', 4, 2, 'Caminata a plancha', 'Pasadas de velocidad', 4, '20m'],
+
+    // ── LEAN · sacar la zancada que acompañaba a la búlgara ─────────────────
+    // La búlgara y la zancada son el MISMO patrón: misma pierna, mismos
+    // músculos (cuádriceps, glúteo mayor, aductor mayor). La diferencia es el
+    // rango y el aporte de la pierna trasera, no el estímulo. Juntas en un
+    // circuito se repiten, y con 3 ejercicios por rondas el segundo llega con
+    // el cuádriceps agotado: no recibe estímulo propio, sólo fatiga.
+    //
+    // Entra una bisagra de cadera, que es el complemento correcto: la búlgara
+    // es dominante de rodilla y trabaja el glúteo en rango corto; la bisagra
+    // carga isquios y glúteo en rango largo, en otro plano, sin interferencia
+    // del cuádriceps fatigado.
+    //
+    // Son intercambios, no reemplazos simples: la búlgara pasa a la primera
+    // posición y la bisagra ocupa la que tenía. Lo más demandante va primero;
+    // si la bisagra fuera antes, el glúteo e isquios llegarían pre-fatigados y
+    // la búlgara perdería estabilidad y carga.
+    //
+    // Las bisagras UNILATERALES, que serían las ideales, están bloqueadas por
+    // la adyacencia en los dos casos: Press D y Pull H ya tienen peso muerto a
+    // una pierna, y Press C y Pull F tienen empuje de cadera. De lo que queda
+    // se eligen bisagras de verdad y NO un peso muerto rumano bilateral, que
+    // con mancuernas livianas no da estímulo.
+    //
+    // Choques 24 → 24. Repetidos dentro de rutina: 0.
+    ['Casa Pull C — Lean', 0, 0, 'Zancadas', 'Sentadilla búlgara con TRX', 2, '10'],
+    ['Casa Pull C — Lean', 0, 2, 'Sentadilla búlgara con TRX', 'Swing con kettlebell', 2, '15'],
+    ['Casa Pull G — Lean', 0, 0, 'Zancada con rotación', 'Sentadilla búlgara', 2, '10'],
+    ['Casa Pull G — Lean', 0, 1, 'Sentadilla búlgara', 'Pull-through con banda', 2, '15'],
   ];
 
   let changed = false;
